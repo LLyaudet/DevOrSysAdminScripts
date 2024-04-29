@@ -22,11 +22,20 @@
 #
 # ©Copyright 2023-2024 Laurent Lyaudet
 
-sed -Ez -e 's/(\[[a-zA-Z0-9:-]*\]: [^\n\\]*)\\\n/\1/Mg'\
-  -e 's/(\[[a-zA-Z0-9:-]*\]: [^\n\\]*)\\\n/\1/Mg'\
-  -e 's/(<http[^\n\\]*)\\\n/\1/Mg'\
-  -e 's/(<http[^\n\\]*)\\\n/\1/Mg'\
-  -e 's/(- <http[^\n\\]*)\\\n/\1/Mg'\
-  -e 's/(- <http[^\n\\]*)\\\n/\1/Mg'\
-  README_printable.md > README.md
+sed_expression='s/(\[[a-zA-Z0-9:-]*\]: [^\n\\]*)\\\n/\1/Mg'
+sed_expression+=';s/(<http[^\n\\]*)\\\n/\1/Mg'
+sed_expression+=';s/(- <http[^\n\\]*)\\\n/\1/Mg'
 
+pushd .
+if [[ -v "$1" ]];
+then
+  cd $1
+fi
+
+sed -Ez "$sed_expression" README_printable.md > README_temp1.md
+sed -Ez "$sed_expression" README_temp1.md > README_temp2.md
+sed -Ez "$sed_expression" README_temp2.md > README_temp3.md
+sed -Ez "$sed_expression" README_temp3.md > README.md
+rm README_temp1.md README_temp2.md README_temp3.md
+
+popd

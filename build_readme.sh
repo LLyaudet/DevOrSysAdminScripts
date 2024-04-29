@@ -27,7 +27,7 @@ sed_expression+=';s/(<http[^\n\\]*)\\\n/\1/Mg'
 sed_expression+=';s/(- <http[^\n\\]*)\\\n/\1/Mg'
 
 pushd .
-if [[ -v "$1" ]];
+if [[ -n "$1" ]];
 then
   cd $1
 fi

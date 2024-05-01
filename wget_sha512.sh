@@ -30,7 +30,7 @@ wget_sha512(){
   then
     wget $2
   fi
-  present_sha512=`sha512sum $1 | cut -f1 -d' '`
+  present_sha512=$(sha512sum $1 | cut -f1 -d' ')
   if [[ "$present_sha512" != "$3" ]];
   then
     echo "$1 does not have correct sha512"

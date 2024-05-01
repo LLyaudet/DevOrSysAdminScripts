@@ -29,7 +29,7 @@ sed_expression+=';s/(- <http[^\n\\]*)\\\n/\1/Mg'
 pushd .
 if [[ -n "$1" ]];
 then
-  cd $1
+  cd "$1"
 fi
 
 sed -Ez "$sed_expression" README_printable.md > README_temp1.md

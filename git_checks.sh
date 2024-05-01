@@ -31,12 +31,12 @@ check_files(){
   send_body_3="Les nouveaux preloadings sont interdits -> #Prefetch()"
   if git diff --cached --name-only | grep models;
   then
-    notify-send $send_summary_1 $send_body_1
-    notify-send $send_summary_1 $send_body_2
+    notify-send "$send_summary_1" "$send_body_1"
+    notify-send "$send_summary_1" "$send_body_2"
   fi
   if git diff --cached --name-only | grep serializer;
   then
-    notify-send $send_summary_2 $send_body_3
+    notify-send "$send_summary_2" "$send_body_3"
   fi
   return 0
 }
@@ -48,7 +48,7 @@ check_no_abusive_trailing_comma(){
   send_body_1+=" au lieu d'une autre valeur dans une variable."
   if git diff --cached -r | grep ' = .*,\s*$';
   then
-    notify-send $send_summary_1 $send_body_1
+    notify-send "$send_summary_1" "$send_body_1"
     return 1
   fi
   return 0
@@ -58,7 +58,7 @@ check_no_abusive_trailing_comma(){
 check_black_code_formatting(){
   # attention ça ne marche que sur les fichiers "stagés" avec git add
   files_string=$(git diff --cached --name-only | grep '\.py')
-  echo $files_string
+  echo "$files_string"
   mapfile -t some_files <<< "$files_string"
   my_error=0
   for file in ${some_files[@]};

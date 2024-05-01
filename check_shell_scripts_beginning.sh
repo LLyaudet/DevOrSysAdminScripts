@@ -23,7 +23,7 @@
 # ©Copyright 2023-2024 Laurent Lyaudet
 
 check_one_shell_script_beginning(){
-  diff <(head -n 1 $1) <(echo '#!/usr/bin/env bash')
+  diff <(head -n 1 "$1") <(echo '#!/usr/bin/env bash')
 }
 
 

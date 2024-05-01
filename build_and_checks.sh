@@ -22,9 +22,22 @@
 #
 # ©Copyright 2023-2024 Laurent Lyaudet
 
+shopt -s globstar
+source ./too_long_code_lines.sh
+source ./check_shell_scripts_beginning.sh
+
+cwd="."
+if [[ -n "$1" ]];
+then
+  cwd="$1"
+fi
+
 echo "Building README.md"
 chmod +x ./build_readme.sh
-./build_readme.sh
+./build_readme.sh "$cwd"
+
+pushd .
+cd "$cwd"
 
 # echo "Running isort"
 # isort .
@@ -38,12 +51,10 @@ chmod +x ./build_readme.sh
 # echo "Running mypy"
 # mypy .
 
-shopt -s globstar
-
 echo "Analyzing too long lines"
-source ./too_long_code_lines.sh
 too_long_code_lines
 
 echo "Analyzing shell scripts beginning"
-source ./check_shell_scripts_beginning.sh
 check_shell_scripts_beginning
+
+popd

@@ -32,10 +32,15 @@ then
   cd "$1"
 fi
 
-sed -Ez "$sed_expression" README_printable.md > README_temp1.md
-sed -Ez "$sed_expression" README_temp1.md > README_temp2.md
-sed -Ez "$sed_expression" README_temp2.md > README_temp3.md
-sed -Ez "$sed_expression" README_temp3.md > README.md
-rm README_temp1.md README_temp2.md README_temp3.md
+if [[ -f README_printable.md ]];
+then
+  sed -Ez "$sed_expression" README_printable.md > README_temp1.md
+  sed -Ez "$sed_expression" README_temp1.md > README_temp2.md
+  sed -Ez "$sed_expression" README_temp2.md > README_temp3.md
+  sed -Ez "$sed_expression" README_temp3.md > README.md
+  rm README_temp1.md README_temp2.md README_temp3.md
+else
+  echo "No file README_printable.md"
+fi
 
 popd

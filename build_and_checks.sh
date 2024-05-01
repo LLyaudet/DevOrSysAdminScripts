@@ -22,24 +22,25 @@
 #
 # ©Copyright 2023-2024 Laurent Lyaudet
 
-too_long_code_lines() {
-  grep -r -H '.\{71\}' -- **/*.c
-  grep -r -H '.\{71\}' -- **/*.css
-  grep -r -H '.\{71\}' -- **/*.h
-  grep -r -H '.\{71\}' -- **/*.htm
-  grep -r -H '.\{71\}' -- **/*.html
-  grep -r -H '.\{71\}' -- **/*.js
-  grep -r -H '.\{71\}' -- **/*.json
-  grep -r -H '.\{71\}' -- **/*.md
-  grep -r -H '.\{71\}' -- **/*.php
-  grep -r -H '.\{71\}' -- **/*.py
-  grep -r -H '.\{71\}' -- **/*.sh
-  grep -r -H '.\{71\}' -- **/*.sql
-  grep -r -H '.\{71\}' -- **/*.tex
-  grep -r -H '.\{71\}' -- **/*.toml
-  grep -r -H '.\{71\}' -- **/*.ts
-  grep -r -H '.\{71\}' -- **/*.txt
-  grep -r -H '.\{71\}' -- **/*.yml
-  grep -r -H '.\{71\}' -- **/COPYING
-  grep -r -H '.\{71\}' -- **/COPYING.LESSER
-}
+# echo "Building README.md"
+# chmod +x ./build_readme.sh
+# ./build_readme.sh
+
+# echo "Running isort"
+# isort .
+
+# echo "Running black"
+# black .
+
+# echo "Running pylint"
+# pylint .
+
+# echo "Running mypy"
+# mypy .
+
+shopt -s globstar
+
+echo "Analyzing too long lines"
+chmod +x ./too_long_code_lines.sh
+source ./too_long_code_lines.sh
+too_long_code_lines

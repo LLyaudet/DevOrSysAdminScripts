@@ -22,9 +22,9 @@
 #
 # ©Copyright 2023-2024 Laurent Lyaudet
 
-# echo "Building README.md"
-# chmod +x ./build_readme.sh
-# ./build_readme.sh
+echo "Building README.md"
+chmod +x ./build_readme.sh
+./build_readme.sh
 
 # echo "Running isort"
 # isort .

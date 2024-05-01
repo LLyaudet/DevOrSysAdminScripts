@@ -27,18 +27,18 @@
 git_hook_error=0
 if ! check_files
 then
-    git_hook_error=1
+  git_hook_error=1
 fi
 if ! check_no_abusive_trailing_comma
 then
-    git_hook_error=1
+  git_hook_error=1
 fi
 if ! check_black_code_formatting
 then
-    git_hook_error=1
+  git_hook_error=1
 fi
 if [ $git_hook_error -eq '1' ];
 then
-    exit 1
+  exit 1
 fi
 exit 0

@@ -22,28 +22,14 @@
 #
 # ©Copyright 2023-2024 Laurent Lyaudet
 
-# echo "Building README.md"
-# chmod +x ./build_readme.sh
-# ./build_readme.sh
+check_one_shell_script_beginning(){
+  diff <(head -n 1 $1) <(echo '#!/usr/bin/env bash')
+}
 
-# echo "Running isort"
-# isort .
 
-# echo "Running black"
-# black .
-
-# echo "Running pylint"
-# pylint .
-
-# echo "Running mypy"
-# mypy .
-
-shopt -s globstar
-
-echo "Analyzing too long lines"
-source ./too_long_code_lines.sh
-too_long_code_lines
-
-echo "Analyzing shell scripts beginning"
-source ./check_shell_scripts_beginning.sh
-check_shell_scripts_beginning
+check_shell_scripts_beginning(){
+  shopt -s globstar
+  for i in **/*.sh; do
+     check_one_shell_script_beginning "$i"
+  done
+}

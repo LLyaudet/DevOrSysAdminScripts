@@ -22,7 +22,7 @@
 #
 # ©Copyright 2023-2024 Laurent Lyaudet
 
-check_files() {
+check_files(){
   send_summary_1="ATTENTION : models modifiés"
   send_body_1="Vérifiez si besoin de migrations"
   send_body_2="Pensez aussi aux contraintes d'unicités"
@@ -42,7 +42,7 @@ check_files() {
 }
 
 
-check_no_abusive_trailing_comma() {
+check_no_abusive_trailing_comma(){
   send_summary_1="ATTENTION"
   send_body_1="Il semblerait que vous affectiez un tuple"
   send_body_1+=" au lieu d'une autre valeur dans une variable."
@@ -55,7 +55,7 @@ check_no_abusive_trailing_comma() {
 }
 
 
-check_black_code_formatting() {
+check_black_code_formatting(){
   # attention ça ne marche que sur les fichiers "stagés" avec git add
   files_string=$(git diff --cached --name-only | grep '\.py')
   echo $files_string

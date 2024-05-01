@@ -22,7 +22,7 @@
 #
 # ©Copyright 2023-2024 Laurent Lyaudet
 
-too_long_code_lines() {
+too_long_code_lines(){
   grep -r -H '.\{71\}' -- **/*.c
   grep -r -H '.\{71\}' -- **/*.css
   grep -r -H '.\{71\}' -- **/*.h

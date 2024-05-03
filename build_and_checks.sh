@@ -51,7 +51,7 @@ cd "$cwd"
 # This regexp may give false positives,
 # but that's not the end of the world.
 echo "Checking empty lines after Python function docstrings"
-pcregrep -M $'def [^"]*"""([^"]|"(?!""))*"""\n\n' -- **/*.py
+pcregrep -M $'def [^"]*"""([^"]|"(?!""))*"""\n\n(?!\s*def)' -- **/*.py
 
 # echo "Running pylint"
 # pylint .

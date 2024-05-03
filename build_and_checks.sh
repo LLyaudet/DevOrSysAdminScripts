@@ -45,6 +45,14 @@ cd "$cwd"
 # echo "Running black"
 # black .
 
+# It was rejected to enhance black with this currently.
+# And moreover, at some point, I saw the reverse rule
+# in black or pylint to add an empty line...
+# This regexp may give false positives,
+# but that's not the end of the world.
+echo "Checking empty lines after Python function docstrings"
+pcregrep -M $'def [^"]*"""([^"]|"(?!""))*"""\n\n' **/*.py
+
 # echo "Running pylint"
 # pylint .
 

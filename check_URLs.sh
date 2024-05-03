@@ -41,7 +41,9 @@ check_URLs(){
       [ "$1" != "-v" ] || echo "Handling the file: $file"
       for substitution in "${!substitutions[@]}"; do
         substitution2=${substitutions[$substitution]}
-        sed -i "s|$substitution|$substitution2|g" "$file"
+        if grep -q "$substitution" "$file"; then
+          sed -i "s|$substitution|$substitution2|g" "$file"
+        fi
       done
     done
   done

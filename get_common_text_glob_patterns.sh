@@ -23,7 +23,7 @@
 # ©Copyright 2023-2024 Laurent Lyaudet
 
 get_common_text_glob_patterns(){
-  common_patterns=(\
+  export common_patterns=(\
     '**/*.c'\
     '**/*.css'\
     '**/*.h'\

@@ -22,12 +22,17 @@
 #
 # ©Copyright 2023-2024 Laurent Lyaudet
 
-too_long_code_lines(){
-  source ./get_common_text_glob_patterns.sh
+# It was rejected to enhance black with this currently.
+# And moreover, at some point, I saw the reverse rule
+# in black or pylint to add an empty line...
+# This regexp may give false positives,
+# but that's not the end of the world.
+check_no_empty_line_after_python_function_docstring(){
+  echo "Checking empty lines after Python function docstrings"
+  pcregrep -M $'def [^"]*"""([^"]|"(?!""))*"""\n\n(?!\s*def)'\
+    -- **/*.py
+}
 
-  get_common_text_glob_patterns
-  for pattern in "${common_patterns[@]}"; do
-    [ "$1" != "-v" ] || echo "Iterating on pattern: $pattern"
-    grep -r -H '.\{71\}' -- "$pattern"
-  done
+python_black_complement(){
+  check_no_empty_line_after_python_function_docstring
 }

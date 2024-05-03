@@ -18,16 +18,31 @@
 # You should have received a copy of
 # the GNU Lesser General Public License
 # along with DevOrSysAdminScripts.
-# If not, see <https://www.gnu.org/licenses/>.
+# If not, see <https://www.gnu.org/licenses//>.
 #
 # ©Copyright 2023-2024 Laurent Lyaudet
 
-too_long_code_lines(){
+check_URLs(){
   source ./get_common_text_glob_patterns.sh
 
   get_common_text_glob_patterns
+
+  declare -A substitutions
+  substitutions=(\
+    ["http://www.gnu.org/licenses/"]="https://www.gnu.org/licenses/"\
+  )
+
   for pattern in "${common_patterns[@]}"; do
     [ "$1" != "-v" ] || echo "Iterating on pattern: $pattern"
-    grep -r -H '.\{71\}' -- "$pattern"
+    grep -r -H 'http:' -- "$pattern"
+    for file in $pattern; do
+      [ -f "$file" ] || continue
+      [ "$file" != "check_URLs.sh" ] || continue
+      [ "$1" != "-v" ] || echo "Handling the file: $file"
+      for substitution in "${!substitutions[@]}"; do
+        substitution2=${substitutions[$substitution]}
+        sed -i "s|$substitution|$substitution2|g" "$file"
+      done
+    done
   done
 }

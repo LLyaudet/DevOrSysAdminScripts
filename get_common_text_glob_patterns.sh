@@ -22,12 +22,26 @@
 #
 # ©Copyright 2023-2024 Laurent Lyaudet
 
-too_long_code_lines(){
-  source ./get_common_text_glob_patterns.sh
-
-  get_common_text_glob_patterns
-  for pattern in "${common_patterns[@]}"; do
-    [ "$1" != "-v" ] || echo "Iterating on pattern: $pattern"
-    grep -r -H '.\{71\}' -- "$pattern"
-  done
+get_common_text_glob_patterns(){
+  common_patterns=(\
+    '**/*.c'\
+    '**/*.css'\
+    '**/*.h'\
+    '**/*.htm'\
+    '**/*.html'\
+    '**/*.js'\
+    '**/*.json'\
+    '**/*.md'\
+    '**/*.php'\
+    '**/*.py'\
+    '**/*.sh'\
+    '**/*.sql'\
+    '**/*.tex'\
+    '**/*.toml'\
+    '**/*.ts'\
+    '**/*.txt'\
+    '**/*.yml'\
+    '**/COPYING'\
+    '**/COPYING.LESSER'\
+  )
 }

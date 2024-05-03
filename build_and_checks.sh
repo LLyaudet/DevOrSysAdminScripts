@@ -18,13 +18,16 @@
 # You should have received a copy of
 # the GNU Lesser General Public License
 # along with DevOrSysAdminScripts.
-# If not, see <http://www.gnu.org/licenses/>.
+# If not, see <https://www.gnu.org/licenses/>.
 #
 # ©Copyright 2023-2024 Laurent Lyaudet
 
 shopt -s globstar
+source ./get_common_text_glob_patterns.sh
 source ./too_long_code_lines.sh
 source ./check_shell_scripts_beginning.sh
+source ./check_URLs.sh
+source ./python_black_complement.sh
 
 cwd="."
 if [[ -n "$1" ]];
@@ -39,30 +42,23 @@ chmod +x ./build_readme.sh
 pushd .
 cd "$cwd"
 
-# echo "Running isort"
-# isort .
+echo "Running isort"
+isort .
 
-# echo "Running black"
-# black .
+echo "Running black"
+black .
+python_black_complement
 
-# It was rejected to enhance black with this currently.
-# And moreover, at some point, I saw the reverse rule
-# in black or pylint to add an empty line...
-# This regexp may give false positives,
-# but that's not the end of the world.
-echo "Checking empty lines after Python function docstrings"
-pcregrep -M $'def [^"]*"""([^"]|"(?!""))*"""\n\n(?!\s*def)' -- **/*.py
-
-# echo "Running pylint"
-# pylint .
-
-# echo "Running mypy"
-# mypy .
+echo "Running mypy"
+mypy .
 
 echo "Analyzing too long lines"
 too_long_code_lines
 
 echo "Analyzing shell scripts beginning"
 check_shell_scripts_beginning
+
+echo "Analyzing URLs"
+check_URLs
 
 popd

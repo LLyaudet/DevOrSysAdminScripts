@@ -22,12 +22,30 @@
 #
 # ©Copyright 2023-2024 Laurent Lyaudet
 
-too_long_code_lines(){
-  source ./get_common_text_glob_patterns.sh
+check_URLs(){
+  subdir="build_and_checks_dependencies"
+  source "./$subdir/get_common_text_glob_patterns.sh"
 
   get_common_text_glob_patterns
+
+  declare -A substitutions
+  substitutions=(\
+    ["http://www.gnu.org/licenses/"]="https://www.gnu.org/licenses/"\
+  )
+
   for pattern in "${common_patterns[@]}"; do
     [ "$1" != "-v" ] || echo "Iterating on pattern: $pattern"
-    grep -r -H '.\{71\}' -- "$pattern"
+    grep -r -H 'http:' -- "$pattern"
+    for file in $pattern; do
+      [ -f "$file" ] || continue
+      [ "$file" != "check_URLs.sh" ] || continue
+      [ "$1" != "-v" ] || echo "Handling the file: $file"
+      for substitution in "${!substitutions[@]}"; do
+        substitution2=${substitutions[$substitution]}
+        if grep -q "$substitution" "$file"; then
+          sed -i "s|$substitution|$substitution2|g" "$file"
+        fi
+      done
+    done
   done
 }

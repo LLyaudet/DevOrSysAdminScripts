@@ -22,27 +22,25 @@
 #
 # ©Copyright 2023-2024 Laurent Lyaudet
 
-source ./wget_sha512.sh
+cp ./common_build_and_checks.sh.tpl ./common_build_and_checks.sh
 
-mkdir -p build_and_checks_dependencies
-subdir="build_and_checks_dependencies"
+file_names=(\
+  "build_readme.sh"\
+  "check_shell_scripts_beginning.sh"\
+  "check_URLs.sh"\
+  "get_common_text_glob_patterns.sh"\
+  "python_black_complement.sh"\
+  "too_long_code_lines.sh"\
+)
 
-personal_github="https://raw.githubusercontent.com/LLyaudet/"
-dependencies="DevOrSysAdminScripts/main/build_and_checks_dependencies"
-URL_beginning="$personal_github$dependencies"
-
-script="$URL_beginning/common_build_and_checks.sh"
-correct_sha512="c62b3e273ee3df727c42f577a609e885ece11112cbffb195f6483"
-correct_sha512+="4e434bbad2cb2e21892646c8efc3409ac743ddf6b7cb3cf764f0"
-correct_sha512+="3dfef66cc2173e12b1d490c"
-wget_sha512 "./$subdir/common_build_and_checks.sh" "$script"\
-  "$correct_sha512"
-chmod +x "./$subdir/common_build_and_checks.sh"
-
-cwd="."
-if [[ -n "$1" ]];
-then
-  cwd="$1"
-fi
-
-./build_and_checks_dependencies/common_build_and_checks.sh "$cwd"
+for file_name in "${file_names[@]}"; do
+  file_sha512=$(sha512sum "./$file_name" | cut -f1 -d' ')
+  file_sha512_1="correct_sha512='${file_sha512:0:53}'"
+  file_sha512_2="correct_sha512\+='${file_sha512:53:52}'"
+  file_sha512_3="correct_sha512\+='${file_sha512:105}'"
+  file_sha512_all="$file_sha512_1\n"
+  file_sha512_all+="$file_sha512_2\n"
+  file_sha512_all+="$file_sha512_3"
+  sed -i "s|@sha512_$file_name@|$file_sha512_all|g"\
+      ./common_build_and_checks.sh
+done

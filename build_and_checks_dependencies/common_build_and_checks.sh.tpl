@@ -89,12 +89,15 @@ echo "Running mypy"
 mypy .
 
 echo "Analyzing too long lines"
-too_long_code_lines
+too_long_code_lines | grep -v "node_modules/"\
+  | grep -v "package-lock.json"
 
 echo "Analyzing shell scripts beginning"
-check_shell_scripts_beginning
+check_shell_scripts_beginning | grep -v "node_modules/"\
+  | grep -v "package-lock.json"
 
 echo "Analyzing URLs"
-check_URLs
+check_URLs | grep -v "node_modules/"\
+  | grep -v "package-lock.json"
 
 popd

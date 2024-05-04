@@ -45,9 +45,9 @@ wget_sha512 "./$subdir/check_shell_scripts_beginning.sh" "$script"\
   "$correct_sha512"
 
 script="$URL_beginning/check_URLs.sh"
-correct_sha512='b7c4359e78175a4b9ca9a577b02a1cf346be3b487680e7860719b'
-correct_sha512+='8e14ead35dbfd7e8fcb284ec951ac7ba4918176acac824645f41'
-correct_sha512+='5057190a26dd9a3eb17f485'
+correct_sha512='3c14d383328f03c98d2efcd1d38e9f191bd1651c7e324de4357b7'
+correct_sha512+='a223cf38ed6e848ba11476f88584726b78411870ff243a26a520'
+correct_sha512+='a6d8041d2c35aa38dfc5e65'
 wget_sha512 "./$subdir/check_URLs.sh" "$script" "$correct_sha512"
 
 script="$URL_beginning/get_common_text_glob_patterns.sh"
@@ -65,9 +65,9 @@ wget_sha512 "./$subdir/python_black_complement.sh" "$script"\
   "$correct_sha512"
 
 script="$URL_beginning/too_long_code_lines.sh"
-correct_sha512='26b6e2305a37639d0646413ac0505765d5530dd2f3fa556fbb104'
-correct_sha512+='89b1714564dfcb420c1f9f8fc314e1f206dd0eb4413a0b137f08'
-correct_sha512+='87fcf44124a663287dca658'
+correct_sha512='7e613c8c3da4ad617c494fed60c22b08980f2c8b31939d2a67078'
+correct_sha512+='73e7312d0ca585e67364d6a459c6f724612328d0f70f2fda2840'
+correct_sha512+='c510be19fa699bdfda472a4'
 wget_sha512 "./$subdir/too_long_code_lines.sh" "$script"\
   "$correct_sha512"
 
@@ -101,12 +101,15 @@ echo "Running mypy"
 mypy .
 
 echo "Analyzing too long lines"
-too_long_code_lines
+too_long_code_lines | grep -v "node_modules/"\
+  | grep -v "package-lock.json"
 
 echo "Analyzing shell scripts beginning"
-check_shell_scripts_beginning
+check_shell_scripts_beginning | grep -v "node_modules/"\
+  | grep -v "package-lock.json"
 
 echo "Analyzing URLs"
-check_URLs
+check_URLs | grep -v "node_modules/"\
+  | grep -v "package-lock.json"
 
 popd

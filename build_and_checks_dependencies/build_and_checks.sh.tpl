@@ -22,13 +22,25 @@
 #
 # ©Copyright 2023-2024 Laurent Lyaudet
 
-subdir="build_and_checks_dependencies"
-source "./$subdir/get_common_text_glob_patterns.sh"
+source ./wget_sha512.sh
 
-too_long_code_lines(){
-  get_common_text_glob_patterns
-  for pattern in "${common_patterns[@]}"; do
-    [ "$1" != "-v" ] || echo "Iterating on pattern: $pattern"
-    grep -r -H '.\{71\}' -- "$pattern"
-  done
-}
+mkdir -p build_and_checks_dependencies
+subdir="build_and_checks_dependencies"
+
+personal_github="https://raw.githubusercontent.com/LLyaudet/"
+dependencies="DevOrSysAdminScripts/main/build_and_checks_dependencies"
+URL_beginning="$personal_github$dependencies"
+
+script="$URL_beginning/common_build_and_checks.sh"
+@sha512_common_build_and_checks.sh@
+wget_sha512 "./$subdir/common_build_and_checks.sh" "$script"\
+  "$correct_sha512"
+chmod +x "./$subdir/common_build_and_checks.sh"
+
+cwd="."
+if [[ -n "$1" ]];
+then
+  cwd="$1"
+fi
+
+./build_and_checks_dependencies/common_build_and_checks.sh "$cwd"

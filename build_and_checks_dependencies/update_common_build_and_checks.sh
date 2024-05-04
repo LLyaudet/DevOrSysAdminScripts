@@ -44,3 +44,15 @@ for file_name in "${file_names[@]}"; do
   sed -i "s|@sha512_$file_name@|$file_sha512_all|g"\
       ./common_build_and_checks.sh
 done
+
+cp ./build_and_checks.sh.tpl ../build_and_checks.sh
+
+file_sha512=$(sha512sum common_build_and_checks.sh | cut -f1 -d' ')
+file_sha512_1="correct_sha512='${file_sha512:0:53}'"
+file_sha512_2="correct_sha512\+='${file_sha512:53:52}'"
+file_sha512_3="correct_sha512\+='${file_sha512:105}'"
+file_sha512_all="$file_sha512_1\n"
+file_sha512_all+="$file_sha512_2\n"
+file_sha512_all+="$file_sha512_3"
+sed -i "s|@sha512_common_build_and_checks.sh@|$file_sha512_all|g"\
+    ../build_and_checks.sh

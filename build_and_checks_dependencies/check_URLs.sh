@@ -22,10 +22,10 @@
 #
 # ©Copyright 2023-2024 Laurent Lyaudet
 
-check_URLs(){
-  subdir="build_and_checks_dependencies"
-  source "./$subdir/get_common_text_glob_patterns.sh"
+subdir="build_and_checks_dependencies"
+source "./$subdir/get_common_text_glob_patterns.sh"
 
+check_URLs(){
   get_common_text_glob_patterns
 
   declare -A substitutions
@@ -38,7 +38,8 @@ check_URLs(){
     grep -r -H 'http:' -- "$pattern"
     for file in $pattern; do
       [ -f "$file" ] || continue
-      [ "$file" != "check_URLs.sh" ] || continue
+      base_filename=$(basename "$file")
+      [ "$base_filename" != "check_URLs.sh" ] || continue
       [ "$1" != "-v" ] || echo "Handling the file: $file"
       for substitution in "${!substitutions[@]}"; do
         substitution2=${substitutions[$substitution]}

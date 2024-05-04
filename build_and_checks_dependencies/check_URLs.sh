@@ -36,15 +36,15 @@ check_URLs(){
   for pattern in "${common_patterns[@]}"; do
     [ "$1" != "-v" ] || echo "Iterating on pattern: $pattern"
     grep -r -H 'http:' -- "$pattern"
-    for file in $pattern; do
-      [ -f "$file" ] || continue
-      base_filename=$(basename "$file")
+    for filename in $pattern; do
+      [ -f "$filename" ] || continue
+      base_filename=$(basename "$filename")
       [ "$base_filename" != "check_URLs.sh" ] || continue
-      [ "$1" != "-v" ] || echo "Handling the file: $file"
+      [ "$1" != "-v" ] || echo "Handling the file: $filename"
       for substitution in "${!substitutions[@]}"; do
         substitution2=${substitutions[$substitution]}
-        if grep -q "$substitution" "$file"; then
-          sed -i "s|$substitution|$substitution2|g" "$file"
+        if grep -q "$substitution" "$filename"; then
+          sed -i "s|$substitution|$substitution2|g" "$filename"
         fi
       done
     done

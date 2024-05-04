@@ -28,7 +28,7 @@ wget_sha512(){
   # $3 correct_sha512
   if [[ ! -f "$1" ]];
   then
-    wget "$2"
+    wget -O "$1" "$2"
   fi
   present_sha512=$(sha512sum "$1" | cut -f1 -d' ')
   if [[ "$present_sha512" != "$3" ]];

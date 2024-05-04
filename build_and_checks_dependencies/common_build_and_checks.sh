@@ -45,15 +45,22 @@ wget_sha512 "./$subdir/check_shell_scripts_beginning.sh" "$script"\
   "$correct_sha512"
 
 script="$URL_beginning/check_URLs.sh"
-correct_sha512='3c14d383328f03c98d2efcd1d38e9f191bd1651c7e324de4357b7'
-correct_sha512+='a223cf38ed6e848ba11476f88584726b78411870ff243a26a520'
-correct_sha512+='a6d8041d2c35aa38dfc5e65'
+correct_sha512='5c702028ab69fc9668d1d1db5bd2ad09eac0ab1cf749463d34387'
+correct_sha512+='b87c1db9148f52e5f645407a810d96f2b02c49cd4ed0780eaecf'
+correct_sha512+='7e94d2f65671ca634319523'
 wget_sha512 "./$subdir/check_URLs.sh" "$script" "$correct_sha512"
 
+script="$URL_beginning/create_PDF.sh"
+correct_sha512='111e421e4a316c80543f099928f3d324cab2c593e848bce4310c1'
+correct_sha512+='d0c16e668d1d53e7cc754c1e22a2609dc4bc771bec1891402426'
+correct_sha512+='392add7d75b3bf1d9cf6c96'
+wget_sha512 "./$subdir/create_PDF.sh" "$script" "$correct_sha512"
+chmod +x "./$subdir/create_PDF.sh"
+
 script="$URL_beginning/get_common_text_glob_patterns.sh"
-correct_sha512='0148af9ef6f559f2f8c1eea0eec3eef6ecabdc3eb395427adf5ef'
-correct_sha512+='0d89a4a357b88b9c923659b55b8c4c21c75c5030ec5d76cd248b'
-correct_sha512+='e6e3de9ec903146c81ec816'
+correct_sha512='01ebe343563e729f4db880c4ce4bfb2a6c10c8daa4cfde80ee535'
+correct_sha512+='1a81f29f99c54cc6ebad003855e86cc4436a4591a5050ef79fdf'
+correct_sha512+='93abe52268d4421748e5b27'
 wget_sha512 "./$subdir/get_common_text_glob_patterns.sh" "$script"\
   "$correct_sha512"
 
@@ -65,9 +72,9 @@ wget_sha512 "./$subdir/python_black_complement.sh" "$script"\
   "$correct_sha512"
 
 script="$URL_beginning/too_long_code_lines.sh"
-correct_sha512='7e613c8c3da4ad617c494fed60c22b08980f2c8b31939d2a67078'
-correct_sha512+='73e7312d0ca585e67364d6a459c6f724612328d0f70f2fda2840'
-correct_sha512+='c510be19fa699bdfda472a4'
+correct_sha512='94e209899adc7a8a165e08590a294fc29b8006900cb7eafc9bf95'
+correct_sha512+='6ac9e2f659c6dccf1a55ffb4af1ce08743bf05ff6dc7e5768868'
+correct_sha512+='78eddfe56243972cecf4352'
 wget_sha512 "./$subdir/too_long_code_lines.sh" "$script"\
   "$correct_sha512"
 
@@ -111,5 +118,7 @@ check_shell_scripts_beginning | grep -v "node_modules/"\
 echo "Analyzing URLs"
 check_URLs | grep -v "node_modules/"\
   | grep -v "package-lock.json"
+
+./build_and_checks_dependencies/create_PDF.sh
 
 popd

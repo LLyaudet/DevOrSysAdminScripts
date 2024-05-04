@@ -28,6 +28,7 @@ file_names=(\
   "build_readme.sh"\
   "check_shell_scripts_beginning.sh"\
   "check_URLs.sh"\
+  "create_PDF.sh"\
   "get_common_text_glob_patterns.sh"\
   "python_black_complement.sh"\
   "too_long_code_lines.sh"\

@@ -38,6 +38,7 @@ get_common_text_glob_patterns(){
     '**/*.sql'\
     '**/*.tex'\
     '**/*.toml'\
+    '**/*.tpl'\
     '**/*.ts'\
     '**/*.txt'\
     '**/*.yml'\

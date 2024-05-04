@@ -7,7 +7,14 @@
 ![GitHub-license-badge]
 ![GitHub-code-size-in-bytes-badge]
 
-Some small useful scripts
+|                **Some "small" useful scripts**                |
+|:-------------------------------------------------------------:|
+| **for enhancing developpment or system-administrators tasks** |
+
+Currently, the biggest part of this repository is in
+a suite of shell scripts about build and checks that
+I use in some of my other repositories.
+
 
 [CodeFactor-badge]: https://www.codefactor.io/repository/github/\
 llyaudet/DevOrSysAdminScripts/badge

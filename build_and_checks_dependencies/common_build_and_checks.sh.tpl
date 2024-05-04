@@ -44,6 +44,11 @@ script="$URL_beginning/check_URLs.sh"
 @sha512_check_URLs.sh@
 wget_sha512 "./$subdir/check_URLs.sh" "$script" "$correct_sha512"
 
+script="$URL_beginning/create_PDF.sh"
+@sha512_create_PDF.sh@
+wget_sha512 "./$subdir/create_PDF.sh" "$script" "$correct_sha512"
+chmod +x "./$subdir/create_PDF.sh"
+
 script="$URL_beginning/get_common_text_glob_patterns.sh"
 @sha512_get_common_text_glob_patterns.sh@
 wget_sha512 "./$subdir/get_common_text_glob_patterns.sh" "$script"\
@@ -99,5 +104,7 @@ check_shell_scripts_beginning | grep -v "node_modules/"\
 echo "Analyzing URLs"
 check_URLs | grep -v "node_modules/"\
   | grep -v "package-lock.json"
+
+./build_and_checks_dependencies/create_PDF.sh
 
 popd

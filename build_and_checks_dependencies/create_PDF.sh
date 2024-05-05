@@ -123,6 +123,63 @@ done
 shopt -u dotglob
 shopt -s globstar
 
+split_last_line(){
+  # $1=$new_lines
+  # $2=$prefix
+  split_last_line_result="$1"
+  if echo "$1" | sed -e 's/\\n/\n/g' | grep -q '.\{71\}$'; then
+    start=$(echo "$1" | sed -e 's/\\n/\n/g' | head --lines=-1)
+    # echo "start: $start"
+    last_line=$(echo "$1" | sed -e 's/\\n/\n/g' | tail --lines=1)
+    # echo "last_line: $last_line"
+    split_last_line_result=""
+    if [[ -n "$start" ]]; then
+      split_last_line_result="$start\n"
+    fi
+    split_last_line_result+="${last_line:0:69}\n"
+    split_last_line_result+="$2${last_line:69}"
+  fi
+}
+
+# We verify if some lines are beyond 70 caracters
+# in current_tree_light.txt et current_tree.txt.
+trees=("current_tree_light.txt" "current_tree.txt")
+for some_tree in "${trees[@]}"; do
+  grep '.\{71\}' "$some_tree" | while read some_line; do
+    # echo "some_line: $some_line"
+    prefix=$(\
+      echo "$some_line"\
+        | sed -E -e 's/(.*)─[^─]+$/\1/g' -e 's/[^ ]+$//g'\
+    )
+    prefix+="│ "
+    # echo "prefix: $prefix"
+    filename=$(\
+      echo "$some_line"\
+        | sed -E 's|.* (([a-zA-Z0-9\._/-]+).)$|\1|g'\
+    )
+    # echo "filename: $filename"
+    line_start=$(\
+      echo "$some_line"\
+        | sed -E "s/(.*)[ ]*$filename/\1/g"\
+    )
+    # echo "line_start: $line_start"
+    some_line=$(\
+      echo "$some_line"\
+        | sed -E -e 's/\[/\\\[/g' -e 's/\]/\\\]/g'\
+    )
+    new_lines="$prefix$filename"
+    split_last_line "$new_lines" "$prefix"
+    new_lines=$split_last_line_result
+    split_last_line "$new_lines" "$prefix"
+    new_lines=$split_last_line_result
+    split_last_line "$new_lines" "$prefix"
+    new_lines=$split_last_line_result
+    split_last_line "$new_lines" "$prefix"
+    new_lines=$split_last_line_result
+    sed -i -e "s/$some_line/$line_start\n$new_lines/g" "$some_tree"
+  done
+done
+
 sed -i -e '/@current_tree_light@/{r current_tree_light.txt' -e 'd}'\
   "./latex/$main_directory.tex"
 sed -i -e '/@current_tree@/{r current_tree.txt' -e 'd}'\

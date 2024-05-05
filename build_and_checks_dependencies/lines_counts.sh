@@ -27,10 +27,10 @@ source "./$subdir/get_common_text_glob_patterns.sh"
 source "./$subdir/lines_filters.sh"
 
 all_code_lines(){
-  get_common_text_glob_patterns
-  for pattern in "${common_patterns[@]}"; do
+  get_common_text_files_glob_patterns
+  for pattern in "${common_file_patterns[@]}"; do
     [ "$1" != "-v" ] || echo "Iterating on pattern: $pattern"
-    grep -H -v 'a(?!a)a' -- $pattern
+    find . -type f -name "$pattern" -exec grep -H -v 'a(?!a)a' '{}' \;
   done
 }
 

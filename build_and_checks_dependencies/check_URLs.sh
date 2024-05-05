@@ -26,16 +26,17 @@ subdir="build_and_checks_dependencies"
 source "./$subdir/get_common_text_glob_patterns.sh"
 
 check_URLs(){
-  get_common_text_glob_patterns
+  get_common_text_files_glob_patterns
 
   declare -A substitutions
   substitutions=(\
     ["http://www.gnu.org/licenses/"]="https://www.gnu.org/licenses/"\
   )
 
-  for pattern in "${common_patterns[@]}"; do
+  for pattern in "${common_file_patterns[@]}"; do
     [ "$1" != "-v" ] || echo "Iterating on pattern: $pattern"
-    grep -H 'http:' -- $pattern | grep -v "^[^:]*check_URLs.sh"
+    find . -type f -name "$pattern" -exec grep -H 'http:' '{}' \;\
+      | grep -v "^[^:]*check_URLs.sh" 
     for filename in $pattern; do
       [ -f "$filename" ] || continue
       base_filename=$(basename "$filename")

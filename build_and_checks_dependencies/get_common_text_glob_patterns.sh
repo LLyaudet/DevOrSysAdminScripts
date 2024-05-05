@@ -22,7 +22,7 @@
 #
 # ©Copyright 2023-2024 Laurent Lyaudet
 
-get_common_text_glob_patterns(){
+get_common_text_paths_glob_patterns(){
   export common_patterns=(\
     '**/*.c'\
     '**/*.css'\
@@ -45,5 +45,32 @@ get_common_text_glob_patterns(){
     '**/COPYING'\
     '**/COPYING.LESSER'\
     '**/pre-commit'\
+  )
+}
+
+
+get_common_text_files_glob_patterns(){
+  export common_file_patterns=(\
+    '*.c'\
+    '*.css'\
+    '*.h'\
+    '*.htm'\
+    '*.html'\
+    '*.js'\
+    '*.json'\
+    '*.md'\
+    '*.php'\
+    '*.py'\
+    '*.sh'\
+    '*.sql'\
+    '*.tex'\
+    '*.toml'\
+    '*.tpl'\
+    '*.ts'\
+    '*.txt'\
+    '*.yml'\
+    'COPYING'\
+    'COPYING.LESSER'\
+    'pre-commit'\
   )
 }

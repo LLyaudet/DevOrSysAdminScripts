@@ -22,8 +22,8 @@
 #
 # ©Copyright 2023-2024 Laurent Lyaudet
 
-current_path="$(pwd)"
-main_directory="$(basename $current_path)"
+current_path=$(pwd)
+main_directory=$(basename "$current_path")
 
 subdir="build_and_checks_dependencies"
 source "./$subdir/lines_counts.sh"

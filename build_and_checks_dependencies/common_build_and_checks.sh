@@ -51,9 +51,9 @@ correct_sha512+='ed0bf0333b229f49e62a613'
 wget_sha512 "./$subdir/check_URLs.sh" "$script" "$correct_sha512"
 
 script="$URL_beginning/create_PDF.sh"
-correct_sha512='8230782cc2e04c788599e9891fdd199d9b44f2ff34ebc88b8961e'
-correct_sha512+='ace0b309cd4b1a13b5df854893b7145d2fec281264775bc398a2'
-correct_sha512+='536e458394d602223567595'
+correct_sha512='3dcbff5ca4b0e0210f1e09414d4e6b087f147e868e9b139f38e59'
+correct_sha512+='643b5efa4ed8ace609ec240d223a71a981fb735051cefec189b2'
+correct_sha512+='7e9553779828517543006a3'
 wget_sha512 "./$subdir/create_PDF.sh" "$script" "$correct_sha512"
 chmod +x "./$subdir/create_PDF.sh"
 
@@ -65,15 +65,15 @@ wget_sha512 "./$subdir/get_common_text_glob_patterns.sh" "$script"\
   "$correct_sha512"
 
 script="$URL_beginning/lines_counts.sh"
-correct_sha512='617761bad80545ed7197e0ff99e27f98fde249b672ac48be10904'
-correct_sha512+='e2aa4f243e6f031ff98bae7ed354152e43f2a351964a1b3e3dd9'
-correct_sha512+='e49889ab8d9b54864961c96'
+correct_sha512='208648e8838acccb2edaf3f8f93c2ab38a84658074ab99cbffe89'
+correct_sha512+='561dfcffd7fd546c50c0aad3afed305b148d4e483c7ec02c926d'
+correct_sha512+='8b2ffdb2ac893b2eabdcab9'
 wget_sha512 "./$subdir/lines_counts.sh" "$script" "$correct_sha512"
 
 script="$URL_beginning/lines_filters.sh"
-correct_sha512='89e2998ab4157bbbfe79f6604d9453d7660194e3b756af590efb1'
-correct_sha512+='e08652900a6a052ee9a85fd9938e0095456ab6cb5dc219274d8f'
-correct_sha512+='d70fb0a30c54935e4ad8ef5'
+correct_sha512='c07935ee244f3a2323985da131ffb6602787dceebd3ded5e0d668'
+correct_sha512+='5be4c0e702ce14592ed1649e3fdbb0dd60412dde655230166906'
+correct_sha512+='47b7226c6bb8a8655d2f7b5'
 wget_sha512 "./$subdir/lines_filters.sh" "$script" "$correct_sha512"
 
 script="$URL_beginning/python_black_complement.sh"
@@ -122,13 +122,13 @@ echo "Running mypy"
 mypy .
 
 echo "Analyzing too long lines"
-too_long_code_lines | relevant
+too_long_code_lines | relevant_grep
 
 echo "Analyzing shell scripts beginning"
-check_shell_scripts_beginning | relevant
+check_shell_scripts_beginning | relevant_grep
 
 echo "Analyzing URLs"
-check_URLs | relevant
+check_URLs | relevant_grep
 
 echo "Creating the PDF file of the listing of the source code"
 ./build_and_checks_dependencies/create_PDF.sh

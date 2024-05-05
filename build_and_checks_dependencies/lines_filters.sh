@@ -44,26 +44,60 @@ not_space_starting_lines(){
   grep '^[^ ]'
 }
 
-not_JS_dependencies(){
-  grep -v "^[^:]*node_modules/" | grep -v "^[^:]*package-lock.json"
+not_JS_dependencies_find(){
+  grep -vE "(^|/)node_modules/" | grep -vE "(^|/)package-lock\.json$"
 }
 
-not_dependencies(){
-  not_JS_dependencies
+not_JS_dependencies_grep(){
+  grep -v "^[^:]*node_modules/" | grep -v "^[^:]*package-lock\.json:"
 }
 
-not_python_cache(){
-  grep -v "^[^:]*__pycache__/" | grep -v "^[^:]*.mypy_cache"
+not_dependencies_find(){
+  not_JS_dependencies_find
 }
 
-not_cache(){
-  not_python_cache
+not_dependencies_grep(){
+  not_JS_dependencies_grep
 }
 
-not_git(){
-  grep -v "^[^:]*.git/"
+not_python_cache_find(){
+  grep -vE "(^|/)__pycache__/" | grep -vE "(^|/)\.mypy_cache/"
 }
 
-relevant(){
-  not_dependencies | not_cache | not_git
+not_python_cache_grep(){
+  grep -v "^[^:]*__pycache__/" | grep -v "^[^:]*\.mypy_cache/"
+}
+
+not_cache_find(){
+  not_python_cache_find
+}
+
+not_cache_grep(){
+  not_python_cache_grep
+}
+
+not_git_find(){
+  grep -vE "(^|/)\.git/"
+}
+
+not_git_grep(){
+  grep -v "^[^:]*\.git/"
+}
+
+not_archive_find(){
+  grep -vE "(\.gz|\.tar|\.whl)$"
+}
+
+not_archive_grep(){
+  grep -vE "^[^:]*(\.gz|\.tar|\.whl):"
+}
+
+relevant_find(){
+  not_dependencies_find | not_cache_find | not_git_find\
+  | not_archive_find
+}
+
+relevant_grep(){
+  not_dependencies_grep | not_cache_grep | not_git_grep\
+  | not_archive_grep
 }

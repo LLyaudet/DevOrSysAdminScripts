@@ -29,8 +29,8 @@
 # and sourced in your .bashrc.
 
 in_place_grep(){
-  grep $@ > "${@: -1}.temp_in_place_grep"
-  mv "${@: -1}.temp_in_place_grep" "${@: -1}"
+  grep $@ > "${@: -1}"".temp_in_place_grep"
+  mv "${@: -1}"".temp_in_place_grep" "${@: -1}"
 }
 
 empty_lines(){

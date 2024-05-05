@@ -157,7 +157,7 @@ split_last_line(){
 # in current_tree_light.txt et current_tree.txt.
 trees=("current_tree_light.txt" "current_tree.txt")
 for some_tree in "${trees[@]}"; do
-  grep '.\{71\}' "$some_tree" | while read some_line; do
+  grep '.\{71\}' "$some_tree" | while read -r some_line; do
     # echo "some_line: $some_line"
     prefix=$(\
       echo "$some_line"\

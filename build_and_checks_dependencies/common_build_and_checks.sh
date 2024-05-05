@@ -46,9 +46,9 @@ wget_sha512 "./$subdir/check_shell_scripts_beginning.sh" "$script"\
   "$correct_sha512"
 
 script="$URL_beginning/check_URLs.sh"
-correct_sha512='4ac0c1dc4f99008280436fe2e2d5a0f8832f4775d9c4765023d9d'
-correct_sha512+='519826d5a2b115c4fa619ffb5e28a7e1e8aeb57cc2c5a691d2ba'
-correct_sha512+='b8ceb64e92a5d7c07f32ea2'
+correct_sha512='a6111e3e4cd6d5f48a507827561ec0da51a79e310ce2342cb0807'
+correct_sha512+='640dbab634be28fc1685dd3264c7d874f854e0c6dc4651eacbad'
+correct_sha512+='64ac7bb97f152bfe6adc71e'
 wget_sha512 "./$subdir/check_URLs.sh" "$script" "$correct_sha512"
 
 script="$URL_beginning/create_PDF.sh"

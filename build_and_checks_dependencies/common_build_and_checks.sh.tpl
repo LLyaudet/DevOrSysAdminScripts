@@ -68,7 +68,7 @@ shopt -s globstar
 source "./$subdir/check_shell_scripts_beginning.sh"
 source "./$subdir/check_URLs.sh"
 source "./$subdir/get_common_text_glob_patterns.sh"
-source "./$subdir//python_black_complement.sh"
+source "./$subdir/python_black_complement.sh"
 source "./$subdir/too_long_code_lines.sh"
 
 cwd="."
@@ -94,16 +94,16 @@ echo "Running mypy"
 mypy .
 
 echo "Analyzing too long lines"
-too_long_code_lines | grep -v "node_modules/"\
-  | grep -v "package-lock.json"
+too_long_code_lines | grep -v "^[^:]*node_modules/"\
+  | grep -v "^[^:]*package-lock.json"
 
 echo "Analyzing shell scripts beginning"
-check_shell_scripts_beginning | grep -v "node_modules/"\
-  | grep -v "package-lock.json"
+check_shell_scripts_beginning | grep -v "^[^:]*node_modules/"\
+  | grep -v "^[^:]*package-lock.json"
 
 echo "Analyzing URLs"
-check_URLs | grep -v "node_modules/"\
-  | grep -v "package-lock.json"
+check_URLs | grep -v "^[^:]*node_modules/"\
+  | grep -v "^[^:]*package-lock.json"
 
 ./build_and_checks_dependencies/create_PDF.sh
 

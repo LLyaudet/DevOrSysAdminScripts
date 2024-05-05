@@ -42,6 +42,7 @@ tree --gitignore\
   -I "$main_directory.out"\
   -I "$main_directory.pdf"\
   -I "$main_directory.tex"\
+  -I "$main_directory.tex.tpl2"\
   -I current_tree.txt\
   -I current_tree_light.txt\
   -I README.md\
@@ -53,6 +54,7 @@ tree -DFh --gitignore\
   -I "$main_directory.out"\
   -I "$main_directory.pdf"\
   -I "$main_directory.tex"\
+  -I "$main_directory.tex.tpl2"\
   -I current_tree.txt\
   -I current_tree_light.txt\
   -I README.md\

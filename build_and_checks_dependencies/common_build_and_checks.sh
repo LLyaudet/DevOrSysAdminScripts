@@ -45,15 +45,15 @@ wget_sha512 "./$subdir/check_shell_scripts_beginning.sh" "$script"\
   "$correct_sha512"
 
 script="$URL_beginning/check_URLs.sh"
-correct_sha512='5c702028ab69fc9668d1d1db5bd2ad09eac0ab1cf749463d34387'
-correct_sha512+='b87c1db9148f52e5f645407a810d96f2b02c49cd4ed0780eaecf'
-correct_sha512+='7e94d2f65671ca634319523'
+correct_sha512='bc790a05ce8e6b9241c3c32a0d6f2efb7c96447cf1fd095301ab4'
+correct_sha512+='6ed20f739a071d8a8c0a88bcaf189bdcbc9f3ad05d5b5e888805'
+correct_sha512+='ed0bf0333b229f49e62a613'
 wget_sha512 "./$subdir/check_URLs.sh" "$script" "$correct_sha512"
 
 script="$URL_beginning/create_PDF.sh"
-correct_sha512='111e421e4a316c80543f099928f3d324cab2c593e848bce4310c1'
-correct_sha512+='d0c16e668d1d53e7cc754c1e22a2609dc4bc771bec1891402426'
-correct_sha512+='392add7d75b3bf1d9cf6c96'
+correct_sha512='ccee9fd58a5fc4909fac3ebed96b915eb0dd98db7a2af85bfa651'
+correct_sha512+='cfd412088bf49380fed466b6412355170a733b1b854416e6b686'
+correct_sha512+='7dfac969b764de137836f5a'
 wget_sha512 "./$subdir/create_PDF.sh" "$script" "$correct_sha512"
 chmod +x "./$subdir/create_PDF.sh"
 
@@ -82,7 +82,7 @@ shopt -s globstar
 source "./$subdir/check_shell_scripts_beginning.sh"
 source "./$subdir/check_URLs.sh"
 source "./$subdir/get_common_text_glob_patterns.sh"
-source "./$subdir//python_black_complement.sh"
+source "./$subdir/python_black_complement.sh"
 source "./$subdir/too_long_code_lines.sh"
 
 cwd="."
@@ -108,16 +108,16 @@ echo "Running mypy"
 mypy .
 
 echo "Analyzing too long lines"
-too_long_code_lines | grep -v "node_modules/"\
-  | grep -v "package-lock.json"
+too_long_code_lines | grep -v "^[^:]*node_modules/"\
+  | grep -v "^[^:]*package-lock.json"
 
 echo "Analyzing shell scripts beginning"
-check_shell_scripts_beginning | grep -v "node_modules/"\
-  | grep -v "package-lock.json"
+check_shell_scripts_beginning | grep -v "^[^:]*node_modules/"\
+  | grep -v "^[^:]*package-lock.json"
 
 echo "Analyzing URLs"
-check_URLs | grep -v "node_modules/"\
-  | grep -v "package-lock.json"
+check_URLs | grep -v "^[^:]*node_modules/"\
+  | grep -v "^[^:]*package-lock.json"
 
 ./build_and_checks_dependencies/create_PDF.sh
 

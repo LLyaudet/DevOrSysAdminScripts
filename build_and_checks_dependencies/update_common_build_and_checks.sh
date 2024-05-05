@@ -33,6 +33,7 @@ file_names=(\
   "lines_filters.sh"\
   "get_common_text_glob_patterns.sh"\
   "python_black_complement.sh"\
+  "python_isort_complement.sh"\
   "too_long_code_lines.sh"\
 )
 

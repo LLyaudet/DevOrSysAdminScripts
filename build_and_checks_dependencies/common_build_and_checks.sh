@@ -84,6 +84,13 @@ correct_sha512+='ce6370fcf1bdbea5820ab13'
 wget_sha512 "./$subdir/python_black_complement.sh" "$script"\
   "$correct_sha512"
 
+script="$URL_beginning/python_isort_complement.sh"
+correct_sha512='fb3b931fb9f1246c789aa00ebdd558a4e75070075a82cdcf354c9'
+correct_sha512+='eb0549063d003df5530796fb5776028c2b57e5bbd32278cff98e'
+correct_sha512+='ca44bcdc36a81d6718cb41d'
+wget_sha512 "./$subdir/python_isort_complement.sh" "$script"\
+  "$correct_sha512"
+
 script="$URL_beginning/too_long_code_lines.sh"
 correct_sha512='94e209899adc7a8a165e08590a294fc29b8006900cb7eafc9bf95'
 correct_sha512+='6ac9e2f659c6dccf1a55ffb4af1ce08743bf05ff6dc7e5768868'
@@ -98,6 +105,7 @@ source "./$subdir/get_common_text_glob_patterns.sh"
 source "./$subdir/lines_counts.sh"
 source "./$subdir/lines_filters.sh"
 source "./$subdir/python_black_complement.sh"
+source "./$subdir/python_isort_complement.sh"
 source "./$subdir/too_long_code_lines.sh"
 
 cwd="."
@@ -114,6 +122,7 @@ cd "$cwd"
 
 echo "Running isort"
 isort .
+python_isort_complement
 
 echo "Running black"
 black .

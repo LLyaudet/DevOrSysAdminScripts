@@ -22,27 +22,18 @@
 #
 # ©Copyright 2023-2024 Laurent Lyaudet
 
-source ./wget_sha512.sh
-
-mkdir -p build_and_checks_dependencies
 subdir="build_and_checks_dependencies"
+source "./$subdir/lines_filters.sh"
 
-personal_github="https://raw.githubusercontent.com/LLyaudet/"
-dependencies="DevOrSysAdminScripts/main/build_and_checks_dependencies"
-URL_beginning="$personal_github$dependencies"
+check_collections_abc_place(){
+  echo "Checking import of _collections_abc is at the right place"
+  find . -name "*.py" | relevant_find |while read filename; do
+    [ -f "$filename" ] || continue
+    sed -i -Ez 's/\n(\nfrom _collections_abc[^\n]*)/\1\n/Mg'\
+      "$filename"
+  done
+}
 
-script="$URL_beginning/common_build_and_checks.sh"
-correct_sha512='e66627fbd2d4d7d6a78ba86135851932499e56cec576d92fca35a'
-correct_sha512+='957ccb77c1886037fd12a6dae5ce57be7dc92bc37b174a7aa3c7'
-correct_sha512+='6c63fc172194cdc86f6c923'
-wget_sha512 "./$subdir/common_build_and_checks.sh" "$script"\
-  "$correct_sha512"
-chmod +x "./$subdir/common_build_and_checks.sh"
-
-cwd="."
-if [[ -n "$1" ]];
-then
-  cwd="$1"
-fi
-
-./build_and_checks_dependencies/common_build_and_checks.sh "$cwd"
+python_isort_complement(){
+  check_collections_abc_place
+}

@@ -231,6 +231,18 @@ The git repository of this source code is also available at:
 
 
 \subsection{
+  build\_and\_checks\_dependencies/python\_isort\_complement.sh
+}
+\label{
+  build_and_checks_dependencies:python_isort_complementsh
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+  build_and_checks_dependencies/python_isort_complement.sh
+}
+
+
+\subsection{
   build\_and\_checks\_dependencies/too\_long\_code\_lines.sh
 }
 \label{

@@ -68,6 +68,11 @@ script="$URL_beginning/python_black_complement.sh"
 wget_sha512 "./$subdir/python_black_complement.sh" "$script"\
   "$correct_sha512"
 
+script="$URL_beginning/python_isort_complement.sh"
+@sha512_python_isort_complement.sh@
+wget_sha512 "./$subdir/python_isort_complement.sh" "$script"\
+  "$correct_sha512"
+
 script="$URL_beginning/too_long_code_lines.sh"
 @sha512_too_long_code_lines.sh@
 wget_sha512 "./$subdir/too_long_code_lines.sh" "$script"\
@@ -80,6 +85,7 @@ source "./$subdir/get_common_text_glob_patterns.sh"
 source "./$subdir/lines_counts.sh"
 source "./$subdir/lines_filters.sh"
 source "./$subdir/python_black_complement.sh"
+source "./$subdir/python_isort_complement.sh"
 source "./$subdir/too_long_code_lines.sh"
 
 cwd="."
@@ -96,6 +102,7 @@ cd "$cwd"
 
 echo "Running isort"
 isort .
+python_isort_complement
 
 echo "Running black"
 black .

@@ -54,6 +54,14 @@ script="$URL_beginning/get_common_text_glob_patterns.sh"
 wget_sha512 "./$subdir/get_common_text_glob_patterns.sh" "$script"\
   "$correct_sha512"
 
+script="$URL_beginning/lines_counts.sh"
+@sha512_lines_counts.sh@
+wget_sha512 "./$subdir/lines_counts.sh" "$script" "$correct_sha512"
+
+script="$URL_beginning/lines_filters.sh"
+@sha512_lines_filters.sh@
+wget_sha512 "./$subdir/lines_filters.sh" "$script" "$correct_sha512"
+
 script="$URL_beginning/python_black_complement.sh"
 @sha512_python_black_complement.sh@
 wget_sha512 "./$subdir/python_black_complement.sh" "$script"\
@@ -68,6 +76,8 @@ shopt -s globstar
 source "./$subdir/check_shell_scripts_beginning.sh"
 source "./$subdir/check_URLs.sh"
 source "./$subdir/get_common_text_glob_patterns.sh"
+source "./$subdir/lines_counts.sh"
+source "./$subdir/lines_filters.sh"
 source "./$subdir/python_black_complement.sh"
 source "./$subdir/too_long_code_lines.sh"
 
@@ -94,17 +104,15 @@ echo "Running mypy"
 mypy .
 
 echo "Analyzing too long lines"
-too_long_code_lines | grep -v "^[^:]*node_modules/"\
-  | grep -v "^[^:]*package-lock.json"
+too_long_code_lines | not_dependencies
 
 echo "Analyzing shell scripts beginning"
-check_shell_scripts_beginning | grep -v "^[^:]*node_modules/"\
-  | grep -v "^[^:]*package-lock.json"
+check_shell_scripts_beginning | not_dependencies
 
 echo "Analyzing URLs"
-check_URLs | grep -v "^[^:]*node_modules/"\
-  | grep -v "^[^:]*package-lock.json"
+check_URLs | not_dependencies
 
+echo "Creating the PDF file of the listing of the source code"
 ./build_and_checks_dependencies/create_PDF.sh
 
 popd

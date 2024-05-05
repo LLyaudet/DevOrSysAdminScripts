@@ -68,7 +68,13 @@ Some ``small'' useful scripts
 for enhancing developpment or system-administrators tasks
 \end{abstract}
 
-Current version : 2024-05-05
+Current version: 2024-05-05
+
+Current number of commits: 29
+
+Current git SHA1: 48890ab97bed2e04ffd11b79467abe85e84b74c2
+
+Code lines: 1560 total lines, 1560 not empty lines, 0 empty lines.
 
 \section{Files tree}
 \label{section:tree}
@@ -84,6 +90,8 @@ Current version : 2024-05-05
 │   ├── common_build_and_checks.sh.tpl
 │   ├── create_PDF.sh
 │   ├── get_common_text_glob_patterns.sh
+│   ├── lines_counts.sh
+│   ├── lines_filters.sh
 │   ├── python_black_complement.sh
 │   ├── too_long_code_lines.sh
 │   └── update_common_build_and_checks.sh
@@ -98,35 +106,37 @@ Current version : 2024-05-05
 ├── README_printable.md
 └── wget_sha512.sh
 
-3 directories, 20 files
+3 directories, 22 files
 \end{verbatim}
 
 \begin{verbatim}
-[4.0K May  5 02:42]  ./
-├── [4.0K May  5 02:42]  build_and_checks_dependencies/
+[4.0K May  5 10:35]  ./
+├── [4.0K May  5 10:29]  build_and_checks_dependencies/
 │   ├── [1.4K May  4 02:33]  build_and_checks.sh.tpl*
 │   ├── [1.4K May  4 02:24]  build_readme.sh*
 │   ├── [1.0K May  4 02:24]  check_shell_scripts_beginning.sh
 │   ├── [1.7K May  5 02:38]  check_URLs.sh
-│   ├── [4.1K May  5 02:42]  common_build_and_checks.sh*
-│   ├── [3.1K May  5 02:36]  common_build_and_checks.sh.tpl
-│   ├── [3.8K May  5 02:42]  create_PDF.sh*
-│   ├── [1.2K May  5 00:53]  get_common_text_glob_patterns.sh
+│   ├── [4.7K May  5 10:29]  common_build_and_checks.sh*
+│   ├── [3.3K May  5 10:19]  common_build_and_checks.sh.tpl
+│   ├── [4.6K May  5 10:29]  create_PDF.sh*
+│   ├── [1.2K May  5 10:05]  get_common_text_glob_patterns.sh
+│   ├── [1.5K May  5 10:25]  lines_counts.sh
+│   ├── [1.3K May  5 10:22]  lines_filters.sh
 │   ├── [1.3K May  4 02:24]  python_black_complement.sh
 │   ├── [1.1K May  5 01:24]  too_long_code_lines.sh
-│   └── [2.0K May  4 19:46]  update_common_build_and_checks.sh*
-├── [1.5K May  5 02:42]  build_and_checks.sh*
+│   └── [2.0K May  5 10:18]  update_common_build_and_checks.sh*
+├── [1.5K May  5 10:29]  build_and_checks.sh*
 ├── [ 34K May  4 02:24]  COPYING
 ├── [7.5K May  3 21:45]  COPYING.LESSER
 ├── [2.2K May  4 02:24]  git_checks.sh
-├── [4.0K May  5 02:42]  latex/
-│   └── [6.0K May  5 01:06]  DevOrSysAdminScripts.tex.tpl
+├── [4.0K May  5 10:35]  latex/
+│   └── [6.6K May  5 10:35]  DevOrSysAdminScripts.tex.tpl
 ├── [ 424 May  3 21:45]  LiensUtiles.txt
-├── [1.0K May  1 13:27]  pre-commit
+├── [1.0K May  5 10:20]  pre-commit
 ├── [1.6K May  4 18:50]  README_printable.md
 └── [1.1K May  4 02:52]  wget_sha512.sh
 
-3 directories, 20 files
+3 directories, 22 files
 \end{verbatim}
 
 \section{Listing of files}
@@ -140,14 +150,74 @@ The git repository of this source code is also available at:
 
 
 \subsection{
-  build\_and\_checks\_dependencies/too\_long\_code\_lines.sh
+  build\_and\_checks\_dependencies/build\_and\_checks.sh.tpl
 }
 \label{
-  build_and_checks_dependencies:too_long_code_linessh
+  build_and_checks_dependencies:build_and_checksshtpl
 }
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
-  build_and_checks_dependencies/too_long_code_lines.sh
+  build_and_checks_dependencies/build_and_checks.sh.tpl
+}
+
+
+\subsection{
+  build\_and\_checks\_dependencies/build\_readme.sh
+}
+\label{
+  build_and_checks_dependencies:build_readmesh
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+  build_and_checks_dependencies/build_readme.sh
+}
+
+
+\subsection{
+  build\_and\_checks\_dependencies/check\_shell\_scripts\_beginning.sh
+}
+\label{
+  build_and_checks_dependencies:check_shell_scripts_beginningsh
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+  build_and_checks_dependencies/check_shell_scripts_beginning.sh
+}
+
+
+\subsection{
+  build\_and\_checks\_dependencies/check\_URLs.sh
+}
+\label{
+  build_and_checks_dependencies:check_URLssh
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+  build_and_checks_dependencies/check_URLs.sh
+}
+
+
+\subsection{
+  build\_and\_checks\_dependencies/common\_build\_and\_checks.sh
+}
+\label{
+  build_and_checks_dependencies:common_build_and_checkssh
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+  build_and_checks_dependencies/common_build_and_checks.sh
+}
+
+
+\subsection{
+  build\_and\_checks\_dependencies/common\_build\_and\_checks.sh.tpl
+}
+\label{
+  build_and_checks_dependencies:common_build_and_checksshtpl
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+  build_and_checks_dependencies/common_build_and_checks.sh.tpl
 }
 
 
@@ -177,6 +247,30 @@ The git repository of this source code is also available at:
 
 
 \subsection{
+  build\_and\_checks\_dependencies/lines\_counts.sh
+}
+\label{
+  build_and_checks_dependencies:lines_countssh
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+  build_and_checks_dependencies/lines_counts.sh
+}
+
+
+\subsection{
+  build\_and\_checks\_dependencies/lines\_filters.sh
+}
+\label{
+  build_and_checks_dependencies:lines_filterssh
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+  build_and_checks_dependencies/lines_filters.sh
+}
+
+
+\subsection{
   build\_and\_checks\_dependencies/python\_black\_complement.sh
 }
 \label{
@@ -189,74 +283,14 @@ The git repository of this source code is also available at:
 
 
 \subsection{
-  build\_and\_checks\_dependencies/common\_build\_and\_checks.sh.tpl
+  build\_and\_checks\_dependencies/too\_long\_code\_lines.sh
 }
 \label{
-  build_and_checks_dependencies:common_build_and_checksshtpl
+  build_and_checks_dependencies:too_long_code_linessh
 }
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
-  build_and_checks_dependencies/common_build_and_checks.sh.tpl
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/build\_and\_checks.sh.tpl
-}
-\label{
-  build_and_checks_dependencies:build_and_checksshtpl
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-  build_and_checks_dependencies/build_and_checks.sh.tpl
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/common\_build\_and\_checks.sh
-}
-\label{
-  build_and_checks_dependencies:common_build_and_checkssh
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-  build_and_checks_dependencies/common_build_and_checks.sh
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/check\_shell\_scripts\_beginning.sh
-}
-\label{
-  build_and_checks_dependencies:check_shell_scripts_beginningsh
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-  build_and_checks_dependencies/check_shell_scripts_beginning.sh
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/check\_URLs.sh
-}
-\label{
-  build_and_checks_dependencies:check_URLssh
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-  build_and_checks_dependencies/check_URLs.sh
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/build\_readme.sh
-}
-\label{
-  build_and_checks_dependencies:build_readmesh
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-  build_and_checks_dependencies/build_readme.sh
+  build_and_checks_dependencies/too_long_code_lines.sh
 }
 
 
@@ -355,6 +389,7 @@ The git repository of this source code is also available at:
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
   wget_sha512.sh
 }
+
 
 
 Merci Dieu ! Merci P\`ere ! Merci Seigneur ! Merci Saint Esprit !

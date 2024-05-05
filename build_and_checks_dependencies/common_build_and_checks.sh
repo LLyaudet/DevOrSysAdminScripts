@@ -51,18 +51,30 @@ correct_sha512+='ed0bf0333b229f49e62a613'
 wget_sha512 "./$subdir/check_URLs.sh" "$script" "$correct_sha512"
 
 script="$URL_beginning/create_PDF.sh"
-correct_sha512='ccee9fd58a5fc4909fac3ebed96b915eb0dd98db7a2af85bfa651'
-correct_sha512+='cfd412088bf49380fed466b6412355170a733b1b854416e6b686'
-correct_sha512+='7dfac969b764de137836f5a'
+correct_sha512='e1d34bca3273de5b38632d0e69b1b759cd57b5bf90240d540714e'
+correct_sha512+='adc35ae97fed53d3cadec88dd4de2350944fc52b6d93a046e36e'
+correct_sha512+='7d6415b6d5d40c17707ce08'
 wget_sha512 "./$subdir/create_PDF.sh" "$script" "$correct_sha512"
 chmod +x "./$subdir/create_PDF.sh"
 
 script="$URL_beginning/get_common_text_glob_patterns.sh"
-correct_sha512='01ebe343563e729f4db880c4ce4bfb2a6c10c8daa4cfde80ee535'
-correct_sha512+='1a81f29f99c54cc6ebad003855e86cc4436a4591a5050ef79fdf'
-correct_sha512+='93abe52268d4421748e5b27'
+correct_sha512='5f675b7ed8713bc87cb032773edcddb1da75e718dc6048720e1c7'
+correct_sha512+='fd4bdf9b6f0d0a0d2faf657679e9c88617163602acea6f653de8'
+correct_sha512+='6656088ba2226706f0af6f1'
 wget_sha512 "./$subdir/get_common_text_glob_patterns.sh" "$script"\
   "$correct_sha512"
+
+script="$URL_beginning/lines_counts.sh"
+correct_sha512='01a3b956f6f4a456942959f270bb6c8cb8e8eea7bd24ddd40cae5'
+correct_sha512+='1f349ea32d1153f01f96d64d31ed26fcac620a3e13aa8f4bd960'
+correct_sha512+='95142848fee95917bc2d877'
+wget_sha512 "./$subdir/lines_counts.sh" "$script" "$correct_sha512"
+
+script="$URL_beginning/lines_filters.sh"
+correct_sha512='08474166c78d6ca7e350895d26310c0af3ed8fefb53bf6c0be3f3'
+correct_sha512+='517457bfb65670d3ccbd701069721cd0d2552e52cf2007be0fa0'
+correct_sha512+='04be1b75297f333dbe896c7'
+wget_sha512 "./$subdir/lines_filters.sh" "$script" "$correct_sha512"
 
 script="$URL_beginning/python_black_complement.sh"
 correct_sha512='909ab2453a3448b45e92c60df216d86578528d5151bc8c5efb50b'
@@ -82,6 +94,8 @@ shopt -s globstar
 source "./$subdir/check_shell_scripts_beginning.sh"
 source "./$subdir/check_URLs.sh"
 source "./$subdir/get_common_text_glob_patterns.sh"
+source "./$subdir/lines_counts.sh"
+source "./$subdir/lines_filters.sh"
 source "./$subdir/python_black_complement.sh"
 source "./$subdir/too_long_code_lines.sh"
 
@@ -108,17 +122,15 @@ echo "Running mypy"
 mypy .
 
 echo "Analyzing too long lines"
-too_long_code_lines | grep -v "^[^:]*node_modules/"\
-  | grep -v "^[^:]*package-lock.json"
+too_long_code_lines | not_dependencies
 
 echo "Analyzing shell scripts beginning"
-check_shell_scripts_beginning | grep -v "^[^:]*node_modules/"\
-  | grep -v "^[^:]*package-lock.json"
+check_shell_scripts_beginning | not_dependencies
 
 echo "Analyzing URLs"
-check_URLs | grep -v "^[^:]*node_modules/"\
-  | grep -v "^[^:]*package-lock.json"
+check_URLs | not_dependencies
 
+echo "Creating the PDF file of the listing of the source code"
 ./build_and_checks_dependencies/create_PDF.sh
 
 popd

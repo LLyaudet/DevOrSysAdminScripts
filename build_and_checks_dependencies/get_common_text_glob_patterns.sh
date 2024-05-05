@@ -44,5 +44,6 @@ get_common_text_glob_patterns(){
     '**/*.yml'\
     '**/COPYING'\
     '**/COPYING.LESSER'\
+    '**/pre-commit'\
   )
 }

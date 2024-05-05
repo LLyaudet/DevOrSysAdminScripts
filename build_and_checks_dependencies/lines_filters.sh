@@ -22,27 +22,32 @@
 #
 # ©Copyright 2023-2024 Laurent Lyaudet
 
-source ./wget_sha512.sh
+# The goal of ths file is to have some common line filters
+# for bash processing and pipes.
+# As is the case for other .sh files in this repository,
+# it can be copied somewhere in your home directory
+# and sourced in your .bashrc.
 
-mkdir -p build_and_checks_dependencies
-subdir="build_and_checks_dependencies"
+empty_lines(){
+  grep '^$'
+}
 
-personal_github="https://raw.githubusercontent.com/LLyaudet/"
-dependencies="DevOrSysAdminScripts/main/build_and_checks_dependencies"
-URL_beginning="$personal_github$dependencies"
+not_empty_lines(){
+  grep -v '^$'
+}
 
-script="$URL_beginning/common_build_and_checks.sh"
-correct_sha512='8cefdcaa76f73adadf7a6e324db0bc65d1926aa142aaeef7a3db2'
-correct_sha512+='50a70dacf14da9277dcc3d66bb02d76f7d7c3e8cce5edad4286b'
-correct_sha512+='2fa095dfcf177d3180c27df'
-wget_sha512 "./$subdir/common_build_and_checks.sh" "$script"\
-  "$correct_sha512"
-chmod +x "./$subdir/common_build_and_checks.sh"
+space_starting_lines(){
+  grep '^[ ]'
+}
 
-cwd="."
-if [[ -n "$1" ]];
-then
-  cwd="$1"
-fi
+not_space_starting_lines(){
+  grep '^[^ ]'
+}
 
-./build_and_checks_dependencies/common_build_and_checks.sh "$cwd"
+not_JS_dependencies(){
+  grep -v "^[^:]*node_modules/" | grep -v "^[^:]*package-lock.json"
+}
+
+not_dependencies(){
+  not_JS_dependencies
+}

@@ -68,7 +68,13 @@ Some ``small'' useful scripts
 for enhancing developpment or system-administrators tasks
 \end{abstract}
 
-Current version : @current_date@
+Current version: @current_date@
+
+Current number of commits: @number_of_commits@
+
+Current git SHA1: @current_git_SHA1@
+
+Code lines: @number_of_lines@
 
 \section{Files tree}
 \label{section:tree}
@@ -92,14 +98,74 @@ The git repository of this source code is also available at:
 
 
 \subsection{
-  build\_and\_checks\_dependencies/too\_long\_code\_lines.sh
+  build\_and\_checks\_dependencies/build\_and\_checks.sh.tpl
 }
 \label{
-  build_and_checks_dependencies:too_long_code_linessh
+  build_and_checks_dependencies:build_and_checksshtpl
 }
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
-  build_and_checks_dependencies/too_long_code_lines.sh
+  build_and_checks_dependencies/build_and_checks.sh.tpl
+}
+
+
+\subsection{
+  build\_and\_checks\_dependencies/build\_readme.sh
+}
+\label{
+  build_and_checks_dependencies:build_readmesh
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+  build_and_checks_dependencies/build_readme.sh
+}
+
+
+\subsection{
+  build\_and\_checks\_dependencies/check\_shell\_scripts\_beginning.sh
+}
+\label{
+  build_and_checks_dependencies:check_shell_scripts_beginningsh
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+  build_and_checks_dependencies/check_shell_scripts_beginning.sh
+}
+
+
+\subsection{
+  build\_and\_checks\_dependencies/check\_URLs.sh
+}
+\label{
+  build_and_checks_dependencies:check_URLssh
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+  build_and_checks_dependencies/check_URLs.sh
+}
+
+
+\subsection{
+  build\_and\_checks\_dependencies/common\_build\_and\_checks.sh
+}
+\label{
+  build_and_checks_dependencies:common_build_and_checkssh
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+  build_and_checks_dependencies/common_build_and_checks.sh
+}
+
+
+\subsection{
+  build\_and\_checks\_dependencies/common\_build\_and\_checks.sh.tpl
+}
+\label{
+  build_and_checks_dependencies:common_build_and_checksshtpl
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+  build_and_checks_dependencies/common_build_and_checks.sh.tpl
 }
 
 
@@ -129,6 +195,30 @@ The git repository of this source code is also available at:
 
 
 \subsection{
+  build\_and\_checks\_dependencies/lines\_counts.sh
+}
+\label{
+  build_and_checks_dependencies:lines_countssh
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+  build_and_checks_dependencies/lines_counts.sh
+}
+
+
+\subsection{
+  build\_and\_checks\_dependencies/lines\_filters.sh
+}
+\label{
+  build_and_checks_dependencies:lines_filterssh
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+  build_and_checks_dependencies/lines_filters.sh
+}
+
+
+\subsection{
   build\_and\_checks\_dependencies/python\_black\_complement.sh
 }
 \label{
@@ -141,74 +231,14 @@ The git repository of this source code is also available at:
 
 
 \subsection{
-  build\_and\_checks\_dependencies/common\_build\_and\_checks.sh.tpl
+  build\_and\_checks\_dependencies/too\_long\_code\_lines.sh
 }
 \label{
-  build_and_checks_dependencies:common_build_and_checksshtpl
+  build_and_checks_dependencies:too_long_code_linessh
 }
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
-  build_and_checks_dependencies/common_build_and_checks.sh.tpl
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/build\_and\_checks.sh.tpl
-}
-\label{
-  build_and_checks_dependencies:build_and_checksshtpl
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-  build_and_checks_dependencies/build_and_checks.sh.tpl
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/common\_build\_and\_checks.sh
-}
-\label{
-  build_and_checks_dependencies:common_build_and_checkssh
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-  build_and_checks_dependencies/common_build_and_checks.sh
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/check\_shell\_scripts\_beginning.sh
-}
-\label{
-  build_and_checks_dependencies:check_shell_scripts_beginningsh
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-  build_and_checks_dependencies/check_shell_scripts_beginning.sh
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/check\_URLs.sh
-}
-\label{
-  build_and_checks_dependencies:check_URLssh
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-  build_and_checks_dependencies/check_URLs.sh
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/build\_readme.sh
-}
-\label{
-  build_and_checks_dependencies:build_readmesh
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-  build_and_checks_dependencies/build_readme.sh
+  build_and_checks_dependencies/too_long_code_lines.sh
 }
 
 
@@ -307,6 +337,7 @@ The git repository of this source code is also available at:
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
   wget_sha512.sh
 }
+
 
 
 Merci Dieu ! Merci P\`ere ! Merci Seigneur ! Merci Saint Esprit !

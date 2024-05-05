@@ -22,27 +22,38 @@
 #
 # ©Copyright 2023-2024 Laurent Lyaudet
 
-source ./wget_sha512.sh
-
-mkdir -p build_and_checks_dependencies
 subdir="build_and_checks_dependencies"
+source "./$subdir/get_common_text_glob_patterns.sh"
+source "./$subdir/lines_filters.sh"
 
-personal_github="https://raw.githubusercontent.com/LLyaudet/"
-dependencies="DevOrSysAdminScripts/main/build_and_checks_dependencies"
-URL_beginning="$personal_github$dependencies"
+all_code_lines(){
+  get_common_text_glob_patterns
+  for pattern in "${common_patterns[@]}"; do
+    [ "$1" != "-v" ] || echo "Iterating on pattern: $pattern"
+    grep -r -H -v 'a(?!a)a' -- $pattern
+  done
+}
 
-script="$URL_beginning/common_build_and_checks.sh"
-correct_sha512='8cefdcaa76f73adadf7a6e324db0bc65d1926aa142aaeef7a3db2'
-correct_sha512+='50a70dacf14da9277dcc3d66bb02d76f7d7c3e8cce5edad4286b'
-correct_sha512+='2fa095dfcf177d3180c27df'
-wget_sha512 "./$subdir/common_build_and_checks.sh" "$script"\
-  "$correct_sha512"
-chmod +x "./$subdir/common_build_and_checks.sh"
+all_self_code_lines(){
+  all_code_lines | not_dependencies
+}
 
-cwd="."
-if [[ -n "$1" ]];
-then
-  cwd="$1"
-fi
+all_self_empty_code_lines(){
+  all_self_code_lines | empty_lines
+}
 
-./build_and_checks_dependencies/common_build_and_checks.sh "$cwd"
+all_self_not_empty_code_lines(){
+  all_self_code_lines | not_empty_lines
+}
+
+code_lines_count_all(){
+  all_self_code_lines | wc -l
+}
+
+code_lines_count_empty(){
+  all_self_empty_code_lines | wc -l
+}
+
+code_lines_count_not_empty(){
+  all_self_not_empty_code_lines | wc -l
+}

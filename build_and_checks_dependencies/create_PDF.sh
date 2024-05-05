@@ -25,6 +25,10 @@
 current_path=$(pwd)
 main_directory=$(basename $current_path)
 
+subdir="build_and_checks_dependencies"
+source "./$subdir/lines_counts.sh"
+source "./$subdir/lines_filters.sh"
+
 cp "./latex/$main_directory.tex.tpl"\
    "./latex/$main_directory.tex"
 # We need a variant of the template with long lines.
@@ -34,6 +38,20 @@ sed -i -Ez "s/%\n//Mg" "./latex/$main_directory.tex.tpl2"
 
 current_date=$(date -I"date")
 sed -i "s|@current_date@|$current_date|g"\
+  "./latex/$main_directory.tex"
+
+current_git_SHA1=$(git rev-parse HEAD)
+sed -i "s|@current_git_SHA1@|$current_git_SHA1|g"\
+  "./latex/$main_directory.tex"
+
+number_of_commits=$(git shortlog | space_starting_lines | wc -l)
+sed -i "s|@number_of_commits@|$number_of_commits|g"\
+  "./latex/$main_directory.tex"
+
+number_of_lines="$(code_lines_count_all) total lines,"
+number_of_lines+=" $(code_lines_count_not_empty) not empty lines,"
+number_of_lines+=" $(code_lines_count_empty) empty lines."
+sed -i "s|@number_of_lines@|$number_of_lines|g"\
   "./latex/$main_directory.tex"
 
 tree --gitignore\
@@ -61,7 +79,7 @@ tree -DFh --gitignore\
   > current_tree.txt
 
 shopt -s dotglob
-find * -type f | grep -v '.git/' | while read filename; do
+find * -type f | grep -v '.git/' | sort | while read filename; do
   [ -f "$filename" ] || continue
   git check-ignore -q "$filename" && continue
   base_filename=$(basename "$filename")
@@ -73,6 +91,8 @@ find * -type f | grep -v '.git/' | while read filename; do
   [ "$base_filename" != "$main_directory.pdf" ] || continue
   [ "$base_filename" != "$main_directory.tex" ] || continue
   [ "$base_filename" != "$main_directory.tex.tpl2" ] || continue
+  [[ "$base_filename" =~ ".*\.tar\.gz" ]] && continue
+  [[ "$base_filename" =~ ".*\.whl" ]] && continue
   cleaned_path1=$(sed -e 's/_/\\_/g' <(echo "$filename"))
   cleaned_path2=$(sed -e 's/\//:/g' -e 's/\.//g' <(echo "$filename"))
   if grep -q "  $filename\$" "./latex/$main_directory.tex.tpl2"; then

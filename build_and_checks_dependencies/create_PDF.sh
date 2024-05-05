@@ -100,8 +100,8 @@ find * -type f | relevant_find | sort | while read filename; do
   [ "$base_filename" != "$main_directory.tex.tpl2" ] || continue
   if [[ "$base_filename" == *.md ]]; then
     if [ -f "$filename.tpl" ]; then
-      in_place_grep -v "$base_filename$" current_tree.txt
-      in_place_grep -v "$base_filename$" current_tree_light.txt
+      # in_place_grep -v "$base_filename$" current_tree.txt
+      # in_place_grep -v "$base_filename$" current_tree_light.txt
       continue
     fi
   fi

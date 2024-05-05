@@ -128,8 +128,13 @@ echo "Running black"
 black .
 python_black_complement
 
-echo "Running mypy"
-mypy .
+find . -name "pyproject.toml" | relevant_find | while read filename;
+do
+  if grep -q "Typing :: Typed" "$filename"; then
+    echo "Running mypy"
+    mypy .
+  fi
+done
 
 echo "Analyzing too long lines"
 too_long_code_lines | relevant_grep

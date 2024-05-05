@@ -22,8 +22,8 @@
 #
 # ©Copyright 2023-2024 Laurent Lyaudet
 
-current_path=$(pwd)
-main_directory=$(basename $current_path)
+current_path="$(pwd)"
+main_directory="$(basename $current_path)"
 
 subdir="build_and_checks_dependencies"
 source "./$subdir/lines_counts.sh"
@@ -211,5 +211,5 @@ files_to_delete=(\
 )
 # Comment the following line if you need to debug.
 for filename in "${files_to_delete[@]}"; do
-  rm -f $filename
+  rm -f "$filename"
 done

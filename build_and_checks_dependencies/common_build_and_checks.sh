@@ -52,9 +52,9 @@ correct_sha512+='ed0bf0333b229f49e62a613'
 wget_sha512 "./$subdir/check_URLs.sh" "$script" "$correct_sha512"
 
 script="$URL_beginning/create_PDF.sh"
-correct_sha512='9853306e7666208f128d34c2796040d273a42741e2d2fa68a7a01'
-correct_sha512+='3a8065810f63acba06e5a98047bef3ca438ce4ba09918a06d341'
-correct_sha512+='0618b63a824bf91f4c38843'
+correct_sha512='45d1e73d74e12a6ac5bd6c7a3623e6d00233999e39f931f13824f'
+correct_sha512+='fae62871537c30142a55322a9fe80ad8c4af589d2a5e4527f840'
+correct_sha512+='8a2ae03500f29e5e85ca3b0'
 wget_sha512 "./$subdir/create_PDF.sh" "$script" "$correct_sha512"
 chmod +x "./$subdir/create_PDF.sh"
 
@@ -72,9 +72,9 @@ correct_sha512+='8b2ffdb2ac893b2eabdcab9'
 wget_sha512 "./$subdir/lines_counts.sh" "$script" "$correct_sha512"
 
 script="$URL_beginning/lines_filters.sh"
-correct_sha512='a24d08bcea901e21a86476b18b5db14028ea837cc493cbf862999'
-correct_sha512+='8705ddd781f91129682ab0ba3a28e99432aaf675f8b156fbb1a8'
-correct_sha512+='53d606ff95056efbf1cef2b'
+correct_sha512='b476606ae910ac521064ffa4930218bd9c9a09c446575ded78ed7'
+correct_sha512+='8eea2e2ea576f7b945e2ab56f0c9ef723b6e785b9c9db62e8211'
+correct_sha512+='98908fd97fc31433860e996'
 wget_sha512 "./$subdir/lines_filters.sh" "$script" "$correct_sha512"
 
 script="$URL_beginning/python_black_complement.sh"

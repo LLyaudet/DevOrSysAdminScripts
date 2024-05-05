@@ -52,9 +52,9 @@ correct_sha512+='ed0bf0333b229f49e62a613'
 wget_sha512 "./$subdir/check_URLs.sh" "$script" "$correct_sha512"
 
 script="$URL_beginning/create_PDF.sh"
-correct_sha512='7641936e9b09bcc54f39fc1c9af3274781c112ce5fbca8ca52687'
-correct_sha512+='57e77d023a1a5f038ccf82fa86f12bbee89e4f11191f2d0bec31'
-correct_sha512+='6b41cab87775bc341db7efc'
+correct_sha512='7f83cebbdeb7c83defda737a48c2ec9d6861149029615f0aa5003'
+correct_sha512+='b57e4c0867377161dd0fb4121d17734dae0b14e7cf6664a40718'
+correct_sha512+='fcfca563a12c456c3e7dbe6'
 wget_sha512 "./$subdir/create_PDF.sh" "$script" "$correct_sha512"
 chmod +x "./$subdir/create_PDF.sh"
 
@@ -72,9 +72,9 @@ correct_sha512+='8b2ffdb2ac893b2eabdcab9'
 wget_sha512 "./$subdir/lines_counts.sh" "$script" "$correct_sha512"
 
 script="$URL_beginning/lines_filters.sh"
-correct_sha512='587931f51fa2c6755a8bdaae13048bd5634e0c76f0aab985ef2b2'
-correct_sha512+='8bfa4b03a30d526bc356d6e5e2eae0d24401c468bcc80db8366d'
-correct_sha512+='3798486934a28701c78c441'
+correct_sha512='1c6c7a9e824407179f4a004e787605a492496af58dd3627314dc2'
+correct_sha512+='ba884a6ca94e93235cb555779228a112fb6e9f7800cf22c2f957'
+correct_sha512+='c3c14390035de1880852d4d'
 wget_sha512 "./$subdir/lines_filters.sh" "$script" "$correct_sha512"
 
 script="$URL_beginning/python_black_complement.sh"
@@ -85,9 +85,9 @@ wget_sha512 "./$subdir/python_black_complement.sh" "$script"\
   "$correct_sha512"
 
 script="$URL_beginning/python_isort_complement.sh"
-correct_sha512='fb3b931fb9f1246c789aa00ebdd558a4e75070075a82cdcf354c9'
-correct_sha512+='eb0549063d003df5530796fb5776028c2b57e5bbd32278cff98e'
-correct_sha512+='ca44bcdc36a81d6718cb41d'
+correct_sha512='b3bf56acdc42371ed60762d48ba8412acf3f7a250b277683696d2'
+correct_sha512+='6ac55c21b42d1070aabbbfa200883f7c69e2b0e3ef516862e4ad'
+correct_sha512+='25401b7a12da96169758e90'
 wget_sha512 "./$subdir/python_isort_complement.sh" "$script"\
   "$correct_sha512"
 
@@ -128,11 +128,12 @@ echo "Running black"
 black .
 python_black_complement
 
-find . -name "pyproject.toml" | relevant_find | while read filename;
+find . -name "pyproject.toml" | relevant_find\
+  | while read -r filename;
 do
   if grep -q "Typing :: Typed" "$filename"; then
     echo "Running mypy"
-    mypy .
+    mypy $(dirname "$filename")
   fi
 done
 

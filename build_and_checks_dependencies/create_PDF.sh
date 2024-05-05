@@ -87,7 +87,9 @@ tree -a -DFh --gitignore\
   > current_tree.txt
 
 shopt -s dotglob
-find * -type f | relevant_find | sort | while read filename; do
+find . -type f -printf '%P\n' | relevant_find | sort\
+  | while read -r filename;
+do
   [ -f "$filename" ] || continue
   git check-ignore -q "$filename" && continue
   base_filename=$(basename "$filename")

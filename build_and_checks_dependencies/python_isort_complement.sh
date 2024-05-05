@@ -27,7 +27,7 @@ source "./$subdir/lines_filters.sh"
 
 check_collections_abc_place(){
   echo "Checking import of _collections_abc is at the right place"
-  find . -name "*.py" | relevant_find |while read filename; do
+  find . -name "*.py" | relevant_find | while read -r filename; do
     [ -f "$filename" ] || continue
     sed -i -Ez 's/\n(\nfrom _collections_abc[^\n]*)/\1\n/Mg'\
       "$filename"

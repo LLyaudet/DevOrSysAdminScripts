@@ -32,9 +32,9 @@ dependencies="DevOrSysAdminScripts/main/build_and_checks_dependencies"
 URL_beginning="$personal_github$dependencies"
 
 script="$URL_beginning/common_build_and_checks.sh"
-correct_sha512='63c184f38f4e0f9a48054bac3a5a19f3e7d40f616b29d4c044b2e'
-correct_sha512+='9897952abf5266fe47039f12b68f23a7257188f8b68d5bb02f61'
-correct_sha512+='054181e90b16840b6807761'
+correct_sha512='00b50a5981bfb392b7caddb974aeac2386df96cad2ad997d472b1'
+correct_sha512+='7c4b99f00fba5e88ea54af72b02e01852666e3a97c71c0df56f1'
+correct_sha512+='98d6f6d6a1dcda565fbcc03'
 wget_sha512 "./$subdir/common_build_and_checks.sh" "$script"\
   "$correct_sha512"
 chmod +x "./$subdir/common_build_and_checks.sh"

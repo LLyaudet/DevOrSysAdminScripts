@@ -108,11 +108,12 @@ echo "Running black"
 black .
 python_black_complement
 
-find . -name "pyproject.toml" | relevant_find | while read filename;
+find . -name "pyproject.toml" | relevant_find\
+  | while read -r filename;
 do
   if grep -q "Typing :: Typed" "$filename"; then
     echo "Running mypy"
-    mypy .
+    mypy $(dirname "$filename")
   fi
 done
 

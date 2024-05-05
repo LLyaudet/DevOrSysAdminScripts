@@ -15,7 +15,6 @@ Currently, the biggest part of this repository is in
 a suite of shell scripts about build and checks that
 I use in some of my other repositories.
 
-
 [CodeFactor-badge]: https://www.codefactor.io/repository/github/\
 llyaudet/DevOrSysAdminScripts/badge
 

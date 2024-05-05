@@ -35,7 +35,7 @@ check_URLs(){
 
   for pattern in "${common_patterns[@]}"; do
     [ "$1" != "-v" ] || echo "Iterating on pattern: $pattern"
-    grep -r -H 'http:' -- $pattern | grep -v "^[^:]*check_URLs.sh"
+    grep -H 'http:' -- $pattern | grep -v "^[^:]*check_URLs.sh"
     for filename in $pattern; do
       [ -f "$filename" ] || continue
       base_filename=$(basename "$filename")

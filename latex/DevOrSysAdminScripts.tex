@@ -70,11 +70,11 @@ for enhancing developpment or system-administrators tasks
 
 Current version: 2024-05-05
 
-Current number of commits: 32
+Current number of commits: 33
 
-Current git SHA1: 0df7213960fab540a3f7ed06378803c34d98784c
+Current git SHA1: 58bf0a1aee813dc3e0fc8b9131e2d98522983353
 
-Code lines: 1608 total lines, 1608 not empty lines, 0 empty lines.
+Code lines: 1629 total lines, 1629 not empty lines, 0 empty lines.
 
 \section{Files tree}
 \label{section:tree}
@@ -82,8 +82,9 @@ Code lines: 1608 total lines, 1608 not empty lines, 0 empty lines.
 \begin{verbatim}
 .
 ├── build_and_checks_dependencies
+│   ├── build_and_checks_dependencies
 │   ├── build_and_checks.sh.tpl
-│   ├── build_readme.sh
+│   ├── build_md_from_printable_md.sh
 │   ├── check_shell_scripts_beginning.sh
 │   ├── check_URLs.sh
 │   ├── common_build_and_checks.sh
@@ -103,40 +104,41 @@ Code lines: 1608 total lines, 1608 not empty lines, 0 empty lines.
 │   └── DevOrSysAdminScripts.tex.tpl
 ├── LiensUtiles.txt
 ├── pre-commit
-├── README_printable.md
+├── README.md.tpl
 └── wget_sha512.sh
 
-3 directories, 22 files
+4 directories, 23 files
 \end{verbatim}
 
 \begin{verbatim}
-[4.0K May  5 12:22]  ./
-├── [4.0K May  5 12:19]  build_and_checks_dependencies/
+[4.0K May  5 13:21]  ./
+├── [4.0K May  5 13:20]  build_and_checks_dependencies/
+│   ├── [4.0K May  5 12:54]  build_and_checks_dependencies/
 │   ├── [1.4K May  4 02:33]  build_and_checks.sh.tpl*
-│   ├── [1.4K May  4 02:24]  build_readme.sh*
+│   ├── [1.5K May  5 12:40]  build_md_from_printable_md.sh*
 │   ├── [1.0K May  5 10:54]  check_shell_scripts_beginning.sh
 │   ├── [1.7K May  5 02:38]  check_URLs.sh
-│   ├── [4.7K May  5 12:19]  common_build_and_checks.sh*
-│   ├── [3.3K May  5 12:18]  common_build_and_checks.sh.tpl
-│   ├── [4.6K May  5 12:18]  create_PDF.sh*
+│   ├── [4.7K May  5 13:17]  common_build_and_checks.sh*
+│   ├── [3.4K May  5 12:31]  common_build_and_checks.sh.tpl
+│   ├── [4.6K May  5 13:17]  create_PDF.sh*
 │   ├── [1.2K May  5 10:05]  get_common_text_glob_patterns.sh
 │   ├── [1.5K May  5 12:17]  lines_counts.sh
-│   ├── [2.1K May  5 12:17]  lines_filters.sh
+│   ├── [2.3K May  5 13:16]  lines_filters.sh
 │   ├── [1.3K May  4 02:24]  python_black_complement.sh
 │   ├── [1.1K May  5 01:24]  too_long_code_lines.sh
-│   └── [2.0K May  5 10:18]  update_common_build_and_checks.sh*
-├── [1.5K May  5 12:19]  build_and_checks.sh*
+│   └── [2.0K May  5 12:33]  update_common_build_and_checks.sh*
+├── [1.5K May  5 13:17]  build_and_checks.sh*
 ├── [ 34K May  4 02:24]  COPYING
 ├── [7.5K May  3 21:45]  COPYING.LESSER
 ├── [2.2K May  4 02:24]  git_checks.sh
-├── [4.0K May  5 12:22]  latex/
-│   └── [6.6K May  5 10:58]  DevOrSysAdminScripts.tex.tpl
+├── [4.0K May  5 13:21]  latex/
+│   └── [6.6K May  5 12:40]  DevOrSysAdminScripts.tex.tpl
 ├── [ 424 May  3 21:45]  LiensUtiles.txt
 ├── [1.0K May  5 10:20]  pre-commit
-├── [1.6K May  4 18:50]  README_printable.md
+├── [1.6K May  4 18:50]  README.md.tpl
 └── [1.1K May  4 02:52]  wget_sha512.sh
 
-3 directories, 22 files
+4 directories, 23 files
 \end{verbatim}
 
 \section{Listing of files}
@@ -162,14 +164,14 @@ The git repository of this source code is also available at:
 
 
 \subsection{
-  build\_and\_checks\_dependencies/build\_readme.sh
+  build\_and\_checks\_dependencies/build\_md\_from\_printable\_md.sh
 }
 \label{
-  build_and_checks_dependencies:build_readmesh
+  build_and_checks_dependencies:build_md_from_printable_mdsh
 }
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
-  build_and_checks_dependencies/build_readme.sh
+  build_and_checks_dependencies/build_md_from_printable_md.sh
 }
 
 
@@ -368,14 +370,14 @@ The git repository of this source code is also available at:
 
 
 \subsection{
-  README\_printable.md
+  README.md.tpl
 }
 \label{
-  README_printablemd
+  READMEmdtpl
 }
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
-  README_printable.md
+  README.md.tpl
 }
 
 

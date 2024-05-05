@@ -32,15 +32,27 @@ then
   cd "$1"
 fi
 
-if [[ -f README_printable.md ]];
+if [[ -n "$2" ]];
 then
-  sed -Ez "$sed_expression" README_printable.md > README_temp1.md
-  sed -Ez "$sed_expression" README_temp1.md > README_temp2.md
-  sed -Ez "$sed_expression" README_temp2.md > README_temp3.md
-  sed -Ez "$sed_expression" README_temp3.md > README.md
-  rm README_temp1.md README_temp2.md README_temp3.md
+  filename="$2"
 else
-  echo "No file README_printable.md"
+  filename="README"
+fi
+
+if [[ -f "${filename}.md.tpl" ]];
+then
+  sed -Ez "$sed_expression" "${filename}.md.tpl"\
+    > "${filename}_temp1.md"
+  sed -Ez "$sed_expression" "${filename}_temp1.md"\
+    > "${filename}_temp2.md"
+  sed -Ez "$sed_expression" "${filename}_temp2.md"\
+    > "${filename}_temp3.md"
+  sed -Ez "$sed_expression" "${filename}_temp3.md"\
+    > "${filename}.md"
+  rm "${filename}_temp1.md" "${filename}_temp2.md"\
+    "${filename}_temp3.md"
+else
+  echo "No file ${filename}.md.tpl"
 fi
 
 popd

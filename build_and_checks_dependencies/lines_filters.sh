@@ -28,6 +28,11 @@
 # it can be copied somewhere in your home directory
 # and sourced in your .bashrc.
 
+in_place_grep(){
+  grep $@ > ${@: -1}.temp_in_place_grep
+  mv ${@: -1}.temp_in_place_grep ${@: -1}
+}
+
 empty_lines(){
   grep '^$'
 }
@@ -85,11 +90,11 @@ not_git_grep(){
 }
 
 not_archive_find(){
-  grep -vE "(\.gz|\.tar|\.whl)$"
+  grep -vE "(\.gz|\.rar|\.tar|\.tgz|\.whl)$"
 }
 
 not_archive_grep(){
-  grep -vE "^[^:]*(\.gz|\.tar|\.whl):"
+  grep -vE "^[^:]*(\.gz|\.rar|\.tar|\.tgz|\.whl):"
 }
 
 relevant_find(){

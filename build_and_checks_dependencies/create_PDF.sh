@@ -63,7 +63,6 @@ tree --gitignore\
   -I "$main_directory.tex.tpl2"\
   -I current_tree.txt\
   -I current_tree_light.txt\
-  -I README.md\
   > current_tree_light.txt
 
 tree -DFh --gitignore\
@@ -75,7 +74,6 @@ tree -DFh --gitignore\
   -I "$main_directory.tex.tpl2"\
   -I current_tree.txt\
   -I current_tree_light.txt\
-  -I README.md\
   > current_tree.txt
 
 shopt -s dotglob
@@ -87,12 +85,16 @@ find * -type f | relevant_find | sort | while read filename; do
   [ "$base_filename" != "current_tree.txt" ] || continue
   [ "$base_filename" != "COPYING" ] || continue
   [ "$base_filename" != "COPYING.LESSER" ] || continue
-  [ "$base_filename" != "README.md" ] || continue
   [ "$base_filename" != "$main_directory.pdf" ] || continue
   [ "$base_filename" != "$main_directory.tex" ] || continue
   [ "$base_filename" != "$main_directory.tex.tpl2" ] || continue
-  [[ "$base_filename" =~ ".*\.tar\.gz" ]] && continue
-  [[ "$base_filename" =~ ".*\.whl" ]] && continue
+  if [[ "$base_filename" == *.md ]]; then
+    if [ -f "$filename.tpl" ]; then
+      in_place_grep -v "$base_filename$" current_tree.txt
+      in_place_grep -v "$base_filename$" current_tree_light.txt
+      continue
+    fi
+  fi
   cleaned_path1=$(sed -e 's/_/\\_/g' <(echo "$filename"))
   cleaned_path2=$(sed -e 's/\//:/g' -e 's/\.//g' <(echo "$filename"))
   if grep -q "  $filename\$" "./latex/$main_directory.tex.tpl2"; then

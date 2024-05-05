@@ -30,10 +30,11 @@ URL_beginning="$personal_github$dependencies"
 
 subdir="build_and_checks_dependencies"
 
-script="$URL_beginning/build_readme.sh"
-@sha512_build_readme.sh@
-wget_sha512 "./$subdir/build_readme.sh" "$script" "$correct_sha512"
-chmod +x "./$subdir/build_readme.sh"
+script="$URL_beginning/build_md_from_printable_md.sh"
+@sha512_build_md_from_printable_md.sh@
+wget_sha512 "./$subdir/build_md_from_printable_md.sh" "$script"\
+  "$correct_sha512"
+chmod +x "./$subdir/build_md_from_printable_md.sh"
 
 script="$URL_beginning/check_shell_scripts_beginning.sh"
 @sha512_check_shell_scripts_beginning.sh@
@@ -88,7 +89,7 @@ then
 fi
 
 echo "Building README.md"
-./build_and_checks_dependencies/build_readme.sh "$cwd"
+./build_and_checks_dependencies/build_md_from_printable_md.sh "$cwd"
 
 pushd .
 cd "$cwd"

@@ -110,14 +110,14 @@ The git repository of this source code is also available at:
 
 
 \subsection{
-  build\_and\_checks\_dependencies/build\_readme.sh
+  build\_and\_checks\_dependencies/build\_md\_from\_printable\_md.sh
 }
 \label{
-  build_and_checks_dependencies:build_readmesh
+  build_and_checks_dependencies:build_md_from_printable_mdsh
 }
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
-  build_and_checks_dependencies/build_readme.sh
+  build_and_checks_dependencies/build_md_from_printable_md.sh
 }
 
 
@@ -316,14 +316,14 @@ The git repository of this source code is also available at:
 
 
 \subsection{
-  README\_printable.md
+  README.md.tpl
 }
 \label{
-  README_printablemd
+  READMEmdtpl
 }
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
-  README_printable.md
+  README.md.tpl
 }
 
 

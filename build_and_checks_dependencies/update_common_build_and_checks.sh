@@ -25,7 +25,7 @@
 cp ./common_build_and_checks.sh.tpl ./common_build_and_checks.sh
 
 file_names=(\
-  "build_readme.sh"\
+  "build_md_from_printable_md.sh"\
   "check_shell_scripts_beginning.sh"\
   "check_URLs.sh"\
   "create_PDF.sh"\

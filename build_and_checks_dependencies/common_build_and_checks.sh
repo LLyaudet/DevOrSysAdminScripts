@@ -30,12 +30,13 @@ URL_beginning="$personal_github$dependencies"
 
 subdir="build_and_checks_dependencies"
 
-script="$URL_beginning/build_readme.sh"
-correct_sha512='a60224c89e6dd94360057bba41ba30b83b4b84c11679a779e3f46'
-correct_sha512+='f4187fe5ae65b970c1cc5e5ce15bd39f0fe8c589abd153d4c57a'
-correct_sha512+='3277c209303d0de9926b234'
-wget_sha512 "./$subdir/build_readme.sh" "$script" "$correct_sha512"
-chmod +x "./$subdir/build_readme.sh"
+script="$URL_beginning/build_md_from_printable_md.sh"
+correct_sha512='aecf84a848a66e22367968b80cf250784d0c85b6bd9bad2fcf75b'
+correct_sha512+='98aa77a250c8a74f81ae9c61687d47e29c8712614a4fe44027a9'
+correct_sha512+='32224a7d04c2388084cbe25'
+wget_sha512 "./$subdir/build_md_from_printable_md.sh" "$script"\
+  "$correct_sha512"
+chmod +x "./$subdir/build_md_from_printable_md.sh"
 
 script="$URL_beginning/check_shell_scripts_beginning.sh"
 correct_sha512='faf7fe1c59b177d0f74afee6e8fb94e14bf7041b74a36afc41d6d'
@@ -51,9 +52,9 @@ correct_sha512+='ed0bf0333b229f49e62a613'
 wget_sha512 "./$subdir/check_URLs.sh" "$script" "$correct_sha512"
 
 script="$URL_beginning/create_PDF.sh"
-correct_sha512='3dcbff5ca4b0e0210f1e09414d4e6b087f147e868e9b139f38e59'
-correct_sha512+='643b5efa4ed8ace609ec240d223a71a981fb735051cefec189b2'
-correct_sha512+='7e9553779828517543006a3'
+correct_sha512='0e5228fd6e6568b259d75ed00fe4a0336e3475b52609febc1df2e'
+correct_sha512+='c44f91b3c1ddb3d95515520792d455b1b659d6ffe77f5ca10a51'
+correct_sha512+='f53296cd58ceec0535f790d'
 wget_sha512 "./$subdir/create_PDF.sh" "$script" "$correct_sha512"
 chmod +x "./$subdir/create_PDF.sh"
 
@@ -71,9 +72,9 @@ correct_sha512+='8b2ffdb2ac893b2eabdcab9'
 wget_sha512 "./$subdir/lines_counts.sh" "$script" "$correct_sha512"
 
 script="$URL_beginning/lines_filters.sh"
-correct_sha512='c07935ee244f3a2323985da131ffb6602787dceebd3ded5e0d668'
-correct_sha512+='5be4c0e702ce14592ed1649e3fdbb0dd60412dde655230166906'
-correct_sha512+='47b7226c6bb8a8655d2f7b5'
+correct_sha512='587931f51fa2c6755a8bdaae13048bd5634e0c76f0aab985ef2b2'
+correct_sha512+='8bfa4b03a30d526bc356d6e5e2eae0d24401c468bcc80db8366d'
+correct_sha512+='3798486934a28701c78c441'
 wget_sha512 "./$subdir/lines_filters.sh" "$script" "$correct_sha512"
 
 script="$URL_beginning/python_black_complement.sh"
@@ -106,7 +107,7 @@ then
 fi
 
 echo "Building README.md"
-./build_and_checks_dependencies/build_readme.sh "$cwd"
+./build_and_checks_dependencies/build_md_from_printable_md.sh "$cwd"
 
 pushd .
 cd "$cwd"

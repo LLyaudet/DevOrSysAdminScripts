@@ -29,6 +29,7 @@ too_long_code_lines(){
   get_common_text_files_glob_patterns
   for pattern in "${common_file_patterns[@]}"; do
     [ "$1" != "-v" ] || echo "Iterating on pattern: $pattern"
-    find . -type f -name "$pattern" -exec grep -H '.\{71\}' '{}' \;
+    find . -type f -name "$pattern" -printf '%P\n'\
+      | xargs grep -H '.\{71\}'
   done
 }

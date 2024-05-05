@@ -104,13 +104,13 @@ echo "Running mypy"
 mypy .
 
 echo "Analyzing too long lines"
-too_long_code_lines | not_dependencies
+too_long_code_lines | relevant
 
 echo "Analyzing shell scripts beginning"
-check_shell_scripts_beginning | not_dependencies
+check_shell_scripts_beginning | relevant
 
 echo "Analyzing URLs"
-check_URLs | not_dependencies
+check_URLs | relevant
 
 echo "Creating the PDF file of the listing of the source code"
 ./build_and_checks_dependencies/create_PDF.sh

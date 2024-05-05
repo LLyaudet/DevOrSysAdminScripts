@@ -51,3 +51,19 @@ not_JS_dependencies(){
 not_dependencies(){
   not_JS_dependencies
 }
+
+not_python_cache(){
+  grep -v "^[^:]*__pycache__/" | grep -v "^[^:]*.mypy_cache"
+}
+
+not_cache(){
+  not_python_cache
+}
+
+not_git(){
+  grep -v "^[^:]*.git/"
+}
+
+relevant(){
+  not_dependencies | not_cache | not_git
+}

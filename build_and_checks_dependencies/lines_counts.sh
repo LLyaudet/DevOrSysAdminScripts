@@ -35,7 +35,7 @@ all_code_lines(){
 }
 
 all_self_code_lines(){
-  all_code_lines | not_dependencies
+  all_code_lines | relevant
 }
 
 all_self_empty_code_lines(){

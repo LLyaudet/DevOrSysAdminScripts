@@ -339,7 +339,6 @@ The git repository of this source code is also available at:
 }
 
 
-
 Merci Dieu ! Merci P\`ere ! Merci Seigneur ! Merci Saint Esprit !
 
 \end{document}

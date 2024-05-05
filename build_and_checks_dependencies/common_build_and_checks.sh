@@ -51,9 +51,9 @@ correct_sha512+='ed0bf0333b229f49e62a613'
 wget_sha512 "./$subdir/check_URLs.sh" "$script" "$correct_sha512"
 
 script="$URL_beginning/create_PDF.sh"
-correct_sha512='e1d34bca3273de5b38632d0e69b1b759cd57b5bf90240d540714e'
-correct_sha512+='adc35ae97fed53d3cadec88dd4de2350944fc52b6d93a046e36e'
-correct_sha512+='7d6415b6d5d40c17707ce08'
+correct_sha512='8230782cc2e04c788599e9891fdd199d9b44f2ff34ebc88b8961e'
+correct_sha512+='ace0b309cd4b1a13b5df854893b7145d2fec281264775bc398a2'
+correct_sha512+='536e458394d602223567595'
 wget_sha512 "./$subdir/create_PDF.sh" "$script" "$correct_sha512"
 chmod +x "./$subdir/create_PDF.sh"
 
@@ -65,15 +65,15 @@ wget_sha512 "./$subdir/get_common_text_glob_patterns.sh" "$script"\
   "$correct_sha512"
 
 script="$URL_beginning/lines_counts.sh"
-correct_sha512='01a3b956f6f4a456942959f270bb6c8cb8e8eea7bd24ddd40cae5'
-correct_sha512+='1f349ea32d1153f01f96d64d31ed26fcac620a3e13aa8f4bd960'
-correct_sha512+='95142848fee95917bc2d877'
+correct_sha512='617761bad80545ed7197e0ff99e27f98fde249b672ac48be10904'
+correct_sha512+='e2aa4f243e6f031ff98bae7ed354152e43f2a351964a1b3e3dd9'
+correct_sha512+='e49889ab8d9b54864961c96'
 wget_sha512 "./$subdir/lines_counts.sh" "$script" "$correct_sha512"
 
 script="$URL_beginning/lines_filters.sh"
-correct_sha512='08474166c78d6ca7e350895d26310c0af3ed8fefb53bf6c0be3f3'
-correct_sha512+='517457bfb65670d3ccbd701069721cd0d2552e52cf2007be0fa0'
-correct_sha512+='04be1b75297f333dbe896c7'
+correct_sha512='89e2998ab4157bbbfe79f6604d9453d7660194e3b756af590efb1'
+correct_sha512+='e08652900a6a052ee9a85fd9938e0095456ab6cb5dc219274d8f'
+correct_sha512+='d70fb0a30c54935e4ad8ef5'
 wget_sha512 "./$subdir/lines_filters.sh" "$script" "$correct_sha512"
 
 script="$URL_beginning/python_black_complement.sh"
@@ -122,13 +122,13 @@ echo "Running mypy"
 mypy .
 
 echo "Analyzing too long lines"
-too_long_code_lines | not_dependencies
+too_long_code_lines | relevant
 
 echo "Analyzing shell scripts beginning"
-check_shell_scripts_beginning | not_dependencies
+check_shell_scripts_beginning | relevant
 
 echo "Analyzing URLs"
-check_URLs | not_dependencies
+check_URLs | relevant
 
 echo "Creating the PDF file of the listing of the source code"
 ./build_and_checks_dependencies/create_PDF.sh

@@ -54,7 +54,7 @@ number_of_lines+=" $(code_lines_count_empty) empty lines."
 sed -i "s|@number_of_lines@|$number_of_lines|g"\
   "./latex/$main_directory.tex"
 
-tree --gitignore\
+tree -a --gitignore\
   -I "$main_directory.aux"\
   -I "$main_directory.log"\
   -I "$main_directory.out"\
@@ -63,9 +63,14 @@ tree --gitignore\
   -I "$main_directory.tex.tpl2"\
   -I current_tree.txt\
   -I current_tree_light.txt\
+  -I "node_modules/"\
+  -I "package-lock.json"\
+  -I "__pycache__/"\
+  -I ".mypy_cache/"\
+  -I ".git/"\
   > current_tree_light.txt
 
-tree -DFh --gitignore\
+tree -a -DFh --gitignore\
   -I "$main_directory.aux"\
   -I "$main_directory.log"\
   -I "$main_directory.out"\
@@ -74,6 +79,11 @@ tree -DFh --gitignore\
   -I "$main_directory.tex.tpl2"\
   -I current_tree.txt\
   -I current_tree_light.txt\
+  -I "node_modules/"\
+  -I "package-lock.json"\
+  -I "__pycache__/"\
+  -I ".mypy_cache/"\
+  -I ".git/"\
   > current_tree.txt
 
 shopt -s dotglob

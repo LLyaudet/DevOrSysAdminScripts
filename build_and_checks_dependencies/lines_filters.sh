@@ -31,11 +31,63 @@
 current_path=$(pwd)
 main_directory=$(basename "$current_path")
 
+ll_wc(){
+  # current options to wc:
+  # -c --bytes
+  # -m --chars
+  # -l --lines
+  # --files0-from # Incompatible with cat,
+  #               # another thing intentional by ?
+  #               # I don't see the meaning of "files0".
+  # -L --max-line-length
+  # -w --words
+  # --help
+  # --version
+  # New option by Laurent Lyaudet (and probably other before):
+  # -n display only number(s)
+  # I think I did that the first time many years ago (Teliae ?).
+  args=""
+  number_only=0
+  for arg in $@; do
+    if [[ $arg == "-n" ]]; then
+      number_only=1
+    else
+      if [[ $number_only == 0 ]]; then
+        args+=" ""$arg"
+        continue
+      fi
+      if [[ "$arg" == "-*" ]]; then
+        args+=" ""$arg"
+      fi
+    fi
+  done
+  # echo "$args"
+  # echo "$number_only"
+  if [[ $number_only -gt 0 ]]; then
+    # Too simple code, only the base use case is handled now.
+    # Convenient but incomplete.
+    # With more time,
+    # the simpler would be to submit a patch to GNU coreutils,
+    # unless blockade from assholes.
+    # Otherwise, it may be more simply handled in PHP or Python
+    # (argparse, etc.).
+    # You'll need to start by improving cat first,
+    # with --files0-from handling.
+    # echo "hack cat '${!#}' | wc $args"
+    cat "${!#}" | wc $args
+  else
+    # echo "normal"
+    wc $args
+  fi
+}
+
 in_place_grep(){
   grep $@ > "${!#}"".temp_in_place_grep"
-  lines_before=$(wc -l "${!#}")
-  lines_after=$(wc -l "${!#}"".temp_in_place_grep")
-  if [[ "$lines_before" -eq  "$lines_after"]]; then
+  lines_before=$(ll_wc -l -n "${!#}")
+  lines_after=$(ll_wc -l -n "${!#}"".temp_in_place_grep")
+  # echo "$lines_before"
+  # echo "$lines_after"
+  if [[ "$lines_before" ==  "$lines_after" ]]; then
     rm "${!#}"".temp_in_place_grep"
     return
   fi

@@ -52,6 +52,22 @@ not_space_starting_lines(){
   grep '^[^ ]'
 }
 
+empty_lines_after_filename(){
+  grep '^[^:]\+:$'
+}
+
+not_empty_lines_after_filename(){
+  grep -v '^[^:]\+:$'
+}
+
+space_starting_lines_after_filename(){
+  grep '^[^:]\+: '
+}
+
+not_space_starting_lines_after_filename(){
+  grep '^[^:]\+:[^ ]'
+}
+
 not_JS_dependencies_find(){
   grep -vE "(^|/)node_modules/" | grep -vE "(^|/)package-lock\.json$"
 }

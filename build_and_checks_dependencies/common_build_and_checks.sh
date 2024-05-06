@@ -66,15 +66,15 @@ wget_sha512 "./$subdir/get_common_text_glob_patterns.sh" "$script"\
   "$correct_sha512"
 
 script="$URL_beginning/lines_counts.sh"
-correct_sha512='44c7a0a27b3d16063b7bced3c4c6e0949953de67248c91a98df3e'
-correct_sha512+='eb1b4a340ffb70c661e11bacefda8b76728b4a7a84e3e84ac76a'
-correct_sha512+='688ef64b679e2cfdf452345'
+correct_sha512='85549707a7152d578caca30f84f2f6b6e6f57d8f26df2ab83e834'
+correct_sha512+='e62d7f57019fc24f3363ef031b880c65c255d9dabe976dc7a416'
+correct_sha512+='cccde75d1b73af652bd51ca'
 wget_sha512 "./$subdir/lines_counts.sh" "$script" "$correct_sha512"
 
 script="$URL_beginning/lines_filters.sh"
-correct_sha512='d32ac497b68e9cda6134bd064cd692e5d524d94d8651847ac757f'
-correct_sha512+='82e8835612b1476ac17f6f768a85e0a331e304f94ac66a5818d2'
-correct_sha512+='3fd4dc3ce7b8f8c34ac3a79'
+correct_sha512='b102cc7b29b7bc590c8090f13d1a3397f893a13bd0c4d894ce0fa'
+correct_sha512+='b4c44be6b2c01c01c6e1787288ccf7fed75027192dc057bebfdd'
+correct_sha512+='ac0ae13c76196f492c88ad8'
 wget_sha512 "./$subdir/lines_filters.sh" "$script" "$correct_sha512"
 
 script="$URL_beginning/python_black_complement.sh"

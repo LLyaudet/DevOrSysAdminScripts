@@ -41,11 +41,11 @@ all_self_code_lines(){
 }
 
 all_self_empty_code_lines(){
-  all_self_code_lines | empty_lines
+  all_self_code_lines | empty_lines_after_filename
 }
 
 all_self_not_empty_code_lines(){
-  all_self_code_lines | not_empty_lines
+  all_self_code_lines | not_empty_lines_after_filename
 }
 
 code_lines_count_all(){

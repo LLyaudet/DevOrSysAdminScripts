@@ -28,6 +28,9 @@
 # it can be copied somewhere in your home directory
 # and sourced in your .bashrc.
 
+current_path=$(pwd)
+main_directory=$(basename "$current_path")
+
 in_place_grep(){
   grep $@ > "${!#}"".temp_in_place_grep"
   mv "${!#}"".temp_in_place_grep" "${!#}"
@@ -95,6 +98,22 @@ not_archive_find(){
 
 not_archive_grep(){
   grep -vE "^[^:]*(\.gz|\.rar|\.tar|\.tgz|\.whl):"
+}
+
+not_license_find(){
+  grep -vE "(^|/)COPYING$" | grep -vE "(^|/)COPYING\.LESSER$"
+}
+
+not_license_grep(){
+  grep -v "^[^:]*COPYING:" | grep -v "^[^:]*COPYING\.LESSER:"
+}
+
+not_main_tex_find(){
+  grep -vE "(^|/)$main_directory\.tex$"
+}
+
+not_main_tex_grep(){
+  grep -v "^[^:]*$main_directory\.tex:"
 }
 
 relevant_find(){

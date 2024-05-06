@@ -118,7 +118,7 @@ do
 done
 
 echo "Analyzing too long lines"
-too_long_code_lines | relevant_grep
+too_long_code_lines | relevant_grep | not_license_grep
 
 echo "Analyzing shell scripts beginning"
 check_shell_scripts_beginning | relevant_grep

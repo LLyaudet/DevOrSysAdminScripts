@@ -36,7 +36,8 @@ all_code_lines(){
 }
 
 all_self_code_lines(){
-  all_code_lines | relevant_grep
+  all_code_lines | relevant_grep\
+    | not_license_grep | not_main_tex_grep
 }
 
 all_self_empty_code_lines(){

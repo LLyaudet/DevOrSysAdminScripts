@@ -66,15 +66,15 @@ wget_sha512 "./$subdir/get_common_text_glob_patterns.sh" "$script"\
   "$correct_sha512"
 
 script="$URL_beginning/lines_counts.sh"
-correct_sha512='6ff48be04b5894aee1b718e2281414e31e74c5d9c8ab98ba7fe26'
-correct_sha512+='bd7f3d5dc906ae309b0a4890f23083ab63073e73583087c2a8fb'
-correct_sha512+='b0a52eaa032f191621b9150'
+correct_sha512='44c7a0a27b3d16063b7bced3c4c6e0949953de67248c91a98df3e'
+correct_sha512+='eb1b4a340ffb70c661e11bacefda8b76728b4a7a84e3e84ac76a'
+correct_sha512+='688ef64b679e2cfdf452345'
 wget_sha512 "./$subdir/lines_counts.sh" "$script" "$correct_sha512"
 
 script="$URL_beginning/lines_filters.sh"
-correct_sha512='b476606ae910ac521064ffa4930218bd9c9a09c446575ded78ed7'
-correct_sha512+='8eea2e2ea576f7b945e2ab56f0c9ef723b6e785b9c9db62e8211'
-correct_sha512+='98908fd97fc31433860e996'
+correct_sha512='d32ac497b68e9cda6134bd064cd692e5d524d94d8651847ac757f'
+correct_sha512+='82e8835612b1476ac17f6f768a85e0a331e304f94ac66a5818d2'
+correct_sha512+='3fd4dc3ce7b8f8c34ac3a79'
 wget_sha512 "./$subdir/lines_filters.sh" "$script" "$correct_sha512"
 
 script="$URL_beginning/python_black_complement.sh"
@@ -138,7 +138,7 @@ do
 done
 
 echo "Analyzing too long lines"
-too_long_code_lines | relevant_grep
+too_long_code_lines | relevant_grep | not_license_grep
 
 echo "Analyzing shell scripts beginning"
 check_shell_scripts_beginning | relevant_grep

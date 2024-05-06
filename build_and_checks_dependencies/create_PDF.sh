@@ -58,13 +58,10 @@ tree -a --gitignore\
   -I "$main_directory.aux"\
   -I "$main_directory.log"\
   -I "$main_directory.out"\
-  -I "$main_directory.pdf"\
-  -I "$main_directory.tex"\
   -I "$main_directory.tex.tpl2"\
   -I current_tree.txt\
   -I current_tree_light.txt\
   -I "node_modules/"\
-  -I "package-lock.json"\
   -I "__pycache__/"\
   -I ".mypy_cache/"\
   -I ".git/"\
@@ -74,13 +71,10 @@ tree -a -DFh --gitignore\
   -I "$main_directory.aux"\
   -I "$main_directory.log"\
   -I "$main_directory.out"\
-  -I "$main_directory.pdf"\
-  -I "$main_directory.tex"\
   -I "$main_directory.tex.tpl2"\
   -I current_tree.txt\
   -I current_tree_light.txt\
   -I "node_modules/"\
-  -I "package-lock.json"\
   -I "__pycache__/"\
   -I ".mypy_cache/"\
   -I ".git/"\
@@ -140,7 +134,10 @@ split_last_line(){
   # $2=$prefix
   split_last_line_result="$1"
   if echo "$1" | sed -e 's/\\n/\n/g' | grep -q '.\{71\}$'; then
-    start=$(echo "$1" | sed -e 's/\\n/\n/g' | head --lines=-1)
+    start=$(\
+      echo "$1" | sed -e 's/\\n/\n/g' | head --lines=-1\
+      | sed -z 's/\n/\\n/g'\
+    )
     # echo "start: $start"
     last_line=$(echo "$1" | sed -e 's/\\n/\n/g' | tail --lines=1)
     # echo "last_line: $last_line"

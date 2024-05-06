@@ -45,6 +45,8 @@ get_common_text_paths_glob_patterns(){
     '**/COPYING'\
     '**/COPYING.LESSER'\
     '**/pre-commit'\
+    '**/.gitignore'\
+    '**/py.typed'\
   )
 }
 
@@ -72,5 +74,7 @@ get_common_text_files_glob_patterns(){
     'COPYING'\
     'COPYING.LESSER'\
     'pre-commit'\
+    '.gitignore'\
+    'py.typed'\
   )
 }

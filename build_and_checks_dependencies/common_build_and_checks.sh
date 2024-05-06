@@ -52,16 +52,16 @@ correct_sha512+='d3aec6d8c14a0183c49b0b9'
 wget_sha512 "./$subdir/check_URLs.sh" "$script" "$correct_sha512"
 
 script="$URL_beginning/create_PDF.sh"
-correct_sha512='89c777a74b531f9cc6228761da65e83d931b7981d0dc599c982a2'
-correct_sha512+='c59bd5fc85c356639b5ca43df06482ef64bc21a12bc214c5e58a'
-correct_sha512+='09c52db7fcd0b33b90ff93d'
+correct_sha512='09dd5992de55dcdedd3e024546fd653c7ce6389d889ee17ddff9d'
+correct_sha512+='16b3ad0fddefe836f11693b1704ff52e1cf00cbd090d2d504b7c'
+correct_sha512+='35af31a49281e9ea51d5d15'
 wget_sha512 "./$subdir/create_PDF.sh" "$script" "$correct_sha512"
 chmod +x "./$subdir/create_PDF.sh"
 
 script="$URL_beginning/get_common_text_glob_patterns.sh"
-correct_sha512='5971e48d543a93c5c14129ea05c31795911a3f17931c883a04518'
-correct_sha512+='ac610b65900d6d578626125a2f1d9c1d3cc20d9792e49bff0d8f'
-correct_sha512+='6da0c4f59c140b29e539c80'
+correct_sha512='0c131dd3afa78d9875e0ef5ee0683ccf58d58b0077f7fc728f9fe'
+correct_sha512+='77fee52e70963b50963ef0dd4b0fb14277eaca308abef04aeb8c'
+correct_sha512+='56b6493fe4f16d597403039'
 wget_sha512 "./$subdir/get_common_text_glob_patterns.sh" "$script"\
   "$correct_sha512"
 

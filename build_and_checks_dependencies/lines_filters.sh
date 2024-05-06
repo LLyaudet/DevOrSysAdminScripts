@@ -33,6 +33,12 @@ main_directory=$(basename "$current_path")
 
 in_place_grep(){
   grep $@ > "${!#}"".temp_in_place_grep"
+  lines_before=$(wc -l "${!#}")
+  lines_after=$(wc -l "${!#}"".temp_in_place_grep")
+  if [[ "$lines_before" -eq  "$lines_after"]]; then
+    rm "${!#}"".temp_in_place_grep"
+    return
+  fi
   mv "${!#}"".temp_in_place_grep" "${!#}"
 }
 

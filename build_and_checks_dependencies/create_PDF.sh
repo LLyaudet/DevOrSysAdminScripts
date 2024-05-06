@@ -170,6 +170,7 @@ for some_tree in "${trees[@]}"; do
     line_start=$(\
       echo "$some_line"\
         | sed -E "s/(.*)[ ]*$filename/\1/g"\
+        | sed -e 's/ *$//g'
     )
     # echo "line_start: $line_start"
     some_line=$(\

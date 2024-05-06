@@ -52,9 +52,9 @@ correct_sha512+='d3aec6d8c14a0183c49b0b9'
 wget_sha512 "./$subdir/check_URLs.sh" "$script" "$correct_sha512"
 
 script="$URL_beginning/create_PDF.sh"
-correct_sha512='09dd5992de55dcdedd3e024546fd653c7ce6389d889ee17ddff9d'
-correct_sha512+='16b3ad0fddefe836f11693b1704ff52e1cf00cbd090d2d504b7c'
-correct_sha512+='35af31a49281e9ea51d5d15'
+correct_sha512='bd652a4a639ee9cd9c961ff11ff62b5efd3ad44fbea75b0ebbe69'
+correct_sha512+='8c188e36c52778d3ebde8b20489abca05eeb8bddef5460a2d4e1'
+correct_sha512+='7db9c98f3c29d6a8568ddfd'
 wget_sha512 "./$subdir/create_PDF.sh" "$script" "$correct_sha512"
 chmod +x "./$subdir/create_PDF.sh"
 

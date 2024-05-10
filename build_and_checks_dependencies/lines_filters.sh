@@ -83,6 +83,19 @@ ll_wc(){
   fi
 }
 
+# I submitted a patch for wc :).
+# echo "https://domain/list-path/2024-05/msg00013.html" | \
+#   sed -e 's|domain|lists.gnu.org|' \
+#       -e 's|list-path|archive/html/bug-coreutils|'
+# I found another way to have a long URL fit on 70 characters.
+# If it is merged, the following would be better:
+# If --no-filenames option available,
+# we redefine ll_wc command as an alias.
+wc_help_text=$(wc --help)
+if [[ "$wc_help_text" == *" --no-filenames "* ]]; then
+  alias ll_wc='wc'
+fi
+
 in_place_grep(){
   grep $@ > "${!#}"".temp_in_place_grep"
   lines_before=$(ll_wc -l -n "${!#}")

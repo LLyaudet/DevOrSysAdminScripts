@@ -44,12 +44,14 @@ ll_wc(){
   # --help
   # --version
   # New option by Laurent Lyaudet (and probably other before):
-  # -n display only number(s)
+  # -n --no-filenames display only number(s)
   # I think I did that the first time many years ago (Teliae ?).
   args=""
   number_only=0
   for arg in $@; do
     if [[ $arg == "-n" ]]; then
+      number_only=1
+    elif [[ $arg == "--no-filenames" ]]; then
       number_only=1
     else
       if [[ $number_only == 0 ]]; then
@@ -74,10 +76,10 @@ ll_wc(){
     # You'll need to start by improving cat first,
     # with --files0-from handling.
     # echo "hack cat '${!#}' | wc $args"
-    cat "${!#}" | wc $args
+    cat "${!#}" | wc "${args[@]}"
   else
     # echo "normal"
-    wc $args
+    wc "${args[@]}"
   fi
 }
 

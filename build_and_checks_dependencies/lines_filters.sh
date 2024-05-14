@@ -109,7 +109,7 @@ in_place_grep(){
   mv "${!#}"".temp_in_place_grep" "${!#}"
 }
 
-grep_variables(){
+grep_variable(){
   # $1=$file
   # $2=$variable_name
   regexp="(?<=^$2=).*$"

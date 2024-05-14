@@ -1,0 +1,12 @@
+repository_name=DevOrSysAdminScripts
+repository_web_url=https://github.com/LLyaudet/DevOrSysAdminScripts/
+repository_git_url=git@github.com:LLyaudet/DevOrSysAdminScripts.git
+abstract=Some “small” useful scripts
+abstract=for enhancing development or system-administrators tasks
+license=LGPLv3+
+name=Laurent Lyaudet
+full_name=Laurent Frédéric Bernard François Lyaudet
+email=Laurent.Lyaudet@gmail.com
+website=https://lyaudet.eu/laurent/
+acknowledgments=Merci Dieu !
+acknowledgments=Merci Père ! Merci Seigneur ! Merci Saint Esprit !

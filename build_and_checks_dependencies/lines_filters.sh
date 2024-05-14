@@ -109,6 +109,16 @@ in_place_grep(){
   mv "${!#}"".temp_in_place_grep" "${!#}"
 }
 
+grep_variables(){
+  # $1=$file
+  # $2=$variable_name
+  regexp="(?<=^$2=).*$"
+  # echo $regexp
+  variable_value="$(grep -oP "$regexp" "$1")"
+  # echo $variable_value
+  declare -g $2="$variable_value"
+}
+
 empty_lines(){
   grep '^$'
 }

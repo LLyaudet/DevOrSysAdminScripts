@@ -116,7 +116,7 @@ grep_variable(){
   # echo $regexp
   variable_value="$(grep -oP "$regexp" "$1")"
   # echo $variable_value
-  declare -g $2="$variable_value"
+  declare -g "$2"="$variable_value"
 }
 
 empty_lines(){

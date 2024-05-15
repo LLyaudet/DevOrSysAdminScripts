@@ -1,0 +1,124 @@
+#!/usr/bin/env bash
+# This file is part of DevOrSysAdminScripts library.
+#
+# DevOrSysAdminScripts is free software:
+# you can redistribute it and/or modify it under the terms
+# of the GNU Lesser General Public License
+# as published by the Free Software Foundation,
+# either version 3 of the License,
+# or (at your option) any later version.
+#
+# DevOrSysAdminScripts is distributed in the hope
+# that it will be useful,
+# but WITHOUT ANY WARRANTY;
+# without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+# See the GNU Lesser General Public License for more details.
+#
+# You should have received a copy of
+# the GNU Lesser General Public License
+# along with DevOrSysAdminScripts.
+# If not, see <https://www.gnu.org/licenses/>.
+#
+# ©Copyright 2023-2024 Laurent Lyaudet
+
+subdir="build_and_checks_dependencies"
+source "./$subdir/comparisons.sh"
+source "./$subdir/generate_from_template.sh"
+source "./$subdir/lines_filters.sh"
+source "./$subdir/overwrite_if_not_equal.sh"
+
+license_subdir="./$subdir/licenses_templates/"
+license_prefix="$license_subdir""license_file_header_"
+licenses=(\
+  "GPLv3+"\
+  "LGPLv3+"
+)
+
+# --------------------------------------------------------------------
+# Various language definitions for text file formats
+block_comment_languages=(\
+  "c"\
+  "py"\
+)
+block_comment_enters=(\
+  '/*'\
+  '"""'\
+)
+block_comment_exits=(\
+  '*/'\
+  '"""'\
+)
+equal "${#block_comment_languages[@]}"\
+      "${#block_comment_enters[@]}"\
+      "${#block_comment_exits[@]}"
+if [[ $? == 0 ]]; then
+  echo '/!\'"Problème de définition des tableaux de langages 1"'/!\'
+fi
+
+line_comment_languages=(\
+  "sh"\
+  "tex"\
+)
+line_comment_prefixes=(\
+  '# '\
+  '% '\
+)
+equal "${#line_comment_languages[@]}"\
+      "${#line_comment_prefixes[@]}"
+if [[ $? == 0 ]]; then
+  echo '/!\'"Problème de définition des tableaux de langages 2"'/!\'
+fi
+# --------------------------------------------------------------------
+
+# --------------------------------------------------------------------
+# We generate the license header templates adapted to various text
+# files formats.
+# Kamoulox do endfor, Jacques Beauregard XD
+# (C'est toujours mieux que l'inverse :) !)
+# for do endfor -> for do done (Fort Doux Donne).
+for license in "${licenses[@]}"; do
+  license_prefix2="$license_prefix$license"
+  for ((i=0; i<${#block_comment_languages[@]}; i++)); do
+    extension=${block_comment_languages[i]}
+    enter_string=${block_comment_enters[i]}
+    exit_string=${block_comment_exits[i]}
+    generate_from_template_with_block_comments\
+      "$license_prefix2.tpl"\
+      "$license_prefix2.$extension.tpl"\
+      "$enter_string" "$exit_string"
+  done
+  for ((i=0; i<${#line_comment_languages[@]}; i++)); do
+    extension=${line_comment_languages[i]}
+    prefix_string=${line_comment_prefixes[i]}
+    generate_from_template_with_line_comments\
+      "$license_prefix2.tpl"\
+      "$license_prefix2.$extension.tpl"\
+      "$prefix_string"
+    sed -i -E -e "s/\s*$//g" "$license_prefix2.$extension.tpl"
+  done
+done
+# --------------------------------------------------------------------
+
+file_name=repository_data.txt
+grep_variable "$file_name" repository_name
+grep_variable "$file_name" license
+grep_variable "$file_name" full_name
+license_prefix2="$license_prefix$license"
+# First year according to current state of git repository.
+first_year="$(git log | grep 'Date:' | cut -f 8 -d ' ' | tail -1)"
+# Last year according to current state of git repository.
+last_year="$(git log | grep 'Date:' | cut -f 8 -d ' ' | head -1)"
+copyright_string="$first_year-$last_year $full_name"
+for ((i=0; i<${#block_comment_languages[@]}; i++)); do
+  extension=${block_comment_languages[i]}
+  sed -e "s/@repository_name@/$repository_name/g"\
+    -e "s/@copyright_string@/$copyright_string/g"\
+    "$license_prefix2.$extension.tpl" > "$license_prefix2.$extension"
+done
+for ((i=0; i<${#line_comment_languages[@]}; i++)); do
+  extension=${line_comment_languages[i]}
+  sed -e "s/@repository_name@/$repository_name/g"\
+    -e "s/@copyright_string@/$copyright_string/g"\
+    "$license_prefix2.$extension.tpl" > "$license_prefix2.$extension"
+done

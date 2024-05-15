@@ -24,13 +24,15 @@
 
 subdir="build_and_checks_dependencies"
 source "./$subdir/lines_filters.sh"
+source "./$subdir/overwrite_if_not_equal.sh"
 
 check_collections_abc_place(){
   echo "Checking import of _collections_abc is at the right place"
   find . -name "*.py" | relevant_find | while read -r filename; do
     [ -f "$filename" ] || continue
-    sed -i -Ez 's/\n(\nfrom _collections_abc[^\n]*)/\1\n/Mg'\
-      "$filename"
+    sed -Ez 's/\n(\nfrom _collections_abc[^\n]*)/\1\n/Mg'\
+      "$filename" > "$filename.temp"
+    overwrite_if_not_equal "$filename" "$filename.temp"
   done
 }
 

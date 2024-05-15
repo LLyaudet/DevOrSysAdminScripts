@@ -25,6 +25,10 @@
 overwrite_if_not_equal(){
   # $1=$target_file_name
   # $2=$temp_file_name
+  if [[ ! -f "$1" ]]; then
+    mv "$2" "$1"
+    return
+  fi
   diff -q "$1" "$2"
   is_equal=$?
   if [[ $is_equal == 0 ]]; then

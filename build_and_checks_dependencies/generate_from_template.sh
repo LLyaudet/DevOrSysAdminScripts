@@ -37,6 +37,10 @@ generate_from_template_with_line_comments(){
   # $1=base_file_name
   # $2=target_file_name
   # $3=line_comment_prefix
+  # $4=optional_post_processing
   sed -e "s/^/$3/g" "$1" > "$2.temp"
+  if [[ -n "$4" ]]; then
+    eval "$4"
+  fi
   overwrite_if_not_equal "$2" "$2.temp"
 }

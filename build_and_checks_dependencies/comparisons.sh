@@ -52,7 +52,7 @@ max(){
   if [[ "$#" == 0 ]]; then
     return 1
   fi
-  printf "%s\n" "${@:2}" | $1 -r | head -1
+  printf "%s\n" "${@:2}" | eval "$1 -r" | head -1
 }
 
 min(){
@@ -64,5 +64,5 @@ min(){
   if [[ "$#" == 0 ]]; then
     return 1
   fi
-  printf "%s\n" "${@:2}" | $1 | head -1
+  printf "%s\n" "${@:2}" | eval "$1" | head -1
 }

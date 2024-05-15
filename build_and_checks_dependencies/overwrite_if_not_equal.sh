@@ -25,8 +25,9 @@
 overwrite_if_not_equal(){
   # $1=$target_file_name
   # $2=$temp_file_name
-  is_equal=$(diff -q "$1" "$2")
-  if [ is_equal == 0 ]; then
+  diff -q "$1" "$2"
+  is_equal=$?
+  if [[ $is_equal == 0 ]]; then
     rm "$2"
   else
     mv "$2" "$1"

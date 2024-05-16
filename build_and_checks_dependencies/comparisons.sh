@@ -20,7 +20,7 @@
 # along with DevOrSysAdminScripts.
 # If not, see <https://www.gnu.org/licenses/>.
 #
-# ©Copyright 2023-2024 Laurent Lyaudet
+# ©Copyright 2023-2024 Laurent Frédéric Bernard François Lyaudet
 
 equal(){
   # Returns 1 if all the arguments strings are equal.
@@ -65,4 +65,30 @@ min(){
     return 1
   fi
   printf "%s\n" "${@:2}" | eval "$1" | head -1
+}
+
+is_substring(){
+  # $1=$string
+  # $2=$substring
+  is_substring_var_1=$(\
+    echo "$1" | sed -e 's/\\/\\&/g' -e "s/'/\\\\&/g"\
+  )
+  is_substring_var_2=$(\
+    echo "$2" | sed -e 's/\\/\\&/g' -e "s/'/\\\\&/g"\
+  )
+  is_substring_var_3="\$a = '$is_substring_var_1';"
+  is_substring_var_3+=" \$b = preg_quote('$is_substring_var_2');"
+  is_substring_var_3+=" \$c = '/'.addcslashes(\$b, '/').'/';"
+  is_substring_var_3+=" die(preg_match(\$c, \$a));"
+  php -r "$is_substring_var_3"
+}
+
+is_subfile(){
+  # $1=$filename
+  # $2=$subfilename
+  is_subfile_var_1="\$a = file_get_contents('$1');"
+  is_subfile_var_1+=" \$b = preg_quote(file_get_contents('$2'));"
+  is_subfile_var_1+=" \$c = '/'.addcslashes(\$b, '/').'/';"
+  is_subfile_var_1+=" die(preg_match(\$c, \$a));"
+  php -r "$is_subfile_var_1"
 }

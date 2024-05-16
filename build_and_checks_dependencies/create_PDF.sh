@@ -20,7 +20,7 @@
 # along with DevOrSysAdminScripts.
 # If not, see <https://www.gnu.org/licenses/>.
 #
-# ©Copyright 2023-2024 Laurent Lyaudet
+# ©Copyright 2023-2024 Laurent Frédéric Bernard François Lyaudet
 
 current_path=$(pwd)
 main_directory=$(basename "$current_path")
@@ -84,7 +84,6 @@ shopt -s dotglob
 find . -type f -printf '%P\n' | relevant_find | sort\
   | while read -r filename;
 do
-  [ -f "$filename" ] || continue
   git check-ignore -q "$filename" && continue
   base_filename=$(basename "$filename")
   [ "$base_filename" != "current_tree_light.txt" ] || continue
@@ -150,7 +149,7 @@ split_last_line(){
   fi
 }
 
-# We verify if some lines are beyond 70 caracters
+# We verify if some lines are beyond 70 characters
 # in current_tree_light.txt et current_tree.txt.
 trees=("current_tree_light.txt" "current_tree.txt")
 for some_tree in "${trees[@]}"; do

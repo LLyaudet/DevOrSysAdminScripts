@@ -20,7 +20,7 @@
 # along with DevOrSysAdminScripts.
 # If not, see <https://www.gnu.org/licenses/>.
 #
-# ©Copyright 2023-2024 Laurent Lyaudet
+# ©Copyright 2023-2024 Laurent Frédéric Bernard François Lyaudet
 
 # It was rejected to enhance black with this currently.
 # And moreover, at some point, I saw the reverse rule

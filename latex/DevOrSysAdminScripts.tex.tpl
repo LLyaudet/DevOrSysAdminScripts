@@ -1,4 +1,3 @@
-%!/usr/bin/env bash
 % This file is part of DevOrSysAdminScripts library.
 %
 % DevOrSysAdminScripts is free software:
@@ -20,7 +19,7 @@
 % along with DevOrSysAdminScripts.
 % If not, see <https://www.gnu.org/licenses/>.
 %
-% ©Copyright 2023-2024 Laurent Lyaudet
+% ©Copyright 2023-2024 Laurent Frédéric Bernard François Lyaudet
 
 \documentclass{article}
 
@@ -65,7 +64,7 @@
 \maketitle
 \begin{abstract}
 Some ``small'' useful scripts
-for enhancing developpment or system-administrators tasks
+for enhancing development or system-administrators tasks
 \end{abstract}
 
 Current version: @current_date@

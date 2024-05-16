@@ -20,7 +20,7 @@
 # along with DevOrSysAdminScripts.
 # If not, see <https://www.gnu.org/licenses/>.
 #
-# ©Copyright 2023-2024 Laurent Lyaudet
+# ©Copyright 2023-2024 Laurent Frédéric Bernard François Lyaudet
 
 subdir="build_and_checks_dependencies"
 source "./$subdir/comparisons.sh"
@@ -112,19 +112,36 @@ last_year="$(git log | grep 'Date:' | cut -f 8 -d ' ' | head -1)"
 copyright_string="$first_year-$last_year $full_name"
 for ((i=0; i<${#block_comment_languages[@]}; i++)); do
   extension=${block_comment_languages[i]}
+  license_filename="$license_prefix2.$extension"
   sed -e "s/@repository_name@/$repository_name/g"\
     -e "s/@copyright_string@/$copyright_string/g"\
-    "$license_prefix2.$extension.tpl"\
-    > "$license_prefix2.$extension.temp"
-  overwrite_if_not_equal "$license_prefix2.$extension"\
-    "$license_prefix2.$extension.temp"
+    "$license_filename.tpl" > "$license_filename.temp"
+  overwrite_if_not_equal "$license_filename" "$license_filename.temp"
+  cat "$license_filename" | head --lines=-1 | tail --lines=-1\
+    > "$license_filename.temp"
+  find . -type f -name "*.$extension" -printf '%P\n' | relevant_find\
+    | while read -r filename;
+  do
+    is_subfile "$filename" "$license_filename.temp"
+    if [[ $? == 0 ]]; then
+      echo "File $filename has no/wrong license header?"
+    fi
+  done
+  rm "$license_filename.temp"
 done
 for ((i=0; i<${#line_comment_languages[@]}; i++)); do
   extension=${line_comment_languages[i]}
+  license_filename="$license_prefix2.$extension"
   sed -e "s/@repository_name@/$repository_name/g"\
     -e "s/@copyright_string@/$copyright_string/g"\
-    "$license_prefix2.$extension.tpl"\
-    > "$license_prefix2.$extension.temp"
-  overwrite_if_not_equal "$license_prefix2.$extension"\
-    "$license_prefix2.$extension.temp"
+    "$license_filename.tpl" > "$license_filename.temp"
+  overwrite_if_not_equal "$license_filename" "$license_filename.temp"
+  find . -type f -name "*.$extension" -printf '%P\n' | relevant_find\
+    | while read -r filename;
+  do
+    is_subfile "$filename" "$license_filename"
+    if [[ $? == 0 ]]; then
+      echo "File $filename has no/wrong license header?"
+    fi
+  done
 done

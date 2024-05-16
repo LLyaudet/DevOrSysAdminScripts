@@ -20,7 +20,7 @@
 # along with DevOrSysAdminScripts.
 # If not, see <https://www.gnu.org/licenses/>.
 #
-# ©Copyright 2023-2024 Laurent Lyaudet
+# ©Copyright 2023-2024 Laurent Frédéric Bernard François Lyaudet
 
 subdir="build_and_checks_dependencies"
 source "./$subdir/lines_filters.sh"

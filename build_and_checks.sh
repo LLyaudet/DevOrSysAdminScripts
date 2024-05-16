@@ -20,11 +20,11 @@
 # along with DevOrSysAdminScripts.
 # If not, see <https://www.gnu.org/licenses/>.
 #
-# ©Copyright 2023-2024 Laurent Lyaudet
+# ©Copyright 2023-2024 Laurent Frédéric Bernard François Lyaudet
 
 source ./wget_sha512.sh
 
-mkdir -p build_and_checks_dependencies
+mkdir -p build_and_checks_dependencies/licenses_templates
 subdir="build_and_checks_dependencies"
 
 personal_github="https://raw.githubusercontent.com/LLyaudet/"
@@ -32,9 +32,9 @@ dependencies="DevOrSysAdminScripts/main/build_and_checks_dependencies"
 URL_beginning="$personal_github$dependencies"
 
 script="$URL_beginning/common_build_and_checks.sh"
-correct_sha512='a46cd00d7b2d90fa1a3c7923244879fad28e789ff7dda791a0bd0'
-correct_sha512+='c723848c12cb73ccf2c4c5875cdb674237da9696ef9e4deac07d'
-correct_sha512+='c2b04aed6d90ffb98b9b0c4'
+correct_sha512='e2b3f4fce607bef1533a5df1bc6f29b753d36fe9db26c303f6c82'
+correct_sha512+='1b24eca5183704234a885a09e3e161916a2cfc253a89a42d753b'
+correct_sha512+='15590ef6bb3d4d17edf1cf1'
 wget_sha512 "./$subdir/common_build_and_checks.sh" "$script"\
   "$correct_sha512"
 chmod +x "./$subdir/common_build_and_checks.sh"

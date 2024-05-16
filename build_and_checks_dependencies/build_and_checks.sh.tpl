@@ -20,11 +20,11 @@
 # along with DevOrSysAdminScripts.
 # If not, see <https://www.gnu.org/licenses/>.
 #
-# ©Copyright 2023-2024 Laurent Lyaudet
+# ©Copyright 2023-2024 Laurent Frédéric Bernard François Lyaudet
 
 source ./wget_sha512.sh
 
-mkdir -p build_and_checks_dependencies
+mkdir -p build_and_checks_dependencies/licenses_templates
 subdir="build_and_checks_dependencies"
 
 personal_github="https://raw.githubusercontent.com/LLyaudet/"

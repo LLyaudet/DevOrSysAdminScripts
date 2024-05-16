@@ -7,9 +7,9 @@
 ![GitHub-license-badge]
 ![GitHub-code-size-in-bytes-badge]
 
-|                **Some "small" useful scripts**                |
-|:-------------------------------------------------------------:|
-| **for enhancing developpment or system-administrators tasks** |
+|                **Some "small" useful scripts**               |
+|:------------------------------------------------------------:|
+| **for enhancing development or system-administrators tasks** |
 
 Currently, the biggest part of this repository is in
 a suite of shell scripts about build and checks that

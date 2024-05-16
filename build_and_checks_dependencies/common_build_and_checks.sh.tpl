@@ -20,7 +20,7 @@
 # along with DevOrSysAdminScripts.
 # If not, see <https://www.gnu.org/licenses/>.
 #
-# ©Copyright 2023-2024 Laurent Lyaudet
+# ©Copyright 2023-2024 Laurent Frédéric Bernard François Lyaudet
 
 source ./wget_sha512.sh
 
@@ -45,14 +45,41 @@ script="$URL_beginning/check_URLs.sh"
 @sha512_check_URLs.sh@
 wget_sha512 "./$subdir/check_URLs.sh" "$script" "$correct_sha512"
 
+script="$URL_beginning/comparisons.sh"
+@sha512_comparisons.sh@
+wget_sha512 "./$subdir/comparisons.sh" "$script" "$correct_sha512"
+
 script="$URL_beginning/create_PDF.sh"
 @sha512_create_PDF.sh@
 wget_sha512 "./$subdir/create_PDF.sh" "$script" "$correct_sha512"
 chmod +x "./$subdir/create_PDF.sh"
 
+script="$URL_beginning/generate_from_template.sh"
+@sha512_generate_from_template.sh@
+wget_sha512 "./$subdir/generate_from_template.sh" "$script"\
+  "$correct_sha512"
+
 script="$URL_beginning/get_common_text_glob_patterns.sh"
 @sha512_get_common_text_glob_patterns.sh@
 wget_sha512 "./$subdir/get_common_text_glob_patterns.sh" "$script"\
+  "$correct_sha512"
+
+URL_beginning2="$URL_beginning/licenses_templates"
+subdir2="$subdir/licenses_templates"
+script="$URL_beginning2/build_license_templates.sh"
+@sha512_build_license_templates.sh@
+wget_sha512 "./$subdir2/build_license_templates.sh" "$script"\
+  "$correct_sha512"
+chmod +x "./$subdir2/build_license_templates.sh"
+
+script="$URL_beginning2/license_file_header_GPLv3+.tpl"
+@sha512_license_file_header_GPLv3+.tpl@
+wget_sha512 "./$subdir2/license_file_header_GPLv3+.tpl" "$script"\
+  "$correct_sha512"
+
+script="$URL_beginning2/license_file_header_LGPLv3+.tpl"
+@sha512_license_file_header_LGPLv3+.tpl@
+wget_sha512 "./$subdir2/license_file_header_LGPLv3+.tpl" "$script"\
   "$correct_sha512"
 
 script="$URL_beginning/lines_counts.sh"
@@ -62,6 +89,11 @@ wget_sha512 "./$subdir/lines_counts.sh" "$script" "$correct_sha512"
 script="$URL_beginning/lines_filters.sh"
 @sha512_lines_filters.sh@
 wget_sha512 "./$subdir/lines_filters.sh" "$script" "$correct_sha512"
+
+script="$URL_beginning/overwrite_if_not_equal.sh"
+@sha512_overwrite_if_not_equal.sh@
+wget_sha512 "./$subdir/overwrite_if_not_equal.sh" "$script"\
+  "$correct_sha512"
 
 script="$URL_beginning/python_black_complement.sh"
 @sha512_python_black_complement.sh@
@@ -81,9 +113,12 @@ wget_sha512 "./$subdir/too_long_code_lines.sh" "$script"\
 shopt -s globstar
 source "./$subdir/check_shell_scripts_beginning.sh"
 source "./$subdir/check_URLs.sh"
+source "./$subdir/comparisons.sh"
+source "./$subdir/generate_from_template.sh"
 source "./$subdir/get_common_text_glob_patterns.sh"
 source "./$subdir/lines_counts.sh"
 source "./$subdir/lines_filters.sh"
+source "./$subdir/overwrite_if_not_equal.sh"
 source "./$subdir/python_black_complement.sh"
 source "./$subdir/python_isort_complement.sh"
 source "./$subdir/too_long_code_lines.sh"
@@ -93,6 +128,9 @@ if [[ -n "$1" ]];
 then
   cwd="$1"
 fi
+
+echo "Building license headers"
+./build_and_checks_dependencies/licenses_templates/build_md_from_printable_md.sh "$cwd"
 
 echo "Building README.md"
 ./build_and_checks_dependencies/build_md_from_printable_md.sh "$cwd"

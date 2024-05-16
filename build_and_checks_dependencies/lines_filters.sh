@@ -28,9 +28,6 @@
 # it can be copied somewhere in your home directory
 # and sourced in your .bashrc.
 
-current_path=$(pwd)
-main_directory=$(basename "$current_path")
-
 ll_wc(){
   # current options to wc:
   # -c --bytes
@@ -119,6 +116,8 @@ grep_variable(){
   # echo $LFBFL_variable_value
   declare -g "$2"="$LFBFL_variable_value"
 }
+
+grep_variable repository_data.txt repository_name
 
 empty_lines(){
   grep '^$'
@@ -209,11 +208,11 @@ not_license_grep(){
 }
 
 not_main_tex_find(){
-  grep -vE "(^|/)$main_directory\.tex$"
+  grep -vE "(^|/)$repository_name\.tex$"
 }
 
 not_main_tex_grep(){
-  grep -v "^[^:]*$main_directory\.tex:"
+  grep -v "^[^:]*$repository_name\.tex:"
 }
 
 relevant_find(){

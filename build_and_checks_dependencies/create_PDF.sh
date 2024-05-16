@@ -22,43 +22,42 @@
 #
 # ©Copyright 2023-2024 Laurent Frédéric Bernard François Lyaudet
 
-current_path=$(pwd)
-main_directory=$(basename "$current_path")
-
 subdir="build_and_checks_dependencies"
 source "./$subdir/lines_counts.sh"
 source "./$subdir/lines_filters.sh"
 
-cp "./latex/$main_directory.tex.tpl"\
-   "./latex/$main_directory.tex"
+grep_variable repository_data.txt repository_name
+
+cp "./latex/$repository_name.tex.tpl"\
+   "./latex/$repository_name.tex"
 # We need a variant of the template with long lines.
-cp "./latex/$main_directory.tex.tpl"\
-   "./latex/$main_directory.tex.tpl2"
-sed -i -Ez "s/%\n//Mg" "./latex/$main_directory.tex.tpl2"
+cp "./latex/$repository_name.tex.tpl"\
+   "./latex/$repository_name.tex.tpl2"
+sed -i -Ez "s/%\n//Mg" "./latex/$repository_name.tex.tpl2"
 
 current_date=$(date -I"date")
 sed -i "s|@current_date@|$current_date|g"\
-  "./latex/$main_directory.tex"
+  "./latex/$repository_name.tex"
 
 current_git_SHA1=$(git rev-parse HEAD)
 sed -i "s|@current_git_SHA1@|$current_git_SHA1|g"\
-  "./latex/$main_directory.tex"
+  "./latex/$repository_name.tex"
 
 number_of_commits=$(git shortlog | space_starting_lines | wc -l)
 sed -i "s|@number_of_commits@|$number_of_commits|g"\
-  "./latex/$main_directory.tex"
+  "./latex/$repository_name.tex"
 
 number_of_lines="$(code_lines_count_all) total lines,"
 number_of_lines+=" $(code_lines_count_not_empty) not empty lines,"
 number_of_lines+=" $(code_lines_count_empty) empty lines."
 sed -i "s|@number_of_lines@|$number_of_lines|g"\
-  "./latex/$main_directory.tex"
+  "./latex/$repository_name.tex"
 
 tree -a --gitignore\
-  -I "$main_directory.aux"\
-  -I "$main_directory.log"\
-  -I "$main_directory.out"\
-  -I "$main_directory.tex.tpl2"\
+  -I "$repository_name.aux"\
+  -I "$repository_name.log"\
+  -I "$repository_name.out"\
+  -I "$repository_name.tex.tpl2"\
   -I current_tree.txt\
   -I current_tree_light.txt\
   -I "node_modules/"\
@@ -68,10 +67,10 @@ tree -a --gitignore\
   > current_tree_light.txt
 
 tree -a -DFh --gitignore\
-  -I "$main_directory.aux"\
-  -I "$main_directory.log"\
-  -I "$main_directory.out"\
-  -I "$main_directory.tex.tpl2"\
+  -I "$repository_name.aux"\
+  -I "$repository_name.log"\
+  -I "$repository_name.out"\
+  -I "$repository_name.tex.tpl2"\
   -I current_tree.txt\
   -I current_tree_light.txt\
   -I "node_modules/"\
@@ -90,9 +89,9 @@ do
   [ "$base_file_name" != "current_tree.txt" ] || continue
   [ "$base_file_name" != "COPYING" ] || continue
   [ "$base_file_name" != "COPYING.LESSER" ] || continue
-  [ "$base_file_name" != "$main_directory.pdf" ] || continue
-  [ "$base_file_name" != "$main_directory.tex" ] || continue
-  [ "$base_file_name" != "$main_directory.tex.tpl2" ] || continue
+  [ "$base_file_name" != "$repository_name.pdf" ] || continue
+  [ "$base_file_name" != "$repository_name.tex" ] || continue
+  [ "$base_file_name" != "$repository_name.tex.tpl2" ] || continue
   if [[ "$base_file_name" == *.md ]]; then
     if [ -f "$file_name.tpl" ]; then
       # in_place_grep -v "$base_file_name$" current_tree.txt
@@ -102,7 +101,8 @@ do
   fi
   cleaned_path1=$(sed -e 's/_/\\_/g' <(echo "$file_name"))
   cleaned_path2=$(sed -e 's/\//:/g' -e 's/\.//g' <(echo "$file_name"))
-  if grep -q "  $file_name\$" "./latex/$main_directory.tex.tpl2"; then
+  if grep -q "  $file_name\$" "./latex/$repository_name.tex.tpl2";
+  then
     echo ""
     # sed -i -Ez\
     #   "s/$file_name\n/\
@@ -110,7 +110,7 @@ do
     #   "current_tree_light.txt"
   else
     echo "The file $file_name is not listed"\
-         " in ./latex/$main_directory.tex.tpl"
+         " in ./latex/$repository_name.tex.tpl"
     echo "TODO:\subsection{"
     echo "TODO:  $cleaned_path1"
     echo "TODO:}"
@@ -192,21 +192,21 @@ for some_tree in "${trees[@]}"; do
 done
 
 sed -i -e '/@current_tree_light@/{r current_tree_light.txt' -e 'd}'\
-  "./latex/$main_directory.tex"
+  "./latex/$repository_name.tex"
 sed -i -e '/@current_tree@/{r current_tree.txt' -e 'd}'\
-  "./latex/$main_directory.tex"
+  "./latex/$repository_name.tex"
 
-pdflatex "./latex/$main_directory.tex" > /dev/null
-pdflatex "./latex/$main_directory.tex" > /dev/null
-pdflatex "./latex/$main_directory.tex" > /dev/null
+pdflatex "./latex/$repository_name.tex" > /dev/null
+pdflatex "./latex/$repository_name.tex" > /dev/null
+pdflatex "./latex/$repository_name.tex" > /dev/null
 
 files_to_delete=(\
-  "$main_directory.aux"\
-  "$main_directory.log"\
-  "$main_directory.out"\
+  "$repository_name.aux"\
+  "$repository_name.log"\
+  "$repository_name.out"\
   "current_tree.txt"
   "current_tree_light.txt"
-  "./latex/$main_directory.tex.tpl2"
+  "./latex/$repository_name.tex.tpl2"
 )
 # Comment the following line if you need to debug.
 for file_name in "${files_to_delete[@]}"; do

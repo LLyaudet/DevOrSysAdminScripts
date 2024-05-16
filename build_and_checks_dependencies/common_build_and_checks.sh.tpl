@@ -95,6 +95,19 @@ script="$URL_beginning/lines_filters.sh"
 @sha512_lines_filters.sh@
 wget_sha512 "./$subdir/lines_filters.sh" "$script" "$correct_sha512"
 
+URL_beginning3="$URL_beginning/listings"
+subdir3="$subdir/listings"
+script="$URL_beginning3/update_or_check_files_names_listing.sh"
+@sha512_update_or_check_files_names_listing.sh@
+wget_sha512 "./$subdir3/update_or_check_files_names_listing.sh"\
+  "$script" "$correct_sha512"
+chmod +x "./$subdir3/update_or_check_files_names_listing.sh"
+
+script="$URL_beginning3/files_names_listing.txt"
+@sha512_files_names_listing.txt@
+wget_sha512 "./$subdir3/files_names_listing.txt" "$script"\
+  "$correct_sha512"
+
 script="$URL_beginning/overwrite_if_not_equal.sh"
 @sha512_overwrite_if_not_equal.sh@
 wget_sha512 "./$subdir/overwrite_if_not_equal.sh" "$script"\

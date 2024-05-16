@@ -121,6 +121,23 @@ correct_sha512+='b2add1ae3238bf010ee308cd82131fc1939ab1758e611997e845'
 correct_sha512+='33bafa6c68d4051c968a4d7'
 wget_sha512 "./$subdir/lines_filters.sh" "$script" "$correct_sha512"
 
+URL_beginning3="$URL_beginning/listings"
+subdir3="$subdir/listings"
+script="$URL_beginning3/update_or_check_files_names_listing.sh"
+correct_sha512='4cddcc78bae37e077bd6dfdd167783fd27e469a2bcd2be6b32267'
+correct_sha512+='1755666bb6ef7df4a361a26978235f985245ed5e2abc7dbcfc9c'
+correct_sha512+='4a6824caf304623214cea00'
+wget_sha512 "./$subdir3/update_or_check_files_names_listing.sh"\
+  "$script" "$correct_sha512"
+chmod +x "./$subdir3/update_or_check_files_names_listing.sh"
+
+script="$URL_beginning3/files_names_listing.txt"
+correct_sha512='69d3a41b3f798c5068e409551e8fffac39b32c0b3644dca81f893'
+correct_sha512+='4349227cc3963daa4d556c6e5512dcb187898e19740871847bf6'
+correct_sha512+='bf42cedb08b6b5627bbdeec'
+wget_sha512 "./$subdir3/files_names_listing.txt" "$script"\
+  "$correct_sha512"
+
 script="$URL_beginning/overwrite_if_not_equal.sh"
 correct_sha512='afabf6f384e61920dbc575afb1519173ac2654b6180b9a28c5ffc'
 correct_sha512+='173a05c6e6d4011d7bc8912da15caee923c9033d8355967920e4'

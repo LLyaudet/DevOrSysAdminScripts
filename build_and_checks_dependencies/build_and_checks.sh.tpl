@@ -25,6 +25,7 @@
 source ./wget_sha512.sh
 
 mkdir -p build_and_checks_dependencies/licenses_templates
+mkdir -p build_and_checks_dependencies/listings
 subdir="build_and_checks_dependencies"
 
 personal_github="https://raw.githubusercontent.com/LLyaudet/"

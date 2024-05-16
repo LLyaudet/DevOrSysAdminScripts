@@ -25,6 +25,7 @@
 source ./wget_sha512.sh
 
 mkdir -p build_and_checks_dependencies/licenses_templates
+mkdir -p build_and_checks_dependencies/listings
 subdir="build_and_checks_dependencies"
 
 personal_github="https://raw.githubusercontent.com/LLyaudet/"
@@ -32,9 +33,9 @@ dependencies="DevOrSysAdminScripts/main/build_and_checks_dependencies"
 URL_beginning="$personal_github$dependencies"
 
 script="$URL_beginning/common_build_and_checks.sh"
-correct_sha512='40fbdbf01b23482fe8fdf2cbf54c0b6d426955d981603692e3667'
-correct_sha512+='280dd966ca9b901c98a3b74ec4487b8565fcc3bd89d6de3f5127'
-correct_sha512+='3fb59980bd7be404c563086'
+correct_sha512='c7315a6a5f01bc7643be4fe0e198bc1fdc73b683e494fc376c0f5'
+correct_sha512+='bc6257e6e91eecf4e6e3cdb7e9b97edd21c80af80cb1ed29fe86'
+correct_sha512+='114c226094df8c8ba681cab'
 wget_sha512 "./$subdir/common_build_and_checks.sh" "$script"\
   "$correct_sha512"
 chmod +x "./$subdir/common_build_and_checks.sh"

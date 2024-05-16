@@ -31,9 +31,9 @@ URL_beginning="$personal_github$dependencies"
 subdir="build_and_checks_dependencies"
 
 script="$URL_beginning/build_md_from_printable_md.sh"
-correct_sha512='f6e5300069ed146bd1065080ab257cffb4e1c8327fd48b10e342e'
-correct_sha512+='a5769505f5b2a1e5a4ffa944c8c8881db2d953eb4b933f4a0fcb'
-correct_sha512+='ca52ec54a1606582402de19'
+correct_sha512='f443133905731f4d5f8b844b10fdb4eb909ef8127cc11009c8c5e'
+correct_sha512+='9dc3e42754f244f3ef829d22d562abdffebb75acc692c3b21874'
+correct_sha512+='eb421a375d6a9049406494b'
 wget_sha512 "./$subdir/build_md_from_printable_md.sh" "$script"\
   "$correct_sha512"
 chmod +x "./$subdir/build_md_from_printable_md.sh"

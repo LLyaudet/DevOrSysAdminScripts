@@ -22,6 +22,9 @@
 #
 # ©Copyright 2023-2024 Laurent Frédéric Bernard François Lyaudet
 
+subdir="build_and_checks_dependencies"
+source "./$subdir/overwrite_if_not_equal.sh"
+
 sed_expression='s/(\[[a-zA-Z0-9:-]*\]: [^\n\\]*)\\\n/\1/Mg'
 sed_expression+=';s/(<http[^\n\\]*)\\\n/\1/Mg'
 sed_expression+=';s/(- <http[^\n\\]*)\\\n/\1/Mg'
@@ -48,7 +51,8 @@ then
   sed -Ez "$sed_expression" "${filename}_temp2.md"\
     > "${filename}_temp3.md"
   sed -Ez "$sed_expression" "${filename}_temp3.md"\
-    > "${filename}.md"
+    > "${filename}_temp4.md"
+  overwrite_if_not_equal "${filename}.md" "${filename}_temp4.md"
   rm "${filename}_temp1.md" "${filename}_temp2.md"\
     "${filename}_temp3.md"
 else

@@ -119,7 +119,7 @@ for ((i=0; i<${#block_comment_languages[@]}; i++)); do
     -e "s/@copyright_string@/$copyright_string/g"\
     "$license_filename.tpl" > "$license_filename.temp"
   overwrite_if_not_equal "$license_filename" "$license_filename.temp"
-  cat "$license_filename" | head --lines=-1 | tail --lines=-1\
+  head --lines=-1 "$license_filename" | tail --lines=-1\
     > "$license_filename.temp"
   find . -type f -name "*.$extension" -printf '%P\n' | relevant_find\
     | while read -r filename;

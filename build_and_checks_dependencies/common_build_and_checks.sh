@@ -81,9 +81,9 @@ wget_sha512 "./$subdir/get_common_text_glob_patterns.sh" "$script"\
 URL_beginning2="$URL_beginning/licenses_templates"
 subdir2="$subdir/licenses_templates"
 script="$URL_beginning2/build_license_templates.sh"
-correct_sha512='021d3ccc3301c3c8754854ae338b0f828d419ccddfc218320cca3'
-correct_sha512+='7f9118bd9c2871f5b6263448188575f53107e4503d2cbab55a00'
-correct_sha512+='f5543d832138cac22cf3747'
+correct_sha512='5de90f12af0b77ee6771ec4f827f6a1f36883b3ceb5c3b76806de'
+correct_sha512+='7d187059e79a8b6fd94b659195abd4b7d91826afbb257a8f6db4'
+correct_sha512+='291276a2df0000ab01e6daf'
 wget_sha512 "./$subdir2/build_license_templates.sh" "$script"\
   "$correct_sha512"
 chmod +x "./$subdir2/build_license_templates.sh"

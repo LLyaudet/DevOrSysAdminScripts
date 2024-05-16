@@ -120,7 +120,8 @@ for ((i=0; i<${#block_comment_languages[@]}; i++)); do
   sed -e "s/@repository_name@/$repository_name/g"\
     -e "s/@copyright_string@/$copyright_string/g"\
     "$license_file_name.tpl" > "$license_file_name.temp"
-  overwrite_if_not_equal "$license_file_name" "$license_file_name.temp"
+  overwrite_if_not_equal "$license_file_name"\
+    "$license_file_name.temp"
   head --lines=-1 "$license_file_name" | tail --lines=-1\
     > "$license_file_name.temp"
   find . -type f -name "*.$extension" -printf '%P\n' | relevant_find\

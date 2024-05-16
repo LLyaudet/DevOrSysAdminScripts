@@ -23,6 +23,11 @@
 # ©Copyright 2023-2024 Laurent Frédéric Bernard François Lyaudet
 
 check_one_shell_script_beginning(){
+  LFBFL_file_name=$(basename "$1")
+  if [[ "$LFBFL_file_name" =~ license_file_header_.*\.sh ]];
+  then
+    return 0
+  fi
   diff <(head -n 1 "$1") <(echo '#!/usr/bin/env bash')
 }
 

@@ -37,26 +37,26 @@ fi
 
 if [[ -n "$2" ]];
 then
-  filename="$2"
+  file_name="$2"
 else
-  filename="README"
+  file_name="README"
 fi
 
-if [[ -f "${filename}.md.tpl" ]];
+if [[ -f "${file_name}.md.tpl" ]];
 then
-  sed -Ez "$sed_expression" "${filename}.md.tpl"\
-    > "${filename}_temp1.md"
-  sed -Ez "$sed_expression" "${filename}_temp1.md"\
-    > "${filename}_temp2.md"
-  sed -Ez "$sed_expression" "${filename}_temp2.md"\
-    > "${filename}_temp3.md"
-  sed -Ez "$sed_expression" "${filename}_temp3.md"\
-    > "${filename}_temp4.md"
-  overwrite_if_not_equal "${filename}.md" "${filename}_temp4.md"
-  rm "${filename}_temp1.md" "${filename}_temp2.md"\
-    "${filename}_temp3.md"
+  sed -Ez "$sed_expression" "${file_name}.md.tpl"\
+    > "${file_name}_temp1.md"
+  sed -Ez "$sed_expression" "${file_name}_temp1.md"\
+    > "${file_name}_temp2.md"
+  sed -Ez "$sed_expression" "${file_name}_temp2.md"\
+    > "${file_name}_temp3.md"
+  sed -Ez "$sed_expression" "${file_name}_temp3.md"\
+    > "${file_name}_temp4.md"
+  overwrite_if_not_equal "${file_name}.md" "${file_name}_temp4.md"
+  rm "${file_name}_temp1.md" "${file_name}_temp2.md"\
+    "${file_name}_temp3.md"
 else
-  echo "No file ${filename}.md.tpl"
+  echo "No file ${file_name}.md.tpl"
 fi
 
 popd

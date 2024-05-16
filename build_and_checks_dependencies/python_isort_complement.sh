@@ -28,11 +28,14 @@ source "./$subdir/overwrite_if_not_equal.sh"
 
 check_collections_abc_place(){
   echo "Checking import of _collections_abc is at the right place"
-  find . -name "*.py" | relevant_find | while read -r filename; do
-    [ -f "$filename" ] || continue
+  LFBFL_temp=".check_collections_abc_place.temp"
+  find . -name "*.py" | relevant_find\
+    | while read -r LFBFL_file_name; do
+    [ -f "$LFBFL_file_name" ] || continue
     sed -Ez 's/\n(\nfrom _collections_abc[^\n]*)/\1\n/Mg'\
-      "$filename" > "$filename.temp"
-    overwrite_if_not_equal "$filename" "$filename.temp"
+      "$LFBFL_file_name" > "$LFBFL_file_name$LFBFL_temp"
+    overwrite_if_not_equal "$LFBFL_file_name"\
+      "$LFBFL_file_name$LFBFL_temp"
   done
 }
 

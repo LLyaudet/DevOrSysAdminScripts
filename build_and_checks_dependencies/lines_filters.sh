@@ -46,26 +46,26 @@ ll_wc(){
   # New option by Laurent Lyaudet (and probably other before):
   # -n --no-filenames display only number(s)
   # I think I did that the first time many years ago (Teliae ?).
-  args=""
-  number_only=0
-  for arg in $@; do
-    if [[ $arg == "-n" ]]; then
-      number_only=1
-    elif [[ $arg == "--no-filenames" ]]; then
-      number_only=1
+  ll_wc_var_args=""
+  ll_wc_var_number_only=0
+  for ll_wc_var_arg in $@; do
+    if [[ $ll_wc_var_arg == "-n" ]]; then
+      ll_wc_var_number_only=1
+    elif [[ $ll_wc_var_arg == "--no-filenames" ]]; then
+      ll_wc_var_number_only=1
     else
-      if [[ $number_only == 0 ]]; then
-        args+=" ""$arg"
+      if [[ $ll_wc_var_number_only == 0 ]]; then
+        ll_wc_var_args+=" ""$ll_wc_var_arg"
         continue
       fi
-      if [[ "$arg" == "-*" ]]; then
-        args+=" ""$arg"
+      if [[ "$ll_wc_var_arg" == "-*" ]]; then
+        ll_wc_var_args+=" ""$ll_wc_var_arg"
       fi
     fi
   done
-  # echo "$args"
-  # echo "$number_only"
-  if [[ $number_only -gt 0 ]]; then
+  # echo "$ll_wc_var_args"
+  # echo "$ll_wc_var_number_only"
+  if [[ $ll_wc_var_number_only -gt 0 ]]; then
     # Too simple code, only the base use case is handled now.
     # Convenient but incomplete.
     # With more time,
@@ -76,10 +76,10 @@ ll_wc(){
     # You'll need to start by improving cat first,
     # with --files0-from handling.
     # echo "hack cat '${!#}' | wc $args"
-    cat "${!#}" | wc "${args[@]}"
+    cat "${!#}" | wc "${ll_wc_var_args[@]}"
   else
     # echo "normal"
-    wc "${args[@]}"
+    wc "${ll_wc_var_args[@]}"
   fi
 }
 
@@ -97,26 +97,27 @@ if [[ "$wc_help_text" == *" --no-filenames "* ]]; then
 fi
 
 in_place_grep(){
-  grep $@ > "${!#}"".temp_in_place_grep"
-  lines_before=$(ll_wc -l -n "${!#}")
-  lines_after=$(ll_wc -l -n "${!#}"".temp_in_place_grep")
-  # echo "$lines_before"
-  # echo "$lines_after"
-  if [[ "$lines_before" ==  "$lines_after" ]]; then
-    rm "${!#}"".temp_in_place_grep"
+  LFBFL_temp=".in_place_grep.temp"
+  grep $@ > "${!#}""$LFBFL_temp"
+  LFBFL_lines_before=$(ll_wc -l -n "${!#}")
+  LFBFL_lines_after=$(ll_wc -l -n "${!#}""$LFBFL_temp")
+  # echo "$LFBFL_lines_before"
+  # echo "$LFBFL_lines_after"
+  if [[ "$LFBFL_lines_before" ==  "$LFBFL_lines_after" ]]; then
+    rm "${!#}""$LFBFL_temp"
     return
   fi
-  mv "${!#}"".temp_in_place_grep" "${!#}"
+  mv "${!#}""$LFBFL_temp" "${!#}"
 }
 
 grep_variable(){
   # $1=$file
   # $2=$variable_name
-  regexp="(?<=^$2=).*$"
-  # echo $regexp
-  variable_value="$(grep -oP "$regexp" "$1")"
-  # echo $variable_value
-  declare -g "$2"="$variable_value"
+  LFBFL_regexp="(?<=^$2=).*$"
+  # echo $LFBFL_regexp
+  LFBFL_variable_value="$(grep -oP "$LFBFL_regexp" "$1")"
+  # echo $LFBFL_variable_value
+  declare -g "$2"="$LFBFL_variable_value"
 }
 
 empty_lines(){
@@ -135,19 +136,19 @@ not_space_starting_lines(){
   grep '^[^ ]'
 }
 
-empty_lines_after_filename(){
+empty_lines_after_file_name(){
   grep '^[^:]\+:$'
 }
 
-not_empty_lines_after_filename(){
+not_empty_lines_after_file_name(){
   grep -v '^[^:]\+:$'
 }
 
-space_starting_lines_after_filename(){
+space_starting_lines_after_file_name(){
   grep '^[^:]\+: '
 }
 
-not_space_starting_lines_after_filename(){
+not_space_starting_lines_after_file_name(){
   grep '^[^:]\+:[^ ]'
 }
 

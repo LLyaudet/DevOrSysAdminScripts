@@ -121,14 +121,15 @@ The git repository of this source code is also available at:
 
 
 \subsection{
-  build\_and\_checks\_dependencies/check\_shell\_scripts\_beginning.sh
+  build\_and\_checks\_dependencies/%
+check\_shell\_scripts\_beginnings.sh
 }
 \label{
-  build_and_checks_dependencies:check_shell_scripts_beginningsh
+  build_and_checks_dependencies:check_shell_scripts_beginningssh
 }
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
-  build_and_checks_dependencies/check_shell_scripts_beginning.sh
+  build_and_checks_dependencies/check_shell_scripts_beginnings.sh
 }
 
 
@@ -219,16 +220,16 @@ The git repository of this source code is also available at:
 
 \subsection{
   build\_and\_checks\_dependencies/licenses\_templates/%
-build\_license\_templates.sh
+build\_licenses\_templates.sh
 }
 \label{
   build_and_checks_dependencies:licenses_templates:%
-build_license_templatessh
+build_licenses_templatessh
 }
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
   build_and_checks_dependencies/licenses_templates/%
-build_license_templates.sh
+build_licenses_templates.sh
 }
 
 

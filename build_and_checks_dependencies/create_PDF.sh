@@ -82,34 +82,34 @@ tree -a -DFh --gitignore\
 
 shopt -s dotglob
 find . -type f -printf '%P\n' | relevant_find | sort\
-  | while read -r filename;
+  | while read -r file_name;
 do
-  git check-ignore -q "$filename" && continue
-  base_filename=$(basename "$filename")
-  [ "$base_filename" != "current_tree_light.txt" ] || continue
-  [ "$base_filename" != "current_tree.txt" ] || continue
-  [ "$base_filename" != "COPYING" ] || continue
-  [ "$base_filename" != "COPYING.LESSER" ] || continue
-  [ "$base_filename" != "$main_directory.pdf" ] || continue
-  [ "$base_filename" != "$main_directory.tex" ] || continue
-  [ "$base_filename" != "$main_directory.tex.tpl2" ] || continue
-  if [[ "$base_filename" == *.md ]]; then
-    if [ -f "$filename.tpl" ]; then
-      # in_place_grep -v "$base_filename$" current_tree.txt
-      # in_place_grep -v "$base_filename$" current_tree_light.txt
+  git check-ignore -q "$file_name" && continue
+  base_file_name=$(basename "$file_name")
+  [ "$base_file_name" != "current_tree_light.txt" ] || continue
+  [ "$base_file_name" != "current_tree.txt" ] || continue
+  [ "$base_file_name" != "COPYING" ] || continue
+  [ "$base_file_name" != "COPYING.LESSER" ] || continue
+  [ "$base_file_name" != "$main_directory.pdf" ] || continue
+  [ "$base_file_name" != "$main_directory.tex" ] || continue
+  [ "$base_file_name" != "$main_directory.tex.tpl2" ] || continue
+  if [[ "$base_file_name" == *.md ]]; then
+    if [ -f "$file_name.tpl" ]; then
+      # in_place_grep -v "$base_file_name$" current_tree.txt
+      # in_place_grep -v "$base_file_name$" current_tree_light.txt
       continue
     fi
   fi
-  cleaned_path1=$(sed -e 's/_/\\_/g' <(echo "$filename"))
-  cleaned_path2=$(sed -e 's/\//:/g' -e 's/\.//g' <(echo "$filename"))
-  if grep -q "  $filename\$" "./latex/$main_directory.tex.tpl2"; then
+  cleaned_path1=$(sed -e 's/_/\\_/g' <(echo "$file_name"))
+  cleaned_path2=$(sed -e 's/\//:/g' -e 's/\.//g' <(echo "$file_name"))
+  if grep -q "  $file_name\$" "./latex/$main_directory.tex.tpl2"; then
     echo ""
     # sed -i -Ez\
-    #   "s/$filename\n/\
-    #   ${filename/./\\./g}\\hyperref\{${filename/./\\./g}\}\n/Mg"\
+    #   "s/$file_name\n/\
+    #   ${file_name/./\\./g}\\hyperref\{${file_name/./\\./g}\}\n/Mg"\
     #   "current_tree_light.txt"
   else
-    echo "The file $filename is not listed"\
+    echo "The file $file_name is not listed"\
          " in ./latex/$main_directory.tex.tpl"
     echo "TODO:\subsection{"
     echo "TODO:  $cleaned_path1"
@@ -119,7 +119,7 @@ do
     echo "TODO:}"
     echo "TODO:"
     echo "TODO:\VerbatimInput[numbers=left,xleftmargin=-5mm]{"
-    echo "TODO:  $filename"
+    echo "TODO:  $file_name"
     echo "TODO:}"
     echo "TODO:"
     echo "TODO:"
@@ -133,19 +133,21 @@ split_last_line(){
   # $2=$prefix
   split_last_line_result="$1"
   if echo "$1" | sed -e 's/\\n/\n/g' | grep -q '.\{71\}$'; then
-    start=$(\
+    LFBFL_start=$(\
       echo "$1" | sed -e 's/\\n/\n/g' | head --lines=-1\
       | sed -z 's/\n/\\n/g'\
     )
-    # echo "start: $start"
-    last_line=$(echo "$1" | sed -e 's/\\n/\n/g' | tail --lines=1)
-    # echo "last_line: $last_line"
+    # echo "start: $LFBFL_start"
+    LFBFL_last_line=$(\
+      echo "$1" | sed -e 's/\\n/\n/g' | tail --lines=1\
+    )
+    # echo "last_line: $LFBFL_last_line"
     split_last_line_result=""
-    if [[ -n "$start" ]]; then
-      split_last_line_result="$start\n"
+    if [[ -n "$LFBFL_start" ]]; then
+      split_last_line_result="$LFBFL_start\n"
     fi
-    split_last_line_result+="${last_line:0:69}\n"
-    split_last_line_result+="$2${last_line:69}"
+    split_last_line_result+="${LFBFL_last_line:0:69}\n"
+    split_last_line_result+="$2${LFBFL_last_line:69}"
   fi
 }
 
@@ -161,14 +163,14 @@ for some_tree in "${trees[@]}"; do
     )
     prefix+="│ "
     # echo "prefix: $prefix"
-    filename=$(\
+    file_name=$(\
       echo "$some_line"\
         | sed -E 's|.* (([a-zA-Z0-9\._/-]+).)$|\1|g'\
     )
-    # echo "filename: $filename"
+    # echo "file_name: $file_name"
     line_start=$(\
       echo "$some_line"\
-        | sed -E "s/(.*)[ ]*$filename/\1/g"\
+        | sed -E "s/(.*)[ ]*$file_name/\1/g"\
         | sed -e 's/ *$//g'
     )
     # echo "line_start: $line_start"
@@ -176,7 +178,7 @@ for some_tree in "${trees[@]}"; do
       echo "$some_line"\
         | sed -E -e 's/\[/\\\[/g' -e 's/\]/\\\]/g'\
     )
-    new_lines="$prefix$filename"
+    new_lines="$prefix$file_name"
     split_last_line "$new_lines" "$prefix"
     new_lines=$split_last_line_result
     split_last_line "$new_lines" "$prefix"
@@ -207,6 +209,6 @@ files_to_delete=(\
   "./latex/$main_directory.tex.tpl2"
 )
 # Comment the following line if you need to debug.
-for filename in "${files_to_delete[@]}"; do
-  rm -f "$filename"
+for file_name in "${files_to_delete[@]}"; do
+  rm -f "$file_name"
 done

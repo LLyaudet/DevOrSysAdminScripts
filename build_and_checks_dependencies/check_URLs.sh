@@ -28,25 +28,27 @@ source "./$subdir/get_common_text_glob_patterns.sh"
 check_URLs(){
   get_common_text_files_glob_patterns
 
-  declare -A substitutions
-  substitutions=(\
+  declare -A LFBFL_substitutions
+  LFBFL_substitutions=(\
     ["http://www.gnu.org/licenses/"]="https://www.gnu.org/licenses/"\
   )
 
-  for pattern in "${common_file_patterns[@]}"; do
-    [ "$1" != "-v" ] || echo "Iterating on pattern: $pattern"
-    find . -type f -name "$pattern" -printf '%P\n'\
+  for LFBFL_pattern in "${common_file_patterns[@]}"; do
+    [ "$1" != "-v" ] || echo "Iterating on pattern: $LFBFL_pattern"
+    find . -type f -name "$LFBFL_pattern" -printf '%P\n'\
       | xargs grep -H 'http:'\
       | grep -v "^[^:]*check_URLs.sh:"
-    for filename in $pattern; do
-      [ -f "$filename" ] || continue
-      base_filename=$(basename "$filename")
-      [ "$base_filename" != "check_URLs.sh" ] || continue
-      [ "$1" != "-v" ] || echo "Handling the file: $filename"
-      for substitution in "${!substitutions[@]}"; do
-        substitution2=${substitutions[$substitution]}
-        if grep -q "$substitution" "$filename"; then
-          sed -i "s|$substitution|$substitution2|g" "$filename"
+    for LFBFL_file_name in $LFBFL_pattern; do
+      [ -f "$LFBFL_file_name" ] || continue
+      LFBFL_base_file_name=$(basename "$LFBFL_file_name")
+      [ "$LFBFL_base_file_name" != "check_URLs.sh" ] || continue
+      [ "$1" != "-v" ] || echo "Handling the file: $LFBFL_file_name"
+      for LFBFL_substitution in "${!LFBFL_substitutions[@]}"; do
+        LFBFL_substitution2=\
+${LFBFL_substitutions[$LFBFL_substitution]}
+        if grep -q "$LFBFL_substitution" "$LFBFL_file_name"; then
+          sed -i "s|$LFBFL_substitution|$LFBFL_substitution2|g"\
+            "$LFBFL_file_name"
         fi
       done
     done

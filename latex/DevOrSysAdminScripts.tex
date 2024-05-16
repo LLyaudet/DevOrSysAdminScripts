@@ -69,11 +69,11 @@ for enhancing development or system-administrators tasks
 
 Current version: 2024-05-16
 
-Current number of commits: 76
+Current number of commits: 77
 
-Current git SHA1: cb7f491bddd77fa4aee2f7c095c4320d35dfaff4
+Current git SHA1: 4398ebc30aef54ce96d6fa0f17c88db5af29b917
 
-Code lines: 3309 total lines, 2932 not empty lines, 377 empty lines.
+Code lines: 3328 total lines, 2951 not empty lines, 377 empty lines.
 
 \section{Files tree}
 \label{section:tree}
@@ -83,7 +83,7 @@ Code lines: 3309 total lines, 2932 not empty lines, 377 empty lines.
 ├── build_and_checks_dependencies
 │   ├── build_and_checks.sh.tpl
 │   ├── build_md_from_printable_md.sh
-│   ├── check_shell_scripts_beginning.sh
+│   ├── check_shell_scripts_beginnings.sh
 │   ├── check_URLs.sh
 │   ├── common_build_and_checks.sh
 │   ├── common_build_and_checks.sh.tpl
@@ -92,7 +92,7 @@ Code lines: 3309 total lines, 2932 not empty lines, 377 empty lines.
 │   ├── generate_from_template.sh
 │   ├── get_common_text_glob_patterns.sh
 │   ├── licenses_templates
-│   │   ├── build_license_templates.sh
+│   │   ├── build_licenses_templates.sh
 │   │   ├── license_file_header_GPLv3+.c.tpl
 │   │   ├── license_file_header_GPLv3+.py.tpl
 │   │   ├── license_file_header_GPLv3+.sh.tpl
@@ -134,56 +134,56 @@ Code lines: 3309 total lines, 2932 not empty lines, 377 empty lines.
 \end{verbatim}
 
 \begin{verbatim}
-[ 12K May 16 11:42]  ./
-├── [4.0K May 16 11:42]  build_and_checks_dependencies/
+[ 12K May 16 15:36]  ./
+├── [4.0K May 16 15:36]  build_and_checks_dependencies/
 │   ├── [1.4K May 16 03:01]  build_and_checks.sh.tpl*
-│   ├── [1.7K May 16 03:58]  build_md_from_printable_md.sh*
-│   ├── [1.0K May 16 02:41]  check_shell_scripts_beginning.sh
-│   ├── [1.8K May 16 02:42]  check_URLs.sh
-│   ├── [7.5K May 16 11:42]  common_build_and_checks.sh*
-│   ├── [5.1K May 16 03:37]  common_build_and_checks.sh.tpl
-│   ├── [2.8K May 16 02:28]  comparisons.sh
-│   ├── [6.5K May 16 02:42]  create_PDF.sh*
-│   ├── [1.3K May 16 02:42]  generate_from_template.sh
+│   ├── [1.7K May 16 13:46]  build_md_from_printable_md.sh*
+│   ├── [1.1K May 16 15:34]  check_shell_scripts_beginnings.sh
+│   ├── [1.9K May 16 15:23]  check_URLs.sh
+│   ├── [7.5K May 16 15:36]  common_build_and_checks.sh*
+│   ├── [5.1K May 16 14:03]  common_build_and_checks.sh.tpl
+│   ├── [2.9K May 16 15:28]  comparisons.sh
+│   ├── [6.6K May 16 15:26]  create_PDF.sh*
+│   ├── [1.5K May 16 15:33]  generate_from_template.sh
 │   ├── [1.7K May 16 02:42]  get_common_text_glob_patterns.sh
-│   ├── [4.0K May 16 11:42]  licenses_templates/
-│   │   ├── [4.9K May 16 11:41]  build_license_templates.sh*
-│   │   ├── [ 713 May 14 23:15]  license_file_header_GPLv3+.c.tpl
-│   │   ├── [ 715 May 14 23:19]  license_file_header_GPLv3+.py.tpl
-│   │   ├── [ 747 May 15 18:15]  license_file_header_GPLv3+.sh.tpl
-│   │   ├── [ 747 May 15 18:15]  license_file_header_GPLv3+.tex.tpl
+│   ├── [4.0K May 16 15:36]  licenses_templates/
+│   │   ├── [5.0K May 16 15:36]  build_licenses_templates.sh*
+│   │   ├── [ 713 May 16 14:58]  license_file_header_GPLv3+.c.tpl
+│   │   ├── [ 715 May 16 14:58]  license_file_header_GPLv3+.py.tpl
+│   │   ├── [ 747 May 16 14:58]  license_file_header_GPLv3+.sh.tpl
+│   │   ├── [ 747 May 16 14:58]  license_file_header_GPLv3+.tex.tpl
 │   │   ├── [ 707 May 14 23:23]  license_file_header_GPLv3+.tpl
-│   │   ├── [ 782 May 15 17:06]  license_file_header_LGPLv3+.c
-│   │   ├── [ 734 May 14 23:20]  license_file_header_LGPLv3+.c.tpl
-│   │   ├── [ 784 May 15 17:06]  license_file_header_LGPLv3+.py
-│   │   ├── [ 736 May 14 23:20]  license_file_header_LGPLv3+.py.tpl
-│   │   ├── [ 816 May 15 18:15]  license_file_header_LGPLv3+.sh
-│   │   ├── [ 768 May 15 18:15]  license_file_header_LGPLv3+.sh.tpl
-│   │   ├── [ 816 May 15 18:15]  license_file_header_LGPLv3+.tex
-│   │   ├── [ 768 May 16 03:40]  license_file_header_LGPLv3+.tex.tpl
+│   │   ├── [ 782 May 16 14:58]  license_file_header_LGPLv3+.c
+│   │   ├── [ 734 May 16 14:58]  license_file_header_LGPLv3+.c.tpl
+│   │   ├── [ 784 May 16 14:58]  license_file_header_LGPLv3+.py
+│   │   ├── [ 736 May 16 14:58]  license_file_header_LGPLv3+.py.tpl
+│   │   ├── [ 816 May 16 14:58]  license_file_header_LGPLv3+.sh
+│   │   ├── [ 768 May 16 14:58]  license_file_header_LGPLv3+.sh.tpl
+│   │   ├── [ 816 May 16 14:58]  license_file_header_LGPLv3+.tex
+│   │   ├── [ 768 May 16 14:58]  license_file_header_LGPLv3+.tex.tpl
 │   │   └── [ 728 May 14 23:24]  license_file_header_LGPLv3+.tpl
-│   ├── [1.7K May 16 02:42]  lines_counts.sh
-│   ├── [5.2K May 16 02:43]  lines_filters.sh
-│   ├── [1.1K May 16 02:43]  overwrite_if_not_equal.sh
+│   ├── [1.7K May 16 15:15]  lines_counts.sh
+│   ├── [5.4K May 16 15:17]  lines_filters.sh
+│   ├── [1.1K May 16 15:32]  overwrite_if_not_equal.sh
 │   ├── [1.3K May 16 02:43]  python_black_complement.sh
-│   ├── [1.3K May 16 02:43]  python_isort_complement.sh
-│   ├── [1.2K May 16 02:43]  too_long_code_lines.sh
-│   └── [2.4K May 16 03:10]  update_common_build_and_checks.sh*
-├── [1.6K May 16 11:42]  build_and_checks.sh*
+│   ├── [1.5K May 16 15:27]  python_isort_complement.sh
+│   ├── [1.2K May 16 15:32]  too_long_code_lines.sh
+│   └── [2.4K May 16 13:58]  update_common_build_and_checks.sh*
+├── [1.6K May 16 15:36]  build_and_checks.sh*
 ├── [ 34K May  6 00:49]  COPYING
 ├── [7.5K May  6 00:49]  COPYING.LESSER
 ├── [ 15K May 14 18:40]  DevOrSysAdminScripts.html
-├── [140K May 16 04:02]  DevOrSysAdminScripts.pdf
-├── [2.2K May 16 02:44]  git_checks.sh
-├── [4.0K May 16 11:42]  latex/
-│   ├── [ 13K May 16 11:42]  DevOrSysAdminScripts.tex
-│   └── [ 13K May 16 03:33]  DevOrSysAdminScripts.tex.tpl
+├── [141K May 16 15:35]  DevOrSysAdminScripts.pdf
+├── [2.5K May 16 15:31]  git_checks.sh
+├── [4.0K May 16 15:36]  latex/
+│   ├── [ 13K May 16 15:36]  DevOrSysAdminScripts.tex
+│   └── [ 13K May 16 14:06]  DevOrSysAdminScripts.tex.tpl
 ├── [ 424 May  6 00:49]  LiensUtiles.txt
 ├── [1.1K May 16 02:44]  pre-commit
-├── [1.6K May 16 03:53]  README.md
+├── [1.6K May 16 14:58]  README.md
 ├── [1.6K May 15 18:00]  README.md.tpl
-├── [ 538 May 14 23:04]  repository_data.txt
-└── [1.1K May 16 02:45]  wget_sha512.sh
+├── [ 566 May 16 13:59]  repository_data.txt
+└── [1.2K May 16 15:27]  wget_sha512.sh
 
 4 directories, 46 files
 \end{verbatim}
@@ -223,14 +223,15 @@ The git repository of this source code is also available at:
 
 
 \subsection{
-  build\_and\_checks\_dependencies/check\_shell\_scripts\_beginning.sh
+  build\_and\_checks\_dependencies/%
+check\_shell\_scripts\_beginnings.sh
 }
 \label{
-  build_and_checks_dependencies:check_shell_scripts_beginningsh
+  build_and_checks_dependencies:check_shell_scripts_beginningssh
 }
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
-  build_and_checks_dependencies/check_shell_scripts_beginning.sh
+  build_and_checks_dependencies/check_shell_scripts_beginnings.sh
 }
 
 
@@ -321,16 +322,16 @@ The git repository of this source code is also available at:
 
 \subsection{
   build\_and\_checks\_dependencies/licenses\_templates/%
-build\_license\_templates.sh
+build\_licenses\_templates.sh
 }
 \label{
   build_and_checks_dependencies:licenses_templates:%
-build_license_templatessh
+build_licenses_templatessh
 }
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
   build_and_checks_dependencies/licenses_templates/%
-build_license_templates.sh
+build_licenses_templates.sh
 }
 
 

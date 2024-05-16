@@ -27,9 +27,10 @@ check_one_shell_script_beginning(){
 }
 
 
-check_shell_scripts_beginning(){
+check_shell_scripts_beginnings(){
   shopt -s globstar
-  for i in **/*.sh; do
-     check_one_shell_script_beginning "$i"
+  for check_shell_scripts_beginnings_var_i in **/*.sh; do
+    check_one_shell_script_beginning\
+      "$check_shell_scripts_beginnings_var_i"
   done
 }

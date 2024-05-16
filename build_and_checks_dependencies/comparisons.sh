@@ -29,14 +29,14 @@ equal(){
   # et à mon article sur le principe de première différence
   # appliqué à la largeur modulaire, de clique ou de rang avec
   # l'idée d'un principe de première différence ternaire.
-  all_args="'$*'"
-  current="$all_args"
-  for arg in $@; do
-    if [[ "$current" == "$all_args" ]]; then
-      current="$arg"
+  equal_var_all_args="'$*'"
+  equal_var_current="$equal_var_all_args"
+  for equal_var_arg in $@; do
+    if [[ "$equal_var_current" == "$equal_var_all_args" ]]; then
+      equal_var_current="$equal_var_arg"
       continue
     fi
-    if [[ "$current" != "$arg" ]]; then
+    if [[ "$equal_var_current" != "$equal_var_arg" ]]; then
       return 0
     fi
   done
@@ -84,8 +84,8 @@ is_substring(){
 }
 
 is_subfile(){
-  # $1=$filename
-  # $2=$subfilename
+  # $1=$file_name
+  # $2=$sub_file_name
   is_subfile_var_1="\$a = file_get_contents('$1');"
   is_subfile_var_1+=" \$b = preg_quote(file_get_contents('$2'));"
   is_subfile_var_1+=" \$c = '/'.addcslashes(\$b, '/').'/';"

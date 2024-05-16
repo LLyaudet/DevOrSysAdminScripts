@@ -27,10 +27,11 @@ generate_from_template_with_block_comments(){
   # $2=target_file_name
   # $3=enter_block_comment
   # $4=exit_block_comment
-  echo "$3" > "$2.temp"
-  cat "$1" >> "$2.temp"
-  echo "$4" >> "$2.temp"
-  overwrite_if_not_equal "$2" "$2.temp"
+  LFBFL_temp=".generate_from_template_with_block_comments.temp"
+  echo "$3" > "$2$LFBFL_temp"
+  cat "$1" >> "$2$LFBFL_temp"
+  echo "$4" >> "$2$LFBFL_temp"
+  overwrite_if_not_equal "$2" "$2$LFBFL_temp"
 }
 
 generate_from_template_with_line_comments(){
@@ -38,9 +39,10 @@ generate_from_template_with_line_comments(){
   # $2=target_file_name
   # $3=line_comment_prefix
   # $4=optional_post_processing
-  sed -e "s/^/$3/g" "$1" > "$2.temp"
+  LFBFL_temp=".generate_from_template_with_line_comments.temp"
+  sed -e "s/^/$3/g" "$1" > "$2$LFBFL_temp"
   if [[ -n "$4" ]]; then
     eval "$4"
   fi
-  overwrite_if_not_equal "$2" "$2.temp"
+  overwrite_if_not_equal "$2" "$2$LFBFL_temp"
 }

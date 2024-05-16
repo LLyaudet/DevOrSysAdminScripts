@@ -23,19 +23,19 @@
 # ©Copyright 2023-2024 Laurent Frédéric Bernard François Lyaudet
 
 wget_sha512(){
-  # $1 filename
+  # $1 file_name
   # $2 download_URL
   # $3 correct_sha512
   if [[ ! -f "$1" ]];
   then
     wget -O "$1" "$2"
   fi
-  present_sha512=$(sha512sum "$1" | cut -f1 -d' ')
-  if [[ "$present_sha512" != "$3" ]];
+  wget_sha512_var_present_sha512=$(sha512sum "$1" | cut -f1 -d' ')
+  if [[ "$wget_sha512_var_present_sha512" != "$3" ]];
   then
     echo "$1 does not have correct sha512"
     echo "wanted $3"
-    echo "found $present_sha512"
+    echo "found $wget_sha512_var_present_sha512"
     exit
   fi
 }

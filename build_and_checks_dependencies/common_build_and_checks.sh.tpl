@@ -36,9 +36,9 @@ wget_sha512 "./$subdir/build_md_from_printable_md.sh" "$script"\
   "$correct_sha512"
 chmod +x "./$subdir/build_md_from_printable_md.sh"
 
-script="$URL_beginning/check_shell_scripts_beginning.sh"
-@sha512_check_shell_scripts_beginning.sh@
-wget_sha512 "./$subdir/check_shell_scripts_beginning.sh" "$script"\
+script="$URL_beginning/check_shell_scripts_beginnings.sh"
+@sha512_check_shell_scripts_beginnings.sh@
+wget_sha512 "./$subdir/check_shell_scripts_beginnings.sh" "$script"\
   "$correct_sha512"
 
 script="$URL_beginning/check_URLs.sh"
@@ -66,11 +66,11 @@ wget_sha512 "./$subdir/get_common_text_glob_patterns.sh" "$script"\
 
 URL_beginning2="$URL_beginning/licenses_templates"
 subdir2="$subdir/licenses_templates"
-script="$URL_beginning2/build_license_templates.sh"
-@sha512_build_license_templates.sh@
-wget_sha512 "./$subdir2/build_license_templates.sh" "$script"\
+script="$URL_beginning2/build_licenses_templates.sh"
+@sha512_build_licenses_templates.sh@
+wget_sha512 "./$subdir2/build_licenses_templates.sh" "$script"\
   "$correct_sha512"
-chmod +x "./$subdir2/build_license_templates.sh"
+chmod +x "./$subdir2/build_licenses_templates.sh"
 
 script="$URL_beginning2/license_file_header_GPLv3+.tpl"
 @sha512_license_file_header_GPLv3+.tpl@
@@ -111,7 +111,7 @@ wget_sha512 "./$subdir/too_long_code_lines.sh" "$script"\
   "$correct_sha512"
 
 shopt -s globstar
-source "./$subdir/check_shell_scripts_beginning.sh"
+source "./$subdir/check_shell_scripts_beginnings.sh"
 source "./$subdir/check_URLs.sh"
 source "./$subdir/comparisons.sh"
 source "./$subdir/generate_from_template.sh"
@@ -130,7 +130,7 @@ then
 fi
 
 echo "Building license headers"
-./$subdir2/build_license_templates.sh "$cwd"
+./$subdir2/build_licenses_templates.sh "$cwd"
 
 echo "Building README.md"
 ./$subdir/build_md_from_printable_md.sh "$cwd"
@@ -147,19 +147,19 @@ black .
 python_black_complement
 
 find . -name "pyproject.toml" | relevant_find\
-  | while read -r filename;
+  | while read -r file_name;
 do
-  if grep -q "Typing :: Typed" "$filename"; then
+  if grep -q "Typing :: Typed" "$file_name"; then
     echo "Running mypy"
-    mypy $(dirname "$filename")
+    mypy $(dirname "$file_name")
   fi
 done
 
 echo "Analyzing too long lines"
 too_long_code_lines | relevant_grep | not_license_grep
 
-echo "Analyzing shell scripts beginning"
-check_shell_scripts_beginning | relevant_grep
+echo "Analyzing shell scripts beginnings"
+check_shell_scripts_beginnings | relevant_grep
 
 echo "Analyzing URLs"
 check_URLs | relevant_grep

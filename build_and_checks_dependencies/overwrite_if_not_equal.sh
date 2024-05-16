@@ -30,8 +30,8 @@ overwrite_if_not_equal(){
     return
   fi
   diff -q "$1" "$2"
-  is_equal=$?
-  if [[ $is_equal == 0 ]]; then
+  overwrite_if_not_equal_var_is_equal=$?
+  if [[ $overwrite_if_not_equal_var_is_equal == 0 ]]; then
     rm "$2"
   else
     mv "$2" "$1"

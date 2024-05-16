@@ -27,9 +27,9 @@ source "./$subdir/get_common_text_glob_patterns.sh"
 
 too_long_code_lines(){
   get_common_text_files_glob_patterns
-  for pattern in "${common_file_patterns[@]}"; do
-    [ "$1" != "-v" ] || echo "Iterating on pattern: $pattern"
-    find . -type f -name "$pattern" -printf '%P\n'\
+  for LFBFL_pattern in "${common_file_patterns[@]}"; do
+    [ "$1" != "-v" ] || echo "Iterating on pattern: $LFBFL_pattern"
+    find . -type f -name "$LFBFL_pattern" -printf '%P\n'\
       | xargs grep -H '.\{71\}'
   done
 }

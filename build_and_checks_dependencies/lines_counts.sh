@@ -28,9 +28,9 @@ source "./$subdir/lines_filters.sh"
 
 all_code_lines(){
   get_common_text_files_glob_patterns
-  for pattern in "${common_file_patterns[@]}"; do
-    [ "$1" != "-v" ] || echo "Iterating on pattern: $pattern"
-    find . -type f -name "$pattern" -printf '%P\n'\
+  for LFBFL_pattern in "${common_file_patterns[@]}"; do
+    [ "$1" != "-v" ] || echo "Iterating on pattern: $LFBFL_pattern"
+    find . -type f -name "$LFBFL_pattern" -printf '%P\n'\
       | xargs grep -H -v 'a(?!a)a'
   done
 }
@@ -41,11 +41,11 @@ all_self_code_lines(){
 }
 
 all_self_empty_code_lines(){
-  all_self_code_lines | empty_lines_after_filename
+  all_self_code_lines | empty_lines_after_file_name
 }
 
 all_self_not_empty_code_lines(){
-  all_self_code_lines | not_empty_lines_after_filename
+  all_self_code_lines | not_empty_lines_after_file_name
 }
 
 code_lines_count_all(){

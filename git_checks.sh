@@ -23,32 +23,37 @@
 # ©Copyright 2023-2024 Laurent Frédéric Bernard François Lyaudet
 
 check_files(){
-  send_summary_1="ATTENTION : models modifiés"
-  send_body_1="Vérifiez si besoin de migrations"
-  send_body_2="Pensez aussi aux contraintes d'unicités"
-  send_body_2+=" dès la création du modèle"
-  send_summary_2="ATTENTION : serializers modifiés"
-  send_body_3="Les nouveaux preloadings sont interdits -> #Prefetch()"
+  check_files_var_send_summary_1="ATTENTION : models modifiés"
+  check_files_var_send_body_1="Vérifiez si besoin de migrations"
+  check_files_var_send_body_2=\
+"Pensez aussi aux contraintes d'unicités"
+  check_files_var_send_body_2+=" dès la création du modèle"
+  check_files_var_send_summary_2="ATTENTION : serializers modifiés"
+  check_files_var_send_body_3=\
+"Les nouveaux preloadings sont interdits -> #Prefetch()"
   if git diff --cached --name-only | grep models;
   then
-    notify-send "$send_summary_1" "$send_body_1"
-    notify-send "$send_summary_1" "$send_body_2"
+    notify-send "$check_files_var_send_summary_1"\
+      "$check_files_var_send_body_1"
+    notify-send "$check_files_var_send_summary_1"\
+      "$check_files_var_send_body_2"
   fi
   if git diff --cached --name-only | grep serializer;
   then
-    notify-send "$send_summary_2" "$send_body_3"
+    notify-send "$check_files_var_send_summary_2"\
+      "$check_files_var_send_body_3"
   fi
   return 0
 }
 
 
 check_no_abusive_trailing_comma(){
-  send_summary_1="ATTENTION"
-  send_body_1="Il semblerait que vous affectiez un tuple"
-  send_body_1+=" au lieu d'une autre valeur dans une variable."
+  LFBFL_send_summary_1="ATTENTION"
+  LFBFL_send_body_1="Il semblerait que vous affectiez un tuple"
+  LFBFL_send_body_1+=" au lieu d'une autre valeur dans une variable."
   if git diff --cached -r | grep ' = .*,\s*$';
   then
-    notify-send "$send_summary_1" "$send_body_1"
+    notify-send "$LFBFL_send_summary_1" "$LFBFL_send_body_1"
     return 1
   fi
   return 0
@@ -57,19 +62,20 @@ check_no_abusive_trailing_comma(){
 
 check_black_code_formatting(){
   # attention ça ne marche que sur les fichiers "stagés" avec git add
-  files_string=$(git diff --cached --name-only | grep '\.py')
-  echo "$files_string"
-  mapfile -t some_files <<< "$files_string"
-  my_error=0
-  for file in ${some_files[@]};
-  do
-    echo "Black will check formatting on file $file"
-    if ! black --check --diff "$file";
+  LFBFL_files_string=$(\
+    git diff --cached --name-only | grep '\.py'\
+  )
+  echo "$LFBFL_files_string"
+  mapfile -t LFBFL_some_files <<< "$LFBFL_files_string"
+  LFBFL_error=0
+  for LFBFL_file in ${LFBFL_some_files[@]}; do
+    echo "Black will check formatting on file $LFBFL_file"
+    if ! black --check --diff "$LFBFL_file";
     then
-      my_error=1
+      LFBFL_error=1
     fi
   done
-  if [ $my_error -eq '1' ];
+  if [ $LFBFL_error -eq '1' ];
   then
     return 1
   fi

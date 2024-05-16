@@ -26,13 +26,13 @@ cp ./common_build_and_checks.sh.tpl ./common_build_and_checks.sh
 
 file_names=(\
   "build_md_from_printable_md.sh"\
-  "check_shell_scripts_beginning.sh"\
+  "check_shell_scripts_beginnings.sh"\
   "check_URLs.sh"\
   "comparisons.sh"\
   "create_PDF.sh"\
   "generate_from_template.sh"\
   "get_common_text_glob_patterns.sh"\
-  "licenses_templates/build_license_templates.sh"\
+  "licenses_templates/build_licenses_templates.sh"\
   "licenses_templates/license_file_header_GPLv3+.tpl"\
   "licenses_templates/license_file_header_LGPLv3+.tpl"\
   "lines_counts.sh"\
@@ -51,8 +51,8 @@ for file_name in "${file_names[@]}"; do
   file_sha512_all="$file_sha512_1\n"
   file_sha512_all+="$file_sha512_2\n"
   file_sha512_all+="$file_sha512_3"
-  base_filename=$(basename $file_name)
-  sed -i "s|@sha512_$base_filename@|$file_sha512_all|g"\
+  base_file_name=$(basename "$file_name")
+  sed -i "s|@sha512_$base_file_name@|$file_sha512_all|g"\
       ./common_build_and_checks.sh
 done
 

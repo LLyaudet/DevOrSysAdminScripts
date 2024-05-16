@@ -11,3 +11,4 @@ author_name=Laurent Lyaudet
 author_website=https://lyaudet.eu/laurent/
 acknowledgments=Merci Dieu !
 acknowledgments=Merci Père ! Merci Seigneur ! Merci Saint Esprit !
+grammar_or_spell_checker_command=more

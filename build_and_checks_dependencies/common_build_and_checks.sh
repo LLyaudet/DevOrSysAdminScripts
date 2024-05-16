@@ -39,9 +39,9 @@ wget_sha512 "./$subdir/build_md_from_printable_md.sh" "$script"\
 chmod +x "./$subdir/build_md_from_printable_md.sh"
 
 script="$URL_beginning/check_shell_scripts_beginnings.sh"
-correct_sha512='bf66ef4a9084fe6166d087bb295939d48bd7f8ff57373fbdb359f'
-correct_sha512+='fedb02171f21d8edf0b46359ec32aacd33c2d6e8410be62a43aa'
-correct_sha512+='44e439cdf2f2fc68c382e74'
+correct_sha512='d94931d4b20b7987aed4dd02663ad5feba3389c8fdea2fdbfb91d'
+correct_sha512+='0b71eed4ef80c8d4a8eef5c147837183b2c9ed6d577cda3ad67f'
+correct_sha512+='6d6485a015eac56fa0daa3b'
 wget_sha512 "./$subdir/check_shell_scripts_beginnings.sh" "$script"\
   "$correct_sha512"
 
@@ -81,9 +81,9 @@ wget_sha512 "./$subdir/get_common_text_glob_patterns.sh" "$script"\
 URL_beginning2="$URL_beginning/licenses_templates"
 subdir2="$subdir/licenses_templates"
 script="$URL_beginning2/build_licenses_templates.sh"
-correct_sha512='b29883e375cb9c0af6056941a3d0e8e1a8d63a346f0276cb8701a'
-correct_sha512+='b18b04f8a7511fa3f5b82b56f6add0bcda7e40ca381c2cbff1ce'
-correct_sha512+='e0838986c2387a4d7e6ea4a'
+correct_sha512='6cc01a243d5561a8be48af1867eda7ce05b28470abe72e0f20cf9'
+correct_sha512+='06db230aed50a886b632cb722a1b7c20e97fd31e70686da2db88'
+correct_sha512+='f467fdf5479199f15ed0df8'
 wget_sha512 "./$subdir2/build_licenses_templates.sh" "$script"\
   "$correct_sha512"
 chmod +x "./$subdir2/build_licenses_templates.sh"

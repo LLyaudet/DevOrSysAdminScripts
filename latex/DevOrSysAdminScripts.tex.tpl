@@ -553,6 +553,18 @@ license_file_header_LGPLv3+.tpl
 
 
 \subsection{
+  build\_and\_checks\_dependencies/grammar\_and\_spell\_check.sh
+}
+\label{
+  build_and_checks_dependencies:grammar_and_spell_checksh
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+  build_and_checks_dependencies/grammar_and_spell_check.sh
+}
+
+
+\subsection{
   latex/DevOrSysAdminScripts.tex.tpl
 }
 \label{

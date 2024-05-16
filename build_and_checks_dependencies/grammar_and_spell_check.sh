@@ -22,27 +22,24 @@
 #
 # ©Copyright 2023-2024 Laurent Frédéric Bernard François Lyaudet
 
-source ./wget_sha512.sh
-
-mkdir -p build_and_checks_dependencies/licenses_templates
 subdir="build_and_checks_dependencies"
+source "./$subdir/get_common_text_glob_patterns.sh"
+source "./$subdir/lines_filters.sh"
 
-personal_github="https://raw.githubusercontent.com/LLyaudet/"
-dependencies="DevOrSysAdminScripts/main/build_and_checks_dependencies"
-URL_beginning="$personal_github$dependencies"
-
-script="$URL_beginning/common_build_and_checks.sh"
-correct_sha512='17b46fa6188aa30b8540f04cefabea2bd3f317655778bf8069999'
-correct_sha512+='d0ae8ffa864ef3dab294cd54d11b7bad7476cf8bd8155831df77'
-correct_sha512+='ba797cad7f0475223595a4f'
-wget_sha512 "./$subdir/common_build_and_checks.sh" "$script"\
-  "$correct_sha512"
-chmod +x "./$subdir/common_build_and_checks.sh"
-
-cwd="."
-if [[ -n "$1" ]];
-then
-  cwd="$1"
-fi
-
-./build_and_checks_dependencies/common_build_and_checks.sh "$cwd"
+grammar_and_spell_check(){
+  get_common_text_files_glob_patterns
+  grep_variable "$1" grammar_or_spell_checker_command
+  LFBFL_command=$(\
+    echo "$grammar_or_spell_checker_command"\
+    | sed -Ez -e "s/\n//Mg"\
+  )
+  for LFBFL_pattern in "${common_file_patterns[@]}"; do
+    [ "$2" != "-v" ] || echo "Iterating on pattern: $LFBFL_pattern"
+    find . -type f -name "$LFBFL_pattern" -printf '%P\n'\
+       | while read -r file_name;
+    do
+      LFBFL_eval_string="$LFBFL_command $file_name"
+      eval "$LFBFL_eval_string"
+    done
+  done
+}

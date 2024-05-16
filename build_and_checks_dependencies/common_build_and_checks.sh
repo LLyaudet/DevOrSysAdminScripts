@@ -78,6 +78,13 @@ correct_sha512+='0971482a4a7a8d6fe041153'
 wget_sha512 "./$subdir/get_common_text_glob_patterns.sh" "$script"\
   "$correct_sha512"
 
+script="$URL_beginning/grammar_and_spell_check.sh"
+correct_sha512='69dcb77061f2e560d6268622ae72ef11d412b996520b7321b1f20'
+correct_sha512+='427fb4eda6d2fb5909938da6c0af4099921190298d372466dea3'
+correct_sha512+='b45805f0c271da852578075'
+wget_sha512 "./$subdir/grammar_and_spell_check.sh" "$script"\
+  "$correct_sha512"
+
 URL_beginning2="$URL_beginning/licenses_templates"
 subdir2="$subdir/licenses_templates"
 script="$URL_beginning2/build_licenses_templates.sh"

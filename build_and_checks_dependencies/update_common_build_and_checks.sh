@@ -32,6 +32,7 @@ file_names=(\
   "create_PDF.sh"\
   "generate_from_template.sh"\
   "get_common_text_glob_patterns.sh"\
+  "grammar_and_spell_check.sh"\
   "licenses_templates/build_licenses_templates.sh"\
   "licenses_templates/license_file_header_GPLv3+.tpl"\
   "licenses_templates/license_file_header_LGPLv3+.tpl"\

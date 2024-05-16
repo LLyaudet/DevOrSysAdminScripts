@@ -64,6 +64,11 @@ script="$URL_beginning/get_common_text_glob_patterns.sh"
 wget_sha512 "./$subdir/get_common_text_glob_patterns.sh" "$script"\
   "$correct_sha512"
 
+script="$URL_beginning/grammar_and_spell_check.sh"
+@sha512_grammar_and_spell_check.sh@
+wget_sha512 "./$subdir/grammar_and_spell_check.sh" "$script"\
+  "$correct_sha512"
+
 URL_beginning2="$URL_beginning/licenses_templates"
 subdir2="$subdir/licenses_templates"
 script="$URL_beginning2/build_licenses_templates.sh"

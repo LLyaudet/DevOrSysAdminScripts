@@ -81,9 +81,9 @@ wget_sha512 "./$subdir/get_common_text_glob_patterns.sh" "$script"\
 URL_beginning2="$URL_beginning/licenses_templates"
 subdir2="$subdir/licenses_templates"
 script="$URL_beginning2/build_license_templates.sh"
-correct_sha512='c06f40ae44250591d32982ca01ce33ee06d09db04b3b6548624b5'
-correct_sha512+='4f67c6e5b80509f413e865dd771dd319a0de7f6622b56bc5df8c'
-correct_sha512+='b0f84830c41bcd527ad5a1c'
+correct_sha512='021d3ccc3301c3c8754854ae338b0f828d419ccddfc218320cca3'
+correct_sha512+='7f9118bd9c2871f5b6263448188575f53107e4503d2cbab55a00'
+correct_sha512+='f5543d832138cac22cf3747'
 wget_sha512 "./$subdir2/build_license_templates.sh" "$script"\
   "$correct_sha512"
 chmod +x "./$subdir2/build_license_templates.sh"
@@ -162,10 +162,10 @@ then
 fi
 
 echo "Building license headers"
-./build_and_checks_dependencies/licenses_templates/build_md_from_printable_md.sh "$cwd"
+./$subdir2/build_license_templates.sh "$cwd"
 
 echo "Building README.md"
-./build_and_checks_dependencies/build_md_from_printable_md.sh "$cwd"
+./$subdir/build_md_from_printable_md.sh "$cwd"
 
 pushd .
 cd "$cwd"

@@ -130,10 +130,10 @@ then
 fi
 
 echo "Building license headers"
-./build_and_checks_dependencies/licenses_templates/build_md_from_printable_md.sh "$cwd"
+./$subdir2/build_license_templates.sh "$cwd"
 
 echo "Building README.md"
-./build_and_checks_dependencies/build_md_from_printable_md.sh "$cwd"
+./$subdir/build_md_from_printable_md.sh "$cwd"
 
 pushd .
 cd "$cwd"

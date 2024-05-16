@@ -81,21 +81,23 @@ for license in "${licenses[@]}"; do
   license_prefix2="$license_prefix$license"
   for ((i=0; i<${#block_comment_languages[@]}; i++)); do
     extension=${block_comment_languages[i]}
+    license_filename="$license_prefix2.$extension"
     enter_string=${block_comment_enters[i]}
     exit_string=${block_comment_exits[i]}
     generate_from_template_with_block_comments\
       "$license_prefix2.tpl"\
-      "$license_prefix2.$extension.tpl"\
+      "$license_filename.tpl"\
       "$enter_string" "$exit_string"
   done
   for ((i=0; i<${#line_comment_languages[@]}; i++)); do
     extension=${line_comment_languages[i]}
+    license_filename="$license_prefix2.$extension"
     prefix_string=${line_comment_prefixes[i]}
     generate_from_template_with_line_comments\
       "$license_prefix2.tpl"\
-      "$license_prefix2.$extension.tpl"\
+      "$license_filename.tpl"\
       "$prefix_string"\
-      "sed -i -E -e 's/\s*$//g' '$license_prefix2.$extension.tpl.temp'"
+      "sed -i -E -e 's/\s*$//g' '$license_filename.tpl.temp'"
   done
 done
 # --------------------------------------------------------------------
@@ -122,8 +124,9 @@ for ((i=0; i<${#block_comment_languages[@]}; i++)); do
   find . -type f -name "*.$extension" -printf '%P\n' | relevant_find\
     | while read -r filename;
   do
-    is_subfile "$filename" "$license_filename.temp"
-    if [[ $? == 0 ]]; then
+    
+    if is_subfile "$filename" "$license_filename.temp"
+    then
       echo "File $filename has no/wrong license header?"
     fi
   done
@@ -139,8 +142,9 @@ for ((i=0; i<${#line_comment_languages[@]}; i++)); do
   find . -type f -name "*.$extension" -printf '%P\n' | relevant_find\
     | while read -r filename;
   do
-    is_subfile "$filename" "$license_filename"
-    if [[ $? == 0 ]]; then
+    
+    if is_subfile "$filename" "$license_filename"
+    then
       echo "File $filename has no/wrong license header?"
     fi
   done

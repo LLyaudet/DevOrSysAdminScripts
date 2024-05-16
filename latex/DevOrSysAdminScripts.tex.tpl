@@ -169,6 +169,18 @@ The git repository of this source code is also available at:
 
 
 \subsection{
+  build\_and\_checks\_dependencies/comparisons.sh
+}
+\label{
+  build_and_checks_dependencies:comparisonssh
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+  build_and_checks_dependencies/comparisons.sh
+}
+
+
+\subsection{
   build\_and\_checks\_dependencies/create\_PDF.sh
 }
 \label{
@@ -177,6 +189,18 @@ The git repository of this source code is also available at:
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
   build_and_checks_dependencies/create_PDF.sh
+}
+
+
+\subsection{
+  build\_and\_checks\_dependencies/generate\_from\_template.sh
+}
+\label{
+  build_and_checks_dependencies:generate_from_templatesh
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+  build_and_checks_dependencies/generate_from_template.sh
 }
 
 
@@ -190,6 +214,231 @@ The git repository of this source code is also available at:
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
   build_and_checks_dependencies/get_common_text_glob_patterns.sh
+}
+
+
+\subsection{
+  build\_and\_checks\_dependencies/licenses\_templates/%
+build\_license\_templates.sh
+}
+\label{
+  build_and_checks_dependencies:licenses_templates:%
+build_license_templatessh
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+  build_and_checks_dependencies/licenses_templates/%
+build_license_templates.sh
+}
+
+
+\subsection{
+  build\_and\_checks\_dependencies/licenses\_templates/%
+license\_file\_header\_GPLv3+.c.tpl
+}
+\label{
+  build_and_checks_dependencies:licenses_templates:%
+license_file_header_GPLv3+ctpl
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+  build_and_checks_dependencies/licenses_templates/%
+license_file_header_GPLv3+.c.tpl
+}
+
+
+\subsection{
+  build\_and\_checks\_dependencies/licenses\_templates/%
+license\_file\_header\_GPLv3+.py.tpl
+}
+\label{
+  build_and_checks_dependencies:licenses_templates:%
+license_file_header_GPLv3+pytpl
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+  build_and_checks_dependencies/licenses_templates/%
+license_file_header_GPLv3+.py.tpl
+}
+
+
+\subsection{
+  build\_and\_checks\_dependencies/licenses\_templates/%
+license\_file\_header\_GPLv3+.sh.tpl
+}
+\label{
+  build_and_checks_dependencies:licenses_templates:%
+license_file_header_GPLv3+shtpl
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+  build_and_checks_dependencies/licenses_templates/%
+license_file_header_GPLv3+.sh.tpl
+}
+
+
+\subsection{
+  build\_and\_checks\_dependencies/licenses\_templates/%
+license\_file\_header\_GPLv3+.tex.tpl
+}
+\label{
+  build_and_checks_dependencies:licenses_templates:%
+license_file_header_GPLv3+textpl
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+  build_and_checks_dependencies/licenses_templates/%
+license_file_header_GPLv3+.tex.tpl
+}
+
+
+\subsection{
+  build\_and\_checks\_dependencies/licenses\_templates/%
+license\_file\_header\_GPLv3+.tpl
+}
+\label{
+  build_and_checks_dependencies:licenses_templates:%
+license_file_header_GPLv3+tpl
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+  build_and_checks_dependencies/licenses_templates/%
+license_file_header_GPLv3+.tpl
+}
+
+
+\subsection{
+  build\_and\_checks\_dependencies/licenses\_templates/%
+license\_file\_header\_LGPLv3+.c
+}
+\label{
+  build_and_checks_dependencies:licenses_templates:%
+license_file_header_LGPLv3+c
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+  build_and_checks_dependencies/licenses_templates/%
+license_file_header_LGPLv3+.c
+}
+
+
+\subsection{
+  build\_and\_checks\_dependencies/licenses\_templates/%
+license\_file\_header\_LGPLv3+.c.tpl
+}
+\label{
+  build_and_checks_dependencies:licenses_templates:%
+license_file_header_LGPLv3+ctpl
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+  build_and_checks_dependencies/licenses_templates/%
+license_file_header_LGPLv3+.c.tpl
+}
+
+
+\subsection{
+  build\_and\_checks\_dependencies/licenses\_templates/%
+license\_file\_header\_LGPLv3+.py
+}
+\label{
+  build_and_checks_dependencies:licenses_templates:%
+license_file_header_LGPLv3+py
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+  build_and_checks_dependencies/licenses_templates/%
+license_file_header_LGPLv3+.py
+}
+
+
+\subsection{
+  build\_and\_checks\_dependencies/licenses\_templates/%
+license\_file\_header\_LGPLv3+.py.tpl
+}
+\label{
+  build_and_checks_dependencies:licenses_templates:%
+license_file_header_LGPLv3+pytpl
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+  build_and_checks_dependencies/licenses_templates/%
+license_file_header_LGPLv3+.py.tpl
+}
+
+
+\subsection{
+  build\_and\_checks\_dependencies/licenses\_templates/%
+license\_file\_header\_LGPLv3+.sh
+}
+\label{
+  build_and_checks_dependencies:licenses_templates:%
+license_file_header_LGPLv3+sh
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+  build_and_checks_dependencies/licenses_templates/%
+license_file_header_LGPLv3+.sh
+}
+
+
+\subsection{
+  build\_and\_checks\_dependencies/licenses\_templates/%
+license\_file\_header\_LGPLv3+.sh.tpl
+}
+\label{
+  build_and_checks_dependencies:licenses_templates:%
+license_file_header_LGPLv3+shtpl
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+  build_and_checks_dependencies/licenses_templates/%
+license_file_header_LGPLv3+.sh.tpl
+}
+
+
+\subsection{
+  build\_and\_checks\_dependencies/licenses\_templates/%
+license\_file\_header\_LGPLv3+.tex
+}
+\label{
+  build_and_checks_dependencies:licenses_templates:%
+license_file_header_LGPLv3+tex
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+  build_and_checks_dependencies/licenses_templates/%
+license_file_header_LGPLv3+.tex
+}
+
+
+\subsection{
+  build\_and\_checks\_dependencies/licenses\_templates/%
+license\_file\_header\_LGPLv3+.tex.tpl
+}
+\label{
+  build_and_checks_dependencies:licenses_templates:%
+license_file_header_LGPLv3+textpl
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+  build_and_checks_dependencies/licenses_templates/%
+license_file_header_LGPLv3+.tex.tpl
+}
+
+
+\subsection{
+  build\_and\_checks\_dependencies/licenses\_templates/%
+license\_file\_header\_LGPLv3+.tpl
+}
+\label{
+  build_and_checks_dependencies:licenses_templates:%
+license_file_header_LGPLv3+tpl
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+  build_and_checks_dependencies/licenses_templates/%
+license_file_header_LGPLv3+.tpl
 }
 
 
@@ -214,6 +463,18 @@ The git repository of this source code is also available at:
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
   build_and_checks_dependencies/lines_filters.sh
+}
+
+
+\subsection{
+  build\_and\_checks\_dependencies/overwrite\_if\_not\_equal.sh
+}
+\label{
+  build_and_checks_dependencies:overwrite_if_not_equalsh
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+  build_and_checks_dependencies/overwrite_if_not_equal.sh
 }
 
 
@@ -335,6 +596,18 @@ The git repository of this source code is also available at:
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
   README.md.tpl
+}
+
+
+\subsection{
+  repository\_data.txt
+}
+\label{
+  repository_datatxt
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+  repository_data.txt
 }
 
 

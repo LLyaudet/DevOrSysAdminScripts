@@ -64,6 +64,7 @@ tree -a --gitignore\
   -I "__pycache__/"\
   -I ".mypy_cache/"\
   -I ".git/"\
+  | sed -e 's/\xc2\xa0/ /g'\
   > current_tree_light.txt
 
 tree -a -DFh --gitignore\
@@ -77,6 +78,7 @@ tree -a -DFh --gitignore\
   -I "__pycache__/"\
   -I ".mypy_cache/"\
   -I ".git/"\
+  | sed -e 's/\xc2\xa0/ /g'\
   > current_tree.txt
 
 shopt -s dotglob

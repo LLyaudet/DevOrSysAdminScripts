@@ -92,3 +92,6 @@ is_subfile(){
   is_subfile_var_1+=" die(preg_match(\$c, \$a));"
   php -r "$is_subfile_var_1"
 }
+
+alias min_from_int_sort="min 'sort --numeric-sort'"
+alias max_from_int_sort="max 'sort --numeric-sort'"

@@ -52,9 +52,9 @@ correct_sha512+='a623b1493e4098dd78cd80b'
 wget_sha512 "./$subdir/check_URLs.sh" "$script" "$correct_sha512"
 
 script="$URL_beginning/comparisons.sh"
-correct_sha512='df5bfe91de1fb948601776c2205f313fca6fabc1703ec94c36d77'
-correct_sha512+='4c623f1d694de26eff0e6b950000ff84c12f2747c9403b7981b2'
-correct_sha512+='92aa2bd06a9e74fa0beb798'
+correct_sha512='0ee812694f1cb1666f02351e96642445c18b9b288bebfa88a6ddd'
+correct_sha512+='dbe465d8bc2413f08cce766c4f02ff66c95bdd3d6e448069520f'
+correct_sha512+='17ee0c04c19a5c52c3c7380'
 wget_sha512 "./$subdir/comparisons.sh" "$script" "$correct_sha512"
 
 script="$URL_beginning/create_PDF.sh"

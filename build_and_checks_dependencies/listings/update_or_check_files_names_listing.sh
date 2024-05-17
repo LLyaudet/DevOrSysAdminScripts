@@ -27,6 +27,8 @@ source "./$subdir/lines_filters.sh"
 subdir2="$subdir/listings"
 files_names_listing="./$subdir2/files_names_listing.txt"
 
+grep_variable repository_data.txt repository_name
+
 if [[ "$1" == "--write" ]]; then
   > "$files_names_listing"
 fi
@@ -49,9 +51,9 @@ do
   [ "$base_file_name" != "current_tree.txt" ] || continue
   [ "$base_file_name" != "COPYING" ] || continue
   [ "$base_file_name" != "COPYING.LESSER" ] || continue
-  [ "$base_file_name" != "$main_directory.pdf" ] || continue
-  [ "$base_file_name" != "$main_directory.tex" ] || continue
-  [ "$base_file_name" != "$main_directory.tex.tpl2" ] || continue
+  [ "$base_file_name" != "$repository_name.pdf" ] || continue
+  [ "$base_file_name" != "$repository_name.tex" ] || continue
+  [ "$base_file_name" != "$repository_name.tex.tpl2" ] || continue
   [ "$base_file_name" != "files_names_listing.txt.temp1" ] || continue
   [ "$base_file_name" != "files_names_listing.txt.temp2" ] || continue
   [ "$base_file_name" != "files_names_listing.txt.temp3" ] || continue

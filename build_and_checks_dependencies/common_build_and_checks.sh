@@ -124,9 +124,9 @@ wget_sha512 "./$subdir/lines_filters.sh" "$script" "$correct_sha512"
 URL_beginning3="$URL_beginning/listings"
 subdir3="$subdir/listings"
 script="$URL_beginning3/update_or_check_files_names_listing.sh"
-correct_sha512='4cddcc78bae37e077bd6dfdd167783fd27e469a2bcd2be6b32267'
-correct_sha512+='1755666bb6ef7df4a361a26978235f985245ed5e2abc7dbcfc9c'
-correct_sha512+='4a6824caf304623214cea00'
+correct_sha512='8a8244f0b12cad2dd0fccc1c6b1ccc5364d70e484c47acad1e178'
+correct_sha512+='88d04267c157b0e7889cce59ee104b4b2eaaa618345401564b9e'
+correct_sha512+='d643aa48ae83692b7b88f99'
 wget_sha512 "./$subdir3/update_or_check_files_names_listing.sh"\
   "$script" "$correct_sha512"
 chmod +x "./$subdir3/update_or_check_files_names_listing.sh"

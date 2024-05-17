@@ -29,8 +29,8 @@ source "./$subdir/comparisons.sh"
 split_line_at(){
   # $1=$line
   # $2=$position
-  split_line_at_result_beginning="${$1:0:$2}"
-  split_line_at_result_end="${$1:$2}"
+  split_line_at_result_beginning="${1:0:$2}"
+  split_line_at_result_end="${1:$2}"
 }
 
 split_score_after_before(){
@@ -39,7 +39,7 @@ split_score_after_before(){
   # $1=$delimiter_string
   # $2=$cut_position
   # $3=$is_cut_after
-  if [[ "$3" == "1" ]]; then
+  if [[ "$3" == "1" ]] then
     return 2
   fi
   return 1
@@ -51,7 +51,7 @@ split_score_before_after(){
   # $1=$delimiter_string
   # $2=$cut_position
   # $3=$is_cut_after
-  if [[ "$3" == "0" ]]; then
+  if [[ "$3" == "0" ]] then
     return 2
   fi
   return 1
@@ -103,7 +103,7 @@ split_line_at_most(){
   split_line_at_most_var_sort_command="sort --numeric-sort"
   for ((i=0; i<${#$line}; i++)); do
     j=$(($i+1))
-    split_line_at_most_current_char="${$line:$i:1}"
+    split_line_at_most_current_char="${line:$i:1}"
     LFBFL_command1="$3 $split_line_at_most_var_current_char $i 0"
     LFBFL_command2="$3 $split_line_at_most_var_current_char $j 1"
     LFBFL_temp=$(eval $LFBFL_command1)

@@ -62,6 +62,13 @@ do
   [ "$base_file_name" != "files_names_listing.txt.temp2" ] || continue
   [ "$base_file_name" != "files_names_listing.txt.temp3" ] || continue
   [ "$base_file_name" != "files_names_listing.txt.temp4" ] || continue
+  if [[ "$base_file_name" == *.md ]]; then
+    if [ -f "$file_name.tpl" ]; then
+      # in_place_grep -v "$base_file_name$" current_tree.txt
+      # in_place_grep -v "$base_file_name$" current_tree_light.txt
+      continue
+    fi
+  fi
   new_lines="$file_name"
   split_last_line "$new_lines" "" 70 "$suffix" "$split_score_command"
   new_lines=$split_last_line_result
@@ -70,8 +77,6 @@ do
   split_last_line "$new_lines" "" 70 "$suffix" "$split_score_command"
   new_lines=$split_last_line_result
   if [[ "$1" == "--write" ]]; then
-    echo "$file_name"
-    echo "s|$file_name|$new_lines|g"
     echo "$file_name"\
       | sed -e "s|$file_name|$new_lines|g"\
       >> "$files_names_listing"

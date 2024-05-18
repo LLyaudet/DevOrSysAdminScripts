@@ -1,6 +1,6 @@
-Blasé20240517Résultat.txt
-Blasé20240517.sh
-Blasé20240518_2.txt
+// Blasé20240517Résultat.txt
+// Blasé20240517.sh
+// Blasé20240518_2.txt
 build_and_checks_dependencies/build_and_checks.sh.tpl
 build_and_checks_dependencies/build_md_from_printable_md.sh
 build_and_checks_dependencies/\
@@ -60,12 +60,10 @@ build_and_checks_dependencies/update_common_build_and_checks.sh
 build_and_checks.sh
 DevOrSysAdminScripts.html
 DevOrSysAdminScripts.tex2
-EncoreBlasé20240517-20240518.txt
+// EncoreBlasé20240517-20240518.txt
 git_checks.sh
 latex/DevOrSysAdminScripts.tex.tpl
 LiensUtiles.txt
-Nimp1.sh
-Nimp2.sh
 pre-commit
 README.md
 README.md.tpl

@@ -65,3 +65,19 @@ split_file_in_two(){
   head --lines="$(($split_file_in_two_line_number - 1))" "$1" > "$3"
   tail --lines="$split_file_in_two_lines_after" "$1" > "$4"
 }
+
+insert_file_at_token(){
+  # $1=$file_name
+  # $2=$token assume that token is the only thing on his line.
+  # $3=$file_name_to_insert
+  insert_at_token_var_start_file_name="$1.insert_file_at_token1.temp"
+  insert_at_token_var_end_file_name="$1.insert_file_at_token2.temp"
+  insert_at_token_var_result_file_name="$1.insert_file_at_token3.temp"
+  split_file_in_two "$1" "$2" "$insert_at_token_var_start_file_name"\
+    "$insert_at_token_var_end_file_name"
+  cat "$insert_at_token_var_start_file_name" "$3"\
+    "$insert_at_token_var_end_file_name"\
+    > "$insert_at_token_var_result_file_name"
+  overwrite_if_not_equal "$1"\
+    "$insert_at_token_var_result_file_name"
+}

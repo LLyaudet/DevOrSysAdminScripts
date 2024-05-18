@@ -55,9 +55,9 @@
 \begin{document}
 
 \author{
-  Laurent Lyaudet\\
-  \url{https://lyaudet.eu/laurent/}\\
-  laurent.lyaudet@gmail.com
+  @author_full_name@\\
+  \url{@author_website@}\\
+  \email{@author_email@}
 }
 \title{DevOrSysAdminScripts}
 
@@ -117,6 +117,18 @@ The git repository of this source code is also available at:
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
   build_and_checks_dependencies/build_md_from_printable_md.sh
+}
+
+
+\subsection{
+  build\_and\_checks\_dependencies/call\_split\_score\_after\_before\_or\_before\_after.php
+}
+\label{
+  build_and_checks_dependencies:call_split_score_after_before_or_before_afterphp
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+  build_and_checks_dependencies/call_split_score_after_before_or_before_after.php
 }
 
 
@@ -468,6 +480,42 @@ license_file_header_LGPLv3+.tpl
 
 
 \subsection{
+  build\_and\_checks\_dependencies/lines\_maps.sh
+}
+\label{
+  build_and_checks_dependencies:lines_mapssh
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+  build_and_checks_dependencies/lines_maps.sh
+}
+
+
+\subsection{
+  build\_and\_checks\_dependencies/listings/files\_names\_listing.txt
+}
+\label{
+  build_and_checks_dependencies:listings:files_names_listingtxt
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+  build_and_checks_dependencies/listings/files_names_listing.txt
+}
+
+
+\subsection{
+  build\_and\_checks\_dependencies/listings/update\_or\_check\_files\_names\_listing.sh
+}
+\label{
+  build_and_checks_dependencies:listings:update_or_check_files_names_listingsh
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+  build_and_checks_dependencies/listings/update_or_check_files_names_listing.sh
+}
+
+
+\subsection{
   build\_and\_checks\_dependencies/overwrite\_if\_not\_equal.sh
 }
 \label{
@@ -621,6 +669,43 @@ license_file_header_LGPLv3+.tpl
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
   repository_data.txt
+}
+
+
+\subsection{
+  build\_and\_checks\_dependencies/split\_line\_at\_most.php
+}
+\label{
+  build_and_checks_dependencies:split_line_at_mostphp
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+  build_and_checks_dependencies/split_line_at_most.php
+}
+
+
+\subsection{
+  build\_and\_checks\_dependencies/string\_functions.sh
+}
+\label{
+  build_and_checks_dependencies:string_functionssh
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+  build_and_checks_dependencies/string_functions.sh
+}
+
+
+
+\subsection{
+  unicode.php
+}
+\label{
+  unicodephp
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+  unicode.php
 }
 
 

@@ -36,6 +36,18 @@ cp "./latex/$repository_name.tex.tpl"\
    "./latex/$repository_name.tex.tpl2"
 sed -i -Ez "s/%\n//Mg" "./latex/$repository_name.tex.tpl2"
 
+grep_variable repository_data.txt author_full_name
+sed -i "s|@author_full_name@|$author_full_name|g"\
+  "./latex/$repository_name.tex"
+
+grep_variable repository_data.txt author_website
+sed -i "s|@author_website@|$author_website|g"\
+  "./latex/$repository_name.tex"
+
+grep_variable repository_data.txt author_email
+sed -i "s|@author_email@|$author_email|g"\
+  "./latex/$repository_name.tex"
+
 current_date=$(date -I"date")
 sed -i "s|@current_date@|$current_date|g"\
   "./latex/$repository_name.tex"
@@ -199,7 +211,7 @@ sed -i -e '/@current_tree_light@/{r current_tree_light.txt' -e 'd}'\
 sed -i -e '/@current_tree@/{r current_tree.txt' -e 'd}'\
   "./latex/$repository_name.tex"
 
-pdflatex "./latex/$repository_name.tex" > /dev/null
+pdflatex "./latex/$repository_name.tex"
 pdflatex "./latex/$repository_name.tex" > /dev/null
 pdflatex "./latex/$repository_name.tex" > /dev/null
 

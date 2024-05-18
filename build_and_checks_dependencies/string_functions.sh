@@ -64,7 +64,7 @@ get_split_score_after_before(){
   # $2=delimiters_strings_domain
   LFBFL_generic_result="./build_and_checks_dependencies/"
   LFBFL_generic_result+="call_split_score_after_before_or"
-  LFBFL_generic_result+="_before_after.php 1 $1 $2 "
+  LFBFL_generic_result+="_before_after.php 1 $1 '$2' "
 }
 
 get_split_score_before_after(){
@@ -72,7 +72,7 @@ get_split_score_before_after(){
   # $2=delimiters_strings_domain
   LFBFL_generic_result="./build_and_checks_dependencies/"
   LFBFL_generic_result+="call_split_score_after_before_or"
-  LFBFL_generic_result+="_before_after.php 0 $1 $2 "
+  LFBFL_generic_result+="_before_after.php 0 $1 '$2' "
 }
 
 split_line_at_most(){
@@ -97,10 +97,16 @@ split_line_at_most(){
   declare -g split_line_at_most_result_end
   declare -A split_line_at_most_var_positions
   split_line_at_most_var_positions=(["$2"]=0)
+  # echo "$1 $2 $3"
   # For my use case in bash scripts, I will need only an array of
   # characters. See get_split_score_after_before().
   if [[ -n "$4" ]] then
     echo "split_line_at_most() \$4 NOT IMPLEMENTED YET"
+  fi
+  if [[ "$2" -ge "${#1}" ]] then
+    split_line_at_most_result_start=$1
+    split_line_at_most_result_end=""
+    return
   fi
   split_line_at_most_var_sort_command="sort --numeric-sort"
   LFBFL_length_minus_1=$((${#1} - 1))
@@ -108,8 +114,8 @@ split_line_at_most(){
   for ((i=0; i<$LFBFL_i_max; i++)) do
     j=$(($i+1))
     split_line_at_most_var_current_char="${1:$i:1}"
-    LFBFL_command1="$3 $split_line_at_most_var_current_char $i 0"
-    LFBFL_command2="$3 $split_line_at_most_var_current_char $j 1"
+    LFBFL_command1="$3 '$split_line_at_most_var_current_char' $i 0"
+    LFBFL_command2="$3 '$split_line_at_most_var_current_char' $j 1"
     # echo "$LFBFL_command1"
     # echo "$LFBFL_command2"
     LFBFL_temp=$(eval $LFBFL_command1)
@@ -170,7 +176,7 @@ split_last_line(){
   # $5=$split_score_command
   split_last_line_result="$1"
   LFBFL_max_length_plus=$(($3 + 1))
-  LFBFL_length2=$(($3 - (${#4} + 1)))
+  LFBFL_length2=$(($3 - ${#4}))
   LFBFL_regexp='.\{'"$LFBFL_max_length_plus"'\}$'
   if echo "$1" | sed -e 's/\\n/\n/g' | grep -q $LFBFL_regexp; then
     LFBFL_start=$(\

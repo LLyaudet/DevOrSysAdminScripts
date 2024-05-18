@@ -151,7 +151,7 @@ split_line_at_most(){
       fi
     fi
   done
-  LFBFL_joined_args=()
+  declare -a LFBFL_joined_args=()
   LFBFL_i=0
   for LFBFL_key in "${!split_line_at_most_var_positions[@]}"; do
     LFBFL_value=${split_line_at_most_var_positions[$LFBFL_key]}

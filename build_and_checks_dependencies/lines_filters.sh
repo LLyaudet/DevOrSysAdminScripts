@@ -44,27 +44,24 @@ ll_wc(){
   # -n --no-filenames display only number(s)
   # I think I did that the first time many years ago (Teliae ?).
   # Since then, they added it as ignored... (-n)
-  ll_wc_var_args=()
+  declare -a ll_wc_var_args=()
   ll_wc_var_number_only=0
   ll_wc_var_i=0
   for ll_wc_var_arg in $@; do
+    # echo "$ll_wc_var_arg"
     if [[ $ll_wc_var_arg == "-n" ]]; then
       ll_wc_var_number_only=1
     elif [[ $ll_wc_var_arg == "--no-filenames" ]]; then
       ll_wc_var_number_only=1
-    else
-      if [[ $ll_wc_var_number_only == 0 ]]; then
-        ll_wc_var_args[$ll_wc_var_i]="$ll_wc_var_arg"
-        ll_wc_var_i=$(($ll_wc_var_i + 1))
-        continue
-      fi
-      if [[ "$ll_wc_var_arg" == "-*" ]]; then
-        ll_wc_var_args[$ll_wc_var_i]="$ll_wc_var_arg"
-        ll_wc_var_i=$(($ll_wc_var_i + 1))
-      fi
+    elif [[ $ll_wc_var_number_only -eq 0 ]]; then
+      ll_wc_var_args[$ll_wc_var_i]="$ll_wc_var_arg"
+      ll_wc_var_i=$(($ll_wc_var_i + 1))
+    elif [[ "$ll_wc_var_arg" =~ -.* ]]; then
+      ll_wc_var_args[$ll_wc_var_i]="$ll_wc_var_arg"
+      ll_wc_var_i=$(($ll_wc_var_i + 1))
     fi
   done
-  # echo "$ll_wc_var_args"
+  # typeset -p ll_wc_var_args
   # echo "$ll_wc_var_number_only"
   if [[ $ll_wc_var_number_only -gt 0 ]]; then
     # Too simple code, only the base use case is handled now.
@@ -76,8 +73,9 @@ ll_wc(){
     # (argparse, etc.).
     # You'll need to start by improving cat first,
     # with --files0-from handling.
-    # echo "hack cat '${!#}' | wc $args"
-    cat "${!#}" | wc "${ll_wc_var_args[@]}" | cut --complement -f -1
+    # wc does not display file_name when stream...
+    # hence cat of last arg "${!#}"
+    cat "${!#}" | wc "${ll_wc_var_args[@]}"
   else
     # echo "normal"
     wc "${ll_wc_var_args[@]}"
@@ -96,6 +94,15 @@ wc_help_text=$(wc --help)
 if [[ "$wc_help_text" == *" --no-filenames "* ]]; then
   alias ll_wc='wc'
 fi
+
+# $ ll_wc wget_sha512.sh
+#  41  189 1224 wget_sha512.sh
+# $ ll_wc -n wget_sha512.sh
+#     41     189    1224
+# $ ll_wc -l wget_sha512.sh
+# 41 wget_sha512.sh
+# $ ll_wc -l -n wget_sha512.sh
+# 41
 
 in_place_grep(){
   LFBFL_temp=".in_place_grep.temp"

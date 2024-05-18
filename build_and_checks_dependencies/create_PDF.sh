@@ -48,7 +48,7 @@ rm "abstract_temp"
 grep_variable repository_data.txt acknowledgments
 echo "$acknowledgments" | sed -e 's/\\n/\n/g' > "acknowledgments_temp"
 insert_file_at_token "./latex/$repository_name.tex" @acknowledgments@\
-  "abstract_temp"
+  "acknowledgments_temp"
 rm "acknowledgments_temp"
 
 grep_variable repository_data.txt author_full_name

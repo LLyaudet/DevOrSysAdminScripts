@@ -27,6 +27,7 @@ If not, see <https://www.gnu.org/licenses/>.
 function decimal_code_point_to_UTF8(
   $i_code_point_in_decimal_notation
 ){
+  // var_dump($i_code_point_in_decimal_notation);
   // 0xxxxxxx ASCII
   if($i_code_point_in_decimal_notation < 128){
     return chr($i_code_point_in_decimal_notation);
@@ -151,7 +152,7 @@ function hexa_code_point_to_UTF8(
     if(ctype_xdigit($s_hexa_digit)){
       $i_code_point_in_decimal_notation += (
         ord($s_hexa_digit)
-        - $i_ord_A
+        - $i_ord_A + 10
       );
       continue;
     }

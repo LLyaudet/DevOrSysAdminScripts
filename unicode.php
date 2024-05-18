@@ -163,3 +163,13 @@ function hexa_code_point_to_UTF8(
   );
 }
 
+/*
+?>
+<?php
+require_once("./unicode.php");
+var_dump(hexa_code_point_to_UTF8("002B"));
+var_dump(hexa_code_point_to_UTF8("00E6"));
+var_dump(hexa_code_point_to_UTF8("1400"));
+var_dump(hexa_code_point_to_UTF8("10111"));
+//*/
+

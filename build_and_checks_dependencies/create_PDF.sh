@@ -26,6 +26,7 @@ subdir="build_and_checks_dependencies"
 source "./$subdir/lines_counts.sh"
 source "./$subdir/lines_filters.sh"
 source "./$subdir/lines_maps.sh"
+source "./$subdir/string_functions.sh"
 
 grep_variable repository_data.txt repository_name
 
@@ -143,29 +144,6 @@ done
 shopt -u dotglob
 shopt -s globstar
 
-split_last_line(){
-  # $1=$new_lines
-  # $2=$prefix
-  split_last_line_result="$1"
-  if echo "$1" | sed -e 's/\\n/\n/g' | grep -q '.\{71\}$'; then
-    LFBFL_start=$(\
-      echo "$1" | sed -e 's/\\n/\n/g' | head --lines=-1\
-      | sed -z 's/\n/\\n/g'\
-    )
-    # echo "start: $LFBFL_start"
-    LFBFL_last_line=$(\
-      echo "$1" | sed -e 's/\\n/\n/g' | tail --lines=1\
-    )
-    # echo "last_line: $LFBFL_last_line"
-    split_last_line_result=""
-    if [[ -n "$LFBFL_start" ]]; then
-      split_last_line_result="$LFBFL_start\n"
-    fi
-    split_last_line_result+="${LFBFL_last_line:0:69}\n"
-    split_last_line_result+="$2${LFBFL_last_line:69}"
-  fi
-}
-
 # We verify if some lines are beyond 70 characters
 # in current_tree_light.txt et current_tree.txt.
 trees=("current_tree_light.txt" "current_tree.txt")
@@ -194,13 +172,13 @@ for some_tree in "${trees[@]}"; do
         | sed -E -e 's/\[/\\\[/g' -e 's/\]/\\\]/g'\
     )
     new_lines="$prefix$file_name"
-    split_last_line "$new_lines" "$prefix"
+    split_last_line "$new_lines" "$prefix" 70 ""
     new_lines=$split_last_line_result
-    split_last_line "$new_lines" "$prefix"
+    split_last_line "$new_lines" "$prefix" 70 ""
     new_lines=$split_last_line_result
-    split_last_line "$new_lines" "$prefix"
+    split_last_line "$new_lines" "$prefix" 70 ""
     new_lines=$split_last_line_result
-    split_last_line "$new_lines" "$prefix"
+    split_last_line "$new_lines" "$prefix" 70 ""
     new_lines=$split_last_line_result
     sed -i -e "s/$some_line/$line_start\n$new_lines/g" "$some_tree"
   done
@@ -211,7 +189,7 @@ sed -i -e '/@current_tree_light@/{r current_tree_light.txt' -e 'd}'\
 sed -i -e '/@current_tree@/{r current_tree.txt' -e 'd}'\
   "./latex/$repository_name.tex"
 
-pdflatex "./latex/$repository_name.tex"
+pdflatex "./latex/$repository_name.tex" > /dev/null
 pdflatex "./latex/$repository_name.tex" > /dev/null
 pdflatex "./latex/$repository_name.tex" > /dev/null
 

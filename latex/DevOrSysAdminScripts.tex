@@ -55,9 +55,9 @@
 \begin{document}
 
 \author{
-  Laurent Lyaudet\\
+  Laurent Frédéric Bernard François Lyaudet\\
   \url{https://lyaudet.eu/laurent/}\\
-  laurent.lyaudet@gmail.com
+  \email{Laurent.Lyaudet@gmail.com}
 }
 \title{DevOrSysAdminScripts}
 
@@ -67,134 +67,157 @@ Some ``small'' useful scripts
 for enhancing development or system-administrators tasks
 \end{abstract}
 
-Current version: 2024-05-17
+Current version: 2024-05-18
 
-Current number of commits: 84
+Current number of commits: 100
 
-Current git SHA1: 8f2cc7bf71b9653aa5254adac4d12699e2159f7c
+Current git SHA1: c799f48970438e218cc84cb486043c969d1ae1e4
 
-Code lines: 3577 total lines, 3187 not empty lines, 390 empty lines.
+Code lines: 4734 total lines, 4232 not empty lines, 502 empty lines.
 
 \section{Files tree}
 \label{section:tree}
 
 \begin{verbatim}
 .
+├── Blas� 20240517R� sultat.txt
+├── Blas� 20240517.sh
 ├── build_and_checks_dependencies
-│   ├── build_and_checks.sh.tpl
-│   ├── build_md_from_printable_md.sh
-│   ├── check_shell_scripts_beginnings.sh
-│   ├── check_URLs.sh
-│   ├── common_build_and_checks.sh
-│   ├── common_build_and_checks.sh.tpl
-│   ├── comparisons.sh
-│   ├── create_PDF.sh
-│   ├── generate_from_template.sh
-│   ├── get_common_text_glob_patterns.sh
-│   ├── grammar_and_spell_check.sh
-│   ├── licenses_templates
-│   │   ├── build_licenses_templates.sh
-│   │   ├── license_file_header_GPLv3+.c.tpl
-│   │   ├── license_file_header_GPLv3+.py.tpl
-│   │   ├── license_file_header_GPLv3+.sh.tpl
-│   │   ├── license_file_header_GPLv3+.tex.tpl
-│   │   ├── license_file_header_GPLv3+.tpl
-│   │   ├── license_file_header_LGPLv3+.c
-│   │   ├── license_file_header_LGPLv3+.c.tpl
-│   │   ├── license_file_header_LGPLv3+.py
-│   │   ├── license_file_header_LGPLv3+.py.tpl
-│   │   ├── license_file_header_LGPLv3+.sh
-│   │   ├── license_file_header_LGPLv3+.sh.tpl
-│   │   ├── license_file_header_LGPLv3+.tex
-│   │   ├── license_file_header_LGPLv3+.tex.tpl
-│   │   └── license_file_header_LGPLv3+.tpl
-│   ├── lines_counts.sh
-│   ├── lines_filters.sh
-│   ├── listings
-│   │   ├── files_names_listing.txt
-│   │   └── update_or_check_files_names_listing.sh
-│   ├── overwrite_if_not_equal.sh
-│   ├── python_black_complement.sh
-│   ├── python_isort_complement.sh
-│   ├── too_long_code_lines.sh
-│   └── update_common_build_and_checks.sh
+│   ├── build_and_checks.sh.tpl
+│   ├── build_md_from_printable_md.sh
+│   ├── call_split_score_after_before_or_before_after.php
+│   ├── check_shell_scripts_beginnings.sh
+│   ├── check_URLs.sh
+│   ├── common_build_and_checks.sh
+│   ├── common_build_and_checks.sh.tpl
+│   ├── comparisons.sh
+│   ├── create_PDF.sh
+│   ├── generate_from_template.sh
+│   ├── get_common_text_glob_patterns.sh
+│   ├── grammar_and_spell_check.sh
+│   ├── licenses_templates
+│   │   ├── build_licenses_templates.sh
+│   │   ├── license_file_header_GPLv3+.c.tpl
+│   │   ├── license_file_header_GPLv3+.py.tpl
+│   │   ├── license_file_header_GPLv3+.sh.tpl
+│   │   ├── license_file_header_GPLv3+.tex.tpl
+│   │   ├── license_file_header_GPLv3+.tpl
+│   │   ├── license_file_header_LGPLv3+.c
+│   │   ├── license_file_header_LGPLv3+.c.tpl
+│   │   ├── license_file_header_LGPLv3+.py
+│   │   ├── license_file_header_LGPLv3+.py.tpl
+│   │   ├── license_file_header_LGPLv3+.sh
+│   │   ├── license_file_header_LGPLv3+.sh.tpl
+│   │   ├── license_file_header_LGPLv3+.tex
+│   │   ├── license_file_header_LGPLv3+.tex.tpl
+│   │   └── license_file_header_LGPLv3+.tpl
+│   ├── lines_counts.sh
+│   ├── lines_filters.sh
+│   ├── lines_maps.sh
+│   ├── listings
+│   │   ├── files_names_listing.txt
+│   │   └── update_or_check_files_names_listing.sh
+│   ├── overwrite_if_not_equal.sh
+│   ├── python_black_complement.sh
+│   ├── python_isort_complement.sh
+│   ├── split_line_at_most.php
+│   ├── string_functions.sh
+│   ├── too_long_code_lines.sh
+│   └── update_common_build_and_checks.sh
 ├── build_and_checks.sh
 ├── COPYING
 ├── COPYING.LESSER
 ├── DevOrSysAdminScripts.html
 ├── DevOrSysAdminScripts.pdf
+├── DevOrSysAdminScripts.tex2
+├── EncoreBlas� 20240517-20240518.txt
 ├── git_checks.sh
 ├── latex
-│   ├── DevOrSysAdminScripts.tex
-│   └── DevOrSysAdminScripts.tex.tpl
+│   ├── DevOrSysAdminScripts.tex
+│   └── DevOrSysAdminScripts.tex.tpl
 ├── LiensUtiles.txt
+├── Nimp1.sh
+├── Nimp2.sh
 ├── pre-commit
 ├── README.md
 ├── README.md.tpl
 ├── repository_data.txt
+├── unicode.php
 └── wget_sha512.sh
 
-5 directories, 49 files
+5 directories, 60 files
 \end{verbatim}
 
 \begin{verbatim}
-[ 12K May 17 01:20]  ./
-├── [4.0K May 17 01:20]  build_and_checks_dependencies/
-│   ├── [1.5K May 17 01:12]  build_and_checks.sh.tpl*
-│   ├── [1.7K May 16 13:46]  build_md_from_printable_md.sh*
-│   ├── [1.2K May 16 19:53]  check_shell_scripts_beginnings.sh
-│   ├── [1.9K May 16 15:23]  check_URLs.sh
-│   ├── [8.6K May 17 01:20]  common_build_and_checks.sh*
-│   ├── [5.8K May 17 01:20]  common_build_and_checks.sh.tpl
-│   ├── [2.9K May 16 15:28]  comparisons.sh
-│   ├── [6.6K May 16 21:19]  create_PDF.sh*
-│   ├── [1.5K May 16 15:33]  generate_from_template.sh
-│   ├── [1.7K May 16 02:42]  get_common_text_glob_patterns.sh
-│   ├── [1.5K May 16 20:01]  grammar_and_spell_check.sh
-│   ├── [4.0K May 17 01:20]  licenses_templates/
-│   │   ├── [5.1K May 16 19:58]  build_licenses_templates.sh*
-│   │   ├── [ 713 May 16 14:58]  license_file_header_GPLv3+.c.tpl
-│   │   ├── [ 715 May 16 14:58]  license_file_header_GPLv3+.py.tpl
-│   │   ├── [ 747 May 16 14:58]  license_file_header_GPLv3+.sh.tpl
-│   │   ├── [ 747 May 16 14:58]  license_file_header_GPLv3+.tex.tpl
-│   │   ├── [ 707 May 14 23:23]  license_file_header_GPLv3+.tpl
-│   │   ├── [ 782 May 16 14:58]  license_file_header_LGPLv3+.c
-│   │   ├── [ 734 May 16 14:58]  license_file_header_LGPLv3+.c.tpl
-│   │   ├── [ 784 May 16 14:58]  license_file_header_LGPLv3+.py
-│   │   ├── [ 736 May 16 14:58]  license_file_header_LGPLv3+.py.tpl
-│   │   ├── [ 816 May 16 14:58]  license_file_header_LGPLv3+.sh
-│   │   ├── [ 768 May 16 14:58]  license_file_header_LGPLv3+.sh.tpl
-│   │   ├── [ 816 May 16 14:58]  license_file_header_LGPLv3+.tex
-│   │   ├── [ 768 May 16 14:58]  license_file_header_LGPLv3+.tex.tpl
-│   │   └── [ 728 May 14 23:24]  license_file_header_LGPLv3+.tpl
-│   ├── [1.7K May 16 15:15]  lines_counts.sh
-│   ├── [5.4K May 16 20:41]  lines_filters.sh
-│   ├── [4.0K May 17 01:11]  listings/
-│   │   ├── [2.6K May 17 01:10]  files_names_listing.txt
-│   │   └── [2.8K May 17 01:11]  *
-│   │   │ update_or_check_files_names_listing.sh**
-│   ├── [1.1K May 16 15:32]  overwrite_if_not_equal.sh
-│   ├── [1.3K May 16 02:43]  python_black_complement.sh
-│   ├── [1.5K May 16 15:27]  python_isort_complement.sh
-│   ├── [1.2K May 16 15:32]  too_long_code_lines.sh
-│   └── [2.5K May 17 01:15]  update_common_build_and_checks.sh*
-├── [1.6K May 17 01:20]  build_and_checks.sh*
+[ 12K May 18 19:17]  ./
+├── [3.3K May 18 19:17]  Blas� 20240517R� sultat.txt
+├── [2.8K May 18 19:17]  Blas� 20240517.sh*
+├── [4.0K May 18 19:17]  build_and_checks_dependencies/
+│   ├── [1.5K May 17 01:12]  build_and_checks.sh.tpl*
+│   ├── [1.7K May 16 13:46]  build_md_from_printable_md.sh*
+│   ├── [1.5K May 17 17:20]  *
+│   │ call_split_score_after_before_or_before_after.php**
+│   ├── [1.2K May 16 19:53]  check_shell_scripts_beginnings.sh
+│   ├── [1.9K May 16 15:23]  check_URLs.sh
+│   ├── [9.1K May 18 19:17]  common_build_and_checks.sh*
+│   ├── [6.1K May 18 06:48]  common_build_and_checks.sh.tpl
+│   ├── [3.0K May 18 18:42]  comparisons.sh
+│   ├── [6.5K May 18 19:17]  create_PDF.sh*
+│   ├── [1.5K May 16 15:33]  generate_from_template.sh
+│   ├── [1.7K May 16 02:42]  get_common_text_glob_patterns.sh
+│   ├── [1.5K May 16 20:01]  grammar_and_spell_check.sh
+│   ├── [4.0K May 18 19:17]  licenses_templates/
+│   │   ├── [5.1K May 16 19:58]  build_licenses_templates.sh*
+│   │   ├── [ 713 May 16 14:58]  license_file_header_GPLv3+.c.tpl
+│   │   ├── [ 715 May 16 14:58]  license_file_header_GPLv3+.py.tpl
+│   │   ├── [ 747 May 16 14:58]  license_file_header_GPLv3+.sh.tpl
+│   │   ├── [ 747 May 16 14:58]  license_file_header_GPLv3+.tex.tpl
+│   │   ├── [ 707 May 14 23:23]  license_file_header_GPLv3+.tpl
+│   │   ├── [ 782 May 16 14:58]  license_file_header_LGPLv3+.c
+│   │   ├── [ 734 May 16 14:58]  license_file_header_LGPLv3+.c.tpl
+│   │   ├── [ 784 May 16 14:58]  license_file_header_LGPLv3+.py
+│   │   ├── [ 736 May 16 14:58]  license_file_header_LGPLv3+.py.tpl
+│   │   ├── [ 816 May 16 14:58]  license_file_header_LGPLv3+.sh
+│   │   ├── [ 768 May 16 14:58]  license_file_header_LGPLv3+.sh.tpl
+│   │   ├── [ 816 May 16 14:58]  license_file_header_LGPLv3+.tex
+│   │   ├── [ 768 May 16 14:58]  license_file_header_LGPLv3+.tex.tpl
+│   │   └── [ 728 May 14 23:24]  license_file_header_LGPLv3+.tpl
+│   ├── [1.7K May 16 15:15]  lines_counts.sh
+│   ├── [5.4K May 18 06:41]  lines_filters.sh
+│   ├── [2.7K May 18 06:43]  lines_maps.sh
+│   ├── [4.0K May 18 19:15]  listings/
+│   │   ├── [2.9K May 18 19:15]  files_names_listing.txt
+│   │   └── [3.5K May 18 19:14]  *
+│   │   │ update_or_check_files_names_listing.sh**
+│   ├── [1.1K May 16 15:32]  overwrite_if_not_equal.sh
+│   ├── [1.3K May 16 02:43]  python_black_complement.sh
+│   ├── [1.5K May 16 15:27]  python_isort_complement.sh
+│   ├── [2.0K May 17 16:28]  split_line_at_most.php
+│   ├── [6.6K May 18 19:14]  string_functions.sh
+│   ├── [1.2K May 16 15:32]  too_long_code_lines.sh
+│   └── [2.5K May 18 06:45]  update_common_build_and_checks.sh*
+├── [1.6K May 18 19:17]  build_and_checks.sh*
 ├── [ 34K May  6 00:49]  COPYING
 ├── [7.5K May  6 00:49]  COPYING.LESSER
 ├── [ 15K May 14 18:40]  DevOrSysAdminScripts.html
-├── [145K May 17 01:16]  DevOrSysAdminScripts.pdf
+├── [145K May 18 17:17]  DevOrSysAdminScripts.pdf
+├── [ 19K May 18 03:20]  DevOrSysAdminScripts.tex2
+├── [3.4K May 18 00:45]  EncoreBlas� 20240517-20240518.txt
 ├── [2.5K May 16 15:31]  git_checks.sh
-├── [4.0K May 17 01:20]  latex/
-│   ├── [ 13K May 17 01:20]  DevOrSysAdminScripts.tex
-│   └── [ 13K May 16 19:42]  DevOrSysAdminScripts.tex.tpl
+├── [4.0K May 18 19:17]  latex/
+│   ├── [ 15K May 18 19:17]  DevOrSysAdminScripts.tex
+│   └── [ 15K May 18 16:46]  DevOrSysAdminScripts.tex.tpl
 ├── [ 424 May  6 00:49]  LiensUtiles.txt
+├── [ 449 May 18 02:59]  Nimp1.sh
+├── [ 449 May 18 02:59]  Nimp2.sh
 ├── [1.1K May 16 02:44]  pre-commit
 ├── [1.6K May 16 14:58]  README.md
 ├── [1.6K May 15 18:00]  README.md.tpl
 ├── [ 629 May 16 18:41]  repository_data.txt
+├── [6.1K May 18 06:39]  unicode.php
 └── [1.2K May 16 15:27]  wget_sha512.sh
 
-5 directories, 49 files
+5 directories, 60 files
 \end{verbatim}
 
 \section{Listing of files}
@@ -228,6 +251,18 @@ The git repository of this source code is also available at:
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
   build_and_checks_dependencies/build_md_from_printable_md.sh
+}
+
+
+\subsection{
+  build\_and\_checks\_dependencies/call\_split\_score\_after\_before\_or\_before\_after.php
+}
+\label{
+  build_and_checks_dependencies:call_split_score_after_before_or_before_afterphp
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+  build_and_checks_dependencies/call_split_score_after_before_or_before_after.php
 }
 
 
@@ -579,6 +614,42 @@ license_file_header_LGPLv3+.tpl
 
 
 \subsection{
+  build\_and\_checks\_dependencies/lines\_maps.sh
+}
+\label{
+  build_and_checks_dependencies:lines_mapssh
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+  build_and_checks_dependencies/lines_maps.sh
+}
+
+
+\subsection{
+  build\_and\_checks\_dependencies/listings/files\_names\_listing.txt
+}
+\label{
+  build_and_checks_dependencies:listings:files_names_listingtxt
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+  build_and_checks_dependencies/listings/files_names_listing.txt
+}
+
+
+\subsection{
+  build\_and\_checks\_dependencies/listings/update\_or\_check\_files\_names\_listing.sh
+}
+\label{
+  build_and_checks_dependencies:listings:update_or_check_files_names_listingsh
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+  build_and_checks_dependencies/listings/update_or_check_files_names_listing.sh
+}
+
+
+\subsection{
   build\_and\_checks\_dependencies/overwrite\_if\_not\_equal.sh
 }
 \label{
@@ -732,6 +803,43 @@ license_file_header_LGPLv3+.tpl
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
   repository_data.txt
+}
+
+
+\subsection{
+  build\_and\_checks\_dependencies/split\_line\_at\_most.php
+}
+\label{
+  build_and_checks_dependencies:split_line_at_mostphp
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+  build_and_checks_dependencies/split_line_at_most.php
+}
+
+
+\subsection{
+  build\_and\_checks\_dependencies/string\_functions.sh
+}
+\label{
+  build_and_checks_dependencies:string_functionssh
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+  build_and_checks_dependencies/string_functions.sh
+}
+
+
+
+\subsection{
+  unicode.php
+}
+\label{
+  unicodephp
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+  unicode.php
 }
 
 

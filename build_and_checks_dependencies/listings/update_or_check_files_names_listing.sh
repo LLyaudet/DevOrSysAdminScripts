@@ -24,6 +24,7 @@
 
 subdir="build_and_checks_dependencies"
 source "./$subdir/lines_filters.sh"
+source "./$subdir/string_functions.sh"
 subdir2="$subdir/listings"
 files_names_listing="./$subdir2/files_names_listing.txt"
 
@@ -42,6 +43,9 @@ sed -Ez "$sed_expression" "$files_names_listing.temp2"\
 sed -Ez "$sed_expression" "$files_names_listing.temp3"\
   > "$files_names_listing.temp4"
 shopt -s dotglob
+get_split_score_after_before 70 /
+split_score_command="$LFBFL_generic_result"
+suffix='\\'
 find . -type f -printf '%P\n' | relevant_find | sort\
   | while read -r file_name;
 do
@@ -58,8 +62,19 @@ do
   [ "$base_file_name" != "files_names_listing.txt.temp2" ] || continue
   [ "$base_file_name" != "files_names_listing.txt.temp3" ] || continue
   [ "$base_file_name" != "files_names_listing.txt.temp4" ] || continue
+  new_lines="$file_name"
+  split_last_line "$new_lines" "" 70 "$suffix" "$split_score_command"
+  new_lines=$split_last_line_result
+  split_last_line "$new_lines" "" 70 "$suffix" "$split_score_command"
+  new_lines=$split_last_line_result
+  split_last_line "$new_lines" "" 70 "$suffix" "$split_score_command"
+  new_lines=$split_last_line_result
   if [[ "$1" == "--write" ]]; then
-    echo "$file_name" >> "$files_names_listing"
+    echo "$file_name"
+    echo "s|$file_name|$new_lines|g"
+    echo "$file_name"\
+      | sed -e "s|$file_name|$new_lines|g"\
+      >> "$files_names_listing"
     continue
   fi
   if grep -q "$file_name\$" "$files_names_listing.temp4"; then
@@ -67,7 +82,9 @@ do
   else
     echo "The file $file_name is not listed in $files_names_listing."
     if [[ "$1" == "--append" ]]; then
-      echo "$file_name" >> "$files_names_listing"
+      echo "$file_name"\
+        | sed -e "s|$file_name|$new_lines|g"\
+        >> "$files_names_listing"
     fi
   fi
 done

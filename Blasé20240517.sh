@@ -4,6 +4,10 @@
 # si quelqu'un d'autre te donne un environnement pourri pour
 # exécuter ton code.
 a=("a 1" "b 2" "c 3")
+# declare -A b I may have forgot to add this line in the file,
+# but I do think that I did declare an associative array (a or b)
+# in my shell
+# when I tested before writing this synthesis of my test.
 b=(["a 1"]="c 3" ["b 2"]="b 2" ["c 3"]="a 1")
 
 echo "1)"
@@ -73,6 +77,7 @@ done
 #
 
 echo "9)"
+declare -A c
 c=(\
   ["a 1"]="c 3"\
   ["b 2"]="b 2"\

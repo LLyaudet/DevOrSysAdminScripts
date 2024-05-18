@@ -22,6 +22,9 @@
 #
 # ©Copyright 2023-2024 Laurent Frédéric Bernard François Lyaudet
 
+subdir="build_and_checks_dependencies"
+source "./$subdir/lines_filters.sh"
+
 generate_from_template_with_block_comments(){
   # $1=base_file_name
   # $2=target_file_name
@@ -45,4 +48,20 @@ generate_from_template_with_line_comments(){
     eval "$4"
   fi
   overwrite_if_not_equal "$2" "$2$LFBFL_temp"
+}
+
+split_file_in_two(){
+  # $1=$file_name
+  # $2=$token assume that token is the only thing on his line.
+  # $3=$file_name_part1
+  # $4=$file_name_part2
+  split_file_in_two_line_number=$(
+    grep -n "$2" "$1" | cut -f 1 -d ':'
+  )
+  split_file_in_two_line_count=$(ll_wc -l -n "$1")
+  split_file_in_two_lines_after=$((
+    $split_file_in_two_line_count - $split_file_in_two_line_number
+  ))
+  head --lines="$(($split_file_in_two_line_number - 1))" "$1" > "$3"
+  tail --lines="$split_file_in_two_lines_after" "$1" > "$4"
 }

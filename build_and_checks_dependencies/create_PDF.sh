@@ -23,19 +23,33 @@
 # ©Copyright 2023-2024 Laurent Frédéric Bernard François Lyaudet
 
 subdir="build_and_checks_dependencies"
+source "./$subdir/generate_from_template.sh"
 source "./$subdir/lines_counts.sh"
 source "./$subdir/lines_filters.sh"
 source "./$subdir/lines_maps.sh"
+source "./$subdir/overwrite_if_not_equal.sh"
 source "./$subdir/string_functions.sh"
+subdir2="$subdir/listings"
 
 grep_variable repository_data.txt repository_name
 
 cp "./latex/$repository_name.tex.tpl"\
    "./latex/$repository_name.tex"
-# We need a variant of the template with long lines.
-cp "./latex/$repository_name.tex.tpl"\
-   "./latex/$repository_name.tex.tpl2"
-sed -i -Ez "s/%\n//Mg" "./latex/$repository_name.tex.tpl2"
+
+sed -i "s|@repository_name@|$repository_name|g"\
+  "./latex/$repository_name.tex"
+
+grep_variable repository_data.txt abstract
+echo "$abstract" | sed -e 's/\\n/\n/g' > "abstract_temp"
+insert_file_at_token "./latex/$repository_name.tex" @abstract@\
+  "abstract_temp"
+rm "abstract_temp"
+
+grep_variable repository_data.txt acknowledgments
+echo "$acknowledgments" | sed -e 's/\\n/\n/g' > "acknowledgments_temp"
+insert_file_at_token "./latex/$repository_name.tex" @acknowledgments@\
+  "abstract_temp"
+rm "acknowledgments_temp"
 
 grep_variable repository_data.txt author_full_name
 sed -i "s|@author_full_name@|$author_full_name|g"\
@@ -71,7 +85,6 @@ tree -a --gitignore\
   -I "$repository_name.aux"\
   -I "$repository_name.log"\
   -I "$repository_name.out"\
-  -I "$repository_name.tex.tpl2"\
   -I current_tree.txt\
   -I current_tree_light.txt\
   -I "node_modules/"\
@@ -85,7 +98,6 @@ tree -a -DFh --gitignore\
   -I "$repository_name.aux"\
   -I "$repository_name.log"\
   -I "$repository_name.out"\
-  -I "$repository_name.tex.tpl2"\
   -I current_tree.txt\
   -I current_tree_light.txt\
   -I "node_modules/"\
@@ -95,54 +107,67 @@ tree -a -DFh --gitignore\
   | replace_non_ascii_spaces\
   > current_tree.txt
 
-shopt -s dotglob
-find . -type f -printf '%P\n' | relevant_find | sort\
+temp_files_listing="./$subdir2/files_listing.tex.tpl"
+> "$temp_files_listing"
+get_split_score_after_before 70 /
+split_score_command="$LFBFL_generic_result"
+suffix='%'
+sed_expression='s/\\\n//Mg'
+cat "./$subdir2/files_names_listing.txt"\
+  | sed -Ez "$sed_expression" | sed -Ez "$sed_expression"\
+  | sed -Ez "$sed_expression" | sed -Ez "$sed_expression"\
+  | grep -v '^// '\
   | while read -r file_name;
 do
-  git check-ignore -q "$file_name" && continue
   base_file_name=$(basename "$file_name")
-  [ "$base_file_name" != "current_tree_light.txt" ] || continue
-  [ "$base_file_name" != "current_tree.txt" ] || continue
-  [ "$base_file_name" != "COPYING" ] || continue
-  [ "$base_file_name" != "COPYING.LESSER" ] || continue
-  [ "$base_file_name" != "$repository_name.pdf" ] || continue
-  [ "$base_file_name" != "$repository_name.tex" ] || continue
-  [ "$base_file_name" != "$repository_name.tex.tpl2" ] || continue
-  if [[ "$base_file_name" == *.md ]]; then
-    if [ -f "$file_name.tpl" ]; then
-      # in_place_grep -v "$base_file_name$" current_tree.txt
-      # in_place_grep -v "$base_file_name$" current_tree_light.txt
-      continue
-    fi
-  fi
   cleaned_path1=$(sed -e 's/_/\\_/g' <(echo "$file_name"))
   cleaned_path2=$(sed -e 's/\//:/g' -e 's/\.//g' <(echo "$file_name"))
-  if grep -q "  $file_name\$" "./latex/$repository_name.tex.tpl2";
-  then
-    echo ""
-    # sed -i -Ez\
-    #   "s/$file_name\n/\
-    #   ${file_name/./\\./g}\\hyperref\{${file_name/./\\./g}\}\n/Mg"\
-    #   "current_tree_light.txt"
-  else
-    echo "The file $file_name is not listed"\
-         " in ./latex/$repository_name.tex.tpl"
-    echo "TODO:\subsection{"
-    echo "TODO:  $cleaned_path1"
-    echo "TODO:}"
-    echo "TODO:\label{"
-    echo "TODO:  $cleaned_path2"
-    echo "TODO:}"
-    echo "TODO:"
-    echo "TODO:\VerbatimInput[numbers=left,xleftmargin=-5mm]{"
-    echo "TODO:  $file_name"
-    echo "TODO:}"
-    echo "TODO:"
-    echo "TODO:"
-  fi
+  echo "\subsection{" >> "$temp_files_listing"
+
+  new_lines="  $cleaned_path1"
+  split_last_line "$new_lines" "" 70 "$suffix" "$split_score_command"
+  new_lines=$split_last_line_result
+  split_last_line "$new_lines" "" 70 "$suffix" "$split_score_command"
+  new_lines=$split_last_line_result
+  split_last_line "$new_lines" "" 70 "$suffix" "$split_score_command"
+  new_lines=$split_last_line_result
+  echo "  $cleaned_path1" | sed -e "s|  $cleaned_path1|$new_lines|g"\
+    >> "$temp_files_listing"
+
+  echo "}" >> "$temp_files_listing"
+  echo "\label{" >> "$temp_files_listing"
+
+  new_lines="  $cleaned_path2"
+  split_last_line "$new_lines" "" 70 "$suffix" "$split_score_command"
+  new_lines=$split_last_line_result
+  split_last_line "$new_lines" "" 70 "$suffix" "$split_score_command"
+  new_lines=$split_last_line_result
+  split_last_line "$new_lines" "" 70 "$suffix" "$split_score_command"
+  new_lines=$split_last_line_result
+  echo "  $cleaned_path2" | sed -e "s|  $cleaned_path2|$new_lines|g"\
+    >> "$temp_files_listing"
+
+  echo "}" >> "$temp_files_listing"
+  echo "" >> "$temp_files_listing"
+  echo "\VerbatimInput[numbers=left,xleftmargin=-5mm]{"\
+    >> "$temp_files_listing"
+
+  new_lines="$file_name"
+  split_last_line "$new_lines" "" 70 "$suffix" "$split_score_command"
+  new_lines=$split_last_line_result
+  split_last_line "$new_lines" "" 70 "$suffix" "$split_score_command"
+  new_lines=$split_last_line_result
+  split_last_line "$new_lines" "" 70 "$suffix" "$split_score_command"
+  new_lines=$split_last_line_result
+  echo "  $file_name" | sed -e "s|  $file_name|$new_lines|g"\
+    >> "$temp_files_listing"
+
+  echo "}" >> "$temp_files_listing"
+  echo "" >> "$temp_files_listing"
+  echo "" >> "$temp_files_listing"
 done
-shopt -u dotglob
-shopt -s globstar
+insert_file_at_token "./latex/$repository_name.tex"\
+  @files_listing_VerbatimInput@ "$temp_files_listing"
 
 # We verify if some lines are beyond 70 characters
 # in current_tree_light.txt et current_tree.txt.
@@ -199,7 +224,6 @@ files_to_delete=(\
   "$repository_name.out"\
   "current_tree.txt"
   "current_tree_light.txt"
-  "./latex/$repository_name.tex.tpl2"
 )
 # Comment the following line if you need to debug.
 for file_name in "${files_to_delete[@]}"; do

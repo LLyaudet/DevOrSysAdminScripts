@@ -80,4 +80,6 @@ insert_file_at_token(){
     > "$insert_at_token_var_result_file_name"
   overwrite_if_not_equal "$1"\
     "$insert_at_token_var_result_file_name"
+  rm "$insert_at_token_var_start_file_name"\
+     "$insert_at_token_var_end_file_name"
 }

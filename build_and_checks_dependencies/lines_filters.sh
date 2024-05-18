@@ -43,6 +43,7 @@ ll_wc(){
   # New option by Laurent Lyaudet (and probably other before):
   # -n --no-filenames display only number(s)
   # I think I did that the first time many years ago (Teliae ?).
+  # Since then, they added it as ignored... (-n)
   ll_wc_var_args=""
   ll_wc_var_number_only=0
   for ll_wc_var_arg in $@; do
@@ -73,10 +74,10 @@ ll_wc(){
     # You'll need to start by improving cat first,
     # with --files0-from handling.
     # echo "hack cat '${!#}' | wc $args"
-    cat "${!#}" | wc "${ll_wc_var_args[@]}"
+    cat "${!#}" | wc ${ll_wc_var_args[@]} | cut --complement -f -1
   else
     # echo "normal"
-    wc "${ll_wc_var_args[@]}"
+    wc ${ll_wc_var_args[@]}
   fi
 }
 

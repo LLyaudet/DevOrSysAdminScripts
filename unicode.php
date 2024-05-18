@@ -135,6 +135,8 @@ function hexa_code_point_to_UTF8(
   $i_code_point_in_decimal_notation = 0;
   $i_ord_0 = ord('0');
   $i_ord_A = ord('A');
+  $i_digit_offset = -$i_ord_0;
+  $i_letter_offset = 10 - $i_ord_A;
   for(
     $i = 0, $i_max = strlen($s_code_point_in_hexadecimal_notation);
     $i < $i_max;
@@ -144,15 +146,13 @@ function hexa_code_point_to_UTF8(
     $i_code_point_in_decimal_notation *= 16;
     if(ctype_digit($s_hexa_digit)){
       $i_code_point_in_decimal_notation += (
-        ord($s_hexa_digit)
-        - $i_ord_0
+        ord($s_hexa_digit) + $i_digit_offset
       );
       continue;
     }
     if(ctype_xdigit($s_hexa_digit)){
       $i_code_point_in_decimal_notation += (
-        ord($s_hexa_digit)
-        - $i_ord_A + 10
+        ord($s_hexa_digit) + $i_letter_offset
       );
       continue;
     }

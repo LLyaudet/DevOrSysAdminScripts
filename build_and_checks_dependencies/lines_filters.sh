@@ -44,8 +44,9 @@ ll_wc(){
   # -n --no-filenames display only number(s)
   # I think I did that the first time many years ago (Teliae ?).
   # Since then, they added it as ignored... (-n)
-  ll_wc_var_args=""
+  ll_wc_var_args=()
   ll_wc_var_number_only=0
+  ll_wc_var_i=0
   for ll_wc_var_arg in $@; do
     if [[ $ll_wc_var_arg == "-n" ]]; then
       ll_wc_var_number_only=1
@@ -53,11 +54,13 @@ ll_wc(){
       ll_wc_var_number_only=1
     else
       if [[ $ll_wc_var_number_only == 0 ]]; then
-        ll_wc_var_args+=" ""$ll_wc_var_arg"
+        ll_wc_var_args[$ll_wc_var_i]="$ll_wc_var_arg"
+        ll_wc_var_i=$(($ll_wc_var_i + 1))
         continue
       fi
       if [[ "$ll_wc_var_arg" == "-*" ]]; then
-        ll_wc_var_args+=" ""$ll_wc_var_arg"
+        ll_wc_var_args[$ll_wc_var_i]="$ll_wc_var_arg"
+        ll_wc_var_i=$(($ll_wc_var_i + 1))
       fi
     fi
   done
@@ -74,10 +77,10 @@ ll_wc(){
     # You'll need to start by improving cat first,
     # with --files0-from handling.
     # echo "hack cat '${!#}' | wc $args"
-    cat "${!#}" | wc ${ll_wc_var_args[@]} | cut --complement -f -1
+    cat "${!#}" | wc "${ll_wc_var_args[@]}" | cut --complement -f -1
   else
     # echo "normal"
-    wc ${ll_wc_var_args[@]}
+    wc "${ll_wc_var_args[@]}"
   fi
 }
 

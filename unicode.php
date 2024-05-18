@@ -49,7 +49,7 @@ function decimal_code_point_to_UTF8(
       $i_first_byte_base_value
       + $i_first_byte_significant_bits
     );
-    $s_result += chr(
+    $s_result .= chr(
       $i_continuation_base_value
       + $i_last_byte_significant_bits
     );
@@ -80,11 +80,11 @@ function decimal_code_point_to_UTF8(
       $i_first_byte_base_value
       + $i_first_byte_significant_bits
     );
-    $s_result += chr(
+    $s_result .= chr(
       $i_other_continuation_byte_significant_bits
       + $i_last_byte_significant_bits
     );
-    $s_result += chr(
+    $s_result .= chr(
       $i_continuation_base_value
       + $i_last_byte_significant_bits
     );

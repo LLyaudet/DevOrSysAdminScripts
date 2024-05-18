@@ -91,40 +91,50 @@ split_line_at_most(){
   #     Not sure an array of regexps makes more sense than a single
   #     one. Maybe they could be both cases with corresponding
   #     optimizations. Same for a single character or substring.
-  declare -A split_line_at_most_var_possible_split_positions
+  declare -A split_line_at_most_var_positions
   split_line_at_most_var_positions=(\
     [$2]=0\
   )
   # For my use case in bash scripts, I will need only an array of
   # characters. See get_split_score_after_before().
-  if [[ -n "$4" ]]; then
-    echo "split_line_at_most() \$4 NOT IMPLEMENTED YET";
+  if [[ -n "$4" ]] then
+    echo "split_line_at_most() \$4 NOT IMPLEMENTED YET"
   fi
   split_line_at_most_var_sort_command="sort --numeric-sort"
-  for ((i=0; i<${#$line}; i++)); do
+  LFBFL_length_minus_1=$((${#1} - 1))
+  LFBFL_i_max=$(min_from_int_sort $LFBFL_length_minus_1 $2)
+  for ((i=0; i<$LFBFL_i_max; i++)) do
     j=$(($i+1))
-    split_line_at_most_current_char="${line:$i:1}"
+    split_line_at_most_var_current_char="${1:$i:1}"
     LFBFL_command1="$3 $split_line_at_most_var_current_char $i 0"
     LFBFL_command2="$3 $split_line_at_most_var_current_char $j 1"
+    # echo "$LFBFL_command1"
+    # echo "$LFBFL_command2"
     LFBFL_temp=$(eval $LFBFL_command1)
-    if [[ ${#split_line_at_most_var_positions[$i]} == 0 ]]; then
-      split_line_at_most_var_positions[$i]=$LFBFL_temp
-    else
-      split_line_at_most_var_positions[$i]=$(\
-        max "$split_line_at_most_var_sort_command"\
-          split_line_at_most_var_possible_split_positions[$i]\
-          $LFBFL_temp
-      )
+    # echo "$LFBFL_temp"
+    if [[ $LFBFL_temp -ge 0 ]] then
+      if [[ ${#split_line_at_most_var_positions[$i]} == 0 ]] then
+        split_line_at_most_var_positions[$i]=$LFBFL_temp
+      else
+        split_line_at_most_var_positions[$i]=$(\
+          max "$split_line_at_most_var_sort_command"\
+            split_line_at_most_var_positions[$i]\
+            $LFBFL_temp
+        )
+      fi
     fi
     LFBFL_temp=$(eval $LFBFL_command2)
-    if [[ ${#split_line_at_most_var_positions[$j]} == 0 ]]; then
-      split_line_at_most_var_positions[$j]=$LFBFL_temp
-    else
-      split_line_at_most_var_positions[$j]=$(\
-        max "$split_line_at_most_var_sort_command"\
-          split_line_at_most_var_possible_split_positions[$j]\
-          $LFBFL_temp
-      )
+    # echo "$LFBFL_temp"
+    if [[ $LFBFL_temp -ge 0 ]] then
+      if [[ ${#split_line_at_most_var_positions[$j]} == 0 ]] then
+        split_line_at_most_var_positions[$j]=$LFBFL_temp
+      else
+        split_line_at_most_var_positions[$j]=$(\
+          max "$split_line_at_most_var_sort_command"\
+            split_line_at_most_var_positions[$j]\
+            $LFBFL_temp
+        )
+      fi
     fi
   done
   for LFBFL_key in "${split_line_at_most_var_positions[@]}"; do
@@ -133,7 +143,7 @@ split_line_at_most(){
   done\
     | max 'sort --numeric-sort -k2'\
     | cut -d ' ' -f 1\
-    | read LFBFL_best_position
+    | read -r LFBFL_best_position
   split_line_at $1 $LFBFL_best_position
   split_line_at_most_result_beginning=$split_line_at_result_beginning
   split_line_at_most_result_end=$split_line_at_result_end
@@ -154,7 +164,7 @@ split_last_line(){
     )
     # echo "last_line: $LFBFL_last_line"
     split_last_line_result=""
-    if [[ -n "$LFBFL_start" ]]; then
+    if [[ -n "$LFBFL_start" ]] then
       split_last_line_result="$LFBFL_start\n"
     fi
     split_last_line_result+="${LFBFL_last_line:0:69}\n"

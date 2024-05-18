@@ -1,3 +1,6 @@
+laurent@laurent-GL73-8SD:~/Données/MesProjetsGit/DevOrSysAdminScripts$ get_split_score_after_before 70 /
+laurent@laurent-GL73-8SD:~/Données/MesProjetsGit/DevOrSysAdminScripts$ a="$LFBFL_generic_result"
+laurent@laurent-GL73-8SD:~/Données/MesProjetsGit/DevOrSysAdminScripts$ cat build_and_checks_dependencies/string_functions.sh && source build_and_checks_dependencies/string_functions.sh && split_line_at_most build_and_checks_dependencies/licenses_templates/license_file_header_LGPLv3+.sh 70 "$a"
 #!/usr/bin/env bash
 # This file is part of DevOrSysAdminScripts library.
 #
@@ -190,3 +193,15 @@ split_last_line(){
     split_last_line_result+="$2${LFBFL_last_line:69}"
   fi
 }
+29|29
+100|30
+48|48
+119|49
+100 
+0 
+29 29
+119 
+48 48
+
+
+

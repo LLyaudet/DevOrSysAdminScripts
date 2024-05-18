@@ -58,9 +58,9 @@ correct_sha512+='17ee0c04c19a5c52c3c7380'
 wget_sha512 "./$subdir/comparisons.sh" "$script" "$correct_sha512"
 
 script="$URL_beginning/create_PDF.sh"
-correct_sha512='b29a67e821f1bb678bcb664d9ba26e1f8f9042991fdabef5eda03'
-correct_sha512+='2e09d6b85045bf9b257b822b1478474ae4b9aff62221b995fc38'
-correct_sha512+='8427f3cc68e6674c9cb64df'
+correct_sha512='98ae405158df9b937188787311c0160599f5bbb4ac127252e55e2'
+correct_sha512+='a547119c576d9b4830518c42055678509716001eed10345ce773'
+correct_sha512+='7b73ae0d27fc18168f226c0'
 wget_sha512 "./$subdir/create_PDF.sh" "$script" "$correct_sha512"
 chmod +x "./$subdir/create_PDF.sh"
 
@@ -120,6 +120,12 @@ correct_sha512='23ce3bcd052b758803afff514a44aec843bd367d0aec80662c9c7'
 correct_sha512+='b2add1ae3238bf010ee308cd82131fc1939ab1758e611997e845'
 correct_sha512+='33bafa6c68d4051c968a4d7'
 wget_sha512 "./$subdir/lines_filters.sh" "$script" "$correct_sha512"
+
+script="$URL_beginning/lines_maps.sh"
+correct_sha512='26db8b6d3d4de7dd4286e620efc1b3621f406ca13f3336da8f29b'
+correct_sha512+='6f60d3e836f8b35cd7de9bd5f0366e46dd187bf977a7d7138df7'
+correct_sha512+='bf1f59fb20a6aa3d2156352'
+wget_sha512 "./$subdir/lines_maps.sh" "$script" "$correct_sha512"
 
 URL_beginning3="$URL_beginning/listings"
 subdir3="$subdir/listings"
@@ -219,6 +225,11 @@ check_shell_scripts_beginnings | relevant_grep
 
 echo "Analyzing URLs"
 check_URLs | relevant_grep
+
+echo "Analyzing strange characters : hover over in doubt"
+usual_characters="\x00-\x7Fàâéèêëîïôç©“”└─├│«»"
+grep --exclude-dir '.git' -nPrv "^[$usual_characters]*$" .\
+  | grep --color='auto' -nP "[^$usual_characters]"
 
 echo "Creating the PDF file of the listing of the source code"
 ./build_and_checks_dependencies/create_PDF.sh

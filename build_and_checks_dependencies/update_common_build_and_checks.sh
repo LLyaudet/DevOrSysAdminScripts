@@ -38,6 +38,7 @@ file_names=(\
   "licenses_templates/license_file_header_LGPLv3+.tpl"\
   "lines_counts.sh"\
   "lines_filters.sh"\
+  "lines_maps.sh"\
   "listings/update_or_check_files_names_listing.sh"\
   "listings/files_names_listing.txt"\
   "overwrite_if_not_equal.sh"\

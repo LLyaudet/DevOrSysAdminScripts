@@ -95,6 +95,10 @@ script="$URL_beginning/lines_filters.sh"
 @sha512_lines_filters.sh@
 wget_sha512 "./$subdir/lines_filters.sh" "$script" "$correct_sha512"
 
+script="$URL_beginning/lines_maps.sh"
+@sha512_lines_maps.sh@
+wget_sha512 "./$subdir/lines_maps.sh" "$script" "$correct_sha512"
+
 URL_beginning3="$URL_beginning/listings"
 subdir3="$subdir/listings"
 script="$URL_beginning3/update_or_check_files_names_listing.sh"
@@ -181,6 +185,11 @@ check_shell_scripts_beginnings | relevant_grep
 
 echo "Analyzing URLs"
 check_URLs | relevant_grep
+
+echo "Analyzing strange characters : hover over in doubt"
+usual_characters="\x00-\x7Fàâéèêëîïôç©“”└─├│«»"
+grep --exclude-dir '.git' -nPrv "^[$usual_characters]*$" .\
+  | grep --color='auto' -nP "[^$usual_characters]"
 
 echo "Creating the PDF file of the listing of the source code"
 ./build_and_checks_dependencies/create_PDF.sh

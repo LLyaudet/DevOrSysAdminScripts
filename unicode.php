@@ -171,5 +171,34 @@ var_dump(hexa_code_point_to_UTF8("002B"));
 var_dump(hexa_code_point_to_UTF8("00E6"));
 var_dump(hexa_code_point_to_UTF8("1400"));
 var_dump(hexa_code_point_to_UTF8("10111"));
+// https://en.wikibooks.org/wiki/Unicode/Character_reference/2000-2FFF
+// Some invisible unicode characters that are a problem:
+// 2000-200F 2028-202F 205F 2060-206F
+$arr = [
+  '2000', '2001', '2002', '2003', '2004', '2005', '2006', '2007',
+  '2008', '2009', '200A', '200B', '200C', '200D', '200E', '200F',
+  '2028', '2029', '202A', '202B', '202C', '202D', '202E', '202F',
+  '205F',
+  '2060', '2061', '2062', '2063', '2064', '2065', '2066', '2067',
+  '2068', '2069', '206A', '206B', '206C', '206D', '206E', '206F',
+];
+$arr_s = [];
+$arr_s2 = [];
+$arr_s3 = [];
+foreach($arr as $s_hexa){
+  $s = hexa_code_point_to_UTF8($s_hexa);
+  $arr_s []= $s;
+  if(strlen($s) === 2){
+    $s2 = '\x'.bin2hex($s[0]).'\x'.bin2hex($s[1]);
+  }
+  if(strlen($s) === 3){
+    $s2 = '\x'.bin2hex($s[0]).'\x'.bin2hex($s[1])
+      .'\x'.bin2hex($s[2]);
+  }
+  $arr_s2 []= $s2;
+  $s3 = "  | sed -e 's/".$s2."/ /g'\\";
+  $arr_s3 []= $s3;
+  echo($s3."\n");
+}
 //*/
 

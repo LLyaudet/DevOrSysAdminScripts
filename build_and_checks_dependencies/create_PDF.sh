@@ -25,6 +25,7 @@
 subdir="build_and_checks_dependencies"
 source "./$subdir/lines_counts.sh"
 source "./$subdir/lines_filters.sh"
+source "./$subdir/lines_maps.sh"
 
 grep_variable repository_data.txt repository_name
 
@@ -64,7 +65,7 @@ tree -a --gitignore\
   -I "__pycache__/"\
   -I ".mypy_cache/"\
   -I ".git/"\
-  | sed -e 's/\xc2\xa0/ /g'\
+  | replace_non_ascii_spaces\
   > current_tree_light.txt
 
 tree -a -DFh --gitignore\
@@ -78,7 +79,7 @@ tree -a -DFh --gitignore\
   -I "__pycache__/"\
   -I ".mypy_cache/"\
   -I ".git/"\
-  | sed -e 's/\xc2\xa0/ /g'\
+  | replace_non_ascii_spaces\
   > current_tree.txt
 
 shopt -s dotglob
@@ -163,7 +164,7 @@ for some_tree in "${trees[@]}"; do
       echo "$some_line"\
         | sed -E -e 's/(.*)─[^─]+$/\1/g' -e 's/[^ ]+$//g'\
     )
-    prefix+="│ "
+    prefix+="│ "
     # echo "prefix: $prefix"
     file_name=$(\
       echo "$some_line"\

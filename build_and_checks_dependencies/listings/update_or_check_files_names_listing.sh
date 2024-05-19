@@ -57,7 +57,6 @@ do
   [ "$base_file_name" != "COPYING.LESSER" ] || continue
   [ "$base_file_name" != "$repository_name.pdf" ] || continue
   [ "$base_file_name" != "$repository_name.tex" ] || continue
-  [ "$base_file_name" != "$repository_name.tex.tpl2" ] || continue
   [ "$base_file_name" != "files_names_listing.txt.temp1" ] || continue
   [ "$base_file_name" != "files_names_listing.txt.temp2" ] || continue
   [ "$base_file_name" != "files_names_listing.txt.temp3" ] || continue

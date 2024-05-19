@@ -45,7 +45,7 @@ split_score_after_before(){
   # $1=$delimiter_string
   # $2=$cut_position
   # $3=$is_cut_after
-  if [[ "$3" == "1" ]] then
+  if [[ "$3" == "1" ]]; then
     return 2
   fi
   return 1
@@ -57,7 +57,7 @@ split_score_before_after(){
   # $1=$delimiter_string
   # $2=$cut_position
   # $3=$is_cut_after
-  if [[ "$3" == "0" ]] then
+  if [[ "$3" == "0" ]]; then
     return 2
   fi
   return 1
@@ -104,10 +104,10 @@ split_line_at_most(){
   # echo "$1 $2 $3"
   # For my use case in bash scripts, I will need only an array of
   # characters. See get_split_score_after_before().
-  if [[ -n "$4" ]] then
+  if [[ -n "$4" ]]; then
     echo "split_line_at_most() \$4 NOT IMPLEMENTED YET"
   fi
-  if [[ "$2" -ge "${#1}" ]] then
+  if [[ "$2" -ge "${#1}" ]]; then
     split_line_at_most_result_start=$1
     split_line_at_most_result_end=""
     return
@@ -124,9 +124,9 @@ split_line_at_most(){
     # echo "$LFBFL_command2"
     LFBFL_temp=$(eval $LFBFL_command1)
     # echo "$LFBFL_temp|$i"
-    if [[ $LFBFL_temp -ge 0 ]] then
+    if [[ $LFBFL_temp -ge 0 ]]; then
       # echo "$LFBFL_temp|$i"
-      if [[ ${#split_line_at_most_var_positions["$i"]} == 0 ]] then
+      if [[ ${#split_line_at_most_var_positions["$i"]} == 0 ]]; then
         split_line_at_most_var_positions["$i"]=$LFBFL_temp
       else
         split_line_at_most_var_positions["$i"]=$(\
@@ -138,9 +138,9 @@ split_line_at_most(){
     fi
     LFBFL_temp=$(eval $LFBFL_command2)
     # echo "$LFBFL_temp|$j"
-    if [[ $LFBFL_temp -ge 0 ]] then
+    if [[ $LFBFL_temp -ge 0 ]]; then
       # echo "$LFBFL_temp|$j"
-      if [[ ${#split_line_at_most_var_positions["$j"]} == 0 ]] then
+      if [[ ${#split_line_at_most_var_positions["$j"]} == 0 ]]; then
         split_line_at_most_var_positions["$j"]=$LFBFL_temp
       else
         split_line_at_most_var_positions["$j"]=$(\
@@ -193,10 +193,10 @@ split_last_line(){
     )
     # echo "last_line: $LFBFL_last_line"
     split_last_line_result=""
-    if [[ -n "$LFBFL_start" ]] then
+    if [[ -n "$LFBFL_start" ]]; then
       split_last_line_result="$LFBFL_start\n"
     fi
-    if [[ -n "$5" ]] then
+    if [[ -n "$5" ]]; then
       split_line_at_most "$LFBFL_last_line" "$LFBFL_length2"\
         "$5"
       split_last_line_result+="$split_line_at_most_result_start$4"

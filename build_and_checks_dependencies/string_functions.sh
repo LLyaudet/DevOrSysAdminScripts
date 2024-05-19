@@ -182,7 +182,7 @@ split_last_line(){
   LFBFL_max_length_plus=$(($3 + 1))
   LFBFL_length2=$(($3 - ${#4}))
   LFBFL_regexp='.\{'"$LFBFL_max_length_plus"'\}$'
-  if echo "$1" | sed -e 's/\\n/\n/g' | grep -q $LFBFL_regexp; then
+  if echo "$1" | sed -e 's/\\n/\n/g' | grep -q "$LFBFL_regexp"; then
     LFBFL_start=$(\
       echo "$1" | sed -e 's/\\n/\n/g' | head --lines=-1\
       | sed -z 's/\n/\\n/g'\

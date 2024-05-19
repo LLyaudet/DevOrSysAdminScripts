@@ -137,9 +137,11 @@ do
     split_last_line "$new_lines" "" 60 "$suffix" "$score_command"
     new_lines=$split_last_line_result
   fi
-  new_lines=$(sed -e 's/_/\\_/g' <(echo "$new_lines"))
   echo "  $file_name" | sed -e "s|  $file_name|$new_lines|g"\
-    >> "$temp_files_listing"
+    > "$temp_files_listing.2"
+  sed -i -e 's/_/\\_/g' "$temp_files_listing.2"
+  cat "$temp_files_listing.2" >> "$temp_files_listing"
+  rm "$temp_files_listing.2"
 
   echo "}" >> "$temp_files_listing"
   echo "\label{" >> "$temp_files_listing"

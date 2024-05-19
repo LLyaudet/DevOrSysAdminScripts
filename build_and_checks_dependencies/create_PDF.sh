@@ -129,7 +129,7 @@ do
   echo "\subsection{" >> "$temp_files_listing"
 
   new_lines="  $file_name"
-  if [[ ${#new_lines} -gt 68 ]]; then
+  if [[ ${#new_lines} -gt 60 ]]; then
     split_last_line "$new_lines" "" 60 "$suffix" "$score_command"
     new_lines=$split_last_line_result
     split_last_line "$new_lines" "" 60 "$suffix" "$score_command"

@@ -58,16 +58,16 @@ correct_sha512+='17ee0c04c19a5c52c3c7380'
 wget_sha512 "./$subdir/comparisons.sh" "$script" "$correct_sha512"
 
 script="$URL_beginning/create_PDF.sh"
-correct_sha512='6680365e0068e9d6a8e2053db1589f71bd7717dd53795306edafe'
-correct_sha512+='8b936179536b489be752f5f7c1ec07d3cb02c9344e1a65dd47b5'
-correct_sha512+='4a0cc2ff0a91b773dc5f774'
+correct_sha512='95b4a64ad3207a36c6168d333cd79ef6e8e57250373d48068b20a'
+correct_sha512+='294796065e9c0c348e198971b068d2b98d68fa6efe023fe09d7c'
+correct_sha512+='99822bbdac7e9041a619c41'
 wget_sha512 "./$subdir/create_PDF.sh" "$script" "$correct_sha512"
 chmod +x "./$subdir/create_PDF.sh"
 
 script="$URL_beginning/generate_from_template.sh"
-correct_sha512='5a7732f2f93ce4020cbaea76dfd94cdaf313dd2f472d5ab0d9361'
-correct_sha512+='7b3e6bf1bdea2a4475989689cbf1f50e8dac50c49b0ea7c385d7'
-correct_sha512+='00999336dd0bd03483fba64'
+correct_sha512='36c92a15b93f199d28476bfa83612e3e9dd5153b9cc8ed2013bf6'
+correct_sha512+='e8e87a041e5f07935357d1e9dce76b3901ecf9d25eee8d99e47c'
+correct_sha512+='19cc6a1384a0fc2feb76b49'
 wget_sha512 "./$subdir/generate_from_template.sh" "$script"\
   "$correct_sha512"
 
@@ -116,9 +116,9 @@ correct_sha512+='17acb35d98bbde10fb6dacd'
 wget_sha512 "./$subdir/lines_counts.sh" "$script" "$correct_sha512"
 
 script="$URL_beginning/lines_filters.sh"
-correct_sha512='23ce3bcd052b758803afff514a44aec843bd367d0aec80662c9c7'
-correct_sha512+='b2add1ae3238bf010ee308cd82131fc1939ab1758e611997e845'
-correct_sha512+='33bafa6c68d4051c968a4d7'
+correct_sha512='a144c6e57df8a6dc4e99aecefcef3e5d1f93ef22a76f0089bb6e1'
+correct_sha512+='be6189193a1ea4ac316173a36b83a2c92f75856e6cec97a2bbcf'
+correct_sha512+='ba23110239e5a1d10455bf6'
 wget_sha512 "./$subdir/lines_filters.sh" "$script" "$correct_sha512"
 
 script="$URL_beginning/lines_maps.sh"
@@ -130,17 +130,17 @@ wget_sha512 "./$subdir/lines_maps.sh" "$script" "$correct_sha512"
 URL_beginning3="$URL_beginning/listings"
 subdir3="$subdir/listings"
 script="$URL_beginning3/update_or_check_files_names_listing.sh"
-correct_sha512='4a9e5c6a99e900a6d62bb8b7887183eee222fc35de076ec2351a9'
-correct_sha512+='bd9b1ec172aa0642b77ded518a91db161e80950c64ee872c17d9'
-correct_sha512+='535e2087925d73af844cffc'
+correct_sha512='771c73acad73dd998381e5051dfd816004ada2ca5a695bebe0735'
+correct_sha512+='f8f80c215ef9e1ea35d8b45208792cfeac6a049f29e1bbfa668e'
+correct_sha512+='31be7b93f60f79c98b37425'
 wget_sha512 "./$subdir3/update_or_check_files_names_listing.sh"\
   "$script" "$correct_sha512"
 chmod +x "./$subdir3/update_or_check_files_names_listing.sh"
 
 script="$URL_beginning3/files_names_listing.txt"
-correct_sha512='2803f1f6bff02c7c4dfceb86ae0a506bc2fdeece06376edeb5514'
-correct_sha512+='9e56aa6f806e8af90a2db657bd704e59a1a85b325c5626e8c681'
-correct_sha512+='e0c326a314bfa5e3bb1aed0'
+correct_sha512='19003318a81ac923b3053abb87dcf1d92b825cc0cf88da4285c4a'
+correct_sha512+='5c7b73878c0fb0a8ca50a3ab0aa744bd872edfa3a91846189e23'
+correct_sha512+='dd3e9a01430f22d8e369012'
 wget_sha512 "./$subdir3/files_names_listing.txt" "$script"\
   "$correct_sha512"
 

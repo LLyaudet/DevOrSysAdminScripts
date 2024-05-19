@@ -24,6 +24,7 @@
 \documentclass{article}
 
 \usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
 \usepackage{subfigure}
 \usepackage{amsmath}
 \usepackage{amssymb}
@@ -41,6 +42,7 @@
 \usepackage{enumerate}
 \usepackage{pmboxdraw}
 \usepackage{fancyvrb}
+\usepackage[french,english]{babel}
 
 % *** les environnements ***
 %\theoremstyle{break}
@@ -59,7 +61,7 @@
   \url{@author_website@}\\
   \href{mailto:@author_email@}{@author_email@}
 }
-\title{DevOrSysAdminScripts}
+\title{@repository_name@}
 
 \maketitle
 \begin{abstract}

@@ -11,7 +11,8 @@ build_and_checks_dependencies/build_and_checks.sh.tpl
 
 
 \subsection{
-  build\_and\_checks\_dependencies/build\_md\_from\_printable\_md.sh
+  build\_and\_checks\_dependencies/%
+build\_md\_from\_printable\_md.sh
 }
 \label{
   build_and_checks_dependencies:build_md_from_printable_mdsh
@@ -38,7 +39,8 @@ call_split_score_after_before_or_before_after.php
 
 
 \subsection{
-  build\_and\_checks\_dependencies/check\_shell\_scripts\_beginnings.sh
+  build\_and\_checks\_dependencies/%
+check\_shell\_scripts\_beginnings.sh
 }
 \label{
   build_and_checks_dependencies:check_shell_scripts_beginningssh
@@ -74,7 +76,8 @@ build_and_checks_dependencies/common_build_and_checks.sh
 
 
 \subsection{
-  build\_and\_checks\_dependencies/common\_build\_and\_checks.sh.tpl
+  build\_and\_checks\_dependencies/%
+common\_build\_and\_checks.sh.tpl
 }
 \label{
   build_and_checks_dependencies:common_build_and_checksshtpl
@@ -122,7 +125,8 @@ build_and_checks_dependencies/generate_from_template.sh
 
 
 \subsection{
-  build\_and\_checks\_dependencies/get\_common\_text\_glob\_patterns.sh
+  build\_and\_checks\_dependencies/%
+get\_common\_text\_glob\_patterns.sh
 }
 \label{
   build_and_checks_dependencies:get_common_text_glob_patternssh
@@ -407,7 +411,8 @@ build_and_checks_dependencies/lines_maps.sh
 
 
 \subsection{
-  build\_and\_checks\_dependencies/listings/files\_listing.tex.tpl
+  build\_and\_checks\_dependencies/listings/%
+files\_listing.tex.tpl
 }
 \label{
   build_and_checks_dependencies:listings:files_listingtextpl
@@ -419,7 +424,8 @@ build_and_checks_dependencies/listings/files_listing.tex.tpl
 
 
 \subsection{
-  build\_and\_checks\_dependencies/listings/files\_names\_listing.txt
+  build\_and\_checks\_dependencies/listings/%
+files\_names\_listing.txt
 }
 \label{
   build_and_checks_dependencies:listings:files_names_listingtxt
@@ -518,7 +524,8 @@ build_and_checks_dependencies/too_long_code_lines.sh
 
 
 \subsection{
-  build\_and\_checks\_dependencies/update\_common\_build\_and\_checks.sh
+  build\_and\_checks\_dependencies/%
+update\_common\_build\_and\_checks.sh
 }
 \label{
   build_and_checks_dependencies:update_common_build_and_checkssh

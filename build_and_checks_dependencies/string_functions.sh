@@ -161,7 +161,7 @@ split_line_at_most(){
   done
   while read -r LFBFL_best_position ;
   do
-    split_line_at $1 $LFBFL_best_position
+    split_line_at "$1" "$LFBFL_best_position"
     split_line_at_most_result_start=$split_line_at_result_beginning
     split_line_at_most_result_end=$split_line_at_result_end
   done <<EOT

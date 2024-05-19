@@ -47,6 +47,7 @@ license_file_header_LGPLv3+.tpl
 build_and_checks_dependencies/lines_counts.sh
 build_and_checks_dependencies/lines_filters.sh
 build_and_checks_dependencies/lines_maps.sh
+build_and_checks_dependencies/listings/files_listing.tex.tpl
 build_and_checks_dependencies/listings/files_names_listing.txt
 build_and_checks_dependencies/listings/\
 update_or_check_files_names_listing.sh
@@ -58,8 +59,6 @@ build_and_checks_dependencies/string_functions.sh
 build_and_checks_dependencies/too_long_code_lines.sh
 build_and_checks_dependencies/update_common_build_and_checks.sh
 build_and_checks.sh
-DevOrSysAdminScripts.html
-DevOrSysAdminScripts.tex2
 // EncoreBlasé20240517-20240518.txt
 git_checks.sh
 latex/DevOrSysAdminScripts.tex.tpl
@@ -69,4 +68,5 @@ README.md
 README.md.tpl
 repository_data.txt
 unicode.php
+upgrade_build_and_checks.sh
 wget_sha512.sh

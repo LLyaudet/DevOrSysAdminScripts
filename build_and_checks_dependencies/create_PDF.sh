@@ -107,7 +107,7 @@ tree -a -DFh --gitignore\
   | replace_non_ascii_spaces\
   > current_tree.txt
 
-temp_files_listing="./$subdir2/files_listing.tex.tpl"
+temp_files_listing="./$subdir2/files_listing.tex.tpl.temp"
 > "$temp_files_listing"
 get_split_score_after_before 70 /
 # split_score_command="$LFBFL_generic_result"
@@ -177,8 +177,10 @@ do
   echo "" >> "$temp_files_listing"
   echo "" >> "$temp_files_listing"
 done
+overwrite_if_not_equal "./$subdir2/files_listing.tex.tpl"\
+  "temp_files_listing"
 insert_file_at_token "./latex/$repository_name.tex"\
-  @files_listing_VerbatimInput@ "$temp_files_listing"
+  @files_listing_VerbatimInput@ "./$subdir2/files_listing.tex.tpl"
 
 # We verify if some lines are beyond 70 characters
 # in current_tree_light.txt et current_tree.txt.

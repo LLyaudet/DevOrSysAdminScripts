@@ -110,7 +110,11 @@ tree -a -DFh --gitignore\
 temp_files_listing="./$subdir2/files_listing.tex.tpl"
 > "$temp_files_listing"
 get_split_score_after_before 70 /
-split_score_command="$LFBFL_generic_result"
+# split_score_command="$LFBFL_generic_result"
+score_command="$LFBFL_generic_result"
+get_split_score_after_before 70 ':'
+# split_score_command2="$LFBFL_generic_result"
+score_command2="$LFBFL_generic_result"
 suffix='%'
 sed_expression='s/\\\n//Mg'
 cat "./$subdir2/files_names_listing.txt"\
@@ -120,30 +124,35 @@ cat "./$subdir2/files_names_listing.txt"\
   | while read -r file_name;
 do
   base_file_name=$(basename "$file_name")
-  cleaned_path1=$(sed -e 's/_/\\_/g' <(echo "$file_name"))
+  # cleaned_path1=$(sed -e 's/_/\\_/g' <(echo "$file_name"))
   cleaned_path2=$(sed -e 's/\//:/g' -e 's/\.//g' <(echo "$file_name"))
   echo "\subsection{" >> "$temp_files_listing"
 
-  new_lines="  $cleaned_path1"
-  split_last_line "$new_lines" "" 70 "$suffix" "$split_score_command"
-  new_lines=$split_last_line_result
-  split_last_line "$new_lines" "" 70 "$suffix" "$split_score_command"
-  new_lines=$split_last_line_result
-  split_last_line "$new_lines" "" 70 "$suffix" "$split_score_command"
-  new_lines=$split_last_line_result
-  echo "  $cleaned_path1" | sed -e "s|  $cleaned_path1|$new_lines|g"\
+  new_lines="  $file_name"
+  if [[ ${#new_lines} -gt 68 ]]; then
+    split_last_line "$new_lines" "" 60 "$suffix" "$score_command"
+    new_lines=$split_last_line_result
+    split_last_line "$new_lines" "" 60 "$suffix" "$score_command"
+    new_lines=$split_last_line_result
+    split_last_line "$new_lines" "" 60 "$suffix" "$score_command"
+    new_lines=$split_last_line_result
+  fi
+  new_lines=$(sed -e 's/_/\\_/g' <(echo "$new_lines"))
+  echo "  $file_name" | sed -e "s|  $file_name|$new_lines|g"\
     >> "$temp_files_listing"
 
   echo "}" >> "$temp_files_listing"
   echo "\label{" >> "$temp_files_listing"
 
   new_lines="  $cleaned_path2"
-  split_last_line "$new_lines" "" 70 "$suffix" "$split_score_command"
-  new_lines=$split_last_line_result
-  split_last_line "$new_lines" "" 70 "$suffix" "$split_score_command"
-  new_lines=$split_last_line_result
-  split_last_line "$new_lines" "" 70 "$suffix" "$split_score_command"
-  new_lines=$split_last_line_result
+  if [[ ${#new_lines} -gt 68 ]]; then
+    split_last_line "$new_lines" "" 70 "$suffix" "$score_command2"
+    new_lines=$split_last_line_result
+    split_last_line "$new_lines" "" 70 "$suffix" "$score_command2"
+    new_lines=$split_last_line_result
+    split_last_line "$new_lines" "" 70 "$suffix" "$score_command2"
+    new_lines=$split_last_line_result
+  fi
   echo "  $cleaned_path2" | sed -e "s|  $cleaned_path2|$new_lines|g"\
     >> "$temp_files_listing"
 
@@ -153,12 +162,14 @@ do
     >> "$temp_files_listing"
 
   new_lines="$file_name"
-  split_last_line "$new_lines" "" 70 "$suffix" "$split_score_command"
-  new_lines=$split_last_line_result
-  split_last_line "$new_lines" "" 70 "$suffix" "$split_score_command"
-  new_lines=$split_last_line_result
-  split_last_line "$new_lines" "" 70 "$suffix" "$split_score_command"
-  new_lines=$split_last_line_result
+  if [[ ${#new_lines} -gt 68 ]]; then
+    split_last_line "$new_lines" "" 70 "$suffix" "$score_command"
+    new_lines=$split_last_line_result
+    split_last_line "$new_lines" "" 70 "$suffix" "$score_command"
+    new_lines=$split_last_line_result
+    split_last_line "$new_lines" "" 70 "$suffix" "$score_command"
+    new_lines=$split_last_line_result
+  fi
   echo "  $file_name" | sed -e "s|  $file_name|$new_lines|g"\
     >> "$temp_files_listing"
 
@@ -197,14 +208,16 @@ for some_tree in "${trees[@]}"; do
         | sed -E -e 's/\[/\\\[/g' -e 's/\]/\\\]/g'\
     )
     new_lines="$prefix$file_name"
-    split_last_line "$new_lines" "$prefix" 70 ""
-    new_lines=$split_last_line_result
-    split_last_line "$new_lines" "$prefix" 70 ""
-    new_lines=$split_last_line_result
-    split_last_line "$new_lines" "$prefix" 70 ""
-    new_lines=$split_last_line_result
-    split_last_line "$new_lines" "$prefix" 70 ""
-    new_lines=$split_last_line_result
+    if [[ ${#new_lines} -gt 68 ]]; then
+      split_last_line "$new_lines" "$prefix" 70 ""
+      new_lines=$split_last_line_result
+      split_last_line "$new_lines" "$prefix" 70 ""
+      new_lines=$split_last_line_result
+      split_last_line "$new_lines" "$prefix" 70 ""
+      new_lines=$split_last_line_result
+      split_last_line "$new_lines" "$prefix" 70 ""
+      new_lines=$split_last_line_result
+    fi
     sed -i -e "s/$some_line/$line_start\n$new_lines/g" "$some_tree"
   done
 done

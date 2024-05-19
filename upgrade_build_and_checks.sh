@@ -22,7 +22,8 @@
 #
 # ©Copyright 2023-2024 Laurent Frédéric Bernard François Lyaudet
 
-cd build_and_checks_dependencies/
-./update_common_build_and_checks.sh
-cd ..
+(\
+  cd build_and_checks_dependencies/\
+  && ./update_common_build_and_checks.sh\
+)
 ./build_and_checks.sh

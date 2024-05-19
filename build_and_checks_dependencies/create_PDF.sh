@@ -180,7 +180,7 @@ do
   echo "" >> "$temp_files_listing"
 done
 overwrite_if_not_equal "./$subdir2/files_listing.tex.tpl"\
-  "temp_files_listing"
+  "$temp_files_listing"
 insert_file_at_token "./latex/$repository_name.tex"\
   @files_listing_VerbatimInput@ "./$subdir2/files_listing.tex.tpl"
 

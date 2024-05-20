@@ -22,6 +22,12 @@
 #
 # ©Copyright 2023-2024 Laurent Frédéric Bernard François Lyaudet
 
+verbose=""
+if [[ "$3" == "--verbose" ]]; then
+  echo "$0 $*"
+  verbose="--verbose"
+fi
+
 subdir="build_and_checks_dependencies"
 source "./$subdir/overwrite_if_not_equal.sh"
 
@@ -35,11 +41,10 @@ then
   cd "$1"
 fi
 
+file_name="README"
 if [[ -n "$2" ]];
 then
   file_name="$2"
-else
-  file_name="README"
 fi
 
 if [[ -f "${file_name}.md.tpl" ]];

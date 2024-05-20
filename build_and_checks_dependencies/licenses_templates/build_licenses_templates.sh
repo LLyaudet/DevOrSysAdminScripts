@@ -22,6 +22,12 @@
 #
 # ©Copyright 2023-2024 Laurent Frédéric Bernard François Lyaudet
 
+verbose=""
+if [[ "$1" == "--verbose" ]]; then
+  echo "$0 $*"
+  verbose="--verbose"
+fi
+
 subdir="build_and_checks_dependencies"
 source "./$subdir/comparisons.sh"
 source "./$subdir/generate_from_template.sh"

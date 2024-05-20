@@ -22,6 +22,12 @@
 #
 # ©Copyright 2023-2024 Laurent Frédéric Bernard François Lyaudet
 
+verbose=""
+if [[ "$1" == "--verbose" ]]; then
+  echo "$0 $*"
+  verbose="--verbose"
+fi
+
 cp ./common_build_and_checks.sh.tpl ./common_build_and_checks.sh
 
 file_names=(\

@@ -122,7 +122,7 @@ split_line_at_most(){
     LFBFL_command2="$3 '$split_line_at_most_var_current_char' $j 1"
     # echo "$LFBFL_command1"
     # echo "$LFBFL_command2"
-    LFBFL_temp=$(eval $LFBFL_command1)
+    LFBFL_temp=$(eval "$LFBFL_command1")
     # echo "$LFBFL_temp|$i"
     if [[ $LFBFL_temp -ge 0 ]]; then
       # echo "$LFBFL_temp|$i"
@@ -136,7 +136,7 @@ split_line_at_most(){
         )
       fi
     fi
-    LFBFL_temp=$(eval $LFBFL_command2)
+    LFBFL_temp=$(eval "$LFBFL_command2")
     # echo "$LFBFL_temp|$j"
     if [[ $LFBFL_temp -ge 0 ]]; then
       # echo "$LFBFL_temp|$j"

@@ -22,8 +22,14 @@
 #
 # ©Copyright 2023-2024 Laurent Frédéric Bernard François Lyaudet
 
+verbose=""
+if [[ "$1" == "--verbose" ]]; then
+  echo "$0 $*"
+  verbose="--verbose"
+fi
+
 (\
   cd build_and_checks_dependencies/\
-  && ./update_common_build_and_checks.sh\
+  && ./update_common_build_and_checks.sh "$verbose"\
 )
-./build_and_checks.sh
+./build_and_checks.sh "." "$verbose"

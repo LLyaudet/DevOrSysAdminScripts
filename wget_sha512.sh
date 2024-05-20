@@ -26,9 +26,15 @@ wget_sha512(){
   # $1 file_name
   # $2 download_URL
   # $3 correct_sha512
+  # $4 optional --verbose
+  verbose=""
+  if [[ "$4" == "--verbose" ]]; then
+    echo "$0 wget_sha512 $*"
+    verbose="--verbose"
+  fi
   if [[ ! -f "$1" ]];
   then
-    wget -O "$1" "$2"
+    wget "$verbose" -O "$1" "$2"
   fi
   wget_sha512_var_present_sha512=$(sha512sum "$1" | cut -f1 -d' ')
   if [[ "$wget_sha512_var_present_sha512" != "$3" ]];

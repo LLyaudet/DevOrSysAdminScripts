@@ -22,6 +22,12 @@
 #
 # ©Copyright 2023-2024 Laurent Frédéric Bernard François Lyaudet
 
+verbose=""
+if [[ "$1" == "--verbose" ]]; then
+  echo "$0 $*"
+  verbose="--verbose"
+fi
+
 subdir="build_and_checks_dependencies"
 source "./$subdir/generate_from_template.sh"
 source "./$subdir/lines_counts.sh"
@@ -231,9 +237,15 @@ sed -i -e '/@current_tree_light@/{r current_tree_light.txt' -e 'd}'\
 sed -i -e '/@current_tree@/{r current_tree.txt' -e 'd}'\
   "./latex/$repository_name.tex"
 
-pdflatex "./latex/$repository_name.tex" > /dev/null
-pdflatex "./latex/$repository_name.tex" > /dev/null
-pdflatex "./latex/$repository_name.tex" > /dev/null
+if [[ -n "$verbose" ]]; then
+  for ((i=0; i<3; i++)); do
+    pdflatex "./latex/$repository_name.tex"
+  done
+else
+  for ((i=0; i<3; i++)); do
+    pdflatex "./latex/$repository_name.tex" > /dev/null
+  done
+fi
 
 files_to_delete=(\
   "$repository_name.aux"\

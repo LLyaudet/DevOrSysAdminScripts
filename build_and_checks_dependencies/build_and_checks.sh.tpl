@@ -22,6 +22,12 @@
 #
 # ©Copyright 2023-2024 Laurent Frédéric Bernard François Lyaudet
 
+verbose=""
+if [[ "$2" == "--verbose" ]]; then
+  echo "$0 $*"
+  verbose="--verbose"
+fi
+
 source ./wget_sha512.sh
 
 mkdir -p build_and_checks_dependencies/licenses_templates
@@ -35,7 +41,7 @@ URL_beginning="$personal_github$dependencies"
 script="$URL_beginning/common_build_and_checks.sh"
 @sha512_common_build_and_checks.sh@
 wget_sha512 "./$subdir/common_build_and_checks.sh" "$script"\
-  "$correct_sha512"
+  "$correct_sha512" "$verbose"
 chmod +x "./$subdir/common_build_and_checks.sh"
 
 cwd="."
@@ -44,4 +50,5 @@ then
   cwd="$1"
 fi
 
-./build_and_checks_dependencies/common_build_and_checks.sh "$cwd"
+./build_and_checks_dependencies/common_build_and_checks.sh "$cwd"\
+  "$verbose"

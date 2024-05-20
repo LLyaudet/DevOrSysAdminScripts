@@ -22,6 +22,12 @@
 #
 # ©Copyright 2023-2024 Laurent Frédéric Bernard François Lyaudet
 
+verbose=""
+if [[ "$2" == "--verbose" ]]; then
+  echo "$0 $*"
+  verbose="--verbose"
+fi
+
 source ./wget_sha512.sh
 
 mkdir -p build_and_checks_dependencies/licenses_templates
@@ -33,11 +39,11 @@ dependencies="DevOrSysAdminScripts/main/build_and_checks_dependencies"
 URL_beginning="$personal_github$dependencies"
 
 script="$URL_beginning/common_build_and_checks.sh"
-correct_sha512='e1b0b3316cd46f4b7fa2b3c8c2ad7bf10e8d17936b421ca3e43b5'
-correct_sha512+='2b07dda112fe39d62768b59512977cc20aa208e9c16657eed77f'
-correct_sha512+='2abd0f12006605de46a22b1'
+correct_sha512='4737989615503facb5ad4885fc690a8d14ce8f44e8a921a05d599'
+correct_sha512+='c5236bf344c98de7bd0339f1b2aa590a3352370fb0870650b6c0'
+correct_sha512+='c7222844f7dcfb99463ff2d'
 wget_sha512 "./$subdir/common_build_and_checks.sh" "$script"\
-  "$correct_sha512"
+  "$correct_sha512" "$verbose"
 chmod +x "./$subdir/common_build_and_checks.sh"
 
 cwd="."
@@ -46,4 +52,5 @@ then
   cwd="$1"
 fi
 
-./build_and_checks_dependencies/common_build_and_checks.sh "$cwd"
+./build_and_checks_dependencies/common_build_and_checks.sh "$cwd"\
+  "$verbose"

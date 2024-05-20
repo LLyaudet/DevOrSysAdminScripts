@@ -58,36 +58,32 @@ function decimal_code_point_to_UTF8(
   // 1110xxxx 10xxxxxx 10xxxxxx
   if($i_code_point_in_decimal_notation < 256 * 256){
     $i_first_byte_base_value = 224;
-    $i_last_byte_significant_bits = (
-      $i_code_point_in_decimal_notation % (2**6)
-    );
-    $i_first_bytes_significant_bits = (int) (
-      (
-        $i_code_point_in_decimal_notation
-        - $i_last_byte_significant_bits
-      ) / (2**6)
-    );
-    $i_other_continuation_byte_significant_bits = (
-      $i_first_bytes_significant_bits % (2**6)
-    );
-    $i_first_byte_significant_bits = (int) (
-      (
-        $i_first_bytes_significant_bits
-        - $i_other_continuation_byte_significant_bits
-      ) / (2**6)
-    );
-    $s_result = chr(
-      $i_first_byte_base_value
-      + $i_first_byte_significant_bits
-    );
-    $s_result .= chr(
-      $i_other_continuation_byte_significant_bits
-      + $i_last_byte_significant_bits
-    );
-    $s_result .= chr(
-      $i_continuation_base_value
-      + $i_last_byte_significant_bits
-    );
+    $arr_arr_data_per_byte_reverse = [
+      ["i_bits" => 6, "i_base_value" => $i_continuation_base_value],
+      ["i_bits" => 6, "i_base_value" => $i_continuation_base_value],
+      ["i_bits" => 4, "i_base_value" => $i_first_byte_base_value],
+    ];
+    $i_rest = $i_code_point_in_decimal_notation;
+    $s_result = "";
+    foreach($arr_arr_data_per_byte_reverse as $arr_data){
+      // _Pragma unroll
+      // J'aurais pu "roller" les 4 cas des ifs.
+      // Mais pour les perfs, il faudrait tout unroller vu le nombre
+      // d'itérations. Et j'aimerais bien comparer du code unrollé
+      // aux 2 niveaux à la main avec celui unrollé par le compilateur
+      // sur les 2 niveaux. Je préjuge/présuppose qu'il unroll
+      // l'intérieur d'abord (pour ne pas refaire le même boulot)
+      // puis l'extérieur et qu'il oublie de réoptimiser l'intérieur
+      // en fonction de l'extérieur unrollé. Est-ce que j'ai raison ?
+      $i_significant_bits = $i_rest % (2**$arr_data["i_bits"]);
+      $i_rest = (int) (
+        ($i_rest - $i_significant_bits) / (2**$arr_data["i_bits"])
+      );
+      $s_result = (  // .= or =.
+        chr($i_significant_bits + $arr_data["i_base_value"])
+        .$s_result
+      );
+    }
     return $s_result;
   }
   // 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
@@ -102,15 +98,17 @@ function decimal_code_point_to_UTF8(
     $i_rest = $i_code_point_in_decimal_notation;
     $s_result = "";
     foreach($arr_arr_data_per_byte_reverse as $arr_data){
+      // _Pragma unroll
       $i_significant_bits = $i_rest % (2**$arr_data["i_bits"]);
       $i_rest = (int) (
         ($i_rest - $i_significant_bits) / (2**$arr_data["i_bits"])
       );
-      $s_result = chr($i_significant_bits).$s_result; // .= or =.
+      $s_result = (  // .= or =.
+        chr($i_significant_bits + $arr_data["i_base_value"])
+        .$s_result
+      );
     }
     return $s_result;
-    // TODO factoriser comme ce if, la flemme là tout de suite
-    // (5 h 22 du matin).
   }
   throw new Exception(
     "UTF-8 avec jusqu'à 6 octets a été abandonné il y a longtemps."

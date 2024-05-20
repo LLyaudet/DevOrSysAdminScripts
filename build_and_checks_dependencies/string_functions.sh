@@ -209,3 +209,16 @@ split_last_line(){
     fi
   fi
 }
+
+repeated_split_last_line(){
+  repeated_split_last_line_result="$1"
+  for ((
+    repeated_split_last_line_var_i=0;
+    repeated_split_last_line_var_i<$6;
+    ++repeated_split_last_line_var_i
+  )) do
+    split_last_line "${repeated_split_last_line_result}" "$2" $3 "$4"\
+      "$5"
+    repeated_split_last_line_result="${split_last_line_result}"
+  done
+}

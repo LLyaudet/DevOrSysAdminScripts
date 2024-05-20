@@ -29,76 +29,94 @@ if [[ "$2" == "--verbose" ]]; then
 fi
 
 subdir="build_and_checks_dependencies"
-source "./$subdir/lines_filters.sh"
-source "./$subdir/string_functions.sh"
-subdir2="$subdir/listings"
-files_names_listing="./$subdir2/files_names_listing.txt"
+# shellcheck disable=SC1090
+source "./${subdir}/lines_filters.sh"
+# shellcheck disable=SC1090
+source "./${subdir}/string_functions.sh"
+subdir2="${subdir}/listings"
+files_names_listing="./${subdir2}/files_names_listing.txt"
 
+# Cette fonction est trop sioux pour shellcheck avec sa variable de
+# sortie avec un nom dynamique. Du coup, je feinte pour la suite.
 grep_variable repository_data.txt repository_name
+# shellcheck disable=SC2154,SC2269
+repository_name="${repository_name}"
 
 if [[ "$1" == "--write" ]]; then
-  > "$files_names_listing"
+  : > "${files_names_listing}"
 fi
 sed_expression='s/\\\n//Mg'
-sed -Ez "$sed_expression" "$files_names_listing"\
-  > "$files_names_listing.temp1"
-sed -Ez "$sed_expression" "$files_names_listing.temp1"\
-  > "$files_names_listing.temp2"
-sed -Ez "$sed_expression" "$files_names_listing.temp2"\
-  > "$files_names_listing.temp3"
-sed -Ez "$sed_expression" "$files_names_listing.temp3"\
-  > "$files_names_listing.temp4"
+sed -Ez "${sed_expression}" "${files_names_listing}"\
+  > "${files_names_listing}.temp1"
+sed -Ez "${sed_expression}" "${files_names_listing}.temp1"\
+  > "${files_names_listing}.temp2"
+sed -Ez "${sed_expression}" "${files_names_listing}.temp2"\
+  > "${files_names_listing}.temp3"
+sed -Ez "${sed_expression}" "${files_names_listing}.temp3"\
+  > "${files_names_listing}.temp4"
 shopt -s dotglob
 get_split_score_after_before 70 /
-split_score_command="$LFBFL_generic_result"
+# shellcheck disable=SC2154
+split_score_command="${LFBFL_generic_result}"
+# shellcheck disable=SC1003
 suffix='\\'
+# shellcheck disable=SC2312
 find . -type f -printf '%P\n' | relevant_find | sort\
   | while read -r file_name;
 do
-  git check-ignore -q "$file_name" && continue
-  base_file_name=$(basename "$file_name")
-  [ "$base_file_name" != "current_tree_light.txt" ] || continue
-  [ "$base_file_name" != "current_tree.txt" ] || continue
-  [ "$base_file_name" != "COPYING" ] || continue
-  [ "$base_file_name" != "COPYING.LESSER" ] || continue
-  [ "$base_file_name" != "$repository_name.pdf" ] || continue
-  [ "$base_file_name" != "$repository_name.tex" ] || continue
-  [ "$base_file_name" != "files_names_listing.txt.temp1" ] || continue
-  [ "$base_file_name" != "files_names_listing.txt.temp2" ] || continue
-  [ "$base_file_name" != "files_names_listing.txt.temp3" ] || continue
-  [ "$base_file_name" != "files_names_listing.txt.temp4" ] || continue
-  if [[ "$base_file_name" == *.md ]]; then
-    if [ -f "$file_name.tpl" ]; then
-      # in_place_grep -v "$base_file_name$" current_tree.txt
-      # in_place_grep -v "$base_file_name$" current_tree_light.txt
+  git check-ignore -q "${file_name}" && continue
+  base_file_name=$(basename "${file_name}")
+  [[ "${base_file_name}" != "current_tree_light.txt" ]] || continue
+  [[ "${base_file_name}" != "current_tree.txt" ]] || continue
+  [[ "${base_file_name}" != "COPYING" ]] || continue
+  [[ "${base_file_name}" != "COPYING.LESSER" ]] || continue
+  [[ "${base_file_name}" != "${repository_name}.pdf" ]] || continue
+  [[ "${base_file_name}" != "${repository_name}.tex" ]] || continue
+  [[ "${base_file_name}" != "files_names_listing.txt.temp1" ]]\
+    || continue
+  [[ "${base_file_name}" != "files_names_listing.txt.temp2" ]]\
+    || continue
+  [[ "${base_file_name}" != "files_names_listing.txt.temp3" ]]\
+    || continue
+  [[ "${base_file_name}" != "files_names_listing.txt.temp4" ]]\
+    || continue
+  if [[ "${base_file_name}" == *.md ]]; then
+    if [[ -f "${file_name}.tpl" ]]; then
+      # in_place_grep -v "${base_file_name}\$" current_tree.txt
+      # in_place_grep -v "${base_file_name}\$" current_tree_light.txt
       continue
     fi
   fi
-  new_lines="$file_name"
-  split_last_line "$new_lines" "" 70 "$suffix" "$split_score_command"
-  new_lines=$split_last_line_result
-  split_last_line "$new_lines" "" 70 "$suffix" "$split_score_command"
-  new_lines=$split_last_line_result
-  split_last_line "$new_lines" "" 70 "$suffix" "$split_score_command"
-  new_lines=$split_last_line_result
+  repeated_split_last_line "${file_name}" "" 70 "${suffix}"\
+    "${split_score_command}" 3
+  # shellcheck disable=SC2154
+  split_file_name="${repeated_split_last_line_result}"
   if [[ "$1" == "--write" ]]; then
-    echo "$file_name"\
-      | sed -e "s|$file_name|$new_lines|g"\
-      >> "$files_names_listing"
+    # shellcheck disable=SC2001
+    echo "${file_name}"\
+      | sed -e "s|${file_name}|${split_file_name}|g"\
+      >> "${files_names_listing}"
     continue
   fi
-  if grep -q "$file_name\$" "$files_names_listing.temp4"; then
+  if grep -q "${file_name}\$" "${files_names_listing}.temp4"; then
     echo ""
   else
-    echo "The file $file_name is not listed in $files_names_listing."
+    echo\
+      "The file ${file_name} is not listed in ${files_names_listing}."
     if [[ "$1" == "--append" ]]; then
-      echo "$file_name"\
-        | sed -e "s|$file_name|$new_lines|g"\
-        >> "$files_names_listing"
+      # shellcheck disable=SC2001
+      echo "${file_name}"\
+        | sed -e\
+        "s|${file_name}|${split_file_name}|g"\
+        >> "${files_names_listing}"
     fi
   fi
 done
-rm "$files_names_listing.temp1" "$files_names_listing.temp2"\
-  "$files_names_listing.temp3" "$files_names_listing.temp4"
+rm "${files_names_listing}.temp1" "${files_names_listing}.temp2"\
+  "${files_names_listing}.temp3" "${files_names_listing}.temp4"
 shopt -u dotglob
 shopt -s globstar
+
+if [[ -n "${verbose}" ]]; then
+  cat "${files_names_listing}"
+fi

@@ -21,6 +21,12 @@
 # If not, see <https://www.gnu.org/licenses/>.
 #
 # ©Copyright 2023-2024 Laurent Frédéric Bernard François Lyaudet
+# The file "build_and_checks.exec.sh.tpl" was renamed from
+# "build_and_checks.sh.tpl" to "build_and_checks.exec.sh.tpl".
+# The file "build_and_checks.exec.sh" generated from the file
+# "build_and_checks.sh.tpl" or "build_and_checks.exec.sh.tpl"
+# was renamed from
+# "build_and_checks.sh" to "build_and_checks.exec.sh".
 
 verbose=""
 if [[ "$2" == "--verbose" ]]; then
@@ -28,23 +34,24 @@ if [[ "$2" == "--verbose" ]]; then
   verbose="--verbose"
 fi
 
-source ./wget_sha512.sh
+source ./wget_sha512.libr.sh
 
 mkdir -p build_and_checks_dependencies/licenses_templates
 mkdir -p build_and_checks_dependencies/listings
 subdir="build_and_checks_dependencies"
 
 personal_github="https://raw.githubusercontent.com/LLyaudet/"
-dependencies="DevOrSysAdminScripts/main/build_and_checks_dependencies"
-URL_beginning="$personal_github$dependencies"
+dependencies="DevOrSysAdminScripts/main/${subdir}"
+URL_beginning="${personal_github}${dependencies}"
 
-script="$URL_beginning/common_build_and_checks.sh"
-correct_sha512='4737989615503facb5ad4885fc690a8d14ce8f44e8a921a05d599'
-correct_sha512+='c5236bf344c98de7bd0339f1b2aa590a3352370fb0870650b6c0'
-correct_sha512+='c7222844f7dcfb99463ff2d'
-wget_sha512 "./$subdir/common_build_and_checks.sh" "$script"\
+common_file_name="common_build_and_checks.exec.sh"
+script="${URL_beginning}/${common_file_name}"
+correct_sha512='b30bb1a4435f1fb50273274558cfce91bb5480bf9eda539760842'
+correct_sha512+='55908bdba84b96e524f9671c4c7263ede86d2807aef20efa1c2a'
+correct_sha512+='d96fb5101909a1bd31a43b2'
+wget_sha512 "./$subdir/${common_file_name}" "$script"\
   "$correct_sha512" "$verbose"
-chmod +x "./$subdir/common_build_and_checks.sh"
+chmod +x "./$subdir/${common_file_name}"
 
 cwd="."
 if [[ -n "$1" ]];
@@ -52,5 +59,4 @@ then
   cwd="$1"
 fi
 
-./build_and_checks_dependencies/common_build_and_checks.sh "$cwd"\
-  "$verbose"
+./build_and_checks_dependencies/${common_file_name} "$cwd" "$verbose"

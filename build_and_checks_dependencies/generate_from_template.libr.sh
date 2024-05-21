@@ -21,9 +21,11 @@
 # If not, see <https://www.gnu.org/licenses/>.
 #
 # ©Copyright 2023-2024 Laurent Frédéric Bernard François Lyaudet
+# This file was renamed from "generate_from_template.sh" to
+# "generate_from_template.libr.sh".
 
 subdir="build_and_checks_dependencies"
-source "./$subdir/lines_filters.sh"
+source "./$subdir/lines_filters.libr.sh"
 
 generate_from_template_with_block_comments(){
   # $1=base_file_name

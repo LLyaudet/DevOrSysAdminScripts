@@ -21,6 +21,7 @@
 # If not, see <https://www.gnu.org/licenses/>.
 #
 # ©Copyright 2023-2024 Laurent Frédéric Bernard François Lyaudet
+# The file "comparisons.sh" was renamed to "comparisons.libr.sh".
 
 equal(){
   # Returns 1 if all the arguments strings are equal.

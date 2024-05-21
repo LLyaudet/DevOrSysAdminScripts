@@ -21,8 +21,10 @@
 # If not, see <https://www.gnu.org/licenses/>.
 #
 # ©Copyright 2023-2024 Laurent Frédéric Bernard François Lyaudet
+# This file was renamed from "lines_filters.sh" to
+# "lines_filters.libr.sh".
 
-# The goal of ths file is to have some common line filters
+# The goal of this file is to have some common line filters
 # for bash processing and pipes.
 # As is the case for other .sh files in this repository,
 # it can be copied somewhere in your home directory
@@ -95,6 +97,8 @@ if [[ "$wc_help_text" == *" --no-filenames "* ]]; then
   alias ll_wc='wc'
 fi
 
+# Trace avant le (2e ?) renommage
+# de wget_sha512.sh à wget_sha512.libr.sh.
 # $ ll_wc wget_sha512.sh
 #  41  189 1224 wget_sha512.sh
 # $ ll_wc -n wget_sha512.sh

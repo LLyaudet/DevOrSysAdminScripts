@@ -33,9 +33,9 @@ upgrade_build_and_checks(){
   readonly LFBFL_verbose
   (\
     cd build_and_checks_dependencies/\
-    && ./update_common_build_and_checks.sh "${LFBFL_verbose}"\
+    && ./update_common_build_and_checks.exec.sh "${LFBFL_verbose}"\
   )
-  ./build_and_checks.sh "." "${LFBFL_verbose}"
+  ./build_and_checks.exec.sh "." "${LFBFL_verbose}"
 }
 
 upgrade_build_and_checks "$@"

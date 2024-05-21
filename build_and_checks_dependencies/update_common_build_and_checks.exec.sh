@@ -21,6 +21,8 @@
 # If not, see <https://www.gnu.org/licenses/>.
 #
 # ©Copyright 2023-2024 Laurent Frédéric Bernard François Lyaudet
+# This file was renamed from "update_common_build_and_checks.sh"
+# to "update_common_build_and_checks.exec.sh".
 
 verbose=""
 if [[ "$1" == "--verbose" ]]; then
@@ -28,52 +30,55 @@ if [[ "$1" == "--verbose" ]]; then
   verbose="--verbose"
 fi
 
-cp ./common_build_and_checks.sh.tpl ./common_build_and_checks.sh
+common_file_name="common_build_and_checks.exec.sh"
+cp "./${common_file_name}.tpl"\
+   "./${common_file_name}"
 
 file_names=(\
-  "build_md_from_printable_md.sh"\
-  "check_shell_scripts_beginnings.sh"\
-  "check_URLs.sh"\
-  "comparisons.sh"\
-  "create_PDF.sh"\
-  "generate_from_template.sh"\
-  "get_common_text_glob_patterns.sh"\
-  "grammar_and_spell_check.sh"\
-  "licenses_templates/build_licenses_templates.sh"\
+  "build_md_from_printable_md.exec.sh"\
+  "check_shell_scripts_beginnings.libr.sh"\
+  "check_URLs.libr.sh"\
+  "comparisons.libr.sh"\
+  "create_PDF.exec.sh"\
+  "generate_from_template.libr.sh"\
+  "get_common_text_glob_patterns.libr.sh"\
+  "grammar_and_spell_check.libr.sh"\
+  "licenses_templates/build_licenses_templates.exec.sh"\
   "licenses_templates/license_file_header_GPLv3+.tpl"\
   "licenses_templates/license_file_header_LGPLv3+.tpl"\
-  "lines_counts.sh"\
-  "lines_filters.sh"\
-  "lines_maps.sh"\
-  "listings/update_or_check_files_names_listing.sh"\
+  "lines_counts.libr.sh"\
+  "lines_filters.libr.sh"\
+  "lines_maps.libr.sh"\
+  "listings/update_or_check_files_names_listing.exec.sh"\
   "listings/files_names_listing.txt"\
-  "overwrite_if_not_equal.sh"\
-  "python_black_complement.sh"\
-  "python_isort_complement.sh"\
-  "too_long_code_lines.sh"\
+  "overwrite_if_not_equal.libr.sh"\
+  "python_black_complement.libr.sh"\
+  "python_isort_complement.libr.sh"\
+  "too_long_code_lines.libr.sh"\
 )
 
 for file_name in "${file_names[@]}"; do
-  file_sha512=$(sha512sum "./$file_name" | cut -f1 -d' ')
+  file_sha512=$(sha512sum "./${file_name}" | cut -f1 -d' ')
   file_sha512_1="correct_sha512='${file_sha512:0:53}'"
   file_sha512_2="correct_sha512\+='${file_sha512:53:52}'"
   file_sha512_3="correct_sha512\+='${file_sha512:105}'"
-  file_sha512_all="$file_sha512_1\n"
-  file_sha512_all+="$file_sha512_2\n"
-  file_sha512_all+="$file_sha512_3"
-  base_file_name=$(basename "$file_name")
-  sed -i "s|@sha512_$base_file_name@|$file_sha512_all|g"\
-      ./common_build_and_checks.sh
+  file_sha512_all="${file_sha512_1}\n"
+  file_sha512_all+="${file_sha512_2}\n"
+  file_sha512_all+="${file_sha512_3}"
+  base_file_name=$(basename "${file_name}")
+  sed -i "s|@sha512_${base_file_name}@|${file_sha512_all}|g"\
+      "./${common_file_name}"
 done
 
-cp ./build_and_checks.sh.tpl ../build_and_checks.sh
+main_file_name="build_and_checks.exec.sh"
+cp "./${main_file_name}.tpl" "../${main_file_name}"
 
-file_sha512=$(sha512sum common_build_and_checks.sh | cut -f1 -d' ')
+file_sha512=$(sha512sum "${common_file_name}" | cut -f1 -d' ')
 file_sha512_1="correct_sha512='${file_sha512:0:53}'"
 file_sha512_2="correct_sha512\+='${file_sha512:53:52}'"
 file_sha512_3="correct_sha512\+='${file_sha512:105}'"
-file_sha512_all="$file_sha512_1\n"
-file_sha512_all+="$file_sha512_2\n"
-file_sha512_all+="$file_sha512_3"
-sed -i "s|@sha512_common_build_and_checks.sh@|$file_sha512_all|g"\
-    ../build_and_checks.sh
+file_sha512_all="${file_sha512_1}\n"
+file_sha512_all+="${file_sha512_2}\n"
+file_sha512_all+="${file_sha512_3}"
+sed -i "s|@sha512_${common_file_name}@|${file_sha512_all}|g"\
+  "../${main_file_name}"

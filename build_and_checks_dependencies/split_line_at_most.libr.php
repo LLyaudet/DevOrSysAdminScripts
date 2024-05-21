@@ -22,6 +22,8 @@ along with DevOrSysAdminScripts.
 If not, see <https://www.gnu.org/licenses/>.
 
 ©Copyright 2023-2024 Laurent Frédéric Bernard François Lyaudet
+This file was renamed from "split_line_at_most.php" to
+"split_line_at_most.libr.php".
 */
 
 function generate_split_score_after_before(

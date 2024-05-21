@@ -21,10 +21,12 @@
 # If not, see <https://www.gnu.org/licenses/>.
 #
 # ©Copyright 2023-2024 Laurent Frédéric Bernard François Lyaudet
+# This file was renamed from "grammar_and_spell_check.sh"
+# to "grammar_and_spell_check.libr.sh".
 
 subdir="build_and_checks_dependencies"
-source "./$subdir/get_common_text_glob_patterns.sh"
-source "./$subdir/lines_filters.sh"
+source "./$subdir/get_common_text_glob_patterns.libr.sh"
+source "./$subdir/lines_filters.libr.sh"
 
 grammar_and_spell_check(){
   get_common_text_files_glob_patterns

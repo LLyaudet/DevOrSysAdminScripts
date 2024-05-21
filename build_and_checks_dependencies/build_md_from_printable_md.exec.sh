@@ -21,6 +21,8 @@
 # If not, see <https://www.gnu.org/licenses/>.
 #
 # ©Copyright 2023-2024 Laurent Frédéric Bernard François Lyaudet
+# This file was renamed from "build_md_from_printable_md.sh"
+# to "build_md_from_printable_md.exec.sh".
 
 verbose=""
 if [[ "$3" == "--verbose" ]]; then
@@ -29,7 +31,7 @@ if [[ "$3" == "--verbose" ]]; then
 fi
 
 subdir="build_and_checks_dependencies"
-source "./$subdir/overwrite_if_not_equal.sh"
+source "./$subdir/overwrite_if_not_equal.libr.sh"
 
 sed_expression='s/(\[[a-zA-Z0-9:-]*\]: [^\n\\]*)\\\n/\1/Mg'
 sed_expression+=';s/(<http[^\n\\]*)\\\n/\1/Mg'

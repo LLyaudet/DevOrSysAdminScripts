@@ -21,6 +21,7 @@
 # If not, see <https://www.gnu.org/licenses/>.
 #
 # ©Copyright 2023-2024 Laurent Frédéric Bernard François Lyaudet
+# This file was renamed from "lines_maps.sh" to "lines_maps.libr.sh".
 
 # https://en.wikibooks.org/wiki/Unicode/Character_reference/2000-2FFF
 # Some invisible unicode characters that are a problem:

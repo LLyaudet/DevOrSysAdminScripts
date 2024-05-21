@@ -21,18 +21,23 @@
 # If not, see <https://www.gnu.org/licenses/>.
 #
 # ©Copyright 2023-2024 Laurent Frédéric Bernard François Lyaudet
+# This file was renamed from "update_or_check_files_names_listing.sh"
+# to "update_or_check_files_names_listing.exec.sh".
+# This file was renamed from "update_or_check_file_names_listing.sh"
+# to "update_or_check_files_names_listing.sh"?
 
 verbose=""
 if [[ "$2" == "--verbose" ]]; then
   echo "$0 $*"
   verbose="--verbose"
 fi
+readonly verbose
 
 subdir="build_and_checks_dependencies"
 # shellcheck disable=SC1090
-source "./${subdir}/lines_filters.sh"
+source "./${subdir}/lines_filters.libr.sh"
 # shellcheck disable=SC1090
-source "./${subdir}/string_functions.sh"
+source "./${subdir}/strings_functions.libr.sh"
 subdir2="${subdir}/listings"
 files_names_listing="./${subdir2}/files_names_listing.txt"
 

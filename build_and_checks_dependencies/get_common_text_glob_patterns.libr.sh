@@ -21,6 +21,8 @@
 # If not, see <https://www.gnu.org/licenses/>.
 #
 # ©Copyright 2023-2024 Laurent Frédéric Bernard François Lyaudet
+# This file was renamed from "get_common_text_glob_patterns.sh"
+# to "get_common_text_glob_patterns.libr.sh".
 
 get_common_text_paths_glob_patterns(){
   export common_patterns=(\

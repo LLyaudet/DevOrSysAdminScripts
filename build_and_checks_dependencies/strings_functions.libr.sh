@@ -25,10 +25,12 @@
 # strings_functions.sh at some point, before committing.
 # Hence, someone must have changed or reversed the name of this file
 # to string_functions.sh at some point.
+# This file was renamed from "string_functions.sh" to
+# "strings_functions.libr.sh".
 
 subdir="build_and_checks_dependencies"
-source "./$subdir/get_common_text_glob_patterns.sh"
-source "./$subdir/comparisons.sh"
+source "./$subdir/get_common_text_glob_patterns.libr.sh"
+source "./$subdir/comparisons.libr.sh"
 
 split_line_at(){
   # $1=$line
@@ -68,7 +70,7 @@ get_split_score_after_before(){
   # $2=delimiters_strings_domain
   LFBFL_generic_result="./build_and_checks_dependencies/"
   LFBFL_generic_result+="call_split_score_after_before_or"
-  LFBFL_generic_result+="_before_after.php 1 $1 '$2' "
+  LFBFL_generic_result+="_before_after.exec.php 1 $1 '$2' "
 }
 
 get_split_score_before_after(){
@@ -76,7 +78,7 @@ get_split_score_before_after(){
   # $2=delimiters_strings_domain
   LFBFL_generic_result="./build_and_checks_dependencies/"
   LFBFL_generic_result+="call_split_score_after_before_or"
-  LFBFL_generic_result+="_before_after.php 0 $1 '$2' "
+  LFBFL_generic_result+="_before_after.exec.php 0 $1 '$2' "
 }
 
 split_line_at_most(){

@@ -21,6 +21,8 @@
 # If not, see <https://www.gnu.org/licenses/>.
 #
 # ©Copyright 2023-2024 Laurent Frédéric Bernard François Lyaudet
+# This file was renamed from "overwrite_if_not_equal.sh"
+# to "overwrite_if_not_equal.libr.sh".
 
 overwrite_if_not_equal(){
   # $1=$target_file_name

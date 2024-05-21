@@ -21,9 +21,11 @@
 # If not, see <https://www.gnu.org/licenses/>.
 #
 # ©Copyright 2023-2024 Laurent Frédéric Bernard François Lyaudet
+# This file was renamed from "too_long_code_lines.sh"
+# to "too_long_code_lines.libr.sh".
 
 subdir="build_and_checks_dependencies"
-source "./$subdir/get_common_text_glob_patterns.sh"
+source "./$subdir/get_common_text_glob_patterns.libr.sh"
 
 too_long_code_lines(){
   get_common_text_files_glob_patterns

@@ -21,9 +21,10 @@
 # If not, see <https://www.gnu.org/licenses/>.
 #
 # ©Copyright 2023-2024 Laurent Frédéric Bernard François Lyaudet
+# This file was renamed from "check_URLs.sh" to "check_URLs.libr.sh".
 
 subdir="build_and_checks_dependencies"
-source "./$subdir/get_common_text_glob_patterns.sh"
+source "./$subdir/get_common_text_glob_patterns.libr.sh"
 
 check_URLs(){
   get_common_text_files_glob_patterns
@@ -37,11 +38,11 @@ check_URLs(){
     [ "$1" != "-v" ] || echo "Iterating on pattern: $LFBFL_pattern"
     find . -type f -name "$LFBFL_pattern" -printf '%P\n'\
       | xargs grep -H 'http:'\
-      | grep -v "^[^:]*check_URLs.sh:"
+      | grep -v "^[^:]*check_URLs.libr.sh:"
     for LFBFL_file_name in $LFBFL_pattern; do
       [ -f "$LFBFL_file_name" ] || continue
       LFBFL_base_file_name=$(basename "$LFBFL_file_name")
-      [ "$LFBFL_base_file_name" != "check_URLs.sh" ] || continue
+      [ "$LFBFL_base_file_name" != "check_URLs.libr.sh" ] || continue
       [ "$1" != "-v" ] || echo "Handling the file: $LFBFL_file_name"
       for LFBFL_substitution in "${!LFBFL_substitutions[@]}"; do
         LFBFL_substitution2=\

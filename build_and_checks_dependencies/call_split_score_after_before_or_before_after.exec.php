@@ -23,16 +23,20 @@ along with DevOrSysAdminScripts.
 If not, see <https://www.gnu.org/licenses/>.
 
 ©Copyright 2023-2024 Laurent Frédéric Bernard François Lyaudet
+This file was renamed from
+"call_split_score_after_before_or_before_after.php" to
+"call_split_score_after_before_or_before_after.exec.php".
 */
 
 require_once(
-  './build_and_checks_dependencies/split_line_at_most.php'
+  './build_and_checks_dependencies/split_line_at_most.libr.php'
 );
 
 /*
 php -r\
  $'require_once(\'./build_and_checks_dependencies/'\
-$'split_line_at_most.php\'); echo(generate_split_score_after_before'\
+$'split_line_at_most.libr.php\');'\
+$' echo(generate_split_score_after_before'\
 $'(70, [\'/\'])(\'/\', 60, true));'
 */
 

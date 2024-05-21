@@ -21,6 +21,7 @@
 # If not, see <https://www.gnu.org/licenses/>.
 #
 # ©Copyright 2023-2024 Laurent Frédéric Bernard François Lyaudet
+# This file was renamed from "create_PDF.sh" to "create_PDF.exec.sh".
 
 verbose=""
 if [[ "$1" == "--verbose" ]]; then
@@ -29,13 +30,13 @@ if [[ "$1" == "--verbose" ]]; then
 fi
 
 subdir="build_and_checks_dependencies"
-source "./$subdir/generate_from_template.sh"
-source "./$subdir/lines_counts.sh"
-source "./$subdir/lines_filters.sh"
-source "./$subdir/lines_maps.sh"
-source "./$subdir/overwrite_if_not_equal.sh"
-source "./$subdir/string_functions.sh"
-subdir2="$subdir/listings"
+source "./${subdir}/generate_from_template.libr.sh"
+source "./${subdir}/lines_counts.libr.sh"
+source "./${subdir}/lines_filters.libr.sh"
+source "./${subdir}/lines_maps.libr.sh"
+source "./${subdir}/overwrite_if_not_equal.libr.sh"
+source "./${subdir}/strings_functions.libr.sh"
+subdir2="${subdir}/listings"
 
 grep_variable repository_data.txt repository_name
 
@@ -113,7 +114,7 @@ tree -a -DFh --gitignore\
   | replace_non_ascii_spaces\
   > current_tree.txt
 
-temp_files_listing="./$subdir2/files_listing.tex.tpl.temp"
+temp_files_listing="./${subdir2}/files_listing.tex.tpl.temp"
 > "$temp_files_listing"
 get_split_score_after_before 70 /
 # split_score_command="$LFBFL_generic_result"
@@ -123,7 +124,7 @@ get_split_score_after_before 70 ':'
 score_command2="$LFBFL_generic_result"
 suffix='%'
 sed_expression='s/\\\n//Mg'
-cat "./$subdir2/files_names_listing.txt"\
+cat "./${subdir2}/files_names_listing.txt"\
   | sed -Ez "$sed_expression" | sed -Ez "$sed_expression"\
   | sed -Ez "$sed_expression" | sed -Ez "$sed_expression"\
   | grep -v '^// '\
@@ -185,10 +186,10 @@ do
   echo "" >> "$temp_files_listing"
   echo "" >> "$temp_files_listing"
 done
-overwrite_if_not_equal "./$subdir2/files_listing.tex.tpl"\
+overwrite_if_not_equal "./${subdir2}/files_listing.tex.tpl"\
   "$temp_files_listing"
 insert_file_at_token "./latex/$repository_name.tex"\
-  @files_listing_VerbatimInput@ "./$subdir2/files_listing.tex.tpl"
+  @files_listing_VerbatimInput@ "./${subdir2}/files_listing.tex.tpl"
 
 # We verify if some lines are beyond 70 characters
 # in current_tree_light.txt et current_tree.txt.

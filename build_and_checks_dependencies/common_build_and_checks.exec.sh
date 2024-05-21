@@ -21,6 +21,14 @@
 # If not, see <https://www.gnu.org/licenses/>.
 #
 # ©Copyright 2023-2024 Laurent Frédéric Bernard François Lyaudet
+# The file "common_build_and_checks.exec.sh.tpl" was renamed from
+# "common_build_and_checks.sh.tpl" to
+# "common_build_and_checks.exec.sh.tpl".
+# The file "common_build_and_checks.exec.sh" generated from the file
+# "common_build_and_checks.sh.tpl"
+# or "common_build_and_checks.exec.sh.tpl"
+# was renamed from
+# "common_build_and_checks.sh" to "common_build_and_checks.exec.sh".
 
 verbose=""
 if [[ "$2" == "--verbose" ]]; then
@@ -28,174 +36,175 @@ if [[ "$2" == "--verbose" ]]; then
   verbose="--verbose"
 fi
 
-source ./wget_sha512.sh
-
-personal_github="https://raw.githubusercontent.com/LLyaudet/"
-dependencies="DevOrSysAdminScripts/main/build_and_checks_dependencies"
-URL_beginning="$personal_github$dependencies"
+source ./wget_sha512.libr.sh
 
 subdir="build_and_checks_dependencies"
 
-script="$URL_beginning/build_md_from_printable_md.sh"
-correct_sha512='89051d59005571ebaedfa1519bd463f3a215fdd1cd19a857cfbd8'
-correct_sha512+='fb81b3431fa9569d641be09eaf8eee8084b567682f9751e59f0f'
-correct_sha512+='5081b6285245227b7ed4a2e'
-wget_sha512 "./$subdir/build_md_from_printable_md.sh" "$script"\
-  "$correct_sha512" "$verbose"
-chmod +x "./$subdir/build_md_from_printable_md.sh"
+personal_github="https://raw.githubusercontent.com/LLyaudet/"
+dependencies="DevOrSysAdminScripts/main/${subdir}"
+URL_beginning="${personal_github}${dependencies}"
 
-script="$URL_beginning/check_shell_scripts_beginnings.sh"
-correct_sha512='d94931d4b20b7987aed4dd02663ad5feba3389c8fdea2fdbfb91d'
-correct_sha512+='0b71eed4ef80c8d4a8eef5c147837183b2c9ed6d577cda3ad67f'
-correct_sha512+='6d6485a015eac56fa0daa3b'
-wget_sha512 "./$subdir/check_shell_scripts_beginnings.sh" "$script"\
-  "$correct_sha512" "$verbose"
+script="${URL_beginning}/build_md_from_printable_md.exec.sh"
+correct_sha512='a00087bab7fc225ec6ec30148ecef437c2f1314611846febeadab'
+correct_sha512+='f0e0c09e8843600ef4d93ebf267e056e239a3cafc46ffbc8c262'
+correct_sha512+='32d57980b277e9d0bf11aae'
+wget_sha512 "./${subdir}/build_md_from_printable_md.exec.sh"\
+  "${script}" "${correct_sha512}" "${verbose}"
+chmod +x "./${subdir}/build_md_from_printable_md.exec.sh"
 
-script="$URL_beginning/check_URLs.sh"
-correct_sha512='d83cac890cc02fabaed5612ff59dd581e4e42e4f9de5710ad80bb'
-correct_sha512+='41db46f9e2ec6f5bddb6006e209e81d45432a908717d10188ebc'
-correct_sha512+='a623b1493e4098dd78cd80b'
-wget_sha512 "./$subdir/check_URLs.sh" "$script" "$correct_sha512"\
-  "$verbose"
+script="${URL_beginning}/check_shell_scripts_beginnings.libr.sh"
+correct_sha512='2fa675a7a226f31f0e16cd092364481c7f84102935f066b31db11'
+correct_sha512+='a52115b7678acda071eb329243a0f705c878013d37e53d3fae29'
+correct_sha512+='7a70eda7d9b45224c98132f'
+wget_sha512 "./${subdir}/check_shell_scripts_beginnings.libr.sh"\
+  "${script}" "${correct_sha512}" "${verbose}"
 
-script="$URL_beginning/comparisons.sh"
-correct_sha512='0ee812694f1cb1666f02351e96642445c18b9b288bebfa88a6ddd'
-correct_sha512+='dbe465d8bc2413f08cce766c4f02ff66c95bdd3d6e448069520f'
-correct_sha512+='17ee0c04c19a5c52c3c7380'
-wget_sha512 "./$subdir/comparisons.sh" "$script" "$correct_sha512"\
-  "$verbose"
+script="${URL_beginning}/check_URLs.libr.sh"
+correct_sha512='b1afcdc1d7a39219c664f9e2d1122cb8d295f752282ad52c7cee3'
+correct_sha512+='bc3436bf12199f76bc679199de08890ebecf9003002a3156772f'
+correct_sha512+='c74bf8e3bbed21f224ac408'
+wget_sha512 "./${subdir}/check_URLs.libr.sh" "${script}"\
+  "${correct_sha512}" "${verbose}"
 
-script="$URL_beginning/create_PDF.sh"
-correct_sha512='c7ebeb850040c2d6da0d1e27718fcf7092fd046e2b8fd15a8f9b3'
-correct_sha512+='f55685459e85b8733837cbf39206cbe4d476859eb2993e1709c8'
-correct_sha512+='8755192cb225b8d4bdab8af'
-wget_sha512 "./$subdir/create_PDF.sh" "$script" "$correct_sha512"\
-  "$verbose"
-chmod +x "./$subdir/create_PDF.sh"
+script="${URL_beginning}/comparisons.libr.sh"
+correct_sha512='b80b4a9d405c86780255cdd34af33d25bd22d8cb9de2250b7f90e'
+correct_sha512+='0a8c96bf566a0bff717ef190dceb2b247aa9832ca6e8be8e6bf1'
+correct_sha512+='5dcbb8d8cd5725911c1fa80'
+wget_sha512 "./${subdir}/comparisons.libr.sh" "${script}"\
+  "${correct_sha512}" "${verbose}"
 
-script="$URL_beginning/generate_from_template.sh"
-correct_sha512='36c92a15b93f199d28476bfa83612e3e9dd5153b9cc8ed2013bf6'
-correct_sha512+='e8e87a041e5f07935357d1e9dce76b3901ecf9d25eee8d99e47c'
-correct_sha512+='19cc6a1384a0fc2feb76b49'
-wget_sha512 "./$subdir/generate_from_template.sh" "$script"\
-  "$correct_sha512" "$verbose"
+script="${URL_beginning}/create_PDF.exec.sh"
+correct_sha512='3c82b2c518a9076ffdb42c6dd2c644913a9d1f261ce01601d5030'
+correct_sha512+='6ccf4ad7e789a8dafce5ff9ff8a87974a548f3f32cab36dded5c'
+correct_sha512+='2292baf86d6280219eed4bd'
+wget_sha512 "./${subdir}/create_PDF.exec.sh" "${script}"\
+  "${correct_sha512}" "${verbose}"
+chmod +x "./${subdir}/create_PDF.exec.sh"
 
-script="$URL_beginning/get_common_text_glob_patterns.sh"
-correct_sha512='cd341e8fd1074d53f6ea88b332fc4375f06af0e4c0b56e1ddb39c'
-correct_sha512+='8ab988ea5f0c21ec4088fe1946ae44f3ea7ba394f558c03a446f'
-correct_sha512+='0971482a4a7a8d6fe041153'
-wget_sha512 "./$subdir/get_common_text_glob_patterns.sh" "$script"\
-  "$correct_sha512" "$verbose"
+script="${URL_beginning}/generate_from_template.libr.sh"
+correct_sha512='c1ed914248fd577ecf87ffe46ce64fdad204640ca96f50e6225cb'
+correct_sha512+='4d6efb5ee60f78c1cf1731d80680a3ce6426d1be70cd716ac0b1'
+correct_sha512+='bb90ef26507069e5b907e0e'
+wget_sha512 "./${subdir}/generate_from_template.libr.sh" "${script}"\
+  "${correct_sha512}" "${verbose}"
 
-script="$URL_beginning/grammar_and_spell_check.sh"
-correct_sha512='69dcb77061f2e560d6268622ae72ef11d412b996520b7321b1f20'
-correct_sha512+='427fb4eda6d2fb5909938da6c0af4099921190298d372466dea3'
-correct_sha512+='b45805f0c271da852578075'
-wget_sha512 "./$subdir/grammar_and_spell_check.sh" "$script"\
-  "$correct_sha512" "$verbose"
+script="${URL_beginning}/get_common_text_glob_patterns.libr.sh"
+correct_sha512='a55d996d9dad302cc094fb6edc7ac8e160bb44920b3b1b3de8d7c'
+correct_sha512+='28ff472598242e77072eec612c188ac83afb34448bf00be0178e'
+correct_sha512+='a67f36f90581e96a9b34710'
+wget_sha512 "./${subdir}/get_common_text_glob_patterns.libr.sh"\
+  "${script}" "${correct_sha512}" "${verbose}"
 
-URL_beginning2="$URL_beginning/licenses_templates"
-subdir2="$subdir/licenses_templates"
-script="$URL_beginning2/build_licenses_templates.sh"
-correct_sha512='e1b5e13be2cb0625e620958744c9aa7aa811e56cd4359f2ab6831'
-correct_sha512+='8e42afc75bfb8b638fb15ed180de336379c4d5fb72b253ab3db8'
-correct_sha512+='4515391606476d0172295bc'
-wget_sha512 "./$subdir2/build_licenses_templates.sh" "$script"\
-  "$correct_sha512" "$verbose"
-chmod +x "./$subdir2/build_licenses_templates.sh"
+script="${URL_beginning}/grammar_and_spell_check.libr.sh"
+correct_sha512='bc66fc04ceef4d0d9f3db359354f852a4f80298b0b2853416d5a8'
+correct_sha512+='6955f8e27cb868d83c6164fa543eeb0cc3c06248079b4ae25a91'
+correct_sha512+='428914b5234e6aa4fec5c31'
+wget_sha512 "./${subdir}/grammar_and_spell_check.libr.sh" "${script}"\
+  "${correct_sha512}" "${verbose}"
 
-script="$URL_beginning2/license_file_header_GPLv3+.tpl"
+URL_beginning2="${URL_beginning}/licenses_templates"
+subdir2="${subdir}/licenses_templates"
+script="${URL_beginning2}/build_licenses_templates.exec.sh"
+correct_sha512='3f1c4a56e4d62ec3a311b6ff3de3ba68082b8c82b538777b6f318'
+correct_sha512+='cb3e7b16c504b8d91c97091de7de20014c7b491a3d77152863a5'
+correct_sha512+='d4fd4f2e782c76b97762510'
+wget_sha512 "./${subdir2}/build_licenses_templates.exec.sh"\
+  "${script}" "${correct_sha512}" "${verbose}"
+chmod +x "./${subdir2}/build_licenses_templates.exec.sh"
+
+script="${URL_beginning2}/license_file_header_GPLv3+.tpl"
 correct_sha512='2bdef9a729a5a9ca5ed87ef8a518877c5ee6b31b4533608660316'
 correct_sha512+='a4e595fb31465a4847f4d53a2f7264118bd4eab7c1d1892e00bc'
 correct_sha512+='1861455ed02898f194db067'
-wget_sha512 "./$subdir2/license_file_header_GPLv3+.tpl" "$script"\
-  "$correct_sha512" "$verbose"
+wget_sha512 "./${subdir2}/license_file_header_GPLv3+.tpl" "${script}"\
+  "${correct_sha512}" "${verbose}"
 
-script="$URL_beginning2/license_file_header_LGPLv3+.tpl"
+script="${URL_beginning2}/license_file_header_LGPLv3+.tpl"
 correct_sha512='265fd0d086b48ab798f35a072335a4976e4eda8c256febba6c77c'
 correct_sha512+='98ca86cdd844c6ac150c3445c80debbb3fc2574b5fceeeaf79ec'
 correct_sha512+='734a759bdef5fe798067c62'
-wget_sha512 "./$subdir2/license_file_header_LGPLv3+.tpl" "$script"\
-  "$correct_sha512" "$verbose"
+wget_sha512 "./${subdir2}/license_file_header_LGPLv3+.tpl"\
+  "${script}" "${correct_sha512}" "${verbose}"
 
-script="$URL_beginning/lines_counts.sh"
-correct_sha512='4aa984d1a3709d3ed6ad5a4accc5e1d9cee2f174730ef232dbcd6'
-correct_sha512+='1d3661191e1904a0072fdb818c96e4aff5e58d5d7b0b024a874f'
-correct_sha512+='17acb35d98bbde10fb6dacd'
-wget_sha512 "./$subdir/lines_counts.sh" "$script" "$correct_sha512"\
-  "$verbose"
+script="${URL_beginning}/lines_counts.libr.sh"
+correct_sha512='8eaf9fc75050715671bd2ed5950cce5e1b7991903a05eb513c098'
+correct_sha512+='9eaaf2a1445bcb72a681c0ea488be975b2215c48a81539401bf3'
+correct_sha512+='8719c3efd52882137b1d2af'
+wget_sha512 "./${subdir}/lines_counts.libr.sh" "${script}"\
+  "${correct_sha512}" "${verbose}"
 
-script="$URL_beginning/lines_filters.sh"
-correct_sha512='a144c6e57df8a6dc4e99aecefcef3e5d1f93ef22a76f0089bb6e1'
-correct_sha512+='be6189193a1ea4ac316173a36b83a2c92f75856e6cec97a2bbcf'
-correct_sha512+='ba23110239e5a1d10455bf6'
-wget_sha512 "./$subdir/lines_filters.sh" "$script" "$correct_sha512"\
-  "$verbose"
+script="${URL_beginning}/lines_filters.libr.sh"
+correct_sha512='b0f327907198de1d674fe204ca7cb18d4054d0666fe017db2984f'
+correct_sha512+='ea094832d9bf2a7d2c98bb86c0fbb4549055e6b47be30ad03a8e'
+correct_sha512+='2885bf79361dc081b8bb5ad'
+wget_sha512 "./${subdir}/lines_filters.libr.sh" "${script}"\
+  "${correct_sha512}" "${verbose}"
 
-script="$URL_beginning/lines_maps.sh"
-correct_sha512='7412f31e20e625b49579621cdc0cf2deb3226d4a93414ed6dfd18'
-correct_sha512+='e7118adf6bc699e8a7c0a59cd4fa1c1e597b14671485ba3ced04'
-correct_sha512+='ce8dbb4aa1b5971e6f906f4'
-wget_sha512 "./$subdir/lines_maps.sh" "$script" "$correct_sha512"\
-  "$verbose"
+script="${URL_beginning}/lines_maps.libr.sh"
+correct_sha512='b75600e6217f08e0a4ae8858feee50cd193909c1c30803b95f6b6'
+correct_sha512+='7943e0950249a5b4bd77ac6990a1a91e96ecd66da5fbe7c6d6ec'
+correct_sha512+='611c1aa5bd4924743b55049'
+wget_sha512 "./${subdir}/lines_maps.libr.sh" "${script}"\
+  "${correct_sha512}" "${verbose}"
 
-URL_beginning3="$URL_beginning/listings"
-subdir3="$subdir/listings"
-script="$URL_beginning3/update_or_check_files_names_listing.sh"
-correct_sha512='992da121f4f6a711813243d914d774d947c074c95a025ba579a3f'
-correct_sha512+='3e717320e2901b1b8c73583c79d8ddbf9f493fab18a0de422a49'
-correct_sha512+='a199d91768bab8920ef797a'
-wget_sha512 "./$subdir3/update_or_check_files_names_listing.sh"\
-  "$script" "$correct_sha512" "$verbose"
-chmod +x "./$subdir3/update_or_check_files_names_listing.sh"
+URL_beginning3="${URL_beginning}/listings"
+subdir3="${subdir}/listings"
+script="${URL_beginning3}/update_or_check_files_names_listing.exec.sh"
+correct_sha512='71465e0ccfe520117cce16ea613471271f752802256c8bf3ba95e'
+correct_sha512+='65ab358804ea3bd1719097bd27b2e1a419db69c7a7bdca4efbd3'
+correct_sha512+='c6260322d5bda2ef8ec86cc'
+wget_sha512\
+  "./${subdir3}/update_or_check_files_names_listing.exec.sh"\
+  "${script}" "${correct_sha512}" "${verbose}"
+chmod +x "./${subdir3}/update_or_check_files_names_listing.exec.sh"
 
-script="$URL_beginning3/files_names_listing.txt"
-correct_sha512='19003318a81ac923b3053abb87dcf1d92b825cc0cf88da4285c4a'
-correct_sha512+='5c7b73878c0fb0a8ca50a3ab0aa744bd872edfa3a91846189e23'
-correct_sha512+='dd3e9a01430f22d8e369012'
-wget_sha512 "./$subdir3/files_names_listing.txt" "$script"\
-  "$correct_sha512" "$verbose"
+script="${URL_beginning3}/files_names_listing.txt"
+correct_sha512='09819dcf924a3a5b568b1cfdeec7610b9b0f7cba44cf6e4c9e188'
+correct_sha512+='d6de24b88f3deb21705cd81f6c1c121f6dd4562fefc41f74a172'
+correct_sha512+='011c3647d4fccf72d7297dd'
+wget_sha512 "./${subdir3}/files_names_listing.txt" "${script}"\
+  "${correct_sha512}" "${verbose}"
 
-script="$URL_beginning/overwrite_if_not_equal.sh"
-correct_sha512='afabf6f384e61920dbc575afb1519173ac2654b6180b9a28c5ffc'
-correct_sha512+='173a05c6e6d4011d7bc8912da15caee923c9033d8355967920e4'
-correct_sha512+='d05e2cd575c3cf065fc8e40'
-wget_sha512 "./$subdir/overwrite_if_not_equal.sh" "$script"\
-  "$correct_sha512" "$verbose"
+script="${URL_beginning}/overwrite_if_not_equal.libr.sh"
+correct_sha512='86ce430b916b13d55a81cb48e59d2aac65974a3bfa194cc0295eb'
+correct_sha512+='a854347727db351c0aab56a292dd753e473cc95292937e380f27'
+correct_sha512+='5ddd27a614d9360a4a3e1ff'
+wget_sha512 "./${subdir}/overwrite_if_not_equal.libr.sh" "${script}"\
+  "${correct_sha512}" "${verbose}"
 
-script="$URL_beginning/python_black_complement.sh"
-correct_sha512='7152e9d01cc3c72371695635cd6866b2e13ce25f4842afb8e4e87'
-correct_sha512+='b6447b26abafbdbc850f69946913b5b2c423b265c9066a2b4655'
-correct_sha512+='6dea19c04a5416588423a74'
-wget_sha512 "./$subdir/python_black_complement.sh" "$script"\
-  "$correct_sha512" "$verbose"
+script="${URL_beginning}/python_black_complement.libr.sh"
+correct_sha512='6346483fe09caa8ecfd46d1c1118d0eefcff5d041ee1164f450a6'
+correct_sha512+='bc035dce8b9dfead8a113e4051e9c7fadfa5188f972af09a3646'
+correct_sha512+='57a8f7d50516ff33e48150c'
+wget_sha512 "./${subdir}/python_black_complement.libr.sh" "${script}"\
+  "${correct_sha512}" "${verbose}"
 
-script="$URL_beginning/python_isort_complement.sh"
-correct_sha512='770e5ed16e4b5f6d61577794033161d361bc2eacea6d08a5c7b9a'
-correct_sha512+='1577666cf655d1c947108adb9151d87f937471d30716a6d50d76'
-correct_sha512+='f84bbcf1f1620fb9ede4575'
-wget_sha512 "./$subdir/python_isort_complement.sh" "$script"\
-  "$correct_sha512" "$verbose"
+script="${URL_beginning}/python_isort_complement.libr.sh"
+correct_sha512='515b282c6d26c8b91a02d193aaa5958a0d5cf271f8e2187682635'
+correct_sha512+='1442d19185406cc3e40375e3352921907378bb146da5d12b477e'
+correct_sha512+='d584cd7b286a5180de48b88'
+wget_sha512 "./${subdir}/python_isort_complement.libr.sh" "${script}"\
+  "${correct_sha512}" "${verbose}"
 
-script="$URL_beginning/too_long_code_lines.sh"
-correct_sha512='a8716971f22a14160701b6e801c4f66220e2e1dd174f24e43775e'
-correct_sha512+='e743aeaa4ee66dadae185e134c3554f8c37d8ee457d051336ed3'
-correct_sha512+='430b734bcf80e8d5704064b'
-wget_sha512 "./$subdir/too_long_code_lines.sh" "$script"\
-  "$correct_sha512" "$verbose"
+script="${URL_beginning}/too_long_code_lines.libr.sh"
+correct_sha512='1d7da042db55a9eaa4b3f37ecdd68411e66f428f7a703bc5e05f4'
+correct_sha512+='8554c6d217fa0e1903439e4e02c1e7d44abf2b6733732191d3e7'
+correct_sha512+='a0b68d8147f1c27f2feaa93'
+wget_sha512 "./${subdir}/too_long_code_lines.libr.sh" "${script}"\
+  "${correct_sha512}" "${verbose}"
 
 shopt -s globstar
-source "./$subdir/check_shell_scripts_beginnings.sh"
-source "./$subdir/check_URLs.sh"
-source "./$subdir/comparisons.sh"
-source "./$subdir/generate_from_template.sh"
-source "./$subdir/get_common_text_glob_patterns.sh"
-source "./$subdir/lines_counts.sh"
-source "./$subdir/lines_filters.sh"
-source "./$subdir/overwrite_if_not_equal.sh"
-source "./$subdir/python_black_complement.sh"
-source "./$subdir/python_isort_complement.sh"
-source "./$subdir/too_long_code_lines.sh"
+source "./${subdir}/check_shell_scripts_beginnings.libr.sh"
+source "./${subdir}/check_URLs.libr.sh"
+source "./${subdir}/comparisons.libr.sh"
+source "./${subdir}/generate_from_template.libr.sh"
+source "./${subdir}/get_common_text_glob_patterns.libr.sh"
+source "./${subdir}/lines_counts.libr.sh"
+source "./${subdir}/lines_filters.libr.sh"
+source "./${subdir}/overwrite_if_not_equal.libr.sh"
+source "./${subdir}/python_black_complement.libr.sh"
+source "./${subdir}/python_isort_complement.libr.sh"
+source "./${subdir}/too_long_code_lines.libr.sh"
 
 cwd="."
 if [[ -n "$1" ]];
@@ -204,13 +213,16 @@ then
 fi
 
 echo "Building license headers"
-./$subdir2/build_licenses_templates.sh "$verbose"
+./${subdir2}/build_licenses_templates.exec.sh "${verbose}"
 
 echo "Building README.md"
-./$subdir/build_md_from_printable_md.sh "$cwd" "README" "$verbose"
+./${subdir}/build_md_from_printable_md.exec.sh "${cwd}" "README" "${verbose}"
 
 pushd .
-cd "$cwd"
+cd "${cwd}"
+
+echo "Running shellcheck"
+shellcheck --check-sourced --enable=all --external-sources **/*.sh
 
 echo "Running isort"
 isort .
@@ -244,6 +256,6 @@ grep --exclude-dir '.git' -nPrv "^[$usual_characters]*$" .\
   | grep --color='auto' -nP "[^$usual_characters]"
 
 echo "Creating the PDF file of the listing of the source code"
-./build_and_checks_dependencies/create_PDF.sh "$verbose"
+./${subdir}/create_PDF.exec.sh "${verbose}"
 
 popd

@@ -28,10 +28,10 @@ I tried to follow some conventions for my bash code:
   add the keyword `readonly` or use `declare -r`.
 - I named bash files with suffixes ".exec.sh" when the script can
   be runned
-  (executable, abreviation stops before a vowel).
+  (executable, abbreviation stops before a vowel).
 - I named bash files with suffixes ".libr.sh" when the script contains
   only functions definitions
-  (library, abreviation stops before a vowel).
+  (library, abbreviation stops before a vowel).
 - When some ".exec.sh" code is encapsulated into functions,
   either these functions can be reused and go in some ".libr.sh" file,
   either they are truly specific to this script and they are kept

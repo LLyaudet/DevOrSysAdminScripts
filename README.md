@@ -26,6 +26,16 @@ I tried to follow some conventions for my bash code:
   "@function_name@_result_".
 - Whenever a variable is no more modified after some point,
   add the keyword `readonly` or use `declare -r`.
+- I named bash files with suffixes ".exec.sh" when the script can
+  be runned
+  (executable, abbreviation stops before a vowel).
+- I named bash files with suffixes ".libr.sh" when the script contains
+  only functions definitions
+  (library, abbreviation stops before a vowel).
+- When some ".exec.sh" code is encapsulated into functions,
+  either these functions can be reused and go in some ".libr.sh" file,
+  either they are truly specific to this script and they are kept
+  in ".exec.sh" file.
 
 [CodeFactor-badge]: https://www.codefactor.io/repository/github/llyaudet/DevOrSysAdminScripts/badge
 

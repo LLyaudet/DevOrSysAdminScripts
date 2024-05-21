@@ -26,6 +26,8 @@ I tried to follow some conventions for my bash code:
   "@function_name@_result_".
 - Whenever a variable is no more modified after some point,
   add the keyword `readonly` or use `declare -r`.
+- Whenever a variable will only contain integer values (or boolean
+  values as 0 or 1), use `declare -i`.
 - I named bash files with suffixes ".exec.sh" when the script can
   be runned
   (executable, abbreviation stops before a vowel).

@@ -22,6 +22,7 @@ along with DevOrSysAdminScripts.
 If not, see <https://www.gnu.org/licenses/>.
 
 ©Copyright 2023-2024 Laurent Frédéric Bernard François Lyaudet
+This file was renamed from "unicode.php" to "unicode.libr.php".
 */
 
 function decimal_code_point_to_UTF8(

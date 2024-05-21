@@ -94,20 +94,36 @@ commit_a_file_renamed_comment(){
         echo "LFBFL_new_file_path: ${LFBFL_new_file_path}"
         echo "LFBFL_new_file_name: ${LFBFL_new_file_name}"
       fi
-      # Extract "extension" with smart guessing for .tpl -------------
+      # Extract "LFBFL_extension" with smart guessing for .tpl -------
       # and set prefix for line with ©Copyright. ---------------------
       local LFBFL_useful_file_name="${LFBFL_new_file_name}"
-      if [[ "${LFBFL_useful_file_name:-4}" == ".tpl" ]]; then
-        LFBFL_useful_file_name="${LFBFL_useful_file_name:0:-4}"
+      local LFBFL_extension="${LFBFL_useful_file_name##*.}"
+      # shellcheck disable=SC2250
+      if [[ $LFBFL_verbose -eq 1 ]]; then
+        echo "LFBFL_useful_file_name: ${LFBFL_useful_file_name}"
+        echo "LFBFL_extension: ${LFBFL_extension}"
       fi
+      declare -i LFBFL_j
+      for ((LFBFL_j=0; LFBFL_j<3; ++LFBFL_j)); do
+        if [[ "${LFBFL_extension}" != "tpl" ]]; then
+          break
+        fi
+        LFBFL_useful_file_name="${LFBFL_useful_file_name:0:-4}"
+        LFBFL_extension="${LFBFL_useful_file_name##*.}"
+        # shellcheck disable=SC2250
+        if [[ $LFBFL_verbose -eq 1 ]]; then
+          echo "LFBFL_useful_file_name: ${LFBFL_useful_file_name}"
+          echo "LFBFL_extension: ${LFBFL_extension}"
+        fi
+      done
       local LFBFL_comment_prefix=""
-      if [[ "${useful_file_name:-3}" == ".sh" ]]; then
+      if [[ "${LFBFL_extension}" == "sh" ]]; then
         LFBFL_comment_prefix="# "
       fi
-      if [[ "${useful_file_name:-4}" == ".sql" ]]; then
+      if [[ "${LFBFL_extension}" == "sql" ]]; then
         LFBFL_comment_prefix="-- "
       fi
-      if [[ "${useful_file_name:-4}" == ".tex" ]]; then
+      if [[ "${LFBFL_extension}" == "tex" ]]; then
         LFBFL_comment_prefix="% "
       fi
       # shellcheck disable=SC2250

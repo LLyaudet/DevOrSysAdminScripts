@@ -21,15 +21,21 @@
 # If not, see <https://www.gnu.org/licenses/>.
 #
 # ©Copyright 2023-2024 Laurent Frédéric Bernard François Lyaudet
+# This file was renamed from "upgrade_build_and_checks.sh"
+# to "upgrade_build_and_checks.exec.sh".
 
-verbose=""
-if [[ "$1" == "--verbose" ]]; then
-  echo "$0 $*"
-  verbose="--verbose"
-fi
+upgrade_build_and_checks(){
+  local LFBFL_verbose=""
+  if [[ "$1" == "--verbose" ]]; then
+    echo "$0 $*"
+    LFBFL_verbose="--verbose"
+  fi
+  readonly LFBFL_verbose
+  (\
+    cd build_and_checks_dependencies/\
+    && ./update_common_build_and_checks.sh "${LFBFL_verbose}"\
+  )
+  ./build_and_checks.sh "." "${LFBFL_verbose}"
+}
 
-(\
-  cd build_and_checks_dependencies/\
-  && ./update_common_build_and_checks.sh "$verbose"\
-)
-./build_and_checks.sh "." "$verbose"
+upgrade_build_and_checks "$@"

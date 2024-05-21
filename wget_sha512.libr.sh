@@ -21,6 +21,8 @@
 # If not, see <https://www.gnu.org/licenses/>.
 #
 # ©Copyright 2023-2024 Laurent Frédéric Bernard François Lyaudet
+# This file was renamed from "wget_sha512.sh"
+# to "wget_sha512.libr.sh".
 
 wget_sha512(){
   # $1 file_name

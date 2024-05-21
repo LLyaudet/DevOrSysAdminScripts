@@ -15,6 +15,18 @@ Currently, the biggest part of this repository is in
 a suite of shell scripts about build and checks that
 I use in some of my other repositories.
 
+I tried to follow some conventions for my bash code:
+
+- I tried to encapsulate most of the code in functions.
+- Unless used as return values, variables in functions are defined
+  as local variables (`local` keyword or `declare`)
+  with prefix "LFBFL_".
+- When used as return values, variables in functions are defined
+  as global variables (`declare -g`) with prefix
+  "@function_name@_result_".
+- Whenever a variable is no more modified after some point,
+  add the keyword `readonly` or use `declare -r`.
+
 [CodeFactor-badge]: https://www.codefactor.io/repository/github/\
 llyaudet/DevOrSysAdminScripts/badge
 

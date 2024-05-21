@@ -27,21 +27,24 @@ wget_sha512(){
   # $2 download_URL
   # $3 correct_sha512
   # $4 optional --verbose
-  verbose=""
+  local LFBFL_verbose=""
   if [[ "$4" == "--verbose" ]]; then
     echo "$0 wget_sha512 $*"
-    verbose="--verbose"
+    LFBFL_verbose="--verbose"
   fi
+  readonly LFBFL_verbose
   if [[ ! -f "$1" ]];
   then
-    wget "$verbose" -O "$1" "$2"
+    wget "${LFBFL_verbose}" -O "$1" "$2"
   fi
-  wget_sha512_var_present_sha512=$(sha512sum "$1" | cut -f1 -d' ')
-  if [[ "$wget_sha512_var_present_sha512" != "$3" ]];
+  # shellcheck disable=SC2312
+  declare -r \
+    LFBFL_present_sha512=$(sha512sum "$1" | cut -f1 -d' ')
+  if [[ "${LFBFL_present_sha512}" != "$3" ]];
   then
     echo "$1 does not have correct sha512"
     echo "wanted $3"
-    echo "found $wget_sha512_var_present_sha512"
+    echo "found ${LFBFL_present_sha512}"
     exit
   fi
 }

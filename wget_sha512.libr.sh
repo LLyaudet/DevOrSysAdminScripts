@@ -25,7 +25,7 @@
 # to "wget_sha512.libr.sh".
 
 wget_sha512(){
-  # $1 file_name
+  # $1 file_path
   # $2 download_URL
   # $3 correct_sha512
   # $4 optional --verbose

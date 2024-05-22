@@ -22,23 +22,22 @@
 #
 # ©Copyright 2023-2024 Laurent Frédéric Bernard François Lyaudet
 
+# shellcheck disable=SC1091
 . ../git_checks.sh
 
-git_hook_error=0
-if ! check_files
-then
-  git_hook_error=1
+declare -ig LFBFL_git_hook_error=0
+if ! check_files; then
+  LFBFL_git_hook_error=1
 fi
-if ! check_no_abusive_trailing_comma
-then
-  git_hook_error=1
+if ! check_no_abusive_trailing_comma; then
+  LFBFL_git_hook_error=1
 fi
-if ! check_black_code_formatting
-then
-  git_hook_error=1
+if ! check_black_code_formatting; then
+  LFBFL_git_hook_error=1
 fi
-if [ $git_hook_error -eq '1' ];
-then
+readonly LFBFL_git_hook_error
+# shellcheck disable=SC2250
+if [[ $LFBFL_git_hook_error -eq 1 ]]; then
   exit 1
 fi
 exit 0

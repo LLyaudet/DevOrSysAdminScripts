@@ -78,6 +78,8 @@ commit_a_file_renamed_comment(){
       local LFBFL_old_file_path=$(
         echo "${LFBFL_diff_line}" | cut -d ' ' -f 3
       )
+      # It starts by "a/".
+      LFBFL_old_file_path=".${LFBFL_old_file_path:1}"
       # shellcheck disable=SC2155
       local LFBFL_old_file_name=$(basename "${LFBFL_old_file_path}")
       # Extract new file name from diff line. ------------------------
@@ -85,6 +87,8 @@ commit_a_file_renamed_comment(){
       local LFBFL_new_file_path=$(
         echo "${LFBFL_diff_line}" | cut -d ' ' -f 4
       )
+      # It starts by "b/".
+      LFBFL_new_file_path=".${LFBFL_new_file_path:1}"
       # shellcheck disable=SC2155
       local LFBFL_new_file_name=$(basename "${LFBFL_new_file_path}")
       # shellcheck disable=SC2250
@@ -147,7 +151,7 @@ commit_a_file_renamed_comment(){
       # Find line with ©Copyright. -----------------------------------
       # shellcheck disable=SC2155
       declare -i LFBFL_copyright_line_number=$(
-        grep -n '©Copyright' "${LFBFL_new_file_name}"\
+        grep -n '©Copyright' "${LFBFL_new_file_path}"\
         | cut -d ':' -f 1
       )
       # shellcheck disable=SC2250
@@ -168,7 +172,7 @@ commit_a_file_renamed_comment(){
       # Get total number of lines. -----------------------------------
       # shellcheck disable=SC2002,SC2155
       declare -i LFBFL_line_count=$(
-        cat "${LFBFL_new_file_name}" | wc -l
+        cat "${LFBFL_new_file_path}" | wc -l
       )
       # shellcheck disable=SC2250
       if [[ $LFBFL_verbose -eq 1 ]]; then
@@ -184,15 +188,15 @@ commit_a_file_renamed_comment(){
         echo "LFBFL_lines_after: ${LFBFL_lines_after}"
       fi
       # Update file. -------------------------------------------------
-      local LFBFL_temp_file_name="${LFBFL_new_file_name}.LFBFL.temp"
+      local LFBFL_temp_file_path="${LFBFL_new_file_path}.LFBFL.temp"
       head --lines="${LFBFL_copyright_line_number}"\
-        "${LFBFL_new_file_name}" > "${LFBFL_temp_file_name}"
-      echo -e "${LFBFL_new_comment}" >> "${LFBFL_temp_file_name}"
+        "${LFBFL_new_file_path}" > "${LFBFL_temp_file_path}"
+      echo -e "${LFBFL_new_comment}" >> "${LFBFL_temp_file_path}"
       tail --lines="${LFBFL_lines_after}"\
-        "${LFBFL_new_file_name}" >> "${LFBFL_temp_file_name}"
-      mv "${LFBFL_temp_file_name}" "${LFBFL_new_file_name}"
+        "${LFBFL_new_file_path}" >> "${LFBFL_temp_file_path}"
+      mv "${LFBFL_temp_file_path}" "${LFBFL_new_file_path}"
       # Add file to stage. -------------------------------------------
-      git add "${LFBFL_new_file_name}"
+      git add "${LFBFL_new_file_path}"
       LFBFL_renaming_happened=1
     fi
   done

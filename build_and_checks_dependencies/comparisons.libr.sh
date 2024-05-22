@@ -30,14 +30,15 @@ equal(){
   # et à mon article sur le principe de première différence
   # appliqué à la largeur modulaire, de clique ou de rang avec
   # l'idée d'un principe de première différence ternaire.
-  equal_var_all_args="'$*'"
-  equal_var_current="$equal_var_all_args"
-  for equal_var_arg in $@; do
-    if [[ "$equal_var_current" == "$equal_var_all_args" ]]; then
-      equal_var_current="$equal_var_arg"
+  declare -r LFBFL_all_args="'$*'"
+  local LFBFL_current="${LFBFL_all_args}"
+  local LFBFL_arg
+  for LFBFL_arg in "$@"; do
+    if [[ "${LFBFL_current}" == "${LFBFL_all_args}" ]]; then
+      LFBFL_current="${LFBFL_arg}"
       continue
     fi
-    if [[ "$equal_var_current" != "$equal_var_arg" ]]; then
+    if [[ "${LFBFL_current}" != "${LFBFL_arg}" ]]; then
       return 0
     fi
   done
@@ -53,6 +54,7 @@ max(){
   if [[ "$#" == 0 ]]; then
     return 1
   fi
+  # shellcheck disable=SC2312
   printf "%s\n" "${@:2}" | eval "$1 -r" | head -1
 }
 
@@ -65,33 +67,36 @@ min(){
   if [[ "$#" == 0 ]]; then
     return 1
   fi
+  # shellcheck disable=SC2312
   printf "%s\n" "${@:2}" | eval "$1" | head -1
 }
 
 is_substring(){
   # $1=$string
   # $2=$substring
-  is_substring_var_1=$(\
+  declare -r LFBFL_var_1=$(\
     echo "$1" | sed -e 's/\\/\\&/g' -e "s/'/\\\\&/g"\
   )
-  is_substring_var_2=$(\
+  declare -r LFBFL_var_2=$(\
     echo "$2" | sed -e 's/\\/\\&/g' -e "s/'/\\\\&/g"\
   )
-  is_substring_var_3="\$a = '$is_substring_var_1';"
-  is_substring_var_3+=" \$b = preg_quote('$is_substring_var_2');"
-  is_substring_var_3+=" \$c = '/'.addcslashes(\$b, '/').'/';"
-  is_substring_var_3+=" die(preg_match(\$c, \$a));"
-  php -r "$is_substring_var_3"
+  local LFBFL_var_3="\$a = '${LFBFL_var_1}';"
+  LFBFL_var_3+=" \$b = preg_quote('${LFBFL_var_2}');"
+  LFBFL_var_3+=" \$c = '/'.addcslashes(\$b, '/').'/';"
+  LFBFL_var_3+=" die(preg_match(\$c, \$a));"
+  readonly LFBFL_var_3
+  php -r "${LFBFL_var_3}"
 }
 
 is_subfile(){
   # $1=$file_name
   # $2=$sub_file_name
-  is_subfile_var_1="\$a = file_get_contents('$1');"
-  is_subfile_var_1+=" \$b = preg_quote(file_get_contents('$2'));"
-  is_subfile_var_1+=" \$c = '/'.addcslashes(\$b, '/').'/';"
-  is_subfile_var_1+=" die(preg_match(\$c, \$a));"
-  php -r "$is_subfile_var_1"
+  local LFBFL_var_1="\$a = file_get_contents('$1');"
+  LFBFL_var_1+=" \$b = preg_quote(file_get_contents('$2'));"
+  LFBFL_var_1+=" \$c = '/'.addcslashes(\$b, '/').'/';"
+  LFBFL_var_1+=" die(preg_match(\$c, \$a));"
+  readonly LFBFL_var_1
+  php -r "${LFBFL_var_1}"
 }
 
 alias min_from_int_sort="min 'sort --numeric-sort'"

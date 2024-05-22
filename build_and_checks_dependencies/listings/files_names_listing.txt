@@ -2,21 +2,19 @@
 // Blasé20240517.sh
 // Blasé20240518_2.txt
 // Blasé20240518_3.txt
-build_and_checks_dependencies/build_and_checks.sh.tpl
-build_and_checks_dependencies/build_md_from_printable_md.sh
-build_and_checks_dependencies/\
-call_split_score_after_before_or_before_after.php
-build_and_checks_dependencies/check_shell_scripts_beginnings.sh
-build_and_checks_dependencies/check_URLs.sh
-build_and_checks_dependencies/common_build_and_checks.sh
-build_and_checks_dependencies/common_build_and_checks.sh.tpl
-build_and_checks_dependencies/comparisons.sh
-build_and_checks_dependencies/create_PDF.sh
-build_and_checks_dependencies/generate_from_template.sh
-build_and_checks_dependencies/get_common_text_glob_patterns.sh
-build_and_checks_dependencies/grammar_and_spell_check.sh
+build_and_checks_dependencies/build_and_checks.exec.sh.tpl
+build_and_checks_dependencies/build_md_from_printable_md.exec.sh
+build_and_checks_dependencies/check_shell_scripts_beginnings.libr.sh
+build_and_checks_dependencies/check_URLs.libr.sh
+build_and_checks_dependencies/common_build_and_checks.exec.sh
+build_and_checks_dependencies/common_build_and_checks.exec.sh.tpl
+build_and_checks_dependencies/comparisons.libr.sh
+build_and_checks_dependencies/create_PDF.exec.sh
+build_and_checks_dependencies/generate_from_template.libr.sh
+build_and_checks_dependencies/get_common_text_glob_patterns.libr.sh
+build_and_checks_dependencies/grammar_and_spell_check.libr.sh
 build_and_checks_dependencies/licenses_templates/\
-build_licenses_templates.sh
+build_licenses_templates.exec.sh
 build_and_checks_dependencies/licenses_templates/\
 license_file_header_GPLv3+.c.tpl
 build_and_checks_dependencies/licenses_templates/\
@@ -45,29 +43,33 @@ build_and_checks_dependencies/licenses_templates/\
 license_file_header_LGPLv3+.tex.tpl
 build_and_checks_dependencies/licenses_templates/\
 license_file_header_LGPLv3+.tpl
-build_and_checks_dependencies/lines_counts.sh
-build_and_checks_dependencies/lines_filters.sh
-build_and_checks_dependencies/lines_maps.sh
+build_and_checks_dependencies/lines_counts.libr.sh
+build_and_checks_dependencies/lines_filters.libr.sh
+build_and_checks_dependencies/lines_maps.libr.sh
 build_and_checks_dependencies/listings/files_listing.tex.tpl
 build_and_checks_dependencies/listings/files_names_listing.txt
 build_and_checks_dependencies/listings/\
-update_or_check_files_names_listing.sh
-build_and_checks_dependencies/overwrite_if_not_equal.sh
-build_and_checks_dependencies/python_black_complement.sh
-build_and_checks_dependencies/python_isort_complement.sh
-build_and_checks_dependencies/split_line_at_most.php
-build_and_checks_dependencies/string_functions.sh
-build_and_checks_dependencies/too_long_code_lines.sh
-build_and_checks_dependencies/update_common_build_and_checks.sh
-build_and_checks.sh
+update_or_check_files_names_listing.exec.sh
+build_and_checks_dependencies/overwrite_if_not_equal.libr.sh
+build_and_checks_dependencies/python_black_complement.libr.sh
+build_and_checks_dependencies/python_isort_complement.libr.sh
+build_and_checks_dependencies/split_line_at_most.exec.php
+build_and_checks_dependencies/split_line_at_most.libr.php
+// build_and_checks_dependencies/string_functions.sh
+build_and_checks_dependencies/strings_functions.libr.sh
+build_and_checks_dependencies/too_long_code_lines.libr.sh
+build_and_checks_dependencies/update_common_build_and_checks.exec.sh
+build_and_checks.exec.sh
 // EncoreBlasé20240517-20240518.txt
-git_checks.sh
+git_checks.libr.sh
 latex/DevOrSysAdminScripts.tex.tpl
 LiensUtiles.txt
+post-commit
+post_commit_renaming_comment.libr.sh
 pre-commit
-README.md
+// README.md
 README.md.tpl
 repository_data.txt
-unicode.php
-upgrade_build_and_checks.sh
-wget_sha512.sh
+unicode.libr.php
+upgrade_build_and_checks.exec.sh
+wget_sha512.libr.sh

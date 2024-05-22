@@ -44,6 +44,7 @@ common_build_and_checks(){
   fi
   readonly LFBFL_verbose
 
+  # shellcheck disable=SC1091
   source ./wget_sha512.libr.sh
 
   declare -r LFBFL_subdir="build_and_checks_dependencies"
@@ -78,9 +79,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='614e94c3f7297e6cda3d7ba7876684ff7acb1862f27dd'
-  LFBFL_correct_sha512+='1183275cc7e40de3d1ee87f4abf9a795243355e3450d'
-  LFBFL_correct_sha512+='13824a2831402d10b74a0c5a60be4df42f3ff5c'
+  LFBFL_correct_sha512='078f3c1ce89c2755f2bb5652c5b7dcb5306ab97e9e5a4'
+  LFBFL_correct_sha512+='01a930a70bdcd4605cc1c02d4a9eadb89a15bb02d9bc'
+  LFBFL_correct_sha512+='9062545d3bcfb57a2582d0cf81923825af2946a'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
@@ -119,9 +120,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='e194ad25846845679aad127a1eb301df840c6726b28ac'
-  LFBFL_correct_sha512+='1bfe991aed5d64767b3f3795119842c943bf3c8a1e6f'
-  LFBFL_correct_sha512+='991568df1bcfc5d3f5542c68267c0a639750f42'
+  LFBFL_correct_sha512='f1d80cf2700f8d1c35e3c3e9eb72a26cd0f01ecf59976'
+  LFBFL_correct_sha512+='20ab67af2f5da43dc8119b90216ec1f31d7bb3a026eb'
+  LFBFL_correct_sha512+='511a0afe78ab39494947306753b23dc7798c9f1'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
@@ -129,9 +130,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='2d24fbc3a0addfe2620024ba939abd5c5afbbf1cf9a71'
-  LFBFL_correct_sha512+='8d607fa72e770fc241d4b125ddaf4a56303ad0504504'
-  LFBFL_correct_sha512+='591816045eb508ad40afef6d792d13e7b37d005'
+  LFBFL_correct_sha512='aed4fd1bdc8965b4c8ced2f4866609d78aab79b3c3ba7'
+  LFBFL_correct_sha512+='825f6ac7914239d2015015938be547194261efdec2c5'
+  LFBFL_correct_sha512+='b4c0c1723134ffd0f982e7f0542b9b9bb80fb6c'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
@@ -174,9 +175,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='8c270d2773320e1ec408f9fc855bed809bccd78b26ef0'
-  LFBFL_correct_sha512+='8160c1c3027670ceac436197b3460b855d9f10b0267b'
-  LFBFL_correct_sha512+='1d464ae42ad7d93398b962e48b3e869585c6381'
+  LFBFL_correct_sha512='43a9dd40dc4a45e5e0d3f216c1cb0158496ce9ba22deb'
+  LFBFL_correct_sha512+='db1ad981901f49d3aaae6285977d66b0ca1e8f9fd19e'
+  LFBFL_correct_sha512+='bbebe21ee0ace15ac0bd5ecc578086cf443cc63'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
@@ -194,9 +195,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='b75600e6217f08e0a4ae8858feee50cd193909c1c3080'
-  LFBFL_correct_sha512+='3b95f6b67943e0950249a5b4bd77ac6990a1a91e96ec'
-  LFBFL_correct_sha512+='d66da5fbe7c6d6ec611c1aa5bd4924743b55049'
+  LFBFL_correct_sha512='4e2eeb68b868cb0291034776145760e16e50e0ce616b7'
+  LFBFL_correct_sha512+='00c396a55d1b0ff83dca13c3c4fa444ad9f609d41486'
+  LFBFL_correct_sha512+='be96ebf497132e2e713e6d9103118b7887a3f34'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
@@ -279,9 +280,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='2276b7d65bb8f5ad70389a3ca5ba7088b91b97e4c05b2'
-  LFBFL_correct_sha512+='b63b35441b84161be664effcfe10454653a52cb4d7fc'
-  LFBFL_correct_sha512+='0c9ae7c7165b82ee12f02cee1642e12292d9ed5'
+  LFBFL_correct_sha512='8926f02f63bdb03f54783bef918260d899e542d30fc0b'
+  LFBFL_correct_sha512+='b6878efb83d66c09449d02855814c37cb2a2aa51248d'
+  LFBFL_correct_sha512+='cb48793eca457691373d98b1f9a88b813000716'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
@@ -324,10 +325,25 @@ common_build_and_checks(){
     "${LFBFL_working_directory}" "README" "${LFBFL_verbose}"
 
   pushd .
+  # shellcheck disable=SC2164
   cd "${LFBFL_working_directory}"
 
   echo "Running shellcheck"
-  shellcheck --check-sourced --enable=all --external-sources **/*.sh
+  declare -i LFBFL_file_path_length
+  declare -i LFBFL_to_skip_number
+  local LFBFL_file_path_end
+  # shellcheck disable=SC2312
+  find . -name "*.sh" | relevant_find | while read -r LFBFL_file_path;
+  do
+    LFBFL_file_path_length=${#LFBFL_file_path}
+    LFBFL_to_skip_number=$((LFBFL_file_path_length - 9))
+    LFBFL_file_path_end="${LFBFL_file_path:${LFBFL_to_skip_number}}"
+    if [[ "${LFBFL_file_path_end}" == "GPLv3+.sh" ]]; then
+      continue
+    fi
+    shellcheck --check-sourced --enable=all --external-sources\
+      "${LFBFL_file_path}"
+  done
 
   echo "Running isort"
   isort .
@@ -337,32 +353,41 @@ common_build_and_checks(){
   black .
   python_black_complement
 
+  local LFBFL_directory_path
+  # shellcheck disable=SC2312
   find . -name "pyproject.toml" | relevant_find\
-    | while read -r LFBFL_file_name;
+    | while read -r LFBFL_file_path;
   do
-    if grep -q "Typing :: Typed" "${LFBFL_file_name}"; then
+    if grep -q "Typing :: Typed" "${LFBFL_file_path}"; then
       echo "Running mypy"
-      mypy $(dirname "${LFBFL_file_name}")
+      LFBFL_directory_path=$(dirname "${LFBFL_file_path}")
+      mypy "${LFBFL_directory_path}"
     fi
   done
 
   echo "Analyzing too long lines"
+  # shellcheck disable=SC2312
   too_long_code_lines | relevant_grep | not_license_grep
 
   echo "Analyzing shell scripts beginnings"
+  # shellcheck disable=SC2312
   check_shell_scripts_beginnings | relevant_grep
 
   echo "Analyzing URLs"
+  # shellcheck disable=SC2312
   check_URLs | relevant_grep
 
   echo "Analyzing strange characters: hover over in doubt"
+  # shellcheck disable=SC1111
   LFBFL_usual_characters="\x00-\x7Fàâéèêëîïôç©“”└─├│«»"
+  # shellcheck disable=SC2312
   grep --exclude-dir '.git' -nPrv "^[${LFBFL_usual_characters}]*$" .\
     | grep --color='auto' -nP "[^${LFBFL_usual_characters}]"
 
   echo "Creating the PDF file of the listing of the source code"
   "./${LFBFL_subdir}/create_PDF.exec.sh" "${LFBFL_verbose}"
 
+  # shellcheck disable=SC2164
   popd
 }
 

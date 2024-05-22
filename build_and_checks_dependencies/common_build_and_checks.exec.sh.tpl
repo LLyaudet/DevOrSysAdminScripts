@@ -44,6 +44,7 @@ common_build_and_checks(){
   fi
   readonly LFBFL_verbose
 
+  # shellcheck disable=SC1091
   source ./wget_sha512.libr.sh
 
   declare -r LFBFL_subdir="build_and_checks_dependencies"
@@ -258,10 +259,25 @@ common_build_and_checks(){
     "${LFBFL_working_directory}" "README" "${LFBFL_verbose}"
 
   pushd .
+  # shellcheck disable=SC2164
   cd "${LFBFL_working_directory}"
 
   echo "Running shellcheck"
-  shellcheck --check-sourced --enable=all --external-sources **/*.sh
+  declare -i LFBFL_file_path_length
+  declare -i LFBFL_to_skip_number
+  local LFBFL_file_path_end
+  # shellcheck disable=SC2312
+  find . -name "*.sh" | relevant_find | while read -r LFBFL_file_path;
+  do
+    LFBFL_file_path_length=${#LFBFL_file_path}
+    LFBFL_to_skip_number=$((LFBFL_file_path_length - 9))
+    LFBFL_file_path_end="${LFBFL_file_path:${LFBFL_to_skip_number}}"
+    if [[ "${LFBFL_file_path_end}" == "GPLv3+.sh" ]]; then
+      continue
+    fi
+    shellcheck --check-sourced --enable=all --external-sources\
+      "${LFBFL_file_path}"
+  done
 
   echo "Running isort"
   isort .
@@ -271,32 +287,41 @@ common_build_and_checks(){
   black .
   python_black_complement
 
+  local LFBFL_directory_path
+  # shellcheck disable=SC2312
   find . -name "pyproject.toml" | relevant_find\
-    | while read -r LFBFL_file_name;
+    | while read -r LFBFL_file_path;
   do
-    if grep -q "Typing :: Typed" "${LFBFL_file_name}"; then
+    if grep -q "Typing :: Typed" "${LFBFL_file_path}"; then
       echo "Running mypy"
-      mypy $(dirname "${LFBFL_file_name}")
+      LFBFL_directory_path=$(dirname "${LFBFL_file_path}")
+      mypy "${LFBFL_directory_path}"
     fi
   done
 
   echo "Analyzing too long lines"
+  # shellcheck disable=SC2312
   too_long_code_lines | relevant_grep | not_license_grep
 
   echo "Analyzing shell scripts beginnings"
+  # shellcheck disable=SC2312
   check_shell_scripts_beginnings | relevant_grep
 
   echo "Analyzing URLs"
+  # shellcheck disable=SC2312
   check_URLs | relevant_grep
 
   echo "Analyzing strange characters: hover over in doubt"
+  # shellcheck disable=SC1111
   LFBFL_usual_characters="\x00-\x7Fàâéèêëîïôç©“”└─├│«»"
+  # shellcheck disable=SC2312
   grep --exclude-dir '.git' -nPrv "^[${LFBFL_usual_characters}]*$" .\
     | grep --color='auto' -nP "[^${LFBFL_usual_characters}]"
 
   echo "Creating the PDF file of the listing of the source code"
   "./${LFBFL_subdir}/create_PDF.exec.sh" "${LFBFL_verbose}"
 
+  # shellcheck disable=SC2164
   popd
 }
 

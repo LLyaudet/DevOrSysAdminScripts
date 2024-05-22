@@ -33,7 +33,7 @@ function generate_split_score_after_before(
   return function(
     $delimiter_string,
     $cut_position,
-    $is_cut_after
+    $is_cut_after,
   ) use ($max_length, $delimiter_strings_domain){
     if(!in_array($delimiter_string, $delimiter_strings_domain, true)){
       // I do not handle regexps for the moment.
@@ -58,7 +58,7 @@ function generate_split_score_before_after(
   return function(
     $delimiter_string,
     $cut_position,
-    $is_cut_after
+    $is_cut_after,
   ) use ($max_length, $delimiter_strings_domain){
     if(!in_array($delimiter_string, $delimiter_strings_domain, true)){
       // I do not handle regexps for the moment.

@@ -31,13 +31,17 @@ if [[ "$1" == "--verbose" ]]; then
 fi
 
 subdir="build_and_checks_dependencies"
-source "./$subdir/comparisons.libr.sh"
-source "./$subdir/generate_from_template.libr.sh"
-source "./$subdir/lines_filters.libr.sh"
-source "./$subdir/overwrite_if_not_equal.libr.sh"
+# shellcheck disable=SC1090
+source "./${subdir}/comparisons.libr.sh"
+# shellcheck disable=SC1090
+source "./${subdir}/generate_from_template.libr.sh"
+# shellcheck disable=SC1090
+source "./${subdir}/lines_filters.libr.sh"
+# shellcheck disable=SC1090
+source "./${subdir}/overwrite_if_not_equal.libr.sh"
 
-license_subdir="./$subdir/licenses_templates/"
-license_prefix="$license_subdir""license_file_header_"
+license_subdir="./${subdir}/licenses_templates/"
+license_prefix="${license_subdir}license_file_header_"
 licenses=(\
   "GPLv3+"\
   "LGPLv3+"

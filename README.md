@@ -39,6 +39,10 @@ I tried to follow some conventions for my bash code:
   either they are truly specific to this script and they are kept
   in ".exec.sh" file.
 
+But the files "pre-commit" and "post-commit" were not renamed,
+since it is not possible to give them other names to use them as
+pre-commit/post-commit hooks in `git`.
+
 [CodeFactor-badge]: https://www.codefactor.io/repository/github/llyaudet/DevOrSysAdminScripts/badge
 
 [CodeFactor-package-page]: https://www.codefactor.io/repository/github/llyaudet/DevOrSysAdminScripts

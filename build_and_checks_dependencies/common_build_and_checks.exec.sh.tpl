@@ -220,19 +220,33 @@ common_build_and_checks(){
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
   shopt -s globstar
+  # shellcheck disable=SC1090
   source "./${LFBFL_subdir}/check_shell_scripts_beginnings.libr.sh"
+  # shellcheck disable=SC1090
   source "./${LFBFL_subdir}/check_URLs.libr.sh"
+  # shellcheck disable=SC1090
   source "./${LFBFL_subdir}/comparisons.libr.sh"
+  # shellcheck disable=SC1090
   source "./${LFBFL_subdir}/generate_from_template.libr.sh"
+  # shellcheck disable=SC1090
   source "./${LFBFL_subdir}/get_common_text_glob_patterns.libr.sh"
+  # shellcheck disable=SC1090
   source "./${LFBFL_subdir}/grammar_and_spell_check.libr.sh"
+  # shellcheck disable=SC1090
   source "./${LFBFL_subdir}/lines_counts.libr.sh"
+  # shellcheck disable=SC1090
   source "./${LFBFL_subdir}/lines_filters.libr.sh"
+  # shellcheck disable=SC1090
   source "./${LFBFL_subdir}/lines_maps.libr.sh"
+  # shellcheck disable=SC1090
   source "./${LFBFL_subdir}/overwrite_if_not_equal.libr.sh"
+  # shellcheck disable=SC1090
   source "./${LFBFL_subdir}/python_black_complement.libr.sh"
+  # shellcheck disable=SC1090
   source "./${LFBFL_subdir}/python_isort_complement.libr.sh"
+  # shellcheck disable=SC1090
   source "./${LFBFL_subdir}/strings_functions.libr.sh"
+  # shellcheck disable=SC1090
   source "./${LFBFL_subdir}/too_long_code_lines.libr.sh"
 
   echo "Building license headers"

@@ -25,13 +25,18 @@
 # to "too_long_code_lines.libr.sh".
 
 subdir="build_and_checks_dependencies"
-source "./$subdir/get_common_text_glob_patterns.libr.sh"
+# shellcheck disable=SC1090
+source "./${subdir}/get_common_text_glob_patterns.libr.sh"
 
 too_long_code_lines(){
-  get_common_text_files_glob_patterns
-  for LFBFL_pattern in "${common_file_patterns[@]}"; do
-    [ "$1" != "-v" ] || echo "Iterating on pattern: $LFBFL_pattern"
-    find . -type f -name "$LFBFL_pattern" -printf '%P\n'\
+  get_COMMON_TEXT_FILES_GLOB_PATTERNS
+  local LFBFL_pattern
+  # shellcheck disable=SC2154
+  for LFBFL_pattern in "${COMMON_TEXT_FILES_GLOB_PATTERNS[@]}"; do
+    [[ "$1" != "-v" ]]\
+      || echo "Iterating on pattern: ${LFBFL_pattern}"
+    # shellcheck disable=SC2312
+    find . -type f -name "${LFBFL_pattern}" -printf '%P\n'\
       | xargs grep -H '.\{71\}'
   done
 }

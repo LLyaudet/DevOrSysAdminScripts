@@ -30,11 +30,17 @@ if [[ "$1" == "--verbose" ]]; then
 fi
 
 subdir="build_and_checks_dependencies"
+# shellcheck disable=SC1090
 source "./${subdir}/generate_from_template.libr.sh"
+# shellcheck disable=SC1090
 source "./${subdir}/lines_counts.libr.sh"
+# shellcheck disable=SC1090
 source "./${subdir}/lines_filters.libr.sh"
+# shellcheck disable=SC1090
 source "./${subdir}/lines_maps.libr.sh"
+# shellcheck disable=SC1090
 source "./${subdir}/overwrite_if_not_equal.libr.sh"
+# shellcheck disable=SC1090
 source "./${subdir}/strings_functions.libr.sh"
 subdir2="${subdir}/listings"
 

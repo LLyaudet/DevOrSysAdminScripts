@@ -29,7 +29,9 @@
 # "strings_functions.libr.sh".
 
 subdir="build_and_checks_dependencies"
+# shellcheck disable=SC1090
 source "./$subdir/get_common_text_glob_patterns.libr.sh"
+# shellcheck disable=SC1090
 source "./$subdir/comparisons.libr.sh"
 
 split_line_at(){

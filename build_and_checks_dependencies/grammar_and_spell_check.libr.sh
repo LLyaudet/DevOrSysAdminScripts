@@ -25,23 +25,27 @@
 # to "grammar_and_spell_check.libr.sh".
 
 subdir="build_and_checks_dependencies"
-source "./$subdir/get_common_text_glob_patterns.libr.sh"
-source "./$subdir/lines_filters.libr.sh"
+# shellcheck disable=SC1090
+source "./${subdir}/get_common_text_glob_patterns.libr.sh"
+# shellcheck disable=SC1090
+source "./${subdir}/lines_filters.libr.sh"
 
 grammar_and_spell_check(){
-  get_common_text_files_glob_patterns
+  get_COMMON_TEXT_FILES_GLOB_PATTERNS
   grep_variable "$1" grammar_or_spell_checker_command
   LFBFL_command=$(\
     echo "$grammar_or_spell_checker_command"\
     | sed -Ez -e "s/\n//Mg"\
   )
-  for LFBFL_pattern in "${common_file_patterns[@]}"; do
-    [ "$2" != "-v" ] || echo "Iterating on pattern: $LFBFL_pattern"
-    find . -type f -name "$LFBFL_pattern" -printf '%P\n'\
-       | while read -r file_name;
+  local LFBFL_file_path
+  for LFBFL_pattern in "${COMMON_TEXT_FILES_GLOB_PATTERNS[@]}"; do
+    [[ "$2" != "-v" ]]\
+      || echo "Iterating on pattern: ${LFBFL_pattern}"
+    find . -type f -name "${LFBFL_pattern}" -printf '%P\n'\
+       | while read -r LFBFL_file_path;
     do
-      LFBFL_eval_string="$LFBFL_command $file_name"
-      eval "$LFBFL_eval_string"
+      LFBFL_eval_string="${LFBFL_command} ${LFBFL_file_path}"
+      eval "${LFBFL_eval_string}"
     done
   done
 }

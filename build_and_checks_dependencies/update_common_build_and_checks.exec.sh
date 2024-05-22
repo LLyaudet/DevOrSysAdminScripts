@@ -30,6 +30,7 @@ update_common_build_and_checks(){
     echo "$0 $*"
     LFBFL_verbose="--verbose"
   fi
+  # shellcheck disable=SC2034
   readonly LFBFL_verbose
 
   declare -r LFBFL_common_file_name="common_build_and_checks.exec.sh"
@@ -65,6 +66,7 @@ update_common_build_and_checks(){
   local LFBFL_file_sha512_all
   local LFBFL_base_file_name
   for LFBFL_file_name in "${LFBFL_file_names[@]}"; do
+    # shellcheck disable=SC2312
     LFBFL_file_sha512=$(
       sha512sum "./${LFBFL_file_name}" | cut -f1 -d' '
     )
@@ -84,6 +86,7 @@ update_common_build_and_checks(){
   declare -r LFBFL_main_file_name="build_and_checks.exec.sh"
   cp "./${LFBFL_main_file_name}.tpl" "../${LFBFL_main_file_name}"
 
+  # shellcheck disable=SC2312
   LFBFL_file_sha512=$(
     sha512sum "./${LFBFL_common_file_name}" | cut -f1 -d' '
   )

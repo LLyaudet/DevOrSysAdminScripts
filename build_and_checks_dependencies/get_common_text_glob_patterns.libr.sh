@@ -24,8 +24,8 @@
 # This file was renamed from "get_common_text_glob_patterns.sh"
 # to "get_common_text_glob_patterns.libr.sh".
 
-get_common_text_paths_glob_patterns(){
-  export common_patterns=(\
+get_COMMON_TEXT_PATHS_GLOB_PATTERNS(){
+  declare -gr COMMON_TEXT_PATHS_GLOB_PATTERNS=(\
     '**/*.c'\
     '**/*.css'\
     '**/*.h'\
@@ -53,8 +53,8 @@ get_common_text_paths_glob_patterns(){
 }
 
 
-get_common_text_files_glob_patterns(){
-  export common_file_patterns=(\
+get_COMMON_TEXT_FILES_GLOB_PATTERNS(){
+  declare -gr COMMON_TEXT_FILES_GLOB_PATTERNS=(\
     '*.c'\
     '*.css'\
     '*.h'\

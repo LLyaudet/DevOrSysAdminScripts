@@ -25,7 +25,8 @@
 # "generate_from_template.libr.sh".
 
 subdir="build_and_checks_dependencies"
-source "./$subdir/lines_filters.libr.sh"
+# shellcheck disable=SC1090
+source "./${subdir}/lines_filters.libr.sh"
 
 generate_from_template_with_block_comments(){
   # $1=base_file_name

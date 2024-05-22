@@ -28,33 +28,46 @@
 # was renamed from
 # "build_and_checks.sh" to "build_and_checks.exec.sh".
 
-verbose=""
-if [[ "$2" == "--verbose" ]]; then
-  echo "$0 $*"
-  verbose="--verbose"
-fi
+build_and_checks(){
+  local LFBFL_working_directory="."
+  if [[ -n "$1" ]]; then
+    LFBFL_working_directory="$1"
+  fi
+  readonly LFBFL_working_directory
 
-source ./wget_sha512.libr.sh
+  local LFBFL_verbose=""
+  if [[ "$2" == "--verbose" ]]; then
+    echo "$0 $*"
+    LFBFL_verbose="--verbose"
+  fi
+  readonly LFBFL_verbose
 
-mkdir -p build_and_checks_dependencies/licenses_templates
-mkdir -p build_and_checks_dependencies/listings
-subdir="build_and_checks_dependencies"
+  # shellcheck disable=SC1091
+  source ./wget_sha512.libr.sh
 
-personal_github="https://raw.githubusercontent.com/LLyaudet/"
-dependencies="DevOrSysAdminScripts/main/${subdir}"
-URL_beginning="${personal_github}${dependencies}"
+  declare -r LFBFL_subdir="build_and_checks_dependencies"
+  mkdir -p "${LFBFL_subdir}/licenses_templates"
+  mkdir -p "${LFBFL_subdir}/listings"
 
-common_file_name="common_build_and_checks.exec.sh"
-script="${URL_beginning}/${common_file_name}"
-@sha512_common_build_and_checks.exec.sh@
-wget_sha512 "./$subdir/${common_file_name}" "$script"\
-  "$correct_sha512" "$verbose"
-chmod +x "./$subdir/${common_file_name}"
+  # LFBFL_dependencies_raw_content_download_URL
+  local LFBFL_dependencies_URL
+  LFBFL_dependencies_URL="https://raw.githubusercontent.com/LLyaudet/"
+  LFBFL_dependencies_URL+="DevOrSysAdminScripts/main/${LFBFL_subdir}"
+  readonly LFBFL_dependencies_URL
 
-cwd="."
-if [[ -n "$1" ]];
-then
-  cwd="$1"
-fi
+  declare -r LFBFL_common_file_name="common_build_and_checks.exec.sh"
+  # LFBFL_script_download_URL
+  declare -r\
+    LFBFL_script="${LFBFL_dependencies_URL}/${LFBFL_common_file_name}"
+  declare -r\
+    LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_common_file_name}"
+  @sha512_common_build_and_checks.exec.sh@
+  wget_sha512 "${LFBFL_file_path}" "${LFBFL_script}"\
+    "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
+  chmod +x "./${LFBFL_file_path}"
 
-./build_and_checks_dependencies/${common_file_name} "$cwd" "$verbose"
+  "${LFBFL_file_path}" "${LFBFL_working_directory}"\
+    "${LFBFL_dependencies_URL}" "${LFBFL_verbose}"
+}
+
+build_and_checks "$@"

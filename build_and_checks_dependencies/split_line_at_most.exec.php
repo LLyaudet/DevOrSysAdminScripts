@@ -24,6 +24,9 @@ If not, see <https://www.gnu.org/licenses/>.
 
 ©Copyright 2023-2024 Laurent Frédéric Bernard François Lyaudet
 This file was renamed from
+"call_split_score_after_before_or_before_after.exec.php" to
+"split_line_at_most.exec.php".
+This file was renamed from
 "call_split_score_after_before_or_before_after.php" to
 "call_split_score_after_before_or_before_after.exec.php".
 */

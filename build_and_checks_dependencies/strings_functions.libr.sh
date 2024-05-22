@@ -69,16 +69,14 @@ get_split_score_after_before(){
   # $1=$max_length
   # $2=delimiters_strings_domain
   LFBFL_generic_result="./build_and_checks_dependencies/"
-  LFBFL_generic_result+="call_split_score_after_before_or"
-  LFBFL_generic_result+="_before_after.exec.php 1 $1 '$2' "
+  LFBFL_generic_result+="split_line_at_most.exec.php 1 $1 '$2' "
 }
 
 get_split_score_before_after(){
   # $1=$max_length
   # $2=delimiters_strings_domain
   LFBFL_generic_result="./build_and_checks_dependencies/"
-  LFBFL_generic_result+="call_split_score_after_before_or"
-  LFBFL_generic_result+="_before_after.exec.php 0 $1 '$2' "
+  LFBFL_generic_result+="split_line_at_most.exec.php 0 $1 '$2' "
 }
 
 split_line_at_most(){

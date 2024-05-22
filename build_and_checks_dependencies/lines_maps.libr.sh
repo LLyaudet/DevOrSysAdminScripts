@@ -35,6 +35,7 @@
 #   '2068', '2069', '206A', '206B', '206C', '206D', '206E', '206F',
 # ]
 replace_non_ascii_spaces(){
+  # shellcheck disable=SC2312
   sed -e 's/\xc2\xa0/ /g'\
   | sed -e 's/\xe2\x80\x80/ /g'\
   | sed -e 's/\xe2\x80\x81/ /g'\

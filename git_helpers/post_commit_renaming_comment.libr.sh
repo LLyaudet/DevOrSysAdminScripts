@@ -21,6 +21,14 @@
 # If not, see <https://www.gnu.org/licenses/>.
 #
 # ©Copyright 2023-2024 Laurent Frédéric Bernard François Lyaudet
+# 2024-05-31T01:57+02:00: This file was renamed from
+# "post_commit_renaming_comment.libr.sh"
+# to
+# "post_commit_renaming_comment.libr.sh".
+# 2024-05-31T01:57+02:00: This file was moved from
+# "."
+# to
+# "./git_helpers".
 
 # Never forget that the worse security is the illusion of security
 # (Kevin Mitnick). So, do not expect to have an accurate trackability

@@ -21,6 +21,22 @@
 # If not, see <https://www.gnu.org/licenses/>.
 #
 # ©Copyright 2023-2024 Laurent Frédéric Bernard François Lyaudet
+# 2024-05-31T01:57+02:00: This file was renamed from
+# "git_checks.libr.sh"
+# to
+# "git_checks.libr.sh".
+# 2024-05-31T01:57+02:00: This file was moved from
+# "."
+# to
+# "./git_helpers".
+# 2024-05-31T01:49+02:00: This file was renamed from
+# "git_checks.libr.sh"
+# to
+# "git_checks.libr.sh".
+# 2024-05-31T01:49+02:00: This file was moved from
+# "."
+# to
+# "./git_helpers".
 # This file was renamed from "git_checks.sh" to "git_checks.libr.sh".
 
 check_files(){

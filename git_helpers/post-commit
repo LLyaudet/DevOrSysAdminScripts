@@ -21,25 +21,19 @@
 # If not, see <https://www.gnu.org/licenses/>.
 #
 # ©Copyright 2023-2024 Laurent Frédéric Bernard François Lyaudet
-2024-05-31T01:57+02:00: This file was renamed from
-"post-commit"
-to
-"post-commit".
-2024-05-31T01:57+02:00: This file was moved from
-"."
-to
-"./git_helpers".
-2024-05-31T01:49+02:00: This file was renamed from
-"post-commit"
-to
-"post-commit".
-2024-05-31T01:49+02:00: This file was moved from
-"."
-to
-"./git_helpers".
+# 2024-05-31T01:49+02:00: This file was renamed from
+# "post-commit"
+# to
+# "post-commit".
+# 2024-05-31T01:49+02:00: This file was moved from
+# "."
+# to
+# "./git_helpers".
 
-# shellcheck disable=SC1091
-. ../DevOrSysAdminScripts/post_commit_renaming_comment.libr.sh
+LFBFL_library="../DevOrSysAdminScripts/git_helpers/"
+LFBFL_library+="post_commit_renaming_comment.libr.sh"
+# shellcheck disable=SC1090
+source "${LFBFL_library}"
 
-commit_a_file_renamed_comment --verbose
+commit_a_file_renamed_comment --verbose --log-directory-change
 exit 0

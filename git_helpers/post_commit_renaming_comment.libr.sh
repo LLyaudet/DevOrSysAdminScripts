@@ -68,6 +68,7 @@ commit_a_file_renamed_comment(){
     LFBFL_max_comment_line_length="$3"
   fi
   readonly LFBFL_max_comment_line_length
+
   if [[ $LFBFL_verbose -eq 1 ]]; then
     echo "LFBFL_log_directory_change: ${LFBFL_log_directory_change}"
     echo\

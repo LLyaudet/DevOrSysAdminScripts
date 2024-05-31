@@ -34,11 +34,11 @@ LFBFL_this_file_path=$(realpath "${BASH_SOURCE[0]}")
 LFBFL_this_file_directory=$(dirname "${LFBFL_this_file_path}")
 LFBFL_some_directory="${LFBFL_this_file_directory}/../"
 pushd .
-# shellcheck disable=2164
+# shellcheck disable=SC2164
 cd "${LFBFL_some_directory}"
-# shellcheck disable=1091
+# shellcheck disable=SC1091
 source "build_and_checks_dependencies/strings_functions.libr.sh"
-# shellcheck disable=2164
+# shellcheck disable=SC2164
 popd
 
 # Never forget that the worse security is the illusion of security
@@ -68,7 +68,6 @@ commit_a_file_renamed_comment(){
     LFBFL_max_comment_line_length="$3"
   fi
   readonly LFBFL_max_comment_line_length
-
   if [[ $LFBFL_verbose -eq 1 ]]; then
     echo "LFBFL_log_directory_change: ${LFBFL_log_directory_change}"
     echo\

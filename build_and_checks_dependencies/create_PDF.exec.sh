@@ -44,60 +44,76 @@ source "./${LFBFL_subdir}/overwrite_if_not_equal.libr.sh"
 source "./${LFBFL_subdir}/strings_functions.libr.sh"
 LFBFL_subdir2="${LFBFL_subdir}/listings"
 
+repository_name=""
 grep_variable repository_data.txt repository_name
 
-cp "./latex/$repository_name.tex.tpl"\
-   "./latex/$repository_name.tex"
+cp "./latex/${repository_name}.tex.tpl"\
+   "./latex/${repository_name}.tex"
 
-sed -i "s|@repository_name@|$repository_name|g"\
-  "./latex/$repository_name.tex"
+sed -i "s|@repository_name@|${repository_name}|g"\
+  "./latex/${repository_name}.tex"
 
+abstract=""
 grep_variable repository_data.txt abstract
-echo "$abstract" | sed -e 's/\\n/\n/g' > "abstract_temp"
-insert_file_at_token "./latex/$repository_name.tex" @abstract@\
+# shellcheck disable=SC2001,SC2312
+echo "${abstract}" | sed -e 's/\\n/\n/g' > "abstract_temp"
+insert_file_at_token "./latex/${repository_name}.tex" @abstract@\
   "abstract_temp"
 rm "abstract_temp"
 
+acknowledgments=""
 grep_variable repository_data.txt acknowledgments
-echo "$acknowledgments" | sed -e 's/\\n/\n/g' > "acknowledgments_temp"
-insert_file_at_token "./latex/$repository_name.tex" @acknowledgments@\
-  "acknowledgments_temp"
+# shellcheck disable=SC2001,SC2312
+echo "${acknowledgments}" | sed -e 's/\\n/\n/g'\
+  > "acknowledgments_temp"
+insert_file_at_token "./latex/${repository_name}.tex"\
+  @acknowledgments@ "acknowledgments_temp"
 rm "acknowledgments_temp"
 
+author_full_name=""
 grep_variable repository_data.txt author_full_name
-sed -i "s|@author_full_name@|$author_full_name|g"\
-  "./latex/$repository_name.tex"
+sed -i "s|@author_full_name@|${author_full_name}|g"\
+  "./latex/${repository_name}.tex"
 
+author_website=""
 grep_variable repository_data.txt author_website
-sed -i "s|@author_website@|$author_website|g"\
-  "./latex/$repository_name.tex"
+sed -i "s|@author_website@|${author_website}|g"\
+  "./latex/${repository_name}.tex"
 
+author_email=""
 grep_variable repository_data.txt author_email
-sed -i "s|@author_email@|$author_email|g"\
-  "./latex/$repository_name.tex"
+sed -i "s|@author_email@|${author_email}|g"\
+  "./latex/${repository_name}.tex"
 
-current_date=$(date -I"date")
-sed -i "s|@current_date@|$current_date|g"\
-  "./latex/$repository_name.tex"
+# shellcheck disable=SC2155
+declare -r LFBFL_current_date=$(date -I"date")
+sed -i "s|@current_date@|${LFBFL_current_date}|g"\
+  "./latex/${repository_name}.tex"
 
-current_git_SHA1=$(git rev-parse HEAD)
-sed -i "s|@current_git_SHA1@|$current_git_SHA1|g"\
-  "./latex/$repository_name.tex"
+# shellcheck disable=SC2155
+declare -r LFBFL_current_git_SHA1=$(git rev-parse HEAD)
+sed -i "s|@current_git_SHA1@|${LFBFL_current_git_SHA1}|g"\
+  "./latex/${repository_name}.tex"
 
-number_of_commits=$(git shortlog | space_starting_lines | wc -l)
-sed -i "s|@number_of_commits@|$number_of_commits|g"\
-  "./latex/$repository_name.tex"
+# shellcheck disable=SC2155
+declare -r LFBFL_number_of_commits=$(
+  git shortlog | space_starting_lines | wc -l
+)
+sed -i "s|@number_of_commits@|${LFBFL_number_of_commits}|g"\
+  "./latex/${repository_name}.tex"
 
-number_of_lines="$(code_lines_count_all) total lines,"
-number_of_lines+=" $(code_lines_count_not_empty) not empty lines,"
-number_of_lines+=" $(code_lines_count_empty) empty lines."
-sed -i "s|@number_of_lines@|$number_of_lines|g"\
-  "./latex/$repository_name.tex"
+LFBFL_number_of_lines="$(code_lines_count_all) total lines,"
+LFBFL_number_of_lines+=" $(code_lines_count_not_empty)"
+LFBFL_number_of_lines+=" not empty lines,"
+LFBFL_number_of_lines+=" $(code_lines_count_empty) empty lines."
+sed -i "s|@number_of_lines@|${LFBFL_number_of_lines}|g"\
+  "./latex/${repository_name}.tex"
 
+# shellcheck disable=SC2094,SC2312
 tree -a --gitignore\
-  -I "$repository_name.aux"\
-  -I "$repository_name.log"\
-  -I "$repository_name.out"\
+  -I "${repository_name}.aux"\
+  -I "${repository_name}.log"\
+  -I "${repository_name}.out"\
   -I current_tree.txt\
   -I current_tree_light.txt\
   -I "node_modules/"\
@@ -107,10 +123,11 @@ tree -a --gitignore\
   | replace_non_ascii_spaces\
   > current_tree_light.txt
 
+# shellcheck disable=SC2094,SC2312
 tree -a -DFh --gitignore\
-  -I "$repository_name.aux"\
-  -I "$repository_name.log"\
-  -I "$repository_name.out"\
+  -I "${repository_name}.aux"\
+  -I "${repository_name}.log"\
+  -I "${repository_name}.out"\
   -I current_tree.txt\
   -I current_tree_light.txt\
   -I "node_modules/"\
@@ -120,149 +137,159 @@ tree -a -DFh --gitignore\
   | replace_non_ascii_spaces\
   > current_tree.txt
 
-temp_files_listing="./${LFBFL_subdir2}/files_listing.tex.tpl.temp"
-> "$temp_files_listing"
+LFBFL_temp_files_listing="./${LFBFL_subdir2}/"
+LFBFL_temp_files_listing+="files_listing.tex.tpl.temp"
+: > "${LFBFL_temp_files_listing}"
 get_split_score_after_before 70 /
 # split_score_command="$LFBFL_generic_result"
-score_command="${get_split_score_after_before_result}"
+# shellcheck disable=SC2154
+LFBFL_score_command="${get_split_score_after_before_result}"
 get_split_score_after_before 70 ':'
 # split_score_command2="$LFBFL_generic_result"
-score_command2="${get_split_score_after_before_result}"
-suffix='%'
-sed_expression='s/\\\n//Mg'
-cat "./${LFBFL_subdir2}/files_names_listing.txt"\
-  | sed -Ez "$sed_expression" | sed -Ez "$sed_expression"\
-  | sed -Ez "$sed_expression" | sed -Ez "$sed_expression"\
+# shellcheck disable=SC2154
+LFBFL_score_command2="${get_split_score_after_before_result}"
+LFBFL_suffix='%'
+LFBFL_sed_expression='s/\\\n//Mg'
+# shellcheck disable=SC2312
+sed -Ez "${LFBFL_sed_expression}"\
+  "./${LFBFL_subdir2}/files_names_listing.txt"\
+  | sed -Ez "${LFBFL_sed_expression}"\
+  | sed -Ez "${LFBFL_sed_expression}"\
+  | sed -Ez "${LFBFL_sed_expression}"\
   | grep -v '^// '\
-  | while read -r file_name;
+  | while read -r LFBFL_file_name;
 do
-  base_file_name=$(basename "$file_name")
-  # cleaned_path1=$(sed -e 's/_/\\_/g' <(echo "$file_name"))
-  cleaned_path2=$(sed -e 's/\//:/g' -e 's/\.//g' <(echo "$file_name"))
-  echo "\subsection{" >> "$temp_files_listing"
+  # LFBFL_base_file_name=$(basename "${LFBFL_file_name}")
+  # cleaned_path1=$(sed -e 's/_/\\_/g' <(echo "${LFBFL_file_name}"))
+  LFBFL_cleaned_path2=$(
+    sed -e 's/\//:/g' -e 's/\.//g' <(echo "${LFBFL_file_name}")
+  )
+  echo "\subsection{" >> "${LFBFL_temp_files_listing}"
 
-  new_lines="  $file_name"
-  if [[ ${#new_lines} -gt 60 ]]; then
-    split_last_line "$new_lines" "" 60 "$suffix" "$score_command"
-    new_lines=$split_last_line_result
-    split_last_line "$new_lines" "" 60 "$suffix" "$score_command"
-    new_lines=$split_last_line_result
-    split_last_line "$new_lines" "" 60 "$suffix" "$score_command"
-    new_lines=$split_last_line_result
+  LFBFL_new_lines="  ${LFBFL_file_name}"
+  if [[ ${#LFBFL_new_lines} -gt 70 ]]; then
+    repeated_split_last_line "${LFBFL_new_lines}" "" 70\
+      "${LFBFL_suffix}" "${LFBFL_score_command}" 3
+    # shellcheck disable=SC2154
+    LFBFL_new_lines=${repeated_split_last_line_result}
   fi
-  echo "  $file_name" | sed -e "s|  $file_name|$new_lines|g"\
-    > "$temp_files_listing.2"
-  sed -i -e 's/_/\\_/g' "$temp_files_listing.2"
-  cat "$temp_files_listing.2" >> "$temp_files_listing"
-  rm "$temp_files_listing.2"
+  # shellcheck disable=SC2312
+  echo "  ${LFBFL_file_name}"\
+    | sed -e "s|  ${LFBFL_file_name}|${LFBFL_new_lines}|g"\
+    > "${LFBFL_temp_files_listing}.2"
+  sed -i -e 's/_/\\_/g' "${LFBFL_temp_files_listing}.2"
+  cat "${LFBFL_temp_files_listing}.2" >> "${LFBFL_temp_files_listing}"
+  rm "${LFBFL_temp_files_listing}.2"
 
-  echo "}" >> "$temp_files_listing"
-  echo "\label{" >> "$temp_files_listing"
+  echo "}" >> "${LFBFL_temp_files_listing}"
+  echo "\label{" >> "${LFBFL_temp_files_listing}"
 
-  new_lines="  $cleaned_path2"
-  if [[ ${#new_lines} -gt 68 ]]; then
-    split_last_line "$new_lines" "" 70 "$suffix" "$score_command2"
-    new_lines=$split_last_line_result
-    split_last_line "$new_lines" "" 70 "$suffix" "$score_command2"
-    new_lines=$split_last_line_result
-    split_last_line "$new_lines" "" 70 "$suffix" "$score_command2"
-    new_lines=$split_last_line_result
+  LFBFL_new_lines="  ${LFBFL_cleaned_path2}"
+  if [[ ${#LFBFL_new_lines} -gt 70 ]]; then
+    repeated_split_last_line "${LFBFL_new_lines}" "" 70\
+      "${LFBFL_suffix}" "${LFBFL_score_command2}" 3
+    # shellcheck disable=SC2154
+    LFBFL_new_lines=${repeated_split_last_line_result}
   fi
-  echo "  $cleaned_path2" | sed -e "s|  $cleaned_path2|$new_lines|g"\
-    >> "$temp_files_listing"
+  # shellcheck disable=SC2129,SC2312
+  echo "  ${LFBFL_cleaned_path2}"\
+    | sed -e "s|  ${LFBFL_cleaned_path2}|${LFBFL_new_lines}|g"\
+    >> "${LFBFL_temp_files_listing}"
 
-  echo "}" >> "$temp_files_listing"
-  echo "" >> "$temp_files_listing"
+  echo "}" >> "${LFBFL_temp_files_listing}"
+  echo "" >> "${LFBFL_temp_files_listing}"
   echo "\VerbatimInput[numbers=left,xleftmargin=-5mm]{"\
-    >> "$temp_files_listing"
+    >> "${LFBFL_temp_files_listing}"
 
-  new_lines="$file_name"
-  if [[ ${#new_lines} -gt 68 ]]; then
-    split_last_line "$new_lines" "" 70 "$suffix" "$score_command"
-    new_lines=$split_last_line_result
-    split_last_line "$new_lines" "" 70 "$suffix" "$score_command"
-    new_lines=$split_last_line_result
-    split_last_line "$new_lines" "" 70 "$suffix" "$score_command"
-    new_lines=$split_last_line_result
+  LFBFL_new_lines="${LFBFL_file_name}"
+  if [[ ${#LFBFL_new_lines} -gt 70 ]]; then
+    repeated_split_last_line "${LFBFL_new_lines}" "" 70\
+      "${LFBFL_suffix}" "${LFBFL_score_command}" 3
+    # shellcheck disable=SC2154
+    LFBFL_new_lines=${repeated_split_last_line_result}
   fi
-  echo "  $file_name" | sed -e "s|  $file_name|$new_lines|g"\
-    >> "$temp_files_listing"
+  # shellcheck disable=SC2129,SC2312
+  echo "  ${LFBFL_file_name}"\
+    | sed -e "s|  ${LFBFL_file_name}|${LFBFL_new_lines}|g"\
+    >> "${LFBFL_temp_files_listing}"
 
-  echo "}" >> "$temp_files_listing"
-  echo "" >> "$temp_files_listing"
-  echo "" >> "$temp_files_listing"
+  echo "}" >> "${LFBFL_temp_files_listing}"
+  echo "" >> "${LFBFL_temp_files_listing}"
+  echo "" >> "${LFBFL_temp_files_listing}"
 done
 overwrite_if_not_equal "./${LFBFL_subdir2}/files_listing.tex.tpl"\
-  "$temp_files_listing"
-insert_file_at_token "./latex/$repository_name.tex"\
+  "${LFBFL_temp_files_listing}"
+insert_file_at_token "./latex/${repository_name}.tex"\
   @files_listing_VerbatimInput@\
   "./${LFBFL_subdir2}/files_listing.tex.tpl"
 
 # We verify if some lines are beyond 70 characters
 # in current_tree_light.txt et current_tree.txt.
-trees=("current_tree_light.txt" "current_tree.txt")
-for some_tree in "${trees[@]}"; do
-  grep '.\{71\}' "$some_tree" | while read -r some_line; do
-    # echo "some_line: $some_line"
-    prefix=$(\
-      echo "$some_line"\
+LFBFL_trees=("current_tree_light.txt" "current_tree.txt")
+for LFBFL_tree in "${LFBFL_trees[@]}"; do
+  # shellcheck disable=SC2312
+  grep '.\{71\}' "${LFBFL_tree}" | while read -r LFBFL_line; do
+    # echo "LFBFL_line: ${LFBFL_line}"
+    # shellcheck disable=SC2312
+    LFBFL_prefix=$(\
+      echo "${LFBFL_line}"\
         | sed -E -e 's/(.*)─[^─]+$/\1/g' -e 's/[^ ]+$//g'\
     )
-    prefix+="│ "
-    # echo "prefix: $prefix"
-    file_name=$(\
-      echo "$some_line"\
+    LFBFL_prefix+="│ "
+    # echo "LFBFL_prefix: ${LFBFL_prefix}"
+    # shellcheck disable=SC2312
+    LFBFL_file_name=$(\
+      echo "${LFBFL_line}"\
         | sed -E 's|.* (([a-zA-Z0-9\._/-]+).)$|\1|g'\
     )
-    # echo "file_name: $file_name"
-    line_start=$(\
-      echo "$some_line"\
-        | sed -E "s/(.*)[ ]*$file_name/\1/g"\
+    # echo "LFBFL_file_name: ${LFBFL_file_name}"
+    # shellcheck disable=SC2312
+    LFBFL_line_start=$(\
+      echo "${LFBFL_line}"\
+        | sed -E "s/(.*)[ ]*${LFBFL_file_name}/\1/g"\
         | sed -e 's/ *$//g'
     )
-    # echo "line_start: $line_start"
-    some_line=$(\
-      echo "$some_line"\
+    # echo "LFBFL_line_start: ${LFBFL_line_start}"
+    LFBFL_line=$(\
+      echo "${LFBFL_line}"\
         | sed -E -e 's/\[/\\\[/g' -e 's/\]/\\\]/g'\
     )
-    new_lines="$prefix$file_name"
-    if [[ ${#new_lines} -gt 68 ]]; then
-      split_last_line "$new_lines" "$prefix" 70 ""
-      new_lines=$split_last_line_result
-      split_last_line "$new_lines" "$prefix" 70 ""
-      new_lines=$split_last_line_result
-      split_last_line "$new_lines" "$prefix" 70 ""
-      new_lines=$split_last_line_result
-      split_last_line "$new_lines" "$prefix" 70 ""
-      new_lines=$split_last_line_result
+    LFBFL_new_lines="${LFBFL_prefix}${LFBFL_file_name}"
+    if [[ ${#LFBFL_new_lines} -gt 70 ]]; then
+      repeated_split_last_line "${LFBFL_new_lines}" "${LFBFL_prefix}" 70\
+        "" "" 3
+      # shellcheck disable=SC2154
+      LFBFL_new_lines=${repeated_split_last_line_result}
     fi
-    sed -i -e "s/$some_line/$line_start\n$new_lines/g" "$some_tree"
+    sed -i -e\
+      "s/${LFBFL_line}/${LFBFL_line_start}\n${LFBFL_new_lines}/g"\
+      "${LFBFL_tree}"
   done
 done
 
 sed -i -e '/@current_tree_light@/{r current_tree_light.txt' -e 'd}'\
-  "./latex/$repository_name.tex"
+  "./latex/${repository_name}.tex"
 sed -i -e '/@current_tree@/{r current_tree.txt' -e 'd}'\
-  "./latex/$repository_name.tex"
+  "./latex/${repository_name}.tex"
 
-if [[ -n "$LFBFL_verbose" ]]; then
+if [[ -n "${LFBFL_verbose}" ]]; then
   for ((i=0; i<3; i++)); do
-    pdflatex "./latex/$repository_name.tex"
+    pdflatex "./latex/${repository_name}.tex"
   done
 else
   for ((i=0; i<3; i++)); do
-    pdflatex "./latex/$repository_name.tex" > /dev/null
+    pdflatex "./latex/${repository_name}.tex" > /dev/null
   done
 fi
 
-files_to_delete=(\
-  "$repository_name.aux"\
-  "$repository_name.log"\
-  "$repository_name.out"\
+LFBFL_files_to_delete=(\
+  "${repository_name}.aux"\
+  "${repository_name}.log"\
+  "${repository_name}.out"\
   "current_tree.txt"
   "current_tree_light.txt"
 )
 # Comment the following line if you need to debug.
-for file_name in "${files_to_delete[@]}"; do
-  rm -f "$file_name"
+for LFBFL_file_name in "${LFBFL_files_to_delete[@]}"; do
+  rm -f "${LFBFL_file_name}"
 done

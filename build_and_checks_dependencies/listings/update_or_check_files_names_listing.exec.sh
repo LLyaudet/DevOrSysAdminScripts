@@ -43,9 +43,8 @@ files_names_listing="./${LFBFL_subdir2}/files_names_listing.txt"
 
 # Cette fonction est trop sioux pour shellcheck avec sa variable de
 # sortie avec un nom dynamique. Du coup, je feinte pour la suite.
+repository_name=""
 grep_variable repository_data.txt repository_name
-# shellcheck disable=SC2154,SC2269
-repository_name="${repository_name}"
 
 if [[ "$1" == "--write" ]]; then
   : > "${files_names_listing}"

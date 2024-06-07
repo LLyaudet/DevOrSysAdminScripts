@@ -173,17 +173,18 @@ split_line_at_most(){
   LFBFL_i=0
   local LFBFL_key
   for LFBFL_key in "${!LFBFL_positions[@]}"; do
-    local LFBFL_value=${LFBFL_positions[$LFBFL_key]}
+    local LFBFL_value=${LFBFL_positions[${LFBFL_key}]}
     # echo "$LFBFL_key $LFBFL_value"
     LFBFL_joined_args[LFBFL_i]="${LFBFL_key} ${LFBFL_value}"
     LFBFL_i=$((LFBFL_i + 1))
   done
-  # shellcheck disable=2145
+  # shellcheck disable=SC2145,SC2312
   while read -r LFBFL_best_position ;
   do
     split_line_at "$1" "${LFBFL_best_position}"
+    # shellcheck disable=SC2250
     split_line_at_most_result_start=$split_line_at_result_beginning
-    split_line_at_most_result_end=$split_line_at_result_end
+    split_line_at_most_result_end="${split_line_at_result_end}"
   done <<EOT
 $(max 'sort --numeric-sort -k2' "${LFBFL_joined_args[@]}"\
   | cut -d ' ' -f 1)
@@ -223,7 +224,9 @@ split_last_line(){
   declare -r LFBFL_max_length_plus=$(($3 + 1))
   declare -r LFBFL_length2=$(($3 - ${#4}))
   declare -r LFBFL_regexp='.\{'"${LFBFL_max_length_plus}"'\}$'
+  # shellcheck disable=SC2312
   if echo "$1" | sed -e 's/\\n/\n/g' | grep -q "${LFBFL_regexp}"; then
+    # shellcheck disable=SC2312
     declare -r LFBFL_start=$(\
       echo "$1" | sed -e 's/\\n/\n/g' | head --lines=-1\
       | sed -z 's/\n/\\n/g'\
@@ -244,8 +247,10 @@ split_last_line(){
       split_last_line_result+="\n"
       split_last_line_result+="$2${split_line_at_most_result_end}"
     else
+      # shellcheck disable=SC2250
       split_last_line_result+="${LFBFL_last_line:0:$LFBFL_length2}$4"
       split_last_line_result+="\n"
+      # shellcheck disable=SC2250
       split_last_line_result+="$2${LFBFL_last_line:$LFBFL_length2}"
     fi
   fi

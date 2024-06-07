@@ -51,20 +51,22 @@ ll_wc(){
   declare -i ll_wc_var_i=0
   for ll_wc_var_arg in "$@"; do
     # echo "$ll_wc_var_arg"
-    if [[ $ll_wc_var_arg == "-n" ]]; then
+    # shellcheck disable=SC2250
+    if [[ "${ll_wc_var_arg}" == "-n" ]]; then
       ll_wc_var_number_only=1
-    elif [[ $ll_wc_var_arg == "--no-filenames" ]]; then
+    elif [[ "${ll_wc_var_arg}" == "--no-filenames" ]]; then
       ll_wc_var_number_only=1
     elif [[ $ll_wc_var_number_only -eq 0 ]]; then
-      ll_wc_var_args[ll_wc_var_i]="$ll_wc_var_arg"
+      ll_wc_var_args[ll_wc_var_i]="${ll_wc_var_arg}"
       ll_wc_var_i=$((ll_wc_var_i + 1))
-    elif [[ "$ll_wc_var_arg" =~ -.* ]]; then
-      ll_wc_var_args[ll_wc_var_i]="$ll_wc_var_arg"
+    elif [[ "${ll_wc_var_arg}" =~ -.* ]]; then
+      ll_wc_var_args[ll_wc_var_i]="${ll_wc_var_arg}"
       ll_wc_var_i=$((ll_wc_var_i + 1))
     fi
   done
   # typeset -p ll_wc_var_args
   # echo "$ll_wc_var_number_only"
+  # shellcheck disable=SC2250
   if [[ $ll_wc_var_number_only -gt 0 ]]; then
     # Too simple code, only the base use case is handled now.
     # Convenient but incomplete.
@@ -77,6 +79,7 @@ ll_wc(){
     # with --files0-from handling.
     # wc does not display file_name when stream...
     # hence cat of last arg "${!#}"
+    # shellcheck disable=SC2312
     cat "${!#}" | wc "${ll_wc_var_args[@]}"
   else
     # echo "normal"
@@ -93,7 +96,7 @@ ll_wc(){
 # If --no-filenames option available,
 # we redefine ll_wc command as an alias.
 wc_help_text=$(wc --help)
-if [[ "$wc_help_text" == *" --no-filenames "* ]]; then
+if [[ "${wc_help_text}" == *" --no-filenames "* ]]; then
   alias ll_wc='wc'
 fi
 
@@ -111,11 +114,11 @@ fi
 in_place_grep(){
   declare -r LFBFL_temp="${!#}.in_place_grep.temp"
   grep "$@" > "${LFBFL_temp}"
-  LFBFL_lines_before=$(ll_wc -l -n "${!#}")
-  LFBFL_lines_after=$(ll_wc -l -n "${LFBFL_temp}")
+  declare -r LFBFL_lines_before=$(ll_wc -l -n "${!#}")
+  declare -r LFBFL_lines_after=$(ll_wc -l -n "${LFBFL_temp}")
   # echo "$LFBFL_lines_before"
   # echo "$LFBFL_lines_after"
-  if [[ "$LFBFL_lines_before" ==  "$LFBFL_lines_after" ]]; then
+  if [[ "${LFBFL_lines_before}" ==  "${LFBFL_lines_after}" ]]; then
     rm "${LFBFL_temp}"
     return
   fi
@@ -129,7 +132,7 @@ grep_variable(){
   # echo $LFBFL_regexp
   declare -r LFBFL_variable_value="$(grep -oP "${LFBFL_regexp}" "$1")"
   # echo $LFBFL_variable_value
-  declare -g "$2"="$LFBFL_variable_value"
+  declare -g "$2"="${LFBFL_variable_value}"
 }
 
 repository_name=""
@@ -168,10 +171,12 @@ not_space_starting_lines_after_file_name(){
 }
 
 not_JS_dependencies_find(){
+  # shellcheck disable=SC2312
   grep -vE "(^|/)node_modules/" | grep -vE "(^|/)package-lock\.json$"
 }
 
 not_JS_dependencies_grep(){
+  # shellcheck disable=SC2312
   grep -v "^[^:]*node_modules/" | grep -v "^[^:]*package-lock\.json:"
 }
 
@@ -184,10 +189,12 @@ not_dependencies_grep(){
 }
 
 not_python_cache_find(){
+  # shellcheck disable=SC2312
   grep -vE "(^|/)__pycache__/" | grep -vE "(^|/)\.mypy_cache/"
 }
 
 not_python_cache_grep(){
+  # shellcheck disable=SC2312
   grep -v "^[^:]*__pycache__/" | grep -v "^[^:]*\.mypy_cache/"
 }
 
@@ -216,10 +223,12 @@ not_archive_grep(){
 }
 
 not_license_find(){
+  # shellcheck disable=SC2312
   grep -vE "(^|/)COPYING$" | grep -vE "(^|/)COPYING\.LESSER$"
 }
 
 not_license_grep(){
+  # shellcheck disable=SC2312
   grep -v "^[^:]*COPYING:" | grep -v "^[^:]*COPYING\.LESSER:"
 }
 
@@ -232,11 +241,13 @@ not_main_tex_grep(){
 }
 
 relevant_find(){
+  # shellcheck disable=SC2312
   not_dependencies_find | not_cache_find | not_git_find\
   | not_archive_find
 }
 
 relevant_grep(){
+  # shellcheck disable=SC2312
   not_dependencies_grep | not_cache_grep | not_git_grep\
   | not_archive_grep
 }

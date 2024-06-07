@@ -68,6 +68,7 @@ commit_a_file_renamed_comment(){
     LFBFL_max_comment_line_length="$3"
   fi
   readonly LFBFL_max_comment_line_length
+  # shellcheck disable=SC2250
   if [[ $LFBFL_verbose -eq 1 ]]; then
     echo "LFBFL_log_directory_change: ${LFBFL_log_directory_change}"
     echo\
@@ -233,6 +234,7 @@ commit_a_file_renamed_comment(){
       LFBFL_new_comment+="${LFBFL_old_file_name2}"'"\n'
       LFBFL_new_comment+="${LFBFL_comment_prefix}to\n"
       LFBFL_new_comment+="${LFBFL_new_file_name2}"'".'
+      # shellcheck disable=SC2250
       if [[ $LFBFL_log_directory_change -eq 1 ]] && [[\
         "${LFBFL_new_file_directory}"\
         != "${LFBFL_old_file_directory}"\

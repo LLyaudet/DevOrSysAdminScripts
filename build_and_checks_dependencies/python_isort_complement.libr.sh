@@ -24,11 +24,11 @@
 # This file was renamed from "python_isort_complement.sh"
 # to "python_isort_complement.libr.sh".
 
-subdir="build_and_checks_dependencies"
+LFBFL_subdir="build_and_checks_dependencies"
 # shellcheck disable=SC1090
-source "./${subdir}/lines_filters.libr.sh"
+source "./${LFBFL_subdir}/lines_filters.libr.sh"
 # shellcheck disable=SC1090
-source "./${subdir}/overwrite_if_not_equal.libr.sh"
+source "./${LFBFL_subdir}/overwrite_if_not_equal.libr.sh"
 
 check_collections_abc_place(){
   echo "Checking import of _collections_abc is at the right place"

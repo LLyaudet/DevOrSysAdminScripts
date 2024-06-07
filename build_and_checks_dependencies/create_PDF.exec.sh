@@ -29,20 +29,20 @@ if [[ "$1" == "--verbose" ]]; then
   LFBFL_verbose="--verbose"
 fi
 
-subdir="build_and_checks_dependencies"
+LFBFL_subdir="build_and_checks_dependencies"
 # shellcheck disable=SC1090
-source "./${subdir}/generate_from_template.libr.sh"
+source "./${LFBFL_subdir}/generate_from_template.libr.sh"
 # shellcheck disable=SC1090
-source "./${subdir}/lines_counts.libr.sh"
+source "./${LFBFL_subdir}/lines_counts.libr.sh"
 # shellcheck disable=SC1090
-source "./${subdir}/lines_filters.libr.sh"
+source "./${LFBFL_subdir}/lines_filters.libr.sh"
 # shellcheck disable=SC1090
-source "./${subdir}/lines_maps.libr.sh"
+source "./${LFBFL_subdir}/lines_maps.libr.sh"
 # shellcheck disable=SC1090
-source "./${subdir}/overwrite_if_not_equal.libr.sh"
+source "./${LFBFL_subdir}/overwrite_if_not_equal.libr.sh"
 # shellcheck disable=SC1090
-source "./${subdir}/strings_functions.libr.sh"
-subdir2="${subdir}/listings"
+source "./${LFBFL_subdir}/strings_functions.libr.sh"
+LFBFL_subdir2="${LFBFL_subdir}/listings"
 
 grep_variable repository_data.txt repository_name
 
@@ -120,7 +120,7 @@ tree -a -DFh --gitignore\
   | replace_non_ascii_spaces\
   > current_tree.txt
 
-temp_files_listing="./${subdir2}/files_listing.tex.tpl.temp"
+temp_files_listing="./${LFBFL_subdir2}/files_listing.tex.tpl.temp"
 > "$temp_files_listing"
 get_split_score_after_before 70 /
 # split_score_command="$LFBFL_generic_result"
@@ -130,7 +130,7 @@ get_split_score_after_before 70 ':'
 score_command2="${get_split_score_after_before_result}"
 suffix='%'
 sed_expression='s/\\\n//Mg'
-cat "./${subdir2}/files_names_listing.txt"\
+cat "./${LFBFL_subdir2}/files_names_listing.txt"\
   | sed -Ez "$sed_expression" | sed -Ez "$sed_expression"\
   | sed -Ez "$sed_expression" | sed -Ez "$sed_expression"\
   | grep -v '^// '\
@@ -192,10 +192,11 @@ do
   echo "" >> "$temp_files_listing"
   echo "" >> "$temp_files_listing"
 done
-overwrite_if_not_equal "./${subdir2}/files_listing.tex.tpl"\
+overwrite_if_not_equal "./${LFBFL_subdir2}/files_listing.tex.tpl"\
   "$temp_files_listing"
 insert_file_at_token "./latex/$repository_name.tex"\
-  @files_listing_VerbatimInput@ "./${subdir2}/files_listing.tex.tpl"
+  @files_listing_VerbatimInput@\
+  "./${LFBFL_subdir2}/files_listing.tex.tpl"
 
 # We verify if some lines are beyond 70 characters
 # in current_tree_light.txt et current_tree.txt.

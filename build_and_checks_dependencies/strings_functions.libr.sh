@@ -28,11 +28,11 @@
 # This file was renamed from "string_functions.sh" to
 # "strings_functions.libr.sh".
 
-subdir="build_and_checks_dependencies"
+LFBFL_subdir="build_and_checks_dependencies"
 # shellcheck disable=SC1090
-source "./${subdir}/get_common_text_glob_patterns.libr.sh"
+source "./${LFBFL_subdir}/get_common_text_glob_patterns.libr.sh"
 # shellcheck disable=SC1090
-source "./${subdir}/comparisons.libr.sh"
+source "./${LFBFL_subdir}/comparisons.libr.sh"
 
 split_line_at(){
   # $1=$line

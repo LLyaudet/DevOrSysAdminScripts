@@ -24,9 +24,9 @@
 # This file was renamed from "too_long_code_lines.sh"
 # to "too_long_code_lines.libr.sh".
 
-subdir="build_and_checks_dependencies"
+LFBFL_subdir="build_and_checks_dependencies"
 # shellcheck disable=SC1090
-source "./${subdir}/get_common_text_glob_patterns.libr.sh"
+source "./${LFBFL_subdir}/get_common_text_glob_patterns.libr.sh"
 
 too_long_code_lines(){
   get_COMMON_TEXT_FILES_GLOB_PATTERNS

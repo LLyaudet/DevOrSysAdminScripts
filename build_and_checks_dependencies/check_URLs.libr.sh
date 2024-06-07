@@ -23,9 +23,9 @@
 # ©Copyright 2023-2024 Laurent Frédéric Bernard François Lyaudet
 # This file was renamed from "check_URLs.sh" to "check_URLs.libr.sh".
 
-subdir="build_and_checks_dependencies"
+LFBFL_subdir="build_and_checks_dependencies"
 # shellcheck disable=SC1090
-source "./${subdir}/get_common_text_glob_patterns.libr.sh"
+source "./${LFBFL_subdir}/get_common_text_glob_patterns.libr.sh"
 
 check_URLs(){
   get_COMMON_TEXT_FILES_GLOB_PATTERNS

@@ -33,13 +33,13 @@ if [[ "$2" == "--verbose" ]]; then
 fi
 readonly LFBFL_verbose
 
-subdir="build_and_checks_dependencies"
+LFBFL_subdir="build_and_checks_dependencies"
 # shellcheck disable=SC1090
-source "./${subdir}/lines_filters.libr.sh"
+source "./${LFBFL_subdir}/lines_filters.libr.sh"
 # shellcheck disable=SC1090
-source "./${subdir}/strings_functions.libr.sh"
-subdir2="${subdir}/listings"
-files_names_listing="./${subdir2}/files_names_listing.txt"
+source "./${LFBFL_subdir}/strings_functions.libr.sh"
+LFBFL_subdir2="${LFBFL_subdir}/listings"
+files_names_listing="./${LFBFL_subdir2}/files_names_listing.txt"
 
 # Cette fonction est trop sioux pour shellcheck avec sa variable de
 # sortie avec un nom dynamique. Du coup, je feinte pour la suite.

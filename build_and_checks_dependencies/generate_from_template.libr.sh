@@ -24,20 +24,21 @@
 # This file was renamed from "generate_from_template.sh" to
 # "generate_from_template.libr.sh".
 
-subdir="build_and_checks_dependencies"
+LFBFL_subdir="build_and_checks_dependencies"
 # shellcheck disable=SC1090
-source "./${subdir}/lines_filters.libr.sh"
+source "./${LFBFL_subdir}/lines_filters.libr.sh"
 
 generate_from_template_with_block_comments(){
   # $1=base_file_name
   # $2=target_file_name
   # $3=enter_block_comment
   # $4=exit_block_comment
-  LFBFL_temp=".generate_from_template_with_block_comments.temp"
-  echo "$3" > "$2$LFBFL_temp"
-  cat "$1" >> "$2$LFBFL_temp"
-  echo "$4" >> "$2$LFBFL_temp"
-  overwrite_if_not_equal "$2" "$2$LFBFL_temp"
+  LFBFL_temp="$2.generate_from_template_with_block_comments.temp"
+  readonly LFBFL_temp
+  echo "$3" > "${LFBFL_temp}"
+  cat "$1" >> "${LFBFL_temp}"
+  echo "$4" >> "${LFBFL_temp}"
+  overwrite_if_not_equal "$2" "${LFBFL_temp}"
 }
 
 generate_from_template_with_line_comments(){
@@ -45,12 +46,13 @@ generate_from_template_with_line_comments(){
   # $2=target_file_name
   # $3=line_comment_prefix
   # $4=optional_post_processing
-  LFBFL_temp=".generate_from_template_with_line_comments.temp"
-  sed -e "s/^/$3/g" "$1" > "$2$LFBFL_temp"
+  LFBFL_temp="$2.generate_from_template_with_line_comments.temp"
+  readonly LFBFL_temp
+  sed -e "s/^/$3/g" "$1" > "${LFBFL_temp}"
   if [[ -n "$4" ]]; then
     eval "$4"
   fi
-  overwrite_if_not_equal "$2" "$2$LFBFL_temp"
+  overwrite_if_not_equal "$2" "${LFBFL_temp}"
 }
 
 split_file_in_two(){
@@ -58,31 +60,28 @@ split_file_in_two(){
   # $2=$token assume that token is the only thing on his line.
   # $3=$file_name_part1
   # $4=$file_name_part2
-  split_file_in_two_line_number=$(
-    grep -n "$2" "$1" | cut -f 1 -d ':'
+  declare -ir LFBFL_line_number=$(
+    grep -n "$2" "$1" | head --lines=1 | cut -f 1 -d ':'
   )
-  split_file_in_two_line_count=$(ll_wc -l -n "$1")
-  split_file_in_two_lines_after=$((
-    $split_file_in_two_line_count - $split_file_in_two_line_number
+  declare -ir LFBFL_line_count=$(ll_wc -l -n "$1")
+  declare -ir LFBFL_lines_after=$((
+    LFBFL_line_count - LFBFL_line_number
   ))
-  head --lines="$(($split_file_in_two_line_number - 1))" "$1" > "$3"
-  tail --lines="$split_file_in_two_lines_after" "$1" > "$4"
+  head --lines="$((LFBFL_line_number - 1))" "$1" > "$3"
+  tail --lines="${LFBFL_lines_after}" "$1" > "$4"
 }
 
 insert_file_at_token(){
   # $1=$file_name
   # $2=$token assume that token is the only thing on his line.
   # $3=$file_name_to_insert
-  insert_at_token_var_start_file_name="$1.insert_file_at_token1.temp"
-  insert_at_token_var_end_file_name="$1.insert_file_at_token2.temp"
-  insert_at_token_var_result_file_name="$1.insert_file_at_token3.temp"
-  split_file_in_two "$1" "$2" "$insert_at_token_var_start_file_name"\
-    "$insert_at_token_var_end_file_name"
-  cat "$insert_at_token_var_start_file_name" "$3"\
-    "$insert_at_token_var_end_file_name"\
-    > "$insert_at_token_var_result_file_name"
-  overwrite_if_not_equal "$1"\
-    "$insert_at_token_var_result_file_name"
-  rm "$insert_at_token_var_start_file_name"\
-     "$insert_at_token_var_end_file_name"
+  declare -r LFBFL_start_file_name="$1.insert_file_at_token1.temp"
+  declare -r LFBFL_end_file_name="$1.insert_file_at_token2.temp"
+  declare -r LFBFL_result_file_name="$1.insert_file_at_token3.temp"
+  split_file_in_two "$1" "$2" "${LFBFL_start_file_name}"\
+    "${LFBFL_end_file_name}"
+  cat "${LFBFL_start_file_name}" "$3" "${LFBFL_end_file_name}"\
+    > "${LFBFL_result_file_name}"
+  overwrite_if_not_equal "$1" "${LFBFL_result_file_name}"
+  rm "${LFBFL_start_file_name}" "${LFBFL_end_file_name}"
 }

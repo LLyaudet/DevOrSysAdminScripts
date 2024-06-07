@@ -27,6 +27,7 @@
 verbose=""
 if [[ "$3" == "--verbose" ]]; then
   echo "$0 $*"
+  # shellcheck disable=SC2034
   verbose="--verbose"
 fi
 
@@ -38,10 +39,15 @@ sed_expression='s/(\[[a-zA-Z0-9:-]*\]: [^\n\\]*)\\\n/\1/Mg'
 sed_expression+=';s/(<http[^\n\\]*)\\\n/\1/Mg'
 sed_expression+=';s/(- <http[^\n\\]*)\\\n/\1/Mg'
 
+declare -i LFBFL_cd_result
 pushd .
 if [[ -n "$1" ]];
 then
-  cd "$1"
+  cd "$1" || {
+    LFBFL_cd_result=$?;
+    echo "build_md_from_printable_md no such directory";
+    exit $LFBFL_cd_result;
+  }
 fi
 
 file_name="README"
@@ -67,4 +73,9 @@ else
   echo "No file ${file_name}.md.tpl"
 fi
 
-popd
+declare -i LFBFL_popd_result
+popd || {
+  LFBFL_popd_result=$?;
+  echo "build_md_from_printable_md no popd";
+  exit $LFBFL_popd_result;
+}

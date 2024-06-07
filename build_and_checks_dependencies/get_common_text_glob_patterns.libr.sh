@@ -25,6 +25,7 @@
 # to "get_common_text_glob_patterns.libr.sh".
 
 get_COMMON_TEXT_PATHS_GLOB_PATTERNS(){
+  # shellcheck disable=SC2034
   declare -gr COMMON_TEXT_PATHS_GLOB_PATTERNS=(\
     '**/*.c'\
     '**/*.css'\
@@ -54,6 +55,7 @@ get_COMMON_TEXT_PATHS_GLOB_PATTERNS(){
 
 
 get_COMMON_TEXT_FILES_GLOB_PATTERNS(){
+  # shellcheck disable=SC2034
   declare -gr COMMON_TEXT_FILES_GLOB_PATTERNS=(\
     '*.c'\
     '*.css'\

@@ -26,12 +26,12 @@
 # This file was renamed from "update_or_check_file_names_listing.sh"
 # to "update_or_check_files_names_listing.sh"?
 
-verbose=""
+LFBFL_verbose=""
 if [[ "$2" == "--verbose" ]]; then
   echo "$0 $*"
-  verbose="--verbose"
+  LFBFL_verbose="--verbose"
 fi
-readonly verbose
+readonly LFBFL_verbose
 
 subdir="build_and_checks_dependencies"
 # shellcheck disable=SC1090
@@ -122,6 +122,6 @@ rm "${files_names_listing}.temp1" "${files_names_listing}.temp2"\
 shopt -u dotglob
 shopt -s globstar
 
-if [[ -n "${verbose}" ]]; then
+if [[ -n "${LFBFL_verbose}" ]]; then
   cat "${files_names_listing}"
 fi

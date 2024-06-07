@@ -23,10 +23,10 @@
 # ©Copyright 2023-2024 Laurent Frédéric Bernard François Lyaudet
 # This file was renamed from "create_PDF.sh" to "create_PDF.exec.sh".
 
-verbose=""
+LFBFL_verbose=""
 if [[ "$1" == "--verbose" ]]; then
   echo "$0 $*"
-  verbose="--verbose"
+  LFBFL_verbose="--verbose"
 fi
 
 subdir="build_and_checks_dependencies"
@@ -244,7 +244,7 @@ sed -i -e '/@current_tree_light@/{r current_tree_light.txt' -e 'd}'\
 sed -i -e '/@current_tree@/{r current_tree.txt' -e 'd}'\
   "./latex/$repository_name.tex"
 
-if [[ -n "$verbose" ]]; then
+if [[ -n "$LFBFL_verbose" ]]; then
   for ((i=0; i<3; i++)); do
     pdflatex "./latex/$repository_name.tex"
   done

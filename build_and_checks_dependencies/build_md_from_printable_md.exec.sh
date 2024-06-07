@@ -24,11 +24,11 @@
 # This file was renamed from "build_md_from_printable_md.sh"
 # to "build_md_from_printable_md.exec.sh".
 
-verbose=""
+LFBFL_verbose=""
 if [[ "$3" == "--verbose" ]]; then
   echo "$0 $*"
   # shellcheck disable=SC2034
-  verbose="--verbose"
+  LFBFL_verbose="--verbose"
 fi
 
 subdir="build_and_checks_dependencies"

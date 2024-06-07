@@ -32,8 +32,9 @@ source "./${LFBFL_subdir}/lines_filters.libr.sh"
 
 grammar_and_spell_check(){
   get_COMMON_TEXT_FILES_GLOB_PATTERNS
+  grammar_or_spell_checker_command=""
   grep_variable "$1" grammar_or_spell_checker_command
-  # shellcheck disable=SC2154
+  # shellcheck disable=SC2312
   declare -r LFBFL_command=$(\
     echo "${grammar_or_spell_checker_command}"\
     | sed -Ez -e "s/\n//Mg"\
@@ -41,9 +42,11 @@ grammar_and_spell_check(){
   local LFBFL_file_path
   local LFBFL_pattern
   local LFBFL_eval_string
+  # shellcheck disable=SC2154
   for LFBFL_pattern in "${COMMON_TEXT_FILES_GLOB_PATTERNS[@]}"; do
     [[ "$2" != "-v" ]]\
       || echo "Iterating on pattern: ${LFBFL_pattern}"
+    # shellcheck disable=SC2312
     find . -type f -name "${LFBFL_pattern}" -printf '%P\n'\
        | while read -r LFBFL_file_path;
     do

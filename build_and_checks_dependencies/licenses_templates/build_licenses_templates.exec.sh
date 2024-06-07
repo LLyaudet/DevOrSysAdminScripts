@@ -129,10 +129,12 @@ author_full_name=""
 grep_variable "${LFBFL_file_name}" repository_name
 grep_variable "${LFBFL_file_name}" license
 grep_variable "${LFBFL_file_name}" author_full_name
-LFBFL_license_prefix2="${LFBFL_license_prefix}$license"
+LFBFL_license_prefix2="${LFBFL_license_prefix}${license}"
 # First year according to current state of git repository.
+# shellcheck disable=SC2312
 first_year="$(git log | grep 'Date:' | cut -f 8 -d ' ' | tail -1)"
 # Last year according to current state of git repository.
+# shellcheck disable=SC2312
 last_year="$(git log | grep 'Date:' | cut -f 8 -d ' ' | head -1)"
 copyright_string="${first_year}-${last_year} ${author_full_name}"
 for ((i=0; i<${#block_comment_languages[@]}; i++)); do
@@ -143,8 +145,10 @@ for ((i=0; i<${#block_comment_languages[@]}; i++)); do
     "${license_file_name}.tpl" > "${license_file_name}.temp"
   overwrite_if_not_equal "${license_file_name}"\
     "${license_file_name}.temp"
+  # shellcheck disable=SC2312
   head --lines=-1 "${license_file_name}" | tail --lines=-1\
     > "${license_file_name}.temp"
+  # shellcheck disable=SC2312
   find . -type f -name "*.${LFBFL_extension}" -printf '%P\n'\
     | relevant_find | while read -r LFBFL_file_name;
   do
@@ -163,6 +167,7 @@ for ((i=0; i<${#line_comment_languages[@]}; i++)); do
     "${license_file_name}.tpl" > "${license_file_name}.temp"
   overwrite_if_not_equal "${license_file_name}"\
     "${license_file_name}.temp"
+  # shellcheck disable=SC2312
   find . -type f -name "*.${LFBFL_extension}" -printf '%P\n'\
     | relevant_find | while read -r LFBFL_file_name;
   do

@@ -24,20 +24,23 @@
 # This file was renamed from "grammar_and_spell_check.sh"
 # to "grammar_and_spell_check.libr.sh".
 
-subdir="build_and_checks_dependencies"
+LFBFL_subdir="build_and_checks_dependencies"
 # shellcheck disable=SC1090
-source "./${subdir}/get_common_text_glob_patterns.libr.sh"
+source "./${LFBFL_subdir}/get_common_text_glob_patterns.libr.sh"
 # shellcheck disable=SC1090
-source "./${subdir}/lines_filters.libr.sh"
+source "./${LFBFL_subdir}/lines_filters.libr.sh"
 
 grammar_and_spell_check(){
   get_COMMON_TEXT_FILES_GLOB_PATTERNS
   grep_variable "$1" grammar_or_spell_checker_command
-  LFBFL_command=$(\
-    echo "$grammar_or_spell_checker_command"\
+  # shellcheck disable=SC2154
+  declare -r LFBFL_command=$(\
+    echo "${grammar_or_spell_checker_command}"\
     | sed -Ez -e "s/\n//Mg"\
   )
   local LFBFL_file_path
+  local LFBFL_pattern
+  local LFBFL_eval_string
   for LFBFL_pattern in "${COMMON_TEXT_FILES_GLOB_PATTERNS[@]}"; do
     [[ "$2" != "-v" ]]\
       || echo "Iterating on pattern: ${LFBFL_pattern}"

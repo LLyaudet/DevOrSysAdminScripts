@@ -62,7 +62,7 @@ sed -Ez "${sed_expression}" "${files_names_listing}.temp3"\
 shopt -s dotglob
 get_split_score_after_before 70 /
 # shellcheck disable=SC2154
-split_score_command="${LFBFL_generic_result}"
+split_score_command="${get_split_score_after_before_result}"
 # shellcheck disable=SC1003
 suffix='\\'
 # shellcheck disable=SC2312

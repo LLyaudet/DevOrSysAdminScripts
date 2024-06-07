@@ -124,10 +124,10 @@ temp_files_listing="./${subdir2}/files_listing.tex.tpl.temp"
 > "$temp_files_listing"
 get_split_score_after_before 70 /
 # split_score_command="$LFBFL_generic_result"
-score_command="$LFBFL_generic_result"
+score_command="${get_split_score_after_before_result}"
 get_split_score_after_before 70 ':'
 # split_score_command2="$LFBFL_generic_result"
-score_command2="$LFBFL_generic_result"
+score_command2="${get_split_score_after_before_result}"
 suffix='%'
 sed_expression='s/\\\n//Mg'
 cat "./${subdir2}/files_names_listing.txt"\

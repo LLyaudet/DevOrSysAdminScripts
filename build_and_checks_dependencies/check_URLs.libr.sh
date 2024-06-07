@@ -35,22 +35,31 @@ check_URLs(){
     ["http://www.gnu.org/licenses/"]="https://www.gnu.org/licenses/"\
   )
 
+  local LFBFL_pattern
+  local LFBFL_file_name
+  local LFBFL_base_file_name
+  local LFBFL_substitution
+  # shellcheck disable=SC2154
   for LFBFL_pattern in "${COMMON_TEXT_FILES_GLOB_PATTERNS[@]}"; do
-    [ "$1" != "-v" ] || echo "Iterating on pattern: $LFBFL_pattern"
-    find . -type f -name "$LFBFL_pattern" -printf '%P\n'\
+    [[ "$1" != "-v" ]]\
+      || echo "Iterating on pattern: ${LFBFL_pattern}"
+    # shellcheck disable=SC2312
+    find . -type f -name "${LFBFL_pattern}" -printf '%P\n'\
       | xargs grep -H 'http:'\
       | grep -v "^[^:]*check_URLs.libr.sh:"
-    for LFBFL_file_name in $LFBFL_pattern; do
-      [ -f "$LFBFL_file_name" ] || continue
-      LFBFL_base_file_name=$(basename "$LFBFL_file_name")
-      [ "$LFBFL_base_file_name" != "check_URLs.libr.sh" ] || continue
-      [ "$1" != "-v" ] || echo "Handling the file: $LFBFL_file_name"
+    for LFBFL_file_name in ${LFBFL_pattern}; do
+      [[ -f "${LFBFL_file_name}" ]] || continue
+      LFBFL_base_file_name=$(basename "${LFBFL_file_name}")
+      [[ "${LFBFL_base_file_name}" != "check_URLs.libr.sh" ]]\
+        || continue
+      [[ "$1" != "-v" ]]\
+        || echo "Handling the file: ${LFBFL_file_name}"
       for LFBFL_substitution in "${!LFBFL_substitutions[@]}"; do
         LFBFL_substitution2=\
-${LFBFL_substitutions[$LFBFL_substitution]}
-        if grep -q "$LFBFL_substitution" "$LFBFL_file_name"; then
-          sed -i "s|$LFBFL_substitution|$LFBFL_substitution2|g"\
-            "$LFBFL_file_name"
+${LFBFL_substitutions[${LFBFL_substitution}]}
+        if grep -q "${LFBFL_substitution}" "${LFBFL_file_name}"; then
+          sed -i "s|${LFBFL_substitution}|${LFBFL_substitution2}|g"\
+            "${LFBFL_file_name}"
         fi
       done
     done

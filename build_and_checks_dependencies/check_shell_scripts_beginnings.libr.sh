@@ -25,19 +25,19 @@
 # to "check_shell_scripts_beginnings.libr.sh".
 
 check_one_shell_script_beginning(){
-  LFBFL_file_name=$(basename "$1")
-  if [[ "$LFBFL_file_name" =~ license_file_header_.*\.sh ]];
-  then
+  declare -r LFBFL_file_name=$(basename "$1")
+  if [[ "${LFBFL_file_name}" =~ license_file_header_.*\.sh ]]; then
     return 0
   fi
+  # shellcheck disable=SC2312
   diff <(head -n 1 "$1") <(echo '#!/usr/bin/env bash')
 }
 
 
 check_shell_scripts_beginnings(){
   shopt -s globstar
-  for check_shell_scripts_beginnings_var_i in **/*.sh; do
-    check_one_shell_script_beginning\
-      "$check_shell_scripts_beginnings_var_i"
+  local LFBFL_file_name
+  for LFBFL_file_name in **/*.sh; do
+    check_one_shell_script_beginning "${LFBFL_file_name}"
   done
 }

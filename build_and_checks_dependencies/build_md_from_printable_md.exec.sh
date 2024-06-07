@@ -35,9 +35,9 @@ LFBFL_subdir="build_and_checks_dependencies"
 # shellcheck disable=SC1090
 source "./${LFBFL_subdir}/overwrite_if_not_equal.libr.sh"
 
-sed_expression='s/(\[[a-zA-Z0-9:-]*\]: [^\n\\]*)\\\n/\1/Mg'
-sed_expression+=';s/(<http[^\n\\]*)\\\n/\1/Mg'
-sed_expression+=';s/(- <http[^\n\\]*)\\\n/\1/Mg'
+LFBFL_sed_expression='s/(\[[a-zA-Z0-9:-]*\]: [^\n\\]*)\\\n/\1/Mg'
+LFBFL_sed_expression+=';s/(<http[^\n\\]*)\\\n/\1/Mg'
+LFBFL_sed_expression+=';s/(- <http[^\n\\]*)\\\n/\1/Mg'
 
 declare -i LFBFL_cd_result
 pushd .
@@ -46,6 +46,7 @@ then
   cd "$1" || {
     LFBFL_cd_result=$?;
     echo "build_md_from_printable_md no such directory";
+    # shellcheck disable=SC2248,2250
     exit $LFBFL_cd_result;
   }
 fi
@@ -58,13 +59,13 @@ fi
 
 if [[ -f "${file_name}.md.tpl" ]];
 then
-  sed -Ez "$sed_expression" "${file_name}.md.tpl"\
+  sed -Ez "${LFBFL_sed_expression}" "${file_name}.md.tpl"\
     > "${file_name}_temp1.md"
-  sed -Ez "$sed_expression" "${file_name}_temp1.md"\
+  sed -Ez "${LFBFL_sed_expression}" "${file_name}_temp1.md"\
     > "${file_name}_temp2.md"
-  sed -Ez "$sed_expression" "${file_name}_temp2.md"\
+  sed -Ez "${LFBFL_sed_expression}" "${file_name}_temp2.md"\
     > "${file_name}_temp3.md"
-  sed -Ez "$sed_expression" "${file_name}_temp3.md"\
+  sed -Ez "${LFBFL_sed_expression}" "${file_name}_temp3.md"\
     > "${file_name}_temp4.md"
   overwrite_if_not_equal "${file_name}.md" "${file_name}_temp4.md"
   rm "${file_name}_temp1.md" "${file_name}_temp2.md"\
@@ -77,5 +78,6 @@ declare -i LFBFL_popd_result
 popd || {
   LFBFL_popd_result=$?;
   echo "build_md_from_printable_md no popd";
+  # shellcheck disable=SC2248,2250
   exit $LFBFL_popd_result;
 }

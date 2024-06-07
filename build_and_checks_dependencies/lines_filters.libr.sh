@@ -47,20 +47,20 @@ ll_wc(){
   # I think I did that the first time many years ago (Teliae ?).
   # Since then, they added it as ignored... (-n)
   declare -a ll_wc_var_args=()
-  ll_wc_var_number_only=0
-  ll_wc_var_i=0
-  for ll_wc_var_arg in $@; do
+  declare -i ll_wc_var_number_only=0
+  declare -i ll_wc_var_i=0
+  for ll_wc_var_arg in "$@"; do
     # echo "$ll_wc_var_arg"
     if [[ $ll_wc_var_arg == "-n" ]]; then
       ll_wc_var_number_only=1
     elif [[ $ll_wc_var_arg == "--no-filenames" ]]; then
       ll_wc_var_number_only=1
     elif [[ $ll_wc_var_number_only -eq 0 ]]; then
-      ll_wc_var_args[$ll_wc_var_i]="$ll_wc_var_arg"
-      ll_wc_var_i=$(($ll_wc_var_i + 1))
+      ll_wc_var_args[ll_wc_var_i]="$ll_wc_var_arg"
+      ll_wc_var_i=$((ll_wc_var_i + 1))
     elif [[ "$ll_wc_var_arg" =~ -.* ]]; then
-      ll_wc_var_args[$ll_wc_var_i]="$ll_wc_var_arg"
-      ll_wc_var_i=$(($ll_wc_var_i + 1))
+      ll_wc_var_args[ll_wc_var_i]="$ll_wc_var_arg"
+      ll_wc_var_i=$((ll_wc_var_i + 1))
     fi
   done
   # typeset -p ll_wc_var_args
@@ -109,29 +109,30 @@ fi
 # 41
 
 in_place_grep(){
-  LFBFL_temp=".in_place_grep.temp"
-  grep $@ > "${!#}""$LFBFL_temp"
+  declare -r LFBFL_temp="${!#}.in_place_grep.temp"
+  grep "$@" > "${LFBFL_temp}"
   LFBFL_lines_before=$(ll_wc -l -n "${!#}")
-  LFBFL_lines_after=$(ll_wc -l -n "${!#}""$LFBFL_temp")
+  LFBFL_lines_after=$(ll_wc -l -n "${LFBFL_temp}")
   # echo "$LFBFL_lines_before"
   # echo "$LFBFL_lines_after"
   if [[ "$LFBFL_lines_before" ==  "$LFBFL_lines_after" ]]; then
-    rm "${!#}""$LFBFL_temp"
+    rm "${LFBFL_temp}"
     return
   fi
-  mv "${!#}""$LFBFL_temp" "${!#}"
+  mv "${LFBFL_temp}" "${!#}"
 }
 
 grep_variable(){
   # $1=$file
   # $2=$variable_name
-  LFBFL_regexp="(?<=^$2=).*$"
+  declare -r LFBFL_regexp="(?<=^$2=).*$"
   # echo $LFBFL_regexp
-  LFBFL_variable_value="$(grep -oP "$LFBFL_regexp" "$1")"
+  declare -r LFBFL_variable_value="$(grep -oP "${LFBFL_regexp}" "$1")"
   # echo $LFBFL_variable_value
   declare -g "$2"="$LFBFL_variable_value"
 }
 
+repository_name=""
 grep_variable repository_data.txt repository_name
 
 empty_lines(){
@@ -223,11 +224,11 @@ not_license_grep(){
 }
 
 not_main_tex_find(){
-  grep -vE "(^|/)$repository_name\.tex$"
+  grep -vE "(^|/)${repository_name}\.tex$"
 }
 
 not_main_tex_grep(){
-  grep -v "^[^:]*$repository_name\.tex:"
+  grep -v "^[^:]*${repository_name}\.tex:"
 }
 
 relevant_find(){

@@ -45,7 +45,7 @@ build_and_checks(){
   # shellcheck disable=SC1091
   source ./wget_sha512.libr.sh
 
-  declare -r LFBFL_subdir="build_and_checks_dependencies"
+  LFBFL_subdir="build_and_checks_dependencies"
   mkdir -p "${LFBFL_subdir}/licenses_templates"
   mkdir -p "${LFBFL_subdir}/listings"
 
@@ -62,9 +62,9 @@ build_and_checks(){
   declare -r\
     LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_common_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='5ddeeed5306d1ac0ac90144f48b371a83455363da5589'
-  LFBFL_correct_sha512+='7bbab6de1eca00642661a1469ed34b1d70a4aab0ccdb'
-  LFBFL_correct_sha512+='aa9d018db341edadefee45826546244117c9dea'
+  LFBFL_correct_sha512='378a952bba609bb0f03b64574604f2161164e1f87870f'
+  LFBFL_correct_sha512+='35f6f559f12c054a2fc131c94a61132683161b48a06c'
+  LFBFL_correct_sha512+='83f648c7e86f419c78f6e1728166f3fd1d2b8d5'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_script}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
   chmod +x "./${LFBFL_file_path}"

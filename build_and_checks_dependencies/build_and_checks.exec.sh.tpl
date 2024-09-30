@@ -45,7 +45,7 @@ build_and_checks(){
   # shellcheck disable=SC1091
   source ./wget_sha512.libr.sh
 
-  declare -r LFBFL_subdir="build_and_checks_dependencies"
+  LFBFL_subdir="build_and_checks_dependencies"
   mkdir -p "${LFBFL_subdir}/licenses_templates"
   mkdir -p "${LFBFL_subdir}/listings"
 

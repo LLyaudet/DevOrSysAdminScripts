@@ -47,8 +47,7 @@ common_build_and_checks(){
   # shellcheck disable=SC1091
   source ./wget_sha512.libr.sh
 
-  declare -r LFBFL_subdir="build_and_checks_dependencies"
-
+  LFBFL_subdir="build_and_checks_dependencies"
   local LFBFL_file_name
   local LFBFL_URL
   local LFBFL_file_path

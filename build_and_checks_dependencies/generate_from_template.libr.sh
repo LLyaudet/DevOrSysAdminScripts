@@ -33,6 +33,7 @@ generate_from_template_with_block_comments(){
   # $2=target_file_name
   # $3=enter_block_comment
   # $4=exit_block_comment
+  local LFBFL_temp
   LFBFL_temp="$2.generate_from_template_with_block_comments.temp"
   readonly LFBFL_temp
   echo "$3" > "${LFBFL_temp}"
@@ -46,6 +47,7 @@ generate_from_template_with_line_comments(){
   # $2=target_file_name
   # $3=line_comment_prefix
   # $4=optional_post_processing
+  local LFBFL_temp
   LFBFL_temp="$2.generate_from_template_with_line_comments.temp"
   readonly LFBFL_temp
   sed -e "s/^/$3/g" "$1" > "${LFBFL_temp}"

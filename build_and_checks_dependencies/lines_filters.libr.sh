@@ -136,7 +136,8 @@ grep_variable(){
 }
 
 repository_name=""
-grep_variable repository_data.txt repository_name
+grep_variable build_and_checks_variables/repository_data.txt\
+  repository_name
 
 empty_lines(){
   grep '^$'

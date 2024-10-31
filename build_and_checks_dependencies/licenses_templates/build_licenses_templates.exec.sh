@@ -122,13 +122,13 @@ for LFBFL_license in "${licenses[@]}"; do
 done
 # --------------------------------------------------------------------
 
-LFBFL_file_name=repository_data.txt
+LFBFL_data_file_name="build_and_checks_variables/repository_data.txt"
 repository_name=""
 license=""
 author_full_name=""
-grep_variable "${LFBFL_file_name}" repository_name
-grep_variable "${LFBFL_file_name}" license
-grep_variable "${LFBFL_file_name}" author_full_name
+grep_variable "${LFBFL_data_file_name}" repository_name
+grep_variable "${LFBFL_data_file_name}" license
+grep_variable "${LFBFL_data_file_name}" author_full_name
 LFBFL_license_prefix2="${LFBFL_license_prefix}${license}"
 # First year according to current state of git repository.
 # shellcheck disable=SC2312

@@ -44,8 +44,9 @@ source "./${LFBFL_subdir}/overwrite_if_not_equal.libr.sh"
 source "./${LFBFL_subdir}/strings_functions.libr.sh"
 LFBFL_subdir2="${LFBFL_subdir}/listings"
 
+LFBFL_data_file_name="build_and_checks_variables/repository_data.txt"
 repository_name=""
-grep_variable repository_data.txt repository_name
+grep_variable "${LFBFL_data_file_name}" repository_name
 
 cp "./latex/${repository_name}.tex.tpl"\
    "./latex/${repository_name}.tex"
@@ -54,7 +55,7 @@ sed -i "s|@repository_name@|${repository_name}|g"\
   "./latex/${repository_name}.tex"
 
 abstract=""
-grep_variable repository_data.txt abstract
+grep_variable "${LFBFL_data_file_name}" abstract
 # shellcheck disable=SC2001,SC2312
 echo "${abstract}" | sed -e 's/\\n/\n/g' > "abstract_temp"
 insert_file_at_token "./latex/${repository_name}.tex" @abstract@\
@@ -62,7 +63,7 @@ insert_file_at_token "./latex/${repository_name}.tex" @abstract@\
 rm "abstract_temp"
 
 acknowledgments=""
-grep_variable repository_data.txt acknowledgments
+grep_variable "${LFBFL_data_file_name}" acknowledgments
 # shellcheck disable=SC2001,SC2312
 echo "${acknowledgments}" | sed -e 's/\\n/\n/g'\
   > "acknowledgments_temp"
@@ -71,17 +72,17 @@ insert_file_at_token "./latex/${repository_name}.tex"\
 rm "acknowledgments_temp"
 
 author_full_name=""
-grep_variable repository_data.txt author_full_name
+grep_variable "${LFBFL_data_file_name}" author_full_name
 sed -i "s|@author_full_name@|${author_full_name}|g"\
   "./latex/${repository_name}.tex"
 
 author_website=""
-grep_variable repository_data.txt author_website
+grep_variable "${LFBFL_data_file_name}" author_website
 sed -i "s|@author_website@|${author_website}|g"\
   "./latex/${repository_name}.tex"
 
 author_email=""
-grep_variable repository_data.txt author_email
+grep_variable "${LFBFL_data_file_name}" author_email
 sed -i "s|@author_email@|${author_email}|g"\
   "./latex/${repository_name}.tex"
 

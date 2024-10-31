@@ -1,3 +1,25 @@
+// This file is part of DevOrSysAdminScripts library.
+//
+// DevOrSysAdminScripts is free software:
+// you can redistribute it and/or modify it under the terms
+// of the GNU Lesser General Public License
+// as published by the Free Software Foundation,
+// either version 3 of the License,
+// or (at your option) any later version.
+//
+// DevOrSysAdminScripts is distributed in the hope
+// that it will be useful,
+// but WITHOUT ANY WARRANTY;
+// without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+// See the GNU Lesser General Public License for more details.
+//
+// You should have received a copy of
+// the GNU Lesser General Public License
+// along with DevOrSysAdminScripts.
+// If not, see <https://www.gnu.org/licenses/>.
+//
+// ©Copyright 2023-2024 Laurent Frédéric Bernard François Lyaudet
 // Blasé20240517Résultat.txt
 // Blasé20240517.sh
 // Blasé20240518_2.txt
@@ -59,6 +81,7 @@ build_and_checks_dependencies/split_line_at_most.libr.php
 build_and_checks_dependencies/strings_functions.libr.sh
 build_and_checks_dependencies/too_long_code_lines.libr.sh
 build_and_checks_dependencies/update_common_build_and_checks.exec.sh
+build_and_checks_variables/repository_data.txt
 build_and_checks.exec.sh
 // EncoreBlasé20240517-20240518.txt
 git_checks.libr.sh
@@ -69,7 +92,7 @@ post_commit_renaming_comment.libr.sh
 pre-commit
 // README.md
 README.md.tpl
-repository_data.txt
+// repository_data.txt
 unicode.libr.php
 upgrade_build_and_checks.exec.sh
 wget_sha512.libr.sh

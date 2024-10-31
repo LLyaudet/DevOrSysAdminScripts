@@ -621,14 +621,14 @@ README.md.tpl
 
 
 \subsection{
-  repository\_data.txt
+  build_and_checks_variables/repository\_data.txt
 }
 \label{
-  repository_datatxt
+  build_and_checks_variables:repository_datatxt
 }
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
-repository_data.txt
+build_and_checks_variables/repository_data.txt
 }
 
 

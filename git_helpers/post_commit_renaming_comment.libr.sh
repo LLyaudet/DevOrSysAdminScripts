@@ -233,12 +233,15 @@ commit_a_file_renamed_comment(){
       LFBFL_new_file_directory2="${repeated_split_last_line_result}"
       # Create new comments strings. ---------------------------------
       local LFBFL_new_comment=""
-      LFBFL_new_comment="${LFBFL_comment_prefix}"
-      LFBFL_new_comment+="${LFBFL_timestamp}"
-      LFBFL_new_comment+=": This file was renamed from\n"
-      LFBFL_new_comment+="${LFBFL_old_file_name2}"'"\n'
-      LFBFL_new_comment+="${LFBFL_comment_prefix}to\n"
-      LFBFL_new_comment+="${LFBFL_new_file_name2}"'".'
+      if [[ "${LFBFL_new_file_name2}" != "${LFBFL_old_file_name2}" ]];
+      then
+        LFBFL_new_comment="${LFBFL_comment_prefix}"
+        LFBFL_new_comment+="${LFBFL_timestamp}"
+        LFBFL_new_comment+=": This file was renamed from\n"
+        LFBFL_new_comment+="${LFBFL_old_file_name2}"'"\n'
+        LFBFL_new_comment+="${LFBFL_comment_prefix}to\n"
+        LFBFL_new_comment+="${LFBFL_new_file_name2}"'".'
+      fi
       # shellcheck disable=SC2250
       if [[ $LFBFL_log_directory_change -eq 1 ]] && [[\
         "${LFBFL_new_file_directory}"\

@@ -103,6 +103,8 @@ commit_a_file_renamed_comment(){
   LFBFL_split_score_command2="${get_split_score_after_before_result}"
   declare -i LFBFL_renaming_happened=0
   declare -i LFBFL_i
+  # declare -r LFBFL_special_file_name="files_names_listing.txt"
+  declare -r LFBFL_sfn="files_names_listing.txt"
   for ((LFBFL_i=0; LFBFL_i<${#LFBFL_renaming_lines_array[@]};)); do
     # shellcheck disable=SC2250
     local LFBFL_diff_line="${LFBFL_renaming_lines_array[$LFBFL_i]}"
@@ -185,6 +187,9 @@ commit_a_file_renamed_comment(){
       fi
       if [[ "${LFBFL_extension}" == "tex" ]]; then
         LFBFL_comment_prefix="% "
+      fi
+      if [[ "${LFBFL_useful_file_name}" == "${LFBFL_sfn}" ]]; then
+        LFBFL_comment_prefix="// "
       fi
       # shellcheck disable=SC2250
       if [[ $LFBFL_verbose -eq 1 ]]; then

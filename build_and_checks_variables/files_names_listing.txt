@@ -73,7 +73,7 @@ build_and_checks_dependencies/lines_counts.libr.sh
 build_and_checks_dependencies/lines_filters.libr.sh
 build_and_checks_dependencies/lines_maps.libr.sh
 build_and_checks_dependencies/listings/files_listing.tex.tpl
-build_and_checks_dependencies/listings/files_names_listing.txt
+// build_and_checks_dependencies/listings/files_names_listing.txt
 build_and_checks_dependencies/listings/\
 update_or_check_files_names_listing.exec.sh
 build_and_checks_dependencies/overwrite_if_not_equal.libr.sh
@@ -85,6 +85,7 @@ build_and_checks_dependencies/split_line_at_most.libr.php
 build_and_checks_dependencies/strings_functions.libr.sh
 build_and_checks_dependencies/too_long_code_lines.libr.sh
 build_and_checks_dependencies/update_common_build_and_checks.exec.sh
+// build_and_checks_variables/files_names_listing.txt
 build_and_checks_variables/repository_data.txt
 build_and_checks.exec.sh
 // EncoreBlasé20240517-20240518.txt

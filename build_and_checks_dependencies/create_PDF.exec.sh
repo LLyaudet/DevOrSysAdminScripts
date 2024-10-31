@@ -42,7 +42,7 @@ source "./${LFBFL_subdir}/lines_maps.libr.sh"
 source "./${LFBFL_subdir}/overwrite_if_not_equal.libr.sh"
 # shellcheck disable=SC1090
 source "./${LFBFL_subdir}/strings_functions.libr.sh"
-LFBFL_subdir2="${LFBFL_subdir}/listings"
+LFBFL_subdir2="build_and_checks_variables"
 
 LFBFL_data_file_name="build_and_checks_variables/repository_data.txt"
 repository_name=""

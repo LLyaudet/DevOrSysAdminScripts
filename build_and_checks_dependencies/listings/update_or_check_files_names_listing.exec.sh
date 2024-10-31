@@ -38,7 +38,7 @@ LFBFL_subdir="build_and_checks_dependencies"
 source "./${LFBFL_subdir}/lines_filters.libr.sh"
 # shellcheck disable=SC1090
 source "./${LFBFL_subdir}/strings_functions.libr.sh"
-LFBFL_subdir2="${LFBFL_subdir}/listings"
+LFBFL_subdir2="build_and_checks_variables"
 files_names_listing="./${LFBFL_subdir2}/files_names_listing.txt"
 
 # Cette fonction est trop sioux pour shellcheck avec sa variable de

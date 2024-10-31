@@ -425,19 +425,6 @@ build_and_checks_dependencies/listings/files_listing.tex.tpl
 
 \subsection{
   build\_and\_checks\_dependencies/listings/%
-files\_names\_listing.txt
-}
-\label{
-  build_and_checks_dependencies:listings:files_names_listingtxt
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/listings/files_names_listing.txt
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/listings/%
 update\_or\_check\_files\_names\_listing.sh
 }
 \label{
@@ -533,6 +520,18 @@ update\_common\_build\_and\_checks.sh
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
 build_and_checks_dependencies/update_common_build_and_checks.sh
+}
+
+
+\subsection{
+  build\_and\_checks\_variables/files\_names\_listing.txt
+}
+\label{
+  build_and_checks_variables:files_names_listingtxt
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+build_and_checks_variables/files_names_listing.txt
 }
 
 

@@ -20,7 +20,7 @@
 # along with DevOrSysAdminScripts.
 # If not, see <https://www.gnu.org/licenses/>.
 #
-# ©Copyright 2023-2024 Laurent Frédéric Bernard François Lyaudet
+# ©Copyright 2023-2025 Laurent Frédéric Bernard François Lyaudet
 # This file was renamed from "too_long_code_lines.sh"
 # to "too_long_code_lines.libr.sh".
 

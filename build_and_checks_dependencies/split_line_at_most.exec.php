@@ -22,7 +22,7 @@ the GNU Lesser General Public License
 along with DevOrSysAdminScripts.
 If not, see <https://www.gnu.org/licenses/>.
 
-©Copyright 2023-2024 Laurent Frédéric Bernard François Lyaudet
+©Copyright 2023-2025 Laurent Frédéric Bernard François Lyaudet
 This file was renamed from
 "call_split_score_after_before_or_before_after.exec.php" to
 "split_line_at_most.exec.php".

@@ -20,7 +20,7 @@
 # along with DevOrSysAdminScripts.
 # If not, see <https://www.gnu.org/licenses/>.
 #
-# ©Copyright 2023-2024 Laurent Frédéric Bernard François Lyaudet
+# ©Copyright 2023-2025 Laurent Frédéric Bernard François Lyaudet
 # This file was renamed from "build_licenses_templates.sh"
 # to "build_licenses_templates.exec.sh".
 

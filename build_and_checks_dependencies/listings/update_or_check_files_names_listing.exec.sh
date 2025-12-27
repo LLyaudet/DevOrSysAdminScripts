@@ -20,7 +20,7 @@
 # along with DevOrSysAdminScripts.
 # If not, see <https://www.gnu.org/licenses/>.
 #
-# ©Copyright 2023-2024 Laurent Frédéric Bernard François Lyaudet
+# ©Copyright 2023-2025 Laurent Frédéric Bernard François Lyaudet
 # This file was renamed from "update_or_check_files_names_listing.sh"
 # to "update_or_check_files_names_listing.exec.sh".
 # This file was renamed from "update_or_check_file_names_listing.sh"

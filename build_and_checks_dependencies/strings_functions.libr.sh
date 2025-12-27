@@ -20,7 +20,7 @@
 # along with DevOrSysAdminScripts.
 # If not, see <https://www.gnu.org/licenses/>.
 #
-# ©Copyright 2023-2024 Laurent Frédéric Bernard François Lyaudet
+# ©Copyright 2023-2025 Laurent Frédéric Bernard François Lyaudet
 # I think I created a file strings_functions.sh or renamed to
 # strings_functions.sh at some point, before committing.
 # Hence, someone must have changed or reversed the name of this file

@@ -21,6 +21,11 @@
 %
 % ©Copyright 2023-2025 Laurent Frédéric Bernard François Lyaudet
 
+% 2025-12-29T17:08+01:00: This file was moved from
+% "./latex"
+% to
+% "./build_and_checks_variables".
+
 \documentclass{article}
 
 \usepackage[utf8]{inputenc}

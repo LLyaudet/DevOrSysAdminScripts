@@ -1,8 +1,15 @@
 https://support.google.com/a/answer/9476255?hl=fr#zippy=%2C%C3%A9tape\
 -configurez-le-service-de-migration-de-donn%C3%A9es
+----------------------------------------------------------------------
 https://stackoverflow.com/a/78413334/5796086
 https://stackoverflow.com/questions/21612980/\
 why-is-usr-bin-env-bash-superior-to-bin-bash/78413334
 https://web.archive.org/web/20240501105801/https://stackoverflow.com\
 /questions/21612980/why-is-usr-bin-env-bash-superior-to-bin-bash/\
 78413334#78413334
+----------------------------------------------------------------------
+https://news.ycombinator.com/item?id=22214690
+https://github.com/koalaman/shellcheck/issues/2005
+https://opensource.stackexchange.com/questions/6271/\
+calling-gpld-programs-from-a-shell-script
+----------------------------------------------------------------------

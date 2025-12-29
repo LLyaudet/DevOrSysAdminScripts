@@ -71,8 +71,6 @@ find . -type f -printf '%P\n' | relevant_find | sort\
 do
   git check-ignore -q "${file_name}" && continue
   base_file_name=$(basename "${file_name}")
-  [[ "${base_file_name}" != "current_tree_light.txt" ]] || continue
-  [[ "${base_file_name}" != "current_tree.txt" ]] || continue
   [[ "${base_file_name}" != "COPYING" ]] || continue
   [[ "${base_file_name}" != "COPYING.LESSER" ]] || continue
   [[ "${base_file_name}" != "${repository_name}.pdf" ]] || continue
@@ -87,8 +85,6 @@ do
     || continue
   if [[ "${base_file_name}" == *.md ]]; then
     if [[ -f "${file_name}.tpl" ]]; then
-      # in_place_grep -v "${base_file_name}\$" current_tree.txt
-      # in_place_grep -v "${base_file_name}\$" current_tree_light.txt
       continue
     fi
   fi

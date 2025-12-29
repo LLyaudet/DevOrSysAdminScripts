@@ -48,97 +48,56 @@ LFBFL_data_file_name="build_and_checks_variables/repository_data.txt"
 repository_name=""
 grep_variable "${LFBFL_data_file_name}" repository_name
 
-cp "./latex/${repository_name}.tex.tpl"\
-   "./latex/${repository_name}.tex"
-
-sed -i "s|@repository_name@|${repository_name}|g"\
-  "./latex/${repository_name}.tex"
-
 abstract=""
 grep_variable "${LFBFL_data_file_name}" abstract
-# shellcheck disable=SC2001,SC2312
-echo "${abstract}" | sed -e 's/\\n/\n/g' > "abstract_temp"
-insert_file_at_token "./latex/${repository_name}.tex" @abstract@\
-  "abstract_temp"
-rm "abstract_temp"
 
 acknowledgments=""
 grep_variable "${LFBFL_data_file_name}" acknowledgments
-# shellcheck disable=SC2001,SC2312
-echo "${acknowledgments}" | sed -e 's/\\n/\n/g'\
-  > "acknowledgments_temp"
-insert_file_at_token "./latex/${repository_name}.tex"\
-  @acknowledgments@ "acknowledgments_temp"
-rm "acknowledgments_temp"
-
-author_full_name=""
-grep_variable "${LFBFL_data_file_name}" author_full_name
-sed -i "s|@author_full_name@|${author_full_name}|g"\
-  "./latex/${repository_name}.tex"
-
-author_website=""
-grep_variable "${LFBFL_data_file_name}" author_website
-sed -i "s|@author_website@|${author_website}|g"\
-  "./latex/${repository_name}.tex"
 
 author_email=""
 grep_variable "${LFBFL_data_file_name}" author_email
-sed -i "s|@author_email@|${author_email}|g"\
-  "./latex/${repository_name}.tex"
+
+author_full_name=""
+grep_variable "${LFBFL_data_file_name}" author_full_name
+
+author_website=""
+grep_variable "${LFBFL_data_file_name}" author_website
 
 # shellcheck disable=SC2155
 declare -r LFBFL_current_date=$(date -I"date")
-sed -i "s|@current_date@|${LFBFL_current_date}|g"\
-  "./latex/${repository_name}.tex"
 
 # shellcheck disable=SC2155
 declare -r LFBFL_current_git_SHA1=$(git rev-parse HEAD)
-sed -i "s|@current_git_SHA1@|${LFBFL_current_git_SHA1}|g"\
-  "./latex/${repository_name}.tex"
 
 # shellcheck disable=SC2155
 declare -r LFBFL_number_of_commits=$(
   git shortlog | space_starting_lines | wc -l
 )
-sed -i "s|@number_of_commits@|${LFBFL_number_of_commits}|g"\
-  "./latex/${repository_name}.tex"
 
 LFBFL_number_of_lines="$(code_lines_count_all) total lines,"
 LFBFL_number_of_lines+=" $(code_lines_count_not_empty)"
 LFBFL_number_of_lines+=" not empty lines,"
 LFBFL_number_of_lines+=" $(code_lines_count_empty) empty lines."
-sed -i "s|@number_of_lines@|${LFBFL_number_of_lines}|g"\
-  "./latex/${repository_name}.tex"
 
 # shellcheck disable=SC2094,SC2312
 tree -a --gitignore\
-  -I "${repository_name}.aux"\
-  -I "${repository_name}.log"\
-  -I "${repository_name}.out"\
-  -I current_tree.txt\
-  -I current_tree_light.txt\
   -I "node_modules/"\
   -I "__pycache__/"\
   -I ".mypy_cache/"\
   -I ".git/"\
   | replace_non_ascii_spaces\
-  > current_tree_light.txt
+  > "${LFBFL_subdir2}/temp/current_tree_light.txt"
 
 # shellcheck disable=SC2094,SC2312
 tree -a -DFh --gitignore\
-  -I "${repository_name}.aux"\
-  -I "${repository_name}.log"\
-  -I "${repository_name}.out"\
-  -I current_tree.txt\
-  -I current_tree_light.txt\
   -I "node_modules/"\
   -I "__pycache__/"\
   -I ".mypy_cache/"\
   -I ".git/"\
   | replace_non_ascii_spaces\
-  > current_tree.txt
+  > "${LFBFL_subdir2}/temp/current_tree.txt"
 
-LFBFL_temp_files_listing="./${LFBFL_subdir2}/"
+LFBFL_temp_files_listing="./${LFBFL_subdir2}/temp/"
 LFBFL_temp_files_listing+="files_listing.tex.tpl.temp"
 : > "${LFBFL_temp_files_listing}"
 get_split_score_after_before 70 /
@@ -220,9 +179,6 @@ do
 done
 overwrite_if_not_equal "./${LFBFL_subdir2}/files_listing.tex.tpl"\
   "${LFBFL_temp_files_listing}"
-insert_file_at_token "./latex/${repository_name}.tex"\
-  @files_listing_VerbatimInput@\
-  "./${LFBFL_subdir2}/files_listing.tex.tpl"
 
 # We verify if some lines are beyond 70 characters
 # in current_tree_light.txt et current_tree.txt.
@@ -257,8 +213,8 @@ for LFBFL_tree in "${LFBFL_trees[@]}"; do
     )
     LFBFL_new_lines="${LFBFL_prefix}${LFBFL_file_name}"
     if [[ ${#LFBFL_new_lines} -gt 70 ]]; then
-      repeated_split_last_line "${LFBFL_new_lines}" "${LFBFL_prefix}" 70\
-        "" "" 3
+      repeated_split_last_line "${LFBFL_new_lines}" "${LFBFL_prefix}"\
+        70 "" "" 3
       # shellcheck disable=SC2154
       LFBFL_new_lines=${repeated_split_last_line_result}
     fi
@@ -268,29 +224,77 @@ for LFBFL_tree in "${LFBFL_trees[@]}"; do
   done
 done
 
+if [[ -f "./${LFBFL_subdir2}/${repository_name}.tex.tpl" ]];
+then
+  # We overwrite current tex file only if it can be generated from
+  # template.
+  cp "./${LFBFL_subdir2}/${repository_name}.tex.tpl"\
+     "./${LFBFL_subdir2}/${repository_name}.tex"
+fi
+
+# But the filling still occurs, in case the dev want to refill
+# part of the tex file that he modified with @token@
+# using some computed results.
+sed -i "s|@repository_name@|${repository_name}|g"\
+  "./${LFBFL_subdir2}/${repository_name}.tex"
+
+# shellcheck disable=SC2001,SC2312
+echo "${abstract}" | sed -e 's/\\n/\n/g'\
+  > "./${LFBFL_subdir2}/temp/abstract_temp"
+insert_file_at_token "./${LFBFL_subdir2}/${repository_name}.tex"\
+  @abstract@ "./${LFBFL_subdir2}/temp/abstract_temp"
+
+# shellcheck disable=SC2001,SC2312
+echo "${acknowledgments}" | sed -e 's/\\n/\n/g'\
+  > "./${LFBFL_subdir2}/temp/acknowledgments_temp"
+insert_file_at_token "./${LFBFL_subdir2}/${repository_name}.tex"\
+  @acknowledgments@ "./${LFBFL_subdir2}/temp/acknowledgments_temp"
+
+sed -i "s|@author_email@|${author_email}|g"\
+  "./${LFBFL_subdir2}/${repository_name}.tex"
+
+sed -i "s|@author_full_name@|${author_full_name}|g"\
+  "./${LFBFL_subdir2}/${repository_name}.tex"
+
+sed -i "s|@author_website@|${author_website}|g"\
+  "./${LFBFL_subdir2}/${repository_name}.tex"
+
+sed -i "s|@current_date@|${LFBFL_current_date}|g"\
+  "./${LFBFL_subdir2}/${repository_name}.tex"
+
+sed -i "s|@current_git_SHA1@|${LFBFL_current_git_SHA1}|g"\
+  "./${LFBFL_subdir2}/${repository_name}.tex"
+
+sed -i "s|@number_of_commits@|${LFBFL_number_of_commits}|g"\
+  "./${LFBFL_subdir2}/${repository_name}.tex"
+
+sed -i "s|@number_of_lines@|${LFBFL_number_of_lines}|g"\
+  "./${LFBFL_subdir2}/${repository_name}.tex"
+
 sed -i -e '/@current_tree_light@/{r current_tree_light.txt' -e 'd}'\
-  "./latex/${repository_name}.tex"
+  "./${LFBFL_subdir2}/${repository_name}.tex"
 sed -i -e '/@current_tree@/{r current_tree.txt' -e 'd}'\
-  "./latex/${repository_name}.tex"
+  "./${LFBFL_subdir2}/${repository_name}.tex"
+
+insert_file_at_token "./${LFBFL_subdir2}/${repository_name}.tex"\
+  @files_listing_VerbatimInput@\
+  "./${LFBFL_subdir2}/files_listing.tex.tpl"
 
 if [[ -n "${LFBFL_verbose}" ]]; then
   for ((i=0; i<3; i++)); do
-    pdflatex "./latex/${repository_name}.tex"
+    pdflatex "./${LFBFL_subdir2}/${repository_name}.tex"
   done
 else
   for ((i=0; i<3; i++)); do
-    pdflatex "./latex/${repository_name}.tex" > /dev/null
+    pdflatex "./${LFBFL_subdir2}/${repository_name}.tex" > /dev/null
   done
 fi
 
-LFBFL_files_to_delete=(\
-  "${repository_name}.aux"\
-  "${repository_name}.log"\
-  "${repository_name}.out"\
-  "current_tree.txt"
-  "current_tree_light.txt"
+LFBFL_files_to_temp=(\
+  "${LFBFL_subdir2}/${repository_name}.aux"\
+  "${LFBFL_subdir2}/${repository_name}.log"\
+  "${LFBFL_subdir2}/${repository_name}.out"
 )
-# Comment the following line if you need to debug.
-for LFBFL_file_name in "${LFBFL_files_to_delete[@]}"; do
-  rm -f "${LFBFL_file_name}"
+for LFBFL_file_name in "${LFBFL_files_to_temp[@]}"; do
+  mv "${LFBFL_file_name}" "${LFBFL_subdir2}/temp/"
 done

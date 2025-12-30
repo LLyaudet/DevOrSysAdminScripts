@@ -320,6 +320,9 @@ common_build_and_checks(){
   grep --exclude-dir '.git' -nPrv "^[${LFBFL_usual_characters}]*$" .\
     | grep --color='auto' -nP "[^${LFBFL_usual_characters}]"
 
+  echo "Checking listed files"
+  "./${LFBFL_subdir}/update_or_check_files_names_listing.exec.sh"
+
   echo "Creating the PDF file of the listing of the source code"
   "./${LFBFL_subdir}/create_PDF.exec.sh" "${LFBFL_verbose}"
 

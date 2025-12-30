@@ -46,12 +46,6 @@ source "./${LFBFL_subdir}/strings_functions.libr.sh"
 LFBFL_subdir2="build_and_checks_variables"
 files_names_listing="./${LFBFL_subdir2}/files_names_listing.txt"
 
-# Cette fonction est trop sioux pour shellcheck avec sa variable de
-# sortie avec un nom dynamique. Du coup, je feinte pour la suite.
-repository_name=""
-grep_variable build_and_checks_variables/repository_data.txt\
-   repository_name
-
 if [[ "$1" == "--write" ]]; then
   : > "${files_names_listing}"
 fi
@@ -79,10 +73,6 @@ find . -type f -printf '%P\n' | relevant_find | sort\
 do
   git check-ignore -q "${file_name}" && continue
   base_file_name=$(basename "${file_name}")
-  [[ "${base_file_name}" != "COPYING" ]] || continue
-  [[ "${base_file_name}" != "COPYING.LESSER" ]] || continue
-  [[ "${base_file_name}" != "${repository_name}.pdf" ]] || continue
-  [[ "${base_file_name}" != "${repository_name}.tex" ]] || continue
   [[ "${base_file_name}" != "files_names_listing.txt.temp1" ]]\
     || continue
   [[ "${base_file_name}" != "files_names_listing.txt.temp2" ]]\
@@ -108,7 +98,7 @@ do
     continue
   fi
   if grep -q "${file_name}\$" "${files_names_listing}.temp4"; then
-    echo ""
+    :
   else
     echo\
       "The file ${file_name} is not listed in ${files_names_listing}."
@@ -121,6 +111,18 @@ do
     fi
   fi
 done
+
+# shellcheck disable=SC2002,2312
+cat "${files_names_listing}.temp4" | while read -r file_name;
+do
+  [[ "${file_name}" != '//'* ]] || continue
+  base_file_name=$(basename "${file_name}")
+  if ! [[ -f "${file_name}" ]]; then
+    echo\
+      "The non-file ${file_name} is listed in ${files_names_listing}."
+  fi
+done
+
 rm "${files_names_listing}.temp1" "${files_names_listing}.temp2"\
   "${files_names_listing}.temp3" "${files_names_listing}.temp4"
 shopt -u dotglob

@@ -47,7 +47,11 @@ build_and_checks(){
 
   LFBFL_subdir="build_and_checks_dependencies"
   mkdir -p "${LFBFL_subdir}/licenses_templates"
-  mkdir -p "${LFBFL_subdir}/listings"
+  mkdir -p "build_and_checks_variables/temp"
+  if ! [[ -f "build_and_checks_variables/.gitignore" ]]; then
+    echo "temp/" > "build_and_checks_variables/.gitignore"
+    echo "" >> "build_and_checks_variables/.gitignore"
+  fi
 
   # LFBFL_dependencies_raw_content_download_URL
   local LFBFL_dependencies_URL

@@ -284,9 +284,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='523c5344515806a172521b5b57bed83d0d1f17b494b38'
-  LFBFL_correct_sha512+='6bd9afb521021cbcba316a9e1fbd30473a6c32bb2d52'
-  LFBFL_correct_sha512+='eebc050af2b9413ab71060e34f0f3c3cdb3e78d'
+  LFBFL_correct_sha512='da58ab2f0d0ff526c226212c1dce96f9280befebcb19a'
+  LFBFL_correct_sha512+='217617f0df610f563c25d1ed5d8681f07cba9096461b'
+  LFBFL_correct_sha512+='9a38c8a39f82e0259cfc21cef87a960f3c76c5d'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
   chmod +x "./${LFBFL_file_path}"
@@ -388,6 +388,9 @@ common_build_and_checks(){
   # shellcheck disable=SC2312
   grep --exclude-dir '.git' -nPrv "^[${LFBFL_usual_characters}]*$" .\
     | grep --color='auto' -nP "[^${LFBFL_usual_characters}]"
+
+  echo "Checking listed files"
+  "./${LFBFL_subdir}/update_or_check_files_names_listing.exec.sh"
 
   echo "Creating the PDF file of the listing of the source code"
   "./${LFBFL_subdir}/create_PDF.exec.sh" "${LFBFL_verbose}"

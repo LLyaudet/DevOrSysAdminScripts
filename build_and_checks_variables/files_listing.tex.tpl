@@ -222,6 +222,21 @@ AGPLv3+.tpl
 
 \subsection{
   build\_and\_checks\_dependencies/licenses\_templates/license\_file\_heade%
+r\_GPLv3+.c
+}
+\label{
+  build_and_checks_dependencies:licenses_templates:license_file_heade%
+r_GPLv3+c
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+build_and_checks_dependencies/licenses_templates/license_file_header_%
+GPLv3+.c
+}
+
+
+\subsection{
+  build\_and\_checks\_dependencies/licenses\_templates/license\_file\_heade%
 r\_GPLv3+.c.tpl
 }
 \label{
@@ -232,6 +247,21 @@ r_GPLv3+ctpl
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
 build_and_checks_dependencies/licenses_templates/license_file_header_%
 GPLv3+.c.tpl
+}
+
+
+\subsection{
+  build\_and\_checks\_dependencies/licenses\_templates/license\_file\_heade%
+r\_GPLv3+.py
+}
+\label{
+  build_and_checks_dependencies:licenses_templates:license_file_heade%
+r_GPLv3+py
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+build_and_checks_dependencies/licenses_templates/license_file_header_%
+GPLv3+.py
 }
 
 
@@ -252,6 +282,21 @@ GPLv3+.py.tpl
 
 \subsection{
   build\_and\_checks\_dependencies/licenses\_templates/license\_file\_heade%
+r\_GPLv3+.sh
+}
+\label{
+  build_and_checks_dependencies:licenses_templates:license_file_heade%
+r_GPLv3+sh
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+build_and_checks_dependencies/licenses_templates/license_file_header_%
+GPLv3+.sh
+}
+
+
+\subsection{
+  build\_and\_checks\_dependencies/licenses\_templates/license\_file\_heade%
 r\_GPLv3+.sh.tpl
 }
 \label{
@@ -262,6 +307,21 @@ r_GPLv3+shtpl
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
 build_and_checks_dependencies/licenses_templates/license_file_header_%
 GPLv3+.sh.tpl
+}
+
+
+\subsection{
+  build\_and\_checks\_dependencies/licenses\_templates/license\_file\_heade%
+r\_GPLv3+.tex
+}
+\label{
+  build_and_checks_dependencies:licenses_templates:license_file_heade%
+r_GPLv3+tex
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+build_and_checks_dependencies/licenses_templates/license_file_header_%
+GPLv3+.tex
 }
 
 
@@ -467,33 +527,6 @@ build_and_checks_dependencies/lines_maps.libr.sh
 
 
 \subsection{
-  build\_and\_checks\_dependencies/listings/files\_listing.tex.tpl
-}
-\label{
-  build_and_checks_dependencies:listings:files_listingtextpl
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/listings/files_listing.tex.tpl
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/update\_or\_check\_files\_names\_listing.e%
-xec.sh
-}
-\label{
-  build_and_checks_dependencies:update_or_check_files_names_listingex%
-ecsh
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/update_or_check_files_names_listing.exe%
-c.sh
-}
-
-
-\subsection{
   build\_and\_checks\_dependencies/overwrite\_if\_not\_equal.libr.sh
 }
 \label{
@@ -590,6 +623,21 @@ build_and_checks_dependencies/update_common_build_and_checks.exec.sh
 
 
 \subsection{
+  build\_and\_checks\_dependencies/update\_or\_check\_files\_names\_listing.e%
+xec.sh
+}
+\label{
+  build_and_checks_dependencies:update_or_check_files_names_listingex%
+ecsh
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+build_and_checks_dependencies/update_or_check_files_names_listing.exe%
+c.sh
+}
+
+
+\subsection{
   build\_and\_checks\_variables/.gitignore
 }
 \label{
@@ -634,6 +682,18 @@ build_and_checks_variables/DevOrSysAdminScripts.tex.tpl
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
 build_and_checks_variables/repository_data.txt
+}
+
+
+\subsection{
+  build\_and\_checks\_variables/licenses\_notes.txt
+}
+\label{
+  build_and_checks_variables:licenses_notestxt
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+build_and_checks_variables/licenses_notes.txt
 }
 
 

@@ -44,6 +44,7 @@ source "./${LFBFL_subdir}/overwrite_if_not_equal.libr.sh"
 LFBFL_license_subdir="./${LFBFL_subdir}/licenses_templates/"
 LFBFL_license_prefix="${LFBFL_license_subdir}license_file_header_"
 licenses=(\
+  "AGPLv3+"\
   "GPLv3+"\
   "LGPLv3+"
 )

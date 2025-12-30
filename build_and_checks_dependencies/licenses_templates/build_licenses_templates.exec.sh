@@ -125,11 +125,14 @@ done
 LFBFL_data_file_name="build_and_checks_variables/repository_data.txt"
 repository_name=""
 license=""
+license2=""
 author_full_name=""
 grep_variable "${LFBFL_data_file_name}" repository_name
 grep_variable "${LFBFL_data_file_name}" license
+grep_variable "${LFBFL_data_file_name}" license2
 grep_variable "${LFBFL_data_file_name}" author_full_name
 LFBFL_license_prefix2="${LFBFL_license_prefix}${license}"
+LFBFL_license_prefix3="${LFBFL_license_prefix}${license2}"
 # First year according to current state of git repository.
 # shellcheck disable=SC2312
 first_year="$(git log | grep 'Date:' | cut -f 8 -d ' ' | tail -1)"
@@ -137,42 +140,81 @@ first_year="$(git log | grep 'Date:' | cut -f 8 -d ' ' | tail -1)"
 # shellcheck disable=SC2312
 last_year="$(git log | grep 'Date:' | cut -f 8 -d ' ' | head -1)"
 copyright_string="${first_year}-${last_year} ${author_full_name}"
+
+prepare_filled_license_file_block(){
+  # $1=license_file_name
+  sed -e "s/@repository_name@/${repository_name}/g"\
+    -e "s/@copyright_string@/${copyright_string}/g"\
+    "$1.tpl" > "$1.temp"
+  overwrite_if_not_equal "$1" "$1.temp"
+  # shellcheck disable=SC2312
+  head --lines=-1 "$1" | tail --lines=+2 > "$1.temp"
+  # Strange world: tail --lines=-1 was working to exclude first line.
+  # I tested it months ago, and saw with my eyes the start and end
+  # block comments removed with:
+  # head --lines=-1 "$1" | tail --lines=-1.
+  # Now, man page says to use --lines=+2 instead.
+  # Welcome in the world where AI change your environment and your doc
+  # on the fly...
+}
+
 for ((i=0; i<${#block_comment_languages[@]}; i++)); do
   LFBFL_extension=${block_comment_languages[i]}
   license_file_name="${LFBFL_license_prefix2}.${LFBFL_extension}"
-  sed -e "s/@repository_name@/${repository_name}/g"\
-    -e "s/@copyright_string@/${copyright_string}/g"\
-    "${license_file_name}.tpl" > "${license_file_name}.temp"
-  overwrite_if_not_equal "${license_file_name}"\
-    "${license_file_name}.temp"
-  # shellcheck disable=SC2312
-  head --lines=-1 "${license_file_name}" | tail --lines=-1\
-    > "${license_file_name}.temp"
+  prepare_filled_license_file_block "${license_file_name}"
+  if [[ -n "${license2}" ]]; then
+    license_file_name2="${LFBFL_license_prefix3}.${LFBFL_extension}"
+    prepare_filled_license_file_block "${license_file_name2}"
+  fi
   # shellcheck disable=SC2312
   find . -type f -name "*.${LFBFL_extension}" -printf '%P\n'\
     | relevant_find | while read -r LFBFL_file_name;
   do
-    if is_subfile "${LFBFL_file_name}" "${license_file_name}.temp"
-    then
+    is_subfile "${LFBFL_file_name}" "${license_file_name}.temp"
+    declare -i LFBFL_not_subfile=$?
+    declare -i LFBFL_not_subfile2=1
+    if [[ -n "${license2}" ]]; then
+      is_subfile "${LFBFL_file_name}" "${license_file_name2}.temp"
+      LFBFL_not_subfile2=$?
+    fi
+    if [[ LFBFL_not_subfile -ge 1 && LFBFL_not_subfile2 -ge 1 ]]; then
       echo "File ${LFBFL_file_name} has no/wrong license header?"
     fi
   done
   rm "${license_file_name}.temp"
+  if [[ -n "${license2}" ]]; then
+    rm "${license_file_name2}.temp"
+  fi
 done
+
+prepare_filled_license_file_line(){
+  # $1=license_file_name
+  sed -e "s/@repository_name@/${repository_name}/g"\
+    -e "s/@copyright_string@/${copyright_string}/g"\
+    "$1.tpl" > "$1.temp"
+  overwrite_if_not_equal "$1" "$1.temp"
+}
+
 for ((i=0; i<${#line_comment_languages[@]}; i++)); do
   LFBFL_extension=${line_comment_languages[i]}
   license_file_name="${LFBFL_license_prefix2}.${LFBFL_extension}"
-  sed -e "s/@repository_name@/${repository_name}/g"\
-    -e "s/@copyright_string@/${copyright_string}/g"\
-    "${license_file_name}.tpl" > "${license_file_name}.temp"
-  overwrite_if_not_equal "${license_file_name}"\
-    "${license_file_name}.temp"
+  prepare_filled_license_file_line "${license_file_name}"
+  if [[ -n "${license2}" ]]; then
+    license_file_name2="${LFBFL_license_prefix3}.${LFBFL_extension}"
+    prepare_filled_license_file_line "${license_file_name2}"
+  fi
   # shellcheck disable=SC2312
   find . -type f -name "*.${LFBFL_extension}" -printf '%P\n'\
     | relevant_find | while read -r LFBFL_file_name;
   do
-    if is_subfile "${LFBFL_file_name}" "${license_file_name}"
-    then
+    is_subfile "${LFBFL_file_name}" "${license_file_name}"
+    declare -i LFBFL_not_subfile=$?
+    declare -i LFBFL_not_subfile2=1
+    if [[ -n "${license2}" ]]; then
+      is_subfile "${LFBFL_file_name}" "${license_file_name2}"
+      LFBFL_not_subfile2=$?
+    fi
+    if [[ LFBFL_not_subfile -ge 1 && LFBFL_not_subfile2 -ge 1 ]]; then
       echo "File ${LFBFL_file_name} has no/wrong license header?"
     fi
   done

@@ -52,7 +52,7 @@ update_common_build_and_checks(){
     "lines_counts.libr.sh"\
     "lines_filters.libr.sh"\
     "lines_maps.libr.sh"\
-    "listings/update_or_check_files_names_listing.exec.sh"\
+    "update_or_check_files_names_listing.exec.sh"\
     "overwrite_if_not_equal.libr.sh"\
     "python_black_complement.libr.sh"\
     "python_isort_complement.libr.sh"\

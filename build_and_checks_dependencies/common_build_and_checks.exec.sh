@@ -210,21 +210,6 @@ common_build_and_checks(){
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
-  # /listings/ -------------------------------------------------------
-  declare -r LFBFL_subdir3="${LFBFL_subdir}/listings"
-  declare -r LFBFL_start_URL3="${LFBFL_start_URL}/listings"
-  LFBFL_file_name="update_or_check_files_names_listing.exec.sh"
-  LFBFL_URL="${LFBFL_start_URL3}/${LFBFL_file_name}"
-  LFBFL_file_path="./${LFBFL_subdir3}/${LFBFL_file_name}"
-  local LFBFL_correct_sha512
-  LFBFL_correct_sha512='7b0b02d31983186b63c73cb70cc1aa33ddd6c6fa11651'
-  LFBFL_correct_sha512+='0c226fc19283043593cdcc8d2c778205d27484488095'
-  LFBFL_correct_sha512+='bd0f314bd31869bfaa08b123d0e66e5c20cac76'
-  wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
-    "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
-  chmod +x "./${LFBFL_file_path}"
-  # ------------------------------------------------------------------
-
   LFBFL_file_name="overwrite_if_not_equal.libr.sh"
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
@@ -294,6 +279,17 @@ common_build_and_checks(){
   LFBFL_correct_sha512+='98a0b8dafcf5e87b85ab364db077090c828a3e7'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
+
+  LFBFL_file_name="update_or_check_files_names_listing.exec.sh"
+  LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
+  LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
+  local LFBFL_correct_sha512
+  LFBFL_correct_sha512='523c5344515806a172521b5b57bed83d0d1f17b494b38'
+  LFBFL_correct_sha512+='6bd9afb521021cbcba316a9e1fbd30473a6c32bb2d52'
+  LFBFL_correct_sha512+='eebc050af2b9413ab71060e34f0f3c3cdb3e78d'
+  wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
+    "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
+  chmod +x "./${LFBFL_file_path}"
 
   shopt -s globstar
   # shellcheck disable=SC1090

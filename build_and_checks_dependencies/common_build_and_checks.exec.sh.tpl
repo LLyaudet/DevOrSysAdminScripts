@@ -165,18 +165,6 @@ common_build_and_checks(){
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
-  # /listings/ -------------------------------------------------------
-  declare -r LFBFL_subdir3="${LFBFL_subdir}/listings"
-  declare -r LFBFL_start_URL3="${LFBFL_start_URL}/listings"
-  LFBFL_file_name="update_or_check_files_names_listing.exec.sh"
-  LFBFL_URL="${LFBFL_start_URL3}/${LFBFL_file_name}"
-  LFBFL_file_path="./${LFBFL_subdir3}/${LFBFL_file_name}"
-  @sha512_update_or_check_files_names_listing.exec.sh@
-  wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
-    "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
-  chmod +x "./${LFBFL_file_path}"
-  # ------------------------------------------------------------------
-
   LFBFL_file_name="overwrite_if_not_equal.libr.sh"
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
@@ -225,6 +213,14 @@ common_build_and_checks(){
   @sha512_too_long_code_lines.libr.sh@
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
+
+  LFBFL_file_name="update_or_check_files_names_listing.exec.sh"
+  LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
+  LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
+  @sha512_update_or_check_files_names_listing.exec.sh@
+  wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
+    "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
+  chmod +x "./${LFBFL_file_path}"
 
   shopt -s globstar
   # shellcheck disable=SC1090

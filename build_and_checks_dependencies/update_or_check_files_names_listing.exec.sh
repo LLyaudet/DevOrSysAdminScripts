@@ -21,6 +21,11 @@
 # If not, see <https://www.gnu.org/licenses/>.
 #
 # ©Copyright 2023-2025 Laurent Frédéric Bernard François Lyaudet
+
+# 2025-12-30T21:33+01:00: This file was moved from
+# "./build_and_checks_dependencies/listings"
+# to
+# "./build_and_checks_dependencies".
 # This file was renamed from "update_or_check_files_names_listing.sh"
 # to "update_or_check_files_names_listing.exec.sh".
 # This file was renamed from "update_or_check_file_names_listing.sh"

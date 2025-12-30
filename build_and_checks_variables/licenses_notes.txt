@@ -1,0 +1,25 @@
+This repository is dual licensed.
+All the Bash scripts source code is covered by GPLv3+.
+All the PHP scripts source code is covered by LGPLv3+.
+
+Here is a listing of the dependencies of the code in this repository:
+- The following dependencies are GPLv3+ licensed:
+basename, bash (and its builtins), cat, chmod, cp, cut, date, diff,
+dirname, find, grep, head, mkdir, mv, realpath, rm, sed, sha512sum,
+shellcheck, sort, tail, wc, wget, xargs
+- The following dependencies are GPLv2+ licensed:
+more, pdftex, pdflatex, tree
+- The following dependencies are GPLv2 licensed:
+git
+- The following dependencies are LGPLv2.1+ licensed:
+notify-send
+- The following dependencies are MIT licensed:
+black, isort, mypy
+- php is licensed under PHP License v3.01
+- tex is licensed under Knuth license
+- pcregrep has a custom license from Cambridge University
+
+Remark: Some commands listed under GPLv3+ are POSIX
+and can have different implementations under another license;
+for example, uutils coreutils is MIT licensed,
+whilst GNU coreutils is GPLv3+ licensed.

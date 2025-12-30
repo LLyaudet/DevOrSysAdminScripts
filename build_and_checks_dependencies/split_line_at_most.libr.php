@@ -40,12 +40,13 @@ function generate_split_score_after_before(
       // I'm too brainfucked. I just want to finish this feature fast
       // for HTML and Tex/PDF listings generation with HTML and Tex on
       // at most 70 characters.
-      return -1;
+      return 0;
     }
     if($is_cut_after){
-      return $max_length + $cut_position;
+      // Always way better to cut after '/' than before it.
+      return 1 + $max_length + $cut_position;
     }
-    return $cut_position;
+    return 1 + $cut_position;
   };
 }
 
@@ -65,12 +66,13 @@ function generate_split_score_before_after(
       // I'm too brainfucked. I just want to finish this feature fast
       // for HTML and Tex/PDF listings generation with HTML and Tex on
       // at most 70 characters.
-      return -1;
+      return 0;
     }
     if(!$is_cut_after){
-      return $max_length + $cut_position;
+      // Always way better to cut before '/' than after it.
+      return 1 + $max_length + $cut_position;
     }
-    return $cut_position;
+    return 1 + $cut_position;
   };
 }
 

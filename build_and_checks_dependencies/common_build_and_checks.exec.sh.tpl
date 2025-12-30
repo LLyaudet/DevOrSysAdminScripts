@@ -3,7 +3,7 @@
 #
 # DevOrSysAdminScripts is free software:
 # you can redistribute it and/or modify it under the terms
-# of the GNU Lesser General Public License
+# of the GNU General Public License
 # as published by the Free Software Foundation,
 # either version 3 of the License,
 # or (at your option) any later version.
@@ -13,10 +13,10 @@
 # but WITHOUT ANY WARRANTY;
 # without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-# See the GNU Lesser General Public License for more details.
+# See the GNU General Public License for more details.
 #
 # You should have received a copy of
-# the GNU Lesser General Public License
+# the GNU General Public License
 # along with DevOrSysAdminScripts.
 # If not, see <https://www.gnu.org/licenses/>.
 #
@@ -121,6 +121,13 @@ common_build_and_checks(){
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
   chmod +x "./${LFBFL_file_path}"
+
+  LFBFL_file_name="license_file_header_AGPLv3+.tpl"
+  LFBFL_URL="${LFBFL_start_URL2}/${LFBFL_file_name}"
+  LFBFL_file_path="./${LFBFL_subdir2}/${LFBFL_file_name}"
+  @sha512_license_file_header_AGPLv3+.tpl@
+  wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
+    "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
   LFBFL_file_name="license_file_header_GPLv3+.tpl"
   LFBFL_URL="${LFBFL_start_URL2}/${LFBFL_file_name}"

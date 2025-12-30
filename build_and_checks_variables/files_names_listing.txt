@@ -86,11 +86,16 @@ build_and_checks_dependencies/strings_functions.libr.sh
 build_and_checks_dependencies/too_long_code_lines.libr.sh
 build_and_checks_dependencies/update_common_build_and_checks.exec.sh
 // build_and_checks_variables/files_names_listing.txt
+build_and_checks_variables/.gitignore
+build_and_checks_variables/DevOrSysAdminScripts.html.tpl
+build_and_checks_variables/DevOrSysAdminScripts.tex.tpl
 build_and_checks_variables/repository_data.txt
 build_and_checks.exec.sh
 // EncoreBlasé20240517-20240518.txt
-git_checks.libr.sh
-latex/DevOrSysAdminScripts.tex.tpl
+git_helpers/git_checks.libr.sh
+git_helpers/post-commit
+git_helpers/post_commit_renaming_comment
+git_helpers/pre-commit
 LiensUtiles.txt
 post-commit
 post_commit_renaming_comment.libr.sh

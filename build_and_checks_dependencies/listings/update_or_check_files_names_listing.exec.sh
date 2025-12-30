@@ -3,7 +3,7 @@
 #
 # DevOrSysAdminScripts is free software:
 # you can redistribute it and/or modify it under the terms
-# of the GNU Lesser General Public License
+# of the GNU General Public License
 # as published by the Free Software Foundation,
 # either version 3 of the License,
 # or (at your option) any later version.
@@ -13,10 +13,10 @@
 # but WITHOUT ANY WARRANTY;
 # without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-# See the GNU Lesser General Public License for more details.
+# See the GNU General Public License for more details.
 #
 # You should have received a copy of
-# the GNU Lesser General Public License
+# the GNU General Public License
 # along with DevOrSysAdminScripts.
 # If not, see <https://www.gnu.org/licenses/>.
 #
@@ -60,9 +60,12 @@ sed -Ez "${sed_expression}" "${files_names_listing}.temp2"\
 sed -Ez "${sed_expression}" "${files_names_listing}.temp3"\
   > "${files_names_listing}.temp4"
 shopt -s dotglob
-get_split_score_after_before 70 /
+get_split_score_after_before_simple 70 /
 # shellcheck disable=SC2154
 split_score_command="${get_split_score_after_before_result}"
+# shellcheck disable=SC2154
+split_score_command_properties=\
+"${get_split_score_after_before_result2}"
 # shellcheck disable=SC1003
 suffix='\\'
 # shellcheck disable=SC2312
@@ -89,7 +92,7 @@ do
     fi
   fi
   repeated_split_last_line "${file_name}" "" 70 "${suffix}"\
-    "${split_score_command}" 3
+    "${split_score_command}" "${split_score_command_properties}"
   # shellcheck disable=SC2154
   split_file_name="${repeated_split_last_line_result}"
   if [[ "$1" == "--write" ]]; then

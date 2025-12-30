@@ -3,7 +3,7 @@
 #
 # DevOrSysAdminScripts is free software:
 # you can redistribute it and/or modify it under the terms
-# of the GNU Lesser General Public License
+# of the GNU General Public License
 # as published by the Free Software Foundation,
 # either version 3 of the License,
 # or (at your option) any later version.
@@ -13,10 +13,10 @@
 # but WITHOUT ANY WARRANTY;
 # without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-# See the GNU Lesser General Public License for more details.
+# See the GNU General Public License for more details.
 #
 # You should have received a copy of
-# the GNU Lesser General Public License
+# the GNU General Public License
 # along with DevOrSysAdminScripts.
 # If not, see <https://www.gnu.org/licenses/>.
 #
@@ -95,12 +95,20 @@ commit_a_file_renamed_comment(){
   if [[ $LFBFL_verbose -eq 1 ]]; then
     echo "LFBFL_timestamp: ${LFBFL_timestamp}"
   fi
-  get_split_score_after_before "${LFBFL_max_comment_line_length}" _
+  get_split_score_after_before_simple\
+    "${LFBFL_max_comment_line_length}" _
   # shellcheck disable=SC2154
   LFBFL_split_score_command1="${get_split_score_after_before_result}"
-  get_split_score_after_before "${LFBFL_max_comment_line_length}" /
+  # shellcheck disable=SC2154
+  LFBFL_split_score_command_properties1=\
+"${get_split_score_after_before_result2}"
+  get_split_score_after_before_simple\
+    "${LFBFL_max_comment_line_length}" /
   # shellcheck disable=SC2154
   LFBFL_split_score_command2="${get_split_score_after_before_result}"
+  # shellcheck disable=SC2154
+  LFBFL_split_score_command_properties2=\
+"${get_split_score_after_before_result2}"
   declare -i LFBFL_renaming_happened=0
   declare -i LFBFL_i
   # declare -r LFBFL_special_file_name="files_names_listing.txt"
@@ -204,7 +212,8 @@ commit_a_file_renamed_comment(){
       LFBFL_old_file_name2+="${LFBFL_old_file_name}"
       repeated_split_last_line "${LFBFL_old_file_name2}"\
         "${LFBFL_comment_prefix2}" "${LFBFL_max_comment_line_length}"\
-        '"' "${LFBFL_split_score_command1}" 3
+        '"' "${LFBFL_split_score_command1}"\
+        "${LFBFL_split_score_command_properties1}"
       # shellcheck disable=SC2154
       LFBFL_old_file_name2="${repeated_split_last_line_result}"
       # -----
@@ -212,7 +221,8 @@ commit_a_file_renamed_comment(){
       LFBFL_old_file_directory2+="${LFBFL_old_file_directory}"
       repeated_split_last_line "${LFBFL_old_file_directory2}"\
         "${LFBFL_comment_prefix2}" "${LFBFL_max_comment_line_length}"\
-        '"' "${LFBFL_split_score_command2}" 3
+        '"' "${LFBFL_split_score_command2}"\
+        "${LFBFL_split_score_command_properties2}"
       # shellcheck disable=SC2154
       LFBFL_old_file_directory2="${repeated_split_last_line_result}"
       # -----
@@ -220,7 +230,8 @@ commit_a_file_renamed_comment(){
       LFBFL_new_file_name2+="${LFBFL_new_file_name}"
       repeated_split_last_line "${LFBFL_new_file_name2}"\
         "${LFBFL_comment_prefix2}" "${LFBFL_max_comment_line_length}"\
-        '"' "${LFBFL_split_score_command1}" 3
+        '"' "${LFBFL_split_score_command1}"\
+        "${LFBFL_split_score_command_properties1}"
       # shellcheck disable=SC2154
       LFBFL_new_file_name2="${repeated_split_last_line_result}"
       # -----
@@ -228,7 +239,8 @@ commit_a_file_renamed_comment(){
       LFBFL_new_file_directory2+="${LFBFL_new_file_directory}"
       repeated_split_last_line "${LFBFL_new_file_directory2}"\
         "${LFBFL_comment_prefix2}" "${LFBFL_max_comment_line_length}"\
-        '"' "${LFBFL_split_score_command2}" 3
+        '"' "${LFBFL_split_score_command2}"\
+        "${LFBFL_split_score_command_properties2}"
       # shellcheck disable=SC2154
       LFBFL_new_file_directory2="${repeated_split_last_line_result}"
       # Create new comments strings. ---------------------------------

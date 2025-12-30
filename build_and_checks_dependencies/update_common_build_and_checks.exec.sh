@@ -3,7 +3,7 @@
 #
 # DevOrSysAdminScripts is free software:
 # you can redistribute it and/or modify it under the terms
-# of the GNU Lesser General Public License
+# of the GNU General Public License
 # as published by the Free Software Foundation,
 # either version 3 of the License,
 # or (at your option) any later version.
@@ -13,10 +13,10 @@
 # but WITHOUT ANY WARRANTY;
 # without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-# See the GNU Lesser General Public License for more details.
+# See the GNU General Public License for more details.
 #
 # You should have received a copy of
-# the GNU Lesser General Public License
+# the GNU General Public License
 # along with DevOrSysAdminScripts.
 # If not, see <https://www.gnu.org/licenses/>.
 #
@@ -46,6 +46,7 @@ update_common_build_and_checks(){
     "get_common_text_glob_patterns.libr.sh"\
     "grammar_and_spell_check.libr.sh"\
     "licenses_templates/build_licenses_templates.exec.sh"\
+    "licenses_templates/license_file_header_AGPLv3+.tpl"\
     "licenses_templates/license_file_header_GPLv3+.tpl"\
     "licenses_templates/license_file_header_LGPLv3+.tpl"\
     "lines_counts.libr.sh"\

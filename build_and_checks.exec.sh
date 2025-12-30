@@ -3,7 +3,7 @@
 #
 # DevOrSysAdminScripts is free software:
 # you can redistribute it and/or modify it under the terms
-# of the GNU Lesser General Public License
+# of the GNU General Public License
 # as published by the Free Software Foundation,
 # either version 3 of the License,
 # or (at your option) any later version.
@@ -13,10 +13,10 @@
 # but WITHOUT ANY WARRANTY;
 # without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-# See the GNU Lesser General Public License for more details.
+# See the GNU General Public License for more details.
 #
 # You should have received a copy of
-# the GNU Lesser General Public License
+# the GNU General Public License
 # along with DevOrSysAdminScripts.
 # If not, see <https://www.gnu.org/licenses/>.
 #
@@ -62,9 +62,9 @@ build_and_checks(){
   declare -r\
     LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_common_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='b5843d9b440b839857df0cb3235acbf204aa0bdbed7a2'
-  LFBFL_correct_sha512+='ecc0126e007e909fa5aa04e5306e07330609c1717f53'
-  LFBFL_correct_sha512+='3b54f61038b7cf50d13092be8f85a355afb4152'
+  LFBFL_correct_sha512='fddaff8267d7bf4d00ee89caffffb406e0f5a338a85cc'
+  LFBFL_correct_sha512+='78bd1d6701420b5c367d9b852845ffb5a017d91df7f1'
+  LFBFL_correct_sha512+='f99a95a30ab22c972083a926269d122be385a32'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_script}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
   chmod +x "./${LFBFL_file_path}"

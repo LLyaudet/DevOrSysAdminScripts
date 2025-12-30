@@ -3,7 +3,7 @@
 #
 # DevOrSysAdminScripts is free software:
 # you can redistribute it and/or modify it under the terms
-# of the GNU Lesser General Public License
+# of the GNU General Public License
 # as published by the Free Software Foundation,
 # either version 3 of the License,
 # or (at your option) any later version.
@@ -13,10 +13,10 @@
 # but WITHOUT ANY WARRANTY;
 # without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-# See the GNU Lesser General Public License for more details.
+# See the GNU General Public License for more details.
 #
 # You should have received a copy of
-# the GNU Lesser General Public License
+# the GNU General Public License
 # along with DevOrSysAdminScripts.
 # If not, see <https://www.gnu.org/licenses/>.
 #
@@ -43,28 +43,54 @@ split_line_at(){
   # echo "$split_line_at_result_end"
 }
 
-split_score_after_before(){
-  # No function generator in bash, this function and the following
-  # will assume that we just take into account the third argument.
-  # $1=$delimiter_string
-  # $2=$cut_position
+split_score_after_before_simple(){
+  # $1=$delimiters_strings_domain concatenated characters/delimiters
+  # $2=$delimiter_string a single character
   # $3=$is_cut_after
-  if [[ "$3" == "1" ]]; then
-    return 2
+  if [[ "$1" != "*$2*" ]]; then
+    echo "0"
+    return
   fi
-  return 1
+  if [[ "$3" == "1" ]]; then
+    echo "2"
+    return
+  fi
+  echo "1"
+  return
 }
 
-split_score_before_after(){
-  # No function generator in bash, this function and the following
-  # will assume that we just take into account the third argument.
-  # $1=$delimiter_string
-  # $2=$cut_position
+split_score_before_after_simple(){
+  # $1=$delimiters_strings_domain concatenated characters/delimiters
+  # $2=$delimiter_string a single character
   # $3=$is_cut_after
-  if [[ "$3" == "0" ]]; then
-    return 2
+  if [[ "$1" != "*$2*" ]]; then
+    echo "0"
+    return
   fi
-  return 1
+  if [[ "$3" == "0" ]]; then
+    echo "2"
+    return
+  fi
+  echo "1"
+  return
+}
+
+get_split_score_after_before_simple(){
+  # $1=$max_length
+  # $2=$delimiters_strings_domain
+  declare -g get_split_score_after_before_result=\
+"split_score_after_before_simple $2"
+  # shellcheck disable=SC2034
+  declare -g get_split_score_after_before_result2="7"
+}
+
+get_split_score_before_after_simple(){
+  # $1=$max_length
+  # $2=$delimiters_strings_domain
+  declare -g get_split_score_before_after_result=\
+"split_score_before_after_simple $2"
+  # shellcheck disable=SC2034
+  declare -g get_split_score_before_after_result2="7"
 }
 
 get_split_line_at_most_exec(){
@@ -80,6 +106,8 @@ get_split_score_after_before(){
   declare -g\
     get_split_score_after_before_result="${SPLIT_LINE_AT_MOST_EXEC}"
   get_split_score_after_before_result+=" 1 '$1' '$2'"
+  # shellcheck disable=SC2034
+  declare -g get_split_score_after_before_result2="7"
 }
 
 get_split_score_before_after(){
@@ -89,6 +117,8 @@ get_split_score_before_after(){
   declare -g\
     get_split_score_before_after_result="${SPLIT_LINE_AT_MOST_EXEC}"
   get_split_score_before_after_result+=" 0 '$1' '$2'"
+  # shellcheck disable=SC2034
+  declare -g get_split_score_before_after_result2="7"
 }
 
 split_line_at_most(){
@@ -96,7 +126,15 @@ split_line_at_most(){
   # $2=$max_length of beginning result string
   # $3=$split_score_command
   #   negative score means do not consider as a possible split
-  # $4=$split_score_command_delimiter_strings_domain
+  # $4=$split_score_command_properties :
+  #   These properties are flags.
+  #   If someday some property is not a flag,
+  #   then create split_score_command_properties2.
+  #   - null or 0 no property;
+  #   - 1 split score never decreases when cut position increases;
+  #   - 2 split score is >= 0 after delimiter iff it is >= 0 before;
+  #   - 4 split score doesn't depend on the delimiter;
+  # $5=$split_score_command_delimiter_strings_domain
   #   optimisation if small domain
   #   - this argument can be "null", then we will use $3 only instead,
   #     in that case, only mono-character strings are considered,
@@ -113,10 +151,10 @@ split_line_at_most(){
   declare -g split_line_at_most_result_end
   declare -A LFBFL_positions
   LFBFL_positions=(["$2"]="0")
-  # echo "$1 $2 $3"
+  # echo "$1 $2 $3 $4"
   # For my use case in bash scripts, I will need only an array of
   # characters. See get_split_score_after_before().
-  if [[ -n "$4" ]]; then
+  if [[ -n "$5" ]]; then
     echo "split_line_at_most() \$4 NOT IMPLEMENTED YET"
   fi
   if [[ "$2" -ge "${#1}" ]]; then
@@ -135,40 +173,78 @@ split_line_at_most(){
   local LFBFL_command1
   local LFBFL_command2
   local LFBFL_temp
-  for ((LFBFL_i=0; LFBFL_i<LFBFL_i_max; LFBFL_i++)) do
-    LFBFL_j=$((LFBFL_i+1))
-    LFBFL_current_char="${1:${LFBFL_i}:1}"
-    LFBFL_command1="$3 '${LFBFL_current_char}' ${LFBFL_i} 0"
-    LFBFL_command2="$3 '${LFBFL_current_char}' ${LFBFL_j} 1"
-    # echo "${LFBFL_command1}"
-    # echo "${LFBFL_command2}"
-    LFBFL_temp=$(eval "${LFBFL_command1}")
-    # echo "${LFBFL_temp}|${LFBFL_i}"
-    if [[ ${LFBFL_temp} -ge 0 ]]; then
+  if [[ "$4" == "7" ]]; then
+    for ((LFBFL_j=LFBFL_i_max; LFBFL_j>0; LFBFL_j--)) do
+      LFBFL_i=$((LFBFL_j-1))
+      LFBFL_current_char="${1:${LFBFL_i}:1}"
+      LFBFL_command1="$3 '${LFBFL_current_char}' ${LFBFL_i} 0"
+      LFBFL_command2="$3 '${LFBFL_current_char}' ${LFBFL_j} 1"
+      # echo "${LFBFL_command1}"
+      # echo "${LFBFL_command2}"
+      LFBFL_temp=$(eval "${LFBFL_command1}")
       # echo "${LFBFL_temp}|${LFBFL_i}"
-      if [[ ${#LFBFL_positions["${LFBFL_i}"]} == "0" ]]; then
-        LFBFL_positions["${LFBFL_i}"]="${LFBFL_temp}"
-      else
-        LFBFL_positions["${LFBFL_i}"]=$(
-          max "${LFBFL_sort_command}"\
-            "${LFBFL_positions["${LFBFL_i}"]}" "${LFBFL_temp}"
-        )
+      if [[ ${LFBFL_temp} -ge 1 ]]; then
+        # echo "${LFBFL_temp}|${LFBFL_i}"
+        if [[ ${#LFBFL_positions["${LFBFL_i}"]} == "0" ]]; then
+          LFBFL_positions["${LFBFL_i}"]="${LFBFL_temp}"
+        else
+          LFBFL_positions["${LFBFL_i}"]=$(
+            max "${LFBFL_sort_command}"\
+              "${LFBFL_positions["${LFBFL_i}"]}" "${LFBFL_temp}"
+          )
+        fi
       fi
-    fi
-    LFBFL_temp=$(eval "${LFBFL_command2}")
-    # echo "${LFBFL_temp}|${LFBFL_j}"
-    if [[ ${LFBFL_temp} -ge 0 ]]; then
+      LFBFL_temp=$(eval "${LFBFL_command2}")
       # echo "${LFBFL_temp}|${LFBFL_j}"
-      if [[ ${#LFBFL_positions["${LFBFL_j}"]} == "0" ]]; then
-        LFBFL_positions["${LFBFL_j}"]="${LFBFL_temp}"
-      else
-        LFBFL_positions["${LFBFL_j}"]=$(
-          max "${LFBFL_sort_command}"\
-            "${LFBFL_positions["${LFBFL_j}"]}" "${LFBFL_temp}"
-        )
+      if [[ ${LFBFL_temp} -ge 1 ]]; then
+        # echo "${LFBFL_temp}|${LFBFL_j}"
+        if [[ ${#LFBFL_positions["${LFBFL_j}"]} == "0" ]]; then
+          LFBFL_positions["${LFBFL_j}"]="${LFBFL_temp}"
+        else
+          LFBFL_positions["${LFBFL_j}"]=$(
+            max "${LFBFL_sort_command}"\
+              "${LFBFL_positions["${LFBFL_j}"]}" "${LFBFL_temp}"
+          )
+        fi
+        break
       fi
-    fi
-  done
+    done
+  else
+    for ((LFBFL_i=0; LFBFL_i<LFBFL_i_max; LFBFL_i++)) do
+      LFBFL_j=$((LFBFL_i+1))
+      LFBFL_current_char="${1:${LFBFL_i}:1}"
+      LFBFL_command1="$3 '${LFBFL_current_char}' ${LFBFL_i} 0"
+      LFBFL_command2="$3 '${LFBFL_current_char}' ${LFBFL_j} 1"
+      # echo "${LFBFL_command1}"
+      # echo "${LFBFL_command2}"
+      LFBFL_temp=$(eval "${LFBFL_command1}")
+      # echo "${LFBFL_temp}|${LFBFL_i}"
+      if [[ ${LFBFL_temp} -ge 1 ]]; then
+        # echo "${LFBFL_temp}|${LFBFL_i}"
+        if [[ ${#LFBFL_positions["${LFBFL_i}"]} == "0" ]]; then
+          LFBFL_positions["${LFBFL_i}"]="${LFBFL_temp}"
+        else
+          LFBFL_positions["${LFBFL_i}"]=$(
+            max "${LFBFL_sort_command}"\
+              "${LFBFL_positions["${LFBFL_i}"]}" "${LFBFL_temp}"
+          )
+        fi
+      fi
+      LFBFL_temp=$(eval "${LFBFL_command2}")
+      # echo "${LFBFL_temp}|${LFBFL_j}"
+      if [[ ${LFBFL_temp} -ge 1 ]]; then
+        # echo "${LFBFL_temp}|${LFBFL_j}"
+        if [[ ${#LFBFL_positions["${LFBFL_j}"]} == "0" ]]; then
+          LFBFL_positions["${LFBFL_j}"]="${LFBFL_temp}"
+        else
+          LFBFL_positions["${LFBFL_j}"]=$(
+            max "${LFBFL_sort_command}"\
+              "${LFBFL_positions["${LFBFL_j}"]}" "${LFBFL_temp}"
+          )
+        fi
+      fi
+    done
+  fi
   declare -a LFBFL_joined_args=()
   LFBFL_i=0
   local LFBFL_key
@@ -199,6 +275,7 @@ split_last_line(){
   # $3=$max_length
   # $4=$suffix
   # $5=$split_score_command
+  # $6=$split_score_command_properties
   # In general, a prefix/suffix can be a required line prefix/suffix
   # for all final lines like a comment prefix,
   # or it can be a continuation line prefix/suffix applied only
@@ -210,7 +287,7 @@ split_last_line(){
   # it is easy to see that we do not need to distinguish between
   # required line prefix/suffix and continuation line prefix/suffix.
   # The $2 and $4 arguments are given as concatenation of the
-  # required and concatenation line prefixes/suffixes as needed by the
+  # required and continuation line prefixes/suffixes as needed by the
   # user.
   # Thus lines arguments should be given already prefixed
   # and suffixed.
@@ -242,7 +319,7 @@ split_last_line(){
     fi
     if [[ -n "$5" ]]; then
       split_line_at_most "${LFBFL_last_line}" "${LFBFL_length2}"\
-        "$5"
+        "$5" "$6"
       split_last_line_result+="${split_line_at_most_result_start}$4"
       split_last_line_result+="\n"
       split_last_line_result+="$2${split_line_at_most_result_end}"
@@ -261,7 +338,7 @@ repeated_split_last_line(){
   local LFBFL_i
   for ((LFBFL_i=0; LFBFL_i<$6; ++LFBFL_i)) do
     split_last_line "${repeated_split_last_line_result}" "$2" "$3"\
-      "$4" "$5"
+      "$4" "$5" "$6"
     repeated_split_last_line_result="${split_last_line_result}"
   done
 }

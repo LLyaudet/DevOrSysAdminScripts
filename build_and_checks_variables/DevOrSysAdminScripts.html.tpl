@@ -76,11 +76,15 @@ blockquote{
         @author_full_name@
         <br>
         <a href="@author_website@">
-          <span style="font-family:monospace">@author_website@</span>
+          <span style="font-family:monospace">
+          @author_website@
+          </span>
         </a>
         <br>
         <a href="mailto:@author_email@">
-          <span style="font-family:monospace">@author_email@</span>
+          <span style="font-family:monospace">
+          @author_email@
+          </span>
         </a>
       </h3>
     </td>
@@ -94,12 +98,18 @@ blockquote{
 <p>Current version: @current_date@</p>
 <p>Current number of commits: @number_of_commits@</p>
 <p>Current git SHA1: @current_git_SHA1@</p>
-<p>Code lines: @number_of_lines@</p>
+<p>
+Code lines: @number_of_lines@
+</p>
 
 
 <h2 id="section1">1 Files tree</h2>
-<pre class="verbatim">@current_tree_light@</pre>
-<pre class="verbatim">@current_tree@</pre>
+<pre class="verbatim">
+@current_tree_light@
+</pre>
+<pre class="verbatim">
+@current_tree@
+</pre>
 
 
 <h2 id="section2">2 Listing of files</h2>
@@ -151,7 +161,9 @@ whilst GNU coreutils is GPLv3+ licensed.
 
 @files_listing_HTMLPreInput@
 
-<p>@acknowledgments@</p>
+<p>
+@acknowledgments@
+</p>
 
 <script>
 "use strict";

@@ -1,0 +1,59 @@
+<h1 id="devorsysadminscripts">DevOrSysAdminScripts</h1>
+<p><a
+href="https://www.codefactor.io/repository/github/llyaudet/DevOrSysAdminScripts"><img
+src="https://www.codefactor.io/repository/github/llyaudet/DevOrSysAdminScripts/badge"
+alt="CodeFactor-badge" /></a> <a
+href="https://codeclimate.com/github/LLyaudet/DevOrSysAdminScripts/maintainability"><img
+src="https://api.codeclimate.com/v1/badges/b619ce83a81cc4a55e18/maintainability"
+alt="CodeClimateMaintainability-badge" /></a> <a
+href="https://app.codacy.com/gh/LLyaudet/DevOrSysAdminScripts/dashboard?utm_source=gh&amp;utm_medium=referral&amp;utm_content=&amp;utm_campaign=Badge_grade"><img
+src="https://app.codacy.com/project/badge/Grade/3dd6ef85e8db4460991d1ebc404b68dd"
+alt="Codacy-badge" /></a> <img
+src="https://img.shields.io/github/languages/top/llyaudet/DevOrSysAdminScripts"
+alt="GitHub-top-language-badge" /> <img
+src="https://img.shields.io/github/languages/code-size/llyaudet/DevOrSysAdminScripts"
+alt="GitHub-code-size-in-bytes-badge" /></p>
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: center;"><strong>Some “small” useful
+scripts</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;"><strong>for enhancing development or
+system-administrators tasks</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Currently, the biggest part of this repository is in a suite of shell
+scripts about build and checks that I use in some of my other
+repositories.</p>
+<p>I tried to follow some conventions for my bash code:</p>
+<ul>
+<li>I tried to encapsulate most of the code in functions.</li>
+<li>Unless used as return values, variables in functions are defined as
+local variables (<code>local</code> keyword or <code>declare</code>)
+with prefix “LFBFL_”.</li>
+<li>When used as return values, variables in functions are defined as
+global variables (<code>declare -g</code>) with prefix “<span
+class="citation" data-cites="function_name">@function_name</span><span
+class="citation" data-cites="_result_">@_result_</span>”.</li>
+<li>Whenever a variable is no more modified after some point, add the
+keyword <code>readonly</code> or use <code>declare -r</code>.</li>
+<li>Whenever a variable will only contain integer values (or boolean
+values as 0 or 1), use <code>declare -i</code>.</li>
+<li>I named bash files with suffixes “.exec.sh” when the script can be
+runned (executable, abbreviation stops before a vowel).</li>
+<li>I named bash files with suffixes “.libr.sh” when the script contains
+only functions definitions (library, abbreviation stops before a
+vowel).</li>
+<li>When some “.exec.sh” code is encapsulated into functions, either
+these functions can be reused and go in some “.libr.sh” file, either
+they are truly specific to this script and they are kept in “.exec.sh”
+file.</li>
+</ul>
+<p>But the files “pre-commit” and “post-commit” were not renamed, since
+it is not possible to give them other names to use them as
+pre-commit/post-commit hooks in <code>git</code>.</p>

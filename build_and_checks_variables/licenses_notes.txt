@@ -8,7 +8,7 @@ basename, bash (and its builtins), cat, chmod, cp, cut, date, diff,
 dirname, find, grep, head, mkdir, mv, realpath, rm, sed, sha512sum,
 shellcheck, sort, tail, wc, wget, xargs
 - The following dependencies are GPLv2+ licensed:
-more, pdftex, pdflatex, tree
+more, pandoc, pdftex, pdflatex, tree
 - The following dependencies are GPLv2 licensed:
 git
 - The following dependencies are LGPLv2.1+ licensed:

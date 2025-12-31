@@ -74,6 +74,9 @@ else
   echo "No file ${file_name}.md.tpl"
 fi
 
+pandoc -f markdown "${file_name}.md" > "${file_name}.html.temp"
+overwrite_if_not_equal "${file_name}.html" "${file_name}.html.temp"
+
 declare -i LFBFL_popd_result
 popd || {
   LFBFL_popd_result=$?;

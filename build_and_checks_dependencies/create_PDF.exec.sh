@@ -187,7 +187,7 @@ do
 
   # echo "Listing file for HTML : ${LFBFL_file_name}"
   ((++LFBFL_i))
-  echo "<h3 id=\"section2.${LFBFL_i}\">2.${LFBFL_i} "\
+  echo "<h3 id=\"subsection2.${LFBFL_i}\">2.${LFBFL_i}"\
     >> "${LFBFL_temp_files_listing2}"
   LFBFL_new_lines="${LFBFL_file_name}"
   if [[ ${#LFBFL_file_name} -gt 70 ]]; then

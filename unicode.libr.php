@@ -156,7 +156,7 @@ function hexa_code_point_to_UTF8(
       continue;
     }
     throw new Exception("Not an hexadecimal digit.");
-  } 
+  }
   return decimal_code_point_to_UTF8(
     $i_code_point_in_decimal_notation
   );

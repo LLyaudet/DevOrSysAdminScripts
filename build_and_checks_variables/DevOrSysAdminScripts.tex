@@ -74,13 +74,13 @@ Some “small” useful scripts
 for enhancing development or system-administrators tasks
 \end{abstract}
 
-Current version: 2025-12-31
+Current version: 2026-01-01
 
-Current number of commits: 231
+Current number of commits: 238
 
-Current git SHA1: 20ec6558d361c21ab4f47e475c86979efd022a62
+Current git SHA1: b8ec1eb9af1aaaf6e7c90517e31a31c4951516e6
 
-Code lines: 6235 total lines, 5642 not empty lines, 593 empty lines.
+Code lines: 6251 total lines, 5637 not empty lines, 614 empty lines.
 
 \section{Files tree}
 \label{section:tree}
@@ -148,6 +148,7 @@ Code lines: 6235 total lines, 5642 not empty lines, 593 empty lines.
 │   └── repository_data.txt
 ├── COPYING
 ├── COPYING.LESSER
+├── DevOrSysAdminScripts.html
 ├── DevOrSysAdminScripts.pdf
 ├── git_helpers
 │   ├── git_checks.libr.sh
@@ -162,24 +163,24 @@ Code lines: 6235 total lines, 5642 not empty lines, 593 empty lines.
 ├── upgrade_build_and_checks.exec.sh
 └── wget_sha512.libr.sh
 
-5 directories, 70 files
+5 directories, 71 files
 \end{verbatim}
 
 \begin{verbatim}
-[ 12K Dec 31 19:45]  ./
-├── [4.0K Dec 31 19:45]  build_and_checks_dependencies/
+[ 12K Jan  1 00:30]  ./
+├── [4.0K Jan  1 00:30]  build_and_checks_dependencies/
 │   ├── [2.6K Dec 30 22:26]  build_and_checks.exec.sh.tpl*
 │   ├── [2.5K Dec 31 14:46]  build_md_from_printable_md.exec.sh*
 │   ├── [1.3K Dec 30 17:50]  check_shell_scripts_beginnings.libr.sh
-│   ├── [2.3K Dec 30 17:51]  check_URLs.libr.sh
-│   ├── [ 17K Dec 31 19:45]  common_build_and_checks.exec.sh*
+│   ├── [2.4K Dec 31 23:21]  check_URLs.libr.sh
+│   ├── [ 17K Jan  1 00:30]  common_build_and_checks.exec.sh*
 │   ├── [ 12K Dec 31 15:37]  common_build_and_checks.exec.sh.tpl
 │   ├── [3.1K Dec 30 18:02]  comparisons.libr.sh
-│   ├── [ 10K Dec 31 19:43]  create_PDF.exec.sh*
-│   ├── [2.9K Dec 30 18:47]  generate_from_template.libr.sh
+│   ├── [ 14K Jan  1 00:25]  create_PDF.exec.sh*
+│   ├── [3.1K Dec 31 21:28]  generate_from_template.libr.sh
 │   ├── [1.9K Dec 30 19:53]  get_common_text_glob_patterns.libr.sh
 │   ├── [1.9K Dec 30 19:55]  grammar_and_spell_check.libr.sh
-│   ├── [4.0K Dec 31 19:46]  licenses_templates/
+│   ├── [4.0K Jan  1 00:30]  licenses_templates/
 │   │   ├── [7.7K Dec 30 19:53]  build_licenses_templates.exec.sh*
 │   │   ├── [ 734 Dec 30 19:34]  license_file_header_AGPLv3+.c.tpl
 │   │   ├── [ 736 Dec 30 19:34]  license_file_header_AGPLv3+.py.tpl
@@ -204,23 +205,23 @@ Code lines: 6235 total lines, 5642 not empty lines, 593 empty lines.
 │   │   ├── [ 816 Dec 27 21:48]  license_file_header_LGPLv3+.tex
 │   │   ├── [ 768 Dec 27 21:48]  license_file_header_LGPLv3+.tex.tpl
 │   │   └── [ 728 Dec 27 21:48]  license_file_header_LGPLv3+.tpl
-│   ├── [2.1K Dec 30 20:01]  lines_counts.libr.sh
-│   ├── [6.4K Dec 30 20:02]  lines_filters.libr.sh
+│   ├── [2.2K Dec 31 23:37]  lines_counts.libr.sh
+│   ├── [6.7K Dec 31 23:36]  lines_filters.libr.sh
 │   ├── [2.8K Dec 30 20:05]  lines_maps.libr.sh
-│   ├── [1.2K Dec 30 20:07]  overwrite_if_not_equal.libr.sh
+│   ├── [1.4K Dec 31 22:40]  overwrite_if_not_equal.libr.sh
 │   ├── [1.4K Dec 30 20:15]  python_black_complement.libr.sh
 │   ├── [1.7K Dec 30 20:16]  python_isort_complement.libr.sh
 │   ├── [1.8K Dec 30 20:17]  split_line_at_most.exec.php*
 │   ├── [2.2K Dec 29 22:52]  split_line_at_most.libr.php
 │   ├── [ 13K Dec 31 19:42]  strings_functions.libr.sh
-│   ├── [2.0K Dec 31 17:20]  too_long_code_lines.libr.sh
+│   ├── [2.3K Jan  1 00:23]  too_long_code_lines.libr.sh
 │   ├── [3.8K Dec 30 21:43]  update_common_build_and_checks.exec.sh*
 │   └── [4.3K Dec 30 22:40]  *
 │   │ update_or_check_files_names_listing.exec.sh**
-├── [2.8K Dec 31 19:45]  build_and_checks.exec.sh*
-├── [4.0K Dec 31 19:46]  build_and_checks_variables/
-│   ├── [4.3K Dec 31 15:41]  DevOrSysAdminScripts.html.tpl
-│   ├── [ 27K Dec 31 19:44]  DevOrSysAdminScripts.tex
+├── [2.8K Jan  1 00:30]  build_and_checks.exec.sh*
+├── [4.0K Jan  1 00:31]  build_and_checks_variables/
+│   ├── [4.4K Dec 31 22:13]  DevOrSysAdminScripts.html.tpl
+│   ├── [ 26K Jan  1 00:30]  DevOrSysAdminScripts.tex
 │   ├── [3.7K Dec 31 15:41]  DevOrSysAdminScripts.tex.tpl
 │   ├── [ 15K Dec 31 19:44]  files_listing.tex.tpl
 │   ├── [5.2K Dec 31 16:15]  files_names_listing.txt
@@ -229,7 +230,8 @@ Code lines: 6235 total lines, 5642 not empty lines, 593 empty lines.
 │   └── [ 645 Dec 30 16:37]  repository_data.txt
 ├── [ 34K May  6  2024]  COPYING
 ├── [7.5K Dec 27 21:48]  COPYING.LESSER
-├── [244K Dec 31 19:44]  DevOrSysAdminScripts.pdf
+├── [250K Jan  1 00:30]  DevOrSysAdminScripts.html
+├── [249K Jan  1 00:30]  DevOrSysAdminScripts.pdf
 ├── [4.0K Dec 31 15:11]  git_helpers/
 │   ├── [3.4K Dec 30 17:02]  git_checks.libr.sh
 │   ├── [1.2K Dec 30 17:25]  post-commit
@@ -239,11 +241,11 @@ Code lines: 6235 total lines, 5642 not empty lines, 593 empty lines.
 ├── [2.7K Dec 31 16:31]  README.html
 ├── [2.4K Dec 31 16:31]  README.md
 ├── [2.4K Dec 31 16:31]  README.md.tpl
-├── [6.5K Dec 27 21:48]  unicode.libr.php
+├── [6.5K Jan  1 00:30]  unicode.libr.php
 ├── [1.3K Dec 30 16:51]  upgrade_build_and_checks.exec.sh*
 └── [1.5K Dec 30 16:47]  wget_sha512.libr.sh
 
-5 directories, 70 files
+5 directories, 71 files
 \end{verbatim}
 
 \section{Listing of files}

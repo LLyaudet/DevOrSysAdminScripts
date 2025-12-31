@@ -32,6 +32,7 @@ too_long_code_lines(){
   get_COMMON_TEXT_FILES_GLOB_PATTERNS
   local LFBFL_pattern
   local LFBFL_file_name
+  local LFBFL_line
   local LFBFL_extension
   local LFBFL_base_name
   # shellcheck disable=SC2154
@@ -43,12 +44,20 @@ too_long_code_lines(){
       | xargs grep -H '.\{71\}' | while read -r LFBFL_long_line
     do
       LFBFL_file_name=${LFBFL_long_line%%:*}
+      LFBFL_line=${LFBFL_long_line#*:}
+      LFBFL_line="${LFBFL_line/%\\/}"
       LFBFL_extension=${LFBFL_file_name##*.}
       LFBFL_base_name=${LFBFL_file_name%.*}
       if [[ "${LFBFL_extension}" == "html" ]]; then
-        if ! [[ -f "${LFBFL_base_name}.md" ]]; then
-          echo "${LFBFL_long_line}"
+        if [[ -f "${LFBFL_base_name}.md" ]]; then
+          continue
         fi
+        if grep --quiet --fixed-strings "${LFBFL_line}"\
+          "./build_and_checks_variables/temp/files_listing.html.tpl"
+        then
+          continue
+        fi
+        echo "${LFBFL_long_line}"
       elif [[ "${LFBFL_extension}" == "md" ]]; then
         if ! [[ -f "${LFBFL_base_name}.md.tpl" ]]; then
           echo "${LFBFL_long_line}"

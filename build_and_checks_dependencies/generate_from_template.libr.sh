@@ -77,13 +77,22 @@ insert_file_at_token(){
   # $1=$file_name
   # $2=$token assume that token is the only thing on his line.
   # $3=$file_name_to_insert
+  # $4=$file_name_result
   declare -r LFBFL_start_file_name="$1.insert_file_at_token1.temp"
   declare -r LFBFL_end_file_name="$1.insert_file_at_token2.temp"
-  declare -r LFBFL_result_file_name="$1.insert_file_at_token3.temp"
+  local LFBFL_result_file_name
+  if [[ -n "$4" ]]; then
+    LFBFL_result_file_name="$4"
+  else
+    LFBFL_result_file_name="$1.insert_file_at_token3.temp"
+  fi
+  readonly LFBFL_result_file_name
   split_file_in_two "$1" "$2" "${LFBFL_start_file_name}"\
     "${LFBFL_end_file_name}"
   cat "${LFBFL_start_file_name}" "$3" "${LFBFL_end_file_name}"\
     > "${LFBFL_result_file_name}"
-  overwrite_if_not_equal "$1" "${LFBFL_result_file_name}"
+  if [[ -z "$4" ]]; then
+    overwrite_if_not_equal "$1" "${LFBFL_result_file_name}"
+  fi
   rm "${LFBFL_start_file_name}" "${LFBFL_end_file_name}"
 }

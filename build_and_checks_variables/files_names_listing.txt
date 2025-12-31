@@ -51,38 +51,38 @@ build_and_checks_dependencies/licenses_templates/\
 license_file_header_AGPLv3+.tex.tpl
 build_and_checks_dependencies/licenses_templates/\
 license_file_header_AGPLv3+.tpl
-build_and_checks_dependencies/licenses_templates/\
-license_file_header_GPLv3+.c
+// build_and_checks_dependencies/licenses_templates/\
+// license_file_header_GPLv3+.c
 build_and_checks_dependencies/licenses_templates/\
 license_file_header_GPLv3+.c.tpl
-build_and_checks_dependencies/licenses_templates/\
-license_file_header_GPLv3+.py
+// build_and_checks_dependencies/licenses_templates/\
+// license_file_header_GPLv3+.py
 build_and_checks_dependencies/licenses_templates/\
 license_file_header_GPLv3+.py.tpl
-build_and_checks_dependencies/licenses_templates/\
-license_file_header_GPLv3+.sh
+// build_and_checks_dependencies/licenses_templates/\
+// license_file_header_GPLv3+.sh
 build_and_checks_dependencies/licenses_templates/\
 license_file_header_GPLv3+.sh.tpl
-build_and_checks_dependencies/licenses_templates/\
-license_file_header_GPLv3+.tex
+// build_and_checks_dependencies/licenses_templates/\
+// license_file_header_GPLv3+.tex
 build_and_checks_dependencies/licenses_templates/\
 license_file_header_GPLv3+.tex.tpl
 build_and_checks_dependencies/licenses_templates/\
 license_file_header_GPLv3+.tpl
-build_and_checks_dependencies/licenses_templates/\
-license_file_header_LGPLv3+.c
+// build_and_checks_dependencies/licenses_templates/\
+// license_file_header_LGPLv3+.c
 build_and_checks_dependencies/licenses_templates/\
 license_file_header_LGPLv3+.c.tpl
-build_and_checks_dependencies/licenses_templates/\
-license_file_header_LGPLv3+.py
+// build_and_checks_dependencies/licenses_templates/\
+// license_file_header_LGPLv3+.py
 build_and_checks_dependencies/licenses_templates/\
 license_file_header_LGPLv3+.py.tpl
-build_and_checks_dependencies/licenses_templates/\
-license_file_header_LGPLv3+.sh
+// build_and_checks_dependencies/licenses_templates/\
+// license_file_header_LGPLv3+.sh
 build_and_checks_dependencies/licenses_templates/\
 license_file_header_LGPLv3+.sh.tpl
-build_and_checks_dependencies/licenses_templates/\
-license_file_header_LGPLv3+.tex
+// build_and_checks_dependencies/licenses_templates/\
+// license_file_header_LGPLv3+.tex
 build_and_checks_dependencies/licenses_templates/\
 license_file_header_LGPLv3+.tex.tpl
 build_and_checks_dependencies/licenses_templates/\
@@ -91,21 +91,17 @@ build_and_checks_dependencies/lines_counts.libr.sh
 build_and_checks_dependencies/lines_filters.libr.sh
 build_and_checks_dependencies/lines_maps.libr.sh
 // build_and_checks_dependencies/listings/files_listing.tex.tpl
-// build_and_checks_dependencies/listings/files_names_listing.txt
-// build_and_checks_dependencies/listings/\
-// update_or_check_files_names_listing.exec.sh
 build_and_checks_dependencies/overwrite_if_not_equal.libr.sh
 build_and_checks_dependencies/python_black_complement.libr.sh
 build_and_checks_dependencies/python_isort_complement.libr.sh
 build_and_checks_dependencies/split_line_at_most.exec.php
 build_and_checks_dependencies/split_line_at_most.libr.php
-// build_and_checks_dependencies/string_functions.sh
 build_and_checks_dependencies/strings_functions.libr.sh
 build_and_checks_dependencies/too_long_code_lines.libr.sh
 build_and_checks_dependencies/update_common_build_and_checks.exec.sh
 build_and_checks_dependencies/\
 update_or_check_files_names_listing.exec.sh
-// build_and_checks_variables/files_names_listing.txt
+build_and_checks_variables/files_names_listing.txt
 build_and_checks_variables/.gitignore
 build_and_checks_variables/DevOrSysAdminScripts.html.tpl
 // build_and_checks_variables/DevOrSysAdminScripts.tex
@@ -120,16 +116,12 @@ build_and_checks.exec.sh
 // EncoreBlasé20240517-20240518.txt
 git_helpers/git_checks.libr.sh
 git_helpers/post-commit
-// git_helpers/post_commit_renaming_comment
 git_helpers/post_commit_renaming_comment.libr.sh
 git_helpers/pre-commit
 LiensUtiles.txt
-// post-commit
-// post_commit_renaming_comment.libr.sh
-// pre-commit
+// README.html
 // README.md
 README.md.tpl
-// repository_data.txt
 unicode.libr.php
 upgrade_build_and_checks.exec.sh
 wget_sha512.libr.sh

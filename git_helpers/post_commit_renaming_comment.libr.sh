@@ -29,6 +29,9 @@
 # "."
 # to
 # "./git_helpers".
+# This file was renamed from "post_commit_renaming_comment"
+# to "post_commit_renaming_comment.libr.sh".
+# (Before first commit it seems. But I had the old name in listing.)
 
 LFBFL_this_file_path=$(realpath "${BASH_SOURCE[0]}")
 LFBFL_this_file_directory=$(dirname "${LFBFL_this_file_path}")

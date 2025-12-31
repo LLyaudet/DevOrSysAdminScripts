@@ -222,21 +222,6 @@ AGPLv3+.tpl
 
 \subsection{
   build\_and\_checks\_dependencies/licenses\_templates/license\_file\_heade%
-r\_GPLv3+.c
-}
-\label{
-  build_and_checks_dependencies:licenses_templates:license_file_heade%
-r_GPLv3+c
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/licenses_templates/license_file_header_%
-GPLv3+.c
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/licenses\_templates/license\_file\_heade%
 r\_GPLv3+.c.tpl
 }
 \label{
@@ -247,21 +232,6 @@ r_GPLv3+ctpl
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
 build_and_checks_dependencies/licenses_templates/license_file_header_%
 GPLv3+.c.tpl
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/licenses\_templates/license\_file\_heade%
-r\_GPLv3+.py
-}
-\label{
-  build_and_checks_dependencies:licenses_templates:license_file_heade%
-r_GPLv3+py
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/licenses_templates/license_file_header_%
-GPLv3+.py
 }
 
 
@@ -282,21 +252,6 @@ GPLv3+.py.tpl
 
 \subsection{
   build\_and\_checks\_dependencies/licenses\_templates/license\_file\_heade%
-r\_GPLv3+.sh
-}
-\label{
-  build_and_checks_dependencies:licenses_templates:license_file_heade%
-r_GPLv3+sh
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/licenses_templates/license_file_header_%
-GPLv3+.sh
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/licenses\_templates/license\_file\_heade%
 r\_GPLv3+.sh.tpl
 }
 \label{
@@ -307,21 +262,6 @@ r_GPLv3+shtpl
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
 build_and_checks_dependencies/licenses_templates/license_file_header_%
 GPLv3+.sh.tpl
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/licenses\_templates/license\_file\_heade%
-r\_GPLv3+.tex
-}
-\label{
-  build_and_checks_dependencies:licenses_templates:license_file_heade%
-r_GPLv3+tex
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/licenses_templates/license_file_header_%
-GPLv3+.tex
 }
 
 
@@ -357,21 +297,6 @@ GPLv3+.tpl
 
 \subsection{
   build\_and\_checks\_dependencies/licenses\_templates/license\_file\_heade%
-r\_LGPLv3+.c
-}
-\label{
-  build_and_checks_dependencies:licenses_templates:license_file_heade%
-r_LGPLv3+c
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/licenses_templates/license_file_header_%
-LGPLv3+.c
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/licenses\_templates/license\_file\_heade%
 r\_LGPLv3+.c.tpl
 }
 \label{
@@ -382,21 +307,6 @@ r_LGPLv3+ctpl
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
 build_and_checks_dependencies/licenses_templates/license_file_header_%
 LGPLv3+.c.tpl
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/licenses\_templates/license\_file\_heade%
-r\_LGPLv3+.py
-}
-\label{
-  build_and_checks_dependencies:licenses_templates:license_file_heade%
-r_LGPLv3+py
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/licenses_templates/license_file_header_%
-LGPLv3+.py
 }
 
 
@@ -417,21 +327,6 @@ LGPLv3+.py.tpl
 
 \subsection{
   build\_and\_checks\_dependencies/licenses\_templates/license\_file\_heade%
-r\_LGPLv3+.sh
-}
-\label{
-  build_and_checks_dependencies:licenses_templates:license_file_heade%
-r_LGPLv3+sh
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/licenses_templates/license_file_header_%
-LGPLv3+.sh
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/licenses\_templates/license\_file\_heade%
 r\_LGPLv3+.sh.tpl
 }
 \label{
@@ -442,21 +337,6 @@ r_LGPLv3+shtpl
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
 build_and_checks_dependencies/licenses_templates/license_file_header_%
 LGPLv3+.sh.tpl
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/licenses\_templates/license\_file\_heade%
-r\_LGPLv3+.tex
-}
-\label{
-  build_and_checks_dependencies:licenses_templates:license_file_heade%
-r_LGPLv3+tex
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/licenses_templates/license_file_header_%
-LGPLv3+.tex
 }
 
 
@@ -634,6 +514,18 @@ ecsh
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
 build_and_checks_dependencies/update_or_check_files_names_listing.exe%
 c.sh
+}
+
+
+\subsection{
+  build\_and\_checks\_variables/files\_names\_listing.txt
+}
+\label{
+  build_and_checks_variables:files_names_listingtxt
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+build_and_checks_variables/files_names_listing.txt
 }
 
 

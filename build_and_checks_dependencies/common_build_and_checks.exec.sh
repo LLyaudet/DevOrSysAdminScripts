@@ -386,8 +386,8 @@ common_build_and_checks(){
   # shellcheck disable=SC1111
   LFBFL_usual_characters="\x00-\x7Fàâéèêëîïôç©“”└─├│«»"
   # shellcheck disable=SC2312
-  grep --exclude-dir '.git' -nPrv "^[${LFBFL_usual_characters}]*$" .\
-    | grep --color='auto' -nP "[^${LFBFL_usual_characters}]"
+  grep --exclude-dir .git --color=always\
+    -nPr "[^${LFBFL_usual_characters}]" .
 
   echo "Checking listed files"
   "./${LFBFL_subdir}/update_or_check_files_names_listing.exec.sh"

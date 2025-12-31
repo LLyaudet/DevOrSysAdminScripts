@@ -97,12 +97,12 @@ blockquote{
 <p>Code lines: @number_of_lines@</p>
 
 
-<h2 id="section1">1 Files tree</h2>
+<h2 id="section1">1 Files tree</h2>
 <pre class="verbatim">@current_tree_light@</pre>
 <pre class="verbatim">@current_tree@</pre>
 
 
-<h2 id="section2">2 Listing of files</h2>
+<h2 id="section2">2 Listing of files</h2>
 
 <p>
 This repository is dual licensed.
@@ -111,7 +111,7 @@ All the PHP scripts source code is covered by LGPLv3+.
 </p>
 
 <p>
-The text of the licenses are available at:
+The text of the licenses is available at:
 <a href="https://www.gnu.org/licenses/"><span
   style="font-family:monospace"
 >https://www.gnu.org/licenses/</span></a>.

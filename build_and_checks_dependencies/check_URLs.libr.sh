@@ -46,7 +46,10 @@ check_URLs(){
     # shellcheck disable=SC2312
     find . -type f -name "${LFBFL_pattern}" -printf '%P\n'\
       | xargs grep -H 'http:'\
-      | grep -v "^[^:]*check_URLs.libr.sh:"
+      | grep -v "| xargs grep -H 'htt"\
+      | grep -vP "['\"]http(:[^'\"]*)['\"].*['\"]https\\1['\"]"
+    # Last grep just above will remove false positives from
+    # substitutions that fit on one line.
     for LFBFL_file_name in ${LFBFL_pattern}; do
       [[ -f "${LFBFL_file_name}" ]] || continue
       LFBFL_base_file_name=$(basename "${LFBFL_file_name}")

@@ -1,7 +1,6 @@
 # DevOrSysAdminScripts
 
 [![CodeFactor-badge]][CodeFactor-package-page]
-[![CodeClimateMaintainability-badge]][CodeClimateM13y-package-page]
 [![Codacy-badge]][Codacy-package-page]
 ![GitHub-top-language-badge]
 ![GitHub-code-size-in-bytes-badge]
@@ -45,10 +44,6 @@ pre-commit/post-commit hooks in `git`.
 [CodeFactor-badge]: https://www.codefactor.io/repository/github/llyaudet/DevOrSysAdminScripts/badge
 
 [CodeFactor-package-page]: https://www.codefactor.io/repository/github/llyaudet/DevOrSysAdminScripts
-
-[CodeClimateMaintainability-badge]: https://api.codeclimate.com/v1/badges/b619ce83a81cc4a55e18/maintainability
-
-[CodeClimateM13y-package-page]: https://codeclimate.com/github/LLyaudet/DevOrSysAdminScripts/maintainability
 
 [Codacy-badge]: https://app.codacy.com/project/badge/Grade/3dd6ef85e8db4460991d1ebc404b68dd
 

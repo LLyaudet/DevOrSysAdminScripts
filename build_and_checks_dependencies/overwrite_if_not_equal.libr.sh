@@ -27,16 +27,27 @@
 overwrite_if_not_equal(){
   # $1=$target_file_name
   # $2=$temp_file_name
+  # $3=$keep_temp
   if [[ ! -f "$1" ]]; then
-    mv "$2" "$1"
+    if [[ -n "$3" ]]; then
+      cp -p "$2" "$1"
+    else
+      mv "$2" "$1"
+    fi
     return
   fi
   diff -q "$1" "$2"
   declare -ri LFBFL_is_equal=$?
   # shellcheck disable=SC2250
   if [[ $LFBFL_is_equal == 0 ]]; then
-    rm "$2"
+    if [[ -z "$3" ]]; then
+      rm "$2"
+    fi
   else
-    mv "$2" "$1"
+    if [[ -n "$3" ]]; then
+      cp -p "$2" "$1"
+    else
+      mv "$2" "$1"
+    fi
   fi
 }

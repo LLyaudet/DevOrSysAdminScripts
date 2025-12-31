@@ -241,14 +241,30 @@ not_main_tex_grep(){
   grep -v "^[^:]*${repository_name}\.tex:"
 }
 
+not_main_html_find(){
+  grep -vE "(^|/)${repository_name}\.html$"
+}
+
+not_main_html_grep(){
+  grep -v "^[^:]*${repository_name}\.html:"
+}
+
+not_temp_file_find(){
+  grep -vE "(^|/)build_and_checks_variables/temp/.*$"
+}
+
+not_temp_file_grep(){
+  grep -v "^[^:]*build_and_checks_variables/temp/[^:]*:"
+}
+
 relevant_find(){
   # shellcheck disable=SC2312
   not_dependencies_find | not_cache_find | not_git_find\
-  | not_archive_find
+  | not_archive_find | not_temp_file_find
 }
 
 relevant_grep(){
   # shellcheck disable=SC2312
   not_dependencies_grep | not_cache_grep | not_git_grep\
-  | not_archive_grep
+  | not_archive_grep | not_temp_file_grep
 }

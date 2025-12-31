@@ -126,26 +126,24 @@ sed -Ez "${LFBFL_sed_expression}"\
 do
   echo "Listing file for tex : ${LFBFL_file_name}"
   # LFBFL_base_file_name=$(basename "${LFBFL_file_name}")
-  # cleaned_path1=$(sed -e 's/_/\\_/g' <(echo "${LFBFL_file_name}"))
+  LFBFL_cleaned_path1="${LFBFL_file_name//_/\\_}"
   LFBFL_cleaned_path2=$(
     sed -e 's/\//:/g' -e 's/\.//g' <(echo "${LFBFL_file_name}")
   )
   echo "\subsection{" >> "${LFBFL_temp_files_listing}"
-  LFBFL_new_lines="  ${LFBFL_file_name}"
+  LFBFL_new_lines="  ${LFBFL_cleaned_path1}"
   if [[ ${#LFBFL_new_lines} -gt 70 ]]; then
     repeated_split_last_line "${LFBFL_new_lines}" "" 70\
       "${LFBFL_suffix}" "${LFBFL_score_command}"\
-      "${LFBFL_score_command_properties}"
+      "${LFBFL_score_command_properties}" "\\"
     # shellcheck disable=SC2154
     LFBFL_new_lines=${repeated_split_last_line_result}
   fi
-  # shellcheck disable=SC2312
+  # shellcheck disable=SC2129,SC2312
   echo "  ${LFBFL_file_name}"\
     | sed -e "s|  ${LFBFL_file_name}|${LFBFL_new_lines}|g"\
-    > "${LFBFL_temp_files_listing}.2"
-  sed -i -e 's/_/\\_/g' "${LFBFL_temp_files_listing}.2"
-  cat "${LFBFL_temp_files_listing}.2" >> "${LFBFL_temp_files_listing}"
-  rm "${LFBFL_temp_files_listing}.2"
+          -e 's/_/\\_/g'\
+    >> "${LFBFL_temp_files_listing}"
   echo "}" >> "${LFBFL_temp_files_listing}"
   echo "\label{" >> "${LFBFL_temp_files_listing}"
   LFBFL_new_lines="  ${LFBFL_cleaned_path2}"

@@ -11,7 +11,8 @@ build_and_checks_dependencies/build_and_checks.exec.sh.tpl
 
 
 \subsection{
-  build\_and\_checks\_dependencies/build\_md\_from\_printable\_md.exec.sh
+  build\_and\_checks\_dependencies/%
+build\_md\_from\_printable\_md.exec.sh
 }
 \label{
   build_and_checks_dependencies:build_md_from_printable_mdexecsh
@@ -23,7 +24,8 @@ build_and_checks_dependencies/build_md_from_printable_md.exec.sh
 
 
 \subsection{
-  build\_and\_checks\_dependencies/check\_shell\_scripts\_beginnings.libr.sh
+  build\_and\_checks\_dependencies/%
+check\_shell\_scripts\_beginnings.libr.sh
 }
 \label{
   build_and_checks_dependencies:check_shell_scripts_beginningslibrsh
@@ -59,7 +61,8 @@ build_and_checks_dependencies/common_build_and_checks.exec.sh
 
 
 \subsection{
-  build\_and\_checks\_dependencies/common\_build\_and\_checks.exec.sh.tpl
+  build\_and\_checks\_dependencies/%
+common\_build\_and\_checks.exec.sh.tpl
 }
 \label{
   build_and_checks_dependencies:common_build_and_checksexecshtpl
@@ -107,7 +110,8 @@ build_and_checks_dependencies/generate_from_template.libr.sh
 
 
 \subsection{
-  build\_and\_checks\_dependencies/get\_common\_text\_glob\_patterns.libr.sh
+  build\_and\_checks\_dependencies/%
+get\_common\_text\_glob\_patterns.libr.sh
 }
 \label{
   build_and_checks_dependencies:get_common_text_glob_patternslibrsh
@@ -131,242 +135,242 @@ build_and_checks_dependencies/grammar_and_spell_check.libr.sh
 
 
 \subsection{
-  build\_and\_checks\_dependencies/licenses\_templates/build\_licenses\_tem%
-plates.exec.sh
+  build\_and\_checks\_dependencies/licenses\_templates/%
+build\_licenses\_templates.exec.sh
 }
 \label{
-  build_and_checks_dependencies:licenses_templates:build_licenses_tem%
-platesexecsh
+  build_and_checks_dependencies:licenses_templates:%
+build_licenses_templatesexecsh
 }
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/licenses_templates/build_licenses_templ%
-ates.exec.sh
+build_and_checks_dependencies/licenses_templates/%
+build_licenses_templates.exec.sh
 }
 
 
 \subsection{
-  build\_and\_checks\_dependencies/licenses\_templates/license\_file\_heade%
-r\_AGPLv3+.c.tpl
+  build\_and\_checks\_dependencies/licenses\_templates/%
+license\_file\_header\_AGPLv3+.c.tpl
 }
 \label{
-  build_and_checks_dependencies:licenses_templates:license_file_heade%
-r_AGPLv3+ctpl
+  build_and_checks_dependencies:licenses_templates:%
+license_file_header_AGPLv3+ctpl
 }
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/licenses_templates/license_file_header_%
-AGPLv3+.c.tpl
+build_and_checks_dependencies/licenses_templates/%
+license_file_header_AGPLv3+.c.tpl
 }
 
 
 \subsection{
-  build\_and\_checks\_dependencies/licenses\_templates/license\_file\_heade%
-r\_AGPLv3+.py.tpl
+  build\_and\_checks\_dependencies/licenses\_templates/%
+license\_file\_header\_AGPLv3+.py.tpl
 }
 \label{
-  build_and_checks_dependencies:licenses_templates:license_file_heade%
-r_AGPLv3+pytpl
+  build_and_checks_dependencies:licenses_templates:%
+license_file_header_AGPLv3+pytpl
 }
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/licenses_templates/license_file_header_%
-AGPLv3+.py.tpl
+build_and_checks_dependencies/licenses_templates/%
+license_file_header_AGPLv3+.py.tpl
 }
 
 
 \subsection{
-  build\_and\_checks\_dependencies/licenses\_templates/license\_file\_heade%
-r\_AGPLv3+.sh.tpl
+  build\_and\_checks\_dependencies/licenses\_templates/%
+license\_file\_header\_AGPLv3+.sh.tpl
 }
 \label{
-  build_and_checks_dependencies:licenses_templates:license_file_heade%
-r_AGPLv3+shtpl
+  build_and_checks_dependencies:licenses_templates:%
+license_file_header_AGPLv3+shtpl
 }
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/licenses_templates/license_file_header_%
-AGPLv3+.sh.tpl
+build_and_checks_dependencies/licenses_templates/%
+license_file_header_AGPLv3+.sh.tpl
 }
 
 
 \subsection{
-  build\_and\_checks\_dependencies/licenses\_templates/license\_file\_heade%
-r\_AGPLv3+.tex.tpl
+  build\_and\_checks\_dependencies/licenses\_templates/%
+license\_file\_header\_AGPLv3+.tex.tpl
 }
 \label{
-  build_and_checks_dependencies:licenses_templates:license_file_heade%
-r_AGPLv3+textpl
+  build_and_checks_dependencies:licenses_templates:%
+license_file_header_AGPLv3+textpl
 }
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/licenses_templates/license_file_header_%
-AGPLv3+.tex.tpl
+build_and_checks_dependencies/licenses_templates/%
+license_file_header_AGPLv3+.tex.tpl
 }
 
 
 \subsection{
-  build\_and\_checks\_dependencies/licenses\_templates/license\_file\_heade%
-r\_AGPLv3+.tpl
+  build\_and\_checks\_dependencies/licenses\_templates/%
+license\_file\_header\_AGPLv3+.tpl
 }
 \label{
-  build_and_checks_dependencies:licenses_templates:license_file_heade%
-r_AGPLv3+tpl
+  build_and_checks_dependencies:licenses_templates:%
+license_file_header_AGPLv3+tpl
 }
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/licenses_templates/license_file_header_%
-AGPLv3+.tpl
+build_and_checks_dependencies/licenses_templates/%
+license_file_header_AGPLv3+.tpl
 }
 
 
 \subsection{
-  build\_and\_checks\_dependencies/licenses\_templates/license\_file\_heade%
-r\_GPLv3+.c.tpl
+  build\_and\_checks\_dependencies/licenses\_templates/%
+license\_file\_header\_GPLv3+.c.tpl
 }
 \label{
-  build_and_checks_dependencies:licenses_templates:license_file_heade%
-r_GPLv3+ctpl
+  build_and_checks_dependencies:licenses_templates:%
+license_file_header_GPLv3+ctpl
 }
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/licenses_templates/license_file_header_%
-GPLv3+.c.tpl
+build_and_checks_dependencies/licenses_templates/%
+license_file_header_GPLv3+.c.tpl
 }
 
 
 \subsection{
-  build\_and\_checks\_dependencies/licenses\_templates/license\_file\_heade%
-r\_GPLv3+.py.tpl
+  build\_and\_checks\_dependencies/licenses\_templates/%
+license\_file\_header\_GPLv3+.py.tpl
 }
 \label{
-  build_and_checks_dependencies:licenses_templates:license_file_heade%
-r_GPLv3+pytpl
+  build_and_checks_dependencies:licenses_templates:%
+license_file_header_GPLv3+pytpl
 }
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/licenses_templates/license_file_header_%
-GPLv3+.py.tpl
+build_and_checks_dependencies/licenses_templates/%
+license_file_header_GPLv3+.py.tpl
 }
 
 
 \subsection{
-  build\_and\_checks\_dependencies/licenses\_templates/license\_file\_heade%
-r\_GPLv3+.sh.tpl
+  build\_and\_checks\_dependencies/licenses\_templates/%
+license\_file\_header\_GPLv3+.sh.tpl
 }
 \label{
-  build_and_checks_dependencies:licenses_templates:license_file_heade%
-r_GPLv3+shtpl
+  build_and_checks_dependencies:licenses_templates:%
+license_file_header_GPLv3+shtpl
 }
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/licenses_templates/license_file_header_%
-GPLv3+.sh.tpl
+build_and_checks_dependencies/licenses_templates/%
+license_file_header_GPLv3+.sh.tpl
 }
 
 
 \subsection{
-  build\_and\_checks\_dependencies/licenses\_templates/license\_file\_heade%
-r\_GPLv3+.tex.tpl
+  build\_and\_checks\_dependencies/licenses\_templates/%
+license\_file\_header\_GPLv3+.tex.tpl
 }
 \label{
-  build_and_checks_dependencies:licenses_templates:license_file_heade%
-r_GPLv3+textpl
+  build_and_checks_dependencies:licenses_templates:%
+license_file_header_GPLv3+textpl
 }
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/licenses_templates/license_file_header_%
-GPLv3+.tex.tpl
+build_and_checks_dependencies/licenses_templates/%
+license_file_header_GPLv3+.tex.tpl
 }
 
 
 \subsection{
-  build\_and\_checks\_dependencies/licenses\_templates/license\_file\_heade%
-r\_GPLv3+.tpl
+  build\_and\_checks\_dependencies/licenses\_templates/%
+license\_file\_header\_GPLv3+.tpl
 }
 \label{
-  build_and_checks_dependencies:licenses_templates:license_file_heade%
-r_GPLv3+tpl
+  build_and_checks_dependencies:licenses_templates:%
+license_file_header_GPLv3+tpl
 }
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/licenses_templates/license_file_header_%
-GPLv3+.tpl
+build_and_checks_dependencies/licenses_templates/%
+license_file_header_GPLv3+.tpl
 }
 
 
 \subsection{
-  build\_and\_checks\_dependencies/licenses\_templates/license\_file\_heade%
-r\_LGPLv3+.c.tpl
+  build\_and\_checks\_dependencies/licenses\_templates/%
+license\_file\_header\_LGPLv3+.c.tpl
 }
 \label{
-  build_and_checks_dependencies:licenses_templates:license_file_heade%
-r_LGPLv3+ctpl
+  build_and_checks_dependencies:licenses_templates:%
+license_file_header_LGPLv3+ctpl
 }
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/licenses_templates/license_file_header_%
-LGPLv3+.c.tpl
+build_and_checks_dependencies/licenses_templates/%
+license_file_header_LGPLv3+.c.tpl
 }
 
 
 \subsection{
-  build\_and\_checks\_dependencies/licenses\_templates/license\_file\_heade%
-r\_LGPLv3+.py.tpl
+  build\_and\_checks\_dependencies/licenses\_templates/%
+license\_file\_header\_LGPLv3+.py.tpl
 }
 \label{
-  build_and_checks_dependencies:licenses_templates:license_file_heade%
-r_LGPLv3+pytpl
+  build_and_checks_dependencies:licenses_templates:%
+license_file_header_LGPLv3+pytpl
 }
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/licenses_templates/license_file_header_%
-LGPLv3+.py.tpl
+build_and_checks_dependencies/licenses_templates/%
+license_file_header_LGPLv3+.py.tpl
 }
 
 
 \subsection{
-  build\_and\_checks\_dependencies/licenses\_templates/license\_file\_heade%
-r\_LGPLv3+.sh.tpl
+  build\_and\_checks\_dependencies/licenses\_templates/%
+license\_file\_header\_LGPLv3+.sh.tpl
 }
 \label{
-  build_and_checks_dependencies:licenses_templates:license_file_heade%
-r_LGPLv3+shtpl
+  build_and_checks_dependencies:licenses_templates:%
+license_file_header_LGPLv3+shtpl
 }
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/licenses_templates/license_file_header_%
-LGPLv3+.sh.tpl
+build_and_checks_dependencies/licenses_templates/%
+license_file_header_LGPLv3+.sh.tpl
 }
 
 
 \subsection{
-  build\_and\_checks\_dependencies/licenses\_templates/license\_file\_heade%
-r\_LGPLv3+.tex.tpl
+  build\_and\_checks\_dependencies/licenses\_templates/%
+license\_file\_header\_LGPLv3+.tex.tpl
 }
 \label{
-  build_and_checks_dependencies:licenses_templates:license_file_heade%
-r_LGPLv3+textpl
+  build_and_checks_dependencies:licenses_templates:%
+license_file_header_LGPLv3+textpl
 }
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/licenses_templates/license_file_header_%
-LGPLv3+.tex.tpl
+build_and_checks_dependencies/licenses_templates/%
+license_file_header_LGPLv3+.tex.tpl
 }
 
 
 \subsection{
-  build\_and\_checks\_dependencies/licenses\_templates/license\_file\_heade%
-r\_LGPLv3+.tpl
+  build\_and\_checks\_dependencies/licenses\_templates/%
+license\_file\_header\_LGPLv3+.tpl
 }
 \label{
-  build_and_checks_dependencies:licenses_templates:license_file_heade%
-r_LGPLv3+tpl
+  build_and_checks_dependencies:licenses_templates:%
+license_file_header_LGPLv3+tpl
 }
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/licenses_templates/license_file_header_%
-LGPLv3+.tpl
+build_and_checks_dependencies/licenses_templates/%
+license_file_header_LGPLv3+.tpl
 }
 
 
@@ -491,7 +495,8 @@ build_and_checks_dependencies/too_long_code_lines.libr.sh
 
 
 \subsection{
-  build\_and\_checks\_dependencies/update\_common\_build\_and\_checks.exec.sh
+  build\_and\_checks\_dependencies/%
+update\_common\_build\_and\_checks.exec.sh
 }
 \label{
   build_and_checks_dependencies:update_common_build_and_checksexecsh
@@ -503,17 +508,17 @@ build_and_checks_dependencies/update_common_build_and_checks.exec.sh
 
 
 \subsection{
-  build\_and\_checks\_dependencies/update\_or\_check\_files\_names\_listing.e%
-xec.sh
+  build\_and\_checks\_dependencies/%
+update\_or\_check\_files\_names\_listing.exec.sh
 }
 \label{
-  build_and_checks_dependencies:update_or_check_files_names_listingex%
-ecsh
+  build_and_checks_dependencies:%
+update_or_check_files_names_listingexecsh
 }
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/update_or_check_files_names_listing.exe%
-c.sh
+build_and_checks_dependencies/%
+update_or_check_files_names_listing.exec.sh
 }
 
 

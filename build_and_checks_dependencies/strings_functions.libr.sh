@@ -47,15 +47,15 @@ split_score_after_before_simple(){
   # $1=$delimiters_strings_domain concatenated characters/delimiters
   # $2=$delimiter_string a single character
   # $3=$is_cut_after
-  if [[ "$1" != "*$2*" ]]; then
-    echo "0"
+  if [[ "$1" != *$2* ]]; then
+    echo -n "0"
     return
   fi
   if [[ "$3" == "1" ]]; then
-    echo "2"
+    echo -n "2"
     return
   fi
-  echo "1"
+  echo -n "1"
   return
 }
 
@@ -63,15 +63,15 @@ split_score_before_after_simple(){
   # $1=$delimiters_strings_domain concatenated characters/delimiters
   # $2=$delimiter_string a single character
   # $3=$is_cut_after
-  if [[ "$1" != "*$2*" ]]; then
-    echo "0"
+  if [[ "$1" != *$2* ]]; then
+    echo -n "0"
     return
   fi
   if [[ "$3" == "0" ]]; then
-    echo "2"
+    echo -n "2"
     return
   fi
-  echo "1"
+  echo -n "1"
   return
 }
 
@@ -79,7 +79,7 @@ get_split_score_after_before_simple(){
   # $1=$max_length
   # $2=$delimiters_strings_domain
   declare -g get_split_score_after_before_result=\
-"split_score_after_before_simple $2"
+"split_score_after_before_simple '$2'"
   # shellcheck disable=SC2034
   declare -g get_split_score_after_before_result2="7"
 }
@@ -88,9 +88,9 @@ get_split_score_before_after_simple(){
   # $1=$max_length
   # $2=$delimiters_strings_domain
   declare -g get_split_score_before_after_result=\
-"split_score_before_after_simple $2"
+"split_score_before_after_simple '$2'"
   # shellcheck disable=SC2034
-  declare -g get_split_score_before_after_result2="7"
+  declare -g get_split_score_before_after_result2="11"
 }
 
 get_split_line_at_most_exec(){
@@ -107,7 +107,7 @@ get_split_score_after_before(){
     get_split_score_after_before_result="${SPLIT_LINE_AT_MOST_EXEC}"
   get_split_score_after_before_result+=" 1 '$1' '$2'"
   # shellcheck disable=SC2034
-  declare -g get_split_score_after_before_result2="7"
+  declare -g get_split_score_after_before_result2="5"
 }
 
 get_split_score_before_after(){
@@ -118,7 +118,7 @@ get_split_score_before_after(){
     get_split_score_before_after_result="${SPLIT_LINE_AT_MOST_EXEC}"
   get_split_score_before_after_result+=" 0 '$1' '$2'"
   # shellcheck disable=SC2034
-  declare -g get_split_score_before_after_result2="7"
+  declare -g get_split_score_before_after_result2="9"
 }
 
 split_line_at_most(){
@@ -131,10 +131,14 @@ split_line_at_most(){
   #   If someday some property is not a flag,
   #   then create split_score_command_properties2.
   #   - null or 0 no property;
-  #   - 1 split score never decreases when cut position increases;
-  #   - 2 split score is >= 0 after delimiter iff it is >= 0 before;
-  #   - 4 split score doesn't depend on the delimiter;
-  # $5=$split_score_command_delimiter_strings_domain
+  #   - 1 split score doesn't depend on which delimiter matches;
+  #   - 2 split score doesn't depend on the current position;
+  #   - 4 any split score after is always larger
+  #     than any split score before;
+  #   - 8 any split score before is always larger
+  #     than any split score after;
+  # $5=$forbidden_previous_character
+  # $6=$split_score_command_delimiter_strings_domain
   #   optimisation if small domain
   #   - this argument can be "null", then we will use $3 only instead,
   #     in that case, only mono-character strings are considered,
@@ -147,14 +151,18 @@ split_line_at_most(){
   #     Not sure an array of regexps makes more sense than a single
   #     one. Maybe they could be both cases with corresponding
   #     optimizations. Same for a single character or substring.
+  #
+  # Note that we're always looking for the last position to split
+  # among maximum score;
+  # if some position gets as score from 2 delimiters,
+  # its score is always the maximum of the two corresponding scores.
   declare -g split_line_at_most_result_start
   declare -g split_line_at_most_result_end
   declare -A LFBFL_positions
-  LFBFL_positions=(["$2"]="0")
   # echo "$1 $2 $3 $4"
   # For my use case in bash scripts, I will need only an array of
   # characters. See get_split_score_after_before().
-  if [[ -n "$5" ]]; then
+  if [[ -n "$6" ]]; then
     echo "split_line_at_most() \$4 NOT IMPLEMENTED YET"
   fi
   if [[ "$2" -ge "${#1}" ]]; then
@@ -169,25 +177,51 @@ split_line_at_most(){
   )
   local LFBFL_i
   local LFBFL_j
+  local LFBFL_previous_char
   local LFBFL_current_char
   local LFBFL_command1
   local LFBFL_command2
   local LFBFL_temp
+
+  # At the beginning, each position has score 0.
+  for ((LFBFL_i=0; LFBFL_i<=LFBFL_i_max; LFBFL_i++)) do
+    LFBFL_positions["${LFBFL_i}"]="0"
+  done
+  LFBFL_j=$((LFBFL_i+1))
+  LFBFL_positions["${LFBFL_j}"]="0"
+
+  # If we have a forbidden previous character,
+  # we mark the forbidden positions with -1.
+  if [[ -n "$5" ]]; then
+    LFBFL_previous_char=""
+    for ((LFBFL_i=0; LFBFL_i<LFBFL_i_max; LFBFL_i++)) do
+      LFBFL_j=$((LFBFL_i+1))
+      if [[ ${LFBFL_i} -ge 1 ]]; then
+        LFBFL_previous_char="${LFBFL_current_char}"
+      fi
+      LFBFL_current_char="${1:${LFBFL_i}:1}"
+      if [[ "${LFBFL_previous_char}" == "$5" ]]; then
+        LFBFL_positions["${LFBFL_i}"]="-1"
+      fi
+      if [[ "${LFBFL_current_char}" == "$5" ]]; then
+        LFBFL_positions["${LFBFL_j}"]="-1"
+      fi
+    done
+  fi
+
   if [[ "$4" == "7" ]]; then
     for ((LFBFL_j=LFBFL_i_max; LFBFL_j>0; LFBFL_j--)) do
       LFBFL_i=$((LFBFL_j-1))
       LFBFL_current_char="${1:${LFBFL_i}:1}"
-      LFBFL_command1="$3 '${LFBFL_current_char}' ${LFBFL_i} 0"
-      LFBFL_command2="$3 '${LFBFL_current_char}' ${LFBFL_j} 1"
+      LFBFL_command1="$3 '${LFBFL_current_char}' 0"
+      LFBFL_command2="$3 '${LFBFL_current_char}' 1"
       # echo "${LFBFL_command1}"
       # echo "${LFBFL_command2}"
       LFBFL_temp=$(eval "${LFBFL_command1}")
       # echo "${LFBFL_temp}|${LFBFL_i}"
       if [[ ${LFBFL_temp} -ge 1 ]]; then
         # echo "${LFBFL_temp}|${LFBFL_i}"
-        if [[ ${#LFBFL_positions["${LFBFL_i}"]} == "0" ]]; then
-          LFBFL_positions["${LFBFL_i}"]="${LFBFL_temp}"
-        else
+        if [[ ${LFBFL_positions["${LFBFL_i}"]} != "-1" ]]; then
           LFBFL_positions["${LFBFL_i}"]=$(
             max "${LFBFL_sort_command}"\
               "${LFBFL_positions["${LFBFL_i}"]}" "${LFBFL_temp}"
@@ -198,15 +232,13 @@ split_line_at_most(){
       # echo "${LFBFL_temp}|${LFBFL_j}"
       if [[ ${LFBFL_temp} -ge 1 ]]; then
         # echo "${LFBFL_temp}|${LFBFL_j}"
-        if [[ ${#LFBFL_positions["${LFBFL_j}"]} == "0" ]]; then
-          LFBFL_positions["${LFBFL_j}"]="${LFBFL_temp}"
-        else
+        if [[ ${LFBFL_positions["${LFBFL_j}"]} != "-1" ]]; then
           LFBFL_positions["${LFBFL_j}"]=$(
             max "${LFBFL_sort_command}"\
               "${LFBFL_positions["${LFBFL_j}"]}" "${LFBFL_temp}"
           )
+          break
         fi
-        break
       fi
     done
   else
@@ -221,9 +253,7 @@ split_line_at_most(){
       # echo "${LFBFL_temp}|${LFBFL_i}"
       if [[ ${LFBFL_temp} -ge 1 ]]; then
         # echo "${LFBFL_temp}|${LFBFL_i}"
-        if [[ ${#LFBFL_positions["${LFBFL_i}"]} == "0" ]]; then
-          LFBFL_positions["${LFBFL_i}"]="${LFBFL_temp}"
-        else
+        if [[ ${LFBFL_positions["${LFBFL_i}"]} != "-1" ]]; then
           LFBFL_positions["${LFBFL_i}"]=$(
             max "${LFBFL_sort_command}"\
               "${LFBFL_positions["${LFBFL_i}"]}" "${LFBFL_temp}"
@@ -234,9 +264,7 @@ split_line_at_most(){
       # echo "${LFBFL_temp}|${LFBFL_j}"
       if [[ ${LFBFL_temp} -ge 1 ]]; then
         # echo "${LFBFL_temp}|${LFBFL_j}"
-        if [[ ${#LFBFL_positions["${LFBFL_j}"]} == "0" ]]; then
-          LFBFL_positions["${LFBFL_j}"]="${LFBFL_temp}"
-        else
+        if [[ ${LFBFL_positions["${LFBFL_j}"]} != "-1" ]]; then
           LFBFL_positions["${LFBFL_j}"]=$(
             max "${LFBFL_sort_command}"\
               "${LFBFL_positions["${LFBFL_j}"]}" "${LFBFL_temp}"
@@ -245,26 +273,20 @@ split_line_at_most(){
       fi
     done
   fi
-  declare -a LFBFL_joined_args=()
-  LFBFL_i=0
-  local LFBFL_key
-  for LFBFL_key in "${!LFBFL_positions[@]}"; do
-    local LFBFL_value=${LFBFL_positions[${LFBFL_key}]}
-    # echo "$LFBFL_key $LFBFL_value"
-    LFBFL_joined_args[LFBFL_i]="${LFBFL_key} ${LFBFL_value}"
-    LFBFL_i=$((LFBFL_i + 1))
+  declare -r LFBFL_max_score=\
+$(max 'sort --numeric-sort' "${LFBFL_positions[@]}")
+  local LFBFL_best_position
+  for ((LFBFL_i=0; LFBFL_i<=LFBFL_i_max; LFBFL_i++)) do
+    local LFBFL_value=${LFBFL_positions[${LFBFL_i}]}
+    # echo "${LFBFL_i} ${LFBFL_value}"
+    if [[ "${LFBFL_value}" == "${LFBFL_max_score}" ]]; then
+      LFBFL_best_position="${LFBFL_i}"
+    fi
   done
-  # shellcheck disable=SC2145,SC2312
-  while read -r LFBFL_best_position ;
-  do
-    split_line_at "$1" "${LFBFL_best_position}"
-    # shellcheck disable=SC2250
-    split_line_at_most_result_start=$split_line_at_result_beginning
-    split_line_at_most_result_end="${split_line_at_result_end}"
-  done <<EOT
-$(max 'sort --numeric-sort -k2' "${LFBFL_joined_args[@]}"\
-  | cut -d ' ' -f 1)
-EOT
+  split_line_at "$1" "${LFBFL_best_position}"
+  # shellcheck disable=SC2250
+  split_line_at_most_result_start=$split_line_at_result_beginning
+  split_line_at_most_result_end="${split_line_at_result_end}"
   # echo "$split_line_at_most_result_start"
   # echo "$split_line_at_most_result_end"
 }
@@ -276,6 +298,7 @@ split_last_line(){
   # $4=$suffix
   # $5=$split_score_command
   # $6=$split_score_command_properties
+  # $7=$forbidden_previous_character ('\' usually)
   # In general, a prefix/suffix can be a required line prefix/suffix
   # for all final lines like a comment prefix,
   # or it can be a continuation line prefix/suffix applied only
@@ -312,14 +335,14 @@ split_last_line(){
     declare -r LFBFL_last_line=$(\
       echo "$1" | sed -e 's/\\n/\n/g' | tail --lines=1\
     )
-    # echo "last_line: $LFBFL_last_line"
+    # echo "last_line: ${LFBFL_last_line}"
     split_last_line_result=""
     if [[ -n "${LFBFL_start}" ]]; then
       split_last_line_result="${LFBFL_start}\n"
     fi
     if [[ -n "$5" ]]; then
       split_line_at_most "${LFBFL_last_line}" "${LFBFL_length2}"\
-        "$5" "$6"
+        "$5" "$6" "$7"
       split_last_line_result+="${split_line_at_most_result_start}$4"
       split_last_line_result+="\n"
       split_last_line_result+="$2${split_line_at_most_result_end}"
@@ -338,7 +361,8 @@ repeated_split_last_line(){
   local LFBFL_i
   for ((LFBFL_i=0; LFBFL_i<$6; ++LFBFL_i)) do
     split_last_line "${repeated_split_last_line_result}" "$2" "$3"\
-      "$4" "$5" "$6"
+      "$4" "$5" "$6" "$7"
     repeated_split_last_line_result="${split_last_line_result}"
+    # echo "${split_last_line_result}"
   done
 }

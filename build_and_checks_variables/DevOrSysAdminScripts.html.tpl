@@ -103,15 +103,51 @@ blockquote{
 
 
 <h2 id="section2">2 Listing of files</h2>
-<p>The following source code is covered by LGPLv3+.
-The text of the license is available at:
+
+<p>
+This repository is dual licensed.
+All the Bash scripts source code is covered by GPLv3+.
+All the PHP scripts source code is covered by LGPLv3+.
+</p>
+
+<p>
+The text of the licenses are available at:
 <a href="https://www.gnu.org/licenses/"><span
   style="font-family:monospace"
 >https://www.gnu.org/licenses/</span></a>.
 The git repository of this source code is also available at:
 <a href="https://github.com/LLyaudet/@repository_name@/"><span
   style="font-family:monospace"
->https://github.com/LLyaudet/@repository_name@/</span></a>.</p>
+>https://github.com/LLyaudet/@repository_name@/</span></a>.
+</p>
+
+<p>
+Here is a listing of the dependencies of the code in this repository:
+<ul>
+<li> The following dependencies are GPLv3+ licensed:<br>
+basename, bash (and its builtins), cat, chmod, cp, cut, date, diff,
+dirname, find, grep, head, mkdir, mv, realpath, rm, sed, sha512sum,
+shellcheck, sort, tail, wc, wget, xargs
+<li> The following dependencies are GPLv2+ licensed:<br>
+more, pandoc, pdftex, pdflatex, tree
+<li> The following dependencies are GPLv2 licensed:<br>
+git
+<li> The following dependencies are LGPLv2.1+ licensed:<br>
+notify-send
+<li> The following dependencies are MIT licensed:<br>
+black, isort, mypy
+<li> php is licensed under PHP License v3.01
+<li> tex is licensed under Knuth license
+<li> pcregrep has a custom license from Cambridge University
+</ul>
+</p>
+
+<p>
+Remark: Some commands listed under GPLv3+ are POSIX
+and can have different implementations under another license;
+for example, uutils coreutils is MIT licensed,
+whilst GNU coreutils is GPLv3+ licensed.
+</p>
 
 @files_listing_HTMLPreInput@
 

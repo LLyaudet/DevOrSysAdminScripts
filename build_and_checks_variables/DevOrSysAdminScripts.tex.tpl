@@ -111,7 +111,7 @@ basename, bash (and its builtins), cat, chmod, cp, cut, date, diff,
 dirname, find, grep, head, mkdir, mv, realpath, rm, sed, sha512sum,
 shellcheck, sort, tail, wc, wget, xargs
 \item The following dependencies are GPLv2+ licensed:\newline
-more, pdftex, pdflatex, tree
+more, pandoc, pdftex, pdflatex, tree
 \item The following dependencies are GPLv2 licensed:\newline
 git
 \item The following dependencies are LGPLv2.1+ licensed:\newline

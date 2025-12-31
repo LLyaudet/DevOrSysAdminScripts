@@ -518,18 +518,6 @@ c.sh
 
 
 \subsection{
-  build\_and\_checks\_variables/files\_names\_listing.txt
-}
-\label{
-  build_and_checks_variables:files_names_listingtxt
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_variables/files_names_listing.txt
-}
-
-
-\subsection{
   build\_and\_checks\_variables/.gitignore
 }
 \label{
@@ -566,14 +554,26 @@ build_and_checks_variables/DevOrSysAdminScripts.tex.tpl
 
 
 \subsection{
-  build\_and\_checks\_variables/repository\_data.txt
+  build\_and\_checks\_variables/files\_listing.tex.tpl
 }
 \label{
-  build_and_checks_variables:repository_datatxt
+  build_and_checks_variables:files_listingtextpl
 }
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_variables/repository_data.txt
+build_and_checks_variables/files_listing.tex.tpl
+}
+
+
+\subsection{
+  build\_and\_checks\_variables/files\_names\_listing.txt
+}
+\label{
+  build_and_checks_variables:files_names_listingtxt
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+build_and_checks_variables/files_names_listing.txt
 }
 
 
@@ -590,6 +590,18 @@ build_and_checks_variables/licenses_notes.txt
 
 
 \subsection{
+  build\_and\_checks\_variables/repository\_data.txt
+}
+\label{
+  build_and_checks_variables:repository_datatxt
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+build_and_checks_variables/repository_data.txt
+}
+
+
+\subsection{
   build\_and\_checks.exec.sh
 }
 \label{
@@ -598,6 +610,30 @@ build_and_checks_variables/licenses_notes.txt
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
 build_and_checks.exec.sh
+}
+
+
+\subsection{
+  COPYING
+}
+\label{
+  COPYING
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+COPYING
+}
+
+
+\subsection{
+  COPYING.LESSER
+}
+\label{
+  COPYINGLESSER
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+COPYING.LESSER
 }
 
 

@@ -98,9 +98,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='bc1fc55ee455ed1d08c2bc49566dc3fadf6576b5b2857'
-  LFBFL_correct_sha512+='3c43ea223d7d12b8b6f7bc3eb174f04e3cc8e218051b'
-  LFBFL_correct_sha512+='113ea4c85dc043c319abc1e34940d74c0ca9b7c'
+  LFBFL_correct_sha512='681c159f4599e6c416fef7cde529dec8a5f1a87b0bb5d'
+  LFBFL_correct_sha512+='5155e87fdaff820fcea245e170ca12e19f6f7eab993f'
+  LFBFL_correct_sha512+='f13a1d5c486fdd1842ef05a268aad8136051c17'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
   chmod +x "./${LFBFL_file_path}"
@@ -109,9 +109,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='ea1cdb9e9ed3ba468e3398e52c44daca7b6a9c5c21d5b'
-  LFBFL_correct_sha512+='3cdf433183aec31286a52b2af5c177650b11d5590e23'
-  LFBFL_correct_sha512+='e498ce8e1c3fcad2738fbaec329c6204bc6314d'
+  LFBFL_correct_sha512='9cdb123313f89fefb2c769e1e5e0bc2d768db1bf7e183'
+  LFBFL_correct_sha512+='1f703579e22a4cddae91713d1155c0357d858420ab9b'
+  LFBFL_correct_sha512+='5453eb0b54c6c74acc538e1ac76c905249e930a'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
@@ -214,9 +214,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='dd5da872dedbc21fb6acc385fd9ec9f8f6c7b30b1dc0c'
-  LFBFL_correct_sha512+='dd91901a9030939f262303deec044725c12da49b06e8'
-  LFBFL_correct_sha512+='f6b41ee7f8b4ce6a3cacf9f7800584598efd859'
+  LFBFL_correct_sha512='962a67fae138e48e3f19b47eddbffe2565ded5c074307'
+  LFBFL_correct_sha512+='2c12aece5f0ca9128476c13f13607ff52426c80ac772'
+  LFBFL_correct_sha512+='8d8036b6d82adde03dcfb193b069d29cb2db532'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 

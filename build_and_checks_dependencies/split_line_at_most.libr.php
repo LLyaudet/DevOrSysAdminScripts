@@ -26,53 +26,34 @@ This file was renamed from "split_line_at_most.php" to
 "split_line_at_most.libr.php".
 */
 
-function generate_split_score_after_before(
-  $max_length,
-  $delimiter_strings_domain,
+function generate_split_score(
+  $b_after_before,
+  $i_max_length,
+  $a_delimiter_strings_domain,
 ){
   return function(
-    $delimiter_string,
-    $cut_position,
-    $is_cut_after,
-  ) use ($max_length, $delimiter_strings_domain){
-    if(!in_array($delimiter_string, $delimiter_strings_domain, true)){
+    $s_delimiter_string,
+    $i_cut_position,
+    $b_is_cut_after,
+  ) use ($b_after_before, $i_max_length, $s_delimiter_strings_domain){
+    if(
+      !in_array(
+        $s_delimiter_string, $s_delimiter_strings_domain, true
+      )
+    ){
       // I do not handle regexps for the moment.
       // I'm too brainfucked. I just want to finish this feature fast
       // for HTML and Tex/PDF listings generation with HTML and Tex on
       // at most 70 characters.
       return 0;
     }
-    if($is_cut_after){
-      // Always way better to cut after '/' than before it.
-      return 1 + $max_length + $cut_position;
+    if($b_is_cut_after === $b_after_before){
+      // When $b_after_before,
+      // always way better to cut after '/' than before it.
+      // When !$b_after_before (aka before_after),
+      // always way better to cut before '/' than after it.
+      return 1 + $i_max_length + $i_cut_position;
     }
-    return 1 + $cut_position;
+    return 1 + $i_cut_position;
   };
 }
-
-
-
-function generate_split_score_before_after(
-  $max_length,
-  $delimiter_strings_domain,
-){
-  return function(
-    $delimiter_string,
-    $cut_position,
-    $is_cut_after,
-  ) use ($max_length, $delimiter_strings_domain){
-    if(!in_array($delimiter_string, $delimiter_strings_domain, true)){
-      // I do not handle regexps for the moment.
-      // I'm too brainfucked. I just want to finish this feature fast
-      // for HTML and Tex/PDF listings generation with HTML and Tex on
-      // at most 70 characters.
-      return 0;
-    }
-    if(!$is_cut_after){
-      // Always way better to cut before '/' than after it.
-      return 1 + $max_length + $cut_position;
-    }
-    return 1 + $cut_position;
-  };
-}
-

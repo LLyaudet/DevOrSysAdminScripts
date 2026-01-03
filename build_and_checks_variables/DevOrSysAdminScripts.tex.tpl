@@ -19,7 +19,7 @@
 % along with DevOrSysAdminScripts.
 % If not, see <https://www.gnu.org/licenses/>.
 %
-% ©Copyright 2023-2025 Laurent Frédéric Bernard François Lyaudet
+% ©Copyright 2023-2026 Laurent Frédéric Bernard François Lyaudet
 
 % 2025-12-29T17:08+01:00: This file was moved from
 % "./latex"

@@ -20,7 +20,7 @@
 # along with DevOrSysAdminScripts.
 # If not, see <https://www.gnu.org/licenses/>.
 #
-# ©Copyright 2023-2025 Laurent Frédéric Bernard François Lyaudet
+# ©Copyright 2023-2026 Laurent Frédéric Bernard François Lyaudet
 # The file "build_and_checks.exec.sh.tpl" was renamed from
 # "build_and_checks.sh.tpl" to "build_and_checks.exec.sh.tpl".
 # The file "build_and_checks.exec.sh" generated from the file
@@ -66,9 +66,9 @@ build_and_checks(){
   declare -r\
     LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_common_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='cc1870c0686ea840026676e41a49c55541b0007674b35'
-  LFBFL_correct_sha512+='dcfca294e5aa13b8fe6a0f394ec1feacc9b95f17d981'
-  LFBFL_correct_sha512+='acae90872a8882dba5a32ceb0d174da7bad6f82'
+  LFBFL_correct_sha512='d1a1dc31d8c211c329fb7f3bc13927040c6eba117a7e0'
+  LFBFL_correct_sha512+='924e63b6c959b04f0a78a8cb6ea1d1eb10418776756e'
+  LFBFL_correct_sha512+='41b19637b5fb6364d96ecba9b0e10822be96db8'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_script}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
   chmod +x "./${LFBFL_file_path}"

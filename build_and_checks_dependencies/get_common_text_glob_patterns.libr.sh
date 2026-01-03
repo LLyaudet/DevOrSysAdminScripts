@@ -20,7 +20,7 @@
 # along with DevOrSysAdminScripts.
 # If not, see <https://www.gnu.org/licenses/>.
 #
-# ©Copyright 2023-2025 Laurent Frédéric Bernard François Lyaudet
+# ©Copyright 2023-2026 Laurent Frédéric Bernard François Lyaudet
 # This file was renamed from "get_common_text_glob_patterns.sh"
 # to "get_common_text_glob_patterns.libr.sh".
 

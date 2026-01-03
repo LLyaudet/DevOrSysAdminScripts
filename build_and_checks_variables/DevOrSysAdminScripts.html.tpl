@@ -22,7 +22,7 @@ the GNU Lesser General Public License
 along with DevOrSysAdminScripts.
 If not, see <https://www.gnu.org/licenses/>.
 
-©Copyright 2023-2025 Laurent Frédéric Bernard François Lyaudet
+©Copyright 2023-2026 Laurent Frédéric Bernard François Lyaudet
 -->
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

@@ -21,7 +21,7 @@ the GNU Lesser General Public License
 along with DevOrSysAdminScripts.
 If not, see <https://www.gnu.org/licenses/>.
 
-©Copyright 2023-2025 Laurent Frédéric Bernard François Lyaudet
+©Copyright 2023-2026 Laurent Frédéric Bernard François Lyaudet
 This file was renamed from "unicode.php" to "unicode.libr.php".
 */
 

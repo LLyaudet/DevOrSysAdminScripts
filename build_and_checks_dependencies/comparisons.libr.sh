@@ -20,7 +20,7 @@
 # along with DevOrSysAdminScripts.
 # If not, see <https://www.gnu.org/licenses/>.
 #
-# ©Copyright 2023-2025 Laurent Frédéric Bernard François Lyaudet
+# ©Copyright 2023-2026 Laurent Frédéric Bernard François Lyaudet
 # The file "comparisons.sh" was renamed to "comparisons.libr.sh".
 
 equal(){

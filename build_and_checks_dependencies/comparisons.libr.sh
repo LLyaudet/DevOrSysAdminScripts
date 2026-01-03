@@ -83,9 +83,10 @@ is_substring(){
   local LFBFL_var_3="\$a = '${LFBFL_var_1}';"
   LFBFL_var_3+=" \$b = preg_quote('${LFBFL_var_2}');"
   LFBFL_var_3+=" \$c = '/'.addcslashes(\$b, '/').'/';"
-  LFBFL_var_3+=" die(preg_match(\$c, \$a));"
+  LFBFL_var_3+=" die(1 - preg_match(\$c, \$a));"
   readonly LFBFL_var_3
   php -r "${LFBFL_var_3}"
+  return $?
 }
 
 is_subfile(){
@@ -94,9 +95,10 @@ is_subfile(){
   local LFBFL_var_1="\$a = file_get_contents('$1');"
   LFBFL_var_1+=" \$b = preg_quote(file_get_contents('$2'));"
   LFBFL_var_1+=" \$c = '/'.addcslashes(\$b, '/').'/';"
-  LFBFL_var_1+=" die(preg_match(\$c, \$a));"
+  LFBFL_var_1+=" die(1 - preg_match(\$c, \$a));"
   readonly LFBFL_var_1
   php -r "${LFBFL_var_1}"
+  return $?
 }
 
 alias min_from_int_sort="min 'sort --numeric-sort'"

@@ -58,11 +58,32 @@ pre.numbered_lines:before{
   padding: 0 1ch;
   text-align: right;
 }
-
 blockquote{
   margin-left: 4ex;
   margin-right: 4ex;
   text-align: left;
+}
+ol.level1, ol.level2{
+  list-style-type: none;
+  /*
+  list-style-type: decimal;
+  Previous rule is shorter and more efficient if you need only level1.
+  But you don't have accessible counter if you use decimal.
+  */
+}
+ol.level1{
+  counter-reset: level1;
+}
+ol.level2{
+  counter-reset: level2;
+}
+ol.level1 li:before{
+  content: counter(level1) ". ";
+  counter-increment: level1;
+}
+ol.level2 li:before{
+  content: counter(level1) "." counter(level2) " ";
+  counter-increment: level2;
 }
 </style>
 <title>@repository_name@</title>
@@ -101,6 +122,18 @@ blockquote{
 <p>
 Code lines: @number_of_lines@
 </p>
+
+
+<h2>Contents</h2>
+
+<ol class="level1">
+  <li><a href="#section1">Files Tree</a></li>
+  <li><a href="#section2">Listing of files</a><br>
+    <ol class="level2">
+      @files_lis@
+    </ol>
+  </li>
+</ol>
 
 
 <h2 id="section1">1 Files tree</h2>

@@ -103,6 +103,8 @@ LFBFL_temp_files_listing+="files_listing.tex.tpl.temp"
 LFBFL_temp_files_listing2="./${LFBFL_subdir2}/temp/"
 LFBFL_temp_files_listing2+="files_listing.html.tpl.temp"
 : > "${LFBFL_temp_files_listing2}"
+LFBFL_temp_files_lis="./${LFBFL_subdir2}/temp/files_lis.html.tpl"
+: > "${LFBFL_temp_files_lis}"
 get_split_score_after_before_simple 70 /
 # split_score_command="$LFBFL_generic_result"
 # shellcheck disable=SC2154
@@ -209,6 +211,15 @@ do
   echo "</pre>" >> "${LFBFL_temp_files_listing2}"
   echo "" >> "${LFBFL_temp_files_listing2}"
   echo "" >> "${LFBFL_temp_files_listing2}"
+
+  # shellcheck disable=SC2129
+  echo "      <li><a href=\"#subsection2.${LFBFL_i}\">"\
+    >> "${LFBFL_temp_files_lis}"
+  # shellcheck disable=SC2001
+  echo "${LFBFL_file_name}"\
+    | sed -e "s|${LFBFL_file_name}|${LFBFL_new_lines}|g"\
+    >> "${LFBFL_temp_files_lis}"
+  echo "      </a></li>" >> "${LFBFL_temp_files_lis}"
 done
 overwrite_if_not_equal "./${LFBFL_subdir2}/files_listing.tex.tpl"\
   "${LFBFL_temp_files_listing}"
@@ -385,6 +396,9 @@ if [[ -f "${LFBFL_html_path_start}.1" ]]; then
 
   sed -i "s|@number_of_lines@|${LFBFL_number_of_lines}|g"\
     "${LFBFL_html_path_start}.3"
+
+  insert_file_at_token "${LFBFL_html_path_start}.3"\
+    @files_lis@ "${LFBFL_temp_files_lis}"
 
   pushd "./${LFBFL_subdir2}/temp/" || (echo "pushd failed" && exit)
   sed -i -e '/@current_tree_light@/{r current_tree_light.txt' -e 'd}'\

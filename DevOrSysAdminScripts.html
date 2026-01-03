@@ -58,11 +58,32 @@ pre.numbered_lines:before{
   padding: 0 1ch;
   text-align: right;
 }
-
 blockquote{
   margin-left: 4ex;
   margin-right: 4ex;
   text-align: left;
+}
+ol.level1, ol.level2{
+  list-style-type: none;
+  /*
+  list-style-type: decimal;
+  Previous rule is shorter and more efficient if you need only level1.
+  But you don't have accessible counter if you use decimal.
+  */
+}
+ol.level1{
+  counter-reset: level1;
+}
+ol.level2{
+  counter-reset: level2;
+}
+ol.level1 li:before{
+  content: counter(level1) ". ";
+  counter-increment: level1;
+}
+ol.level2 li:before{
+  content: counter(level1) "." counter(level2) " ";
+  counter-increment: level2;
 }
 </style>
 <title>DevOrSysAdminScripts</title>
@@ -96,12 +117,214 @@ blockquote{
 Some “small” useful scripts
 for enhancing development or system-administrators tasks
 </blockquote>
-<p>Current version: 2026-01-01</p>
-<p>Current number of commits: 238</p>
-<p>Current git SHA1: b8ec1eb9af1aaaf6e7c90517e31a31c4951516e6</p>
+<p>Current version: 2026-01-03</p>
+<p>Current number of commits: 240</p>
+<p>Current git SHA1: 22ca53bf7e21ce826c962eaaa2a05495c7993c52</p>
 <p>
-Code lines: 6251 total lines, 5637 not empty lines, 614 empty lines.
+Code lines: 6302 total lines, 5683 not empty lines, 619 empty lines.
 </p>
+
+
+<h2>Contents</h2>
+
+<ol class="level1">
+  <li><a href="#section1">Files Tree</a></li>
+  <li><a href="#section2">Listing of files</a><br>
+    <ol class="level2">
+      <li><a href="#subsection2.1">
+build_and_checks_dependencies/build_and_checks.exec.sh.tpl
+      </a></li>
+      <li><a href="#subsection2.2">
+build_and_checks_dependencies/build_md_from_printable_md.exec.sh
+      </a></li>
+      <li><a href="#subsection2.3">
+build_and_checks_dependencies/check_shell_scripts_beginnings.libr.sh
+      </a></li>
+      <li><a href="#subsection2.4">
+build_and_checks_dependencies/check_URLs.libr.sh
+      </a></li>
+      <li><a href="#subsection2.5">
+build_and_checks_dependencies/common_build_and_checks.exec.sh
+      </a></li>
+      <li><a href="#subsection2.6">
+build_and_checks_dependencies/common_build_and_checks.exec.sh.tpl
+      </a></li>
+      <li><a href="#subsection2.7">
+build_and_checks_dependencies/comparisons.libr.sh
+      </a></li>
+      <li><a href="#subsection2.8">
+build_and_checks_dependencies/create_PDF.exec.sh
+      </a></li>
+      <li><a href="#subsection2.9">
+build_and_checks_dependencies/generate_from_template.libr.sh
+      </a></li>
+      <li><a href="#subsection2.10">
+build_and_checks_dependencies/get_common_text_glob_patterns.libr.sh
+      </a></li>
+      <li><a href="#subsection2.11">
+build_and_checks_dependencies/grammar_and_spell_check.libr.sh
+      </a></li>
+      <li><a href="#subsection2.12">
+build_and_checks_dependencies/licenses_templates/<!--
+-->build_licenses_templates.exec.sh
+      </a></li>
+      <li><a href="#subsection2.13">
+build_and_checks_dependencies/licenses_templates/<!--
+-->license_file_header_AGPLv3+.c.tpl
+      </a></li>
+      <li><a href="#subsection2.14">
+build_and_checks_dependencies/licenses_templates/<!--
+-->license_file_header_AGPLv3+.py.tpl
+      </a></li>
+      <li><a href="#subsection2.15">
+build_and_checks_dependencies/licenses_templates/<!--
+-->license_file_header_AGPLv3+.sh.tpl
+      </a></li>
+      <li><a href="#subsection2.16">
+build_and_checks_dependencies/licenses_templates/<!--
+-->license_file_header_AGPLv3+.tex.tpl
+      </a></li>
+      <li><a href="#subsection2.17">
+build_and_checks_dependencies/licenses_templates/<!--
+-->license_file_header_AGPLv3+.tpl
+      </a></li>
+      <li><a href="#subsection2.18">
+build_and_checks_dependencies/licenses_templates/<!--
+-->license_file_header_GPLv3+.c.tpl
+      </a></li>
+      <li><a href="#subsection2.19">
+build_and_checks_dependencies/licenses_templates/<!--
+-->license_file_header_GPLv3+.py.tpl
+      </a></li>
+      <li><a href="#subsection2.20">
+build_and_checks_dependencies/licenses_templates/<!--
+-->license_file_header_GPLv3+.sh.tpl
+      </a></li>
+      <li><a href="#subsection2.21">
+build_and_checks_dependencies/licenses_templates/<!--
+-->license_file_header_GPLv3+.tex.tpl
+      </a></li>
+      <li><a href="#subsection2.22">
+build_and_checks_dependencies/licenses_templates/<!--
+-->license_file_header_GPLv3+.tpl
+      </a></li>
+      <li><a href="#subsection2.23">
+build_and_checks_dependencies/licenses_templates/<!--
+-->license_file_header_LGPLv3+.c.tpl
+      </a></li>
+      <li><a href="#subsection2.24">
+build_and_checks_dependencies/licenses_templates/<!--
+-->license_file_header_LGPLv3+.py.tpl
+      </a></li>
+      <li><a href="#subsection2.25">
+build_and_checks_dependencies/licenses_templates/<!--
+-->license_file_header_LGPLv3+.sh.tpl
+      </a></li>
+      <li><a href="#subsection2.26">
+build_and_checks_dependencies/licenses_templates/<!--
+-->license_file_header_LGPLv3+.tex.tpl
+      </a></li>
+      <li><a href="#subsection2.27">
+build_and_checks_dependencies/licenses_templates/<!--
+-->license_file_header_LGPLv3+.tpl
+      </a></li>
+      <li><a href="#subsection2.28">
+build_and_checks_dependencies/lines_counts.libr.sh
+      </a></li>
+      <li><a href="#subsection2.29">
+build_and_checks_dependencies/lines_filters.libr.sh
+      </a></li>
+      <li><a href="#subsection2.30">
+build_and_checks_dependencies/lines_maps.libr.sh
+      </a></li>
+      <li><a href="#subsection2.31">
+build_and_checks_dependencies/overwrite_if_not_equal.libr.sh
+      </a></li>
+      <li><a href="#subsection2.32">
+build_and_checks_dependencies/python_black_complement.libr.sh
+      </a></li>
+      <li><a href="#subsection2.33">
+build_and_checks_dependencies/python_isort_complement.libr.sh
+      </a></li>
+      <li><a href="#subsection2.34">
+build_and_checks_dependencies/split_line_at_most.exec.php
+      </a></li>
+      <li><a href="#subsection2.35">
+build_and_checks_dependencies/split_line_at_most.libr.php
+      </a></li>
+      <li><a href="#subsection2.36">
+build_and_checks_dependencies/strings_functions.libr.sh
+      </a></li>
+      <li><a href="#subsection2.37">
+build_and_checks_dependencies/too_long_code_lines.libr.sh
+      </a></li>
+      <li><a href="#subsection2.38">
+build_and_checks_dependencies/update_common_build_and_checks.exec.sh
+      </a></li>
+      <li><a href="#subsection2.39">
+build_and_checks_dependencies/<!--
+-->update_or_check_files_names_listing.exec.sh
+      </a></li>
+      <li><a href="#subsection2.40">
+build_and_checks_variables/.gitignore
+      </a></li>
+      <li><a href="#subsection2.41">
+build_and_checks_variables/DevOrSysAdminScripts.html.tpl
+      </a></li>
+      <li><a href="#subsection2.42">
+build_and_checks_variables/DevOrSysAdminScripts.tex.tpl
+      </a></li>
+      <li><a href="#subsection2.43">
+build_and_checks_variables/files_listing.tex.tpl
+      </a></li>
+      <li><a href="#subsection2.44">
+build_and_checks_variables/files_names_listing.txt
+      </a></li>
+      <li><a href="#subsection2.45">
+build_and_checks_variables/licenses_notes.txt
+      </a></li>
+      <li><a href="#subsection2.46">
+build_and_checks_variables/repository_data.txt
+      </a></li>
+      <li><a href="#subsection2.47">
+build_and_checks.exec.sh
+      </a></li>
+      <li><a href="#subsection2.48">
+COPYING
+      </a></li>
+      <li><a href="#subsection2.49">
+COPYING.LESSER
+      </a></li>
+      <li><a href="#subsection2.50">
+git_helpers/git_checks.libr.sh
+      </a></li>
+      <li><a href="#subsection2.51">
+git_helpers/post-commit
+      </a></li>
+      <li><a href="#subsection2.52">
+git_helpers/post_commit_renaming_comment.libr.sh
+      </a></li>
+      <li><a href="#subsection2.53">
+git_helpers/pre-commit
+      </a></li>
+      <li><a href="#subsection2.54">
+LiensUtiles.txt
+      </a></li>
+      <li><a href="#subsection2.55">
+README.md.tpl
+      </a></li>
+      <li><a href="#subsection2.56">
+unicode.libr.php
+      </a></li>
+      <li><a href="#subsection2.57">
+upgrade_build_and_checks.exec.sh
+      </a></li>
+      <li><a href="#subsection2.58">
+wget_sha512.libr.sh
+      </a></li>
+    </ol>
+  </li>
+</ol>
 
 
 <h2 id="section1">1 Files tree</h2>
@@ -186,42 +409,42 @@ Code lines: 6251 total lines, 5637 not empty lines, 614 empty lines.
 5 directories, 71 files
 </pre>
 <pre class="verbatim">
-[ 12K Jan  1 00:30]  ./
-├── [4.0K Jan  1 00:30]  build_and_checks_dependencies/
+[ 12K Jan  3 17:48]  ./
+├── [4.0K Jan  3 17:48]  build_and_checks_dependencies/
 │   ├── [2.6K Dec 30 22:26]  build_and_checks.exec.sh.tpl*
 │   ├── [2.5K Dec 31 14:46]  build_md_from_printable_md.exec.sh*
 │   ├── [1.3K Dec 30 17:50]  check_shell_scripts_beginnings.libr.sh
 │   ├── [2.4K Dec 31 23:21]  check_URLs.libr.sh
-│   ├── [ 17K Jan  1 00:30]  common_build_and_checks.exec.sh*
+│   ├── [ 17K Jan  3 17:48]  common_build_and_checks.exec.sh*
 │   ├── [ 12K Dec 31 15:37]  common_build_and_checks.exec.sh.tpl
 │   ├── [3.1K Dec 30 18:02]  comparisons.libr.sh
-│   ├── [ 14K Jan  1 00:25]  create_PDF.exec.sh*
+│   ├── [ 15K Jan  3 17:45]  create_PDF.exec.sh*
 │   ├── [3.1K Dec 31 21:28]  generate_from_template.libr.sh
 │   ├── [1.9K Dec 30 19:53]  get_common_text_glob_patterns.libr.sh
 │   ├── [1.9K Dec 30 19:55]  grammar_and_spell_check.libr.sh
-│   ├── [4.0K Jan  1 00:30]  licenses_templates/
+│   ├── [4.0K Jan  3 17:48]  licenses_templates/
 │   │   ├── [7.7K Dec 30 19:53]  build_licenses_templates.exec.sh*
 │   │   ├── [ 734 Dec 30 19:34]  license_file_header_AGPLv3+.c.tpl
 │   │   ├── [ 736 Dec 30 19:34]  license_file_header_AGPLv3+.py.tpl
 │   │   ├── [ 768 Dec 30 19:34]  license_file_header_AGPLv3+.sh.tpl
 │   │   ├── [ 768 Dec 30 19:34]  license_file_header_AGPLv3+.tex.tpl
 │   │   ├── [ 728 Dec 30 19:32]  license_file_header_AGPLv3+.tpl
-│   │   ├── [ 761 Dec 30 16:12]  license_file_header_GPLv3+.c
+│   │   ├── [ 761 Jan  3 16:46]  license_file_header_GPLv3+.c
 │   │   ├── [ 713 Dec 27 21:48]  license_file_header_GPLv3+.c.tpl
-│   │   ├── [ 763 Dec 30 16:12]  license_file_header_GPLv3+.py
+│   │   ├── [ 763 Jan  3 16:46]  license_file_header_GPLv3+.py
 │   │   ├── [ 715 Dec 27 21:48]  license_file_header_GPLv3+.py.tpl
-│   │   ├── [ 795 Dec 30 16:12]  license_file_header_GPLv3+.sh
+│   │   ├── [ 795 Jan  3 16:46]  license_file_header_GPLv3+.sh
 │   │   ├── [ 747 Dec 27 21:48]  license_file_header_GPLv3+.sh.tpl
-│   │   ├── [ 795 Dec 30 16:12]  license_file_header_GPLv3+.tex
+│   │   ├── [ 795 Jan  3 16:46]  license_file_header_GPLv3+.tex
 │   │   ├── [ 747 Dec 27 21:48]  license_file_header_GPLv3+.tex.tpl
 │   │   ├── [ 707 Dec 27 21:48]  license_file_header_GPLv3+.tpl
-│   │   ├── [ 782 Dec 27 21:48]  license_file_header_LGPLv3+.c
+│   │   ├── [ 782 Jan  3 16:46]  license_file_header_LGPLv3+.c
 │   │   ├── [ 734 Dec 27 21:48]  license_file_header_LGPLv3+.c.tpl
-│   │   ├── [ 784 Dec 27 21:48]  license_file_header_LGPLv3+.py
+│   │   ├── [ 784 Jan  3 16:46]  license_file_header_LGPLv3+.py
 │   │   ├── [ 736 Dec 27 21:48]  license_file_header_LGPLv3+.py.tpl
-│   │   ├── [ 816 Dec 27 21:48]  license_file_header_LGPLv3+.sh
+│   │   ├── [ 816 Jan  3 16:46]  license_file_header_LGPLv3+.sh
 │   │   ├── [ 768 Dec 27 21:48]  license_file_header_LGPLv3+.sh.tpl
-│   │   ├── [ 816 Dec 27 21:48]  license_file_header_LGPLv3+.tex
+│   │   ├── [ 816 Jan  3 16:46]  license_file_header_LGPLv3+.tex
 │   │   ├── [ 768 Dec 27 21:48]  license_file_header_LGPLv3+.tex.tpl
 │   │   └── [ 728 Dec 27 21:48]  license_file_header_LGPLv3+.tpl
 │   ├── [2.2K Dec 31 23:37]  lines_counts.libr.sh
@@ -237,11 +460,11 @@ Code lines: 6251 total lines, 5637 not empty lines, 614 empty lines.
 │   ├── [3.8K Dec 30 21:43]  update_common_build_and_checks.exec.sh*
 │   └── [4.3K Dec 30 22:40]  *
 │   │ update_or_check_files_names_listing.exec.sh**
-├── [2.8K Jan  1 00:30]  build_and_checks.exec.sh*
-├── [4.0K Jan  1 00:31]  build_and_checks_variables/
-│   ├── [4.4K Dec 31 22:13]  DevOrSysAdminScripts.html.tpl
-│   ├── [ 26K Jan  1 00:30]  DevOrSysAdminScripts.tex
-│   ├── [3.7K Dec 31 15:41]  DevOrSysAdminScripts.tex.tpl
+├── [2.8K Jan  3 17:48]  build_and_checks.exec.sh*
+├── [4.0K Jan  3 17:48]  build_and_checks_variables/
+│   ├── [5.1K Jan  3 17:48]  DevOrSysAdminScripts.html.tpl
+│   ├── [ 26K Jan  3 17:48]  DevOrSysAdminScripts.tex
+│   ├── [3.7K Jan  3 16:46]  DevOrSysAdminScripts.tex.tpl
 │   ├── [ 15K Dec 31 19:44]  files_listing.tex.tpl
 │   ├── [5.2K Dec 31 16:15]  files_names_listing.txt
 │   ├── [   7 Dec 29 17:13]  .gitignore
@@ -249,8 +472,8 @@ Code lines: 6251 total lines, 5637 not empty lines, 614 empty lines.
 │   └── [ 645 Dec 30 16:37]  repository_data.txt
 ├── [ 34K May  6  2024]  COPYING
 ├── [7.5K Dec 27 21:48]  COPYING.LESSER
-├── [250K Jan  1 00:30]  DevOrSysAdminScripts.html
-├── [249K Jan  1 00:30]  DevOrSysAdminScripts.pdf
+├── [259K Jan  3 17:48]  DevOrSysAdminScripts.html
+├── [255K Jan  3 17:48]  DevOrSysAdminScripts.pdf
 ├── [4.0K Dec 31 15:11]  git_helpers/
 │   ├── [3.4K Dec 30 17:02]  git_checks.libr.sh
 │   ├── [1.2K Dec 30 17:25]  post-commit
@@ -723,9 +946,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='79f35e52701ef46124eb797690111db43d22e690a7018'
-  LFBFL_correct_sha512+='cb268e59a3b09d86101517986f4cee3939b3db1acb93'
-  LFBFL_correct_sha512+='933262f95711c7a9c6b0e100eec4754254d04ce'
+  LFBFL_correct_sha512='5e7a03b2b28cc05409f22a3c76bac6bf019390c95b076'
+  LFBFL_correct_sha512+='eaa5c04fd5a10ae7975352429ed9dda6f299dc1ea25d'
+  LFBFL_correct_sha512+='f38efb4d1275f4c3ebdaabbc28ebe09f984c85f'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
   chmod +x "./${LFBFL_file_path}"
@@ -1587,6 +1810,8 @@ LFBFL_temp_files_listing+="files_listing.tex.tpl.temp"
 LFBFL_temp_files_listing2="./${LFBFL_subdir2}/temp/"
 LFBFL_temp_files_listing2+="files_listing.html.tpl.temp"
 : > "${LFBFL_temp_files_listing2}"
+LFBFL_temp_files_lis="./${LFBFL_subdir2}/temp/files_lis.html.tpl"
+: > "${LFBFL_temp_files_lis}"
 get_split_score_after_before_simple 70 /
 # split_score_command="$LFBFL_generic_result"
 # shellcheck disable=SC2154
@@ -1693,6 +1918,15 @@ do
   echo "&lt;/pre>" >> "${LFBFL_temp_files_listing2}"
   echo "" >> "${LFBFL_temp_files_listing2}"
   echo "" >> "${LFBFL_temp_files_listing2}"
+
+  # shellcheck disable=SC2129
+  echo "      &lt;li>&lt;a href=\"#subsection2.${LFBFL_i}\">"\
+    >> "${LFBFL_temp_files_lis}"
+  # shellcheck disable=SC2001
+  echo "${LFBFL_file_name}"\
+    | sed -e "s|${LFBFL_file_name}|${LFBFL_new_lines}|g"\
+    >> "${LFBFL_temp_files_lis}"
+  echo "      &lt;/a>&lt;/li>" >> "${LFBFL_temp_files_lis}"
 done
 overwrite_if_not_equal "./${LFBFL_subdir2}/files_listing.tex.tpl"\
   "${LFBFL_temp_files_listing}"
@@ -1870,6 +2104,9 @@ if [[ -f "${LFBFL_html_path_start}.1" ]]; then
   sed -i "s|@number_of_lines@|${LFBFL_number_of_lines}|g"\
     "${LFBFL_html_path_start}.3"
 
+  insert_file_at_token "${LFBFL_html_path_start}.3"\
+    @files_lis@ "${LFBFL_temp_files_lis}"
+
   pushd "./${LFBFL_subdir2}/temp/" || (echo "pushd failed" &amp;&amp; exit)
   sed -i -e '/@current_tree_light@/{r current_tree_light.txt' -e 'd}'\
     "${repository_name}.html.3"
@@ -1899,7 +2136,8 @@ fi
 LFBFL_files_to_temp=(\
   "${repository_name}.aux"\
   "${repository_name}.log"\
-  "${repository_name}.out"
+  "${repository_name}.out"\
+  "${repository_name}.toc"
 )
 for LFBFL_file_name in "${LFBFL_files_to_temp[@]}"; do
   mv "${LFBFL_file_name}" "${LFBFL_subdir2}/temp/"
@@ -4407,11 +4645,32 @@ pre.numbered_lines:before{
   padding: 0 1ch;
   text-align: right;
 }
-
 blockquote{
   margin-left: 4ex;
   margin-right: 4ex;
   text-align: left;
+}
+ol.level1, ol.level2{
+  list-style-type: none;
+  /*
+  list-style-type: decimal;
+  Previous rule is shorter and more efficient if you need only level1.
+  But you don't have accessible counter if you use decimal.
+  */
+}
+ol.level1{
+  counter-reset: level1;
+}
+ol.level2{
+  counter-reset: level2;
+}
+ol.level1 li:before{
+  content: counter(level1) ". ";
+  counter-increment: level1;
+}
+ol.level2 li:before{
+  content: counter(level1) "." counter(level2) " ";
+  counter-increment: level2;
 }
 &lt;/style>
 &lt;title>@repository_name@&lt;/title>
@@ -4450,6 +4709,18 @@ blockquote{
 &lt;p>
 Code lines: @number_of_lines@
 &lt;/p>
+
+
+&lt;h2>Contents&lt;/h2>
+
+&lt;ol class="level1">
+  &lt;li>&lt;a href="#section1">Files Tree&lt;/a>&lt;/li>
+  &lt;li>&lt;a href="#section2">Listing of files&lt;/a>&lt;br>
+    &lt;ol class="level2">
+      @files_lis@
+    &lt;/ol>
+  &lt;/li>
+&lt;/ol>
 
 
 &lt;h2 id="section1">1 Files tree&lt;/h2>
@@ -4621,6 +4892,9 @@ Current number of commits: @number_of_commits@
 Current git SHA1: @current_git_SHA1@
 
 Code lines: @number_of_lines@
+
+\tableofcontents
+\newpage
 
 \section{Files tree}
 \label{section:tree}
@@ -5697,9 +5971,9 @@ build_and_checks(){
   declare -r\
     LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_common_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='3b8017ee0866dce4d98984956017f94b51a661e66ff0e'
-  LFBFL_correct_sha512+='a72675d63ca18f0eb6ca67c023459bdcea0220f69846'
-  LFBFL_correct_sha512+='9f46537719f514a7ccd765d9bfbe8e13df28b7e'
+  LFBFL_correct_sha512='8082f94e5ed10942af80d063bcc8dda8bae5ca6a93014'
+  LFBFL_correct_sha512+='0b27430c002cca311e7e627214829be9fe67f357ebb0'
+  LFBFL_correct_sha512+='df9fa6b28374da343e83a0bd288c397a424f211'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_script}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
   chmod +x "./${LFBFL_file_path}"

@@ -159,16 +159,21 @@ prepare_filled_license_file_block(){
   # on the fly...
 }
 
-for ((i=0; i<${#block_comment_languages[@]}; i++)); do
-  LFBFL_extension=${block_comment_languages[i]}
-  license_file_name="${LFBFL_license_prefix2}.${LFBFL_extension}"
+declare -A LFBFL_all_block_comment_languages
+LFBFL_all_block_comment_languages["c"]="c"
+LFBFL_all_block_comment_languages["php"]="c"
+LFBFL_all_block_comment_languages["py"]="py"
+
+for LFBFL_key in "${!LFBFL_all_block_comment_languages[@]}"; do
+  LFBFL_dest=${LFBFL_all_block_comment_languages[${LFBFL_key}]}
+  license_file_name="${LFBFL_license_prefix2}.${LFBFL_dest}"
   prepare_filled_license_file_block "${license_file_name}"
   if [[ -n "${license2}" ]]; then
-    license_file_name2="${LFBFL_license_prefix3}.${LFBFL_extension}"
+    license_file_name2="${LFBFL_license_prefix3}.${LFBFL_dest}"
     prepare_filled_license_file_block "${license_file_name2}"
   fi
   # shellcheck disable=SC2312
-  find . -type f -name "*.${LFBFL_extension}" -printf '%P\n'\
+  find . -type f -name "*.${LFBFL_key}" -printf '%P\n'\
     | relevant_find | while read -r LFBFL_file_name;
   do
     is_subfile "${LFBFL_file_name}" "${license_file_name}.temp"
@@ -196,16 +201,20 @@ prepare_filled_license_file_line(){
   overwrite_if_not_equal "$1" "$1.temp"
 }
 
-for ((i=0; i<${#line_comment_languages[@]}; i++)); do
-  LFBFL_extension=${line_comment_languages[i]}
-  license_file_name="${LFBFL_license_prefix2}.${LFBFL_extension}"
+declare -A LFBFL_all_line_comment_languages
+LFBFL_all_line_comment_languages["sh"]="sh"
+LFBFL_all_line_comment_languages["tex"]="tex"
+
+for LFBFL_key in "${!LFBFL_all_line_comment_languages[@]}"; do
+  LFBFL_dest=${LFBFL_all_line_comment_languages[${LFBFL_key}]}
+  license_file_name="${LFBFL_license_prefix2}.${LFBFL_dest}"
   prepare_filled_license_file_line "${license_file_name}"
   if [[ -n "${license2}" ]]; then
-    license_file_name2="${LFBFL_license_prefix3}.${LFBFL_extension}"
+    license_file_name2="${LFBFL_license_prefix3}.${LFBFL_dest}"
     prepare_filled_license_file_line "${license_file_name2}"
   fi
   # shellcheck disable=SC2312
-  find . -type f -name "*.${LFBFL_extension}" -printf '%P\n'\
+  find . -type f -name "*.${LFBFL_key}" -printf '%P\n'\
     | relevant_find | while read -r LFBFL_file_name;
   do
     is_subfile "${LFBFL_file_name}" "${license_file_name}"

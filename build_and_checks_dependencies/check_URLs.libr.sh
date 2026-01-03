@@ -26,6 +26,8 @@
 LFBFL_subdir="build_and_checks_dependencies"
 # shellcheck disable=SC1090
 source "./${LFBFL_subdir}/get_common_text_glob_patterns.libr.sh"
+# shellcheck disable=SC1090
+source "./${LFBFL_subdir}/lines_filters.libr.sh"
 
 check_URLs(){
   get_COMMON_TEXT_FILES_GLOB_PATTERNS
@@ -39,6 +41,7 @@ check_URLs(){
   local LFBFL_file_name
   local LFBFL_base_file_name
   local LFBFL_substitution
+  local LFBFL_substitution2
   # shellcheck disable=SC2154
   for LFBFL_pattern in "${COMMON_TEXT_FILES_GLOB_PATTERNS[@]}"; do
     [[ "$1" != "-v" ]]\
@@ -50,7 +53,11 @@ check_URLs(){
       | grep -vP "['\"]http(:[^'\"]*)['\"].*['\"]https\\1['\"]"
     # Last grep just above will remove false positives from
     # substitutions that fit on one line.
-    for LFBFL_file_name in ${LFBFL_pattern}; do
+    # shellcheck disable=SC2312
+    find . -type f -name "${LFBFL_pattern}" -printf '%P\n'\
+      | relevant_find | not_main_html_find\
+      | while read -r LFBFL_file_name;
+    do
       [[ -f "${LFBFL_file_name}" ]] || continue
       LFBFL_base_file_name=$(basename "${LFBFL_file_name}")
       [[ "${LFBFL_base_file_name}" != "check_URLs.libr.sh" ]]\

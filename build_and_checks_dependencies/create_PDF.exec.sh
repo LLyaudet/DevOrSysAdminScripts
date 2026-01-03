@@ -415,7 +415,8 @@ fi
 LFBFL_files_to_temp=(\
   "${repository_name}.aux"\
   "${repository_name}.log"\
-  "${repository_name}.out"
+  "${repository_name}.out"\
+  "${repository_name}.toc"
 )
 for LFBFL_file_name in "${LFBFL_files_to_temp[@]}"; do
   mv "${LFBFL_file_name}" "${LFBFL_subdir2}/temp/"

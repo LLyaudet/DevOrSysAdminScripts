@@ -81,6 +81,9 @@ Current git SHA1: @current_git_SHA1@
 
 Code lines: @number_of_lines@
 
+\tableofcontents
+\newpage
+
 \section{Files tree}
 \label{section:tree}
 

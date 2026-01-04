@@ -23,6 +23,10 @@ along with DevOrSysAdminScripts.
 If not, see <https://www.gnu.org/licenses/>.
 
 ©Copyright 2023-2026 Laurent Frédéric Bernard François Lyaudet
+2026-01-04T13:38+01:00: This file was renamed from
+"split_line_at_most.exec.php"
+to
+"split_score.exec.php".
 This file was renamed from
 "call_split_score_after_before_or_before_after.exec.php" to
 "split_line_at_most.exec.php".

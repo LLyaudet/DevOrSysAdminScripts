@@ -56,8 +56,8 @@ update_common_build_and_checks(){
     "overwrite_if_not_equal.libr.sh"\
     "python_black_complement.libr.sh"\
     "python_isort_complement.libr.sh"\
-    "split_line_at_most.exec.php"\
-    "split_line_at_most.libr.php"\
+    "split_score.exec.php"\
+    "split_score.libr.php"\
     "strings_functions.libr.sh"\
     "too_long_code_lines.libr.sh"\
   )

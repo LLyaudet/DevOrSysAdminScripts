@@ -35,14 +35,12 @@ This file was renamed from
 "call_split_score_after_before_or_before_after.exec.php".
 */
 
-require_once(
-  './build_and_checks_dependencies/split_line_at_most.libr.php'
-);
+require_once('./build_and_checks_dependencies/split_score.libr.php');
 
 /*
 php -r\
  $'require_once(\'./build_and_checks_dependencies/'\
-$'split_line_at_most.libr.php\');'\
+$'split_score.libr.php\');'\
 $' echo(generate_split_score'\
 $'(true, 70, [\'/\'])(\'/\', 60, true));'
 */

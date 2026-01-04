@@ -186,17 +186,17 @@ common_build_and_checks(){
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
-  LFBFL_file_name="split_line_at_most.exec.php"
+  LFBFL_file_name="split_score.exec.php"
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  @sha512_split_line_at_most.exec.php@
+  @sha512_split_score.exec.php@
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
-  LFBFL_file_name="split_line_at_most.libr.php"
+  LFBFL_file_name="split_score.libr.php"
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  @sha512_split_line_at_most.libr.php@
+  @sha512_split_score.libr.php@
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 

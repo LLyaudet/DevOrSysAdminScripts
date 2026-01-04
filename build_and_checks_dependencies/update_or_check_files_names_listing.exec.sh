@@ -59,12 +59,11 @@ sed -Ez "${sed_expression}" "${files_names_listing}.temp2"\
 sed -Ez "${sed_expression}" "${files_names_listing}.temp3"\
   > "${files_names_listing}.temp4"
 shopt -s dotglob
-get_split_score_after_before_simple 70 /
+get_split_score_simple 1 70 /
 # shellcheck disable=SC2154
-split_score_command="${get_split_score_after_before_result}"
+split_score_command="${get_split_score_result}"
 # shellcheck disable=SC2154
-split_score_command_properties=\
-"${get_split_score_after_before_result2}"
+split_score_command_properties="${get_split_score_result2}"
 # shellcheck disable=SC1003
 suffix='\\'
 # shellcheck disable=SC2312

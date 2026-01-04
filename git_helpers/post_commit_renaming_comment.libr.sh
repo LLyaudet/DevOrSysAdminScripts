@@ -98,20 +98,16 @@ commit_a_file_renamed_comment(){
   if [[ $LFBFL_verbose -eq 1 ]]; then
     echo "LFBFL_timestamp: ${LFBFL_timestamp}"
   fi
-  get_split_score_after_before_simple\
-    "${LFBFL_max_comment_line_length}" _
+  get_split_score_simple 1 "${LFBFL_max_comment_line_length}" _
   # shellcheck disable=SC2154
-  LFBFL_split_score_command1="${get_split_score_after_before_result}"
+  LFBFL_split_score_command1="${get_split_score_result}"
   # shellcheck disable=SC2154
-  LFBFL_split_score_command_properties1=\
-"${get_split_score_after_before_result2}"
-  get_split_score_after_before_simple\
-    "${LFBFL_max_comment_line_length}" /
+  LFBFL_split_score_command_properties1="${get_split_score_result2}"
+  get_split_score_simple 1 "${LFBFL_max_comment_line_length}" /
   # shellcheck disable=SC2154
-  LFBFL_split_score_command2="${get_split_score_after_before_result}"
+  LFBFL_split_score_command2="${get_split_score_result}"
   # shellcheck disable=SC2154
-  LFBFL_split_score_command_properties2=\
-"${get_split_score_after_before_result2}"
+  LFBFL_split_score_command_properties2="${get_split_score_result2}"
   declare -i LFBFL_renaming_happened=0
   declare -i LFBFL_i
   # declare -r LFBFL_special_file_name="files_names_listing.txt"

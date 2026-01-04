@@ -43,108 +43,62 @@ split_line_at(){
   # echo "$split_line_at_result_end"
 }
 
-split_score_after_before_simple(){
-  # $1=$delimiters_strings_domain concatenated characters/delimiters
-  # $2=$delimiter_string a single character
-  # $3=$is_cut_after
+split_score_simple(){
+  # $1=$after_before
+  # $2=$delimiters_strings_domain concatenated characters/delimiters
+  # $3=$delimiter_string a single character
+  # $4=$is_cut_after
   declare -gi split_score_result
-  if [[ "$1" != *$2* ]]; then
+  if [[ "$2" != *$3* ]]; then
     split_score_result=0
     return
   fi
-  if [[ "$3" == "1" ]]; then
+  if [[ "$4" == "$1" ]]; then
     split_score_result=2
     return
   fi
   split_score_result=1
 }
 
-split_score_before_after_simple(){
-  # $1=$delimiters_strings_domain concatenated characters/delimiters
-  # $2=$delimiter_string a single character
-  # $3=$is_cut_after
-  declare -gi split_score_result
-  if [[ "$1" != *$2* ]]; then
-    split_score_result=0
-    return
-  fi
-  if [[ "$3" == "0" ]]; then
-    split_score_result=2
-    return
-  fi
-  split_score_result=1
+get_split_score_simple(){
+  # $1=$after_before
+  # $2=$max_length
+  # $3=$delimiters_strings_domain
+  declare -g get_split_score_result="split_score_simple $1 '$3'"
+  declare -gi get_split_score_result2
+  get_split_score_result2=$((7+$1*4))
+  # if [[ $1 -eq 1 ]]; then
+  #   get_split_score_result2=7
+  # else
+  #   get_split_score_result2=11
+  # fi
 }
 
-get_split_score_after_before_simple(){
-  # $1=$max_length
-  # $2=$delimiters_strings_domain
-  declare -g get_split_score_after_before_result=\
-"split_score_after_before_simple '$2'"
-  # shellcheck disable=SC2034
-  declare -g get_split_score_after_before_result2="7"
+get_split_score_exec(){
+  declare -g SPLIT_SCORE_EXEC="./build_and_checks_dependencies"
+  SPLIT_SCORE_EXEC+="/split_score.exec.php"
 }
 
-get_split_score_before_after_simple(){
-  # $1=$max_length
-  # $2=$delimiters_strings_domain
-  declare -g get_split_score_before_after_result=\
-"split_score_before_after_simple '$2'"
-  # shellcheck disable=SC2034
-  declare -g get_split_score_before_after_result2="11"
-}
-
-get_split_line_at_most_exec(){
-  declare -gr SPLIT_LINE_AT_MOST_EXEC="./"
-  SPLIT_LINE_AT_MOST_EXEC+="build_and_checks_dependencies"
-  SPLIT_LINE_AT_MOST_EXEC+="/split_line_at_most.exec.php"
-}
-
-split_score_after_before(){
-  # $1=$max_length
-  # $2=$delimiters_strings_domain concatenated characters/delimiters
-  # $3=$delimiter_string a single character
-  # $4=$cut_position
-  # $5=$is_cut_after
-  get_split_line_at_most_exec
-  local LFBFL_command="${SPLIT_LINE_AT_MOST_EXEC}"
-  LFBFL_command+=" 1 $1 '$2' '$3' $4 $5"
-  readonly LFBFL_command
+split_score(){
+  # $1=$after_before
+  # $2=$max_length
+  # $3=$delimiters_strings_domain concatenated characters/delimiters
+  # $4=$delimiter_string a single character
+  # $5=$cut_position
+  # $6=$is_cut_after
+  get_split_score_exec
+  declare -r LFBFL_command="${SPLIT_SCORE_EXEC} $1 $2 '$3' '$4' $5 $6"
   declare -gi split_score_result
   split_score_result=$(eval "${LFBFL_command}")
 }
 
-split_score_before_after(){
-  # $1=$max_length
-  # $2=$delimiters_strings_domain concatenated characters/delimiters
-  # $3=$delimiter_string a single character
-  # $4=$cut_position
-  # $5=$is_cut_after
-  get_split_line_at_most_exec
-  local LFBFL_command="${SPLIT_LINE_AT_MOST_EXEC}"
-  LFBFL_command+=" 0 $1 '$2' '$3' $4 $5"
-  readonly LFBFL_command
-  declare -gi split_score_result
-  split_score_result=$(eval "${LFBFL_command}")
-}
-
-get_split_score_after_before(){
+get_split_score(){
+  # $1=$after_before
   # $1=$max_length
   # $2=$delimiters_strings_domain
-  declare -g\
-    get_split_score_after_before_result="split_score_after_before"
-  get_split_score_after_before_result+=" $1 '$2'"
-  # shellcheck disable=SC2034
-  declare -g get_split_score_after_before_result2="5"
-}
-
-get_split_score_before_after(){
-  # $1=$max_length
-  # $2=$delimiters_strings_domain
-  declare -g\
-    get_split_score_before_after_result="split_score_before_after"
-  get_split_score_before_after_result+=" 0 '$1' '$2'"
-  # shellcheck disable=SC2034
-  declare -g get_split_score_before_after_result2="9"
+  declare -g get_split_score_result="split_score $1 $2 '$3'"
+  declare -gi get_split_score_result2
+  get_split_score_result2=$((5+$1*4))
 }
 
 split_line_at_most(){

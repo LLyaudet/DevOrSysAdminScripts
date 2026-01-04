@@ -105,19 +105,15 @@ LFBFL_temp_files_listing2+="files_listing.html.tpl.temp"
 : > "${LFBFL_temp_files_listing2}"
 LFBFL_temp_files_lis="./${LFBFL_subdir2}/temp/files_lis.html.tpl"
 : > "${LFBFL_temp_files_lis}"
-get_split_score_after_before_simple 70 /
-# split_score_command="$LFBFL_generic_result"
+get_split_score_simple 1 70 /
 # shellcheck disable=SC2154
-declare LFBFL_score_command="${get_split_score_after_before_result}"
+declare LFBFL_score_command="${get_split_score_result}"
 # shellcheck disable=SC2154
-declare LFBFL_score_command_properties=\
-"${get_split_score_after_before_result2}"
-get_split_score_after_before_simple 70 ':'
-# split_score_command2="$LFBFL_generic_result"
+declare LFBFL_score_command_properties="${get_split_score_result2}"
+get_split_score_simple 1 70 ':'
 # shellcheck disable=SC2154
-declare LFBFL_score_command2="${get_split_score_after_before_result}"
-declare LFBFL_score_command_properties2=\
-"${get_split_score_after_before_result2}"
+declare LFBFL_score_command2="${get_split_score_result}"
+declare LFBFL_score_command_properties2="${get_split_score_result2}"
 declare LFBFL_suffix='%'
 declare LFBFL_sed_expression='s/\\\n//Mg'
 declare -i LFBFL_i=0

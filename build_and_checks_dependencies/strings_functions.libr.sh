@@ -47,32 +47,32 @@ split_score_after_before_simple(){
   # $1=$delimiters_strings_domain concatenated characters/delimiters
   # $2=$delimiter_string a single character
   # $3=$is_cut_after
+  declare -gi split_score_result
   if [[ "$1" != *$2* ]]; then
-    echo -n "0"
+    split_score_result=0
     return
   fi
   if [[ "$3" == "1" ]]; then
-    echo -n "2"
+    split_score_result=2
     return
   fi
-  echo -n "1"
-  return
+  split_score_result=1
 }
 
 split_score_before_after_simple(){
   # $1=$delimiters_strings_domain concatenated characters/delimiters
   # $2=$delimiter_string a single character
   # $3=$is_cut_after
+  declare -gi split_score_result
   if [[ "$1" != *$2* ]]; then
-    echo -n "0"
+    split_score_result=0
     return
   fi
   if [[ "$3" == "0" ]]; then
-    echo -n "2"
+    split_score_result=2
     return
   fi
-  echo -n "1"
-  return
+  split_score_result=1
 }
 
 get_split_score_after_before_simple(){
@@ -94,18 +94,45 @@ get_split_score_before_after_simple(){
 }
 
 get_split_line_at_most_exec(){
-  declare -g SPLIT_LINE_AT_MOST_EXEC="./"
+  declare -gr SPLIT_LINE_AT_MOST_EXEC="./"
   SPLIT_LINE_AT_MOST_EXEC+="build_and_checks_dependencies"
   SPLIT_LINE_AT_MOST_EXEC+="/split_line_at_most.exec.php"
+}
+
+split_score_after_before(){
+  # $1=$max_length
+  # $2=$delimiters_strings_domain concatenated characters/delimiters
+  # $3=$delimiter_string a single character
+  # $4=$cut_position
+  # $5=$is_cut_after
+  get_split_line_at_most_exec
+  local LFBFL_command="${SPLIT_LINE_AT_MOST_EXEC}"
+  LFBFL_command+=" 1 $1 '$2' '$3' $4 $5"
+  readonly LFBFL_command
+  declare -gi split_score_result
+  split_score_result=$(eval "${LFBFL_command}")
+}
+
+split_score_before_after(){
+  # $1=$max_length
+  # $2=$delimiters_strings_domain concatenated characters/delimiters
+  # $3=$delimiter_string a single character
+  # $4=$cut_position
+  # $5=$is_cut_after
+  get_split_line_at_most_exec
+  local LFBFL_command="${SPLIT_LINE_AT_MOST_EXEC}"
+  LFBFL_command+=" 0 $1 '$2' '$3' $4 $5"
+  readonly LFBFL_command
+  declare -gi split_score_result
+  split_score_result=$(eval "${LFBFL_command}")
 }
 
 get_split_score_after_before(){
   # $1=$max_length
   # $2=$delimiters_strings_domain
-  get_split_line_at_most_exec
   declare -g\
-    get_split_score_after_before_result="${SPLIT_LINE_AT_MOST_EXEC}"
-  get_split_score_after_before_result+=" 1 '$1' '$2'"
+    get_split_score_after_before_result="split_score_after_before"
+  get_split_score_after_before_result+=" $1 '$2'"
   # shellcheck disable=SC2034
   declare -g get_split_score_after_before_result2="5"
 }
@@ -113,9 +140,8 @@ get_split_score_after_before(){
 get_split_score_before_after(){
   # $1=$max_length
   # $2=$delimiters_strings_domain
-  get_split_line_at_most_exec
   declare -g\
-    get_split_score_before_after_result="${SPLIT_LINE_AT_MOST_EXEC}"
+    get_split_score_before_after_result="split_score_before_after"
   get_split_score_before_after_result+=" 0 '$1' '$2'"
   # shellcheck disable=SC2034
   declare -g get_split_score_before_after_result2="9"
@@ -179,12 +205,9 @@ split_line_at_most(){
   local LFBFL_j
   local LFBFL_previous_char
   local LFBFL_current_char
-  local LFBFL_command1
-  local LFBFL_command2
-  local LFBFL_temp
 
   # At the beginning, each position has score 0.
-  for ((LFBFL_i=0; LFBFL_i<=LFBFL_i_max; LFBFL_i++)) do
+  for ((LFBFL_i=0; LFBFL_i<=LFBFL_i_max; ++LFBFL_i)) do
     LFBFL_positions["${LFBFL_i}"]="0"
   done
   LFBFL_j=$((LFBFL_i+1))
@@ -194,7 +217,7 @@ split_line_at_most(){
   # we mark the forbidden positions with -1.
   if [[ -n "$5" ]]; then
     LFBFL_previous_char=""
-    for ((LFBFL_i=0; LFBFL_i<LFBFL_i_max; LFBFL_i++)) do
+    for ((LFBFL_i=0; LFBFL_i<LFBFL_i_max; ++LFBFL_i)) do
       LFBFL_j=$((LFBFL_i+1))
       if [[ ${LFBFL_i} -ge 1 ]]; then
         LFBFL_previous_char="${LFBFL_current_char}"
@@ -210,64 +233,60 @@ split_line_at_most(){
   fi
 
   if [[ "$4" == "7" ]]; then
-    for ((LFBFL_j=LFBFL_i_max; LFBFL_j>0; LFBFL_j--)) do
+    for ((LFBFL_j=LFBFL_i_max; LFBFL_j>0; --LFBFL_j)) do
       LFBFL_i=$((LFBFL_j-1))
       LFBFL_current_char="${1:${LFBFL_i}:1}"
-      LFBFL_command1="$3 '${LFBFL_current_char}' 0"
-      LFBFL_command2="$3 '${LFBFL_current_char}' 1"
-      # echo "${LFBFL_command1}"
-      # echo "${LFBFL_command2}"
-      LFBFL_temp=$(eval "${LFBFL_command1}")
-      # echo "${LFBFL_temp}|${LFBFL_i}"
-      if [[ ${LFBFL_temp} -ge 1 ]]; then
-        # echo "${LFBFL_temp}|${LFBFL_i}"
+      eval "$3 '${LFBFL_current_char}' 0"
+      # echo "${split_score_result}|${LFBFL_i}"
+      if [[ ${split_score_result} -ge 1 ]]; then
+        # echo "${split_score_result}|${LFBFL_i}"
         if [[ ${LFBFL_positions["${LFBFL_i}"]} != "-1" ]]; then
           LFBFL_positions["${LFBFL_i}"]=$(
             max "${LFBFL_sort_command}"\
-              "${LFBFL_positions["${LFBFL_i}"]}" "${LFBFL_temp}"
+              "${LFBFL_positions["${LFBFL_i}"]}"\
+              "${split_score_result}"
           )
         fi
       fi
-      LFBFL_temp=$(eval "${LFBFL_command2}")
-      # echo "${LFBFL_temp}|${LFBFL_j}"
-      if [[ ${LFBFL_temp} -ge 1 ]]; then
-        # echo "${LFBFL_temp}|${LFBFL_j}"
+      eval "$3 '${LFBFL_current_char}' 1"
+      # echo "${split_score_result}|${LFBFL_j}"
+      if [[ ${split_score_result} -ge 1 ]]; then
+        # echo "${split_score_result}|${LFBFL_j}"
         if [[ ${LFBFL_positions["${LFBFL_j}"]} != "-1" ]]; then
           LFBFL_positions["${LFBFL_j}"]=$(
             max "${LFBFL_sort_command}"\
-              "${LFBFL_positions["${LFBFL_j}"]}" "${LFBFL_temp}"
+              "${LFBFL_positions["${LFBFL_j}"]}"\
+              "${split_score_result}"
           )
           break
         fi
       fi
     done
   else
-    for ((LFBFL_i=0; LFBFL_i<LFBFL_i_max; LFBFL_i++)) do
+    for ((LFBFL_i=0; LFBFL_i<LFBFL_i_max; ++LFBFL_i)) do
       LFBFL_j=$((LFBFL_i+1))
       LFBFL_current_char="${1:${LFBFL_i}:1}"
-      LFBFL_command1="$3 '${LFBFL_current_char}' ${LFBFL_i} 0"
-      LFBFL_command2="$3 '${LFBFL_current_char}' ${LFBFL_j} 1"
-      # echo "${LFBFL_command1}"
-      # echo "${LFBFL_command2}"
-      LFBFL_temp=$(eval "${LFBFL_command1}")
-      # echo "${LFBFL_temp}|${LFBFL_i}"
-      if [[ ${LFBFL_temp} -ge 1 ]]; then
-        # echo "${LFBFL_temp}|${LFBFL_i}"
+      eval "$3 '${LFBFL_current_char}' ${LFBFL_i} 0"
+      # echo "${split_score_result}|${LFBFL_i}"
+      if [[ ${split_score_result} -ge 1 ]]; then
+        # echo "${split_score_result}|${LFBFL_i}"
         if [[ ${LFBFL_positions["${LFBFL_i}"]} != "-1" ]]; then
           LFBFL_positions["${LFBFL_i}"]=$(
             max "${LFBFL_sort_command}"\
-              "${LFBFL_positions["${LFBFL_i}"]}" "${LFBFL_temp}"
+              "${LFBFL_positions["${LFBFL_i}"]}"\
+              "${split_score_result}"
           )
         fi
       fi
-      LFBFL_temp=$(eval "${LFBFL_command2}")
-      # echo "${LFBFL_temp}|${LFBFL_j}"
-      if [[ ${LFBFL_temp} -ge 1 ]]; then
-        # echo "${LFBFL_temp}|${LFBFL_j}"
+      eval "$3 '${LFBFL_current_char}' ${LFBFL_j} 1"
+      # echo "${split_score_result}|${LFBFL_j}"
+      if [[ ${split_score_result} -ge 1 ]]; then
+        # echo "${split_score_result}|${LFBFL_j}"
         if [[ ${LFBFL_positions["${LFBFL_j}"]} != "-1" ]]; then
           LFBFL_positions["${LFBFL_j}"]=$(
             max "${LFBFL_sort_command}"\
-              "${LFBFL_positions["${LFBFL_j}"]}" "${LFBFL_temp}"
+              "${LFBFL_positions["${LFBFL_j}"]}"\
+              "${split_score_result}"
           )
         fi
       fi
@@ -276,7 +295,7 @@ split_line_at_most(){
   declare -r LFBFL_max_score=\
 $(max 'sort --numeric-sort' "${LFBFL_positions[@]}")
   local LFBFL_best_position
-  for ((LFBFL_i=0; LFBFL_i<=LFBFL_i_max; LFBFL_i++)) do
+  for ((LFBFL_i=0; LFBFL_i<=LFBFL_i_max; ++LFBFL_i)) do
     local LFBFL_value=${LFBFL_positions[${LFBFL_i}]}
     # echo "${LFBFL_i} ${LFBFL_value}"
     if [[ "${LFBFL_value}" == "${LFBFL_max_score}" ]]; then

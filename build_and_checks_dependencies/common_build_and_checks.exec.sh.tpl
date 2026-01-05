@@ -290,7 +290,9 @@ common_build_and_checks(){
   black .
   python_black_complement
 
+  shopt -s lastpipe
   local LFBFL_directory_path
+  declare -i LFBFL_no_toml=1
   # shellcheck disable=SC2312
   find . -name "pyproject.toml" | relevant_find\
     | while read -r LFBFL_file_path;
@@ -300,7 +302,12 @@ common_build_and_checks(){
       LFBFL_directory_path=$(dirname "${LFBFL_file_path}")
       mypy "${LFBFL_directory_path}"
     fi
+    LFBFL_no_toml=0
   done
+  if [[ LFBFL_no_toml -eq 1 ]]; then
+    echo "Running mypy"
+    mypy .
+  fi
 
   echo "Running bandit"
   bandit --ini build_and_checks_variables/bandit.ini\

@@ -102,6 +102,8 @@ build_and_checks_dependencies/update_common_build_and_checks.exec.sh
 build_and_checks_dependencies/\
 update_or_check_files_names_listing.exec.sh
 build_and_checks_variables/.gitignore
+build_and_checks_variables/bandit.ini
+build_and_checks_variables/bandit_baseline.json
 build_and_checks_variables/DevOrSysAdminScripts.html.tpl
 // build_and_checks_variables/DevOrSysAdminScripts.tex
 build_and_checks_variables/DevOrSysAdminScripts.tex.tpl

@@ -66,7 +66,8 @@ get_split_score_simple(){
   # $3=$delimiters_strings_domain
   declare -g get_split_score_result="split_score_simple $1 '$3'"
   declare -gi get_split_score_result2
-  get_split_score_result2=$((7+$1*4))
+  # shellcheck disable=SC2034,2125
+  get_split_score_result2=7+$1*4
   # if [[ $1 -eq 1 ]]; then
   #   get_split_score_result2=7
   # else
@@ -96,9 +97,11 @@ get_split_score(){
   # $1=$after_before
   # $1=$max_length
   # $2=$delimiters_strings_domain
+  # shellcheck disable=SC2034
   declare -g get_split_score_result="split_score $1 $2 '$3'"
   declare -gi get_split_score_result2
-  get_split_score_result2=$((5+$1*4))
+  # shellcheck disable=SC2034,2125
+  get_split_score_result2=5+$1*4
 }
 
 split_line_at_most(){

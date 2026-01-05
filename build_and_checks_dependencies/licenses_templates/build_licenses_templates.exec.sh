@@ -110,7 +110,8 @@ for LFBFL_license in "${LFBFL_licenses[@]}"; do
   LFBFL_license_prefix2="${LFBFL_license_prefix}${LFBFL_license}"
   for ((i=0; i<${#LFBFL_block_comment_languages[@]}; i++)); do
     LFBFL_extension=${LFBFL_block_comment_languages[i]}
-    LFBFL_license_file_name="${LFBFL_license_prefix2}.${LFBFL_extension}"
+    LFBFL_license_file_name="${LFBFL_license_prefix2}"
+    LFBFL_license_file_name+=".${LFBFL_extension}"
     LFBFL_enter_string=${LFBFL_block_comment_enters[i]}
     LFBFL_exit_string=${LFBFL_block_comment_exits[i]}
     generate_from_template_with_block_comments\
@@ -121,7 +122,8 @@ for LFBFL_license in "${LFBFL_licenses[@]}"; do
   LFBFL_temp2=".generate_from_template_with_line_comments.temp"
   for ((i=0; i<${#LFBFL_line_comment_languages[@]}; i++)); do
     LFBFL_extension=${LFBFL_line_comment_languages[i]}
-    LFBFL_license_file_name="${LFBFL_license_prefix2}.${LFBFL_extension}"
+    LFBFL_license_file_name="${LFBFL_license_prefix2}"
+    LFBFL_license_file_name+=".${LFBFL_extension}"
     LFBFL_prefix_string=${LFBFL_line_comment_prefixes[i]}
     LFBFL_intermediate_file_name="${LFBFL_license_file_name}.tpl"
     LFBFL_intermediate_file_name+="${LFBFL_temp2}"

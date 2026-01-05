@@ -142,9 +142,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL2}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir2}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='17d87e2f6413ad5431bee71ec035685b02984451c7997'
-  LFBFL_correct_sha512+='9a8b9e124a84b4083bddcf58ab9440f757303464f85c'
-  LFBFL_correct_sha512+='4111ab52c7de1b187dad7f618563e2dadf45656'
+  LFBFL_correct_sha512='c2fee55a889b379a3de67f0c425821bd2d7876df81221'
+  LFBFL_correct_sha512+='b7e5deca4cad459e80713ad834adeb5598e2565a8ef4'
+  LFBFL_correct_sha512+='5b55c63eb76ea78cc085c97cd6dc3342b6fd21b'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
   chmod +x "./${LFBFL_file_path}"
@@ -264,9 +264,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='12ce1dafe9824db021a3bf59c44c7211836d899e7baf5'
-  LFBFL_correct_sha512+='18436c2b5132aa2ec0b16624cc34f6409675f59cc982'
-  LFBFL_correct_sha512+='edd521c205422454cdc8894f4575c2a8584ab37'
+  LFBFL_correct_sha512='90569be3419610c3ebff08c98ae9dfb4bdbed722767ab'
+  LFBFL_correct_sha512+='4ab5dab201bb8f88f8354fe3b6bff7a7ea9bc5b04a9d'
+  LFBFL_correct_sha512+='23071fad903ffd8e91ec50d0d3b2e5e9b6545fa'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
@@ -384,7 +384,7 @@ common_build_and_checks(){
 
   echo "Analyzing strange characters: hover over in doubt"
   # shellcheck disable=SC1111
-  LFBFL_usual_characters="\x00-\x7Fàâéèêëîïôç©“”└─├│«»"
+  LFBFL_usual_characters="\x00-\x7Fàâéèêëîïôûç©“”└─├│«»"
   # shellcheck disable=SC2312
   grep --exclude-dir .git --color=always\
     -nPr "[^${LFBFL_usual_characters}]" .

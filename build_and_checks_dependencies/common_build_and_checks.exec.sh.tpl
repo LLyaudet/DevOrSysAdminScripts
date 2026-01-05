@@ -315,7 +315,7 @@ common_build_and_checks(){
 
   echo "Analyzing strange characters: hover over in doubt"
   # shellcheck disable=SC1111
-  LFBFL_usual_characters="\x00-\x7Fàâéèêëîïôç©“”└─├│«»"
+  LFBFL_usual_characters="\x00-\x7Fàâéèêëîïôûç©“”└─├│«»"
   # shellcheck disable=SC2312
   grep --exclude-dir .git --color=always\
     -nPr "[^${LFBFL_usual_characters}]" .

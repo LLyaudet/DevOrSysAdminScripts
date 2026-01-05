@@ -4,6 +4,11 @@
 [![Codacy-badge]][Codacy-package-page]
 ![GitHub-top-language-badge]
 ![GitHub-code-size-in-bytes-badge]
+[![Security:bandit:badge]][Bandit-GitHub.com]
+[![Code-style:black:badge]][Black-GitHub.com]
+[![Imports:isort:badge]][Isort-GitHub.io]
+[![Typecheck:mypy:badge]][Typecheck-mypy-lang.org]
+[![Linting:pylint:badge]][Pylint-GitHub.com]
 
 |                **Some "small" useful scripts**               |
 |:------------------------------------------------------------:|
@@ -59,3 +64,28 @@ languages/top/llyaudet/DevOrSysAdminScripts
 
 [GitHub-code-size-in-bytes-badge]: https://img.shields.io/github/\
 languages/code-size/llyaudet/DevOrSysAdminScripts
+
+[Security:bandit:badge]: https://img.shields.io/badge/\
+security-bandit-yellow.svg
+
+[Bandit-GitHub.com]: https://github.com/PyCQA/bandit
+
+[Code-style:black:badge]: https://img.shields.io/badge/\
+code%20style-black-000000.svg
+
+[Black-GitHub.com]: https://github.com/psf/black
+
+[Imports:isort:badge]: https://img.shields.io/badge/\
+%20imports-isort-%231674b1?style=flat&labelColor=ef8336
+
+[Isort-GitHub.io]: https://pycqa.github.io/isort/
+
+[Typecheck:mypy:badge]: https://www.mypy-lang.org/static/\
+mypy_badge.svg
+
+[Typecheck-mypy-lang.org]: https://mypy-lang.org/
+
+[Linting:pylint:badge]: https://img.shields.io/badge/\
+linting-pylint-yellowgreen
+
+[Pylint-GitHub.com]: https://github.com/pylint-dev/pylint

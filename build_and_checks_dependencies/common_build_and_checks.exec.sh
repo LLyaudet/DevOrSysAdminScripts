@@ -350,6 +350,7 @@ common_build_and_checks(){
       "${LFBFL_file_path}"
   done
 
+  echo "---Python---"
   echo "Running isort"
   isort .
   python_isort_complement
@@ -369,6 +370,16 @@ common_build_and_checks(){
       mypy "${LFBFL_directory_path}"
     fi
   done
+
+  echo "Running bandit"
+  bandit --ini build_and_checks_variables/bandit.ini\
+    -b build_and_checks_variables/bandit_baseline.json\
+    -r .
+  # Saving new baseline in temp if necessary.
+  bandit --ini build_and_checks_variables/bandit.ini\
+    -f json -o build_and_checks_variables/temp/bandit_baseline.json\
+    -r .
+  echo "---Python end---"
 
   echo "Analyzing too long lines"
   # shellcheck disable=SC2312

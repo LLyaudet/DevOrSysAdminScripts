@@ -120,7 +120,7 @@ git
 \item The following dependencies are LGPLv2.1+ licensed:\newline
 notify-send
 \item The following dependencies are MIT licensed:\newline
-black, isort, mypy
+bandit, black, isort, mypy
 \item php is licensed under PHP License v3.01
 \item tex is licensed under Knuth license
 \item pcregrep has a custom license from Cambridge University

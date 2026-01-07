@@ -14,7 +14,7 @@ git
 - The following dependencies are LGPLv2.1+ licensed:
 notify-send
 - The following dependencies are MIT licensed:
-black, isort, mypy
+bandit, black, isort, mypy
 - php is licensed under PHP License v3.01
 - tex is licensed under Knuth license
 - pcregrep has a custom license from Cambridge University

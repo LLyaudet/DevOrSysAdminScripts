@@ -1,18 +1,84 @@
+Look at grep_variable to understand the structure of this file.
+Basically, it has almost no structure apart from some lines
+starting with a "variable_name=".
+Anything else is comments.
+
 repository_name=DevOrSysAdminScripts
 repository_web_url=https://github.com/LLyaudet/DevOrSysAdminScripts/
 repository_git_url=git@github.com:LLyaudet/DevOrSysAdminScripts.git
+
 abstract=Some “small” useful scripts
 abstract=for enhancing development or system-administrators tasks
+
 license=GPLv3+
 license2=LGPLv3+
+
 author_email=Laurent.Lyaudet@gmail.com
 author_full_name=Laurent Frédéric Bernard François Lyaudet
 author_last_name=Lyaudet
 author_name=Laurent Lyaudet
 author_website=https://lyaudet.eu/laurent/
+
 acknowledgments=Merci Dieu !
 acknowledgments=Merci Père ! Merci Seigneur ! Merci Saint Esprit !
+
 grammar_or_spell_checker_command=more
+
+Why one venv for each Python dependency ?
+Because no language of my knowledge did it right to handle all
+possible dependency conflicts.
+So in case of such a conflict, one specialized venv can get you out
+of any problem.
+The best solution would have been to allow install of different
+versions of the same package, and have a mechanism:
+- first intent, use the latest available version of a package among
+those that satisfy the declared dependency constraints of the package
+that has this dependency;
+- second intent, check a dependency overload configuration file
+with tree structure: if calling python package is A version 1.1.1
+with dependency B itself with dependency C, use B 2.2.2 and C 3.3.3;
+you could have along that another rule saying that when called
+directly B 2.2.2 should use C 4.4.4;
+and even more complicated:
+if calling python package is A version 1.1.1 with dependency B and D
+both themselves with dependency C, use B 2.2.2, D 0.1.0,
+and C 3.3.3 for B, and C 4.4.4 for D;
+once you've seen that it can never be more complicated than that once
+the same version number guarantees that the code is the same,
+you create a config language "à la CSS" for cascading dependencies ;)
+XD fit into JSON the dumbest possible way and you stop bothering
+about dependency conflicts for the rest of history of informatics.
+{
+ "A":{
+  "1.1.1": {
+    "B": {
+      "2.2.2": {
+        "C": {
+           // Dumb, you did not found it by yourself? Failed exam.
+          "3.3.3" : {}
+        }
+      }
+    },
+    "D": {
+      "0.1.0": {
+        "C": {
+           // Dumb, you did not found it by yourself? Failed exam.
+          "4.4.4" : {}
+        }
+      }
+    }
+  },
+  "B": {
+    "2.2.2": {
+      "C": {
+        // Dumb, you did not found it by yourself? Failed exam.
+        "4.4.4" : {}
+      }
+    }
+  }
+}
+Wonderful someone rediscovered nested structures XD
+Seriously so many engineers or computer scientists are dumb to cry.
 bandit_venv=
 black_venv=
 isort_venv=

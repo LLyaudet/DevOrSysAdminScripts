@@ -252,6 +252,9 @@ common_build_and_checks(){
   # shellcheck disable=SC1090
   source "./${LFBFL_subdir}/too_long_code_lines.libr.sh"
 
+  local LFBFL_data_file_name=\
+"build_and_checks_variables/repository_data.txt"
+
   echo "Building license headers"
   "./${LFBFL_subdir2}/build_licenses_templates.exec.sh"\
     "${LFBFL_verbose}"
@@ -283,13 +286,40 @@ common_build_and_checks(){
 
   echo "---Python---"
   echo "Running isort"
+  isort_venv=""
+  grep_variable "${LFBFL_data_file_name}" isort_venv
+  if [[ -n "${isort_venv}" ]]; then
+    deactivate
+    # shellcheck disable=SC1090
+    source "${isort_venv}"
+  fi
   isort .
+  if [[ -n "${isort_venv}" ]]; then
+    deactivate
+  fi
   python_isort_complement
 
   echo "Running black"
+  black_venv=""
+  grep_variable "${LFBFL_data_file_name}" black_venv
+  if [[ -n "${black_venv}" ]]; then
+    deactivate
+    # shellcheck disable=SC1090
+    source "${black_venv}"
+  fi
   black .
+  if [[ -n "${black_venv}" ]]; then
+    deactivate
+  fi
   python_black_complement
 
+  mypy_venv=""
+  grep_variable "${LFBFL_data_file_name}" mypy_venv
+  if [[ -n "${mypy_venv}" ]]; then
+    deactivate
+    # shellcheck disable=SC1090
+    source "${mypy_venv}"
+  fi
   shopt -s lastpipe
   local LFBFL_directory_path
   declare -i LFBFL_no_toml=1
@@ -308,8 +338,18 @@ common_build_and_checks(){
     echo "Running mypy"
     mypy .
   fi
+  if [[ -n "${mypy_venv}" ]]; then
+    deactivate
+  fi
 
   echo "Running bandit"
+  bandit_venv=""
+  grep_variable "${LFBFL_data_file_name}" bandit_venv
+  if [[ -n "${bandit_venv}" ]]; then
+    deactivate
+    # shellcheck disable=SC1090
+    source "${bandit_venv}"
+  fi
   bandit --ini build_and_checks_variables/bandit.ini\
     -b build_and_checks_variables/bandit_baseline.json\
     -r .
@@ -317,6 +357,9 @@ common_build_and_checks(){
   bandit --ini build_and_checks_variables/bandit.ini\
     -f json -o build_and_checks_variables/temp/bandit_baseline.json\
     -r .
+  if [[ -n "${bandit_venv}" ]]; then
+    deactivate
+  fi
   echo "---Python end---"
 
   echo "Analyzing too long lines"

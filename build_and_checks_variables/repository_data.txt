@@ -24,6 +24,7 @@ acknowledgments=Merci Père ! Merci Seigneur ! Merci Saint Esprit !
 
 grammar_or_spell_checker_command=more
 
+
 Why one venv for each Python dependency ?
 Because no language of my knowledge did it right to handle all
 possible dependency conflicts.
@@ -79,7 +80,30 @@ about dependency conflicts for the rest of history of informatics.
 }
 Wonderful someone rediscovered nested structures XD
 Seriously so many engineers or computer scientists are dumb to cry.
-bandit_venv=
-black_venv=
-isort_venv=
-mypy_venv=
+
+bandit_venv=../venv_bandit
+black_venv=../venv_black
+isort_venv=../venv_isort
+mypy_venv=../venv_mypy
+pylint_venv=../venv_pylint
+
+
+upgrade venvs can be auto or ask, any other value is interpreted
+as ask.
+
+upgrade_venvs=ask
+
+
+time interval can be 0 to always upgrade or ask to upgrade,
+or a number at most bash max int
+https://superuser.com/questions/1030122/
+what-is-the-maximum-value-of-a-numeric-bash-shell-variable
+it should be enough to simulate never "upgrade or ask for upgrade"
+unless you claim to live many billions years ;)
+If it is wat, this is a random int XD (see RANDOM).
+Note that the probability that it upgrades your dependencies is not
+1/2, it increases over time, and is 1 after slightly
+less than one day.
+If it is watyouwant?, see SRANDOM XD.
+
+upgrade_venvs_time_interval_in_seconds=wat

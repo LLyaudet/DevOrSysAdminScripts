@@ -174,11 +174,13 @@ shellcheck, sort, tail, wc, wget, xargs
 <li> The following dependencies are GPLv2+ licensed:<br>
 more, pandoc, pdftex, pdflatex, tree
 <li> The following dependencies are GPLv2 licensed:<br>
-git
+git, pylint
 <li> The following dependencies are LGPLv2.1+ licensed:<br>
 notify-send
 <li> The following dependencies are MIT licensed:<br>
-bandit, black, isort, mypy
+black, isort, mypy
+<li> The following dependencies are Apache-2.0 licensed:<br>
+bandit
 <li> php is licensed under PHP License v3.01
 <li> tex is licensed under Knuth license
 <li> pcregrep has a custom license from Cambridge University

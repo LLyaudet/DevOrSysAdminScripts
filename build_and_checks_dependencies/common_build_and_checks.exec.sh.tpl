@@ -255,6 +255,49 @@ common_build_and_checks(){
   local LFBFL_data_file_name=\
 "build_and_checks_variables/repository_data.txt"
 
+  declare -i LFBFL_upgrade_venvs=0
+  declare -r LFBFL_upgrade_venvs_ts_file=\
+"build_and_checks_variables/upgrade_venvs_ts"
+  declare -i LFBFL_upgrade_venvs_ts
+  declare -i LFBFL_current_ts
+  local LFBFL_upgrade_venvs_answer
+
+  upgrade_venvs_time_interval_in_seconds=""
+  grep_variable "${LFBFL_data_file_name}"\
+     upgrade_venvs_time_interval_in_seconds
+  if [[ "${upgrade_venvs_time_interval_in_seconds}" == "wat" ]]; then
+    upgrade_venvs_time_interval_in_seconds=${RANDOM}
+  fi
+  if
+   [[ "${upgrade_venvs_time_interval_in_seconds}" == "watyouwant?" ]];
+  then
+    upgrade_venvs_time_interval_in_seconds=${SRANDOM}
+  fi
+
+  if [[ -f "${LFBFL_upgrade_venvs_ts_file}" ]]; then
+    LFBFL_upgrade_venvs_ts=\
+$(stat -c %Y "${LFBFL_upgrade_venvs_ts_file}")
+    LFBFL_current_ts=$(date +%s)
+    ((LFBFL_current_ts-=LFBFL_upgrade_venvs_ts))
+    ((LFBFL_current_ts-=upgrade_venvs_time_interval_in_seconds))
+    if [[ LFBFL_current_ts -gt 0 ]]; then
+      LFBFL_upgrade_venvs=1
+    fi
+  else
+    LFBFL_upgrade_venvs=1
+  fi
+  if [[ LFBFL_upgrade_venvs -eq 1 ]]; then
+    upgrade_venvs=""
+    grep_variable "${LFBFL_data_file_name}" upgrade_venvs
+    if [[ "${upgrade_venvs}" != "auto" ]]; then
+      read -r -n 1 -t 10 -p "Upgrade venvs? [Y/n]"\
+        LFBFL_upgrade_venvs_answer
+      if [[ "${LFBFL_upgrade_venvs_answer}" == "n" ]]; then
+        LFBFL_upgrade_venvs=0
+      fi
+    fi
+  fi
+
   echo "Building license headers"
   "./${LFBFL_subdir2}/build_licenses_templates.exec.sh"\
     "${LFBFL_verbose}"
@@ -289,9 +332,15 @@ common_build_and_checks(){
   isort_venv=""
   grep_variable "${LFBFL_data_file_name}" isort_venv
   if [[ -n "${isort_venv}" ]]; then
-    deactivate
-    # shellcheck disable=SC1090
-    source "${isort_venv}"
+    if command -v deactivate
+    then
+      deactivate
+    fi
+    # shellcheck disable=SC1090,SC1091
+    source "${isort_venv}/bin/activate"
+  fi
+  if [[ LFBFL_upgrade_venvs -eq 1 ]]; then
+    pip install --upgrade isort
   fi
   isort .
   if [[ -n "${isort_venv}" ]]; then
@@ -303,9 +352,15 @@ common_build_and_checks(){
   black_venv=""
   grep_variable "${LFBFL_data_file_name}" black_venv
   if [[ -n "${black_venv}" ]]; then
-    deactivate
-    # shellcheck disable=SC1090
-    source "${black_venv}"
+    if command -v deactivate
+    then
+      deactivate
+    fi
+    # shellcheck disable=SC1090,SC1091
+    source "${black_venv}/bin/activate"
+  fi
+  if [[ LFBFL_upgrade_venvs -eq 1 ]]; then
+    pip install --upgrade black
   fi
   black .
   if [[ -n "${black_venv}" ]]; then
@@ -316,9 +371,15 @@ common_build_and_checks(){
   mypy_venv=""
   grep_variable "${LFBFL_data_file_name}" mypy_venv
   if [[ -n "${mypy_venv}" ]]; then
-    deactivate
-    # shellcheck disable=SC1090
-    source "${mypy_venv}"
+    if command -v deactivate
+    then
+      deactivate
+    fi
+    # shellcheck disable=SC1090,SC1091
+    source "${mypy_venv}/bin/activate"
+  fi
+  if [[ LFBFL_upgrade_venvs -eq 1 ]]; then
+    pip install --upgrade mypy
   fi
   shopt -s lastpipe
   local LFBFL_directory_path
@@ -346,9 +407,15 @@ common_build_and_checks(){
   bandit_venv=""
   grep_variable "${LFBFL_data_file_name}" bandit_venv
   if [[ -n "${bandit_venv}" ]]; then
-    deactivate
-    # shellcheck disable=SC1090
-    source "${bandit_venv}"
+    if command -v deactivate
+    then
+      deactivate
+    fi
+    # shellcheck disable=SC1090,SC1091
+    source "${bandit_venv}/bin/activate"
+  fi
+  if [[ LFBFL_upgrade_venvs -eq 1 ]]; then
+    pip install --upgrade bandit
   fi
   bandit --ini build_and_checks_variables/bandit.ini\
     -b build_and_checks_variables/bandit_baseline.json\
@@ -361,6 +428,10 @@ common_build_and_checks(){
     deactivate
   fi
   echo "---Python end---"
+
+  if [[ LFBFL_upgrade_venvs -eq 1 ]]; then
+    touch "${LFBFL_upgrade_venvs_ts_file}"
+  fi
 
   echo "Analyzing too long lines"
   # shellcheck disable=SC2312

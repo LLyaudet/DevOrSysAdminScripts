@@ -111,6 +111,7 @@ build_and_checks_variables/files_listing.tex.tpl
 build_and_checks_variables/files_names_listing.txt
 build_and_checks_variables/licenses_notes.txt
 build_and_checks_variables/repository_data.txt
+// build_and_checks_variables/upgrade_venvs_ts
 build_and_checks.exec.sh
 COPYING
 COPYING.LESSER

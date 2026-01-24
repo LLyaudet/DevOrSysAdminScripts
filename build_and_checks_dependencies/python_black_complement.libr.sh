@@ -25,6 +25,7 @@
 # to "python_black_complement.libr.sh".
 
 # It was rejected to enhance black with this currently.
+# https://github.com/psf/black/issues/2370
 # And moreover, at some point, I saw the reverse rule
 # in black or pylint to add an empty line...
 # This regexp may give false positives,

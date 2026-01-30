@@ -1,0 +1,8 @@
+[tool.pylint.main]
+exit-zero = true
+ignore = ["node_modules"]
+jobs = 0
+[tool.pylint.basic]
+module-rgx = "^[_a-zA-Z0-9+]+$"
+[tool.pylint.reports]
+output-format = "colorized"

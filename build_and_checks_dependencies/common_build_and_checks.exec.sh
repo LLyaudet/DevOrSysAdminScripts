@@ -224,9 +224,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='25092662ebb78e93004fd8e6715d664b0de3450a8f8ae'
-  LFBFL_correct_sha512+='9c59cca158b0c616bb5c5e83e3203ae3a0622b3a6326'
-  LFBFL_correct_sha512+='131bf841d46d82540556698f8300f617eacaec1'
+  LFBFL_correct_sha512='e28c6e0cfffe6b8eebef26bddfbb440f0303d0dcc3987'
+  LFBFL_correct_sha512+='6d498d95b9d589e0800b8381124936e5103b372f509c'
+  LFBFL_correct_sha512+='aeb6213e909710a2ec1e345e076a44f0006fdbb'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
@@ -494,6 +494,26 @@ $(stat -c %Y "${LFBFL_upgrade_venvs_ts_file}")
     -f json -o build_and_checks_variables/temp/bandit_baseline.json\
     -r .
   if [[ -n "${bandit_venv}" ]]; then
+    deactivate
+  fi
+
+  echo "Running pylint"
+  pylint_venv=""
+  grep_variable "${LFBFL_data_file_name}" pylint_venv
+  if [[ -n "${pylint_venv}" ]]; then
+    if command -v deactivate
+    then
+      deactivate
+    fi
+    # shellcheck disable=SC1090,SC1091
+    source "${pylint_venv}/bin/activate"
+  fi
+  if [[ LFBFL_upgrade_venvs -eq 1 ]]; then
+    pip install --upgrade pylint
+  fi
+  pylint --rcfile build_and_checks_variables/pylintrc.toml\
+    --recursive=y .
+  if [[ -n "${pylint_venv}" ]]; then
     deactivate
   fi
   echo "---Python end---"

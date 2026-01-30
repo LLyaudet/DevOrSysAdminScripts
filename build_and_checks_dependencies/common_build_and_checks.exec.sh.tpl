@@ -427,6 +427,26 @@ $(stat -c %Y "${LFBFL_upgrade_venvs_ts_file}")
   if [[ -n "${bandit_venv}" ]]; then
     deactivate
   fi
+
+  echo "Running pylint"
+  pylint_venv=""
+  grep_variable "${LFBFL_data_file_name}" pylint_venv
+  if [[ -n "${pylint_venv}" ]]; then
+    if command -v deactivate
+    then
+      deactivate
+    fi
+    # shellcheck disable=SC1090,SC1091
+    source "${pylint_venv}/bin/activate"
+  fi
+  if [[ LFBFL_upgrade_venvs -eq 1 ]]; then
+    pip install --upgrade pylint
+  fi
+  pylint --rcfile build_and_checks_variables/pylintrc.toml\
+    --recursive=y .
+  if [[ -n "${pylint_venv}" ]]; then
+    deactivate
+  fi
   echo "---Python end---"
 
   if [[ LFBFL_upgrade_venvs -eq 1 ]]; then

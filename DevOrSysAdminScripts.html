@@ -117,11 +117,11 @@ ol.level2 li:before{
 Some “small” useful scripts
 for enhancing development or system-administrators tasks
 </blockquote>
-<p>Current version: 2026-01-03</p>
-<p>Current number of commits: 244</p>
-<p>Current git SHA1: 5949be507a4832a33986626fb2dbc80b526bb6ed</p>
+<p>Current version: 2026-01-30</p>
+<p>Current number of commits: 259</p>
+<p>Current git SHA1: b9d3b4705a2b236a7e593ceb81f3306ede168fa0</p>
 <p>
-Code lines: 6345 total lines, 5722 not empty lines, 623 empty lines.
+Code lines: 6798 total lines, 6128 not empty lines, 670 empty lines.
 </p>
 
 
@@ -247,10 +247,10 @@ build_and_checks_dependencies/python_black_complement.libr.sh
 build_and_checks_dependencies/python_isort_complement.libr.sh
       </a></li>
       <li><a href="#subsection2.34">
-build_and_checks_dependencies/split_line_at_most.exec.php
+build_and_checks_dependencies/split_score.exec.php
       </a></li>
       <li><a href="#subsection2.35">
-build_and_checks_dependencies/split_line_at_most.libr.php
+build_and_checks_dependencies/split_score.libr.php
       </a></li>
       <li><a href="#subsection2.36">
 build_and_checks_dependencies/strings_functions.libr.sh
@@ -269,57 +269,66 @@ build_and_checks_dependencies/<!--
 build_and_checks_variables/.gitignore
       </a></li>
       <li><a href="#subsection2.41">
-build_and_checks_variables/DevOrSysAdminScripts.html.tpl
+build_and_checks_variables/bandit.ini
       </a></li>
       <li><a href="#subsection2.42">
-build_and_checks_variables/DevOrSysAdminScripts.tex.tpl
+build_and_checks_variables/bandit_baseline.json
       </a></li>
       <li><a href="#subsection2.43">
-build_and_checks_variables/files_listing.tex.tpl
+build_and_checks_variables/DevOrSysAdminScripts.html.tpl
       </a></li>
       <li><a href="#subsection2.44">
-build_and_checks_variables/files_names_listing.txt
+build_and_checks_variables/DevOrSysAdminScripts.tex.tpl
       </a></li>
       <li><a href="#subsection2.45">
-build_and_checks_variables/licenses_notes.txt
+build_and_checks_variables/files_listing.tex.tpl
       </a></li>
       <li><a href="#subsection2.46">
-build_and_checks_variables/repository_data.txt
+build_and_checks_variables/files_names_listing.txt
       </a></li>
       <li><a href="#subsection2.47">
-build_and_checks.exec.sh
+build_and_checks_variables/licenses_notes.txt
       </a></li>
       <li><a href="#subsection2.48">
-COPYING
+build_and_checks_variables/pylintrc.toml
       </a></li>
       <li><a href="#subsection2.49">
-COPYING.LESSER
+build_and_checks_variables/repository_data.txt
       </a></li>
       <li><a href="#subsection2.50">
-git_helpers/git_checks.libr.sh
+build_and_checks.exec.sh
       </a></li>
       <li><a href="#subsection2.51">
-git_helpers/post-commit
+COPYING
       </a></li>
       <li><a href="#subsection2.52">
-git_helpers/post_commit_renaming_comment.libr.sh
+COPYING.LESSER
       </a></li>
       <li><a href="#subsection2.53">
-git_helpers/pre-commit
+git_helpers/git_checks.libr.sh
       </a></li>
       <li><a href="#subsection2.54">
-LiensUtiles.txt
+git_helpers/post-commit
       </a></li>
       <li><a href="#subsection2.55">
-README.md.tpl
+git_helpers/post_commit_renaming_comment.libr.sh
       </a></li>
       <li><a href="#subsection2.56">
-unicode.libr.php
+git_helpers/pre-commit
       </a></li>
       <li><a href="#subsection2.57">
-upgrade_build_and_checks.exec.sh
+LiensUtiles.txt
       </a></li>
       <li><a href="#subsection2.58">
+README.md.tpl
+      </a></li>
+      <li><a href="#subsection2.59">
+unicode.libr.php
+      </a></li>
+      <li><a href="#subsection2.60">
+upgrade_build_and_checks.exec.sh
+      </a></li>
+      <li><a href="#subsection2.61">
 wget_sha512.libr.sh
       </a></li>
     </ol>
@@ -373,14 +382,16 @@ wget_sha512.libr.sh
 │   ├── overwrite_if_not_equal.libr.sh
 │   ├── python_black_complement.libr.sh
 │   ├── python_isort_complement.libr.sh
-│   ├── split_line_at_most.exec.php
-│   ├── split_line_at_most.libr.php
+│   ├── split_score.exec.php
+│   ├── split_score.libr.php
 │   ├── strings_functions.libr.sh
 │   ├── too_long_code_lines.libr.sh
 │   ├── update_common_build_and_checks.exec.sh
 │   └── update_or_check_files_names_listing.exec.sh
 ├── build_and_checks.exec.sh
 ├── build_and_checks_variables
+│   ├── bandit_baseline.json
+│   ├── bandit.ini
 │   ├── DevOrSysAdminScripts.html.tpl
 │   ├── DevOrSysAdminScripts.tex
 │   ├── DevOrSysAdminScripts.tex.tpl
@@ -388,6 +399,7 @@ wget_sha512.libr.sh
 │   ├── files_names_listing.txt
 │   ├── .gitignore
 │   ├── licenses_notes.txt
+│   ├── pylintrc.toml
 │   └── repository_data.txt
 ├── COPYING
 ├── COPYING.LESSER
@@ -406,28 +418,28 @@ wget_sha512.libr.sh
 ├── upgrade_build_and_checks.exec.sh
 └── wget_sha512.libr.sh
 
-5 directories, 71 files
+5 directories, 74 files
 </pre>
 <pre class="verbatim">
-[ 12K Jan  3 19:41]  ./
-├── [4.0K Jan  3 19:41]  build_and_checks_dependencies/
+[ 12K Jan 30 19:43]  ./
+├── [4.0K Jan 30 19:43]  build_and_checks_dependencies/
 │   ├── [2.6K Jan  3 18:57]  build_and_checks.exec.sh.tpl*
 │   ├── [2.5K Jan  3 18:57]  build_md_from_printable_md.exec.sh*
 │   ├── [1.3K Jan  3 18:57]  check_shell_scripts_beginnings.libr.sh
 │   ├── [2.7K Jan  3 19:40]  check_URLs.libr.sh
-│   ├── [ 17K Jan  3 19:41]  common_build_and_checks.exec.sh*
-│   ├── [ 12K Jan  3 18:57]  common_build_and_checks.exec.sh.tpl
+│   ├── [ 21K Jan 30 19:43]  common_build_and_checks.exec.sh*
+│   ├── [ 16K Jan 30 19:24]  common_build_and_checks.exec.sh.tpl
 │   ├── [3.1K Jan  3 18:57]  comparisons.libr.sh
-│   ├── [ 15K Jan  3 18:57]  create_PDF.exec.sh*
+│   ├── [ 15K Jan  4 13:52]  create_PDF.exec.sh*
 │   ├── [3.1K Jan  3 18:57]  generate_from_template.libr.sh
 │   ├── [1.9K Jan  3 18:57]  get_common_text_glob_patterns.libr.sh
 │   ├── [1.9K Jan  3 18:57]  grammar_and_spell_check.libr.sh
-│   ├── [4.0K Jan  3 19:41]  licenses_templates/
-│   │   ├── [8.8K Jan  3 18:57]  build_licenses_templates.exec.sh*
+│   ├── [4.0K Jan 30 19:43]  licenses_templates/
+│   │   ├── [8.9K Jan  5 17:56]  build_licenses_templates.exec.sh*
 │   │   ├── [ 734 Dec 30 19:34]  license_file_header_AGPLv3+.c.tpl
 │   │   ├── [ 736 Dec 30 19:34]  license_file_header_AGPLv3+.py.tpl
 │   │   ├── [ 768 Dec 30 19:34]  license_file_header_AGPLv3+.sh.tpl
-│   │   ├── [ 768 Dec 30 19:34]  license_file_header_AGPLv3+.tex.tpl
+│   │   ├── [ 768 Jan  5 17:57]  license_file_header_AGPLv3+.tex.tpl
 │   │   ├── [ 728 Dec 30 19:32]  license_file_header_AGPLv3+.tpl
 │   │   ├── [ 761 Jan  3 18:40]  license_file_header_GPLv3+.c
 │   │   ├── [ 713 Dec 27 21:48]  license_file_header_GPLv3+.c.tpl
@@ -435,8 +447,8 @@ wget_sha512.libr.sh
 │   │   ├── [ 715 Dec 27 21:48]  license_file_header_GPLv3+.py.tpl
 │   │   ├── [ 795 Jan  3 18:48]  license_file_header_GPLv3+.sh
 │   │   ├── [ 747 Dec 27 21:48]  license_file_header_GPLv3+.sh.tpl
-│   │   ├── [ 795 Jan  3 18:48]  license_file_header_GPLv3+.tex
-│   │   ├── [ 747 Dec 27 21:48]  license_file_header_GPLv3+.tex.tpl
+│   │   ├── [ 795 Jan  5 17:57]  license_file_header_GPLv3+.tex
+│   │   ├── [ 747 Jan  5 17:57]  license_file_header_GPLv3+.tex.tpl
 │   │   ├── [ 707 Dec 27 21:48]  license_file_header_GPLv3+.tpl
 │   │   ├── [ 782 Jan  3 18:40]  license_file_header_LGPLv3+.c
 │   │   ├── [ 734 Dec 27 21:48]  license_file_header_LGPLv3+.c.tpl
@@ -451,43 +463,46 @@ wget_sha512.libr.sh
 │   ├── [6.7K Jan  3 18:57]  lines_filters.libr.sh
 │   ├── [2.8K Jan  3 18:57]  lines_maps.libr.sh
 │   ├── [1.4K Jan  3 18:57]  overwrite_if_not_equal.libr.sh
-│   ├── [1.4K Jan  3 18:57]  python_black_complement.libr.sh
+│   ├── [1.4K Jan 24 18:32]  python_black_complement.libr.sh
 │   ├── [1.7K Jan  3 18:57]  python_isort_complement.libr.sh
-│   ├── [1.8K Jan  3 18:57]  split_line_at_most.exec.php*
-│   ├── [2.2K Jan  3 18:57]  split_line_at_most.libr.php
-│   ├── [ 13K Jan  3 18:57]  strings_functions.libr.sh
+│   ├── [1.5K Jan  4 13:59]  split_score.exec.php
+│   ├── [1.9K Jan  4 13:38]  split_score.libr.php
+│   ├── [ 12K Jan  4 15:39]  strings_functions.libr.sh
 │   ├── [2.3K Jan  3 18:57]  too_long_code_lines.libr.sh
-│   ├── [3.8K Jan  3 18:57]  update_common_build_and_checks.exec.sh*
-│   └── [4.3K Jan  3 18:57]  *
+│   ├── [3.8K Jan  4 13:46]  update_common_build_and_checks.exec.sh*
+│   └── [4.2K Jan  4 13:49]  *
 │   │ update_or_check_files_names_listing.exec.sh**
-├── [2.8K Jan  3 19:41]  build_and_checks.exec.sh*
-├── [4.0K Jan  3 19:41]  build_and_checks_variables/
-│   ├── [5.1K Jan  3 18:57]  DevOrSysAdminScripts.html.tpl
-│   ├── [ 26K Jan  3 19:41]  DevOrSysAdminScripts.tex
-│   ├── [3.7K Jan  3 18:57]  DevOrSysAdminScripts.tex.tpl
-│   ├── [ 15K Dec 31 19:44]  files_listing.tex.tpl
-│   ├── [5.2K Jan  3 18:57]  files_names_listing.txt
-│   ├── [   7 Dec 29 17:13]  .gitignore
-│   ├── [1.0K Dec 31 14:41]  licenses_notes.txt
-│   └── [ 645 Dec 30 16:37]  repository_data.txt
+├── [2.8K Jan 30 19:43]  build_and_checks.exec.sh*
+├── [4.0K Jan 30 19:43]  build_and_checks_variables/
+│   ├── [  15 Jan  5 20:00]  bandit_baseline.json
+│   ├── [  25 Jan  5 18:49]  bandit.ini
+│   ├── [5.1K Jan  7 16:45]  DevOrSysAdminScripts.html.tpl
+│   ├── [ 27K Jan 30 19:41]  DevOrSysAdminScripts.tex
+│   ├── [3.8K Jan  7 16:46]  DevOrSysAdminScripts.tex.tpl
+│   ├── [ 15K Jan  5 20:05]  files_listing.tex.tpl
+│   ├── [5.4K Jan 30 19:43]  files_names_listing.txt
+│   ├── [  24 Jan 15 22:26]  .gitignore
+│   ├── [1.1K Jan  7 16:44]  licenses_notes.txt
+│   ├── [ 173 Jan 30 19:40]  pylintrc.toml
+│   └── [3.5K Jan 15 22:24]  repository_data.txt
 ├── [ 34K May  6  2024]  COPYING
 ├── [7.5K Dec 27 21:48]  COPYING.LESSER
-├── [260K Jan  3 19:41]  DevOrSysAdminScripts.html
-├── [256K Jan  3 19:41]  DevOrSysAdminScripts.pdf
-├── [4.0K Jan  3 18:57]  git_helpers/
+├── [272K Jan 30 19:41]  DevOrSysAdminScripts.html
+├── [266K Jan 30 19:41]  DevOrSysAdminScripts.pdf
+├── [4.0K Jan  4 13:54]  git_helpers/
 │   ├── [3.4K Jan  3 18:57]  git_checks.libr.sh
 │   ├── [1.2K Dec 30 17:25]  post-commit
-│   ├── [ 13K Jan  3 18:57]  post_commit_renaming_comment.libr.sh
+│   ├── [ 13K Jan  4 13:54]  post_commit_renaming_comment.libr.sh
 │   └── [1.3K Dec 30 17:03]  pre-commit
 ├── [ 830 Dec 29 19:10]  LiensUtiles.txt
-├── [2.7K Dec 31 16:31]  README.html
-├── [2.4K Dec 31 16:31]  README.md
-├── [2.4K Dec 31 16:31]  README.md.tpl
+├── [3.4K Jan  5 19:29]  README.html
+├── [3.3K Jan  5 19:29]  README.md
+├── [3.3K Jan  5 19:29]  README.md.tpl
 ├── [6.5K Jan  3 18:57]  unicode.libr.php
 ├── [1.3K Jan  3 18:57]  upgrade_build_and_checks.exec.sh*
 └── [1.5K Jan  3 18:57]  wget_sha512.libr.sh
 
-5 directories, 71 files
+5 directories, 74 files
 </pre>
 
 
@@ -520,11 +535,13 @@ shellcheck, sort, tail, wc, wget, xargs
 <li> The following dependencies are GPLv2+ licensed:<br>
 more, pandoc, pdftex, pdflatex, tree
 <li> The following dependencies are GPLv2 licensed:<br>
-git
+git, pylint
 <li> The following dependencies are LGPLv2.1+ licensed:<br>
 notify-send
 <li> The following dependencies are MIT licensed:<br>
 black, isort, mypy
+<li> The following dependencies are Apache-2.0 licensed:<br>
+bandit
 <li> php is licensed under PHP License v3.01
 <li> tex is licensed under Knuth license
 <li> pcregrep has a custom license from Cambridge University
@@ -953,9 +970,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='b5a5a8f3a3feedbad23d2a09a69327fdebc8399e6817e'
-  LFBFL_correct_sha512+='57c2011d229e3e65fc8159eb88b8b829a8a62c3672ff'
-  LFBFL_correct_sha512+='49e7fc5456ad431abc64ee4a5602a3c86c87305'
+  LFBFL_correct_sha512='5a44f7a88c8cc8768de49d7ff1ebc11f8fea6fad9d722'
+  LFBFL_correct_sha512+='7a0a4724fd17eb5686086394baa386ecea87c6e50286'
+  LFBFL_correct_sha512+='2a6162a2751d04ee44289bf72f6790633cf6956'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
   chmod +x "./${LFBFL_file_path}"
@@ -997,9 +1014,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL2}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir2}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='17d87e2f6413ad5431bee71ec035685b02984451c7997'
-  LFBFL_correct_sha512+='9a8b9e124a84b4083bddcf58ab9440f757303464f85c'
-  LFBFL_correct_sha512+='4111ab52c7de1b187dad7f618563e2dadf45656'
+  LFBFL_correct_sha512='c2fee55a889b379a3de67f0c425821bd2d7876df81221'
+  LFBFL_correct_sha512+='b7e5deca4cad459e80713ad834adeb5598e2565a8ef4'
+  LFBFL_correct_sha512+='5b55c63eb76ea78cc085c97cd6dc3342b6fd21b'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
   chmod +x "./${LFBFL_file_path}"
@@ -1079,9 +1096,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='25092662ebb78e93004fd8e6715d664b0de3450a8f8ae'
-  LFBFL_correct_sha512+='9c59cca158b0c616bb5c5e83e3203ae3a0622b3a6326'
-  LFBFL_correct_sha512+='131bf841d46d82540556698f8300f617eacaec1'
+  LFBFL_correct_sha512='e28c6e0cfffe6b8eebef26bddfbb440f0303d0dcc3987'
+  LFBFL_correct_sha512+='6d498d95b9d589e0800b8381124936e5103b372f509c'
+  LFBFL_correct_sha512+='aeb6213e909710a2ec1e345e076a44f0006fdbb'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
@@ -1095,23 +1112,23 @@ common_build_and_checks(){
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
-  LFBFL_file_name="split_line_at_most.exec.php"
+  LFBFL_file_name="split_score.exec.php"
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='de66b403bccad572899f2a2765184e3d0b192e2d33c7b'
-  LFBFL_correct_sha512+='658fe3958010333215ed323bd048301b74f3d382cdf6'
-  LFBFL_correct_sha512+='fb5e884cdcbc72db18180cc3cce670bd0ddbb0b'
+  LFBFL_correct_sha512='e55922c93c3eaf220c101c0133e2b9b5df50bb24f9683'
+  LFBFL_correct_sha512+='21c696dbec80a2207592cf9e7f3270e5fe3a4570ea11'
+  LFBFL_correct_sha512+='9f711405efa83894b88ebac85193b8cf98f39d4'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
-  LFBFL_file_name="split_line_at_most.libr.php"
+  LFBFL_file_name="split_score.libr.php"
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='23962f330f78900cda6ffac2ab8de559418b61a4cc30e'
-  LFBFL_correct_sha512+='da418e5e99fb2781ccfa8255dd5db81317ce657acd80'
-  LFBFL_correct_sha512+='008fb5bc82f8e63a6c27061e69d29c94e959341'
+  LFBFL_correct_sha512='83f3eda17203b34c656353883806d3b2154911cc4d4f7'
+  LFBFL_correct_sha512+='592a42413dc9f24bbd08f72bc51d20f9ca26d06d6861'
+  LFBFL_correct_sha512+='6c40a2b08517ae25bb3bd87c33c28ab4bd8fdf8'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
@@ -1119,9 +1136,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='6ef0c2c75da2581372e3b68951f2a7b09d68814736949'
-  LFBFL_correct_sha512+='c1f5d6984a7b25db98201b1dc9e611582e6af2faf33e'
-  LFBFL_correct_sha512+='f5fd1aa5f28229da664075acac750dd64ccb048'
+  LFBFL_correct_sha512='90569be3419610c3ebff08c98ae9dfb4bdbed722767ab'
+  LFBFL_correct_sha512+='4ab5dab201bb8f88f8354fe3b6bff7a7ea9bc5b04a9d'
+  LFBFL_correct_sha512+='23071fad903ffd8e91ec50d0d3b2e5e9b6545fa'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
@@ -1139,9 +1156,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='3f8562d69837d8becc1ecee9416e893f28b4cfa570aac'
-  LFBFL_correct_sha512+='ced8945603bd20fff2912b759c1cf647b18f0b1a1cb2'
-  LFBFL_correct_sha512+='a720243034db34ef0b8943fb2d4cb1f611e54c5'
+  LFBFL_correct_sha512='a0ec8202dcc962e5cbaf7908f285c9a182e6298dedaab'
+  LFBFL_correct_sha512+='af3d7b04369cf4e8639920b13b1dcc78d97bf195a202'
+  LFBFL_correct_sha512+='884d02c0c6c38982cf82ddcb673617d624ad900'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
   chmod +x "./${LFBFL_file_path}"
@@ -1176,6 +1193,52 @@ common_build_and_checks(){
   # shellcheck disable=SC1090
   source "./${LFBFL_subdir}/too_long_code_lines.libr.sh"
 
+  local LFBFL_data_file_name=\
+"build_and_checks_variables/repository_data.txt"
+
+  declare -i LFBFL_upgrade_venvs=0
+  declare -r LFBFL_upgrade_venvs_ts_file=\
+"build_and_checks_variables/upgrade_venvs_ts"
+  declare -i LFBFL_upgrade_venvs_ts
+  declare -i LFBFL_current_ts
+  local LFBFL_upgrade_venvs_answer
+
+  upgrade_venvs_time_interval_in_seconds=""
+  grep_variable "${LFBFL_data_file_name}"\
+     upgrade_venvs_time_interval_in_seconds
+  if [[ "${upgrade_venvs_time_interval_in_seconds}" == "wat" ]]; then
+    upgrade_venvs_time_interval_in_seconds=${RANDOM}
+  fi
+  if
+   [[ "${upgrade_venvs_time_interval_in_seconds}" == "watyouwant?" ]];
+  then
+    upgrade_venvs_time_interval_in_seconds=${SRANDOM}
+  fi
+
+  if [[ -f "${LFBFL_upgrade_venvs_ts_file}" ]]; then
+    LFBFL_upgrade_venvs_ts=\
+$(stat -c %Y "${LFBFL_upgrade_venvs_ts_file}")
+    LFBFL_current_ts=$(date +%s)
+    ((LFBFL_current_ts-=LFBFL_upgrade_venvs_ts))
+    ((LFBFL_current_ts-=upgrade_venvs_time_interval_in_seconds))
+    if [[ LFBFL_current_ts -gt 0 ]]; then
+      LFBFL_upgrade_venvs=1
+    fi
+  else
+    LFBFL_upgrade_venvs=1
+  fi
+  if [[ LFBFL_upgrade_venvs -eq 1 ]]; then
+    upgrade_venvs=""
+    grep_variable "${LFBFL_data_file_name}" upgrade_venvs
+    if [[ "${upgrade_venvs}" != "auto" ]]; then
+      read -r -n 1 -t 10 -p "Upgrade venvs? [Y/n]"\
+        LFBFL_upgrade_venvs_answer
+      if [[ "${LFBFL_upgrade_venvs_answer}" == "n" ]]; then
+        LFBFL_upgrade_venvs=0
+      fi
+    fi
+  fi
+
   echo "Building license headers"
   "./${LFBFL_subdir2}/build_licenses_templates.exec.sh"\
     "${LFBFL_verbose}"
@@ -1205,15 +1268,63 @@ common_build_and_checks(){
       "${LFBFL_file_path}"
   done
 
+  echo "---Python---"
   echo "Running isort"
+  isort_venv=""
+  grep_variable "${LFBFL_data_file_name}" isort_venv
+  if [[ -n "${isort_venv}" ]]; then
+    if command -v deactivate
+    then
+      deactivate
+    fi
+    # shellcheck disable=SC1090,SC1091
+    source "${isort_venv}/bin/activate"
+  fi
+  if [[ LFBFL_upgrade_venvs -eq 1 ]]; then
+    pip install --upgrade isort
+  fi
   isort .
+  if [[ -n "${isort_venv}" ]]; then
+    deactivate
+  fi
   python_isort_complement
 
   echo "Running black"
+  black_venv=""
+  grep_variable "${LFBFL_data_file_name}" black_venv
+  if [[ -n "${black_venv}" ]]; then
+    if command -v deactivate
+    then
+      deactivate
+    fi
+    # shellcheck disable=SC1090,SC1091
+    source "${black_venv}/bin/activate"
+  fi
+  if [[ LFBFL_upgrade_venvs -eq 1 ]]; then
+    pip install --upgrade black
+  fi
   black .
+  if [[ -n "${black_venv}" ]]; then
+    deactivate
+  fi
   python_black_complement
 
+  mypy_venv=""
+  grep_variable "${LFBFL_data_file_name}" mypy_venv
+  if [[ -n "${mypy_venv}" ]]; then
+    if command -v deactivate
+    then
+      deactivate
+    fi
+    # shellcheck disable=SC1090,SC1091
+    source "${mypy_venv}/bin/activate"
+  fi
+  if [[ LFBFL_upgrade_venvs -eq 1 ]]; then
+    pip install --upgrade mypy
+  fi
+  shopt -s lastpipe
   local LFBFL_directory_path
+  declare -i LFBFL_no_toml=1
   # shellcheck disable=SC2312
   find . -name "pyproject.toml" | relevant_find\
     | while read -r LFBFL_file_path;
@@ -1223,7 +1334,65 @@ common_build_and_checks(){
       LFBFL_directory_path=$(dirname "${LFBFL_file_path}")
       mypy "${LFBFL_directory_path}"
     fi
+    LFBFL_no_toml=0
   done
+  if [[ LFBFL_no_toml -eq 1 ]]; then
+    echo "Running mypy"
+    mypy .
+  fi
+  if [[ -n "${mypy_venv}" ]]; then
+    deactivate
+  fi
+
+  echo "Running bandit"
+  bandit_venv=""
+  grep_variable "${LFBFL_data_file_name}" bandit_venv
+  if [[ -n "${bandit_venv}" ]]; then
+    if command -v deactivate
+    then
+      deactivate
+    fi
+    # shellcheck disable=SC1090,SC1091
+    source "${bandit_venv}/bin/activate"
+  fi
+  if [[ LFBFL_upgrade_venvs -eq 1 ]]; then
+    pip install --upgrade bandit
+  fi
+  bandit --ini build_and_checks_variables/bandit.ini\
+    -b build_and_checks_variables/bandit_baseline.json\
+    -r .
+  # Saving new baseline in temp if necessary.
+  bandit --ini build_and_checks_variables/bandit.ini\
+    -f json -o build_and_checks_variables/temp/bandit_baseline.json\
+    -r .
+  if [[ -n "${bandit_venv}" ]]; then
+    deactivate
+  fi
+
+  echo "Running pylint"
+  pylint_venv=""
+  grep_variable "${LFBFL_data_file_name}" pylint_venv
+  if [[ -n "${pylint_venv}" ]]; then
+    if command -v deactivate
+    then
+      deactivate
+    fi
+    # shellcheck disable=SC1090,SC1091
+    source "${pylint_venv}/bin/activate"
+  fi
+  if [[ LFBFL_upgrade_venvs -eq 1 ]]; then
+    pip install --upgrade pylint
+  fi
+  pylint --rcfile build_and_checks_variables/pylintrc.toml\
+    --recursive=y .
+  if [[ -n "${pylint_venv}" ]]; then
+    deactivate
+  fi
+  echo "---Python end---"
+
+  if [[ LFBFL_upgrade_venvs -eq 1 ]]; then
+    touch "${LFBFL_upgrade_venvs_ts_file}"
+  fi
 
   echo "Analyzing too long lines"
   # shellcheck disable=SC2312
@@ -1239,7 +1408,7 @@ common_build_and_checks(){
 
   echo "Analyzing strange characters: hover over in doubt"
   # shellcheck disable=SC1111
-  LFBFL_usual_characters="\x00-\x7Fàâéèêëîïôç©“”└─├│«»"
+  LFBFL_usual_characters="\x00-\x7Fàâéèêëîïôûç©“”└─├│«»"
   # shellcheck disable=SC2312
   grep --exclude-dir .git --color=always\
     -nPr "[^${LFBFL_usual_characters}]" .
@@ -1450,17 +1619,17 @@ common_build_and_checks(){
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
-  LFBFL_file_name="split_line_at_most.exec.php"
+  LFBFL_file_name="split_score.exec.php"
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  @sha512_split_line_at_most.exec.php@
+  @sha512_split_score.exec.php@
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
-  LFBFL_file_name="split_line_at_most.libr.php"
+  LFBFL_file_name="split_score.libr.php"
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  @sha512_split_line_at_most.libr.php@
+  @sha512_split_score.libr.php@
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
@@ -1516,6 +1685,52 @@ common_build_and_checks(){
   # shellcheck disable=SC1090
   source "./${LFBFL_subdir}/too_long_code_lines.libr.sh"
 
+  local LFBFL_data_file_name=\
+"build_and_checks_variables/repository_data.txt"
+
+  declare -i LFBFL_upgrade_venvs=0
+  declare -r LFBFL_upgrade_venvs_ts_file=\
+"build_and_checks_variables/upgrade_venvs_ts"
+  declare -i LFBFL_upgrade_venvs_ts
+  declare -i LFBFL_current_ts
+  local LFBFL_upgrade_venvs_answer
+
+  upgrade_venvs_time_interval_in_seconds=""
+  grep_variable "${LFBFL_data_file_name}"\
+     upgrade_venvs_time_interval_in_seconds
+  if [[ "${upgrade_venvs_time_interval_in_seconds}" == "wat" ]]; then
+    upgrade_venvs_time_interval_in_seconds=${RANDOM}
+  fi
+  if
+   [[ "${upgrade_venvs_time_interval_in_seconds}" == "watyouwant?" ]];
+  then
+    upgrade_venvs_time_interval_in_seconds=${SRANDOM}
+  fi
+
+  if [[ -f "${LFBFL_upgrade_venvs_ts_file}" ]]; then
+    LFBFL_upgrade_venvs_ts=\
+$(stat -c %Y "${LFBFL_upgrade_venvs_ts_file}")
+    LFBFL_current_ts=$(date +%s)
+    ((LFBFL_current_ts-=LFBFL_upgrade_venvs_ts))
+    ((LFBFL_current_ts-=upgrade_venvs_time_interval_in_seconds))
+    if [[ LFBFL_current_ts -gt 0 ]]; then
+      LFBFL_upgrade_venvs=1
+    fi
+  else
+    LFBFL_upgrade_venvs=1
+  fi
+  if [[ LFBFL_upgrade_venvs -eq 1 ]]; then
+    upgrade_venvs=""
+    grep_variable "${LFBFL_data_file_name}" upgrade_venvs
+    if [[ "${upgrade_venvs}" != "auto" ]]; then
+      read -r -n 1 -t 10 -p "Upgrade venvs? [Y/n]"\
+        LFBFL_upgrade_venvs_answer
+      if [[ "${LFBFL_upgrade_venvs_answer}" == "n" ]]; then
+        LFBFL_upgrade_venvs=0
+      fi
+    fi
+  fi
+
   echo "Building license headers"
   "./${LFBFL_subdir2}/build_licenses_templates.exec.sh"\
     "${LFBFL_verbose}"
@@ -1545,15 +1760,63 @@ common_build_and_checks(){
       "${LFBFL_file_path}"
   done
 
+  echo "---Python---"
   echo "Running isort"
+  isort_venv=""
+  grep_variable "${LFBFL_data_file_name}" isort_venv
+  if [[ -n "${isort_venv}" ]]; then
+    if command -v deactivate
+    then
+      deactivate
+    fi
+    # shellcheck disable=SC1090,SC1091
+    source "${isort_venv}/bin/activate"
+  fi
+  if [[ LFBFL_upgrade_venvs -eq 1 ]]; then
+    pip install --upgrade isort
+  fi
   isort .
+  if [[ -n "${isort_venv}" ]]; then
+    deactivate
+  fi
   python_isort_complement
 
   echo "Running black"
+  black_venv=""
+  grep_variable "${LFBFL_data_file_name}" black_venv
+  if [[ -n "${black_venv}" ]]; then
+    if command -v deactivate
+    then
+      deactivate
+    fi
+    # shellcheck disable=SC1090,SC1091
+    source "${black_venv}/bin/activate"
+  fi
+  if [[ LFBFL_upgrade_venvs -eq 1 ]]; then
+    pip install --upgrade black
+  fi
   black .
+  if [[ -n "${black_venv}" ]]; then
+    deactivate
+  fi
   python_black_complement
 
+  mypy_venv=""
+  grep_variable "${LFBFL_data_file_name}" mypy_venv
+  if [[ -n "${mypy_venv}" ]]; then
+    if command -v deactivate
+    then
+      deactivate
+    fi
+    # shellcheck disable=SC1090,SC1091
+    source "${mypy_venv}/bin/activate"
+  fi
+  if [[ LFBFL_upgrade_venvs -eq 1 ]]; then
+    pip install --upgrade mypy
+  fi
+  shopt -s lastpipe
   local LFBFL_directory_path
+  declare -i LFBFL_no_toml=1
   # shellcheck disable=SC2312
   find . -name "pyproject.toml" | relevant_find\
     | while read -r LFBFL_file_path;
@@ -1563,7 +1826,65 @@ common_build_and_checks(){
       LFBFL_directory_path=$(dirname "${LFBFL_file_path}")
       mypy "${LFBFL_directory_path}"
     fi
+    LFBFL_no_toml=0
   done
+  if [[ LFBFL_no_toml -eq 1 ]]; then
+    echo "Running mypy"
+    mypy .
+  fi
+  if [[ -n "${mypy_venv}" ]]; then
+    deactivate
+  fi
+
+  echo "Running bandit"
+  bandit_venv=""
+  grep_variable "${LFBFL_data_file_name}" bandit_venv
+  if [[ -n "${bandit_venv}" ]]; then
+    if command -v deactivate
+    then
+      deactivate
+    fi
+    # shellcheck disable=SC1090,SC1091
+    source "${bandit_venv}/bin/activate"
+  fi
+  if [[ LFBFL_upgrade_venvs -eq 1 ]]; then
+    pip install --upgrade bandit
+  fi
+  bandit --ini build_and_checks_variables/bandit.ini\
+    -b build_and_checks_variables/bandit_baseline.json\
+    -r .
+  # Saving new baseline in temp if necessary.
+  bandit --ini build_and_checks_variables/bandit.ini\
+    -f json -o build_and_checks_variables/temp/bandit_baseline.json\
+    -r .
+  if [[ -n "${bandit_venv}" ]]; then
+    deactivate
+  fi
+
+  echo "Running pylint"
+  pylint_venv=""
+  grep_variable "${LFBFL_data_file_name}" pylint_venv
+  if [[ -n "${pylint_venv}" ]]; then
+    if command -v deactivate
+    then
+      deactivate
+    fi
+    # shellcheck disable=SC1090,SC1091
+    source "${pylint_venv}/bin/activate"
+  fi
+  if [[ LFBFL_upgrade_venvs -eq 1 ]]; then
+    pip install --upgrade pylint
+  fi
+  pylint --rcfile build_and_checks_variables/pylintrc.toml\
+    --recursive=y .
+  if [[ -n "${pylint_venv}" ]]; then
+    deactivate
+  fi
+  echo "---Python end---"
+
+  if [[ LFBFL_upgrade_venvs -eq 1 ]]; then
+    touch "${LFBFL_upgrade_venvs_ts_file}"
+  fi
 
   echo "Analyzing too long lines"
   # shellcheck disable=SC2312
@@ -1579,7 +1900,7 @@ common_build_and_checks(){
 
   echo "Analyzing strange characters: hover over in doubt"
   # shellcheck disable=SC1111
-  LFBFL_usual_characters="\x00-\x7Fàâéèêëîïôç©“”└─├│«»"
+  LFBFL_usual_characters="\x00-\x7Fàâéèêëîïôûç©“”└─├│«»"
   # shellcheck disable=SC2312
   grep --exclude-dir .git --color=always\
     -nPr "[^${LFBFL_usual_characters}]" .
@@ -1821,19 +2142,15 @@ LFBFL_temp_files_listing2+="files_listing.html.tpl.temp"
 : > "${LFBFL_temp_files_listing2}"
 LFBFL_temp_files_lis="./${LFBFL_subdir2}/temp/files_lis.html.tpl"
 : > "${LFBFL_temp_files_lis}"
-get_split_score_after_before_simple 70 /
-# split_score_command="$LFBFL_generic_result"
+get_split_score_simple 1 70 /
 # shellcheck disable=SC2154
-declare LFBFL_score_command="${get_split_score_after_before_result}"
+declare LFBFL_score_command="${get_split_score_result}"
 # shellcheck disable=SC2154
-declare LFBFL_score_command_properties=\
-"${get_split_score_after_before_result2}"
-get_split_score_after_before_simple 70 ':'
-# split_score_command2="$LFBFL_generic_result"
+declare LFBFL_score_command_properties="${get_split_score_result2}"
+get_split_score_simple 1 70 ':'
 # shellcheck disable=SC2154
-declare LFBFL_score_command2="${get_split_score_after_before_result}"
-declare LFBFL_score_command_properties2=\
-"${get_split_score_after_before_result2}"
+declare LFBFL_score_command2="${get_split_score_result}"
+declare LFBFL_score_command_properties2="${get_split_score_result2}"
 declare LFBFL_suffix='%'
 declare LFBFL_sed_expression='s/\\\n//Mg'
 declare -i LFBFL_i=0
@@ -2533,7 +2850,8 @@ for LFBFL_license in "${LFBFL_licenses[@]}"; do
   LFBFL_license_prefix2="${LFBFL_license_prefix}${LFBFL_license}"
   for ((i=0; i&lt;${#LFBFL_block_comment_languages[@]}; i++)); do
     LFBFL_extension=${LFBFL_block_comment_languages[i]}
-    LFBFL_license_file_name="${LFBFL_license_prefix2}.${LFBFL_extension}"
+    LFBFL_license_file_name="${LFBFL_license_prefix2}"
+    LFBFL_license_file_name+=".${LFBFL_extension}"
     LFBFL_enter_string=${LFBFL_block_comment_enters[i]}
     LFBFL_exit_string=${LFBFL_block_comment_exits[i]}
     generate_from_template_with_block_comments\
@@ -2544,7 +2862,8 @@ for LFBFL_license in "${LFBFL_licenses[@]}"; do
   LFBFL_temp2=".generate_from_template_with_line_comments.temp"
   for ((i=0; i&lt;${#LFBFL_line_comment_languages[@]}; i++)); do
     LFBFL_extension=${LFBFL_line_comment_languages[i]}
-    LFBFL_license_file_name="${LFBFL_license_prefix2}.${LFBFL_extension}"
+    LFBFL_license_file_name="${LFBFL_license_prefix2}"
+    LFBFL_license_file_name+=".${LFBFL_extension}"
     LFBFL_prefix_string=${LFBFL_line_comment_prefixes[i]}
     LFBFL_intermediate_file_name="${LFBFL_license_file_name}.tpl"
     LFBFL_intermediate_file_name+="${LFBFL_temp2}"
@@ -3680,6 +3999,7 @@ build_and_checks_dependencies/python_black_complement.libr.sh
 # to "python_black_complement.libr.sh".
 
 # It was rejected to enhance black with this currently.
+# https://github.com/psf/black/issues/2370
 # And moreover, at some point, I saw the reverse rule
 # in black or pylint to add an empty line...
 # This regexp may give false positives,
@@ -3753,7 +4073,7 @@ python_isort_complement(){
 
 
 <h3 id="subsection2.34">2.34
-build_and_checks_dependencies/split_line_at_most.exec.php
+build_and_checks_dependencies/split_score.exec.php
 </h3>
 <pre class="numbered_lines">
 #!/usr/bin/php
@@ -3781,6 +4101,10 @@ along with DevOrSysAdminScripts.
 If not, see &lt;https://www.gnu.org/licenses/>.
 
 ©Copyright 2023-2026 Laurent Frédéric Bernard François Lyaudet
+2026-01-04T13:38+01:00: This file was renamed from
+"split_line_at_most.exec.php"
+to
+"split_score.exec.php".
 This file was renamed from
 "call_split_score_after_before_or_before_after.exec.php" to
 "split_line_at_most.exec.php".
@@ -3789,43 +4113,26 @@ This file was renamed from
 "call_split_score_after_before_or_before_after.exec.php".
 */
 
-require_once(
-  './build_and_checks_dependencies/split_line_at_most.libr.php'
-);
+require_once('./build_and_checks_dependencies/split_score.libr.php');
 
 /*
 php -r\
  $'require_once(\'./build_and_checks_dependencies/'\
-$'split_line_at_most.libr.php\');'\
-$' echo(generate_split_score_after_before'\
-$'(70, [\'/\'])(\'/\', 60, true));'
+$'split_score.libr.php\');'\
+$' echo(generate_split_score'\
+$'(true, 70, [\'/\'])(\'/\', 60, true));'
 */
 
-$after_before = $argv[1];
-
-if($after_before){
-  echo(
-    generate_split_score_after_before(
-    //  $argv[1], array_slice($argv, 5)
-    //)($argv[3], $argv[2], $argv[4])
-    //  $argv[1], explode(',', $argv[2]),
-    //)($argv[3], $argv[4], $argv[5])
-      (int) $argv[2], explode(',', $argv[3]),
-    )($argv[4], (int) $argv[5], $argv[6])
-  );
-  exit();
-}
-
 echo(
-  generate_split_score_before_after(
-    (int) $argv[2], explode(',', $argv[3]),
-  )($argv[4], (int) $argv[5], $argv[6])
+  generate_split_score(
+    (bool) $argv[1], (int) $argv[2], explode(',', $argv[3]),
+  )($argv[4], (int) $argv[5], (bool) $argv[6])
 );
 </pre>
 
 
 <h3 id="subsection2.35">2.35
-build_and_checks_dependencies/split_line_at_most.libr.php
+build_and_checks_dependencies/split_score.libr.php
 </h3>
 <pre class="numbered_lines">
 &lt;?php
@@ -3852,60 +4159,45 @@ along with DevOrSysAdminScripts.
 If not, see &lt;https://www.gnu.org/licenses/>.
 
 ©Copyright 2023-2026 Laurent Frédéric Bernard François Lyaudet
+2026-01-04T13:38+01:00: This file was renamed from
+"split_line_at_most.libr.php"
+to
+"split_score.libr.php".
 This file was renamed from "split_line_at_most.php" to
 "split_line_at_most.libr.php".
 */
 
-function generate_split_score_after_before(
-  $max_length,
-  $delimiter_strings_domain,
+function generate_split_score(
+  $b_after_before,
+  $i_max_length,
+  $a_delimiter_strings_domain,
 ){
   return function(
-    $delimiter_string,
-    $cut_position,
-    $is_cut_after,
-  ) use ($max_length, $delimiter_strings_domain){
-    if(!in_array($delimiter_string, $delimiter_strings_domain, true)){
+    $s_delimiter_string,
+    $i_cut_position,
+    $b_is_cut_after,
+  ) use ($b_after_before, $i_max_length, $s_delimiter_strings_domain){
+    if(
+      !in_array(
+        $s_delimiter_string, $s_delimiter_strings_domain, true
+      )
+    ){
       // I do not handle regexps for the moment.
       // I'm too brainfucked. I just want to finish this feature fast
       // for HTML and Tex/PDF listings generation with HTML and Tex on
       // at most 70 characters.
       return 0;
     }
-    if($is_cut_after){
-      // Always way better to cut after '/' than before it.
-      return 1 + $max_length + $cut_position;
+    if($b_is_cut_after === $b_after_before){
+      // When $b_after_before,
+      // always way better to cut after '/' than before it.
+      // When !$b_after_before (aka before_after),
+      // always way better to cut before '/' than after it.
+      return 1 + $i_max_length + $i_cut_position;
     }
-    return 1 + $cut_position;
+    return 1 + $i_cut_position;
   };
 }
-
-
-
-function generate_split_score_before_after(
-  $max_length,
-  $delimiter_strings_domain,
-){
-  return function(
-    $delimiter_string,
-    $cut_position,
-    $is_cut_after,
-  ) use ($max_length, $delimiter_strings_domain){
-    if(!in_array($delimiter_string, $delimiter_strings_domain, true)){
-      // I do not handle regexps for the moment.
-      // I'm too brainfucked. I just want to finish this feature fast
-      // for HTML and Tex/PDF listings generation with HTML and Tex on
-      // at most 70 characters.
-      return 0;
-    }
-    if(!$is_cut_after){
-      // Always way better to cut before '/' than after it.
-      return 1 + $max_length + $cut_position;
-    }
-    return 1 + $cut_position;
-  };
-}
-
 </pre>
 
 
@@ -3958,82 +4250,65 @@ split_line_at(){
   # echo "$split_line_at_result_end"
 }
 
-split_score_after_before_simple(){
-  # $1=$delimiters_strings_domain concatenated characters/delimiters
-  # $2=$delimiter_string a single character
-  # $3=$is_cut_after
-  if [[ "$1" != *$2* ]]; then
-    echo -n "0"
+split_score_simple(){
+  # $1=$after_before
+  # $2=$delimiters_strings_domain concatenated characters/delimiters
+  # $3=$delimiter_string a single character
+  # $4=$is_cut_after
+  declare -gi split_score_result
+  if [[ "$2" != *$3* ]]; then
+    split_score_result=0
     return
   fi
-  if [[ "$3" == "1" ]]; then
-    echo -n "2"
+  if [[ "$4" == "$1" ]]; then
+    split_score_result=2
     return
   fi
-  echo -n "1"
-  return
+  split_score_result=1
 }
 
-split_score_before_after_simple(){
-  # $1=$delimiters_strings_domain concatenated characters/delimiters
-  # $2=$delimiter_string a single character
-  # $3=$is_cut_after
-  if [[ "$1" != *$2* ]]; then
-    echo -n "0"
-    return
-  fi
-  if [[ "$3" == "0" ]]; then
-    echo -n "2"
-    return
-  fi
-  echo -n "1"
-  return
+get_split_score_simple(){
+  # $1=$after_before
+  # $2=$max_length
+  # $3=$delimiters_strings_domain
+  declare -g get_split_score_result="split_score_simple $1 '$3'"
+  declare -gi get_split_score_result2
+  # shellcheck disable=SC2034,2125
+  get_split_score_result2=7+$1*4
+  # if [[ $1 -eq 1 ]]; then
+  #   get_split_score_result2=7
+  # else
+  #   get_split_score_result2=11
+  # fi
 }
 
-get_split_score_after_before_simple(){
+get_split_score_exec(){
+  declare -g SPLIT_SCORE_EXEC="./build_and_checks_dependencies"
+  SPLIT_SCORE_EXEC+="/split_score.exec.php"
+}
+
+split_score(){
+  # $1=$after_before
+  # $2=$max_length
+  # $3=$delimiters_strings_domain concatenated characters/delimiters
+  # $4=$delimiter_string a single character
+  # $5=$cut_position
+  # $6=$is_cut_after
+  get_split_score_exec
+  declare -r LFBFL_command="${SPLIT_SCORE_EXEC} $1 $2 '$3' '$4' $5 $6"
+  declare -gi split_score_result
+  split_score_result=$(eval "${LFBFL_command}")
+}
+
+get_split_score(){
+  # $1=$after_before
   # $1=$max_length
   # $2=$delimiters_strings_domain
-  declare -g get_split_score_after_before_result=\
-"split_score_after_before_simple '$2'"
   # shellcheck disable=SC2034
-  declare -g get_split_score_after_before_result2="7"
-}
-
-get_split_score_before_after_simple(){
-  # $1=$max_length
-  # $2=$delimiters_strings_domain
-  declare -g get_split_score_before_after_result=\
-"split_score_before_after_simple '$2'"
-  # shellcheck disable=SC2034
-  declare -g get_split_score_before_after_result2="11"
-}
-
-get_split_line_at_most_exec(){
-  declare -g SPLIT_LINE_AT_MOST_EXEC="./"
-  SPLIT_LINE_AT_MOST_EXEC+="build_and_checks_dependencies"
-  SPLIT_LINE_AT_MOST_EXEC+="/split_line_at_most.exec.php"
-}
-
-get_split_score_after_before(){
-  # $1=$max_length
-  # $2=$delimiters_strings_domain
-  get_split_line_at_most_exec
-  declare -g\
-    get_split_score_after_before_result="${SPLIT_LINE_AT_MOST_EXEC}"
-  get_split_score_after_before_result+=" 1 '$1' '$2'"
-  # shellcheck disable=SC2034
-  declare -g get_split_score_after_before_result2="5"
-}
-
-get_split_score_before_after(){
-  # $1=$max_length
-  # $2=$delimiters_strings_domain
-  get_split_line_at_most_exec
-  declare -g\
-    get_split_score_before_after_result="${SPLIT_LINE_AT_MOST_EXEC}"
-  get_split_score_before_after_result+=" 0 '$1' '$2'"
-  # shellcheck disable=SC2034
-  declare -g get_split_score_before_after_result2="9"
+  declare -g get_split_score_result="split_score $1 $2 '$3'"
+  declare -gi get_split_score_result2
+  # shellcheck disable=SC2034,2125
+  get_split_score_result2=5+$1*4
 }
 
 split_line_at_most(){
@@ -4094,12 +4369,9 @@ split_line_at_most(){
   local LFBFL_j
   local LFBFL_previous_char
   local LFBFL_current_char
-  local LFBFL_command1
-  local LFBFL_command2
-  local LFBFL_temp
 
   # At the beginning, each position has score 0.
-  for ((LFBFL_i=0; LFBFL_i&lt;=LFBFL_i_max; LFBFL_i++)) do
+  for ((LFBFL_i=0; LFBFL_i&lt;=LFBFL_i_max; ++LFBFL_i)) do
     LFBFL_positions["${LFBFL_i}"]="0"
   done
   LFBFL_j=$((LFBFL_i+1))
@@ -4109,7 +4381,7 @@ split_line_at_most(){
   # we mark the forbidden positions with -1.
   if [[ -n "$5" ]]; then
     LFBFL_previous_char=""
-    for ((LFBFL_i=0; LFBFL_i&lt;LFBFL_i_max; LFBFL_i++)) do
+    for ((LFBFL_i=0; LFBFL_i&lt;LFBFL_i_max; ++LFBFL_i)) do
       LFBFL_j=$((LFBFL_i+1))
       if [[ ${LFBFL_i} -ge 1 ]]; then
         LFBFL_previous_char="${LFBFL_current_char}"
@@ -4125,64 +4397,60 @@ split_line_at_most(){
   fi
 
   if [[ "$4" == "7" ]]; then
-    for ((LFBFL_j=LFBFL_i_max; LFBFL_j>0; LFBFL_j--)) do
+    for ((LFBFL_j=LFBFL_i_max; LFBFL_j>0; --LFBFL_j)) do
       LFBFL_i=$((LFBFL_j-1))
       LFBFL_current_char="${1:${LFBFL_i}:1}"
-      LFBFL_command1="$3 '${LFBFL_current_char}' 0"
-      LFBFL_command2="$3 '${LFBFL_current_char}' 1"
-      # echo "${LFBFL_command1}"
-      # echo "${LFBFL_command2}"
-      LFBFL_temp=$(eval "${LFBFL_command1}")
-      # echo "${LFBFL_temp}|${LFBFL_i}"
-      if [[ ${LFBFL_temp} -ge 1 ]]; then
-        # echo "${LFBFL_temp}|${LFBFL_i}"
+      eval "$3 '${LFBFL_current_char}' 0"
+      # echo "${split_score_result}|${LFBFL_i}"
+      if [[ ${split_score_result} -ge 1 ]]; then
+        # echo "${split_score_result}|${LFBFL_i}"
         if [[ ${LFBFL_positions["${LFBFL_i}"]} != "-1" ]]; then
           LFBFL_positions["${LFBFL_i}"]=$(
             max "${LFBFL_sort_command}"\
-              "${LFBFL_positions["${LFBFL_i}"]}" "${LFBFL_temp}"
+              "${LFBFL_positions["${LFBFL_i}"]}"\
+              "${split_score_result}"
           )
         fi
       fi
-      LFBFL_temp=$(eval "${LFBFL_command2}")
-      # echo "${LFBFL_temp}|${LFBFL_j}"
-      if [[ ${LFBFL_temp} -ge 1 ]]; then
-        # echo "${LFBFL_temp}|${LFBFL_j}"
+      eval "$3 '${LFBFL_current_char}' 1"
+      # echo "${split_score_result}|${LFBFL_j}"
+      if [[ ${split_score_result} -ge 1 ]]; then
+        # echo "${split_score_result}|${LFBFL_j}"
         if [[ ${LFBFL_positions["${LFBFL_j}"]} != "-1" ]]; then
           LFBFL_positions["${LFBFL_j}"]=$(
             max "${LFBFL_sort_command}"\
-              "${LFBFL_positions["${LFBFL_j}"]}" "${LFBFL_temp}"
+              "${LFBFL_positions["${LFBFL_j}"]}"\
+              "${split_score_result}"
           )
           break
         fi
       fi
     done
   else
-    for ((LFBFL_i=0; LFBFL_i&lt;LFBFL_i_max; LFBFL_i++)) do
+    for ((LFBFL_i=0; LFBFL_i&lt;LFBFL_i_max; ++LFBFL_i)) do
       LFBFL_j=$((LFBFL_i+1))
       LFBFL_current_char="${1:${LFBFL_i}:1}"
-      LFBFL_command1="$3 '${LFBFL_current_char}' ${LFBFL_i} 0"
-      LFBFL_command2="$3 '${LFBFL_current_char}' ${LFBFL_j} 1"
-      # echo "${LFBFL_command1}"
-      # echo "${LFBFL_command2}"
-      LFBFL_temp=$(eval "${LFBFL_command1}")
-      # echo "${LFBFL_temp}|${LFBFL_i}"
-      if [[ ${LFBFL_temp} -ge 1 ]]; then
-        # echo "${LFBFL_temp}|${LFBFL_i}"
+      eval "$3 '${LFBFL_current_char}' ${LFBFL_i} 0"
+      # echo "${split_score_result}|${LFBFL_i}"
+      if [[ ${split_score_result} -ge 1 ]]; then
+        # echo "${split_score_result}|${LFBFL_i}"
         if [[ ${LFBFL_positions["${LFBFL_i}"]} != "-1" ]]; then
           LFBFL_positions["${LFBFL_i}"]=$(
             max "${LFBFL_sort_command}"\
-              "${LFBFL_positions["${LFBFL_i}"]}" "${LFBFL_temp}"
+              "${LFBFL_positions["${LFBFL_i}"]}"\
+              "${split_score_result}"
           )
         fi
       fi
-      LFBFL_temp=$(eval "${LFBFL_command2}")
-      # echo "${LFBFL_temp}|${LFBFL_j}"
-      if [[ ${LFBFL_temp} -ge 1 ]]; then
-        # echo "${LFBFL_temp}|${LFBFL_j}"
+      eval "$3 '${LFBFL_current_char}' ${LFBFL_j} 1"
+      # echo "${split_score_result}|${LFBFL_j}"
+      if [[ ${split_score_result} -ge 1 ]]; then
+        # echo "${split_score_result}|${LFBFL_j}"
         if [[ ${LFBFL_positions["${LFBFL_j}"]} != "-1" ]]; then
           LFBFL_positions["${LFBFL_j}"]=$(
             max "${LFBFL_sort_command}"\
-              "${LFBFL_positions["${LFBFL_j}"]}" "${LFBFL_temp}"
+              "${LFBFL_positions["${LFBFL_j}"]}"\
+              "${split_score_result}"
           )
         fi
       fi
@@ -4191,7 +4459,7 @@ split_line_at_most(){
   declare -r LFBFL_max_score=\
 $(max 'sort --numeric-sort' "${LFBFL_positions[@]}")
   local LFBFL_best_position
-  for ((LFBFL_i=0; LFBFL_i&lt;=LFBFL_i_max; LFBFL_i++)) do
+  for ((LFBFL_i=0; LFBFL_i&lt;=LFBFL_i_max; ++LFBFL_i)) do
     local LFBFL_value=${LFBFL_positions[${LFBFL_i}]}
     # echo "${LFBFL_i} ${LFBFL_value}"
     if [[ "${LFBFL_value}" == "${LFBFL_max_score}" ]]; then
@@ -4423,8 +4691,8 @@ update_common_build_and_checks(){
     "overwrite_if_not_equal.libr.sh"\
     "python_black_complement.libr.sh"\
     "python_isort_complement.libr.sh"\
-    "split_line_at_most.exec.php"\
-    "split_line_at_most.libr.php"\
+    "split_score.exec.php"\
+    "split_score.libr.php"\
     "strings_functions.libr.sh"\
     "too_long_code_lines.libr.sh"\
   )
@@ -4540,12 +4808,11 @@ sed -Ez "${sed_expression}" "${files_names_listing}.temp2"\
 sed -Ez "${sed_expression}" "${files_names_listing}.temp3"\
   > "${files_names_listing}.temp4"
 shopt -s dotglob
-get_split_score_after_before_simple 70 /
+get_split_score_simple 1 70 /
 # shellcheck disable=SC2154
-split_score_command="${get_split_score_after_before_result}"
+split_score_command="${get_split_score_result}"
 # shellcheck disable=SC2154
-split_score_command_properties=\
-"${get_split_score_after_before_result2}"
+split_score_command_properties="${get_split_score_result2}"
 # shellcheck disable=SC1003
 suffix='\\'
 # shellcheck disable=SC2312
@@ -4620,11 +4887,29 @@ build_and_checks_variables/.gitignore
 </h3>
 <pre class="numbered_lines">
 temp/
+upgrade_venvs_ts
 
 </pre>
 
 
 <h3 id="subsection2.41">2.41
+build_and_checks_variables/bandit.ini
+</h3>
+<pre class="numbered_lines">
+# FILE: .bandit
+[bandit]
+</pre>
+
+
+<h3 id="subsection2.42">2.42
+build_and_checks_variables/bandit_baseline.json
+</h3>
+<pre class="numbered_lines">
+{"results":[]}
+</pre>
+
+
+<h3 id="subsection2.43">2.43
 build_and_checks_variables/DevOrSysAdminScripts.html.tpl
 </h3>
 <pre class="numbered_lines">
@@ -4804,11 +5089,13 @@ shellcheck, sort, tail, wc, wget, xargs
 &lt;li> The following dependencies are GPLv2+ licensed:&lt;br>
 more, pandoc, pdftex, pdflatex, tree
 &lt;li> The following dependencies are GPLv2 licensed:&lt;br>
-git
+git, pylint
 &lt;li> The following dependencies are LGPLv2.1+ licensed:&lt;br>
 notify-send
 &lt;li> The following dependencies are MIT licensed:&lt;br>
 black, isort, mypy
+&lt;li> The following dependencies are Apache-2.0 licensed:&lt;br>
+bandit
 &lt;li> php is licensed under PHP License v3.01
 &lt;li> tex is licensed under Knuth license
 &lt;li> pcregrep has a custom license from Cambridge University
@@ -4849,7 +5136,7 @@ pres.forEach(
 </pre>
 
 
-<h3 id="subsection2.42">2.42
+<h3 id="subsection2.44">2.44
 build_and_checks_variables/DevOrSysAdminScripts.tex.tpl
 </h3>
 <pre class="numbered_lines">
@@ -4971,11 +5258,13 @@ shellcheck, sort, tail, wc, wget, xargs
 \item The following dependencies are GPLv2+ licensed:\newline
 more, pandoc, pdftex, pdflatex, tree
 \item The following dependencies are GPLv2 licensed:\newline
-git
+git, pylint
 \item The following dependencies are LGPLv2.1+ licensed:\newline
 notify-send
 \item The following dependencies are MIT licensed:\newline
 black, isort, mypy
+\item The following dependencies are Apache-2.0 licensed:\newline
+bandit
 \item php is licensed under PHP License v3.01
 \item tex is licensed under Knuth license
 \item pcregrep has a custom license from Cambridge University
@@ -4994,7 +5283,7 @@ whilst GNU coreutils is GPLv3+ licensed.
 </pre>
 
 
-<h3 id="subsection2.43">2.43
+<h3 id="subsection2.45">2.45
 build_and_checks_variables/files_listing.tex.tpl
 </h3>
 <pre class="numbered_lines">
@@ -5447,26 +5736,26 @@ build_and_checks_dependencies/python_isort_complement.libr.sh
 
 
 \subsection{
-  build\_and\_checks\_dependencies/split\_line\_at\_most.exec.php
+  build\_and\_checks\_dependencies/split\_score.exec.php
 }
 \label{
-  build_and_checks_dependencies:split_line_at_mostexecphp
+  build_and_checks_dependencies:split_scoreexecphp
 }
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/split_line_at_most.exec.php
+build_and_checks_dependencies/split_score.exec.php
 }
 
 
 \subsection{
-  build\_and\_checks\_dependencies/split\_line\_at\_most.libr.php
+  build\_and\_checks\_dependencies/split\_score.libr.php
 }
 \label{
-  build_and_checks_dependencies:split_line_at_mostlibrphp
+  build_and_checks_dependencies:split_scorelibrphp
 }
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/split_line_at_most.libr.php
+build_and_checks_dependencies/split_score.libr.php
 }
 
 
@@ -5531,6 +5820,30 @@ update_or_check_files_names_listing.exec.sh
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
 build_and_checks_variables/.gitignore
+}
+
+
+\subsection{
+  build\_and\_checks\_variables/bandit.ini
+}
+\label{
+  build_and_checks_variables:banditini
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+build_and_checks_variables/bandit.ini
+}
+
+
+\subsection{
+  build\_and\_checks\_variables/bandit\_baseline.json
+}
+\label{
+  build_and_checks_variables:bandit_baselinejson
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+build_and_checks_variables/bandit_baseline.json
 }
 
 
@@ -5753,7 +6066,7 @@ wget_sha512.libr.sh
 </pre>
 
 
-<h3 id="subsection2.44">2.44
+<h3 id="subsection2.46">2.46
 build_and_checks_variables/files_names_listing.txt
 </h3>
 <pre class="numbered_lines">
@@ -5853,21 +6166,25 @@ build_and_checks_dependencies/lines_maps.libr.sh
 build_and_checks_dependencies/overwrite_if_not_equal.libr.sh
 build_and_checks_dependencies/python_black_complement.libr.sh
 build_and_checks_dependencies/python_isort_complement.libr.sh
-build_and_checks_dependencies/split_line_at_most.exec.php
-build_and_checks_dependencies/split_line_at_most.libr.php
+build_and_checks_dependencies/split_score.exec.php
+build_and_checks_dependencies/split_score.libr.php
 build_and_checks_dependencies/strings_functions.libr.sh
 build_and_checks_dependencies/too_long_code_lines.libr.sh
 build_and_checks_dependencies/update_common_build_and_checks.exec.sh
 build_and_checks_dependencies/\
 update_or_check_files_names_listing.exec.sh
 build_and_checks_variables/.gitignore
+build_and_checks_variables/bandit.ini
+build_and_checks_variables/bandit_baseline.json
 build_and_checks_variables/DevOrSysAdminScripts.html.tpl
 // build_and_checks_variables/DevOrSysAdminScripts.tex
 build_and_checks_variables/DevOrSysAdminScripts.tex.tpl
 build_and_checks_variables/files_listing.tex.tpl
 build_and_checks_variables/files_names_listing.txt
 build_and_checks_variables/licenses_notes.txt
+build_and_checks_variables/pylintrc.toml
 build_and_checks_variables/repository_data.txt
+// build_and_checks_variables/upgrade_venvs_ts
 build_and_checks.exec.sh
 COPYING
 COPYING.LESSER
@@ -5888,7 +6205,7 @@ wget_sha512.libr.sh
 </pre>
 
 
-<h3 id="subsection2.45">2.45
+<h3 id="subsection2.47">2.47
 build_and_checks_variables/licenses_notes.txt
 </h3>
 <pre class="numbered_lines">
@@ -5904,11 +6221,13 @@ shellcheck, sort, tail, wc, wget, xargs
 - The following dependencies are GPLv2+ licensed:
 more, pandoc, pdftex, pdflatex, tree
 - The following dependencies are GPLv2 licensed:
-git
+git, pylint
 - The following dependencies are LGPLv2.1+ licensed:
 notify-send
 - The following dependencies are MIT licensed:
 black, isort, mypy
+- The following dependencies are Apache-2.0 licensed:
+bandit
 - php is licensed under PHP License v3.01
 - tex is licensed under Knuth license
 - pcregrep has a custom license from Cambridge University
@@ -5920,29 +6239,138 @@ whilst GNU coreutils is GPLv3+ licensed.
 </pre>
 
 
-<h3 id="subsection2.46">2.46
+<h3 id="subsection2.48">2.48
+build_and_checks_variables/pylintrc.toml
+</h3>
+<pre class="numbered_lines">
+[tool.pylint.main]
+exit-zero = true
+ignore = ["node_modules"]
+jobs = 0
+[tool.pylint.basic]
+module-rgx = "^[_a-zA-Z0-9+]+$"
+[tool.pylint.reports]
+output-format = "colorized"
+</pre>
+
+
+<h3 id="subsection2.49">2.49
 build_and_checks_variables/repository_data.txt
 </h3>
 <pre class="numbered_lines">
+Look at grep_variable to understand the structure of this file.
+Basically, it has almost no structure apart from some lines
+starting with a "variable_name=".
+Anything else is comments.
+
 repository_name=DevOrSysAdminScripts
 repository_web_url=https://github.com/LLyaudet/DevOrSysAdminScripts/
 repository_git_url=git@github.com:LLyaudet/DevOrSysAdminScripts.git
+
 abstract=Some “small” useful scripts
 abstract=for enhancing development or system-administrators tasks
+
 license=GPLv3+
 license2=LGPLv3+
+
 author_email=Laurent.Lyaudet@gmail.com
 author_full_name=Laurent Frédéric Bernard François Lyaudet
 author_last_name=Lyaudet
 author_name=Laurent Lyaudet
 author_website=https://lyaudet.eu/laurent/
+
 acknowledgments=Merci Dieu !
 acknowledgments=Merci Père ! Merci Seigneur ! Merci Saint Esprit !
+
 grammar_or_spell_checker_command=more
+
+
+Why one venv for each Python dependency ?
+Because no language of my knowledge did it right to handle all
+possible dependency conflicts.
+So in case of such a conflict, one specialized venv can get you out
+of any problem.
+The best solution would have been to allow install of different
+versions of the same package, and have a mechanism:
+- first intent, use the latest available version of a package among
+those that satisfy the declared dependency constraints of the package
+that has this dependency;
+- second intent, check a dependency overload configuration file
+with tree structure: if calling python package is A version 1.1.1
+with dependency B itself with dependency C, use B 2.2.2 and C 3.3.3;
+you could have along that another rule saying that when called
+directly B 2.2.2 should use C 4.4.4;
+and even more complicated:
+if calling python package is A version 1.1.1 with dependency B and D
+both themselves with dependency C, use B 2.2.2, D 0.1.0,
+and C 3.3.3 for B, and C 4.4.4 for D;
+once you've seen that it can never be more complicated than that once
+the same version number guarantees that the code is the same,
+you create a config language "à la CSS" for cascading dependencies ;)
+XD fit into JSON the dumbest possible way and you stop bothering
+about dependency conflicts for the rest of history of informatics.
+{
+ "A":{
+  "1.1.1": {
+    "B": {
+      "2.2.2": {
+        "C": {
+           // Dumb, you did not found it by yourself? Failed exam.
+          "3.3.3" : {}
+        }
+      }
+    },
+    "D": {
+      "0.1.0": {
+        "C": {
+           // Dumb, you did not found it by yourself? Failed exam.
+          "4.4.4" : {}
+        }
+      }
+    }
+  },
+  "B": {
+    "2.2.2": {
+      "C": {
+        // Dumb, you did not found it by yourself? Failed exam.
+        "4.4.4" : {}
+      }
+    }
+  }
+}
+Wonderful someone rediscovered nested structures XD
+Seriously so many engineers or computer scientists are dumb to cry.
+
+bandit_venv=../venv_bandit
+black_venv=../venv_black
+isort_venv=../venv_isort
+mypy_venv=../venv_mypy
+pylint_venv=../venv_pylint
+
+
+upgrade venvs can be auto or ask, any other value is interpreted
+as ask.
+
+upgrade_venvs=ask
+
+
+time interval can be 0 to always upgrade or ask to upgrade,
+or a number at most bash max int
+https://superuser.com/questions/1030122/
+what-is-the-maximum-value-of-a-numeric-bash-shell-variable
+it should be enough to simulate never "upgrade or ask for upgrade"
+unless you claim to live many billions years ;)
+If it is wat, this is a random int XD (see RANDOM).
+Note that the probability that it upgrades your dependencies is not
+1/2, it increases over time, and is 1 after slightly
+less than one day.
+If it is watyouwant?, see SRANDOM XD.
+
+upgrade_venvs_time_interval_in_seconds=wat
 </pre>
 
 
-<h3 id="subsection2.47">2.47
+<h3 id="subsection2.50">2.50
 build_and_checks.exec.sh
 </h3>
 <pre class="numbered_lines">
@@ -6014,9 +6442,9 @@ build_and_checks(){
   declare -r\
     LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_common_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='92cca00d2b0fdbeadac0110ef280b99ea10491f308c55'
-  LFBFL_correct_sha512+='57e50a4e55bb8da940f8ee6493bfcad64ddbe1dc3b11'
-  LFBFL_correct_sha512+='a4fc8f8ee9b8951cb622010cd82248e98f6a126'
+  LFBFL_correct_sha512='38db3a169ff7cdd878cf56e1c62669c259184a592ba8d'
+  LFBFL_correct_sha512+='6bbb550bfda6be0155f22533eebded2f2ba3d48ccc8f'
+  LFBFL_correct_sha512+='7d2ada02b15d84d96808a6df6307c11616da760'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_script}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
   chmod +x "./${LFBFL_file_path}"
@@ -6029,7 +6457,7 @@ build_and_checks "$@"
 </pre>
 
 
-<h3 id="subsection2.48">2.48
+<h3 id="subsection2.51">2.51
 COPYING
 </h3>
 <pre class="numbered_lines">
@@ -6710,7 +7138,7 @@ Public License instead of this License.  But first, please read
 </pre>
 
 
-<h3 id="subsection2.49">2.49
+<h3 id="subsection2.52">2.52
 COPYING.LESSER
 </h3>
 <pre class="numbered_lines">
@@ -6882,7 +7310,7 @@ Library.
 </pre>
 
 
-<h3 id="subsection2.50">2.50
+<h3 id="subsection2.53">2.53
 git_helpers/git_checks.libr.sh
 </h3>
 <pre class="numbered_lines">
@@ -6997,7 +7425,7 @@ check_black_code_formatting(){
 </pre>
 
 
-<h3 id="subsection2.51">2.51
+<h3 id="subsection2.54">2.54
 git_helpers/post-commit
 </h3>
 <pre class="numbered_lines">
@@ -7043,7 +7471,7 @@ exit 0
 </pre>
 
 
-<h3 id="subsection2.52">2.52
+<h3 id="subsection2.55">2.55
 git_helpers/post_commit_renaming_comment.libr.sh
 </h3>
 <pre class="numbered_lines">
@@ -7147,20 +7575,16 @@ commit_a_file_renamed_comment(){
   if [[ $LFBFL_verbose -eq 1 ]]; then
     echo "LFBFL_timestamp: ${LFBFL_timestamp}"
   fi
-  get_split_score_after_before_simple\
-    "${LFBFL_max_comment_line_length}" _
+  get_split_score_simple 1 "${LFBFL_max_comment_line_length}" _
   # shellcheck disable=SC2154
-  LFBFL_split_score_command1="${get_split_score_after_before_result}"
+  LFBFL_split_score_command1="${get_split_score_result}"
   # shellcheck disable=SC2154
-  LFBFL_split_score_command_properties1=\
-"${get_split_score_after_before_result2}"
-  get_split_score_after_before_simple\
-    "${LFBFL_max_comment_line_length}" /
+  LFBFL_split_score_command_properties1="${get_split_score_result2}"
+  get_split_score_simple 1 "${LFBFL_max_comment_line_length}" /
   # shellcheck disable=SC2154
-  LFBFL_split_score_command2="${get_split_score_after_before_result}"
+  LFBFL_split_score_command2="${get_split_score_result}"
   # shellcheck disable=SC2154
-  LFBFL_split_score_command_properties2=\
-"${get_split_score_after_before_result2}"
+  LFBFL_split_score_command_properties2="${get_split_score_result2}"
   declare -i LFBFL_renaming_happened=0
   declare -i LFBFL_i
   # declare -r LFBFL_special_file_name="files_names_listing.txt"
@@ -7387,7 +7811,7 @@ commit_a_file_renamed_comment(){
 </pre>
 
 
-<h3 id="subsection2.53">2.53
+<h3 id="subsection2.56">2.56
 git_helpers/pre-commit
 </h3>
 <pre class="numbered_lines">
@@ -7445,7 +7869,7 @@ exit 0
 </pre>
 
 
-<h3 id="subsection2.54">2.54
+<h3 id="subsection2.57">2.57
 LiensUtiles.txt
 </h3>
 <pre class="numbered_lines">
@@ -7467,7 +7891,7 @@ calling-gpld-programs-from-a-shell-script
 </pre>
 
 
-<h3 id="subsection2.55">2.55
+<h3 id="subsection2.58">2.58
 README.md.tpl
 </h3>
 <pre class="numbered_lines">
@@ -7477,6 +7901,11 @@ README.md.tpl
 [![Codacy-badge]][Codacy-package-page]
 ![GitHub-top-language-badge]
 ![GitHub-code-size-in-bytes-badge]
+[![Security:bandit:badge]][Bandit-GitHub.com]
+[![Code-style:black:badge]][Black-GitHub.com]
+[![Imports:isort:badge]][Isort-GitHub.io]
+[![Typecheck:mypy:badge]][Typecheck-mypy-lang.org]
+[![Linting:pylint:badge]][Pylint-GitHub.com]
 
 |                **Some "small" useful scripts**               |
 |:------------------------------------------------------------:|
@@ -7532,10 +7961,35 @@ languages/top/llyaudet/DevOrSysAdminScripts
 
 [GitHub-code-size-in-bytes-badge]: https://img.shields.io/github/\
 languages/code-size/llyaudet/DevOrSysAdminScripts
+
+[Security:bandit:badge]: https://img.shields.io/badge/\
+security-bandit-yellow.svg
+
+[Bandit-GitHub.com]: https://github.com/PyCQA/bandit
+
+[Code-style:black:badge]: https://img.shields.io/badge/\
+code%20style-black-000000.svg
+
+[Black-GitHub.com]: https://github.com/psf/black
+
+[Imports:isort:badge]: https://img.shields.io/badge/\
+%20imports-isort-%231674b1?style=flat&amp;labelColor=ef8336
+
+[Isort-GitHub.io]: https://pycqa.github.io/isort/
+
+[Typecheck:mypy:badge]: https://www.mypy-lang.org/static/\
+mypy_badge.svg
+
+[Typecheck-mypy-lang.org]: https://mypy-lang.org/
+
+[Linting:pylint:badge]: https://img.shields.io/badge/\
+linting-pylint-yellowgreen
+
+[Pylint-GitHub.com]: https://github.com/pylint-dev/pylint
 </pre>
 
 
-<h3 id="subsection2.56">2.56
+<h3 id="subsection2.59">2.59
 unicode.libr.php
 </h3>
 <pre class="numbered_lines">
@@ -7745,7 +8199,7 @@ foreach($arr as $s_hexa){
 </pre>
 
 
-<h3 id="subsection2.57">2.57
+<h3 id="subsection2.60">2.60
 upgrade_build_and_checks.exec.sh
 </h3>
 <pre class="numbered_lines">
@@ -7793,7 +8247,7 @@ upgrade_build_and_checks "$@"
 </pre>
 
 
-<h3 id="subsection2.58">2.58
+<h3 id="subsection2.61">2.61
 wget_sha512.libr.sh
 </h3>
 <pre class="numbered_lines">

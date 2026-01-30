@@ -447,26 +447,26 @@ build_and_checks_dependencies/python_isort_complement.libr.sh
 
 
 \subsection{
-  build\_and\_checks\_dependencies/split\_line\_at\_most.exec.php
+  build\_and\_checks\_dependencies/split\_score.exec.php
 }
 \label{
-  build_and_checks_dependencies:split_line_at_mostexecphp
+  build_and_checks_dependencies:split_scoreexecphp
 }
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/split_line_at_most.exec.php
+build_and_checks_dependencies/split_score.exec.php
 }
 
 
 \subsection{
-  build\_and\_checks\_dependencies/split\_line\_at\_most.libr.php
+  build\_and\_checks\_dependencies/split\_score.libr.php
 }
 \label{
-  build_and_checks_dependencies:split_line_at_mostlibrphp
+  build_and_checks_dependencies:split_scorelibrphp
 }
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/split_line_at_most.libr.php
+build_and_checks_dependencies/split_score.libr.php
 }
 
 
@@ -535,6 +535,30 @@ build_and_checks_variables/.gitignore
 
 
 \subsection{
+  build\_and\_checks\_variables/bandit.ini
+}
+\label{
+  build_and_checks_variables:banditini
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+build_and_checks_variables/bandit.ini
+}
+
+
+\subsection{
+  build\_and\_checks\_variables/bandit\_baseline.json
+}
+\label{
+  build_and_checks_variables:bandit_baselinejson
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+build_and_checks_variables/bandit_baseline.json
+}
+
+
+\subsection{
   build\_and\_checks\_variables/DevOrSysAdminScripts.html.tpl
 }
 \label{
@@ -591,6 +615,18 @@ build_and_checks_variables/files_names_listing.txt
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
 build_and_checks_variables/licenses_notes.txt
+}
+
+
+\subsection{
+  build\_and\_checks\_variables/pylintrc.toml
+}
+\label{
+  build_and_checks_variables:pylintrctoml
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+build_and_checks_variables/pylintrc.toml
 }
 
 

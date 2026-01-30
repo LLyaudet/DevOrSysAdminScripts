@@ -74,13 +74,13 @@ Some “small” useful scripts
 for enhancing development or system-administrators tasks
 \end{abstract}
 
-Current version: 2026-01-03
+Current version: 2026-01-30
 
-Current number of commits: 245
+Current number of commits: 259
 
-Current git SHA1: 03894453aab8501437cc90795ff5ecd2a246e64a
+Current git SHA1: b9d3b4705a2b236a7e593ceb81f3306ede168fa0
 
-Code lines: 6311 total lines, 5694 not empty lines, 617 empty lines.
+Code lines: 6798 total lines, 6128 not empty lines, 670 empty lines.
 
 \tableofcontents
 \newpage
@@ -133,14 +133,16 @@ Code lines: 6311 total lines, 5694 not empty lines, 617 empty lines.
 │   ├── overwrite_if_not_equal.libr.sh
 │   ├── python_black_complement.libr.sh
 │   ├── python_isort_complement.libr.sh
-│   ├── split_line_at_most.exec.php
-│   ├── split_line_at_most.libr.php
+│   ├── split_score.exec.php
+│   ├── split_score.libr.php
 │   ├── strings_functions.libr.sh
 │   ├── too_long_code_lines.libr.sh
 │   ├── update_common_build_and_checks.exec.sh
 │   └── update_or_check_files_names_listing.exec.sh
 ├── build_and_checks.exec.sh
 ├── build_and_checks_variables
+│   ├── bandit_baseline.json
+│   ├── bandit.ini
 │   ├── DevOrSysAdminScripts.html.tpl
 │   ├── DevOrSysAdminScripts.tex
 │   ├── DevOrSysAdminScripts.tex.tpl
@@ -148,6 +150,7 @@ Code lines: 6311 total lines, 5694 not empty lines, 617 empty lines.
 │   ├── files_names_listing.txt
 │   ├── .gitignore
 │   ├── licenses_notes.txt
+│   ├── pylintrc.toml
 │   └── repository_data.txt
 ├── COPYING
 ├── COPYING.LESSER
@@ -166,29 +169,29 @@ Code lines: 6311 total lines, 5694 not empty lines, 617 empty lines.
 ├── upgrade_build_and_checks.exec.sh
 └── wget_sha512.libr.sh
 
-5 directories, 71 files
+5 directories, 74 files
 \end{verbatim}
 
 \begin{verbatim}
-[ 12K Jan  3 20:12]  ./
-├── [4.0K Jan  3 20:12]  build_and_checks_dependencies/
+[ 12K Jan 30 19:43]  ./
+├── [4.0K Jan 30 19:43]  build_and_checks_dependencies/
 │   ├── [2.6K Jan  3 18:57]  build_and_checks.exec.sh.tpl*
 │   ├── [2.5K Jan  3 18:57]  build_md_from_printable_md.exec.sh*
 │   ├── [1.3K Jan  3 18:57]  check_shell_scripts_beginnings.libr.sh
 │   ├── [2.7K Jan  3 19:40]  check_URLs.libr.sh
-│   ├── [ 17K Jan  3 20:12]  common_build_and_checks.exec.sh*
-│   ├── [ 12K Jan  3 18:57]  common_build_and_checks.exec.sh.tpl
+│   ├── [ 21K Jan 30 19:43]  common_build_and_checks.exec.sh*
+│   ├── [ 16K Jan 30 19:24]  common_build_and_checks.exec.sh.tpl
 │   ├── [3.1K Jan  3 18:57]  comparisons.libr.sh
-│   ├── [ 15K Jan  3 18:57]  create_PDF.exec.sh*
+│   ├── [ 15K Jan  4 13:52]  create_PDF.exec.sh*
 │   ├── [3.1K Jan  3 18:57]  generate_from_template.libr.sh
 │   ├── [1.9K Jan  3 18:57]  get_common_text_glob_patterns.libr.sh
 │   ├── [1.9K Jan  3 18:57]  grammar_and_spell_check.libr.sh
-│   ├── [4.0K Jan  3 20:12]  licenses_templates/
-│   │   ├── [8.8K Jan  3 18:57]  build_licenses_templates.exec.sh*
+│   ├── [4.0K Jan 30 19:43]  licenses_templates/
+│   │   ├── [8.9K Jan  5 17:56]  build_licenses_templates.exec.sh*
 │   │   ├── [ 734 Dec 30 19:34]  license_file_header_AGPLv3+.c.tpl
 │   │   ├── [ 736 Dec 30 19:34]  license_file_header_AGPLv3+.py.tpl
 │   │   ├── [ 768 Dec 30 19:34]  license_file_header_AGPLv3+.sh.tpl
-│   │   ├── [ 768 Dec 30 19:34]  license_file_header_AGPLv3+.tex.tpl
+│   │   ├── [ 768 Jan  5 17:57]  license_file_header_AGPLv3+.tex.tpl
 │   │   ├── [ 728 Dec 30 19:32]  license_file_header_AGPLv3+.tpl
 │   │   ├── [ 761 Jan  3 18:40]  license_file_header_GPLv3+.c
 │   │   ├── [ 713 Dec 27 21:48]  license_file_header_GPLv3+.c.tpl
@@ -196,8 +199,8 @@ Code lines: 6311 total lines, 5694 not empty lines, 617 empty lines.
 │   │   ├── [ 715 Dec 27 21:48]  license_file_header_GPLv3+.py.tpl
 │   │   ├── [ 795 Jan  3 18:48]  license_file_header_GPLv3+.sh
 │   │   ├── [ 747 Dec 27 21:48]  license_file_header_GPLv3+.sh.tpl
-│   │   ├── [ 795 Jan  3 18:48]  license_file_header_GPLv3+.tex
-│   │   ├── [ 747 Dec 27 21:48]  license_file_header_GPLv3+.tex.tpl
+│   │   ├── [ 795 Jan  5 17:57]  license_file_header_GPLv3+.tex
+│   │   ├── [ 747 Jan  5 17:57]  license_file_header_GPLv3+.tex.tpl
 │   │   ├── [ 707 Dec 27 21:48]  license_file_header_GPLv3+.tpl
 │   │   ├── [ 782 Jan  3 18:40]  license_file_header_LGPLv3+.c
 │   │   ├── [ 734 Dec 27 21:48]  license_file_header_LGPLv3+.c.tpl
@@ -212,43 +215,46 @@ Code lines: 6311 total lines, 5694 not empty lines, 617 empty lines.
 │   ├── [6.7K Jan  3 18:57]  lines_filters.libr.sh
 │   ├── [2.8K Jan  3 18:57]  lines_maps.libr.sh
 │   ├── [1.4K Jan  3 18:57]  overwrite_if_not_equal.libr.sh
-│   ├── [1.4K Jan  3 18:57]  python_black_complement.libr.sh
+│   ├── [1.4K Jan 24 18:32]  python_black_complement.libr.sh
 │   ├── [1.7K Jan  3 18:57]  python_isort_complement.libr.sh
-│   ├── [1.4K Jan  3 20:11]  split_line_at_most.exec.php*
-│   ├── [1.8K Jan  3 20:11]  split_line_at_most.libr.php
-│   ├── [ 13K Jan  3 18:57]  strings_functions.libr.sh
+│   ├── [1.5K Jan  4 13:59]  split_score.exec.php
+│   ├── [1.9K Jan  4 13:38]  split_score.libr.php
+│   ├── [ 12K Jan  4 15:39]  strings_functions.libr.sh
 │   ├── [2.3K Jan  3 18:57]  too_long_code_lines.libr.sh
-│   ├── [3.8K Jan  3 18:57]  update_common_build_and_checks.exec.sh*
-│   └── [4.3K Jan  3 18:57]  *
+│   ├── [3.8K Jan  4 13:46]  update_common_build_and_checks.exec.sh*
+│   └── [4.2K Jan  4 13:49]  *
 │   │ update_or_check_files_names_listing.exec.sh**
-├── [2.8K Jan  3 20:12]  build_and_checks.exec.sh*
-├── [4.0K Jan  3 20:12]  build_and_checks_variables/
-│   ├── [5.1K Jan  3 18:57]  DevOrSysAdminScripts.html.tpl
-│   ├── [ 26K Jan  3 20:12]  DevOrSysAdminScripts.tex
-│   ├── [3.7K Jan  3 18:57]  DevOrSysAdminScripts.tex.tpl
-│   ├── [ 15K Dec 31 19:44]  files_listing.tex.tpl
-│   ├── [5.2K Jan  3 18:57]  files_names_listing.txt
-│   ├── [   7 Dec 29 17:13]  .gitignore
-│   ├── [1.0K Dec 31 14:41]  licenses_notes.txt
-│   └── [ 645 Dec 30 16:37]  repository_data.txt
+├── [2.8K Jan 30 19:43]  build_and_checks.exec.sh*
+├── [4.0K Jan 30 19:43]  build_and_checks_variables/
+│   ├── [  15 Jan  5 20:00]  bandit_baseline.json
+│   ├── [  25 Jan  5 18:49]  bandit.ini
+│   ├── [5.1K Jan  7 16:45]  DevOrSysAdminScripts.html.tpl
+│   ├── [ 27K Jan 30 19:41]  DevOrSysAdminScripts.tex
+│   ├── [3.8K Jan  7 16:46]  DevOrSysAdminScripts.tex.tpl
+│   ├── [ 15K Jan  5 20:05]  files_listing.tex.tpl
+│   ├── [5.4K Jan 30 19:43]  files_names_listing.txt
+│   ├── [  24 Jan 15 22:26]  .gitignore
+│   ├── [1.1K Jan  7 16:44]  licenses_notes.txt
+│   ├── [ 173 Jan 30 19:40]  pylintrc.toml
+│   └── [3.5K Jan 15 22:24]  repository_data.txt
 ├── [ 34K May  6  2024]  COPYING
 ├── [7.5K Dec 27 21:48]  COPYING.LESSER
-├── [259K Jan  3 20:12]  DevOrSysAdminScripts.html
-├── [255K Jan  3 20:12]  DevOrSysAdminScripts.pdf
-├── [4.0K Jan  3 18:57]  git_helpers/
+├── [272K Jan 30 19:41]  DevOrSysAdminScripts.html
+├── [266K Jan 30 19:41]  DevOrSysAdminScripts.pdf
+├── [4.0K Jan  4 13:54]  git_helpers/
 │   ├── [3.4K Jan  3 18:57]  git_checks.libr.sh
 │   ├── [1.2K Dec 30 17:25]  post-commit
-│   ├── [ 13K Jan  3 18:57]  post_commit_renaming_comment.libr.sh
+│   ├── [ 13K Jan  4 13:54]  post_commit_renaming_comment.libr.sh
 │   └── [1.3K Dec 30 17:03]  pre-commit
 ├── [ 830 Dec 29 19:10]  LiensUtiles.txt
-├── [2.7K Dec 31 16:31]  README.html
-├── [2.4K Dec 31 16:31]  README.md
-├── [2.4K Dec 31 16:31]  README.md.tpl
+├── [3.4K Jan  5 19:29]  README.html
+├── [3.3K Jan  5 19:29]  README.md
+├── [3.3K Jan  5 19:29]  README.md.tpl
 ├── [6.5K Jan  3 18:57]  unicode.libr.php
 ├── [1.3K Jan  3 18:57]  upgrade_build_and_checks.exec.sh*
 └── [1.5K Jan  3 18:57]  wget_sha512.libr.sh
 
-5 directories, 71 files
+5 directories, 74 files
 \end{verbatim}
 
 \section{Listing of files}
@@ -272,11 +278,13 @@ shellcheck, sort, tail, wc, wget, xargs
 \item The following dependencies are GPLv2+ licensed:\newline
 more, pandoc, pdftex, pdflatex, tree
 \item The following dependencies are GPLv2 licensed:\newline
-git
+git, pylint
 \item The following dependencies are LGPLv2.1+ licensed:\newline
 notify-send
 \item The following dependencies are MIT licensed:\newline
 black, isort, mypy
+\item The following dependencies are Apache-2.0 licensed:\newline
+bandit
 \item php is licensed under PHP License v3.01
 \item tex is licensed under Knuth license
 \item pcregrep has a custom license from Cambridge University
@@ -736,26 +744,26 @@ build_and_checks_dependencies/python_isort_complement.libr.sh
 
 
 \subsection{
-  build\_and\_checks\_dependencies/split\_line\_at\_most.exec.php
+  build\_and\_checks\_dependencies/split\_score.exec.php
 }
 \label{
-  build_and_checks_dependencies:split_line_at_mostexecphp
+  build_and_checks_dependencies:split_scoreexecphp
 }
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/split_line_at_most.exec.php
+build_and_checks_dependencies/split_score.exec.php
 }
 
 
 \subsection{
-  build\_and\_checks\_dependencies/split\_line\_at\_most.libr.php
+  build\_and\_checks\_dependencies/split\_score.libr.php
 }
 \label{
-  build_and_checks_dependencies:split_line_at_mostlibrphp
+  build_and_checks_dependencies:split_scorelibrphp
 }
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/split_line_at_most.libr.php
+build_and_checks_dependencies/split_score.libr.php
 }
 
 
@@ -824,6 +832,30 @@ build_and_checks_variables/.gitignore
 
 
 \subsection{
+  build\_and\_checks\_variables/bandit.ini
+}
+\label{
+  build_and_checks_variables:banditini
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+build_and_checks_variables/bandit.ini
+}
+
+
+\subsection{
+  build\_and\_checks\_variables/bandit\_baseline.json
+}
+\label{
+  build_and_checks_variables:bandit_baselinejson
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+build_and_checks_variables/bandit_baseline.json
+}
+
+
+\subsection{
   build\_and\_checks\_variables/DevOrSysAdminScripts.html.tpl
 }
 \label{
@@ -880,6 +912,18 @@ build_and_checks_variables/files_names_listing.txt
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
 build_and_checks_variables/licenses_notes.txt
+}
+
+
+\subsection{
+  build\_and\_checks\_variables/pylintrc.toml
+}
+\label{
+  build_and_checks_variables:pylintrctoml
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+build_and_checks_variables/pylintrc.toml
 }
 
 

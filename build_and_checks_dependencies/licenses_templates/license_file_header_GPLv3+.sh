@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # This file is part of DevOrSysAdminScripts library.
 #
 # DevOrSysAdminScripts is free software:

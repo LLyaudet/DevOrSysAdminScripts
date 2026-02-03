@@ -106,6 +106,7 @@ declare LFBFL_exit_string
 declare LFBFL_temp2
 declare LFBFL_prefix_string
 declare LFBFL_intermediate_file_name
+declare LFBFL_file_prefix
 for LFBFL_license in "${LFBFL_licenses[@]}"; do
   LFBFL_license_prefix2="${LFBFL_license_prefix}${LFBFL_license}"
   for ((i=0; i<${#LFBFL_block_comment_languages[@]}; i++)); do
@@ -127,11 +128,16 @@ for LFBFL_license in "${LFBFL_licenses[@]}"; do
     LFBFL_prefix_string=${LFBFL_line_comment_prefixes[i]}
     LFBFL_intermediate_file_name="${LFBFL_license_file_name}.tpl"
     LFBFL_intermediate_file_name+="${LFBFL_temp2}"
+    LFBFL_file_prefix=""
+    if [[ "${LFBFL_extension}" == "sh" ]]; then
+      LFBFL_file_prefix="#!/usr/bin/env bash"
+    fi
     generate_from_template_with_line_comments\
       "${LFBFL_license_prefix2}.tpl"\
       "${LFBFL_license_file_name}.tpl"\
       "${LFBFL_prefix_string}"\
-      "sed -Ei -e 's/\s*$//g' '${LFBFL_intermediate_file_name}'"
+      "sed -Ei -e 's/\s*$//g' '${LFBFL_intermediate_file_name}'"\
+      "${LFBFL_file_prefix}"
   done
 done
 # --------------------------------------------------------------------

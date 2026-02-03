@@ -76,11 +76,11 @@ for enhancing development or system-administrators tasks
 
 Current version: 2026-02-03
 
-Current number of commits: 273
+Current number of commits: 274
 
-Current git SHA1: 9f9b20c968c259ce0d95efa83958a467eb002ab8
+Current git SHA1: 80901b9210adacc80890f23bb6a8d49c5093b13d
 
-Code lines: 6879 total lines, 6200 not empty lines, 679 empty lines.
+Code lines: 6894 total lines, 6215 not empty lines, 679 empty lines.
 
 \tableofcontents
 \newpage
@@ -173,32 +173,32 @@ Code lines: 6879 total lines, 6200 not empty lines, 679 empty lines.
 \end{verbatim}
 
 \begin{verbatim}
-[ 12K Feb  3 17:58]  ./
-├── [4.0K Feb  3 17:58]  build_and_checks_dependencies/
+[ 12K Feb  3 19:33]  ./
+├── [4.0K Feb  3 19:33]  build_and_checks_dependencies/
 │   ├── [3.4K Feb  3 14:21]  build_and_checks.exec.sh.tpl*
 │   ├── [2.5K Jan  3 18:57]  build_md_from_printable_md.exec.sh*
 │   ├── [1.3K Jan  3 18:57]  check_shell_scripts_beginnings.libr.sh
 │   ├── [2.7K Jan  3 19:40]  check_URLs.libr.sh
-│   ├── [ 21K Feb  3 17:58]  common_build_and_checks.exec.sh*
+│   ├── [ 21K Feb  3 19:33]  common_build_and_checks.exec.sh*
 │   ├── [ 16K Jan 30 19:24]  common_build_and_checks.exec.sh.tpl
 │   ├── [3.1K Jan  3 18:57]  comparisons.libr.sh
 │   ├── [ 15K Feb  3 12:38]  create_PDF.exec.sh*
-│   ├── [3.1K Jan  3 18:57]  generate_from_template.libr.sh
+│   ├── [3.1K Feb  3 19:32]  generate_from_template.libr.sh
 │   ├── [1.9K Jan  3 18:57]  get_common_text_glob_patterns.libr.sh
 │   ├── [1.9K Jan  3 18:57]  grammar_and_spell_check.libr.sh
-│   ├── [4.0K Feb  3 17:58]  licenses_templates/
-│   │   ├── [8.9K Jan  5 17:56]  build_licenses_templates.exec.sh*
+│   ├── [4.0K Feb  3 19:33]  licenses_templates/
+│   │   ├── [9.1K Feb  3 19:31]  build_licenses_templates.exec.sh*
 │   │   ├── [ 734 Dec 30 19:34]  license_file_header_AGPLv3+.c.tpl
 │   │   ├── [ 736 Dec 30 19:34]  license_file_header_AGPLv3+.py.tpl
-│   │   ├── [ 768 Dec 30 19:34]  license_file_header_AGPLv3+.sh.tpl
+│   │   ├── [ 788 Feb  3 19:33]  license_file_header_AGPLv3+.sh.tpl
 │   │   ├── [ 768 Jan  5 17:57]  license_file_header_AGPLv3+.tex.tpl
 │   │   ├── [ 728 Dec 30 19:32]  license_file_header_AGPLv3+.tpl
 │   │   ├── [ 761 Jan  3 18:40]  license_file_header_GPLv3+.c
 │   │   ├── [ 713 Dec 27 21:48]  license_file_header_GPLv3+.c.tpl
 │   │   ├── [ 763 Jan  3 18:40]  license_file_header_GPLv3+.py
 │   │   ├── [ 715 Dec 27 21:48]  license_file_header_GPLv3+.py.tpl
-│   │   ├── [ 795 Jan  3 18:48]  license_file_header_GPLv3+.sh
-│   │   ├── [ 747 Dec 27 21:48]  license_file_header_GPLv3+.sh.tpl
+│   │   ├── [ 815 Feb  3 19:33]  license_file_header_GPLv3+.sh
+│   │   ├── [ 767 Feb  3 19:33]  license_file_header_GPLv3+.sh.tpl
 │   │   ├── [ 795 Jan  5 17:57]  license_file_header_GPLv3+.tex
 │   │   ├── [ 747 Jan  5 17:57]  license_file_header_GPLv3+.tex.tpl
 │   │   ├── [ 707 Dec 27 21:48]  license_file_header_GPLv3+.tpl
@@ -206,8 +206,8 @@ Code lines: 6879 total lines, 6200 not empty lines, 679 empty lines.
 │   │   ├── [ 734 Dec 27 21:48]  license_file_header_LGPLv3+.c.tpl
 │   │   ├── [ 784 Jan  3 18:40]  license_file_header_LGPLv3+.py
 │   │   ├── [ 736 Dec 27 21:48]  license_file_header_LGPLv3+.py.tpl
-│   │   ├── [ 816 Jan  3 18:48]  license_file_header_LGPLv3+.sh
-│   │   ├── [ 768 Dec 27 21:48]  license_file_header_LGPLv3+.sh.tpl
+│   │   ├── [ 836 Feb  3 19:33]  license_file_header_LGPLv3+.sh
+│   │   ├── [ 788 Feb  3 19:33]  license_file_header_LGPLv3+.sh.tpl
 │   │   ├── [ 816 Jan  3 18:48]  license_file_header_LGPLv3+.tex
 │   │   ├── [ 768 Dec 27 21:48]  license_file_header_LGPLv3+.tex.tpl
 │   │   └── [ 728 Dec 27 21:48]  license_file_header_LGPLv3+.tpl
@@ -224,12 +224,12 @@ Code lines: 6879 total lines, 6200 not empty lines, 679 empty lines.
 │   ├── [4.0K Feb  3 10:19]  update_common_build_and_checks.exec.sh*
 │   └── [4.2K Jan  4 13:49]  *
 │   │ update_or_check_files_names_listing.exec.sh**
-├── [3.6K Feb  3 17:58]  build_and_checks.exec.sh*
-├── [4.0K Feb  3 17:58]  build_and_checks_variables/
+├── [3.6K Feb  3 19:33]  build_and_checks.exec.sh*
+├── [4.0K Feb  3 19:33]  build_and_checks_variables/
 │   ├── [  15 Jan  5 20:00]  bandit_baseline.json
 │   ├── [  25 Jan  5 18:49]  bandit.ini
 │   ├── [5.1K Jan  7 16:45]  DevOrSysAdminScripts.html.tpl
-│   ├── [ 27K Feb  3 17:58]  DevOrSysAdminScripts.tex
+│   ├── [ 27K Feb  3 19:33]  DevOrSysAdminScripts.tex
 │   ├── [3.8K Jan  7 16:46]  DevOrSysAdminScripts.tex.tpl
 │   ├── [ 15K Jan 30 19:43]  files_listing.tex.tpl
 │   ├── [5.4K Jan 30 19:43]  files_names_listing.txt
@@ -239,8 +239,8 @@ Code lines: 6879 total lines, 6200 not empty lines, 679 empty lines.
 │   └── [3.5K Jan 15 22:24]  repository_data.txt
 ├── [ 34K May  6  2024]  COPYING
 ├── [7.5K Dec 27 21:48]  COPYING.LESSER
-├── [275K Feb  3 17:58]  DevOrSysAdminScripts.html
-├── [269K Feb  3 17:58]  DevOrSysAdminScripts.pdf
+├── [276K Feb  3 19:33]  DevOrSysAdminScripts.html
+├── [269K Feb  3 19:33]  DevOrSysAdminScripts.pdf
 ├── [4.0K Jan  4 13:54]  git_helpers/
 │   ├── [3.4K Jan  3 18:57]  git_checks.libr.sh
 │   ├── [1.2K Dec 30 17:25]  post-commit

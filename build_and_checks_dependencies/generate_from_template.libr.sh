@@ -47,10 +47,14 @@ generate_from_template_with_line_comments(){
   # $2=target_file_name
   # $3=line_comment_prefix
   # $4=optional_post_processing
+  # $5=file_prefix
   local LFBFL_temp
   LFBFL_temp="$2.generate_from_template_with_line_comments.temp"
   readonly LFBFL_temp
-  sed -e "s/^/$3/g" "$1" > "${LFBFL_temp}"
+  if [[ -n "$5" ]]; then
+    echo "$5" > "${LFBFL_temp}"
+  fi
+  sed -e "s/^/$3/g" "$1" >> "${LFBFL_temp}"
   if [[ -n "$4" ]]; then
     eval "$4"
   fi

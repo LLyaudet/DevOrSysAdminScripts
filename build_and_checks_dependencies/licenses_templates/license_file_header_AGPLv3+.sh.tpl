@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 # This file is part of @repository_name@ library.
 #
 # @repository_name@ is free software:

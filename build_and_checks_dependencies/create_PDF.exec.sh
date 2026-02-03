@@ -97,9 +97,6 @@ tree -a -DFh --gitignore\
   | replace_non_ascii_spaces\
   > "${LFBFL_subdir2}/temp/current_tree.txt.temp"
 
-overwrite_if_not_equal "${LFBFL_subdir2}/temp/current_tree.txt"\
-  "${LFBFL_subdir2}/temp/current_tree.txt.temp" 1 1
-
 LFBFL_temp_files_listing="./${LFBFL_subdir2}/temp/"
 LFBFL_temp_files_listing+="files_listing.tex.tpl.temp"
 : > "${LFBFL_temp_files_listing}"
@@ -229,7 +226,7 @@ overwrite_if_not_equal\
 
 # We verify if some lines are beyond 70 characters
 # in current_tree_light.txt and current_tree.txt.
-LFBFL_trees=("current_tree_light.txt" "current_tree.txt")
+LFBFL_trees=("current_tree_light.txt" "current_tree.txt.temp")
 declare LFBFL_tree_path
 for LFBFL_tree in "${LFBFL_trees[@]}"; do
   LFBFL_tree_path="${LFBFL_subdir2}/temp/${LFBFL_tree}"
@@ -272,6 +269,9 @@ for LFBFL_tree in "${LFBFL_trees[@]}"; do
       "${LFBFL_tree_path}"
   done
 done
+
+overwrite_if_not_equal "${LFBFL_subdir2}/temp/current_tree.txt"\
+  "${LFBFL_subdir2}/temp/current_tree.txt.temp" 1 1
 
 if [[ -f "./${LFBFL_subdir2}/${repository_name}.tex.tpl" ]]; then
   # If there is a template, we init the process from it.

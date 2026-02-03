@@ -28,6 +28,8 @@ overwrite_if_not_equal(){
   # $1=$target_file_name
   # $2=$temp_file_name
   # $3=$keep_temp
+  # $4=$tree_mode : when the two files are the output of tree command,
+  # we ignore if all the differences are only on directories.
   if [[ ! -f "$1" ]]; then
     if [[ -n "$3" ]]; then
       cp -p "$2" "$1"
@@ -36,8 +38,15 @@ overwrite_if_not_equal(){
     fi
     return
   fi
-  diff -q "$1" "$2"
-  declare -ri LFBFL_is_equal=$?
+  declare -i LFBFL_is_equal=$?
+  if [[ -n "$4" ]]; then
+    # shellcheck disable=SC2312
+    diff "$1" "$2" | grep -E "^(>|<)" | grep -v "/$"
+    LFBFL_is_equal=1-$?
+  else
+    diff -q "$1" "$2"
+    LFBFL_is_equal=$?
+  fi
   # shellcheck disable=SC2250
   if [[ $LFBFL_is_equal == 0 ]]; then
     if [[ -z "$3" ]]; then

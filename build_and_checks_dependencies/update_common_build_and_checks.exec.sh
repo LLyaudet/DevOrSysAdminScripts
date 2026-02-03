@@ -24,6 +24,9 @@
 # This file was renamed from "update_common_build_and_checks.sh"
 # to "update_common_build_and_checks.exec.sh".
 
+# shellcheck disable=SC1091
+source "overwrite_if_not_equal.libr.sh"
+
 update_common_build_and_checks(){
   declare -i LFBFL_verbose=0
   if [[ "$1" == "--verbose" ]]; then
@@ -34,7 +37,8 @@ update_common_build_and_checks(){
   readonly LFBFL_verbose
 
   declare -r LFBFL_common_file_name="common_build_and_checks.exec.sh"
-  cp "./${LFBFL_common_file_name}.tpl" "./${LFBFL_common_file_name}"
+  cp "./${LFBFL_common_file_name}.tpl"\
+     "./${LFBFL_common_file_name}.temp"
 
   declare -r LFBFL_file_names=(\
     "build_md_from_printable_md.exec.sh"\
@@ -81,11 +85,14 @@ update_common_build_and_checks(){
     LFBFL_base_file_name=$(basename "${LFBFL_file_name}")
     sed -i\
       "s|@sha512_${LFBFL_base_file_name}@|${LFBFL_file_sha512_all}|g"\
-      "./${LFBFL_common_file_name}"
+      "./${LFBFL_common_file_name}.temp"
   done
 
+  overwrite_if_not_equal "./${LFBFL_common_file_name}"\
+    "./${LFBFL_common_file_name}.temp"
+
   declare -r LFBFL_main_file_name="build_and_checks.exec.sh"
-  cp "./${LFBFL_main_file_name}.tpl" "../${LFBFL_main_file_name}"
+  cp "./${LFBFL_main_file_name}.tpl" "../${LFBFL_main_file_name}.temp"
 
   # shellcheck disable=SC2312
   LFBFL_file_sha512=$(
@@ -100,7 +107,10 @@ update_common_build_and_checks(){
   LFBFL_file_sha512_all+="'${LFBFL_file_sha512:89}'"
   sed -i\
     "s|@sha512_${LFBFL_common_file_name}@|${LFBFL_file_sha512_all}|g"\
-    "../${LFBFL_main_file_name}"
+    "../${LFBFL_main_file_name}.temp"
+
+  overwrite_if_not_equal "../${LFBFL_main_file_name}"\
+    "../${LFBFL_main_file_name}.temp"
 }
 
 update_common_build_and_checks "$@"

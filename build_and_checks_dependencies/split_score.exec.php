@@ -45,8 +45,10 @@ $' echo(generate_split_score'\
 $'(true, 70, [\'/\'])(\'/\', 60, true));'
 */
 
+// The first cast "(int) generate_split_score" is to avoid false
+// positive errors on possible XSS if output is unescaped.
 echo(
-  generate_split_score(
+  (int) generate_split_score(
     (bool) $argv[1], (int) $argv[2], explode(',', $argv[3]),
   )($argv[4], (int) $argv[5], (bool) $argv[6])
 );

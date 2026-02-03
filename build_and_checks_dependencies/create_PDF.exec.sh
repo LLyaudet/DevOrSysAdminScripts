@@ -397,22 +397,22 @@ if [[ -f "${LFBFL_html_path_start}.1" ]]; then
     "${LFBFL_html_path_start}.3"
 
   insert_file_at_token "${LFBFL_html_path_start}.3"\
-    @files_lis@ "${LFBFL_temp_files_lis}"
+    @files_lis@ "${LFBFL_temp_files_lis}" "${LFBFL_html_path_start}.4"
 
   pushd "./${LFBFL_subdir2}/temp/" || (echo "pushd failed" && exit)
   sed -i -e '/@current_tree_light@/{r current_tree_light.txt' -e 'd}'\
-    "${repository_name}.html.3"
+    "${repository_name}.html.4"
   sed -i -e '/@current_tree@/{r current_tree.txt' -e 'd}'\
-    "${repository_name}.html.3"
+    "${repository_name}.html.4"
   popd || (echo "popd failed" && exit)
 
-  insert_file_at_token "${LFBFL_html_path_start}.3"\
+  insert_file_at_token "${LFBFL_html_path_start}.4"\
     @files_listing_HTMLPreInput@\
     "./${LFBFL_subdir2}/temp/files_listing.html.tpl"\
-    "${LFBFL_html_path_start}.4"
+    "${LFBFL_html_path_start}.5"
 
   overwrite_if_not_equal "./${repository_name}.html"\
-    "${LFBFL_html_path_start}.4" 1
+    "${LFBFL_html_path_start}.5" 1
 fi
 
 if [[ -n "${LFBFL_verbose}" ]]; then

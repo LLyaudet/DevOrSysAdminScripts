@@ -77,4 +77,24 @@ build_and_checks(){
     "${LFBFL_dependencies_URL}" "${LFBFL_verbose}"
 }
 
+if [[ "$*" == *--fixed_point_build* ]]; then
+  echo "--fixed_point_build"
+  source "./build_and_checks_dependencies/lines_filters.libr.sh"
+  LFBFL_data_file_name="./build_and_checks_variables/"
+  LFBFL_data_file_name+="repository_data.txt"
+  grep_variable "${LFBFL_data_file_name}" repository_name
+  # Touching the 3 following files first let us iterate
+  # upgrade_build_and_checks 2 times instead of 3 to reach
+  # a fixed point.
+  touch "./build_and_checks_variables/${repository_name}.tex"
+  touch "./${repository_name}.pdf"
+  touch "./${repository_name}.html"
+  # The two iterations of build_and_checks needs to complete
+  # during the same minute to have a fixed point.
+  build_and_checks "$@"
+  # build_and_checks "$@" second iteration below
+  # Then calling this script without --fixed_point_build should not
+  # yield any new superficial modifications.
+fi
+
 build_and_checks "$@"

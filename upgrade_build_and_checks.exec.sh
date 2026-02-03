@@ -26,7 +26,7 @@
 
 upgrade_build_and_checks(){
   local LFBFL_verbose=""
-  if [[ "$1" == "--verbose" ]]; then
+  if [[ "$*" == *--verbose* ]]; then
     echo "$0 $*"
     LFBFL_verbose="--verbose"
   fi
@@ -38,4 +38,22 @@ upgrade_build_and_checks(){
   ./build_and_checks.exec.sh "." "${LFBFL_verbose}"
 }
 
-upgrade_build_and_checks "$@"
+if [[ "$*" == *--fixed_point_build* ]]; then
+  # shellcheck disable=SC2124
+  LFBFL_repository_name="${@: $#}"
+  echo "--fixed_point_build"
+  # Touching the 3 following files first let us iterate
+  # upgrade_build_and_checks 2 times instead of 3 to reach
+  # a fixed point.
+  touch "./build_and_checks_variables/${LFBFL_repository_name}.tex"
+  touch "./${LFBFL_repository_name}.pdf"
+  touch "./${LFBFL_repository_name}.html"
+  # The two iterations of upgrade_build_and_checks needs to complete
+  # during the same minute to have a fixed point.
+  upgrade_build_and_checks "$@"
+  upgrade_build_and_checks "$@"
+  # Then calling this script without --fixed_point_build should not
+  # yield any new superficial modifications.
+else
+  upgrade_build_and_checks "$@"
+fi

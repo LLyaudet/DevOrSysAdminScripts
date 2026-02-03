@@ -95,7 +95,10 @@ tree -a -DFh --gitignore\
   -I ".mypy_cache/"\
   -I ".git/"\
   | replace_non_ascii_spaces\
-  > "${LFBFL_subdir2}/temp/current_tree.txt"
+  > "${LFBFL_subdir2}/temp/current_tree.txt.temp"
+
+overwrite_if_not_equal "${LFBFL_subdir2}/temp/current_tree.txt"\
+  "${LFBFL_subdir2}/temp/current_tree.txt.temp" 1 1
 
 LFBFL_temp_files_listing="./${LFBFL_subdir2}/temp/"
 LFBFL_temp_files_listing+="files_listing.tex.tpl.temp"

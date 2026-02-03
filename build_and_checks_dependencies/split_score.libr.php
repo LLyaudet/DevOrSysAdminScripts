@@ -39,10 +39,10 @@ function generate_split_score(
     $s_delimiter_string,
     $i_cut_position,
     $b_is_cut_after,
-  ) use ($b_after_before, $i_max_length, $s_delimiter_strings_domain){
+  ) use ($b_after_before, $i_max_length, $a_delimiter_strings_domain){
     if(
       !in_array(
-        $s_delimiter_string, $s_delimiter_strings_domain, true
+        $s_delimiter_string, $a_delimiter_strings_domain, true
       )
     ){
       // I do not handle regexps for the moment.

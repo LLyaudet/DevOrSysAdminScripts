@@ -118,8 +118,8 @@ Some “small” useful scripts
 for enhancing development or system-administrators tasks
 </blockquote>
 <p>Current version: 2026-02-03</p>
-<p>Current number of commits: 264</p>
-<p>Current git SHA1: e0a727dd13cc4369763ff1de09d10ffe36945429</p>
+<p>Current number of commits: 267</p>
+<p>Current git SHA1: d863c6c8fea4987632cc70d59b7b5aaf4dd7326b</p>
 <p>
 Code lines: 6850 total lines, 6173 not empty lines, 677 empty lines.
 </p>
@@ -421,20 +421,20 @@ wget_sha512.libr.sh
 5 directories, 74 files
 </pre>
 <pre class="verbatim">
-[ 12K Feb  3 12:01]  ./
-├── [4.0K Feb  3 12:01]  build_and_checks_dependencies/
+[ 12K Feb  3 12:14]  ./
+├── [4.0K Feb  3 12:14]  build_and_checks_dependencies/
 │   ├── [2.6K Jan  3 18:57]  build_and_checks.exec.sh.tpl*
 │   ├── [2.5K Jan  3 18:57]  build_md_from_printable_md.exec.sh*
 │   ├── [1.3K Jan  3 18:57]  check_shell_scripts_beginnings.libr.sh
 │   ├── [2.7K Jan  3 19:40]  check_URLs.libr.sh
-│   ├── [ 21K Feb  3 12:01]  common_build_and_checks.exec.sh*
+│   ├── [ 21K Feb  3 12:10]  common_build_and_checks.exec.sh*
 │   ├── [ 16K Jan 30 19:24]  common_build_and_checks.exec.sh.tpl
 │   ├── [3.1K Jan  3 18:57]  comparisons.libr.sh
-│   ├── [ 15K Feb  3 12:01]  create_PDF.exec.sh*
+│   ├── [ 15K Feb  3 12:10]  create_PDF.exec.sh*
 │   ├── [3.1K Jan  3 18:57]  generate_from_template.libr.sh
 │   ├── [1.9K Jan  3 18:57]  get_common_text_glob_patterns.libr.sh
 │   ├── [1.9K Jan  3 18:57]  grammar_and_spell_check.libr.sh
-│   ├── [4.0K Feb  3 12:01]  licenses_templates/
+│   ├── [4.0K Feb  3 12:14]  licenses_templates/
 │   │   ├── [8.9K Jan  5 17:56]  build_licenses_templates.exec.sh*
 │   │   ├── [ 734 Dec 30 19:34]  license_file_header_AGPLv3+.c.tpl
 │   │   ├── [ 736 Dec 30 19:34]  license_file_header_AGPLv3+.py.tpl
@@ -472,12 +472,12 @@ wget_sha512.libr.sh
 │   ├── [4.0K Feb  3 10:19]  update_common_build_and_checks.exec.sh*
 │   └── [4.2K Jan  4 13:49]  *
 │   │ update_or_check_files_names_listing.exec.sh**
-├── [2.8K Feb  3 12:01]  build_and_checks.exec.sh*
-├── [4.0K Feb  3 12:02]  build_and_checks_variables/
+├── [2.8K Feb  3 12:10]  build_and_checks.exec.sh*
+├── [4.0K Feb  3 12:14]  build_and_checks_variables/
 │   ├── [  15 Jan  5 20:00]  bandit_baseline.json
 │   ├── [  25 Jan  5 18:49]  bandit.ini
 │   ├── [5.1K Jan  7 16:45]  DevOrSysAdminScripts.html.tpl
-│   ├── [ 27K Feb  3 11:56]  DevOrSysAdminScripts.tex
+│   ├── [ 27K Feb  3 12:14]  DevOrSysAdminScripts.tex
 │   ├── [3.8K Jan  7 16:46]  DevOrSysAdminScripts.tex.tpl
 │   ├── [ 15K Jan 30 19:43]  files_listing.tex.tpl
 │   ├── [5.4K Jan 30 19:43]  files_names_listing.txt
@@ -487,8 +487,8 @@ wget_sha512.libr.sh
 │   └── [3.5K Jan 15 22:24]  repository_data.txt
 ├── [ 34K May  6  2024]  COPYING
 ├── [7.5K Dec 27 21:48]  COPYING.LESSER
-├── [274K Feb  3 11:56]  DevOrSysAdminScripts.html
-├── [267K Feb  3 11:56]  DevOrSysAdminScripts.pdf
+├── [274K Feb  3 12:14]  DevOrSysAdminScripts.html
+├── [267K Feb  3 12:14]  DevOrSysAdminScripts.pdf
 ├── [4.0K Jan  4 13:54]  git_helpers/
 │   ├── [3.4K Jan  3 18:57]  git_checks.libr.sh
 │   ├── [1.2K Dec 30 17:25]  post-commit
@@ -970,9 +970,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='57fcd2e7b40995965b6572e746b51fb67f95ac0316c72'
-  LFBFL_correct_sha512+='b88707669535109ec3e7b3d91d4992be79beec77e0f3'
-  LFBFL_correct_sha512+='316a7c699a09c338a0ae16fbff46ee545d9f631'
+  LFBFL_correct_sha512='aee3ef5040dacffd37c8b622e69c6eb5c2f158acec725'
+  LFBFL_correct_sha512+='91733077d41bfba1d6112864e61e98d41e48b2064e1d'
+  LFBFL_correct_sha512+='57024746595a54a3cab58aee1aa885e6817a820'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
   chmod +x "./${LFBFL_file_path}"
@@ -2134,9 +2134,6 @@ tree -a -DFh --gitignore\
   | replace_non_ascii_spaces\
   > "${LFBFL_subdir2}/temp/current_tree.txt.temp"
 
-overwrite_if_not_equal "${LFBFL_subdir2}/temp/current_tree.txt"\
-  "${LFBFL_subdir2}/temp/current_tree.txt.temp" 1 1
-
 LFBFL_temp_files_listing="./${LFBFL_subdir2}/temp/"
 LFBFL_temp_files_listing+="files_listing.tex.tpl.temp"
 : > "${LFBFL_temp_files_listing}"
@@ -2266,7 +2263,7 @@ overwrite_if_not_equal\
 
 # We verify if some lines are beyond 70 characters
 # in current_tree_light.txt and current_tree.txt.
-LFBFL_trees=("current_tree_light.txt" "current_tree.txt")
+LFBFL_trees=("current_tree_light.txt" "current_tree.txt.temp")
 declare LFBFL_tree_path
 for LFBFL_tree in "${LFBFL_trees[@]}"; do
   LFBFL_tree_path="${LFBFL_subdir2}/temp/${LFBFL_tree}"
@@ -2309,6 +2306,9 @@ for LFBFL_tree in "${LFBFL_trees[@]}"; do
       "${LFBFL_tree_path}"
   done
 done
+
+overwrite_if_not_equal "${LFBFL_subdir2}/temp/current_tree.txt"\
+  "${LFBFL_subdir2}/temp/current_tree.txt.temp" 1 1
 
 if [[ -f "./${LFBFL_subdir2}/${repository_name}.tex.tpl" ]]; then
   # If there is a template, we init the process from it.
@@ -6476,9 +6476,9 @@ build_and_checks(){
   declare -r\
     LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_common_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='ad94b2510417aba3c0fdef0e6cd1f08c72e12f8997eeb'
-  LFBFL_correct_sha512+='46eb5e3a8c32088e37823ba9050021f49ae143396d44'
-  LFBFL_correct_sha512+='187ff05a733e561b68e7987e0e6c25f018a285f'
+  LFBFL_correct_sha512='58fd3198bd755bcc3eab98fd5c592d979cc2ca7ad2924'
+  LFBFL_correct_sha512+='458fadaa103de027c5051d924013da11bab211327d72'
+  LFBFL_correct_sha512+='96b86a80cb9f937e90bd19f722ead98cc2d0f32'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_script}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
   chmod +x "./${LFBFL_file_path}"

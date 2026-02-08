@@ -54,14 +54,14 @@ popd
 # parametered with `git`. This point could be enhanced.
 commit_a_file_renamed_comment(){
   declare -i LFBFL_verbose=0
-  if [[ "$1" == "--verbose" ]]; then
+  if [[ "$*" == *--verbose* ]]; then
     echo "$0 commit_a_file_renamed_comment $*"
     LFBFL_verbose=1
   fi
   readonly LFBFL_verbose
 
   declare -i LFBFL_log_directory_change=0
-  if [[ "$2" == "--log-directory-change" ]]; then
+  if [[ "$*" == *--log-directory-change* ]]; then
     LFBFL_log_directory_change=1
   fi
   readonly LFBFL_log_directory_change
@@ -71,7 +71,7 @@ commit_a_file_renamed_comment(){
     LFBFL_max_comment_line_length="$3"
   fi
   readonly LFBFL_max_comment_line_length
-  if [[ ${LFBFL_verbose} -eq 1 ]]; then
+  if [[ LFBFL_verbose -eq 1 ]]; then
     echo "LFBFL_log_directory_change: ${LFBFL_log_directory_change}"
     echo\
      "LFBFL_max_comment_line_length: ${LFBFL_max_comment_line_length}"
@@ -82,7 +82,7 @@ commit_a_file_renamed_comment(){
   declare -r LFBFL_renaming_lines=$(
     git log -p -1 | grep 'diff --git' -A 1
   )
-  if [[ ${LFBFL_verbose} -eq 1 ]]; then
+  if [[ LFBFL_verbose -eq 1 ]]; then
     echo "LFBFL_renaming_lines: ${LFBFL_renaming_lines}"
   fi
 
@@ -92,7 +92,7 @@ commit_a_file_renamed_comment(){
 
   # shellcheck disable=SC2155
   declare -r LFBFL_timestamp=$(date --iso-8601="minute")
-  if [[ ${LFBFL_verbose} -eq 1 ]]; then
+  if [[ LFBFL_verbose -eq 1 ]]; then
     echo "LFBFL_timestamp: ${LFBFL_timestamp}"
   fi
   get_split_score_simple 1 "${LFBFL_max_comment_line_length}" _
@@ -107,10 +107,31 @@ commit_a_file_renamed_comment(){
   LFBFL_split_score_command_properties2="${get_split_score_result2}"
   declare -i LFBFL_renaming_happened=0
   declare -i LFBFL_i
+  declare -i LFBFL_j
   # declare -r LFBFL_special_file_name="files_names_listing.txt"
   declare -r LFBFL_sfn="files_names_listing.txt"
   local LFBFL_diff_line
   local LFBFL_similarity_line
+  local LFBFL_old_file_path
+  local LFBFL_old_file_name
+  local LFBFL_old_file_directory
+  local LFBFL_new_file_path
+  local LFBFL_new_file_name
+  local LFBFL_new_file_directory
+  local LFBFL_useful_file_name
+  local LFBFL_extension
+  local LFBFL_comment_prefix
+  local LFBFL_comment_prefix2
+  local LFBFL_old_file_name2
+  local LFBFL_old_file_directory2
+  local LFBFL_new_file_name2
+  local LFBFL_new_file_directory2
+  local LFBFL_new_comment
+  declare -i LFBFL_copyright_line_number
+  declare -r LFBFL_send_summary_2="ATTENTION: No line with copyright"
+  declare -i LFBFL_line_count
+  declare -i LFBFL_lines_after
+  local LFBFL_temp_file_path
   for ((LFBFL_i=0; LFBFL_i<${#LFBFL_renaming_lines_array[@]};)); do
     LFBFL_diff_line="${LFBFL_renaming_lines_array[${LFBFL_i}]}"
     LFBFL_i=$((LFBFL_i + 1))
@@ -118,38 +139,28 @@ commit_a_file_renamed_comment(){
     LFBFL_i=$((LFBFL_i + 1))
     # We need to increment 3 times since grep adds "--" lines between.
     LFBFL_i=$((LFBFL_i + 1))
-    if [[ ${LFBFL_verbose} -eq 1 ]]; then
+    if [[ LFBFL_verbose -eq 1 ]]; then
       echo "LFBFL_diff_line: ${LFBFL_diff_line}"
       echo "LFBFL_similarity_line: ${LFBFL_similarity_line}"
     fi
     if [[ "${LFBFL_similarity_line:17:4}" == "100%" ]]; then
       # Extract old file name from diff line. ------------------------
-      # shellcheck disable=SC2155
-      local LFBFL_old_file_path=$(
+      LFBFL_old_file_path=$(
         echo "${LFBFL_diff_line}" | cut -d ' ' -f 3
       )
       # It starts by "a/".
       LFBFL_old_file_path=".${LFBFL_old_file_path:1}"
-      # shellcheck disable=SC2155
-      local LFBFL_old_file_name=$(basename "${LFBFL_old_file_path}")
-      # shellcheck disable=SC2155
-      local LFBFL_old_file_directory=$(
-        dirname "${LFBFL_old_file_path}"
-      )
+      LFBFL_old_file_name=$(basename "${LFBFL_old_file_path}")
+      LFBFL_old_file_directory=$(dirname "${LFBFL_old_file_path}")
       # Extract new file name from diff line. ------------------------
-      # shellcheck disable=SC2155
-      local LFBFL_new_file_path=$(
+      LFBFL_new_file_path=$(
         echo "${LFBFL_diff_line}" | cut -d ' ' -f 4
       )
       # It starts by "b/".
       LFBFL_new_file_path=".${LFBFL_new_file_path:1}"
-      # shellcheck disable=SC2155
-      local LFBFL_new_file_name=$(basename "${LFBFL_new_file_path}")
-      # shellcheck disable=SC2155
-      local LFBFL_new_file_directory=$(
-        dirname "${LFBFL_new_file_path}"
-      )
-      if [[ ${LFBFL_verbose} -eq 1 ]]; then
+      LFBFL_new_file_name=$(basename "${LFBFL_new_file_path}")
+      LFBFL_new_file_directory=$(dirname "${LFBFL_new_file_path}")
+      if [[ LFBFL_verbose -eq 1 ]]; then
         echo "LFBFL_old_file_path: ${LFBFL_old_file_path}"
         echo "LFBFL_old_file_name: ${LFBFL_old_file_name}"
         echo "LFBFL_old_file_directory: ${LFBFL_old_file_directory}"
@@ -159,25 +170,24 @@ commit_a_file_renamed_comment(){
       fi
       # Extract "LFBFL_extension" with smart guessing for .tpl -------
       # and set prefix for line with ©Copyright. ---------------------
-      local LFBFL_useful_file_name="${LFBFL_new_file_name}"
-      local LFBFL_extension="${LFBFL_useful_file_name##*.}"
-      if [[ ${LFBFL_verbose} -eq 1 ]]; then
+      LFBFL_useful_file_name="${LFBFL_new_file_name}"
+      LFBFL_extension="${LFBFL_useful_file_name##*.}"
+      if [[ LFBFL_verbose -eq 1 ]]; then
         echo "LFBFL_useful_file_name: ${LFBFL_useful_file_name}"
         echo "LFBFL_extension: ${LFBFL_extension}"
       fi
-      declare -i LFBFL_j
       for ((LFBFL_j=0; LFBFL_j<3; ++LFBFL_j)); do
         if [[ "${LFBFL_extension}" != "tpl" ]]; then
           break
         fi
         LFBFL_useful_file_name="${LFBFL_useful_file_name:0:-4}"
         LFBFL_extension="${LFBFL_useful_file_name##*.}"
-        if [[ ${LFBFL_verbose} -eq 1 ]]; then
+        if [[ LFBFL_verbose -eq 1 ]]; then
           echo "LFBFL_useful_file_name: ${LFBFL_useful_file_name}"
           echo "LFBFL_extension: ${LFBFL_extension}"
         fi
       done
-      local LFBFL_comment_prefix=""
+      LFBFL_comment_prefix=""
       if [[ "${LFBFL_extension}" == "sh" ]]; then
         LFBFL_comment_prefix="# "
       fi
@@ -190,15 +200,15 @@ commit_a_file_renamed_comment(){
       if [[ "${LFBFL_useful_file_name}" == "${LFBFL_sfn}" ]]; then
         LFBFL_comment_prefix="// "
       fi
-      if [[ ${LFBFL_verbose} -eq 1 ]]; then
+      if [[ LFBFL_verbose -eq 1 ]]; then
         echo "LFBFL_comment_prefix: ${LFBFL_comment_prefix}"
       fi
       #---------------------------------------------------------------
       # Split if necessary old_file_name, new_file_name, etc. to have
       # comment lines below max_comment_line_length.
-      local LFBFL_comment_prefix2="${LFBFL_comment_prefix}"'"'
+      LFBFL_comment_prefix2="${LFBFL_comment_prefix}"'"'
       # -----
-      local LFBFL_old_file_name2="${LFBFL_comment_prefix2}"
+      LFBFL_old_file_name2="${LFBFL_comment_prefix2}"
       LFBFL_old_file_name2+="${LFBFL_old_file_name}"
       repeated_split_last_line "${LFBFL_old_file_name2}"\
         "${LFBFL_comment_prefix2}" "${LFBFL_max_comment_line_length}"\
@@ -207,7 +217,7 @@ commit_a_file_renamed_comment(){
       # shellcheck disable=SC2154
       LFBFL_old_file_name2="${repeated_split_last_line_result}"
       # -----
-      local LFBFL_old_file_directory2="${LFBFL_comment_prefix2}"
+      LFBFL_old_file_directory2="${LFBFL_comment_prefix2}"
       LFBFL_old_file_directory2+="${LFBFL_old_file_directory}"
       repeated_split_last_line "${LFBFL_old_file_directory2}"\
         "${LFBFL_comment_prefix2}" "${LFBFL_max_comment_line_length}"\
@@ -216,7 +226,7 @@ commit_a_file_renamed_comment(){
       # shellcheck disable=SC2154
       LFBFL_old_file_directory2="${repeated_split_last_line_result}"
       # -----
-      local LFBFL_new_file_name2="${LFBFL_comment_prefix2}"
+      LFBFL_new_file_name2="${LFBFL_comment_prefix2}"
       LFBFL_new_file_name2+="${LFBFL_new_file_name}"
       repeated_split_last_line "${LFBFL_new_file_name2}"\
         "${LFBFL_comment_prefix2}" "${LFBFL_max_comment_line_length}"\
@@ -225,7 +235,7 @@ commit_a_file_renamed_comment(){
       # shellcheck disable=SC2154
       LFBFL_new_file_name2="${repeated_split_last_line_result}"
       # -----
-      local LFBFL_new_file_directory2="${LFBFL_comment_prefix2}"
+      LFBFL_new_file_directory2="${LFBFL_comment_prefix2}"
       LFBFL_new_file_directory2+="${LFBFL_new_file_directory}"
       repeated_split_last_line "${LFBFL_new_file_directory2}"\
         "${LFBFL_comment_prefix2}" "${LFBFL_max_comment_line_length}"\
@@ -234,7 +244,7 @@ commit_a_file_renamed_comment(){
       # shellcheck disable=SC2154
       LFBFL_new_file_directory2="${repeated_split_last_line_result}"
       # Create new comments strings. ---------------------------------
-      local LFBFL_new_comment=""
+      LFBFL_new_comment=""
       if [[ "${LFBFL_new_file_name2}" != "${LFBFL_old_file_name2}" ]];
       then
         LFBFL_new_comment="${LFBFL_comment_prefix}"
@@ -244,7 +254,7 @@ commit_a_file_renamed_comment(){
         LFBFL_new_comment+="${LFBFL_comment_prefix}to\n"
         LFBFL_new_comment+="${LFBFL_new_file_name2}"'".'
       fi
-      if [[ ${LFBFL_log_directory_change} -eq 1 ]] && [[\
+      if [[ LFBFL_log_directory_change -eq 1 ]] && [[\
         "${LFBFL_new_file_directory}"\
         != "${LFBFL_old_file_directory}"\
       ]]; then
@@ -255,47 +265,45 @@ commit_a_file_renamed_comment(){
         LFBFL_new_comment+="${LFBFL_comment_prefix}to\n"
         LFBFL_new_comment+="${LFBFL_new_file_directory2}"'".'
       fi
-      if [[ ${LFBFL_verbose} -eq 1 ]]; then
+      if [[ LFBFL_verbose -eq 1 ]]; then
         echo "LFBFL_new_comment: ${LFBFL_new_comment}"
       fi
       # Find line with ©Copyright. -----------------------------------
-      # shellcheck disable=SC2155
-      declare -i LFBFL_copyright_line_number=$(
+      # shellcheck disable=SC2312
+      LFBFL_copyright_line_number=$(
         grep -n '©Copyright' "${LFBFL_new_file_path}"\
         | head --lines=1\
         | cut -d ':' -f 1
       )
-      if [[ ${LFBFL_verbose} -eq 1 ]]; then
+      if [[ LFBFL_verbose -eq 1 ]]; then
         echo "LFBFL_copyright_line_number:"\
              " ${LFBFL_copyright_line_number}"
       fi
-      if [[ ${LFBFL_copyright_line_number} -eq 0 ]]; then
-        local LFBFL_send_summary_2="ATTENTION: No line with copyright"
+      if [[ LFBFL_copyright_line_number -eq 0 ]]; then
         notify-send "${LFBFL_send_summary_2}"\
           "${LFBFL_send_summary_2} for: ${LFBFL_new_comment}"
-        if [[ ${LFBFL_verbose} -eq 1 ]]; then
+        if [[ LFBFL_verbose -eq 1 ]]; then
           echo "No copyright line. Skipping file."
         fi
         continue
       fi
       # Get total number of lines. -----------------------------------
-      # shellcheck disable=SC2002,SC2155
-      declare -i LFBFL_line_count=$(
+      # shellcheck disable=SC2002,SC2312
+      LFBFL_line_count=$(
         cat "${LFBFL_new_file_path}" | wc -l
       )
-      if [[ ${LFBFL_verbose} -eq 1 ]]; then
+      if [[ LFBFL_verbose -eq 1 ]]; then
         echo "LFBFL_line_count: ${LFBFL_line_count}"
       fi
       # Compute number of lines after. -------------------------------
-      # shellcheck disable=SC2155
-      declare -i LFBFL_lines_after=$((
+      LFBFL_lines_after=$((
         LFBFL_line_count - LFBFL_copyright_line_number
       ))
-      if [[ ${LFBFL_verbose} -eq 1 ]]; then
+      if [[ LFBFL_verbose -eq 1 ]]; then
         echo "LFBFL_lines_after: ${LFBFL_lines_after}"
       fi
       # Update file. -------------------------------------------------
-      local LFBFL_temp_file_path="${LFBFL_new_file_path}.LFBFL.temp"
+      LFBFL_temp_file_path="${LFBFL_new_file_path}.LFBFL.temp"
       head --lines="${LFBFL_copyright_line_number}"\
         "${LFBFL_new_file_path}" > "${LFBFL_temp_file_path}"
       echo -e "${LFBFL_new_comment}" >> "${LFBFL_temp_file_path}"

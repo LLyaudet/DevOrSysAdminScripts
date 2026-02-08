@@ -148,7 +148,7 @@ split_line_at_most(){
   if [[ -n "$6" ]]; then
     echo "split_line_at_most() \$4 NOT IMPLEMENTED YET"
   fi
-  if [[ "$2" -ge "${#1}" ]]; then
+  if [[ $2 -ge ${#1} ]]; then
     split_line_at_most_result_start=$1
     split_line_at_most_result_end=""
     return
@@ -176,7 +176,7 @@ split_line_at_most(){
     LFBFL_previous_char=""
     for ((LFBFL_i=0; LFBFL_i<LFBFL_i_max; ++LFBFL_i)) do
       LFBFL_j=$((LFBFL_i+1))
-      if [[ ${LFBFL_i} -ge 1 ]]; then
+      if [[ LFBFL_i -ge 1 ]]; then
         LFBFL_previous_char="${LFBFL_current_char}"
       fi
       LFBFL_current_char="${1:${LFBFL_i}:1}"
@@ -195,7 +195,7 @@ split_line_at_most(){
       LFBFL_current_char="${1:${LFBFL_i}:1}"
       eval "$3 '${LFBFL_current_char}' 0"
       # echo "${split_score_result}|${LFBFL_i}"
-      if [[ ${split_score_result} -ge 1 ]]; then
+      if [[ split_score_result -ge 1 ]]; then
         # echo "${split_score_result}|${LFBFL_i}"
         if [[ ${LFBFL_positions["${LFBFL_i}"]} != "-1" ]]; then
           LFBFL_positions["${LFBFL_i}"]=$(
@@ -207,7 +207,7 @@ split_line_at_most(){
       fi
       eval "$3 '${LFBFL_current_char}' 1"
       # echo "${split_score_result}|${LFBFL_j}"
-      if [[ ${split_score_result} -ge 1 ]]; then
+      if [[ split_score_result -ge 1 ]]; then
         # echo "${split_score_result}|${LFBFL_j}"
         if [[ ${LFBFL_positions["${LFBFL_j}"]} != "-1" ]]; then
           LFBFL_positions["${LFBFL_j}"]=$(
@@ -225,7 +225,7 @@ split_line_at_most(){
       LFBFL_current_char="${1:${LFBFL_i}:1}"
       eval "$3 '${LFBFL_current_char}' ${LFBFL_i} 0"
       # echo "${split_score_result}|${LFBFL_i}"
-      if [[ ${split_score_result} -ge 1 ]]; then
+      if [[ split_score_result -ge 1 ]]; then
         # echo "${split_score_result}|${LFBFL_i}"
         if [[ ${LFBFL_positions["${LFBFL_i}"]} != "-1" ]]; then
           LFBFL_positions["${LFBFL_i}"]=$(
@@ -237,7 +237,7 @@ split_line_at_most(){
       fi
       eval "$3 '${LFBFL_current_char}' ${LFBFL_j} 1"
       # echo "${split_score_result}|${LFBFL_j}"
-      if [[ ${split_score_result} -ge 1 ]]; then
+      if [[ split_score_result -ge 1 ]]; then
         # echo "${split_score_result}|${LFBFL_j}"
         if [[ ${LFBFL_positions["${LFBFL_j}"]} != "-1" ]]; then
           LFBFL_positions["${LFBFL_j}"]=$(

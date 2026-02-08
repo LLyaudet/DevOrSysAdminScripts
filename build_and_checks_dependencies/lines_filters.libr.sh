@@ -51,12 +51,11 @@ ll_wc(){
   declare -i ll_wc_var_i=0
   for ll_wc_var_arg in "$@"; do
     # echo "$ll_wc_var_arg"
-    # shellcheck disable=SC2250
     if [[ "${ll_wc_var_arg}" == "-n" ]]; then
       ll_wc_var_number_only=1
     elif [[ "${ll_wc_var_arg}" == "--no-filenames" ]]; then
       ll_wc_var_number_only=1
-    elif [[ $ll_wc_var_number_only -eq 0 ]]; then
+    elif [[ ${ll_wc_var_number_only} -eq 0 ]]; then
       ll_wc_var_args[ll_wc_var_i]="${ll_wc_var_arg}"
       ll_wc_var_i=$((ll_wc_var_i + 1))
     elif [[ "${ll_wc_var_arg}" =~ -.* ]]; then
@@ -66,8 +65,7 @@ ll_wc(){
   done
   # typeset -p ll_wc_var_args
   # echo "$ll_wc_var_number_only"
-  # shellcheck disable=SC2250
-  if [[ $ll_wc_var_number_only -gt 0 ]]; then
+  if [[ ${ll_wc_var_number_only} -gt 0 ]]; then
     # Too simple code, only the base use case is handled now.
     # Convenient but incomplete.
     # With more time,

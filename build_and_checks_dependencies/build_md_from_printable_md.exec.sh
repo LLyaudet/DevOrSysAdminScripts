@@ -45,21 +45,21 @@ build_md_from_printable_md(){
   pushd .
   if [[ -n "$1" ]];
   then
-    if [[ $LFBFL_verbose -eq 1 ]]; then
+    if [[ ${LFBFL_verbose} -eq 1 ]]; then
       echo "Moving to directory: $1"
     fi
     cd "$1" || {
       LFBFL_cd_result=$?;
       echo "build_md_from_printable_md no such directory";
-      # shellcheck disable=SC2248,2250
-      exit $LFBFL_cd_result;
+      # shellcheck disable=SC2248
+      exit ${LFBFL_cd_result};
     }
   fi
 
   file_name="README"
   if [[ -n "$2" ]];
   then
-    if [[ $LFBFL_verbose -eq 1 ]]; then
+    if [[ ${LFBFL_verbose} -eq 1 ]]; then
       echo "Searching md file: $2"
     fi
     file_name="$2"
@@ -89,8 +89,8 @@ build_md_from_printable_md(){
   popd || {
     LFBFL_popd_result=$?;
     echo "build_md_from_printable_md no popd";
-    # shellcheck disable=SC2248,2250
-    exit $LFBFL_popd_result;
+    # shellcheck disable=SC2248
+    exit ${LFBFL_popd_result};
   }
 }
 

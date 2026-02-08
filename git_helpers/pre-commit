@@ -31,7 +31,7 @@
 # "./git_helpers".
 
 # shellcheck disable=SC1091
-. ../git_checks.sh
+source ../git_checks.libr.sh
 
 declare -ig LFBFL_git_hook_error=0
 if ! check_files; then
@@ -44,8 +44,7 @@ if ! check_black_code_formatting; then
   LFBFL_git_hook_error=1
 fi
 readonly LFBFL_git_hook_error
-# shellcheck disable=SC2250
-if [[ $LFBFL_git_hook_error -eq 1 ]]; then
+if [[ ${LFBFL_git_hook_error} -eq 1 ]]; then
   exit 1
 fi
 exit 0

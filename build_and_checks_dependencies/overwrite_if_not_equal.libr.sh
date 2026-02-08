@@ -47,8 +47,7 @@ overwrite_if_not_equal(){
     diff -q "$1" "$2"
     LFBFL_is_equal=$?
   fi
-  # shellcheck disable=SC2250
-  if [[ $LFBFL_is_equal == 0 ]]; then
+  if [[ ${LFBFL_is_equal} == 0 ]]; then
     if [[ -z "$3" ]]; then
       rm "$2"
     fi

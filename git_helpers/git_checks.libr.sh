@@ -103,6 +103,6 @@ check_black_code_formatting(){
       LFBFL_error=1
     fi
   done
-  # shellcheck disable=SC2248,SC2250
-  return $LFBFL_error
+  # shellcheck disable=SC2248
+  return ${LFBFL_error}
 }

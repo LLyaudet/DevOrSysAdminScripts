@@ -31,7 +31,7 @@ update_common_build_and_checks(){
   declare -i LFBFL_verbose=0
   if [[ "$1" == "--verbose" ]]; then
     echo "$0 $*"
-    LFBFL_verbose="--verbose"
+    LFBFL_verbose=1
   fi
   # shellcheck disable=SC2034
   readonly LFBFL_verbose

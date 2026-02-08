@@ -260,8 +260,7 @@ $(max 'sort --numeric-sort' "${LFBFL_positions[@]}")
     fi
   done
   split_line_at "$1" "${LFBFL_best_position}"
-  # shellcheck disable=SC2250
-  split_line_at_most_result_start=$split_line_at_result_beginning
+  split_line_at_most_result_start="${split_line_at_result_beginning}"
   split_line_at_most_result_end="${split_line_at_result_end}"
   # echo "$split_line_at_most_result_start"
   # echo "$split_line_at_most_result_end"
@@ -297,8 +296,8 @@ split_last_line(){
   # This function adapts the effective max position for the split by
   # taking into account the length of the suffix.
   declare -g split_last_line_result="$1"
-  declare -r LFBFL_max_length_plus=$(($3 + 1))
-  declare -r LFBFL_length2=$(($3 - ${#4}))
+  declare -ir LFBFL_max_length_plus=$(($3 + 1))
+  declare -ir LFBFL_length2=$(($3 - ${#4}))
   declare -r LFBFL_regexp='.\{'"${LFBFL_max_length_plus}"'\}$'
   # shellcheck disable=SC2312
   if echo "$1" | sed -e 's/\\n/\n/g' | grep -q "${LFBFL_regexp}"; then
@@ -323,11 +322,9 @@ split_last_line(){
       split_last_line_result+="\n"
       split_last_line_result+="$2${split_line_at_most_result_end}"
     else
-      # shellcheck disable=SC2250
-      split_last_line_result+="${LFBFL_last_line:0:$LFBFL_length2}$4"
-      split_last_line_result+="\n"
-      # shellcheck disable=SC2250
-      split_last_line_result+="$2${LFBFL_last_line:$LFBFL_length2}"
+      split_last_line_result+="${LFBFL_last_line:0:${LFBFL_length2}}"
+      split_last_line_result+="$4\n"
+      split_last_line_result+="$2${LFBFL_last_line:${LFBFL_length2}}"
     fi
   fi
 }

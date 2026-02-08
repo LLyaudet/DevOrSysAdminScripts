@@ -103,6 +103,7 @@ LFBFL_temp_files_listing+="files_listing.tex.tpl.temp"
 LFBFL_temp_files_listing2="./${LFBFL_subdir2}/temp/"
 LFBFL_temp_files_listing2+="files_listing.html.tpl.temp"
 : > "${LFBFL_temp_files_listing2}"
+# HTML <li> elements, hence "lis".
 LFBFL_temp_files_lis="./${LFBFL_subdir2}/temp/files_lis.html.tpl"
 : > "${LFBFL_temp_files_lis}"
 get_split_score_simple 1 70 /

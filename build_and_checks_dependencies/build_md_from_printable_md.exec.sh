@@ -45,6 +45,9 @@ build_md_from_printable_md(){
   pushd .
   if [[ -n "$1" ]];
   then
+    if [[ $LFBFL_verbose -eq 1 ]]; then
+      echo "Moving to directory: $1"
+    fi
     cd "$1" || {
       LFBFL_cd_result=$?;
       echo "build_md_from_printable_md no such directory";
@@ -56,6 +59,9 @@ build_md_from_printable_md(){
   file_name="README"
   if [[ -n "$2" ]];
   then
+    if [[ $LFBFL_verbose -eq 1 ]]; then
+      echo "Searching md file: $2"
+    fi
     file_name="$2"
   fi
 

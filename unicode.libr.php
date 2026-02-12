@@ -162,6 +162,111 @@ function hexa_code_point_to_UTF8(
   );
 }
 
+
+
+function check_string_is_valid_ASCII($s_string){
+  for($i = 0, $i_max = strlen($s_string); $i < $i_max; ++$i){
+    if(ord($s_string[$i]) > 127){
+      throw new Exception(
+        "Non-ASCII character found at octet position "
+        .$i
+        .", value "
+        .ord($s_string[$i])
+        ."."
+      );
+    }
+  }
+  return true;
+}
+
+
+
+function check_file_is_valid_ASCII($s_file_name){
+  $s_string = file_get_contents($s_file_name);
+  if($s_string === false){
+    throw new Exception("File ".$s_file_name." not found.");
+  }
+  return check_string_is_valid_ASCII($s_string);
+}
+
+
+
+function check_string_is_valid_UTF8($s_string){
+  $i_continuation_octet_needed = 0;
+  $i_character_start_position = 0;
+  for($i = 0, $i_max = strlen($s_string); $i < $i_max; ++$i){
+    $i_current_octet = ord($s_string[$i]);
+    if($i_continuation_octet_needed > 0){
+      if($i_current_octet < 128 || $i_current_octet >= 192){
+        throw new Exception(
+          "Non-UTF8 character found at start position "
+          .$i_character_start_position
+          .", octet at position "
+          .$i
+          " has value "
+          .$i_current_octet
+          ." which is not a continuation octet."
+        );
+      }
+      --$i_continuation_octet_needed;
+    }
+    else{
+      $i_character_start_position = $i;
+      if($i_current_octet < 128){ // 0xxxxxxx ASCII
+        continue;
+      }
+      if($i_current_octet >= 128 && $i_current_octet < 192){
+        throw new Exception(
+          "Non-UTF8 character found at start position "
+          .$i_character_start_position
+          .", octet at position "
+          .$i
+          " has value "
+          .$i_current_octet
+          ." which is a continuation octet."
+        );
+      }
+      if($i_current_octet >= 192 && $i_current_octet < 224){
+        // 110xxxxx 10xxxxxx
+        $i_continuation_octet_needed = 1;
+        continue;
+      }
+      if($i_current_octet >= 224 && $i_current_octet < 240){
+        // 1110xxxx 10xxxxxx 10xxxxxx
+        $i_continuation_octet_needed = 2;
+        continue;
+      }
+      if($i_current_octet >= 240 && $i_current_octet < 248){
+        // 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
+        $i_continuation_octet_needed = 3;
+        continue;
+      }
+      throw new Exception(
+        "Non-UTF8 character found at start position "
+        .$i_character_start_position
+        .", octet at position "
+        .$i
+        " has value "
+        .$i_current_octet
+        ." which is invalid."
+      );
+    }
+  }
+  return true;
+}
+
+
+
+function check_file_is_valid_UTF8($s_file_name){
+  $s_string = file_get_contents($s_file_name);
+  if($s_string === false){
+    throw new Exception("File ".$s_file_name." not found.");
+  }
+  return check_string_is_valid_UTF8($s_string);
+}
+
+
+
 /*
 ?>
 <?php

@@ -203,54 +203,54 @@ function check_string_is_valid_UTF8($s_string){
           .$i_character_start_position
           .", octet at position "
           .$i
-          " has value "
+          ." has value "
           .$i_current_octet
           ." which is not a continuation octet."
         );
       }
       --$i_continuation_octet_needed;
+      continue;
     }
-    else{
-      $i_character_start_position = $i;
-      if($i_current_octet < 128){ // 0xxxxxxx ASCII
-        continue;
-      }
-      if($i_current_octet >= 128 && $i_current_octet < 192){
-        throw new Exception(
-          "Non-UTF8 character found at start position "
-          .$i_character_start_position
-          .", octet at position "
-          .$i
-          " has value "
-          .$i_current_octet
-          ." which is a continuation octet."
-        );
-      }
-      if($i_current_octet >= 192 && $i_current_octet < 224){
-        // 110xxxxx 10xxxxxx
-        $i_continuation_octet_needed = 1;
-        continue;
-      }
-      if($i_current_octet >= 224 && $i_current_octet < 240){
-        // 1110xxxx 10xxxxxx 10xxxxxx
-        $i_continuation_octet_needed = 2;
-        continue;
-      }
-      if($i_current_octet >= 240 && $i_current_octet < 248){
-        // 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
-        $i_continuation_octet_needed = 3;
-        continue;
-      }
+
+    $i_character_start_position = $i;
+    if($i_current_octet < 128){ // 0xxxxxxx ASCII
+      continue;
+    }
+    if($i_current_octet >= 128 && $i_current_octet < 192){
       throw new Exception(
         "Non-UTF8 character found at start position "
         .$i_character_start_position
         .", octet at position "
         .$i
-        " has value "
+        ." has value "
         .$i_current_octet
-        ." which is invalid."
+        ." which is a continuation octet."
       );
     }
+    if($i_current_octet >= 192 && $i_current_octet < 224){
+      // 110xxxxx 10xxxxxx
+      $i_continuation_octet_needed = 1;
+      continue;
+    }
+    if($i_current_octet >= 224 && $i_current_octet < 240){
+      // 1110xxxx 10xxxxxx 10xxxxxx
+      $i_continuation_octet_needed = 2;
+      continue;
+    }
+    if($i_current_octet >= 240 && $i_current_octet < 248){
+      // 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
+      $i_continuation_octet_needed = 3;
+      continue;
+    }
+    throw new Exception(
+      "Non-UTF8 character found at start position "
+      .$i_character_start_position
+      .", octet at position "
+      .$i
+      ." has value "
+      .$i_current_octet
+      ." which is invalid."
+    );
   }
   return true;
 }

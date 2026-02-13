@@ -290,7 +290,8 @@ $(stat -c %Y "${LFBFL_upgrade_venvs_ts_file}")
     upgrade_venvs=""
     grep_variable "${LFBFL_data_file_name}" upgrade_venvs
     if [[ "${upgrade_venvs}" != "auto" ]]; then
-      read -r -n 1 -t 10 -p "Upgrade venvs? [Y/n]"\
+      read -r -n 1 -t 10\
+        -p "Upgrade venvs and composer global? [Y/n]"\
         LFBFL_upgrade_venvs_answer
       if [[ "${LFBFL_upgrade_venvs_answer}" == "n" ]]; then
         LFBFL_upgrade_venvs=0
@@ -448,6 +449,20 @@ $(stat -c %Y "${LFBFL_upgrade_venvs_ts_file}")
     deactivate
   fi
   echo "---Python end---"
+
+  echo "---PHP---"
+  echo "Running PHPMD"
+  if [[ LFBFL_upgrade_venvs -eq 1 ]]; then
+    composer global require phpmd/phpmd
+  fi
+  phpmd --color\
+    --baseline-file build_and_checks_variables/phpmd_baseline.xml\
+    . text cleancode,codesize,controversial,design,naming,unusedcode
+  # Saving new baseline in temp if necessary.
+  phpmd --color --generate-baseline\
+   --baseline-file build_and_checks_variables/temp/phpmd_baseline.xml\
+   . text cleancode,codesize,controversial,design,naming,unusedcode
+  echo "---PHP end---"
 
   if [[ LFBFL_upgrade_venvs -eq 1 ]]; then
     touch "${LFBFL_upgrade_venvs_ts_file}"

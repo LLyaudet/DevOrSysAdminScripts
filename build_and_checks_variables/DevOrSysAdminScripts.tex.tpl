@@ -123,6 +123,8 @@ notify-send
 black, isort, mypy
 \item The following dependencies are Apache-2.0 licensed:\newline
 bandit
+\item The following dependencies are BSD-3-Clause licensed:\newline
+phpmd
 \item php is licensed under PHP License v3.01
 \item tex is licensed under Knuth license
 \item pcregrep has a custom license from Cambridge University

@@ -181,6 +181,8 @@ notify-send
 black, isort, mypy
 <li> The following dependencies are Apache-2.0 licensed:<br>
 bandit
+<li> The following dependencies are BSD-3-Clause licensed:<br>
+phpmd
 <li> php is licensed under PHP License v3.01
 <li> tex is licensed under Knuth license
 <li> pcregrep has a custom license from Cambridge University

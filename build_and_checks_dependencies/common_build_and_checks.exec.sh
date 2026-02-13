@@ -528,6 +528,7 @@ $(stat -c %Y "${LFBFL_upgrade_venvs_ts_file}")
     --baseline-file build_and_checks_variables/phpmd_baseline.xml\
     . text cleancode,codesize,controversial,design,naming,unusedcode
   # Saving new baseline in temp if necessary.
+  rm build_and_checks_variables/temp/phpmd_baseline.xml
   phpmd --color --generate-baseline\
    --baseline-file build_and_checks_variables/temp/phpmd_baseline.xml\
    . text cleancode,codesize,controversial,design,naming,unusedcode

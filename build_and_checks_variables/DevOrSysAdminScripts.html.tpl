@@ -27,7 +27,7 @@ If not, see <https://www.gnu.org/licenses/>.
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="generator" content="DevOrSysAdminScripts">
-<style type="text/css">
+<style>
 .title{
   margin: 2ex auto;
   text-align: center;
@@ -36,6 +36,7 @@ If not, see <https://www.gnu.org/licenses/>.
   margin: 1ex 2ex 2ex 1ex;
 }
 .titlerest{
+  font-size: 1.17em;
   margin: 0ex 2ex;
 }
 table{
@@ -93,7 +94,7 @@ ol.level2 li:before{
   <tr>
     <td style="padding:1ex">
       <h1 class="titlemain">@repository_name@</h1>
-      <h3 class="titlerest">
+      <h2 class="titlerest">
         @author_full_name@
         <br>
         <a href="@author_website@">
@@ -107,7 +108,7 @@ ol.level2 li:before{
           @author_email@
           </span>
         </a>
-      </h3>
+      </h2>
     </td>
   </tr>
 </table>
@@ -164,8 +165,10 @@ The git repository of this source code is also available at:
 >https://github.com/LLyaudet/@repository_name@/</span></a>.
 </p>
 
+<div>
 <p>
 Here is a listing of the dependencies of the code in this repository:
+</p>
 <ul>
 <li> The following dependencies are GPLv3+ licensed:<br>
 basename, bash (and its builtins), cat, chmod, cp, cut, date, diff,
@@ -187,7 +190,7 @@ phpmd
 <li> tex is licensed under Knuth license
 <li> pcregrep has a custom license from Cambridge University
 </ul>
-</p>
+</div>
 
 <p>
 Remark: Some commands listed under GPLv3+ are POSIX

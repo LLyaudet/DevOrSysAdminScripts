@@ -80,7 +80,7 @@ commit_a_file_renamed_comment(){
 
   # shellcheck disable=SC2155
   declare -r LFBFL_renaming_lines=$(
-    git log -p -1 | grep 'diff --git' -A 1
+    git log -p -1 | grep '^diff --git' -A 1
   )
   if [[ LFBFL_verbose -eq 1 ]]; then
     echo "LFBFL_renaming_lines: ${LFBFL_renaming_lines}"

@@ -43,11 +43,11 @@ too_long_code_lines(){
     find . -type f -name "${LFBFL_pattern}" -printf '%P\n'\
       | xargs grep -H '.\{71\}' | while read -r LFBFL_long_line
     do
-      LFBFL_file_name=${LFBFL_long_line%%:*}
-      LFBFL_line=${LFBFL_long_line#*:}
-      LFBFL_line="${LFBFL_line/%\\/}"
-      LFBFL_extension=${LFBFL_file_name##*.}
-      LFBFL_base_name=${LFBFL_file_name%.*}
+      LFBFL_file_name=${LFBFL_long_line%%:*} # Drop long ':*' suffix
+      LFBFL_line=${LFBFL_long_line#*:} # Drop short '*:' prefix
+      LFBFL_line="${LFBFL_line/%\\/}" # Drop/Replace '\' suffix by ''
+      LFBFL_extension=${LFBFL_file_name##*.} # Drop long '*.' prefix
+      LFBFL_base_name=${LFBFL_file_name%.*} # Drop short '.*' suffix
       if [[ "${LFBFL_extension}" == "html" ]]; then
         if [[ -f "${LFBFL_base_name}.md" ]]; then
           continue

@@ -124,7 +124,7 @@ update_or_check_files_names_listing(){
   shopt -u dotglob
   shopt -s globstar
 
-  if [[ -n "${LFBFL_verbose}" ]]; then
+  if [[ LFBFL_verbose -eq 1 ]]; then
     cat "${files_names_listing}"
   fi
 }

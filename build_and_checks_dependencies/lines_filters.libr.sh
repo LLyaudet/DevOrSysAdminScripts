@@ -171,12 +171,12 @@ not_space_starting_lines_after_file_name(){
 
 not_JS_dependencies_find(){
   # shellcheck disable=SC2312
-  grep -vE "(^|/)node_modules/" | grep -vE "(^|/)package-lock\.json$"
+  grep -vE -e "(^|/)node_modules/" -e "(^|/)package-lock\.json$"
 }
 
 not_JS_dependencies_grep(){
   # shellcheck disable=SC2312
-  grep -v "^[^:]*node_modules/" | grep -v "^[^:]*package-lock\.json:"
+  grep -v -e "^[^:]*node_modules/" -e "^[^:]*package-lock\.json:"
 }
 
 not_dependencies_find(){
@@ -189,14 +189,14 @@ not_dependencies_grep(){
 
 not_python_cache_find(){
   # shellcheck disable=SC2312
-  grep -vE "(^|/)__pycache__/" | grep -vE "(^|/)\.mypy_cache/"\
-    | grep -vE "(^|/)\.ruff_cache/"
+  grep -vE -e "(^|/)__pycache__/" -e "(^|/)\.mypy_cache/"\
+    -e "(^|/)\.ruff_cache/"
 }
 
 not_python_cache_grep(){
   # shellcheck disable=SC2312
-  grep -v "^[^:]*__pycache__/" | grep -v "^[^:]*\.mypy_cache/"\
-    | grep -v "^[^:]*\.ruff_cache/"
+  grep -v -e "^[^:]*__pycache__/" -e "^[^:]*\.mypy_cache/"\
+    -e "^[^:]*\.ruff_cache/"
 }
 
 not_cache_find(){
@@ -225,12 +225,12 @@ not_archive_grep(){
 
 not_license_find(){
   # shellcheck disable=SC2312
-  grep -vE "(^|/)COPYING$" | grep -vE "(^|/)COPYING\.LESSER$"
+  grep -vE -e "(^|/)COPYING$" -e "(^|/)COPYING\.LESSER$"
 }
 
 not_license_grep(){
   # shellcheck disable=SC2312
-  grep -v "^[^:]*COPYING:" | grep -v "^[^:]*COPYING\.LESSER:"
+  grep -v -e "^[^:]*COPYING:" -e "^[^:]*COPYING\.LESSER:"
 }
 
 not_main_tex_find(){

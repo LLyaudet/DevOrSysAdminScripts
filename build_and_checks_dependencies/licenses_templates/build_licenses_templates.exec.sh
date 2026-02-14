@@ -69,9 +69,8 @@ build_licenses_templates(){
   equal "${#LFBFL_block_comment_languages[@]}"\
         "${#LFBFL_block_comment_enters[@]}"\
         "${#LFBFL_block_comment_exits[@]}"
-
-  # shellcheck disable=SC2181
-  if [[ $? == 0 ]]; then
+  declare -i LFBFL_equal_result=$?
+  if [[ LFBFL_equal_result -eq 0 ]]; then
     # shellcheck disable=SC1003
     echo '/!\'"Problème de définition des tableaux de langages 1"'/!\'
   fi
@@ -86,8 +85,8 @@ build_licenses_templates(){
   )
   equal "${#LFBFL_line_comment_languages[@]}"\
         "${#LFBFL_line_comment_prefixes[@]}"
-  # shellcheck disable=SC2181
-  if [[ $? == 0 ]]; then
+  LFBFL_equal_result=$?
+  if [[ LFBFL_equal_result -eq 0 ]]; then
     # shellcheck disable=SC1003
     echo '/!\'"Problème de définition des tableaux de langages 2"'/!\'
   fi

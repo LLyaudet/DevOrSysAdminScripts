@@ -36,7 +36,7 @@ build_and_checks(){
   readonly LFBFL_working_directory
 
   local LFBFL_verbose=""
-  if [[ "$2" == "--verbose" ]]; then
+  if [[ "$*" == *--verbose* ]]; then
     echo "$0 $*"
     LFBFL_verbose="--verbose"
   fi
@@ -66,9 +66,9 @@ build_and_checks(){
   declare -r\
     LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_common_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='a11d0519a745ad25e0e4cf2a2270a69d3d0703ac63459'
-  LFBFL_correct_sha512+='fc5c547fb3d4a720e7295937f8ab8c3fd674066984cf'
-  LFBFL_correct_sha512+='2b73997a832cf5f6eda86ac69e449efed8692a1'
+  LFBFL_correct_sha512='41fe3a53ce382382ac76034e7e9b560b82ae66466b018'
+  LFBFL_correct_sha512+='6b15a5876b9df04e0a8e13e9fdb48b75c2bb7a7e1f24'
+  LFBFL_correct_sha512+='2eeefb1e39d52a176edd41c084392ed656a124f'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_script}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
   chmod +x "./${LFBFL_file_path}"

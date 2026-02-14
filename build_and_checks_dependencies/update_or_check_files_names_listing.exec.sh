@@ -67,8 +67,7 @@ update_or_check_files_names_listing(){
   split_score_command="${get_split_score_result}"
   # shellcheck disable=SC2154
   split_score_command_properties="${get_split_score_result2}"
-  # shellcheck disable=SC1003
-  suffix='\\'
+  suffix=\\\\ # instead of '\\' to avoid shellcheck SC1003
   # shellcheck disable=SC2312
   find . -type f -printf '%P\n' | relevant_find | sort\
     | while read -r file_name;

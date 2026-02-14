@@ -36,7 +36,7 @@ build_and_checks(){
   readonly LFBFL_working_directory
 
   local LFBFL_verbose=""
-  if [[ "$2" == "--verbose" ]]; then
+  if [[ "$*" == *--verbose* ]]; then
     echo "$0 $*"
     LFBFL_verbose="--verbose"
   fi

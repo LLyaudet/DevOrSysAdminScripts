@@ -27,6 +27,8 @@
 LFBFL_subdir="build_and_checks_dependencies"
 # shellcheck disable=SC1090
 source "./${LFBFL_subdir}/lines_filters.libr.sh"
+# shellcheck disable=SC1090
+source "./${LFBFL_subdir}/overwrite_if_not_equal.libr.sh"
 
 generate_from_template_with_block_comments(){
   # $1=base_file_name
@@ -95,8 +97,8 @@ insert_file_at_token(){
     "${LFBFL_end_file_name}"
   cat "${LFBFL_start_file_name}" "$3" "${LFBFL_end_file_name}"\
     > "${LFBFL_result_file_name}"
+  rm "${LFBFL_start_file_name}" "${LFBFL_end_file_name}"
   if [[ -z "$4" ]]; then
     overwrite_if_not_equal "$1" "${LFBFL_result_file_name}"
   fi
-  rm "${LFBFL_start_file_name}" "${LFBFL_end_file_name}"
 }

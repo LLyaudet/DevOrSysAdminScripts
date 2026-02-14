@@ -176,7 +176,8 @@ not_JS_dependencies_find(){
 
 not_JS_dependencies_grep(){
   # shellcheck disable=SC2312
-  grep -v -e "^[^:]*node_modules/" -e "^[^:]*package-lock\.json:"
+  grep -vE -e "^([^:]+/)?node_modules/"\
+    -e "^([^:]+/)?package-lock\.json:"
 }
 
 not_dependencies_find(){
@@ -195,8 +196,8 @@ not_python_cache_find(){
 
 not_python_cache_grep(){
   # shellcheck disable=SC2312
-  grep -v -e "^[^:]*__pycache__/" -e "^[^:]*\.mypy_cache/"\
-    -e "^[^:]*\.ruff_cache/"
+  grep -vE -e "^([^:]+/)?__pycache__/" -e "^([^:]+/)?\.mypy_cache/"\
+    -e "^([^:]+/)?\.ruff_cache/"
 }
 
 not_cache_find(){
@@ -212,7 +213,7 @@ not_git_find(){
 }
 
 not_git_grep(){
-  grep -v "^[^:]*\.git/"
+  grep -vE "^([^:]+/)?\.git/"
 }
 
 not_archive_find(){
@@ -230,7 +231,7 @@ not_license_find(){
 
 not_license_grep(){
   # shellcheck disable=SC2312
-  grep -v -e "^[^:]*COPYING:" -e "^[^:]*COPYING\.LESSER:"
+  grep -vE -e "^([^:]+/)?COPYING:" -e "^([^:]+/)?COPYING\.LESSER:"
 }
 
 not_main_tex_find(){
@@ -238,7 +239,7 @@ not_main_tex_find(){
 }
 
 not_main_tex_grep(){
-  grep -v "^[^:]*${repository_name}\.tex:"
+  grep -vE "^([^:]+/)?${repository_name}\.tex:"
 }
 
 not_main_html_find(){
@@ -246,7 +247,7 @@ not_main_html_find(){
 }
 
 not_main_html_grep(){
-  grep -v "^[^:]*${repository_name}\.html:"
+  grep -vE "^([^:]+/)?${repository_name}\.html:"
 }
 
 not_temp_file_find(){
@@ -254,7 +255,7 @@ not_temp_file_find(){
 }
 
 not_temp_file_grep(){
-  grep -v "^[^:]*build_and_checks_variables/temp/[^:]*:"
+  grep -vE "^([^:]+/)?build_and_checks_variables/temp/[^:]*:"
 }
 
 relevant_find(){

@@ -189,12 +189,14 @@ not_dependencies_grep(){
 
 not_python_cache_find(){
   # shellcheck disable=SC2312
-  grep -vE "(^|/)__pycache__/" | grep -vE "(^|/)\.mypy_cache/"
+  grep -vE "(^|/)__pycache__/" | grep -vE "(^|/)\.mypy_cache/"\
+    | grep -vE "(^|/)\.ruff_cache/"
 }
 
 not_python_cache_grep(){
   # shellcheck disable=SC2312
-  grep -v "^[^:]*__pycache__/" | grep -v "^[^:]*\.mypy_cache/"
+  grep -v "^[^:]*__pycache__/" | grep -v "^[^:]*\.mypy_cache/"\
+    | grep -v "^[^:]*\.ruff_cache/"
 }
 
 not_cache_find(){

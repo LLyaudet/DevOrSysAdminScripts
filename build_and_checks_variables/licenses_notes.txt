@@ -14,7 +14,7 @@ git, pylint
 - The following dependencies are LGPLv2.1+ licensed:
 notify-send
 - The following dependencies are MIT licensed:
-black, isort, mypy
+black, isort, mypy, ruff
 - The following dependencies are Apache-2.0 licensed:
 bandit
 - The following dependencies are BSD-3-Clause licensed:

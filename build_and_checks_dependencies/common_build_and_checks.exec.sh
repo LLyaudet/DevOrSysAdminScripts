@@ -517,6 +517,25 @@ $(stat -c %Y "${LFBFL_upgrade_venvs_ts_file}")
   if [[ -n "${pylint_venv}" ]]; then
     deactivate
   fi
+
+  echo "Running ruff"
+  ruff_venv=""
+  grep_variable "${LFBFL_data_file_name}" ruff_venv
+  if [[ -n "${ruff_venv}" ]]; then
+    if command -v deactivate
+    then
+      deactivate
+    fi
+    # shellcheck disable=SC1090,SC1091
+    source "${ruff_venv}/bin/activate"
+  fi
+  if [[ LFBFL_upgrade_venvs -eq 1 ]]; then
+    pip install --upgrade ruff
+  fi
+  ruff check --config build_and_checks_variables/ruff.toml
+  if [[ -n "${ruff_venv}" ]]; then
+    deactivate
+  fi
   echo "---Python end---"
 
   echo "---PHP---"

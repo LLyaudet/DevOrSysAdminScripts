@@ -1,0 +1,5 @@
+[lint]
+select = ["ALL", "D211"]
+ignore = ["D203", "D212", "D404"]
+[lint.per-file-ignores]
+"build_and_checks_dependencies/licenses_templates/*.py" = ["INP001"]

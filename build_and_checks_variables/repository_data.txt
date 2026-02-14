@@ -86,6 +86,7 @@ black_venv=../venv_black
 isort_venv=../venv_isort
 mypy_venv=../venv_mypy
 pylint_venv=../venv_pylint
+ruff_venv=../venv_ruff
 
 
 upgrade venvs can be auto or ask, any other value is interpreted

@@ -35,12 +35,12 @@ source "./${LFBFL_subdir}/lines_filters.libr.sh"
 source "./${LFBFL_subdir}/overwrite_if_not_equal.libr.sh"
 
 build_licenses_templates(){
-  LFBFL_verbose=""
-  if [[ "$1" == "--verbose" ]]; then
+  declare -i LFBFL_verbose=0
+  if [[ "$*" == *--verbose* ]]; then
     echo "$0 $*"
-    # shellcheck disable=SC2034
-    LFBFL_verbose="--verbose"
+    LFBFL_verbose=1
   fi
+  readonly LFBFL_verbose
 
   declare -r\
     LFBFL_license_subdir="./${LFBFL_subdir}/licenses_templates/"
@@ -109,6 +109,7 @@ build_licenses_templates(){
   declare LFBFL_prefix_string
   declare LFBFL_intermediate_file_name
   declare LFBFL_file_prefix
+  declare -i LFBFL_generate_from_template_result
   for LFBFL_license in "${LFBFL_licenses[@]}"; do
     LFBFL_license_prefix2="${LFBFL_license_prefix}${LFBFL_license}"
     for ((i=0; i<${#LFBFL_block_comment_languages[@]}; i++)); do
@@ -121,6 +122,16 @@ build_licenses_templates(){
         "${LFBFL_license_prefix2}.tpl"\
         "${LFBFL_license_file_name}.tpl"\
         "${LFBFL_enter_string}" "${LFBFL_exit_string}"
+      LFBFL_generate_from_template_result=$?
+      if [[ LFBFL_verbose -eq 1 ]]; then
+        if [[ LFBFL_generate_from_template_result -eq 1 ]]; then
+          echo\
+            "License template ${LFBFL_license_file_name}.tpl updated"
+        elif [[ LFBFL_generate_from_template_result -eq 2 ]]; then
+          echo\
+            "License template ${LFBFL_license_file_name}.tpl created"
+        fi
+      fi
     done
     LFBFL_temp2=".generate_from_template_with_line_comments.temp"
     for ((i=0; i<${#LFBFL_line_comment_languages[@]}; i++)); do
@@ -140,12 +151,23 @@ build_licenses_templates(){
         "${LFBFL_prefix_string}"\
         "sed -Ei -e 's/\s*$//g' '${LFBFL_intermediate_file_name}'"\
         "${LFBFL_file_prefix}"
+      LFBFL_generate_from_template_result=$?
+      if [[ LFBFL_verbose -eq 1 ]]; then
+        if [[ LFBFL_generate_from_template_result -eq 1 ]]; then
+          echo\
+            "License template ${LFBFL_license_file_name}.tpl updated"
+        elif [[ LFBFL_generate_from_template_result -eq 2 ]]; then
+          echo\
+            "License template ${LFBFL_license_file_name}.tpl created"
+        fi
+      fi
     done
   done
   # ------------------------------------------------------------------
 
-  declare -r\
- LFBFL_data_file_name="build_and_checks_variables/repository_data.txt"
+  local LFBFL_data_file_name="build_and_checks_variables/"
+  LFBFL_data_file_name+="repository_data.txt"
+  readonly LFBFL_data_file_name
   repository_name=""
   license=""
   license2=""
@@ -177,6 +199,14 @@ build_licenses_templates(){
         -e "s/@copyright_string@/${LFBFL_copyright_string}/g"\
         "$1.tpl" > "$1.temp"
     overwrite_if_not_equal "$1" "$1.temp"
+    declare -r LFBFL_result=$?
+    if [[ LFBFL_verbose -eq 1 ]]; then
+      if [[ LFBFL_result -eq 1 ]]; then
+        echo "License template $1 updated"
+      elif [[ LFBFL_result -eq 2 ]]; then
+        echo "License template $1 created"
+      fi
+    fi
     # shellcheck disable=SC2312
     head --lines=-1 "$1" | tail --lines=+2 > "$1.temp"
     # Strange world: tail --lines=-1 was working
@@ -239,6 +269,14 @@ build_licenses_templates(){
         -e "s/@copyright_string@/${LFBFL_copyright_string}/g"\
         "$1.tpl" > "$1.temp"
     overwrite_if_not_equal "$1" "$1.temp"
+    declare -r LFBFL_result=$?
+    if [[ LFBFL_verbose -eq 1 ]]; then
+      if [[ LFBFL_result -eq 1 ]]; then
+        echo "License template $1 updated"
+      elif [[ LFBFL_result -eq 2 ]]; then
+        echo "License template $1 created"
+      fi
+    fi
   }
 
   declare -A LFBFL_all_line_comment_languages

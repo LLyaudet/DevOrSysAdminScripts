@@ -30,12 +30,13 @@ equal(){
   # et à mon article sur le principe de première différence
   # appliqué à la largeur modulaire, de clique ou de rang avec
   # l'idée d'un principe de première différence ternaire.
-  declare -r LFBFL_all_args="'$*'"
-  local LFBFL_current="${LFBFL_all_args}"
+  declare -i LFBFL_first=1
+  local LFBFL_current
   local LFBFL_arg
   for LFBFL_arg in "$@"; do
-    if [[ "${LFBFL_current}" == "${LFBFL_all_args}" ]]; then
+    if [[ LFBFL_first -eq 1 ]]; then
       LFBFL_current="${LFBFL_arg}"
+      LFBFL_first=0
       continue
     fi
     if [[ "${LFBFL_current}" != "${LFBFL_arg}" ]]; then

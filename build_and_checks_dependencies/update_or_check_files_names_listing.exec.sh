@@ -43,7 +43,6 @@ update_or_check_files_names_listing(){
     echo "$0 $*"
     LFBFL_verbose=1
   fi
-  # shellcheck disable=SC2034
   readonly LFBFL_verbose
 
   LFBFL_subdir2="build_and_checks_variables"

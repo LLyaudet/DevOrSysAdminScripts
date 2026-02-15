@@ -37,9 +37,14 @@ build_md_from_printable_md(){
   # shellcheck disable=SC2034
   readonly LFBFL_verbose
 
+  # Remove line returns here to keep lines short.
   LFBFL_sed_expression='s/(\[[a-zA-Z0-9:-]*\]: [^\n\\]*)\\\n/\1/Mg'
   LFBFL_sed_expression+=';s/(<http[^\n\\]*)\\\n/\1/Mg'
   LFBFL_sed_expression+=';s/(- <http[^\n\\]*)\\\n/\1/Mg'
+  # Since Markdown can contain code, it is limited to Markdown URLs.
+  # Hence it is way more complicated than 's/\\\n//Mg' expression
+  # in other files.
+  # Another downside is that more than one pass is needed.
 
   declare -i LFBFL_cd_result
   pushd .
@@ -67,17 +72,10 @@ build_md_from_printable_md(){
 
   if [[ -f "${file_name}.md.tpl" ]];
   then
-    sed -Ez "${LFBFL_sed_expression}" "${file_name}.md.tpl"\
-      > "${file_name}_temp1.md"
-    sed -Ez "${LFBFL_sed_expression}" "${file_name}_temp1.md"\
-      > "${file_name}_temp2.md"
-    sed -Ez "${LFBFL_sed_expression}" "${file_name}_temp2.md"\
-      > "${file_name}_temp3.md"
-    sed -Ez "${LFBFL_sed_expression}" "${file_name}_temp3.md"\
-      > "${file_name}_temp4.md"
-    overwrite_if_not_equal "${file_name}.md" "${file_name}_temp4.md"
-    rm "${file_name}_temp1.md" "${file_name}_temp2.md"\
-      "${file_name}_temp3.md"
+    sed -Ez -e "${LFBFL_sed_expression}" -e "${LFBFL_sed_expression}"\
+      -e "${LFBFL_sed_expression}" -e "${LFBFL_sed_expression}"\
+      "${file_name}.md.tpl" > "${file_name}_temp.md"
+    overwrite_if_not_equal "${file_name}.md" "${file_name}_temp.md"
   else
     echo "No file ${file_name}.md.tpl"
   fi

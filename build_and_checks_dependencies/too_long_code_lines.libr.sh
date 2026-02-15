@@ -27,6 +27,8 @@
 LFBFL_subdir="build_and_checks_dependencies"
 # shellcheck disable=SC1090
 source "./${LFBFL_subdir}/get_common_text_glob_patterns.libr.sh"
+# shellcheck disable=SC1090
+source "./${LFBFL_subdir}/lines_filters.libr.sh"
 
 too_long_code_lines(){
   get_COMMON_TEXT_FILES_GLOB_PATTERNS
@@ -41,6 +43,7 @@ too_long_code_lines(){
       || echo "Iterating on pattern: ${LFBFL_pattern}"
     # shellcheck disable=SC2312
     find . -type f -name "${LFBFL_pattern}" -printf '%P\n'\
+      | relevant_find | not_license_find\
       | xargs grep -H '.\{71\}' | while read -r LFBFL_long_line
     do
       LFBFL_file_name=${LFBFL_long_line%%:*} # Drop long ':*' suffix

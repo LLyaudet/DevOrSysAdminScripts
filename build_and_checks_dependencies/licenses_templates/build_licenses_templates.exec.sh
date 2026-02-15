@@ -71,8 +71,7 @@ build_licenses_templates(){
         "${#LFBFL_block_comment_exits[@]}"
   declare -i LFBFL_equal_result=$?
   if [[ LFBFL_equal_result -eq 0 ]]; then
-    # shellcheck disable=SC1003
-    echo '/!\'"Problème de définition des tableaux de langages 1"'/!\'
+    echo $'/!\\Problem with the definitions of languages arrays 1/!\\'
   fi
 
   declare -ar LFBFL_line_comment_languages=(\
@@ -87,8 +86,7 @@ build_licenses_templates(){
         "${#LFBFL_line_comment_prefixes[@]}"
   LFBFL_equal_result=$?
   if [[ LFBFL_equal_result -eq 0 ]]; then
-    # shellcheck disable=SC1003
-    echo '/!\'"Problème de définition des tableaux de langages 2"'/!\'
+    echo $'/!\\Problem with the definitions of languages arrays 2/!\\'
   fi
   # ------------------------------------------------------------------
 

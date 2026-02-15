@@ -118,12 +118,10 @@ create_PDF(){
   declare LFBFL_score_command2="${get_split_score_result}"
   declare LFBFL_score_command_properties2="${get_split_score_result2}"
   declare LFBFL_suffix='%'
-  declare LFBFL_sed_expression='s/\\\n//Mg'
   declare -i LFBFL_i=0
+  # Remove line returns here to keep lines short.
   # shellcheck disable=SC2312
-  sed -Ez -e "${LFBFL_sed_expression}" -e "${LFBFL_sed_expression}"\
-    -e "${LFBFL_sed_expression}" -e "${LFBFL_sed_expression}"\
-    "./${LFBFL_subdir2}/files_names_listing.txt"\
+  sed -Ez 's/\\\n//Mg' "./${LFBFL_subdir2}/files_names_listing.txt"\
     | grep -v '^//'\
     | while read -r LFBFL_file_name;
   do

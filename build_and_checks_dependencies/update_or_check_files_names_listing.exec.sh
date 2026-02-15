@@ -51,15 +51,9 @@ update_or_check_files_names_listing(){
   if [[ "$*" == *--write* ]]; then
     : > "${files_names_listing}"
   fi
-  sed_expression='s/\\\n//Mg'
-  sed -Ez "${sed_expression}" "${files_names_listing}"\
-    > "${files_names_listing}.temp1"
-  sed -Ez "${sed_expression}" "${files_names_listing}.temp1"\
-    > "${files_names_listing}.temp2"
-  sed -Ez "${sed_expression}" "${files_names_listing}.temp2"\
-    > "${files_names_listing}.temp3"
-  sed -Ez "${sed_expression}" "${files_names_listing}.temp3"\
-    > "${files_names_listing}.temp4"
+  # Remove line returns here to keep lines short.
+  sed -Ez 's/\\\n//Mg' "${files_names_listing}"\
+    > "${files_names_listing}.temp"
   shopt -s dotglob
   get_split_score_simple 1 70 /
   # shellcheck disable=SC2154
@@ -91,7 +85,7 @@ update_or_check_files_names_listing(){
         >> "${files_names_listing}"
       continue
     fi
-    if grep -q "${file_name}\$" "${files_names_listing}.temp4"; then
+    if grep -q "${file_name}\$" "${files_names_listing}.temp"; then
       :
     else
       echo\
@@ -114,10 +108,9 @@ update_or_check_files_names_listing(){
       echo\
       "The non-file ${file_name} is listed in ${files_names_listing}."
     fi
-  done < "${files_names_listing}.temp4"
+  done < "${files_names_listing}.temp"
 
-  rm "${files_names_listing}.temp1" "${files_names_listing}.temp2"\
-    "${files_names_listing}.temp3" "${files_names_listing}.temp4"
+  rm "${files_names_listing}.temp"
   shopt -u dotglob
   shopt -s globstar
 

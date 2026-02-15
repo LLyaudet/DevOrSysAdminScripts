@@ -68,9 +68,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='c07397f927063fbe31e973461b77d7844ccab1a0db498'
-  LFBFL_correct_sha512+='ae9282114f65e6faf3fbe4eb1cd220a1b029334e4f3b'
-  LFBFL_correct_sha512+='9139721bb3123b83512df8817c06c00d4a4d559'
+  LFBFL_correct_sha512='e0cdfc2d653daf9f15a3447f40e41fe03a332ac4054c4'
+  LFBFL_correct_sha512+='0950efc0b9f58912791068c081babf7a7a9e72bacd57'
+  LFBFL_correct_sha512+='8e600bbb5e0c51466e60e91e5b6dda6173b088b'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
@@ -274,9 +274,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='b6b02a2d636509afb6336d19c3512216e0f122eba665b'
-  LFBFL_correct_sha512+='88a1b9b79a54810f45918fab7fe36523f271ad6e3adf'
-  LFBFL_correct_sha512+='5a0bcaf53714cb824b702e4b2d7020c832f51b9'
+  LFBFL_correct_sha512='be622620998f73fceabe75d4cb0d665fbba38ae987e2f'
+  LFBFL_correct_sha512+='e1aa8dc9e0009234979c0f9e5a8d18e7a8a4653ab4da'
+  LFBFL_correct_sha512+='a2d8249f696f5237fa4e026b9b1ce6346b2fd15'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
@@ -558,8 +558,7 @@ $(stat -c %Y "${LFBFL_upgrade_venvs_ts_file}")
   fi
 
   echo "Analyzing too long lines"
-  # shellcheck disable=SC2312
-  too_long_code_lines | relevant_grep | not_license_grep
+  too_long_code_lines
 
   echo "Analyzing shell scripts beginnings"
   # shellcheck disable=SC2312

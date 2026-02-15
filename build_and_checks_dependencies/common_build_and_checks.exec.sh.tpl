@@ -489,8 +489,7 @@ $(stat -c %Y "${LFBFL_upgrade_venvs_ts_file}")
   fi
 
   echo "Analyzing too long lines"
-  # shellcheck disable=SC2312
-  too_long_code_lines | relevant_grep | not_license_grep
+  too_long_code_lines
 
   echo "Analyzing shell scripts beginnings"
   # shellcheck disable=SC2312

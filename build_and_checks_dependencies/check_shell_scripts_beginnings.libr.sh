@@ -24,20 +24,33 @@
 # This file was renamed from "check_shell_scripts_beginnings.sh"
 # to "check_shell_scripts_beginnings.libr.sh".
 
-check_one_shell_script_beginning(){
-  declare -r LFBFL_file_name=$(basename "$1")
-  if [[ "${LFBFL_file_name}" =~ license_file_header_.*\.sh ]]; then
-    return 0
-  fi
-  # shellcheck disable=SC2312
-  diff <(head -n 1 "$1") <(echo '#!/usr/bin/env bash')
-}
+declare -gr LFBFL_SHELL_SCRIPT_BEGINNING="#!/usr/bin/env bash"
 
+check_one_shell_script_beginning(){
+  # declare -r LFBFL_file_name=$(basename "$1")
+  # if [[ "${LFBFL_file_name}" =~ license_file_header_.*\.sh ]]; then
+  #   return 0
+  # fi
+  # diff <(head -n 1 "$1") <(echo '#!/usr/bin/env bash')
+  # ------------------------------------------------------------------
+  # is of course slower than
+  # ------------------------------------------------------------------
+  # diff <(head -n 1 "$1") <(echo '#!/usr/bin/env bash')
+  # ------------------------------------------------------------------
+  # is of course slower than
+  # ------------------------------------------------------------------
+  declare -r LFBFL_head=$(head -n 1 "$1")
+  [[ "${LFBFL_head}" == "${LFBFL_SHELL_SCRIPT_BEGINNING}" ]]\
+    || echo "$1:File has wrong shell script beginning."
+}
 
 check_shell_scripts_beginnings(){
   shopt -s globstar
   local LFBFL_file_name
+  local LFBFL_head
   for LFBFL_file_name in **/*.sh; do
-    check_one_shell_script_beginning "${LFBFL_file_name}"
+    LFBFL_head=$(head -n 1 "${LFBFL_file_name}")
+    [[ "${LFBFL_head}" == "${LFBFL_SHELL_SCRIPT_BEGINNING}" ]] ||\
+      echo "${LFBFL_file_name}:File has wrong shell script beginning."
   done
 }

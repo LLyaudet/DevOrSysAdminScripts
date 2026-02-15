@@ -118,8 +118,6 @@ declare LFBFL_score_command_properties2="${get_split_score_result2}"
 declare LFBFL_suffix='%'
 declare LFBFL_sed_expression='s/\\\n//Mg'
 declare -i LFBFL_i=0
-declare LFBFL_suffix2='<!--'
-declare LFBFL_prefix2='-->'
 # shellcheck disable=SC2312
 sed -Ez "${LFBFL_sed_expression}"\
   "./${LFBFL_subdir2}/files_names_listing.txt"\
@@ -186,8 +184,8 @@ do
   ((++LFBFL_i))
   LFBFL_new_lines="${LFBFL_file_name}"
   if [[ ${#LFBFL_file_name} -gt 70 ]]; then
-    repeated_split_last_line "${LFBFL_new_lines}" "${LFBFL_prefix2}"\
-      70 "${LFBFL_suffix2}" "${LFBFL_score_command}"\
+    repeated_split_last_line "${LFBFL_new_lines}" "-->"\
+      70 "<!--" "${LFBFL_score_command}"\
       "${LFBFL_score_command_properties}"
     # shellcheck disable=SC2154
     LFBFL_new_lines=${repeated_split_last_line_result}

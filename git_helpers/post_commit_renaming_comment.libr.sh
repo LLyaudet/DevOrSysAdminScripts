@@ -288,10 +288,7 @@ commit_a_file_renamed_comment(){
         continue
       fi
       # Get total number of lines. -----------------------------------
-      # shellcheck disable=SC2002,SC2312
-      LFBFL_line_count=$(
-        cat "${LFBFL_new_file_path}" | wc -l
-      )
+      LFBFL_line_count=$(wc -l < "${LFBFL_new_file_path}")
       if [[ LFBFL_verbose -eq 1 ]]; then
         echo "LFBFL_line_count: ${LFBFL_line_count}"
       fi

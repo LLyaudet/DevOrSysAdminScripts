@@ -106,8 +106,7 @@ update_or_check_files_names_listing(){
     fi
   done
 
-  # shellcheck disable=SC2002,2312
-  cat "${files_names_listing}.temp4" | while read -r file_name;
+  while read -r file_name;
   do
     [[ "${file_name}" != '//'* ]] || continue
     base_file_name=$(basename "${file_name}")
@@ -115,7 +114,7 @@ update_or_check_files_names_listing(){
       echo\
       "The non-file ${file_name} is listed in ${files_names_listing}."
     fi
-  done
+  done < "${files_names_listing}.temp4"
 
   rm "${files_names_listing}.temp1" "${files_names_listing}.temp2"\
     "${files_names_listing}.temp3" "${files_names_listing}.temp4"

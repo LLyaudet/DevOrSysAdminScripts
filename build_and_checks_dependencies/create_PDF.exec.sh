@@ -121,11 +121,9 @@ create_PDF(){
   declare LFBFL_sed_expression='s/\\\n//Mg'
   declare -i LFBFL_i=0
   # shellcheck disable=SC2312
-  sed -Ez "${LFBFL_sed_expression}"\
+  sed -Ez -e "${LFBFL_sed_expression}" -e "${LFBFL_sed_expression}"\
+    -e "${LFBFL_sed_expression}" -e "${LFBFL_sed_expression}"\
     "./${LFBFL_subdir2}/files_names_listing.txt"\
-    | sed -Ez "${LFBFL_sed_expression}"\
-    | sed -Ez "${LFBFL_sed_expression}"\
-    | sed -Ez "${LFBFL_sed_expression}"\
     | grep -v '^//'\
     | while read -r LFBFL_file_name;
   do
@@ -244,8 +242,8 @@ create_PDF(){
       # shellcheck disable=SC2312
       LFBFL_line_start=$(\
         echo "${LFBFL_line}"\
-          | sed -E "s/(.*)[ ]*${LFBFL_file_name}/\1/g"\
-          | sed -e 's/ *$//g'
+          | sed -E -e "s/(.*)[ ]*${LFBFL_file_name}/\1/g"\
+                   -e 's/ *$//g'
       )
       # echo "LFBFL_line_start: ${LFBFL_line_start}"
       LFBFL_line=$(\
@@ -321,25 +319,13 @@ create_PDF(){
       "./${LFBFL_subdir2}/temp/acknowledgments_temp"\
       "${LFBFL_tex_path_start}.3"
 
-    sed -i "s|@author_email@|${author_email}|g"\
-      "${LFBFL_tex_path_start}.3"
-
-    sed -i "s|@author_full_name@|${author_full_name}|g"\
-      "${LFBFL_tex_path_start}.3"
-
-    sed -i "s|@author_website@|${author_website}|g"\
-      "${LFBFL_tex_path_start}.3"
-
-    sed -i "s|@current_date@|${LFBFL_current_date}|g"\
-      "${LFBFL_tex_path_start}.3"
-
-    sed -i "s|@current_git_SHA1@|${LFBFL_current_git_SHA1}|g"\
-      "${LFBFL_tex_path_start}.3"
-
-    sed -i "s|@number_of_commits@|${LFBFL_number_of_commits}|g"\
-      "${LFBFL_tex_path_start}.3"
-
-    sed -i "s|@number_of_lines@|${LFBFL_number_of_lines}|g"\
+    sed -i -e "s|@author_email@|${author_email}|g"\
+           -e "s|@author_full_name@|${author_full_name}|g"\
+           -e "s|@author_website@|${author_website}|g"\
+           -e "s|@current_date@|${LFBFL_current_date}|g"\
+           -e "s|@current_git_SHA1@|${LFBFL_current_git_SHA1}|g"\
+           -e "s|@number_of_commits@|${LFBFL_number_of_commits}|g"\
+           -e "s|@number_of_lines@|${LFBFL_number_of_lines}|g"\
       "${LFBFL_tex_path_start}.3"
 
     pushd "./${LFBFL_subdir2}/temp/" || (echo "pushd failed" && exit)
@@ -373,25 +359,13 @@ create_PDF(){
       "./${LFBFL_subdir2}/temp/acknowledgments_temp"\
       "${LFBFL_html_path_start}.3"
 
-    sed -i "s|@author_email@|${author_email}|g"\
-      "${LFBFL_html_path_start}.3"
-
-    sed -i "s|@author_full_name@|${author_full_name}|g"\
-      "${LFBFL_html_path_start}.3"
-
-    sed -i "s|@author_website@|${author_website}|g"\
-      "${LFBFL_html_path_start}.3"
-
-    sed -i "s|@current_date@|${LFBFL_current_date}|g"\
-      "${LFBFL_html_path_start}.3"
-
-    sed -i "s|@current_git_SHA1@|${LFBFL_current_git_SHA1}|g"\
-      "${LFBFL_html_path_start}.3"
-
-    sed -i "s|@number_of_commits@|${LFBFL_number_of_commits}|g"\
-      "${LFBFL_html_path_start}.3"
-
-    sed -i "s|@number_of_lines@|${LFBFL_number_of_lines}|g"\
+    sed -i -e "s|@author_email@|${author_email}|g"\
+           -e "s|@author_full_name@|${author_full_name}|g"\
+           -e "s|@author_website@|${author_website}|g"\
+           -e "s|@current_date@|${LFBFL_current_date}|g"\
+           -e "s|@current_git_SHA1@|${LFBFL_current_git_SHA1}|g"\
+           -e "s|@number_of_commits@|${LFBFL_number_of_commits}|g"\
+           -e "s|@number_of_lines@|${LFBFL_number_of_lines}|g"\
       "${LFBFL_html_path_start}.3"
 
     insert_file_at_token "${LFBFL_html_path_start}.3"\
@@ -401,8 +375,7 @@ create_PDF(){
     pushd "./${LFBFL_subdir2}/temp/" || (echo "pushd failed" && exit)
     sed -i\
       -e '/@current_tree_light@/{r current_tree_light.txt' -e 'd}'\
-      "${repository_name}.html.4"
-    sed -i -e '/@current_tree@/{r current_tree.txt' -e 'd}'\
+      -e '/@current_tree@/{r current_tree.txt' -e 'd}'\
       "${repository_name}.html.4"
     popd || (echo "popd failed" && exit)
 

@@ -114,6 +114,7 @@ build_and_checks_variables/phpmd_baseline.xml
 build_and_checks_variables/pylintrc.toml
 build_and_checks_variables/repository_data.txt
 build_and_checks_variables/ruff.toml
+build_and_checks_variables/shellcheck_notes.txt
 // build_and_checks_variables/upgrade_venvs_ts
 build_and_checks.exec.sh
 COPYING

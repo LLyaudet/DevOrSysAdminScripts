@@ -1,0 +1,27 @@
+A listing of the current suppressed warnings/errors from shellcheck:
+- SC1090 : Can't follow non-constant source.
+           Use a directive to specify location
+           # shellcheck source=bla/bli.sh
+- SC1091 : Not following (file not found most of the time).
+- SC1111 : Use of slanted double quotes (valid inside single quotes)
+           False positive, but may catch some problem.
+- SC2001 : Replace some sed with bash builtin ${a//b/c}
+- SC2034 : Unused variable
+- SC2125 : Brace expansions and globs are literal.
+           False positive when assigning a variable declared with -i.
+- SC2154 : A variable is referenced but not assigned
+- SC2155 : Declare and assign separately to avoid masking return value
+           Main false positive is on declare -r (1 line instead of 3)
+- SC2164 : cd || exit/return since cd may fail
+- SC2248 : Prefer double quoting
+           False positive on returning integer values.
+- SC2312 : Some command is not invoked separately and thus its return
+           value is masked. Frequent with pipes.
+
+The command to check if there is anything else:
+grep -r "shellcheck disable" . | grep -v -e '.git' -e "=SC1090$"\
+  -e "=SC1091$" -e "=SC1090,SC1091$" -e "=SC1111$" -e "=SC2001$"\
+  -e "=SC2034$" -e "=SC2125$" -e "=SC2034,SC2125$" -e "=SC2154$"\
+  -e "=SC2155$" -e "=SC2164$" -e "=SC2248$" -e "=SC2312$"\
+  -e "=SC2001,SC2312$" -e "=SC2155,SC2312$"
+

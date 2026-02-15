@@ -79,7 +79,7 @@ LFBFL_number_of_lines+=" $(code_lines_count_not_empty)"
 LFBFL_number_of_lines+=" not empty lines,"
 LFBFL_number_of_lines+=" $(code_lines_count_empty) empty lines."
 
-# shellcheck disable=SC2094,SC2312
+# shellcheck disable=SC2312
 tree -a --gitignore\
   -I "node_modules/"\
   -I "__pycache__/"\
@@ -88,7 +88,7 @@ tree -a --gitignore\
   | replace_non_ascii_spaces\
   > "${LFBFL_subdir2}/temp/current_tree_light.txt"
 
-# shellcheck disable=SC2094,SC2312
+# shellcheck disable=SC2312
 tree -a -DFh --gitignore\
   -I "node_modules/"\
   -I "__pycache__/"\

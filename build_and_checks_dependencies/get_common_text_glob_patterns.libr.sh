@@ -25,6 +25,10 @@
 # to "get_common_text_glob_patterns.libr.sh".
 
 get_COMMON_TEXT_PATHS_GLOB_PATTERNS(){
+  if [[ -n "${COMMON_TEXT_PATHS_GLOB_PATTERNS}" ]]; then
+    return
+  fi
+
   # shellcheck disable=SC2034
   declare -gr COMMON_TEXT_PATHS_GLOB_PATTERNS=(\
     '**/*.c'\
@@ -56,6 +60,10 @@ get_COMMON_TEXT_PATHS_GLOB_PATTERNS(){
 
 
 get_COMMON_TEXT_FILES_GLOB_PATTERNS(){
+  if [[ -n "${COMMON_TEXT_FILES_GLOB_PATTERNS}" ]]; then
+    return
+  fi
+
   # shellcheck disable=SC2034
   declare -gr COMMON_TEXT_FILES_GLOB_PATTERNS=(\
     '*.c'\

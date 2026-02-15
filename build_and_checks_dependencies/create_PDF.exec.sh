@@ -136,7 +136,6 @@ do
   LFBFL_cleaned_path2=$(
     sed -e 's/\//:/g' -e 's/\.//g' <(echo "${LFBFL_file_name}")
   )
-  echo "\subsection{" >> "${LFBFL_temp_files_listing}"
   LFBFL_new_lines="  ${LFBFL_cleaned_path1}"
   if [[ ${#LFBFL_new_lines} -gt 70 ]]; then
     repeated_split_last_line "${LFBFL_new_lines}" "" 70\
@@ -145,49 +144,46 @@ do
     # shellcheck disable=SC2154
     LFBFL_new_lines=${repeated_split_last_line_result}
   fi
-  # shellcheck disable=SC2129,SC2312
-  echo "  ${LFBFL_file_name}"\
-    | sed -e "s|  ${LFBFL_file_name}|${LFBFL_new_lines}|g"\
-          -e 's/_/\\_/g'\
-    >> "${LFBFL_temp_files_listing}"
-  echo "}" >> "${LFBFL_temp_files_listing}"
-  echo "\label{" >> "${LFBFL_temp_files_listing}"
-  LFBFL_new_lines="  ${LFBFL_cleaned_path2}"
-  if [[ ${#LFBFL_new_lines} -gt 70 ]]; then
-    repeated_split_last_line "${LFBFL_new_lines}" "" 70\
+  LFBFL_new_lines2="  ${LFBFL_cleaned_path2}"
+  if [[ ${#LFBFL_new_lines2} -gt 70 ]]; then
+    repeated_split_last_line "${LFBFL_new_lines2}" "" 70\
       "${LFBFL_suffix}" "${LFBFL_score_command2}"\
       "${LFBFL_score_command_properties2}"
     # shellcheck disable=SC2154
-    LFBFL_new_lines=${repeated_split_last_line_result}
+    LFBFL_new_lines2=${repeated_split_last_line_result}
   fi
-  # shellcheck disable=SC2129,SC2312
-  echo "  ${LFBFL_cleaned_path2}"\
-    | sed -e "s|  ${LFBFL_cleaned_path2}|${LFBFL_new_lines}|g"\
-    >> "${LFBFL_temp_files_listing}"
-  echo "}" >> "${LFBFL_temp_files_listing}"
-  echo "" >> "${LFBFL_temp_files_listing}"
-  echo "\VerbatimInput[numbers=left,xleftmargin=-5mm]{"\
-    >> "${LFBFL_temp_files_listing}"
-  LFBFL_new_lines="${LFBFL_file_name}"
-  if [[ ${#LFBFL_new_lines} -gt 70 ]]; then
-    repeated_split_last_line "${LFBFL_new_lines}" "" 70\
+  LFBFL_new_lines3="${LFBFL_file_name}"
+  if [[ ${#LFBFL_new_lines3} -gt 70 ]]; then
+    repeated_split_last_line "${LFBFL_new_lines3}" "" 70\
       "${LFBFL_suffix}" "${LFBFL_score_command}"\
       "${LFBFL_score_command_properties}"
     # shellcheck disable=SC2154
-    LFBFL_new_lines=${repeated_split_last_line_result}
+    LFBFL_new_lines3=${repeated_split_last_line_result}
   fi
-  # shellcheck disable=SC2129,SC2312
-  echo "  ${LFBFL_file_name}"\
-    | sed -e "s|  ${LFBFL_file_name}|${LFBFL_new_lines}|g"\
-    >> "${LFBFL_temp_files_listing}"
-  echo "}" >> "${LFBFL_temp_files_listing}"
-  echo "" >> "${LFBFL_temp_files_listing}"
-  echo "" >> "${LFBFL_temp_files_listing}"
+  {
+    echo "\subsection{"
+    # shellcheck disable=SC2312
+    echo "  ${LFBFL_file_name}"\
+      | sed -e "s|  ${LFBFL_file_name}|${LFBFL_new_lines}|g"\
+            -e 's/_/\\_/g'
+    echo "}"
+    echo "\label{"
+    # shellcheck disable=SC2312
+    echo "  ${LFBFL_cleaned_path2}"\
+      | sed -e "s|  ${LFBFL_cleaned_path2}|${LFBFL_new_lines2}|g"
+    echo "}"
+    echo ""
+    echo "\VerbatimInput[numbers=left,xleftmargin=-5mm]{"
+    # shellcheck disable=SC2312
+    echo "  ${LFBFL_file_name}"\
+      | sed -e "s|  ${LFBFL_file_name}|${LFBFL_new_lines3}|g"
+    echo "}"
+    echo ""
+    echo ""
+  } >> "${LFBFL_temp_files_listing}"
 
   # echo "Listing file for HTML : ${LFBFL_file_name}"
   ((++LFBFL_i))
-  echo "<h3 id=\"subsection2.${LFBFL_i}\">2.${LFBFL_i}"\
-    >> "${LFBFL_temp_files_listing2}"
   LFBFL_new_lines="${LFBFL_file_name}"
   if [[ ${#LFBFL_file_name} -gt 70 ]]; then
     repeated_split_last_line "${LFBFL_new_lines}" "${LFBFL_prefix2}"\
@@ -196,27 +192,25 @@ do
     # shellcheck disable=SC2154
     LFBFL_new_lines=${repeated_split_last_line_result}
   fi
-  # shellcheck disable=SC2001,SC2129,SC2312
-  echo "${LFBFL_file_name}"\
-    | sed -e "s|${LFBFL_file_name}|${LFBFL_new_lines}|g"\
-    >> "${LFBFL_temp_files_listing2}"
-  echo "</h3>" >> "${LFBFL_temp_files_listing2}"
-  echo "<pre class=\"numbered_lines\">"\
-    >> "${LFBFL_temp_files_listing2}"
-  sed -e 's/&/\&amp;/g' -e 's/</\&lt;/g' < "${LFBFL_file_name}"\
-    >> "${LFBFL_temp_files_listing2}"
-  echo "</pre>" >> "${LFBFL_temp_files_listing2}"
-  echo "" >> "${LFBFL_temp_files_listing2}"
-  echo "" >> "${LFBFL_temp_files_listing2}"
-
-  # shellcheck disable=SC2129
-  echo "      <li><a href=\"#subsection2.${LFBFL_i}\">"\
-    >> "${LFBFL_temp_files_lis}"
-  # shellcheck disable=SC2001
-  echo "${LFBFL_file_name}"\
-    | sed -e "s|${LFBFL_file_name}|${LFBFL_new_lines}|g"\
-    >> "${LFBFL_temp_files_lis}"
-  echo "      </a></li>" >> "${LFBFL_temp_files_lis}"
+  {
+    echo "<h3 id=\"subsection2.${LFBFL_i}\">2.${LFBFL_i}"
+    # shellcheck disable=SC2001,SC2312
+    echo "${LFBFL_file_name}"\
+      | sed -e "s|${LFBFL_file_name}|${LFBFL_new_lines}|g"
+    echo "</h3>"
+    echo "<pre class=\"numbered_lines\">"
+    sed -e 's/&/\&amp;/g' -e 's/</\&lt;/g' < "${LFBFL_file_name}"
+    echo "</pre>"
+    echo ""
+    echo ""
+  } >> "${LFBFL_temp_files_listing2}"
+  {
+    echo "      <li><a href=\"#subsection2.${LFBFL_i}\">"
+    # shellcheck disable=SC2001
+    echo "${LFBFL_file_name}"\
+      | sed -e "s|${LFBFL_file_name}|${LFBFL_new_lines}|g"
+    echo "      </a></li>"
+  } >> "${LFBFL_temp_files_lis}"
 done
 overwrite_if_not_equal "./${LFBFL_subdir2}/files_listing.tex.tpl"\
   "${LFBFL_temp_files_listing}"

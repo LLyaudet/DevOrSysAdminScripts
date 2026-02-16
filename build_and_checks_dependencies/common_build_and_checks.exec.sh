@@ -583,6 +583,10 @@ $(stat -c %Y "${LFBFL_upgrade_venvs_ts_file}")
 
   # shellcheck disable=SC2164
   popd
+
+  if [[ -f "build_and_checks_variables/post_build.sh" ]]; then
+    ./build_and_checks_variables/post_build.sh
+  fi
 }
 
 common_build_and_checks "$@"

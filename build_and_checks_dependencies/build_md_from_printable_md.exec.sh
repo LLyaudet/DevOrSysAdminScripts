@@ -38,9 +38,11 @@ build_md_from_printable_md(){
   readonly LFBFL_verbose
 
   # Remove line returns here to keep lines short.
+  local LFBFL_sed_expression
   LFBFL_sed_expression='s/(\[[a-zA-Z0-9:-]*\]: [^\n\\]*)\\\n/\1/Mg'
   LFBFL_sed_expression+=';s/(<http[^\n\\]*)\\\n/\1/Mg'
   LFBFL_sed_expression+=';s/(- <http[^\n\\]*)\\\n/\1/Mg'
+  readonly LFBFL_sed_expression
   # Since Markdown can contain code, it is limited to Markdown URLs.
   # Hence it is way more complicated than 's/\\\n//Mg' expression
   # in other files.
@@ -54,41 +56,45 @@ build_md_from_printable_md(){
       echo "Moving to directory: $1"
     fi
     cd "$1" || {
-      LFBFL_cd_result=$?;
-      echo "build_md_from_printable_md no such directory";
+      LFBFL_cd_result=$?
+      echo "build_md_from_printable_md no such directory"
       # shellcheck disable=SC2248
-      exit ${LFBFL_cd_result};
+      return ${LFBFL_cd_result}
     }
   fi
 
-  file_name="README"
+  local LFBFL_base_name="README"
   if [[ -n "$2" ]];
   then
     if [[ LFBFL_verbose -eq 1 ]]; then
       echo "Searching md file: $2"
     fi
-    file_name="$2"
+    LFBFL_base_name="$2"
   fi
+  readonly LFBFL_base_name
 
-  if [[ -f "${file_name}.md.tpl" ]];
+  if [[ -f "${LFBFL_base_name}.md.tpl" ]];
   then
     sed -Ez -e "${LFBFL_sed_expression}" -e "${LFBFL_sed_expression}"\
       -e "${LFBFL_sed_expression}" -e "${LFBFL_sed_expression}"\
-      "${file_name}.md.tpl" > "${file_name}_temp.md"
-    overwrite_if_not_equal "${file_name}.md" "${file_name}_temp.md"
+      "${LFBFL_base_name}.md.tpl" > "${LFBFL_base_name}.md.temp"
+    overwrite_if_not_equal "${LFBFL_base_name}.md"\
+      "${LFBFL_base_name}.md.temp"
   else
-    echo "No file ${file_name}.md.tpl"
+    echo "No file ${LFBFL_base_name}.md.tpl"
   fi
 
-  pandoc -f markdown "${file_name}.md" > "${file_name}.html.temp"
-  overwrite_if_not_equal "${file_name}.html" "${file_name}.html.temp"
+  pandoc -f markdown "${LFBFL_base_name}.md"\
+    > "${LFBFL_base_name}.html.temp"
+  overwrite_if_not_equal "${LFBFL_base_name}.html"\
+    "${LFBFL_base_name}.html.temp"
 
   declare -i LFBFL_popd_result
   popd || {
-    LFBFL_popd_result=$?;
-    echo "build_md_from_printable_md no popd";
+    LFBFL_popd_result=$?
+    echo "build_md_from_printable_md no popd"
     # shellcheck disable=SC2248
-    exit ${LFBFL_popd_result};
+    return ${LFBFL_popd_result}
   }
 }
 

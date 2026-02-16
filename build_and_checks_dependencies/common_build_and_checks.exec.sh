@@ -553,6 +553,21 @@ $(stat -c %Y "${LFBFL_upgrade_venvs_ts_file}")
    . text cleancode,codesize,controversial,design,naming,unusedcode
   echo "---PHP end---"
 
+  echo "---JS---"
+  npm_lint_directories=""
+  grep_variable "${LFBFL_data_file_name}" npm_lint_directories
+  if [[ -n "${npm_lint_directories}" ]]; then
+    echo "Running ESLint"
+    local LFBFL_JS_directory
+    # shellcheck disable=SC2312
+    echo "${npm_lint_directories}" | sed -e 's/\\n/\n/g'\
+      | while read -r LFBFL_JS_directory;
+    do
+      (cd "${LFBFL_JS_directory}" && npm run lint)
+    done
+  fi
+  echo "---JS end---"
+
   if [[ LFBFL_upgrade_venvs -eq 1 ]]; then
     touch "${LFBFL_upgrade_venvs_ts_file}"
   fi

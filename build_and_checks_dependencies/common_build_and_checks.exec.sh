@@ -38,7 +38,7 @@ common_build_and_checks(){
   # declare -r LFBFL_dependencies_URL="$2" too long
   declare -r LFBFL_start_URL="$2"
   local LFBFL_verbose=""
-  if [[ "$3" == "--verbose" ]]; then
+  if [[ "$*" == *--verbose* ]]; then
     echo "$0 $*"
     LFBFL_verbose="--verbose"
   fi
@@ -57,9 +57,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='1bba5aba76c03006f8678322f64d17f44899ef74196ae'
-  LFBFL_correct_sha512+='03ddb2a19bfdca87dd48ed1a19143638a55283bfc205'
-  LFBFL_correct_sha512+='9dfd3381fdd9bdb06e1733a3ddc51f2183c1eec'
+  LFBFL_correct_sha512='d69376037fadf5a0462dfe7c0402472f74da261f3100a'
+  LFBFL_correct_sha512+='f67eb64dfc3fdf11d2d5c72bb482c785623095c500b9'
+  LFBFL_correct_sha512+='ca954d940dffe4750f5952c093991408266b310'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
   chmod +x "./${LFBFL_file_path}"
@@ -142,9 +142,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL2}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir2}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='1f3d6f004b8bd5067896f8708390039c2572e8e62bec7'
-  LFBFL_correct_sha512+='aa791ca8b0a05581293027eb3fad8eaf6bb779f48aab'
-  LFBFL_correct_sha512+='e0c0f060c468070504f25f2304b53854fc48cc2'
+  LFBFL_correct_sha512='77b4f2c9d4ce34b1e0ad11242916beab5994d8d25610d'
+  LFBFL_correct_sha512+='dcc80ea6a5b4fd6084beb3f1f6bb8f7fd6de5f00db4a'
+  LFBFL_correct_sha512+='b5a46062fd42a08f517cfd36144a4dcd86eb79a'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
   chmod +x "./${LFBFL_file_path}"
@@ -370,7 +370,7 @@ $(stat -c %Y "${LFBFL_upgrade_venvs_ts_file}")
 
   echo "Building license headers"
   "./${LFBFL_subdir2}/build_licenses_templates.exec.sh"\
-    "${LFBFL_verbose}"
+    "${LFBFL_working_directory}" "${LFBFL_verbose}"
 
   echo "Building README.md"
   "./${LFBFL_subdir}/build_md_from_printable_md.exec.sh"\
@@ -613,12 +613,12 @@ $(stat -c %Y "${LFBFL_upgrade_venvs_ts_file}")
   echo "Creating the PDF file of the listing of the source code"
   "./${LFBFL_subdir}/create_PDF.exec.sh" "${LFBFL_verbose}"
 
-  # shellcheck disable=SC2164
-  popd
-
   if [[ -f "build_and_checks_variables/post_build.sh" ]]; then
     ./build_and_checks_variables/post_build.sh
   fi
+
+  # shellcheck disable=SC2164
+  popd
 }
 
 common_build_and_checks "$@"

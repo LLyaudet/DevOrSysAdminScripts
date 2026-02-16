@@ -38,7 +38,7 @@ common_build_and_checks(){
   # declare -r LFBFL_dependencies_URL="$2" too long
   declare -r LFBFL_start_URL="$2"
   local LFBFL_verbose=""
-  if [[ "$3" == "--verbose" ]]; then
+  if [[ "$*" == *--verbose* ]]; then
     echo "$0 $*"
     LFBFL_verbose="--verbose"
   fi
@@ -301,7 +301,7 @@ $(stat -c %Y "${LFBFL_upgrade_venvs_ts_file}")
 
   echo "Building license headers"
   "./${LFBFL_subdir2}/build_licenses_templates.exec.sh"\
-    "${LFBFL_verbose}"
+    "${LFBFL_working_directory}" "${LFBFL_verbose}"
 
   echo "Building README.md"
   "./${LFBFL_subdir}/build_md_from_printable_md.exec.sh"\
@@ -544,12 +544,12 @@ $(stat -c %Y "${LFBFL_upgrade_venvs_ts_file}")
   echo "Creating the PDF file of the listing of the source code"
   "./${LFBFL_subdir}/create_PDF.exec.sh" "${LFBFL_verbose}"
 
-  # shellcheck disable=SC2164
-  popd
-
   if [[ -f "build_and_checks_variables/post_build.sh" ]]; then
     ./build_and_checks_variables/post_build.sh
   fi
+
+  # shellcheck disable=SC2164
+  popd
 }
 
 common_build_and_checks "$@"

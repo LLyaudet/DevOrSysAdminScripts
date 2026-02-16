@@ -35,6 +35,11 @@ source "./${LFBFL_subdir}/lines_filters.libr.sh"
 source "./${LFBFL_subdir}/overwrite_if_not_equal.libr.sh"
 
 build_licenses_templates(){
+  local LFBFL_working_directory=$1
+  if [[ -z "$1" ]]; then
+    LFBFL_working_directory="."
+  fi
+  readonly LFBFL_working_directory
   declare -i LFBFL_verbose=0
   if [[ "$*" == *--verbose* ]]; then
     echo "$0 $*"
@@ -42,10 +47,22 @@ build_licenses_templates(){
   fi
   readonly LFBFL_verbose
 
-  declare -r\
-    LFBFL_license_subdir="./${LFBFL_subdir}/licenses_templates/"
-  declare -r\
-    LFBFL_license_prefix="${LFBFL_license_subdir}license_file_header_"
+  # Source
+  local LFBFL_license_source_subdir
+  LFBFL_license_source_subdir="./${LFBFL_subdir}/licenses_templates/"
+  readonly LFBFL_license_source_subdir
+  local LFBFL_source_license_prefix="${LFBFL_license_source_subdir}"
+  LFBFL_source_license_prefix+="license_file_header_"
+  readonly LFBFL_source_license_prefix
+  # Target
+  local LFBFL_license_target_subdir
+  LFBFL_license_target_subdir="${LFBFL_working_directory}/"
+  LFBFL_license_target_subdir="build_and_checks_variables/temp/"
+  readonly LFBFL_license_target_subdir
+  local LFBFL_target_license_prefix="${LFBFL_license_target_subdir}"
+  LFBFL_target_license_prefix+="license_file_header_"
+  readonly LFBFL_target_license_prefix
+
   declare -ar LFBFL_licenses=(\
     "AGPLv3+"\
     "GPLv3+"\
@@ -96,19 +113,23 @@ build_licenses_templates(){
   # Kamoulox do endfor, Jacques Beauregard XD
   # (C'est toujours mieux que l'inverse :) !)
   # for do endfor -> for do done (Fort Doux Donne).
-  declare LFBFL_license
-  declare LFBFL_license_prefix2
-  declare LFBFL_extension
-  declare LFBFL_license_file_name
-  declare LFBFL_enter_string
-  declare LFBFL_exit_string
-  declare LFBFL_temp2
-  declare LFBFL_prefix_string
-  declare LFBFL_intermediate_file_name
-  declare LFBFL_file_prefix
+  local LFBFL_license
+  local LFBFL_license_prefix
+  local LFBFL_license_prefix2
+  local LFBFL_extension
+  local LFBFL_license_file_name
+  local LFBFL_enter_string
+  local LFBFL_exit_string
+  local LFBFL_temp2
+  local LFBFL_prefix_string
+  local LFBFL_intermediate_file_name
+  local LFBFL_file_prefix
   declare -i LFBFL_generate_from_template_result
   for LFBFL_license in "${LFBFL_licenses[@]}"; do
-    LFBFL_license_prefix2="${LFBFL_license_prefix}${LFBFL_license}"
+    LFBFL_license_prefix="${LFBFL_source_license_prefix}"
+    LFBFL_license_prefix+="${LFBFL_license}"
+    LFBFL_license_prefix2="${LFBFL_target_license_prefix}"
+    LFBFL_license_prefix2+="${LFBFL_license}"
     for ((i=0; i<${#LFBFL_block_comment_languages[@]}; i++)); do
       LFBFL_extension=${LFBFL_block_comment_languages[i]}
       LFBFL_license_file_name="${LFBFL_license_prefix2}"
@@ -116,7 +137,7 @@ build_licenses_templates(){
       LFBFL_enter_string=${LFBFL_block_comment_enters[i]}
       LFBFL_exit_string=${LFBFL_block_comment_exits[i]}
       generate_from_template_with_block_comments\
-        "${LFBFL_license_prefix2}.tpl"\
+        "${LFBFL_license_prefix}.tpl"\
         "${LFBFL_license_file_name}.tpl"\
         "${LFBFL_enter_string}" "${LFBFL_exit_string}"
       LFBFL_generate_from_template_result=$?
@@ -143,7 +164,7 @@ build_licenses_templates(){
         LFBFL_file_prefix="#!/usr/bin/env bash"
       fi
       generate_from_template_with_line_comments\
-        "${LFBFL_license_prefix2}.tpl"\
+        "${LFBFL_license_prefix}.tpl"\
         "${LFBFL_license_file_name}.tpl"\
         "${LFBFL_prefix_string}"\
         "sed -Ei -e 's/\s*$//g' '${LFBFL_intermediate_file_name}'"\
@@ -162,6 +183,17 @@ build_licenses_templates(){
   done
   # ------------------------------------------------------------------
 
+  # Now that base license templates generated languages license
+  # templates in working directory, we can go there.
+  declare -i LFBFL_cd_result
+  pushd .
+  cd "${LFBFL_working_directory}" || {
+    LFBFL_cd_result=$?
+    echo "build_licenses_templates no such directory"
+    # shellcheck disable=SC2248
+    return ${LFBFL_cd_result}
+  }
+
   local LFBFL_data_file_name="build_and_checks_variables/"
   LFBFL_data_file_name+="repository_data.txt"
   readonly LFBFL_data_file_name
@@ -173,6 +205,10 @@ build_licenses_templates(){
   grep_variable "${LFBFL_data_file_name}" license
   grep_variable "${LFBFL_data_file_name}" license2
   grep_variable "${LFBFL_data_file_name}" author_full_name
+
+  LFBFL_license_prefix="build_and_checks_variables/temp/"
+  LFBFL_license_prefix+="license_file_header_"
+  readonly LFBFL_license_prefix
   LFBFL_license_prefix2="${LFBFL_license_prefix}${license}"
   readonly LFBFL_license_prefix2
   declare -r\
@@ -221,9 +257,9 @@ build_licenses_templates(){
   LFBFL_all_block_comment_languages["php"]="c"
   LFBFL_all_block_comment_languages["py"]="py"
 
-  declare LFBFL_key
-  declare LFBFL_dest
-  declare LFBFL_license_file_name2
+  local LFBFL_key
+  local LFBFL_dest
+  local LFBFL_license_file_name2
   declare -i LFBFL_not_subfile
   declare -i LFBFL_not_subfile2
 
@@ -306,6 +342,14 @@ build_licenses_templates(){
       fi
     done
   done
+
+  declare -i LFBFL_popd_result
+  popd || {
+    LFBFL_popd_result=$?
+    echo "build_licenses_templates no popd"
+    # shellcheck disable=SC2248
+    return ${LFBFL_popd_result}
+  }
 }
 
 build_licenses_templates "$@"

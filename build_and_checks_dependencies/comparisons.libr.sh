@@ -46,6 +46,14 @@ equal(){
   return 1
 }
 
+some_distinct(){
+  declare -i LFBFL_result
+  equal "$@"
+  LFBFL_result=1-$?
+  # shellcheck disable=SC2248
+  return ${LFBFL_result}
+}
+
 all_distinct(){
   # Returns 1 if all the arguments strings are distinct.
   declare -ir LFBFL_ij_max=$#
@@ -58,6 +66,49 @@ all_distinct(){
     done
   done
   return 1
+}
+
+all_distinct2(){
+  # Returns 1 if all the arguments strings are distinct.
+  declare -i LFBFL_first=1
+  local LFBFL_element
+  local LFBFL_previous_element
+  if [[ "$#" == 0 ]]; then
+    return 1
+  fi
+  # shellcheck disable=SC2312
+  printf "%s\n" "${@:1}" | sort | while read -r LFBFL_element; do
+    echo "${LFBFL_element}"
+    if [[ LFBFL_first -eq 1 ]]; then
+      LFBFL_previous_element="${LFBFL_element}"
+      LFBFL_first=0
+      continue
+    fi
+    echo "'${LFBFL_element}'" "'${LFBFL_previous_element}'"
+    if [[ "${LFBFL_previous_element}" == "${LFBFL_element}" ]]; then
+      echo "WAT"
+      return 0
+    fi
+    LFBFL_previous_element="${LFBFL_element}"
+  done
+  return 1
+}
+
+some_equal(){
+  declare -i LFBFL_result
+  all_distinct "$@"
+  LFBFL_result=1-$?
+  # shellcheck disable=SC2248
+  return ${LFBFL_result}
+}
+
+some_equal2(){
+  declare -i LFBFL_result
+  all_distinct2 "$@"
+  echo $?
+  LFBFL_result=1-$?
+  # shellcheck disable=SC2248
+  return ${LFBFL_result}
 }
 
 max(){

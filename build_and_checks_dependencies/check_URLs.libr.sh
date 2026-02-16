@@ -30,10 +30,16 @@ source "./${LFBFL_subdir}/get_common_text_glob_patterns.libr.sh"
 source "./${LFBFL_subdir}/lines_filters.libr.sh"
 
 check_URLs(){
+  declare -i LFBFL_verbose=0
+  if [[ "$*" == *--verbose* ]]; then
+    echo "$0 $*"
+    LFBFL_verbose=1
+  fi
+  readonly LFBFL_verbose
+
   get_COMMON_TEXT_FILES_GLOB_PATTERNS
 
-  declare -A LFBFL_substitutions
-  LFBFL_substitutions=(\
+  declare -Ar LFBFL_substitutions=(\
     ["http://www.gnu.org/licenses/"]="https://www.gnu.org/licenses/"\
   )
 
@@ -44,7 +50,7 @@ check_URLs(){
   local LFBFL_substitution2
   # shellcheck disable=SC2154
   for LFBFL_pattern in "${COMMON_TEXT_FILES_GLOB_PATTERNS[@]}"; do
-    [[ "$1" != "-v" ]]\
+    [[ LFBFL_verbose -eq 0 ]]\
       || echo "Iterating on pattern: ${LFBFL_pattern}"
     # shellcheck disable=SC2312
     find . -type f -name "${LFBFL_pattern}" -printf '%P\n'\
@@ -62,7 +68,7 @@ check_URLs(){
       LFBFL_base_file_name=$(basename "${LFBFL_file_name}")
       [[ "${LFBFL_base_file_name}" != "check_URLs.libr.sh" ]]\
         || continue
-      [[ "$1" != "-v" ]]\
+      [[ LFBFL_verbose -eq 0 ]]\
         || echo "Handling the file: ${LFBFL_file_name}"
       for LFBFL_substitution in "${!LFBFL_substitutions[@]}"; do
         LFBFL_substitution2=\

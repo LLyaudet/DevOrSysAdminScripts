@@ -222,6 +222,7 @@ build_licenses_templates(){
   # shellcheck disable=SC2155,SC2312
   declare -r LFBFL_last_year=\
 "$(git log | grep 'Date:' | cut -f 8 -d ' ' | head -1)"
+  local LFBFL_copyright_string
   LFBFL_copyright_string="${LFBFL_first_year}-${LFBFL_last_year}"
   LFBFL_copyright_string+=" ${author_full_name}"
   readonly LFBFL_copyright_string

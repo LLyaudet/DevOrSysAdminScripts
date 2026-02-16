@@ -9,6 +9,7 @@
 [![Imports:isort:badge]][Isort-GitHub.io]
 [![Typecheck:mypy:badge]][Typecheck-mypy-lang.org]
 [![Linting:pylint:badge]][Pylint-GitHub.com]
+[![Linting:ruff:badge]][Ruff-GitHub.com]
 
 |                **Some "small" useful scripts**               |
 |:------------------------------------------------------------:|
@@ -89,3 +90,9 @@ mypy_badge.svg
 linting-pylint-yellowgreen
 
 [Pylint-GitHub.com]: https://github.com/pylint-dev/pylint
+
+[Linting:ruff:badge]: https://img.shields.io/endpoint?url=\
+https://raw.githubusercontent.com/astral-sh/ruff/main/assets/\
+badge/v2.json
+
+[Ruff-GitHub.com]: https://github.com/astral-sh/ruff

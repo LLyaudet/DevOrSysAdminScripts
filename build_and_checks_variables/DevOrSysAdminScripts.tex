@@ -74,13 +74,13 @@ Some “small” useful scripts
 for enhancing development or system-administrators tasks
 \end{abstract}
 
-Current version: 2026-02-03
+Current version: 2026-02-16
 
-Current number of commits: 274
+Current number of commits: 327
 
-Current git SHA1: 80901b9210adacc80890f23bb6a8d49c5093b13d
+Current git SHA1: c275318d9133fbc4c46e8be23ea901612f71d312
 
-Code lines: 6894 total lines, 6215 not empty lines, 679 empty lines.
+Code lines: 6641 total lines, 6000 not empty lines, 641 empty lines.
 
 \tableofcontents
 \newpage
@@ -104,28 +104,8 @@ Code lines: 6894 total lines, 6215 not empty lines, 679 empty lines.
 │   ├── grammar_and_spell_check.libr.sh
 │   ├── licenses_templates
 │   │   ├── build_licenses_templates.exec.sh
-│   │   ├── license_file_header_AGPLv3+.c.tpl
-│   │   ├── license_file_header_AGPLv3+.py.tpl
-│   │   ├── license_file_header_AGPLv3+.sh.tpl
-│   │   ├── license_file_header_AGPLv3+.tex.tpl
 │   │   ├── license_file_header_AGPLv3+.tpl
-│   │   ├── license_file_header_GPLv3+.c
-│   │   ├── license_file_header_GPLv3+.c.tpl
-│   │   ├── license_file_header_GPLv3+.py
-│   │   ├── license_file_header_GPLv3+.py.tpl
-│   │   ├── license_file_header_GPLv3+.sh
-│   │   ├── license_file_header_GPLv3+.sh.tpl
-│   │   ├── license_file_header_GPLv3+.tex
-│   │   ├── license_file_header_GPLv3+.tex.tpl
 │   │   ├── license_file_header_GPLv3+.tpl
-│   │   ├── license_file_header_LGPLv3+.c
-│   │   ├── license_file_header_LGPLv3+.c.tpl
-│   │   ├── license_file_header_LGPLv3+.py
-│   │   ├── license_file_header_LGPLv3+.py.tpl
-│   │   ├── license_file_header_LGPLv3+.sh
-│   │   ├── license_file_header_LGPLv3+.sh.tpl
-│   │   ├── license_file_header_LGPLv3+.tex
-│   │   ├── license_file_header_LGPLv3+.tex.tpl
 │   │   └── license_file_header_LGPLv3+.tpl
 │   ├── lines_counts.libr.sh
 │   ├── lines_filters.libr.sh
@@ -150,8 +130,11 @@ Code lines: 6894 total lines, 6215 not empty lines, 679 empty lines.
 │   ├── files_names_listing.txt
 │   ├── .gitignore
 │   ├── licenses_notes.txt
+│   ├── phpmd_baseline.xml
 │   ├── pylintrc.toml
-│   └── repository_data.txt
+│   ├── repository_data.txt
+│   ├── ruff.toml
+│   └── shellcheck_notes.txt
 ├── COPYING
 ├── COPYING.LESSER
 ├── DevOrSysAdminScripts.html
@@ -161,6 +144,7 @@ Code lines: 6894 total lines, 6215 not empty lines, 679 empty lines.
 │   ├── post-commit
 │   ├── post_commit_renaming_comment.libr.sh
 │   └── pre-commit
+├── .gitignore
 ├── LiensUtiles.txt
 ├── README.html
 ├── README.md
@@ -169,92 +153,76 @@ Code lines: 6894 total lines, 6215 not empty lines, 679 empty lines.
 ├── upgrade_build_and_checks.exec.sh
 └── wget_sha512.libr.sh
 
-5 directories, 74 files
+5 directories, 58 files
 \end{verbatim}
 
 \begin{verbatim}
-[ 12K Feb  3 19:33]  ./
-├── [4.0K Feb  3 19:33]  build_and_checks_dependencies/
-│   ├── [3.4K Feb  3 14:21]  build_and_checks.exec.sh.tpl*
-│   ├── [2.5K Jan  3 18:57]  build_md_from_printable_md.exec.sh*
-│   ├── [1.3K Jan  3 18:57]  check_shell_scripts_beginnings.libr.sh
+[ 12K Feb 16 18:46]  ./
+├── [4.0K Feb 16 18:46]  build_and_checks_dependencies/
+│   ├── [3.4K Feb 14 17:57]  build_and_checks.exec.sh.tpl*
+│   ├── [3.0K Feb 16 18:12]  build_md_from_printable_md.exec.sh*
+│   ├── [2.1K Feb 15 11:34]  check_shell_scripts_beginnings.libr.sh
 │   ├── [2.7K Jan  3 19:40]  check_URLs.libr.sh
-│   ├── [ 21K Feb  3 19:33]  common_build_and_checks.exec.sh*
-│   ├── [ 16K Jan 30 19:24]  common_build_and_checks.exec.sh.tpl
-│   ├── [3.1K Jan  3 18:57]  comparisons.libr.sh
-│   ├── [ 15K Feb  3 12:38]  create_PDF.exec.sh*
-│   ├── [3.1K Feb  3 19:32]  generate_from_template.libr.sh
-│   ├── [1.9K Jan  3 18:57]  get_common_text_glob_patterns.libr.sh
+│   ├── [ 23K Feb 16 18:40]  common_build_and_checks.exec.sh*
+│   ├── [ 19K Feb 16 17:08]  common_build_and_checks.exec.sh.tpl
+│   ├── [3.1K Feb 14 22:55]  comparisons.libr.sh
+│   ├── [ 14K Feb 15 19:16]  create_PDF.exec.sh*
+│   ├── [3.2K Feb 14 22:39]  generate_from_template.libr.sh
+│   ├── [2.0K Feb 15 11:48]  get_common_text_glob_patterns.libr.sh
 │   ├── [1.9K Jan  3 18:57]  grammar_and_spell_check.libr.sh
-│   ├── [4.0K Feb  3 19:33]  licenses_templates/
-│   │   ├── [9.1K Feb  3 19:31]  build_licenses_templates.exec.sh*
-│   │   ├── [ 734 Dec 30 19:34]  license_file_header_AGPLv3+.c.tpl
-│   │   ├── [ 736 Dec 30 19:34]  license_file_header_AGPLv3+.py.tpl
-│   │   ├── [ 788 Feb  3 19:33]  license_file_header_AGPLv3+.sh.tpl
-│   │   ├── [ 768 Jan  5 17:57]  license_file_header_AGPLv3+.tex.tpl
+│   ├── [4.0K Feb 16 18:36]  licenses_templates/
+│   │   ├── [ 12K Feb 16 18:36]  build_licenses_templates.exec.sh*
 │   │   ├── [ 728 Dec 30 19:32]  license_file_header_AGPLv3+.tpl
-│   │   ├── [ 761 Jan  3 18:40]  license_file_header_GPLv3+.c
-│   │   ├── [ 713 Dec 27 21:48]  license_file_header_GPLv3+.c.tpl
-│   │   ├── [ 763 Jan  3 18:40]  license_file_header_GPLv3+.py
-│   │   ├── [ 715 Dec 27 21:48]  license_file_header_GPLv3+.py.tpl
-│   │   ├── [ 815 Feb  3 19:33]  license_file_header_GPLv3+.sh
-│   │   ├── [ 767 Feb  3 19:33]  license_file_header_GPLv3+.sh.tpl
-│   │   ├── [ 795 Jan  5 17:57]  license_file_header_GPLv3+.tex
-│   │   ├── [ 747 Jan  5 17:57]  license_file_header_GPLv3+.tex.tpl
 │   │   ├── [ 707 Dec 27 21:48]  license_file_header_GPLv3+.tpl
-│   │   ├── [ 782 Jan  3 18:40]  license_file_header_LGPLv3+.c
-│   │   ├── [ 734 Dec 27 21:48]  license_file_header_LGPLv3+.c.tpl
-│   │   ├── [ 784 Jan  3 18:40]  license_file_header_LGPLv3+.py
-│   │   ├── [ 736 Dec 27 21:48]  license_file_header_LGPLv3+.py.tpl
-│   │   ├── [ 836 Feb  3 19:33]  license_file_header_LGPLv3+.sh
-│   │   ├── [ 788 Feb  3 19:33]  license_file_header_LGPLv3+.sh.tpl
-│   │   ├── [ 816 Jan  3 18:48]  license_file_header_LGPLv3+.tex
-│   │   ├── [ 768 Dec 27 21:48]  license_file_header_LGPLv3+.tex.tpl
 │   │   └── [ 728 Dec 27 21:48]  license_file_header_LGPLv3+.tpl
 │   ├── [2.2K Jan  3 18:57]  lines_counts.libr.sh
-│   ├── [6.7K Jan  3 18:57]  lines_filters.libr.sh
+│   ├── [6.7K Feb 14 16:16]  lines_filters.libr.sh
 │   ├── [2.8K Jan  3 18:57]  lines_maps.libr.sh
-│   ├── [1.7K Feb  3 11:56]  overwrite_if_not_equal.libr.sh
+│   ├── [1.7K Feb 14 22:16]  overwrite_if_not_equal.libr.sh
 │   ├── [1.4K Jan 24 18:32]  python_black_complement.libr.sh
-│   ├── [1.7K Jan  3 18:57]  python_isort_complement.libr.sh
+│   ├── [1.7K Feb 14 17:13]  python_isort_complement.libr.sh
 │   ├── [1.6K Feb  3 17:57]  split_score.exec.php
-│   ├── [1.9K Jan  4 13:38]  split_score.libr.php
-│   ├── [ 12K Jan  4 15:39]  strings_functions.libr.sh
-│   ├── [2.3K Jan  3 18:57]  too_long_code_lines.libr.sh
-│   ├── [4.0K Feb  3 10:19]  update_common_build_and_checks.exec.sh*
-│   └── [4.2K Jan  4 13:49]  *
+│   ├── [1.9K Feb  3 20:11]  split_score.libr.php
+│   ├── [ 12K Feb 15 15:29]  strings_functions.libr.sh
+│   ├── [2.5K Feb 15 11:07]  too_long_code_lines.libr.sh
+│   ├── [4.0K Feb  8 11:56]  update_common_build_and_checks.exec.sh*
+│   └── [3.8K Feb 15 19:18]  *
 │   │ update_or_check_files_names_listing.exec.sh**
-├── [3.6K Feb  3 19:33]  build_and_checks.exec.sh*
-├── [4.0K Feb  3 19:33]  build_and_checks_variables/
+├── [3.6K Feb 16 18:40]  build_and_checks.exec.sh*
+├── [4.0K Feb 16 18:46]  build_and_checks_variables/
 │   ├── [  15 Jan  5 20:00]  bandit_baseline.json
 │   ├── [  25 Jan  5 18:49]  bandit.ini
-│   ├── [5.1K Jan  7 16:45]  DevOrSysAdminScripts.html.tpl
-│   ├── [ 27K Feb  3 19:33]  DevOrSysAdminScripts.tex
-│   ├── [3.8K Jan  7 16:46]  DevOrSysAdminScripts.tex.tpl
-│   ├── [ 15K Jan 30 19:43]  files_listing.tex.tpl
-│   ├── [5.4K Jan 30 19:43]  files_names_listing.txt
+│   ├── [5.2K Feb 14 15:05]  DevOrSysAdminScripts.html.tpl
+│   ├── [ 22K Feb 16 18:46]  DevOrSysAdminScripts.tex
+│   ├── [3.8K Feb 14 15:04]  DevOrSysAdminScripts.tex.tpl
+│   ├── [ 12K Feb 15 19:29]  files_listing.tex.tpl
+│   ├── [3.8K Feb 16 18:43]  files_names_listing.txt
 │   ├── [  24 Jan 15 22:26]  .gitignore
-│   ├── [1.1K Jan  7 16:44]  licenses_notes.txt
+│   ├── [1.2K Feb 14 15:04]  licenses_notes.txt
+│   ├── [ 926 Feb 13 20:48]  phpmd_baseline.xml
 │   ├── [ 173 Jan 30 19:40]  pylintrc.toml
-│   └── [3.5K Jan 15 22:24]  repository_data.txt
+│   ├── [3.5K Feb 16 15:47]  repository_data.txt
+│   ├── [ 159 Feb 14 15:02]  ruff.toml
+│   └── [1.4K Feb 15 17:45]  shellcheck_notes.txt
 ├── [ 34K May  6  2024]  COPYING
 ├── [7.5K Dec 27 21:48]  COPYING.LESSER
-├── [276K Feb  3 19:33]  DevOrSysAdminScripts.html
-├── [269K Feb  3 19:33]  DevOrSysAdminScripts.pdf
-├── [4.0K Jan  4 13:54]  git_helpers/
-│   ├── [3.4K Jan  3 18:57]  git_checks.libr.sh
-│   ├── [1.2K Dec 30 17:25]  post-commit
-│   ├── [ 13K Jan  4 13:54]  post_commit_renaming_comment.libr.sh
-│   └── [1.3K Dec 30 17:03]  pre-commit
+├── [271K Feb 16 18:46]  DevOrSysAdminScripts.html
+├── [266K Feb 16 18:46]  DevOrSysAdminScripts.pdf
+├── [4.0K Feb 15 16:16]  git_helpers/
+│   ├── [3.4K Feb 14 18:48]  git_checks.libr.sh
+│   ├── [1.2K Feb 14 17:57]  post-commit
+│   ├── [ 13K Feb 15 16:16]  post_commit_renaming_comment.libr.sh
+│   └── [1.4K Feb  8 16:41]  pre-commit
+├── [  13 Feb 15 17:49]  .gitignore
 ├── [ 830 Dec 29 19:10]  LiensUtiles.txt
-├── [3.4K Jan  5 19:29]  README.html
-├── [3.3K Jan  5 19:29]  README.md
-├── [3.3K Jan  5 19:29]  README.md.tpl
-├── [6.5K Jan  3 18:57]  unicode.libr.php
+├── [3.6K Feb 16 17:08]  README.html
+├── [3.5K Feb 16 17:08]  README.md
+├── [3.6K Feb 16 16:59]  README.md.tpl
+├── [9.1K Feb 12 19:57]  unicode.libr.php
 ├── [1.4K Feb  3 14:19]  upgrade_build_and_checks.exec.sh*
 └── [1.5K Jan  3 18:57]  wget_sha512.libr.sh
 
-5 directories, 74 files
+5 directories, 58 files
 \end{verbatim}
 
 \section{Listing of files}
@@ -282,9 +250,11 @@ git, pylint
 \item The following dependencies are LGPLv2.1+ licensed:\newline
 notify-send
 \item The following dependencies are MIT licensed:\newline
-black, isort, mypy
+black, isort, mypy, ruff
 \item The following dependencies are Apache-2.0 licensed:\newline
 bandit
+\item The following dependencies are BSD-3-Clause licensed:\newline
+phpmd
 \item php is licensed under PHP License v3.01
 \item tex is licensed under Knuth license
 \item pcregrep has a custom license from Cambridge University
@@ -448,66 +418,6 @@ build_licenses_templates.exec.sh
 
 \subsection{
   build\_and\_checks\_dependencies/licenses\_templates/%
-license\_file\_header\_AGPLv3+.c.tpl
-}
-\label{
-  build_and_checks_dependencies:licenses_templates:%
-license_file_header_AGPLv3+ctpl
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/licenses_templates/%
-license_file_header_AGPLv3+.c.tpl
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/licenses\_templates/%
-license\_file\_header\_AGPLv3+.py.tpl
-}
-\label{
-  build_and_checks_dependencies:licenses_templates:%
-license_file_header_AGPLv3+pytpl
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/licenses_templates/%
-license_file_header_AGPLv3+.py.tpl
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/licenses\_templates/%
-license\_file\_header\_AGPLv3+.sh.tpl
-}
-\label{
-  build_and_checks_dependencies:licenses_templates:%
-license_file_header_AGPLv3+shtpl
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/licenses_templates/%
-license_file_header_AGPLv3+.sh.tpl
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/licenses\_templates/%
-license\_file\_header\_AGPLv3+.tex.tpl
-}
-\label{
-  build_and_checks_dependencies:licenses_templates:%
-license_file_header_AGPLv3+textpl
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/licenses_templates/%
-license_file_header_AGPLv3+.tex.tpl
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/licenses\_templates/%
 license\_file\_header\_AGPLv3+.tpl
 }
 \label{
@@ -523,66 +433,6 @@ license_file_header_AGPLv3+.tpl
 
 \subsection{
   build\_and\_checks\_dependencies/licenses\_templates/%
-license\_file\_header\_GPLv3+.c.tpl
-}
-\label{
-  build_and_checks_dependencies:licenses_templates:%
-license_file_header_GPLv3+ctpl
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/licenses_templates/%
-license_file_header_GPLv3+.c.tpl
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/licenses\_templates/%
-license\_file\_header\_GPLv3+.py.tpl
-}
-\label{
-  build_and_checks_dependencies:licenses_templates:%
-license_file_header_GPLv3+pytpl
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/licenses_templates/%
-license_file_header_GPLv3+.py.tpl
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/licenses\_templates/%
-license\_file\_header\_GPLv3+.sh.tpl
-}
-\label{
-  build_and_checks_dependencies:licenses_templates:%
-license_file_header_GPLv3+shtpl
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/licenses_templates/%
-license_file_header_GPLv3+.sh.tpl
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/licenses\_templates/%
-license\_file\_header\_GPLv3+.tex.tpl
-}
-\label{
-  build_and_checks_dependencies:licenses_templates:%
-license_file_header_GPLv3+textpl
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/licenses_templates/%
-license_file_header_GPLv3+.tex.tpl
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/licenses\_templates/%
 license\_file\_header\_GPLv3+.tpl
 }
 \label{
@@ -593,66 +443,6 @@ license_file_header_GPLv3+tpl
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
 build_and_checks_dependencies/licenses_templates/%
 license_file_header_GPLv3+.tpl
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/licenses\_templates/%
-license\_file\_header\_LGPLv3+.c.tpl
-}
-\label{
-  build_and_checks_dependencies:licenses_templates:%
-license_file_header_LGPLv3+ctpl
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/licenses_templates/%
-license_file_header_LGPLv3+.c.tpl
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/licenses\_templates/%
-license\_file\_header\_LGPLv3+.py.tpl
-}
-\label{
-  build_and_checks_dependencies:licenses_templates:%
-license_file_header_LGPLv3+pytpl
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/licenses_templates/%
-license_file_header_LGPLv3+.py.tpl
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/licenses\_templates/%
-license\_file\_header\_LGPLv3+.sh.tpl
-}
-\label{
-  build_and_checks_dependencies:licenses_templates:%
-license_file_header_LGPLv3+shtpl
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/licenses_templates/%
-license_file_header_LGPLv3+.sh.tpl
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/licenses\_templates/%
-license\_file\_header\_LGPLv3+.tex.tpl
-}
-\label{
-  build_and_checks_dependencies:licenses_templates:%
-license_file_header_LGPLv3+textpl
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/licenses_templates/%
-license_file_header_LGPLv3+.tex.tpl
 }
 
 
@@ -916,6 +706,18 @@ build_and_checks_variables/licenses_notes.txt
 
 
 \subsection{
+  build\_and\_checks\_variables/phpmd\_baseline.xml
+}
+\label{
+  build_and_checks_variables:phpmd_baselinexml
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+build_and_checks_variables/phpmd_baseline.xml
+}
+
+
+\subsection{
   build\_and\_checks\_variables/pylintrc.toml
 }
 \label{
@@ -936,6 +738,30 @@ build_and_checks_variables/pylintrc.toml
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
 build_and_checks_variables/repository_data.txt
+}
+
+
+\subsection{
+  build\_and\_checks\_variables/ruff.toml
+}
+\label{
+  build_and_checks_variables:rufftoml
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+build_and_checks_variables/ruff.toml
+}
+
+
+\subsection{
+  build\_and\_checks\_variables/shellcheck\_notes.txt
+}
+\label{
+  build_and_checks_variables:shellcheck_notestxt
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+build_and_checks_variables/shellcheck_notes.txt
 }
 
 

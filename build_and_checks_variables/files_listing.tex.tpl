@@ -151,66 +151,6 @@ build_licenses_templates.exec.sh
 
 \subsection{
   build\_and\_checks\_dependencies/licenses\_templates/%
-license\_file\_header\_AGPLv3+.c.tpl
-}
-\label{
-  build_and_checks_dependencies:licenses_templates:%
-license_file_header_AGPLv3+ctpl
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/licenses_templates/%
-license_file_header_AGPLv3+.c.tpl
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/licenses\_templates/%
-license\_file\_header\_AGPLv3+.py.tpl
-}
-\label{
-  build_and_checks_dependencies:licenses_templates:%
-license_file_header_AGPLv3+pytpl
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/licenses_templates/%
-license_file_header_AGPLv3+.py.tpl
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/licenses\_templates/%
-license\_file\_header\_AGPLv3+.sh.tpl
-}
-\label{
-  build_and_checks_dependencies:licenses_templates:%
-license_file_header_AGPLv3+shtpl
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/licenses_templates/%
-license_file_header_AGPLv3+.sh.tpl
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/licenses\_templates/%
-license\_file\_header\_AGPLv3+.tex.tpl
-}
-\label{
-  build_and_checks_dependencies:licenses_templates:%
-license_file_header_AGPLv3+textpl
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/licenses_templates/%
-license_file_header_AGPLv3+.tex.tpl
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/licenses\_templates/%
 license\_file\_header\_AGPLv3+.tpl
 }
 \label{
@@ -226,66 +166,6 @@ license_file_header_AGPLv3+.tpl
 
 \subsection{
   build\_and\_checks\_dependencies/licenses\_templates/%
-license\_file\_header\_GPLv3+.c.tpl
-}
-\label{
-  build_and_checks_dependencies:licenses_templates:%
-license_file_header_GPLv3+ctpl
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/licenses_templates/%
-license_file_header_GPLv3+.c.tpl
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/licenses\_templates/%
-license\_file\_header\_GPLv3+.py.tpl
-}
-\label{
-  build_and_checks_dependencies:licenses_templates:%
-license_file_header_GPLv3+pytpl
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/licenses_templates/%
-license_file_header_GPLv3+.py.tpl
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/licenses\_templates/%
-license\_file\_header\_GPLv3+.sh.tpl
-}
-\label{
-  build_and_checks_dependencies:licenses_templates:%
-license_file_header_GPLv3+shtpl
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/licenses_templates/%
-license_file_header_GPLv3+.sh.tpl
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/licenses\_templates/%
-license\_file\_header\_GPLv3+.tex.tpl
-}
-\label{
-  build_and_checks_dependencies:licenses_templates:%
-license_file_header_GPLv3+textpl
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/licenses_templates/%
-license_file_header_GPLv3+.tex.tpl
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/licenses\_templates/%
 license\_file\_header\_GPLv3+.tpl
 }
 \label{
@@ -296,66 +176,6 @@ license_file_header_GPLv3+tpl
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
 build_and_checks_dependencies/licenses_templates/%
 license_file_header_GPLv3+.tpl
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/licenses\_templates/%
-license\_file\_header\_LGPLv3+.c.tpl
-}
-\label{
-  build_and_checks_dependencies:licenses_templates:%
-license_file_header_LGPLv3+ctpl
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/licenses_templates/%
-license_file_header_LGPLv3+.c.tpl
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/licenses\_templates/%
-license\_file\_header\_LGPLv3+.py.tpl
-}
-\label{
-  build_and_checks_dependencies:licenses_templates:%
-license_file_header_LGPLv3+pytpl
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/licenses_templates/%
-license_file_header_LGPLv3+.py.tpl
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/licenses\_templates/%
-license\_file\_header\_LGPLv3+.sh.tpl
-}
-\label{
-  build_and_checks_dependencies:licenses_templates:%
-license_file_header_LGPLv3+shtpl
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/licenses_templates/%
-license_file_header_LGPLv3+.sh.tpl
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/licenses\_templates/%
-license\_file\_header\_LGPLv3+.tex.tpl
-}
-\label{
-  build_and_checks_dependencies:licenses_templates:%
-license_file_header_LGPLv3+textpl
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/licenses_templates/%
-license_file_header_LGPLv3+.tex.tpl
 }
 
 
@@ -619,6 +439,18 @@ build_and_checks_variables/licenses_notes.txt
 
 
 \subsection{
+  build\_and\_checks\_variables/phpmd\_baseline.xml
+}
+\label{
+  build_and_checks_variables:phpmd_baselinexml
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+build_and_checks_variables/phpmd_baseline.xml
+}
+
+
+\subsection{
   build\_and\_checks\_variables/pylintrc.toml
 }
 \label{
@@ -639,6 +471,30 @@ build_and_checks_variables/pylintrc.toml
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
 build_and_checks_variables/repository_data.txt
+}
+
+
+\subsection{
+  build\_and\_checks\_variables/ruff.toml
+}
+\label{
+  build_and_checks_variables:rufftoml
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+build_and_checks_variables/ruff.toml
+}
+
+
+\subsection{
+  build\_and\_checks\_variables/shellcheck\_notes.txt
+}
+\label{
+  build_and_checks_variables:shellcheck_notestxt
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+build_and_checks_variables/shellcheck_notes.txt
 }
 
 

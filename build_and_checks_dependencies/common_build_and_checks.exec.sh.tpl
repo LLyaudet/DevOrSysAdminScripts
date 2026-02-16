@@ -307,6 +307,23 @@ $(stat -c %Y "${LFBFL_upgrade_venvs_ts_file}")
   "./${LFBFL_subdir}/build_md_from_printable_md.exec.sh"\
     "${LFBFL_working_directory}" "README" "${LFBFL_verbose}"
 
+  echo "Building other MarkDown files"
+  local LFBFL_some_directory
+  declare -r LFBFL_readme="${LFBFL_working_directory}/README.md.tpl"
+  # shellcheck disable=SC2312
+  find "${LFBFL_working_directory}" -name "*.md.tpl" | relevant_find\
+    | while read -r LFBFL_file_path;
+  do
+    [[ "${LFBFL_file_path}" == "${LFBFL_readme}" ]] && continue
+    echo "Found template ${LFBFL_file_path}"
+    LFBFL_some_directory=$(dirname "${LFBFL_file_path}")
+    LFBFL_file_name=$(basename "${LFBFL_file_path}")
+    LFBFL_file_name=${LFBFL_file_name%.md.tpl}
+    "./${LFBFL_subdir}/build_md_from_printable_md.exec.sh"\
+      "${LFBFL_some_directory}" "${LFBFL_file_name}"\
+      "${LFBFL_verbose}"
+  done
+
   pushd .
   # shellcheck disable=SC2164
   cd "${LFBFL_working_directory}"

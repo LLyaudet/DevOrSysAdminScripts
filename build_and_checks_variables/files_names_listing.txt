@@ -41,50 +41,10 @@ build_and_checks_dependencies/get_common_text_glob_patterns.libr.sh
 build_and_checks_dependencies/grammar_and_spell_check.libr.sh
 build_and_checks_dependencies/licenses_templates/\
 build_licenses_templates.exec.sh
-// build_and_checks_dependencies/licenses_templates/\
-license_file_header_AGPLv3+.c.tpl
-// build_and_checks_dependencies/licenses_templates/\
-license_file_header_AGPLv3+.py.tpl
-// build_and_checks_dependencies/licenses_templates/\
-license_file_header_AGPLv3+.sh.tpl
-// build_and_checks_dependencies/licenses_templates/\
-license_file_header_AGPLv3+.tex.tpl
 build_and_checks_dependencies/licenses_templates/\
 license_file_header_AGPLv3+.tpl
-// build_and_checks_dependencies/licenses_templates/\
-license_file_header_GPLv3+.c
-// build_and_checks_dependencies/licenses_templates/\
-license_file_header_GPLv3+.c.tpl
-// build_and_checks_dependencies/licenses_templates/\
-license_file_header_GPLv3+.py
-// build_and_checks_dependencies/licenses_templates/\
-license_file_header_GPLv3+.py.tpl
-// build_and_checks_dependencies/licenses_templates/\
-license_file_header_GPLv3+.sh
-// build_and_checks_dependencies/licenses_templates/\
-license_file_header_GPLv3+.sh.tpl
-// build_and_checks_dependencies/licenses_templates/\
-license_file_header_GPLv3+.tex
-// build_and_checks_dependencies/licenses_templates/\
-license_file_header_GPLv3+.tex.tpl
 build_and_checks_dependencies/licenses_templates/\
 license_file_header_GPLv3+.tpl
-// build_and_checks_dependencies/licenses_templates/\
-license_file_header_LGPLv3+.c
-// build_and_checks_dependencies/licenses_templates/\
-license_file_header_LGPLv3+.c.tpl
-// build_and_checks_dependencies/licenses_templates/\
-license_file_header_LGPLv3+.py
-// build_and_checks_dependencies/licenses_templates/\
-license_file_header_LGPLv3+.py.tpl
-// build_and_checks_dependencies/licenses_templates/\
-license_file_header_LGPLv3+.sh
-// build_and_checks_dependencies/licenses_templates/\
-license_file_header_LGPLv3+.sh.tpl
-// build_and_checks_dependencies/licenses_templates/\
-license_file_header_LGPLv3+.tex
-// build_and_checks_dependencies/licenses_templates/\
-license_file_header_LGPLv3+.tex.tpl
 build_and_checks_dependencies/licenses_templates/\
 license_file_header_LGPLv3+.tpl
 build_and_checks_dependencies/lines_counts.libr.sh

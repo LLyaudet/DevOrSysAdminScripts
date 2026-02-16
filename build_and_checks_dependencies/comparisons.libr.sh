@@ -77,20 +77,17 @@ all_distinct2(){
     return 1
   fi
   # shellcheck disable=SC2312
-  printf "%s\n" "${@:1}" | sort | while read -r LFBFL_element; do
-    echo "${LFBFL_element}"
+  while read -r LFBFL_element; do
     if [[ LFBFL_first -eq 1 ]]; then
       LFBFL_previous_element="${LFBFL_element}"
       LFBFL_first=0
       continue
     fi
-    echo "'${LFBFL_element}'" "'${LFBFL_previous_element}'"
     if [[ "${LFBFL_previous_element}" == "${LFBFL_element}" ]]; then
-      echo "WAT"
       return 0
     fi
     LFBFL_previous_element="${LFBFL_element}"
-  done
+  done < <(printf "%s\n" "$@" | sort)
   return 1
 }
 
@@ -105,7 +102,6 @@ some_equal(){
 some_equal2(){
   declare -i LFBFL_result
   all_distinct2 "$@"
-  echo $?
   LFBFL_result=1-$?
   # shellcheck disable=SC2248
   return ${LFBFL_result}

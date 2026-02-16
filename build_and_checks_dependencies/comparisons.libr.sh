@@ -46,6 +46,20 @@ equal(){
   return 1
 }
 
+all_distinct(){
+  # Returns 1 if all the arguments strings are distinct.
+  declare -ir LFBFL_ij_max=$#
+  declare -i LFBFL_i
+  declare -i LFBFL_j
+  for ((LFBFL_i=1; LFBFL_i<=LFBFL_ij_max; ++LFBFL_i)); do
+    for ((LFBFL_j=1; LFBFL_j<=LFBFL_ij_max; ++LFBFL_j)); do
+      [[ LFBFL_i -eq LFBFL_j ]] && continue
+      [[ "${!LFBFL_i}" == "${!LFBFL_j}" ]] && return 0
+    done
+  done
+  return 1
+}
+
 max(){
   # Returns the maximum string among the arguments.
   # Renvoie la chaîne la plus grande parmi celles proposées.

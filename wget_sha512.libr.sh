@@ -39,7 +39,6 @@ wget_sha512(){
   then
     wget "${LFBFL_verbose}" -O "$1" "$2"
   fi
-  # shellcheck disable=SC2312
   declare -r \
     LFBFL_present_sha512=$(sha512sum "$1" | cut -f1 -d' ')
   if [[ "${LFBFL_present_sha512}" != "$3" ]];

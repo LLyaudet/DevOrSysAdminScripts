@@ -31,45 +31,77 @@ source "./${LFBFL_subdir}/get_common_text_glob_patterns.libr.sh"
 source "./${LFBFL_subdir}/lines_filters.libr.sh"
 
 all_code_lines(){
+  if [[ ! -o pipefail ]]; then
+    set -o pipefail
+    trap 'set +o pipefail' RETURN
+  fi
+  [[ "$*" != *--verbose* ]]
+  declare -ir LFBFL_verbose=$?
   get_COMMON_TEXT_FILES_GLOB_PATTERNS
   local LFBFL_pattern
   # shellcheck disable=SC2154
   for LFBFL_pattern in "${COMMON_TEXT_FILES_GLOB_PATTERNS[@]}"; do
-    [[ "$1" != "-v" ]]\
-      || echo "Iterating on pattern: ${LFBFL_pattern}"
-    # shellcheck disable=SC2312
+    [[ LFBFL_verbose -eq 1 ]]\
+      && echo "Iterating on pattern: ${LFBFL_pattern}"
     find . -type f -name "${LFBFL_pattern}" -printf '%P\n'\
       | xargs grep -H -v 'a(?!a)a'
   done
 }
 
 all_self_code_lines(){
-  # shellcheck disable=SC2312
-  all_code_lines "$@" | relevant_grep\
-    | not_license_grep | not_main_tex_grep | not_main_html_grep
+  if [[ ! -o pipefail ]]; then
+    set -o pipefail
+    trap 'set +o pipefail' RETURN
+  fi
+  # below and another lines, see SC2145 false positive
+  all_code_lines "$@" \
+    | relevant_grep\
+    | not_license_grep\
+    | not_main_tex_grep\
+    | not_main_html_grep
 }
 
 all_self_empty_code_lines(){
-  # shellcheck disable=SC2312
-  all_self_code_lines "$@" | empty_lines_after_file_name
+  if [[ ! -o pipefail ]]; then
+    set -o pipefail
+    trap 'set +o pipefail' RETURN
+  fi
+  all_self_code_lines "$@" \
+    | empty_lines_after_file_name
 }
 
 all_self_not_empty_code_lines(){
-  # shellcheck disable=SC2312
-  all_self_code_lines "$@" | not_empty_lines_after_file_name
+  if [[ ! -o pipefail ]]; then
+    set -o pipefail
+    trap 'set +o pipefail' RETURN
+  fi
+  all_self_code_lines "$@" \
+    | not_empty_lines_after_file_name
 }
 
 code_lines_count_all(){
-  # shellcheck disable=SC2312
-  all_self_code_lines "$@" | wc -l
+  if [[ ! -o pipefail ]]; then
+    set -o pipefail
+    trap 'set +o pipefail' RETURN
+  fi
+  all_self_code_lines "$@" \
+    | wc -l
 }
 
 code_lines_count_empty(){
-  # shellcheck disable=SC2312
-  all_self_empty_code_lines "$@" | wc -l
+  if [[ ! -o pipefail ]]; then
+    set -o pipefail
+    trap 'set +o pipefail' RETURN
+  fi
+  all_self_empty_code_lines "$@" \
+    | wc -l
 }
 
 code_lines_count_not_empty(){
-  # shellcheck disable=SC2312
-  all_self_not_empty_code_lines "$@" | wc -l
+  if [[ ! -o pipefail ]]; then
+    set -o pipefail
+    trap 'set +o pipefail' RETURN
+  fi
+  all_self_not_empty_code_lines "$@" \
+    | wc -l
 }

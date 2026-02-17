@@ -47,11 +47,7 @@ equal(){
 }
 
 some_distinct(){
-  declare -i LFBFL_result
-  equal "$@"
-  LFBFL_result=1-$?
-  # shellcheck disable=SC2248
-  return ${LFBFL_result}
+  ! equal "$@"
 }
 
 all_distinct(){
@@ -70,41 +66,52 @@ all_distinct(){
 
 all_distinct2(){
   # Returns 1 if all the arguments strings are distinct.
-  declare -i LFBFL_first=1
   local LFBFL_element
   local LFBFL_previous_element
   if [[ "$#" == 0 ]]; then
     return 1
   fi
+  # Not setting pipefail since the result would still be incorrect.
   # shellcheck disable=SC2312
-  while read -r LFBFL_element; do
-    if [[ LFBFL_first -eq 1 ]]; then
-      LFBFL_previous_element="${LFBFL_element}"
-      LFBFL_first=0
-      continue
-    fi
-    if [[ "${LFBFL_previous_element}" == "${LFBFL_element}" ]]; then
-      return 0
-    fi
-    LFBFL_previous_element="${LFBFL_element}"
-  done < <(printf "%s\n" "$@" | sort)
-  return 1
+  printf "%s\n" "$@" \
+    | sort\
+    | {
+      read -r LFBFL_previous_element\
+      && while read -r LFBFL_element; do
+        if [[ "${LFBFL_previous_element}" == "${LFBFL_element}" ]];
+        then
+          return 0
+        fi
+        LFBFL_previous_element="${LFBFL_element}"
+      done
+      return 1
+    }
+}
+
+all_distinct3(){
+  # Returns 1 if all the arguments strings are distinct.
+  # This is the fastest of all 3; but note that version 2 is faster
+  # than this one if a call to sort is added.
+  if [[ "$#" == 0 ]]; then
+    return 1
+  fi
+  # Not setting pipefail since the result would still be incorrect.
+  # shellcheck disable=SC2162,SC2312
+  printf "%s\n" "$@" \
+    | uniq -d\
+    | read
 }
 
 some_equal(){
-  declare -i LFBFL_result
-  all_distinct "$@"
-  LFBFL_result=1-$?
-  # shellcheck disable=SC2248
-  return ${LFBFL_result}
+  ! all_distinct "$@"
 }
 
 some_equal2(){
-  declare -i LFBFL_result
-  all_distinct2 "$@"
-  LFBFL_result=1-$?
-  # shellcheck disable=SC2248
-  return ${LFBFL_result}
+  ! all_distinct2 "$@"
+}
+
+some_equal3(){
+  ! all_distinct3 "$@"
 }
 
 max(){

@@ -30,7 +30,7 @@ wget_sha512(){
   # $3 correct_sha512
   # $4 optional --verbose
   local LFBFL_verbose=""
-  if [[ "$4" == "--verbose" ]]; then
+  if [[ "$*" == *--verbose* ]]; then
     echo "$0 wget_sha512 $*"
     LFBFL_verbose="--verbose"
   fi

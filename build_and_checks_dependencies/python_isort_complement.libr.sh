@@ -34,8 +34,10 @@ check_collections_abc_place(){
   echo "Checking import of _collections_abc is at the right place"
   declare -r LFBFL_temp=".check_collections_abc_place.temp"
   # shellcheck disable=SC2312
-  find . -name "*.py" | relevant_find\
-    | while read -r LFBFL_file_name; do
+  find . -name "*.py"\
+    | relevant_find\
+    | while read -r LFBFL_file_name;
+  do
     [[ -f "${LFBFL_file_name}" ]] || continue
     sed -Ez 's/\n(\nfrom _collections_abc[^\n]*)/\1\n/Mg'\
       "${LFBFL_file_name}" > "${LFBFL_file_name}${LFBFL_temp}"

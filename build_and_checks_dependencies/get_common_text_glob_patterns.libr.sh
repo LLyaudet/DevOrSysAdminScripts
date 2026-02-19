@@ -29,7 +29,6 @@ get_COMMON_TEXT_PATHS_GLOB_PATTERNS(){
     return
   fi
 
-  # shellcheck disable=SC2034
   declare -agr COMMON_TEXT_PATHS_GLOB_PATTERNS=(
     '**/*.c'
     '**/*.css'
@@ -64,7 +63,6 @@ get_COMMON_TEXT_FILES_GLOB_PATTERNS(){
     return
   fi
 
-  # shellcheck disable=SC2034
   declare -agr COMMON_TEXT_FILES_GLOB_PATTERNS=(
     '*.c'
     '*.css'

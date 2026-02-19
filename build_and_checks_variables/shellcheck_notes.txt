@@ -6,7 +6,11 @@ A listing of the current suppressed warnings/errors from shellcheck:
 - SC1111 : Use of slanted double quotes (valid inside single quotes)
            False positive, but may catch some problem.
 - SC2001 : Replace some sed with bash builtin ${a//b/c}
+           False positive when c contains \n.
 - SC2034 : Unused variable
+           False positive for globals that are declared in functions
+           that are not currently called.
+           Somehow it can be used to detect dead code.
 - SC2125 : Brace expansions and globs are literal.
            False positive when assigning a variable declared with -i.
 - SC2145 : Argument mixes string and array.

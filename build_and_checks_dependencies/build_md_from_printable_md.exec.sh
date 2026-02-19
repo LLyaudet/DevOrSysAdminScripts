@@ -34,7 +34,6 @@ build_md_from_printable_md(){
     echo "$0 $*"
     LFBFL_verbose=1
   fi
-  # shellcheck disable=SC2034
   readonly LFBFL_verbose
 
   # Remove line returns here to keep lines short.

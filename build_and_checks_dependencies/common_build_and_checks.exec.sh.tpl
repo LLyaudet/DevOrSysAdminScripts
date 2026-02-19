@@ -330,9 +330,14 @@ $(stat -c %Y "${LFBFL_upgrade_venvs_ts_file}")
       "${LFBFL_verbose}"
   done
 
+  declare -i LFBFL_cd_result
   pushd .
-  # shellcheck disable=SC2164
-  cd "${LFBFL_working_directory}"
+  cd "${LFBFL_working_directory}" || {
+    LFBFL_cd_result=$?
+    echo "common_build_and_checks.exec.sh no such directory"
+    # shellcheck disable=SC2248
+    return ${LFBFL_cd_result}
+  }
 
   echo "Running shellcheck"
   declare -i LFBFL_file_path_length
@@ -554,8 +559,13 @@ $(stat -c %Y "${LFBFL_upgrade_venvs_ts_file}")
     ./build_and_checks_variables/post_build.sh
   fi
 
-  # shellcheck disable=SC2164
-  popd
+  declare -i LFBFL_popd_result
+  popd || {
+    LFBFL_popd_result=$?
+    echo "common_build_and_checks.exec.sh no popd"
+    # shellcheck disable=SC2248
+    return ${LFBFL_popd_result}
+  }
 }
 
 common_build_and_checks "$@"

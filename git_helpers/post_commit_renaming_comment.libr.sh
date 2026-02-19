@@ -36,13 +36,23 @@
 LFBFL_this_file_path=$(realpath "${BASH_SOURCE[0]}")
 LFBFL_this_file_directory=$(dirname "${LFBFL_this_file_path}")
 LFBFL_some_directory="${LFBFL_this_file_directory}/../"
+declare -i LFBFL_cd_result2
 pushd .
-# shellcheck disable=SC2164
-cd "${LFBFL_some_directory}"
+cd "${LFBFL_some_directory}" || {
+  LFBFL_cd_result2=$?
+  echo "post_commit_renaming_comment.libr.sh no such directory"
+  # shellcheck disable=SC2248
+  exit ${LFBFL_cd_result2}
+}
 # shellcheck source=strings_functions.libr.sh
 source "build_and_checks_dependencies/strings_functions.libr.sh"
-# shellcheck disable=SC2164
-popd
+declare -i LFBFL_popd_result2
+popd || {
+  LFBFL_popd_result2=$?
+  echo "post_commit_renaming_comment.libr.sh no popd"
+  # shellcheck disable=SC2248
+  exit ${LFBFL_popd_result2}
+}
 
 # Never forget that the worse security is the illusion of security
 # (Kevin Mitnick). So, do not expect to have an accurate trackability

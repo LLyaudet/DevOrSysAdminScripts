@@ -25,9 +25,9 @@
 # "lines_counts.libr.sh".
 
 LFBFL_subdir="build_and_checks_dependencies"
-# shellcheck disable=SC1090
+# shellcheck source=./get_common_text_glob_patterns.libr.sh
 source "./${LFBFL_subdir}/get_common_text_glob_patterns.libr.sh"
-# shellcheck disable=SC1090
+# shellcheck source=./lines_filters.libr.sh
 source "./${LFBFL_subdir}/lines_filters.libr.sh"
 
 all_code_lines(){
@@ -39,7 +39,6 @@ all_code_lines(){
   declare -ir LFBFL_verbose=$?
   get_COMMON_TEXT_FILES_GLOB_PATTERNS
   local LFBFL_pattern
-  # shellcheck disable=SC2154
   for LFBFL_pattern in "${COMMON_TEXT_FILES_GLOB_PATTERNS[@]}"; do
     [[ LFBFL_verbose -eq 1 ]]\
       && echo "Iterating on pattern: ${LFBFL_pattern}"

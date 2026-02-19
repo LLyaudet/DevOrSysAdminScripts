@@ -191,9 +191,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='4edd2fb269e60db55a964af7ef7ac1f198c36bec176cc'
-  LFBFL_correct_sha512+='2b66bdaf9f5946dc1618536d798a69d9967ac8bc1a70'
-  LFBFL_correct_sha512+='0b5d1346228d0afa0d2e40a53b54214aa750dcc'
+  LFBFL_correct_sha512='132819f5f745c76fe414d4ea026b3f4276261e98c73f7'
+  LFBFL_correct_sha512+='bfa44e95e91ca3a3036819494bd176c3fa43109490e3'
+  LFBFL_correct_sha512+='540ce8723d063ef04238993352bf58f30fcef8a'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
@@ -418,7 +418,7 @@ $(stat -c %Y "${LFBFL_upgrade_venvs_ts_file}")
     if [[ "${LFBFL_file_path_end}" == "GPLv3+.sh" ]]; then
       continue
     fi
-    shellcheck --check-sourced --enable=all --external-sources\
+    shellcheck --rcfile=build_and_checks_variables/shellcheck.ini\
       "${LFBFL_file_path}"
   done
 

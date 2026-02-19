@@ -349,7 +349,7 @@ $(stat -c %Y "${LFBFL_upgrade_venvs_ts_file}")
     if [[ "${LFBFL_file_path_end}" == "GPLv3+.sh" ]]; then
       continue
     fi
-    shellcheck --check-sourced --enable=all --external-sources\
+    shellcheck --rcfile=build_and_checks_variables/shellcheck.ini\
       "${LFBFL_file_path}"
   done
 

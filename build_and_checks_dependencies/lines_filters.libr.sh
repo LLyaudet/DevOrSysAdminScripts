@@ -46,6 +46,10 @@ ll_wc(){
   # -n --no-filenames display only number(s)
   # I think I did that the first time many years ago (Teliae ?).
   # Since then, they added it as ignored... (-n)
+  if [[ ! -o pipefail ]]; then
+    set -o pipefail
+    trap 'set +o pipefail' RETURN
+  fi
   declare -a ll_wc_var_args=()
   declare -i ll_wc_var_number_only=0
   declare -i ll_wc_var_i=0
@@ -77,7 +81,6 @@ ll_wc(){
     # with --files0-from handling.
     # wc does not display file_name when stream...
     # hence cat of last arg "${!#}"
-    # shellcheck disable=SC2312
     cat "${!#}"\
       | wc "${ll_wc_var_args[@]}"
   else
@@ -172,14 +175,13 @@ not_space_starting_lines_after_file_name(){
 }
 
 not_JS_dependencies_find(){
-  # shellcheck disable=SC2312
-  grep -vE -e "(^|/)node_modules/" -e "(^|/)package-lock\.json$"
+  grep -vE -e "(^|/)node_modules/"\
+           -e "(^|/)package-lock\.json$"
 }
 
 not_JS_dependencies_grep(){
-  # shellcheck disable=SC2312
   grep -vE -e "^([^:]+/)?node_modules/"\
-    -e "^([^:]+/)?package-lock\.json:"
+           -e "^([^:]+/)?package-lock\.json:"
 }
 
 not_dependencies_find(){
@@ -191,15 +193,15 @@ not_dependencies_grep(){
 }
 
 not_python_cache_find(){
-  # shellcheck disable=SC2312
-  grep -vE -e "(^|/)__pycache__/" -e "(^|/)\.mypy_cache/"\
-    -e "(^|/)\.ruff_cache/"
+  grep -vE -e "(^|/)__pycache__/"\
+           -e "(^|/)\.mypy_cache/"\
+           -e "(^|/)\.ruff_cache/"
 }
 
 not_python_cache_grep(){
-  # shellcheck disable=SC2312
-  grep -vE -e "^([^:]+/)?__pycache__/" -e "^([^:]+/)?\.mypy_cache/"\
-    -e "^([^:]+/)?\.ruff_cache/"
+  grep -vE -e "^([^:]+/)?__pycache__/"\
+           -e "^([^:]+/)?\.mypy_cache/"\
+           -e "^([^:]+/)?\.ruff_cache/"
 }
 
 not_cache_find(){
@@ -227,13 +229,13 @@ not_archive_grep(){
 }
 
 not_license_find(){
-  # shellcheck disable=SC2312
-  grep -vE -e "(^|/)COPYING$" -e "(^|/)COPYING\.LESSER$"
+  grep -vE -e "(^|/)COPYING$"\
+           -e "(^|/)COPYING\.LESSER$"
 }
 
 not_license_grep(){
-  # shellcheck disable=SC2312
-  grep -vE -e "^([^:]+/)?COPYING:" -e "^([^:]+/)?COPYING\.LESSER:"
+  grep -vE -e "^([^:]+/)?COPYING:"\
+           -e "^([^:]+/)?COPYING\.LESSER:"
 }
 
 not_main_tex_find(){
@@ -261,7 +263,10 @@ not_temp_file_grep(){
 }
 
 relevant_find(){
-  # shellcheck disable=SC2312
+  if [[ ! -o pipefail ]]; then
+    set -o pipefail
+    trap 'set +o pipefail' RETURN
+  fi
   not_dependencies_find\
     | not_cache_find\
     | not_git_find\
@@ -270,7 +275,10 @@ relevant_find(){
 }
 
 relevant_grep(){
-  # shellcheck disable=SC2312
+  if [[ ! -o pipefail ]]; then
+    set -o pipefail
+    trap 'set +o pipefail' RETURN
+  fi
   not_dependencies_grep\
     | not_cache_grep\
     | not_git_grep\

@@ -47,6 +47,12 @@ build_licenses_templates(){
   fi
   readonly LFBFL_verbose
 
+  if [[ ! -o pipefail ]]; then
+    [[ LFBFL_verbose -eq 1 ]] && echo "pipefail option activated"
+    set -o pipefail
+    trap 'set +o pipefail' RETURN
+  fi
+
   # Source
   local LFBFL_license_source_subdir
   LFBFL_license_source_subdir="./${LFBFL_subdir}/licenses_templates/"
@@ -215,7 +221,7 @@ build_licenses_templates(){
     LFBFL_license_prefix3="${LFBFL_license_prefix}${license2}"
 
   # First year according to current state of git repository.
-  # shellcheck disable=SC2155,SC2312
+  # shellcheck disable=SC2155
   declare -r LFBFL_first_year=$(
     git log\
     | grep 'Date:'\
@@ -223,7 +229,7 @@ build_licenses_templates(){
     | tail -1
   )
   # Last year according to current state of git repository.
-  # shellcheck disable=SC2155,SC2312
+  # shellcheck disable=SC2155
   declare -r LFBFL_last_year=$(
     git log\
     | grep 'Date:'\
@@ -250,7 +256,6 @@ build_licenses_templates(){
         echo "License template $1 created"
       fi
     fi
-    # shellcheck disable=SC2312
     head --lines=-1 "$1"\
       | tail --lines=+2\
       > "$1.temp"
@@ -284,7 +289,6 @@ build_licenses_templates(){
       LFBFL_license_file_name2+=".${LFBFL_dest}"
       prepare_filled_license_file_block "${LFBFL_license_file_name2}"
     fi
-    # shellcheck disable=SC2312
     find . -type f -name "*.${LFBFL_key}" -printf '%P\n'\
       | relevant_find\
       | while read -r LFBFL_file_name;
@@ -339,7 +343,6 @@ build_licenses_templates(){
       LFBFL_license_file_name2+=".${LFBFL_dest}"
       prepare_filled_license_file_line "${LFBFL_license_file_name2}"
     fi
-    # shellcheck disable=SC2312
     find . -type f -name "*.${LFBFL_key}" -printf '%P\n'\
       | relevant_find\
       | while read -r LFBFL_file_name;

@@ -31,10 +31,22 @@ source "./${LFBFL_subdir}/get_common_text_glob_patterns.libr.sh"
 source "./${LFBFL_subdir}/lines_filters.libr.sh"
 
 grammar_and_spell_check(){
+  declare -i LFBFL_verbose=0
+  if [[ "$*" == *--verbose* ]]; then
+    echo "$0 $*"
+    LFBFL_verbose=1
+  fi
+  readonly LFBFL_verbose
+
+  if [[ ! -o pipefail ]]; then
+    [[ LFBFL_verbose -eq 1 ]] && echo "pipefail option activated"
+    set -o pipefail
+    trap 'set +o pipefail' RETURN
+  fi
+
   get_COMMON_TEXT_FILES_GLOB_PATTERNS
   grammar_or_spell_checker_command=""
   grep_variable "$1" grammar_or_spell_checker_command
-  # shellcheck disable=SC2312
   declare -r LFBFL_command=$(
     echo "${grammar_or_spell_checker_command}"\
     | sed -Ez -e "s/\n//Mg"
@@ -44,9 +56,8 @@ grammar_and_spell_check(){
   local LFBFL_eval_string
   # shellcheck disable=SC2154
   for LFBFL_pattern in "${COMMON_TEXT_FILES_GLOB_PATTERNS[@]}"; do
-    [[ "$2" != "-v" ]]\
+    [[ LFBFL_verbose -eq 0 ]]\
       || echo "Iterating on pattern: ${LFBFL_pattern}"
-    # shellcheck disable=SC2312
     find . -type f -name "${LFBFL_pattern}" -printf '%P\n'\
        | while read -r LFBFL_file_path;
     do

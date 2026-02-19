@@ -33,8 +33,13 @@ update_common_build_and_checks(){
     echo "$0 $*"
     LFBFL_verbose=1
   fi
-  # shellcheck disable=SC2034
   readonly LFBFL_verbose
+
+  if [[ ! -o pipefail ]]; then
+    [[ LFBFL_verbose -eq 1 ]] && echo "pipefail option activated"
+    set -o pipefail
+    trap 'set +o pipefail' RETURN
+  fi
 
   declare -r LFBFL_common_file_name="common_build_and_checks.exec.sh"
   cp "./${LFBFL_common_file_name}.tpl"\
@@ -71,7 +76,6 @@ update_common_build_and_checks(){
   local LFBFL_file_sha512_all
   local LFBFL_base_file_name
   for LFBFL_file_name in "${LFBFL_file_names[@]}"; do
-    # shellcheck disable=SC2312
     LFBFL_file_sha512=$(
       sha512sum "./${LFBFL_file_name}"\
       | cut -f1 -d' '
@@ -95,7 +99,6 @@ update_common_build_and_checks(){
   declare -r LFBFL_main_file_name="build_and_checks.exec.sh"
   cp "./${LFBFL_main_file_name}.tpl" "../${LFBFL_main_file_name}.temp"
 
-  # shellcheck disable=SC2312
   LFBFL_file_sha512=$(
     sha512sum "./${LFBFL_common_file_name}"\
     | cut -f1 -d' '

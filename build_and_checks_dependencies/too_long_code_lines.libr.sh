@@ -31,6 +31,19 @@ source "./${LFBFL_subdir}/get_common_text_glob_patterns.libr.sh"
 source "./${LFBFL_subdir}/lines_filters.libr.sh"
 
 too_long_code_lines(){
+  declare -i LFBFL_verbose=0
+  if [[ "$*" == *--verbose* ]]; then
+    echo "$0 $*"
+    LFBFL_verbose=1
+  fi
+  readonly LFBFL_verbose
+
+  if [[ ! -o pipefail ]]; then
+    [[ LFBFL_verbose -eq 1 ]] && echo "pipefail option activated"
+    set -o pipefail
+    trap 'set +o pipefail' RETURN
+  fi
+
   get_COMMON_TEXT_FILES_GLOB_PATTERNS
   local LFBFL_pattern
   local LFBFL_file_name
@@ -39,9 +52,8 @@ too_long_code_lines(){
   local LFBFL_base_name
   # shellcheck disable=SC2154
   for LFBFL_pattern in "${COMMON_TEXT_FILES_GLOB_PATTERNS[@]}"; do
-    [[ "$1" != "-v" ]]\
+    [[ LFBFL_verbose -eq 0 ]]\
       || echo "Iterating on pattern: ${LFBFL_pattern}"
-    # shellcheck disable=SC2312
     find . -type f -name "${LFBFL_pattern}" -printf '%P\n'\
       | relevant_find\
       | not_license_find\

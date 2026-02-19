@@ -43,6 +43,7 @@ overwrite_if_not_equal(){
   fi
   declare -i LFBFL_is_equal
   if [[ -n "$4" ]]; then
+    # Not setting pipefail since the result would still be incorrect.
     # shellcheck disable=SC2312
     diff "$1" "$2"\
       | grep -E "^(>|<)"\

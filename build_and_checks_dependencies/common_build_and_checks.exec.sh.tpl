@@ -44,6 +44,13 @@ common_build_and_checks(){
   fi
   readonly LFBFL_verbose
 
+  if [[ ! -o pipefail ]]; then
+    [[ "${LFBFL_verbose}" == "--verbose" ]]\
+      && echo "pipefail option activated"
+    set -o pipefail
+    trap 'set +o pipefail' RETURN
+  fi
+
   # shellcheck disable=SC1091
   source ./wget_sha512.libr.sh
 
@@ -310,7 +317,6 @@ $(stat -c %Y "${LFBFL_upgrade_venvs_ts_file}")
   echo "Building other MarkDown files"
   local LFBFL_some_directory
   declare -r LFBFL_readme="${LFBFL_working_directory}/README.md.tpl"
-  # shellcheck disable=SC2312
   find "${LFBFL_working_directory}" -name "*.md.tpl"\
     | relevant_find\
     | while read -r LFBFL_file_path;
@@ -333,7 +339,6 @@ $(stat -c %Y "${LFBFL_upgrade_venvs_ts_file}")
   declare -i LFBFL_file_path_length
   declare -i LFBFL_to_skip_number
   local LFBFL_file_path_end
-  # shellcheck disable=SC2312
   find . -name "*.sh"\
     | relevant_find\
     | while read -r LFBFL_file_path;
@@ -405,7 +410,6 @@ $(stat -c %Y "${LFBFL_upgrade_venvs_ts_file}")
   shopt -s lastpipe
   local LFBFL_directory_path
   declare -i LFBFL_no_toml=1
-  # shellcheck disable=SC2312
   find . -name "pyproject.toml"\
     | relevant_find\
     | while read -r LFBFL_file_path;
@@ -511,7 +515,6 @@ $(stat -c %Y "${LFBFL_upgrade_venvs_ts_file}")
   if [[ -n "${npm_lint_directories}" ]]; then
     echo "Running ESLint"
     local LFBFL_JS_directory
-    # shellcheck disable=SC2312
     echo "${npm_lint_directories}"\
       | sed -e 's/\\n/\n/g'\
       | while read -r LFBFL_JS_directory;
@@ -529,19 +532,16 @@ $(stat -c %Y "${LFBFL_upgrade_venvs_ts_file}")
   too_long_code_lines
 
   echo "Analyzing shell scripts beginnings"
-  # shellcheck disable=SC2312
   check_shell_scripts_beginnings\
     | relevant_grep
 
   echo "Analyzing URLs"
-  # shellcheck disable=SC2312
   check_URLs\
     | relevant_grep
 
   echo "Analyzing strange characters: hover over in doubt"
   # shellcheck disable=SC1111
   LFBFL_usual_characters="\x00-\x7Fàâéèêëîïôûç©“”└─├│«»"
-  # shellcheck disable=SC2312
   grep --exclude-dir .git --color=always\
     -nPr "[^${LFBFL_usual_characters}]" .
 

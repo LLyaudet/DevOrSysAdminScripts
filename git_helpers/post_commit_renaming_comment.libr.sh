@@ -60,6 +60,12 @@ commit_a_file_renamed_comment(){
   fi
   readonly LFBFL_verbose
 
+  if [[ ! -o pipefail ]]; then
+    [[ LFBFL_verbose -eq 1 ]] && echo "pipefail option activated"
+    set -o pipefail
+    trap 'set +o pipefail' RETURN
+  fi
+
   declare -i LFBFL_log_directory_change=0
   if [[ "$*" == *--log-directory-change* ]]; then
     LFBFL_log_directory_change=1
@@ -275,7 +281,6 @@ commit_a_file_renamed_comment(){
       echo "LFBFL_new_comment: ${LFBFL_new_comment}"
     fi
     # Find line with ©Copyright. -------------------------------------
-    # shellcheck disable=SC2312
     LFBFL_copyright_line_number=$(
       grep -n '©Copyright' "${LFBFL_new_file_path}"\
       | head --lines=1\

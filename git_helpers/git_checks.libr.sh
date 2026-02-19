@@ -49,21 +49,18 @@ check_files(){
   declare -r LFBFL_send_summary_2="ATTENTION : serializers modifiés"
   declare -r LFBFL_send_body_3=\
 "Les nouveaux preloadings sont interdits -> #Prefetch()"
-  # shellcheck disable=SC2312
-  if
-    git diff --cached --name-only\
-    | grep models;
+  git diff --cached --name-only\
+    > /tmp/DOSAS_django_git_check1.temp
+  if grep models /tmp/DOSAS_django_git_check1.temp;
   then
     notify-send "${LFBFL_send_summary_1}" "${LFBFL_send_body_1}"
     notify-send "${LFBFL_send_summary_1}" "${LFBFL_send_body_2}"
   fi
-  # shellcheck disable=SC2312
-  if
-    git diff --cached --name-only\
-    | grep serializer;
+  if grep serializer /tmp/DOSAS_django_git_check1.temp;
   then
     notify-send "${LFBFL_send_summary_2}" "${LFBFL_send_body_3}"
   fi
+  rm /tmp/DOSAS_django_git_check1.temp
   return 0
 }
 
@@ -77,14 +74,14 @@ check_no_abusive_trailing_comma(){
   local LFBFL_send_body_1="Il semblerait que vous affectiez un tuple"
   LFBFL_send_body_1+=" au lieu d'une autre valeur dans une variable."
   readonly LFBFL_send_body_1
-  # shellcheck disable=SC2312
-  if
-    git diff --cached -r\
-    | grep ' = .*,\s*$';
+  git diff --cached -r\
+    > /tmp/DOSAS_django_git_check2.temp
+  if grep ' = .*,\s*$' /tmp/DOSAS_django_git_check2.temp;
   then
     notify-send "${LFBFL_send_summary_1}" "${LFBFL_send_body_1}"
     return 1
   fi
+  rm /tmp/DOSAS_django_git_check2.temp
   return 0
 }
 

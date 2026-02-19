@@ -37,6 +37,12 @@ check_URLs(){
   fi
   readonly LFBFL_verbose
 
+  if [[ ! -o pipefail ]]; then
+    [[ LFBFL_verbose -eq 1 ]] && echo "pipefail option activated"
+    set -o pipefail
+    trap 'set +o pipefail' RETURN
+  fi
+
   get_COMMON_TEXT_FILES_GLOB_PATTERNS
 
   declare -Ar LFBFL_substitutions=(\
@@ -52,14 +58,12 @@ check_URLs(){
   for LFBFL_pattern in "${COMMON_TEXT_FILES_GLOB_PATTERNS[@]}"; do
     [[ LFBFL_verbose -eq 0 ]]\
       || echo "Iterating on pattern: ${LFBFL_pattern}"
-    # shellcheck disable=SC2312
     find . -type f -name "${LFBFL_pattern}" -printf '%P\n'\
       | xargs grep -H 'http:'\
       | grep -v "| xargs grep -H 'htt"\
       | grep -vP "['\"]http(:[^'\"]*)['\"].*['\"]https\\1['\"]"
     # Last grep just above will remove false positives from
     # substitutions that fit on one line.
-    # shellcheck disable=SC2312
     find . -type f -name "${LFBFL_pattern}" -printf '%P\n'\
       | relevant_find\
       | not_main_html_find\

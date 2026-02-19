@@ -32,8 +32,11 @@ source "./${LFBFL_subdir}/overwrite_if_not_equal.libr.sh"
 
 check_collections_abc_place(){
   echo "Checking import of _collections_abc is at the right place"
+  if [[ ! -o pipefail ]]; then
+    set -o pipefail
+    trap 'set +o pipefail' RETURN
+  fi
   declare -r LFBFL_temp=".check_collections_abc_place.temp"
-  # shellcheck disable=SC2312
   find . -name "*.py"\
     | relevant_find\
     | while read -r LFBFL_file_name;

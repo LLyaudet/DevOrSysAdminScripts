@@ -45,6 +45,12 @@ update_or_check_files_names_listing(){
   fi
   readonly LFBFL_verbose
 
+  if [[ ! -o pipefail ]]; then
+    [[ LFBFL_verbose -eq 1 ]] && echo "pipefail option activated"
+    set -o pipefail
+    trap 'set +o pipefail' RETURN
+  fi
+
   LFBFL_subdir2="build_and_checks_variables"
   files_names_listing="./${LFBFL_subdir2}/files_names_listing.txt"
 
@@ -61,7 +67,6 @@ update_or_check_files_names_listing(){
   # shellcheck disable=SC2154
   split_score_command_properties="${get_split_score_result2}"
   suffix=\\\\ # instead of '\\' to avoid shellcheck SC1003
-  # shellcheck disable=SC2312
   find . -type f -printf '%P\n'\
     | relevant_find\
     | sort\

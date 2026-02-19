@@ -295,17 +295,20 @@ split_last_line(){
   # The given max_length is the goal.
   # This function adapts the effective max position for the split by
   # taking into account the length of the suffix.
+  if [[ ! -o pipefail ]]; then
+    set -o pipefail
+    trap 'set +o pipefail' RETURN
+  fi
+
   declare -g split_last_line_result="$1"
   declare -ir LFBFL_max_length_plus=$(($3 + 1))
   declare -ir LFBFL_length2=$(($3 - ${#4}))
   declare -r LFBFL_regexp='.\{'"${LFBFL_max_length_plus}"'\}$'
-  # shellcheck disable=SC2312
   if
     echo "$1"\
       | sed -e 's/\\n/\n/g'\
       | grep -q "${LFBFL_regexp}";
   then
-    # shellcheck disable=SC2312
     declare -r LFBFL_start=$(
       echo "$1"\
       | sed -e 's/\\n/\n/g'\

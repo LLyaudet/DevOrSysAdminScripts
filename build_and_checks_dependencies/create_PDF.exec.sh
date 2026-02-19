@@ -45,6 +45,12 @@ create_PDF(){
   fi
   readonly LFBFL_verbose
 
+  if [[ ! -o pipefail ]]; then
+    [[ LFBFL_verbose -eq 1 ]] && echo "pipefail option activated"
+    set -o pipefail
+    trap 'set +o pipefail' RETURN
+  fi
+
   LFBFL_subdir2="build_and_checks_variables"
   LFBFL_data_file_name="${LFBFL_subdir2}/repository_data.txt"
   repository_name=""
@@ -83,7 +89,6 @@ create_PDF(){
   LFBFL_number_of_lines+=" not empty lines,"
   LFBFL_number_of_lines+=" $(code_lines_count_empty) empty lines."
 
-  # shellcheck disable=SC2312
   tree -a --gitignore\
     -I "node_modules/"\
     -I "__pycache__/"\
@@ -92,7 +97,6 @@ create_PDF(){
     | replace_non_ascii_spaces\
     > "${LFBFL_subdir2}/temp/current_tree_light.txt"
 
-  # shellcheck disable=SC2312
   tree -a -DFh --gitignore\
     -I "node_modules/"\
     -I "__pycache__/"\
@@ -122,7 +126,6 @@ create_PDF(){
   declare LFBFL_suffix='%'
   declare -i LFBFL_i=0
   # Remove line returns here to keep lines short.
-  # shellcheck disable=SC2312
   sed -Ez 's/\\\n//Mg' "./${LFBFL_subdir2}/files_names_listing.txt"\
     | grep -v '^//'\
     | while read -r LFBFL_file_name;
@@ -161,19 +164,16 @@ create_PDF(){
     fi
     {
       echo "\subsection{"
-      # shellcheck disable=SC2312
       echo "  ${LFBFL_file_name}"\
         | sed -e "s|  ${LFBFL_file_name}|${LFBFL_new_lines}|g"\
               -e 's/_/\\_/g'
       echo "}"
       echo "\label{"
-      # shellcheck disable=SC2312
       echo "  ${LFBFL_cleaned_path2}"\
         | sed -e "s|  ${LFBFL_cleaned_path2}|${LFBFL_new_lines2}|g"
       echo "}"
       echo ""
       echo "\VerbatimInput[numbers=left,xleftmargin=-5mm]{"
-      # shellcheck disable=SC2312
       echo "  ${LFBFL_file_name}"\
         | sed -e "s|  ${LFBFL_file_name}|${LFBFL_new_lines3}|g"
       echo "}"
@@ -193,7 +193,7 @@ create_PDF(){
     fi
     {
       echo "<h3 id=\"subsection2.${LFBFL_i}\">2.${LFBFL_i}"
-      # shellcheck disable=SC2001,SC2312
+      # shellcheck disable=SC2001
       echo "${LFBFL_file_name}"\
         | sed -e "s|${LFBFL_file_name}|${LFBFL_new_lines}|g"
       echo "</h3>"
@@ -225,25 +225,21 @@ create_PDF(){
   declare LFBFL_tree_path
   for LFBFL_tree in "${LFBFL_trees[@]}"; do
     LFBFL_tree_path="${LFBFL_subdir2}/temp/${LFBFL_tree}"
-    # shellcheck disable=SC2312
     grep '.\{71\}' "${LFBFL_tree_path}"\
       | while read -r LFBFL_line;
     do
       # echo "LFBFL_line: ${LFBFL_line}"
-      # shellcheck disable=SC2312
       LFBFL_prefix=$(
         echo "${LFBFL_line}"\
         | sed -E -e 's/(.*)─[^─]+$/\1/g' -e 's/[^ ]+$//g'
       )
       LFBFL_prefix+="│ "
       # echo "LFBFL_prefix: ${LFBFL_prefix}"
-      # shellcheck disable=SC2312
       LFBFL_file_name=$(
         echo "${LFBFL_line}"\
         | sed -E 's|.* (([a-zA-Z0-9\._/-]+).)$|\1|g'
       )
       # echo "LFBFL_file_name: ${LFBFL_file_name}"
-      # shellcheck disable=SC2312
       LFBFL_line_start=$(
         echo "${LFBFL_line}"\
         | sed -E -e "s/(.*)[ ]*${LFBFL_file_name}/\1/g"\
@@ -298,12 +294,12 @@ create_PDF(){
   declare -r LFBFL_html_path_start=\
 "./${LFBFL_subdir2}/temp/${repository_name}.html"
 
-  # shellcheck disable=SC2001,SC2312
+  # shellcheck disable=SC2001
   echo "${abstract}"\
     | sed -e 's/\\n/\n/g'\
     > "./${LFBFL_subdir2}/temp/abstract_temp"
 
-  # shellcheck disable=SC2001,SC2312
+  # shellcheck disable=SC2001
   echo "${acknowledgments}"\
     | sed -e 's/\\n/\n/g'\
     > "./${LFBFL_subdir2}/temp/acknowledgments_temp"

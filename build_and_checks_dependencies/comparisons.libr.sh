@@ -123,7 +123,10 @@ max(){
   if [[ "$#" == 0 ]]; then
     return 1
   fi
-  # shellcheck disable=SC2312
+  if [[ ! -o pipefail ]]; then
+    set -o pipefail
+    trap 'set +o pipefail' RETURN
+  fi
   printf "%s\n" "${@:2}" \
     | eval "$1 -r"\
     | head -1
@@ -138,7 +141,10 @@ min(){
   if [[ "$#" == 0 ]]; then
     return 1
   fi
-  # shellcheck disable=SC2312
+  if [[ ! -o pipefail ]]; then
+    set -o pipefail
+    trap 'set +o pipefail' RETURN
+  fi
   printf "%s\n" "${@:2}" \
     | eval "$1"\
     | head -1

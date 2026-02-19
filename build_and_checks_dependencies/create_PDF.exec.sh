@@ -198,7 +198,8 @@ create_PDF(){
         | sed -e "s|${LFBFL_file_name}|${LFBFL_new_lines}|g"
       echo "</h3>"
       echo "<pre class=\"numbered_lines\">"
-      sed -e 's/&/\&amp;/g' -e 's/</\&lt;/g' < "${LFBFL_file_name}"
+      sed -e 's/&/\&amp;/g' -e 's/</\&lt;/g'\
+        < "${LFBFL_file_name}"
       echo "</pre>"
       echo ""
       echo ""
@@ -399,7 +400,8 @@ create_PDF(){
     done
   else
     for ((i=0; i<3; i++)); do
-      pdflatex "./${LFBFL_subdir2}/${repository_name}.tex" > /dev/null
+      pdflatex "./${LFBFL_subdir2}/${repository_name}.tex"\
+        > /dev/null
     done
   fi
 

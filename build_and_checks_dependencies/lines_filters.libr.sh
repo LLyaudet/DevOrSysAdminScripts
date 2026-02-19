@@ -112,7 +112,8 @@ fi
 
 in_place_grep(){
   declare -r LFBFL_temp="${!#}.in_place_grep.temp"
-  grep "$@" > "${LFBFL_temp}"
+  grep "$@" \
+    > "${LFBFL_temp}"
   declare -r LFBFL_lines_before=$(ll_wc -l -n "${!#}")
   declare -r LFBFL_lines_after=$(ll_wc -l -n "${LFBFL_temp}")
   # echo "$LFBFL_lines_before"

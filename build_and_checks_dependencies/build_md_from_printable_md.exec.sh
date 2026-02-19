@@ -75,9 +75,12 @@ build_md_from_printable_md(){
 
   if [[ -f "${LFBFL_base_name}.md.tpl" ]];
   then
-    sed -Ez -e "${LFBFL_sed_expression}" -e "${LFBFL_sed_expression}"\
-      -e "${LFBFL_sed_expression}" -e "${LFBFL_sed_expression}"\
-      "${LFBFL_base_name}.md.tpl" > "${LFBFL_base_name}.md.temp"
+    sed -Ez -e "${LFBFL_sed_expression}"\
+            -e "${LFBFL_sed_expression}"\
+            -e "${LFBFL_sed_expression}"\
+            -e "${LFBFL_sed_expression}"\
+      "${LFBFL_base_name}.md.tpl"\
+      > "${LFBFL_base_name}.md.temp"
     overwrite_if_not_equal "${LFBFL_base_name}.md"\
       "${LFBFL_base_name}.md.temp"
   else

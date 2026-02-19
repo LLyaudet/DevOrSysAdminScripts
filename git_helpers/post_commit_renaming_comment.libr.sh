@@ -291,7 +291,10 @@ commit_a_file_renamed_comment(){
         continue
       fi
       # Get total number of lines. -----------------------------------
-      LFBFL_line_count=$(wc -l < "${LFBFL_new_file_path}")
+      LFBFL_line_count=$(
+        wc -l\
+        < "${LFBFL_new_file_path}"
+      )
       if [[ LFBFL_verbose -eq 1 ]]; then
         echo "LFBFL_line_count: ${LFBFL_line_count}"
       fi
@@ -305,10 +308,12 @@ commit_a_file_renamed_comment(){
       # Update file. -------------------------------------------------
       LFBFL_temp_file_path="${LFBFL_new_file_path}.LFBFL.temp"
       head --lines="${LFBFL_copyright_line_number}"\
-        "${LFBFL_new_file_path}" > "${LFBFL_temp_file_path}"
-      echo -e "${LFBFL_new_comment}" >> "${LFBFL_temp_file_path}"
-      tail --lines="${LFBFL_lines_after}"\
-        "${LFBFL_new_file_path}" >> "${LFBFL_temp_file_path}"
+        "${LFBFL_new_file_path}"\
+        > "${LFBFL_temp_file_path}"
+      echo -e "${LFBFL_new_comment}"\
+        >> "${LFBFL_temp_file_path}"
+      tail --lines="${LFBFL_lines_after}" "${LFBFL_new_file_path}"\
+        >> "${LFBFL_temp_file_path}"
       mv "${LFBFL_temp_file_path}" "${LFBFL_new_file_path}"
       # Add file to stage. -------------------------------------------
       git add "${LFBFL_new_file_path}"

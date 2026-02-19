@@ -38,9 +38,12 @@ generate_from_template_with_block_comments(){
   local LFBFL_temp
   LFBFL_temp="$2.generate_from_template_with_block_comments.temp"
   readonly LFBFL_temp
-  echo "$3" > "${LFBFL_temp}"
-  cat "$1" >> "${LFBFL_temp}"
-  echo "$4" >> "${LFBFL_temp}"
+  echo "$3"\
+    > "${LFBFL_temp}"
+  cat "$1"\
+    >> "${LFBFL_temp}"
+  echo "$4"\
+    >> "${LFBFL_temp}"
   overwrite_if_not_equal "$2" "${LFBFL_temp}"
 }
 
@@ -54,9 +57,11 @@ generate_from_template_with_line_comments(){
   LFBFL_temp="$2.generate_from_template_with_line_comments.temp"
   readonly LFBFL_temp
   if [[ -n "$5" ]]; then
-    echo "$5" > "${LFBFL_temp}"
+    echo "$5"\
+      > "${LFBFL_temp}"
   fi
-  sed -e "s/^/$3/g" "$1" >> "${LFBFL_temp}"
+  sed -e "s/^/$3/g" "$1"\
+    >> "${LFBFL_temp}"
   if [[ -n "$4" ]]; then
     eval "$4"
   fi
@@ -77,8 +82,10 @@ split_file_in_two(){
   declare -ir LFBFL_lines_after=$((
     LFBFL_line_count - LFBFL_line_number
   ))
-  head --lines="$((LFBFL_line_number - 1))" "$1" > "$3"
-  tail --lines="${LFBFL_lines_after}" "$1" > "$4"
+  head --lines="$((LFBFL_line_number - 1))" "$1"\
+    > "$3"
+  tail --lines="${LFBFL_lines_after}" "$1"\
+    > "$4"
 }
 
 insert_file_at_token(){

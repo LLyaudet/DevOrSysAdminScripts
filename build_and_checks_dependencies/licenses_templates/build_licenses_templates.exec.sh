@@ -239,7 +239,8 @@ build_licenses_templates(){
     # $1=license_file_name
     sed -e "s/@repository_name@/${repository_name}/g"\
         -e "s/@copyright_string@/${LFBFL_copyright_string}/g"\
-        "$1.tpl" > "$1.temp"
+        "$1.tpl"\
+      > "$1.temp"
     overwrite_if_not_equal "$1" "$1.temp"
     declare -r LFBFL_result=$?
     if [[ LFBFL_verbose -eq 1 ]]; then
@@ -312,7 +313,8 @@ build_licenses_templates(){
     # $1=LFBFL_license_file_name
     sed -e "s/@repository_name@/${repository_name}/g"\
         -e "s/@copyright_string@/${LFBFL_copyright_string}/g"\
-        "$1.tpl" > "$1.temp"
+        "$1.tpl"\
+      > "$1.temp"
     overwrite_if_not_equal "$1" "$1.temp"
     declare -r LFBFL_result=$?
     if [[ LFBFL_verbose -eq 1 ]]; then

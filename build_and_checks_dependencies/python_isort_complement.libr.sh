@@ -40,7 +40,8 @@ check_collections_abc_place(){
   do
     [[ -f "${LFBFL_file_name}" ]] || continue
     sed -Ez 's/\n(\nfrom _collections_abc[^\n]*)/\1\n/Mg'\
-      "${LFBFL_file_name}" > "${LFBFL_file_name}${LFBFL_temp}"
+      "${LFBFL_file_name}"\
+      > "${LFBFL_file_name}${LFBFL_temp}"
     overwrite_if_not_equal "${LFBFL_file_name}"\
       "${LFBFL_file_name}${LFBFL_temp}"
   done

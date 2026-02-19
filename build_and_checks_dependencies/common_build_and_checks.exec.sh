@@ -104,9 +104,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='78944a9331754ad90b5f9133806e4edf3142d75eb5ba5'
-  LFBFL_correct_sha512+='c7a5bf84658f01cc8f1f2e70d53afa0865dae707cf00'
-  LFBFL_correct_sha512+='889c3420245b317c32e969eed9c0c56cc9e0391'
+  LFBFL_correct_sha512='ee0846d96cc1f682271f3adc9745e91763a39dd6d8231'
+  LFBFL_correct_sha512+='ebf7f6c82b4193932a95ed15b99d4fd038959ffa128e'
+  LFBFL_correct_sha512+='305b5e5238e368c05ebb322be34b049901ab007'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
   chmod +x "./${LFBFL_file_path}"
@@ -602,14 +602,14 @@ $(stat -c %Y "${LFBFL_upgrade_venvs_ts_file}")
   fi
 
   echo "Analyzing too long lines"
-  too_long_code_lines
+  too_long_code_lines "$@"
 
   echo "Analyzing shell scripts beginnings"
   check_shell_scripts_beginnings\
     | relevant_grep
 
   echo "Analyzing URLs"
-  check_URLs\
+  check_URLs "$@" \
     | relevant_grep
 
   echo "Analyzing strange characters: hover over in doubt"

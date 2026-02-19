@@ -533,14 +533,14 @@ $(stat -c %Y "${LFBFL_upgrade_venvs_ts_file}")
   fi
 
   echo "Analyzing too long lines"
-  too_long_code_lines
+  too_long_code_lines "$@"
 
   echo "Analyzing shell scripts beginnings"
   check_shell_scripts_beginnings\
     | relevant_grep
 
   echo "Analyzing URLs"
-  check_URLs\
+  check_URLs "$@" \
     | relevant_grep
 
   echo "Analyzing strange characters: hover over in doubt"

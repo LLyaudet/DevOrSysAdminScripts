@@ -39,5 +39,5 @@ A listing of the current suppressed warnings/errors from shellcheck:
 The command to check if there is anything else:
 grep -r "shellcheck disable" . | grep -v -e '.git' -e "=SC1090$"\
   -e "=SC1091$" -e "=SC1090,SC1091$" -e "=SC1111$" -e "=SC2001$"\
-  -e "=SC2034$" -e "=SC2125$" -e "=SC2034,SC2125$" -e "=SC2145$"\
-  -e "=SC2162$" -e "=SC2248$" -e "=SC2312$" -e "=SC2162,SC2312$"
+  -e "=SC2034$" -e "=SC2125$" -e "=SC2145$" -e "=SC2162$"\
+  -e "=SC2248$" -e "=SC2312$" -e "=SC2162,SC2312$"

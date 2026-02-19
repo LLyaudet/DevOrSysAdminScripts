@@ -73,7 +73,8 @@ update_common_build_and_checks(){
   for LFBFL_file_name in "${LFBFL_file_names[@]}"; do
     # shellcheck disable=SC2312
     LFBFL_file_sha512=$(
-      sha512sum "./${LFBFL_file_name}" | cut -f1 -d' '
+      sha512sum "./${LFBFL_file_name}"\
+      | cut -f1 -d' '
     )
     LFBFL_file_sha512_all="local LFBFL_correct_sha512\n"
     LFBFL_file_sha512_all+="  LFBFL_correct_sha512="
@@ -96,7 +97,8 @@ update_common_build_and_checks(){
 
   # shellcheck disable=SC2312
   LFBFL_file_sha512=$(
-    sha512sum "./${LFBFL_common_file_name}" | cut -f1 -d' '
+    sha512sum "./${LFBFL_common_file_name}"\
+    | cut -f1 -d' '
   )
   LFBFL_file_sha512_all="local LFBFL_correct_sha512\n"
   LFBFL_file_sha512_all+="  LFBFL_correct_sha512="

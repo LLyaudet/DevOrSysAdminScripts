@@ -39,8 +39,10 @@ wget_sha512(){
   then
     wget "${LFBFL_verbose}" -O "$1" "$2"
   fi
-  declare -r \
-    LFBFL_present_sha512=$(sha512sum "$1" | cut -f1 -d' ')
+  declare -r LFBFL_present_sha512=$(
+    sha512sum "$1"\
+    | cut -f1 -d' '
+  )
   if [[ "${LFBFL_present_sha512}" != "$3" ]];
   then
     echo "$1 does not have correct sha512"

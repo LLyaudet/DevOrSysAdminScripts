@@ -44,7 +44,9 @@ overwrite_if_not_equal(){
   declare -i LFBFL_is_equal
   if [[ -n "$4" ]]; then
     # shellcheck disable=SC2312
-    diff "$1" "$2" | grep -E "^(>|<)" | grep -v "/$"
+    diff "$1" "$2"\
+      | grep -E "^(>|<)"\
+      | grep -v "/$"
     LFBFL_is_equal=$?
   else
     diff -q "$1" "$2"

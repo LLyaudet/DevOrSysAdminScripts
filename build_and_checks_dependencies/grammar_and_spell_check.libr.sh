@@ -35,9 +35,9 @@ grammar_and_spell_check(){
   grammar_or_spell_checker_command=""
   grep_variable "$1" grammar_or_spell_checker_command
   # shellcheck disable=SC2312
-  declare -r LFBFL_command=$(\
+  declare -r LFBFL_command=$(
     echo "${grammar_or_spell_checker_command}"\
-    | sed -Ez -e "s/\n//Mg"\
+    | sed -Ez -e "s/\n//Mg"
   )
   local LFBFL_file_path
   local LFBFL_pattern

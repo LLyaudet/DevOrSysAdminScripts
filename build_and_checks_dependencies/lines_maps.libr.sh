@@ -37,45 +37,45 @@
 replace_non_ascii_spaces(){
   # shellcheck disable=SC2312
   sed -e 's/\xc2\xa0/ /g'\
-  | sed -e 's/\xe2\x80\x80/ /g'\
-  | sed -e 's/\xe2\x80\x81/ /g'\
-  | sed -e 's/\xe2\x80\x82/ /g'\
-  | sed -e 's/\xe2\x80\x83/ /g'\
-  | sed -e 's/\xe2\x80\x84/ /g'\
-  | sed -e 's/\xe2\x80\x85/ /g'\
-  | sed -e 's/\xe2\x80\x86/ /g'\
-  | sed -e 's/\xe2\x80\x87/ /g'\
-  | sed -e 's/\xe2\x80\x88/ /g'\
-  | sed -e 's/\xe2\x80\x89/ /g'\
-  | sed -e 's/\xe2\x80\x8a/ /g'\
-  | sed -e 's/\xe2\x80\x8b/ /g'\
-  | sed -e 's/\xe2\x80\x8c/ /g'\
-  | sed -e 's/\xe2\x80\x8d/ /g'\
-  | sed -e 's/\xe2\x80\x8e/ /g'\
-  | sed -e 's/\xe2\x80\x8f/ /g'\
-  | sed -e 's/\xe2\x80\xa8/ /g'\
-  | sed -e 's/\xe2\x80\xa9/ /g'\
-  | sed -e 's/\xe2\x80\xaa/ /g'\
-  | sed -e 's/\xe2\x80\xab/ /g'\
-  | sed -e 's/\xe2\x80\xac/ /g'\
-  | sed -e 's/\xe2\x80\xad/ /g'\
-  | sed -e 's/\xe2\x80\xae/ /g'\
-  | sed -e 's/\xe2\x80\xaf/ /g'\
-  | sed -e 's/\xe2\x81\x9f/ /g'\
-  | sed -e 's/\xe2\x81\xa0/ /g'\
-  | sed -e 's/\xe2\x81\xa1/ /g'\
-  | sed -e 's/\xe2\x81\xa2/ /g'\
-  | sed -e 's/\xe2\x81\xa3/ /g'\
-  | sed -e 's/\xe2\x81\xa4/ /g'\
-  | sed -e 's/\xe2\x81\xa5/ /g'\
-  | sed -e 's/\xe2\x81\xa6/ /g'\
-  | sed -e 's/\xe2\x81\xa7/ /g'\
-  | sed -e 's/\xe2\x81\xa8/ /g'\
-  | sed -e 's/\xe2\x81\xa9/ /g'\
-  | sed -e 's/\xe2\x81\xaa/ /g'\
-  | sed -e 's/\xe2\x81\xab/ /g'\
-  | sed -e 's/\xe2\x81\xac/ /g'\
-  | sed -e 's/\xe2\x81\xad/ /g'\
-  | sed -e 's/\xe2\x81\xae/ /g'\
-  | sed -e 's/\xe2\x81\xaf/ /g'
+      -e 's/\xe2\x80\x80/ /g'\
+      -e 's/\xe2\x80\x81/ /g'\
+      -e 's/\xe2\x80\x82/ /g'\
+      -e 's/\xe2\x80\x83/ /g'\
+      -e 's/\xe2\x80\x84/ /g'\
+      -e 's/\xe2\x80\x85/ /g'\
+      -e 's/\xe2\x80\x86/ /g'\
+      -e 's/\xe2\x80\x87/ /g'\
+      -e 's/\xe2\x80\x88/ /g'\
+      -e 's/\xe2\x80\x89/ /g'\
+      -e 's/\xe2\x80\x8a/ /g'\
+      -e 's/\xe2\x80\x8b/ /g'\
+      -e 's/\xe2\x80\x8c/ /g'\
+      -e 's/\xe2\x80\x8d/ /g'\
+      -e 's/\xe2\x80\x8e/ /g'\
+      -e 's/\xe2\x80\x8f/ /g'\
+      -e 's/\xe2\x80\xa8/ /g'\
+      -e 's/\xe2\x80\xa9/ /g'\
+      -e 's/\xe2\x80\xaa/ /g'\
+      -e 's/\xe2\x80\xab/ /g'\
+      -e 's/\xe2\x80\xac/ /g'\
+      -e 's/\xe2\x80\xad/ /g'\
+      -e 's/\xe2\x80\xae/ /g'\
+      -e 's/\xe2\x80\xaf/ /g'\
+      -e 's/\xe2\x81\x9f/ /g'\
+      -e 's/\xe2\x81\xa0/ /g'\
+      -e 's/\xe2\x81\xa1/ /g'\
+      -e 's/\xe2\x81\xa2/ /g'\
+      -e 's/\xe2\x81\xa3/ /g'\
+      -e 's/\xe2\x81\xa4/ /g'\
+      -e 's/\xe2\x81\xa5/ /g'\
+      -e 's/\xe2\x81\xa6/ /g'\
+      -e 's/\xe2\x81\xa7/ /g'\
+      -e 's/\xe2\x81\xa8/ /g'\
+      -e 's/\xe2\x81\xa9/ /g'\
+      -e 's/\xe2\x81\xaa/ /g'\
+      -e 's/\xe2\x81\xab/ /g'\
+      -e 's/\xe2\x81\xac/ /g'\
+      -e 's/\xe2\x81\xad/ /g'\
+      -e 's/\xe2\x81\xae/ /g'\
+      -e 's/\xe2\x81\xaf/ /g'
 }

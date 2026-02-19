@@ -80,7 +80,8 @@ commit_a_file_renamed_comment(){
 
   # shellcheck disable=SC2155
   declare -r LFBFL_renaming_lines=$(
-    git log -p -1 | grep '^diff --git' -A 1
+    git log -p -1\
+    | grep '^diff --git' -A 1
   )
   if [[ LFBFL_verbose -eq 1 ]]; then
     echo "LFBFL_renaming_lines: ${LFBFL_renaming_lines}"
@@ -146,7 +147,8 @@ commit_a_file_renamed_comment(){
     if [[ "${LFBFL_similarity_line:17:4}" == "100%" ]]; then
       # Extract old file name from diff line. ------------------------
       LFBFL_old_file_path=$(
-        echo "${LFBFL_diff_line}" | cut -d ' ' -f 3
+        echo "${LFBFL_diff_line}"\
+        | cut -d ' ' -f 3
       )
       # It starts by "a/".
       LFBFL_old_file_path=".${LFBFL_old_file_path:1}"
@@ -154,7 +156,8 @@ commit_a_file_renamed_comment(){
       LFBFL_old_file_directory=$(dirname "${LFBFL_old_file_path}")
       # Extract new file name from diff line. ------------------------
       LFBFL_new_file_path=$(
-        echo "${LFBFL_diff_line}" | cut -d ' ' -f 4
+        echo "${LFBFL_diff_line}"\
+        | cut -d ' ' -f 4
       )
       # It starts by "b/".
       LFBFL_new_file_path=".${LFBFL_new_file_path:1}"

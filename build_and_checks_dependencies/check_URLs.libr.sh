@@ -61,7 +61,8 @@ check_URLs(){
     # substitutions that fit on one line.
     # shellcheck disable=SC2312
     find . -type f -name "${LFBFL_pattern}" -printf '%P\n'\
-      | relevant_find | not_main_html_find\
+      | relevant_find\
+      | not_main_html_find\
       | while read -r LFBFL_file_name;
     do
       [[ -f "${LFBFL_file_name}" ]] || continue

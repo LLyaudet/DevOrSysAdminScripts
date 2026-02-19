@@ -78,7 +78,8 @@ ll_wc(){
     # wc does not display file_name when stream...
     # hence cat of last arg "${!#}"
     # shellcheck disable=SC2312
-    cat "${!#}" | wc "${ll_wc_var_args[@]}"
+    cat "${!#}"\
+      | wc "${ll_wc_var_args[@]}"
   else
     # echo "normal"
     wc "${ll_wc_var_args[@]}"
@@ -260,12 +261,18 @@ not_temp_file_grep(){
 
 relevant_find(){
   # shellcheck disable=SC2312
-  not_dependencies_find | not_cache_find | not_git_find\
-  | not_archive_find | not_temp_file_find
+  not_dependencies_find\
+    | not_cache_find\
+    | not_git_find\
+    | not_archive_find\
+    | not_temp_file_find
 }
 
 relevant_grep(){
   # shellcheck disable=SC2312
-  not_dependencies_grep | not_cache_grep | not_git_grep\
-  | not_archive_grep | not_temp_file_grep
+  not_dependencies_grep\
+    | not_cache_grep\
+    | not_git_grep\
+    | not_archive_grep\
+    | not_temp_file_grep
 }

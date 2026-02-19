@@ -216,12 +216,20 @@ build_licenses_templates(){
 
   # First year according to current state of git repository.
   # shellcheck disable=SC2155,SC2312
-  declare -r LFBFL_first_year=\
-"$(git log | grep 'Date:' | cut -f 8 -d ' ' | tail -1)"
+  declare -r LFBFL_first_year=$(
+    git log\
+    | grep 'Date:'\
+    | cut -f 8 -d ' '\
+    | tail -1
+  )
   # Last year according to current state of git repository.
   # shellcheck disable=SC2155,SC2312
-  declare -r LFBFL_last_year=\
-"$(git log | grep 'Date:' | cut -f 8 -d ' ' | head -1)"
+  declare -r LFBFL_last_year=$(
+    git log\
+    | grep 'Date:'\
+    | cut -f 8 -d ' '\
+    | head -1
+  )
   local LFBFL_copyright_string
   LFBFL_copyright_string="${LFBFL_first_year}-${LFBFL_last_year}"
   LFBFL_copyright_string+=" ${author_full_name}"
@@ -242,7 +250,9 @@ build_licenses_templates(){
       fi
     fi
     # shellcheck disable=SC2312
-    head --lines=-1 "$1" | tail --lines=+2 > "$1.temp"
+    head --lines=-1 "$1"\
+      | tail --lines=+2\
+      > "$1.temp"
     # Strange world: tail --lines=-1 was working
     # to exclude first line.
     # I tested it months ago, and saw with my eyes the start and end
@@ -275,7 +285,8 @@ build_licenses_templates(){
     fi
     # shellcheck disable=SC2312
     find . -type f -name "*.${LFBFL_key}" -printf '%P\n'\
-      | relevant_find | while read -r LFBFL_file_name;
+      | relevant_find\
+      | while read -r LFBFL_file_name;
     do
       is_subfile "${LFBFL_file_name}"\
         "${LFBFL_license_file_name}.temp"
@@ -328,7 +339,8 @@ build_licenses_templates(){
     fi
     # shellcheck disable=SC2312
     find . -type f -name "*.${LFBFL_key}" -printf '%P\n'\
-      | relevant_find | while read -r LFBFL_file_name;
+      | relevant_find\
+      | while read -r LFBFL_file_name;
     do
       is_subfile "${LFBFL_file_name}" "${LFBFL_license_file_name}"
       LFBFL_not_subfile=$?

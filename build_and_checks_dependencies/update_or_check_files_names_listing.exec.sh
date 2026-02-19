@@ -62,7 +62,9 @@ update_or_check_files_names_listing(){
   split_score_command_properties="${get_split_score_result2}"
   suffix=\\\\ # instead of '\\' to avoid shellcheck SC1003
   # shellcheck disable=SC2312
-  find . -type f -printf '%P\n' | relevant_find | sort\
+  find . -type f -printf '%P\n'\
+    | relevant_find\
+    | sort\
     | while read -r file_name;
   do
     git check-ignore -q "${file_name}" && continue
@@ -93,8 +95,7 @@ update_or_check_files_names_listing(){
       if [[ "$1" == "--append" ]]; then
         # shellcheck disable=SC2001
         echo "${file_name}"\
-          | sed -e\
-          "s|${file_name}|${split_file_name}|g"\
+          | sed -e "s|${file_name}|${split_file_name}|g"\
           >> "${files_names_listing}"
       fi
     fi

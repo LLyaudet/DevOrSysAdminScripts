@@ -311,7 +311,8 @@ $(stat -c %Y "${LFBFL_upgrade_venvs_ts_file}")
   local LFBFL_some_directory
   declare -r LFBFL_readme="${LFBFL_working_directory}/README.md.tpl"
   # shellcheck disable=SC2312
-  find "${LFBFL_working_directory}" -name "*.md.tpl" | relevant_find\
+  find "${LFBFL_working_directory}" -name "*.md.tpl"\
+    | relevant_find\
     | while read -r LFBFL_file_path;
   do
     [[ "${LFBFL_file_path}" == "${LFBFL_readme}" ]] && continue
@@ -333,7 +334,9 @@ $(stat -c %Y "${LFBFL_upgrade_venvs_ts_file}")
   declare -i LFBFL_to_skip_number
   local LFBFL_file_path_end
   # shellcheck disable=SC2312
-  find . -name "*.sh" | relevant_find | while read -r LFBFL_file_path;
+  find . -name "*.sh"\
+    | relevant_find\
+    | while read -r LFBFL_file_path;
   do
     LFBFL_file_path_length=${#LFBFL_file_path}
     LFBFL_to_skip_number=$((LFBFL_file_path_length - 9))
@@ -403,7 +406,8 @@ $(stat -c %Y "${LFBFL_upgrade_venvs_ts_file}")
   local LFBFL_directory_path
   declare -i LFBFL_no_toml=1
   # shellcheck disable=SC2312
-  find . -name "pyproject.toml" | relevant_find\
+  find . -name "pyproject.toml"\
+    | relevant_find\
     | while read -r LFBFL_file_path;
   do
     if grep -q "Typing :: Typed" "${LFBFL_file_path}"; then
@@ -508,7 +512,8 @@ $(stat -c %Y "${LFBFL_upgrade_venvs_ts_file}")
     echo "Running ESLint"
     local LFBFL_JS_directory
     # shellcheck disable=SC2312
-    echo "${npm_lint_directories}" | sed -e 's/\\n/\n/g'\
+    echo "${npm_lint_directories}"\
+      | sed -e 's/\\n/\n/g'\
       | while read -r LFBFL_JS_directory;
     do
       (cd "${LFBFL_JS_directory}" && npm run lint)
@@ -525,11 +530,13 @@ $(stat -c %Y "${LFBFL_upgrade_venvs_ts_file}")
 
   echo "Analyzing shell scripts beginnings"
   # shellcheck disable=SC2312
-  check_shell_scripts_beginnings | relevant_grep
+  check_shell_scripts_beginnings\
+    | relevant_grep
 
   echo "Analyzing URLs"
   # shellcheck disable=SC2312
-  check_URLs | relevant_grep
+  check_URLs\
+    | relevant_grep
 
   echo "Analyzing strange characters: hover over in doubt"
   # shellcheck disable=SC1111

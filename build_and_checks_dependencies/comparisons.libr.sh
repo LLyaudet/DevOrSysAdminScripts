@@ -124,7 +124,9 @@ max(){
     return 1
   fi
   # shellcheck disable=SC2312
-  printf "%s\n" "${@:2}" | eval "$1 -r" | head -1
+  printf "%s\n" "${@:2}" \
+    | eval "$1 -r"\
+    | head -1
 }
 
 min(){
@@ -137,17 +139,21 @@ min(){
     return 1
   fi
   # shellcheck disable=SC2312
-  printf "%s\n" "${@:2}" | eval "$1" | head -1
+  printf "%s\n" "${@:2}" \
+    | eval "$1"\
+    | head -1
 }
 
 is_substring(){
   # $1=$string
   # $2=$substring
-  declare -r LFBFL_var_1=$(\
-    echo "$1" | sed -e 's/\\/\\&/g' -e "s/'/\\\\&/g"\
+  declare -r LFBFL_var_1=$(
+    echo "$1"\
+    | sed -e 's/\\/\\&/g' -e "s/'/\\\\&/g"
   )
-  declare -r LFBFL_var_2=$(\
-    echo "$2" | sed -e 's/\\/\\&/g' -e "s/'/\\\\&/g"\
+  declare -r LFBFL_var_2=$(
+    echo "$2"\
+    | sed -e 's/\\/\\&/g' -e "s/'/\\\\&/g"
   )
   local LFBFL_var_3="\$a = '${LFBFL_var_1}';"
   LFBFL_var_3+=" \$b = preg_quote('${LFBFL_var_2}');"

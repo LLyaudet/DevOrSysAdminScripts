@@ -69,7 +69,9 @@ split_file_in_two(){
   # $3=$file_name_part1
   # $4=$file_name_part2
   declare -ir LFBFL_line_number=$(
-    grep -n "$2" "$1" | head --lines=1 | cut -f 1 -d ':'
+    grep -n "$2" "$1"\
+    | head --lines=1\
+    | cut -f 1 -d ':'
   )
   declare -ir LFBFL_line_count=$(ll_wc -l -n "$1")
   declare -ir LFBFL_lines_after=$((

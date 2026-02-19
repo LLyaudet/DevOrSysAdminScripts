@@ -43,8 +43,10 @@ too_long_code_lines(){
       || echo "Iterating on pattern: ${LFBFL_pattern}"
     # shellcheck disable=SC2312
     find . -type f -name "${LFBFL_pattern}" -printf '%P\n'\
-      | relevant_find | not_license_find\
-      | xargs grep -H '.\{71\}' | while read -r LFBFL_long_line
+      | relevant_find\
+      | not_license_find\
+      | xargs grep -H '.\{71\}'\
+      | while read -r LFBFL_long_line;
     do
       LFBFL_file_name=${LFBFL_long_line%%:*} # Drop long ':*' suffix
       LFBFL_line=${LFBFL_long_line#*:} # Drop short '*:' prefix

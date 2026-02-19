@@ -300,15 +300,23 @@ split_last_line(){
   declare -ir LFBFL_length2=$(($3 - ${#4}))
   declare -r LFBFL_regexp='.\{'"${LFBFL_max_length_plus}"'\}$'
   # shellcheck disable=SC2312
-  if echo "$1" | sed -e 's/\\n/\n/g' | grep -q "${LFBFL_regexp}"; then
+  if
+    echo "$1"\
+      | sed -e 's/\\n/\n/g'\
+      | grep -q "${LFBFL_regexp}";
+  then
     # shellcheck disable=SC2312
-    declare -r LFBFL_start=$(\
-      echo "$1" | sed -e 's/\\n/\n/g' | head --lines=-1\
-      | sed -z 's/\n/\\n/g'\
+    declare -r LFBFL_start=$(
+      echo "$1"\
+      | sed -e 's/\\n/\n/g'\
+      | head --lines=-1\
+      | sed -z 's/\n/\\n/g'
     )
     # echo "start: $LFBFL_start"
-    declare -r LFBFL_last_line=$(\
-      echo "$1" | sed -e 's/\\n/\n/g' | tail --lines=1\
+    declare -r LFBFL_last_line=$(
+      echo "$1"\
+      | sed -e 's/\\n/\n/g'\
+      | tail --lines=1
     )
     # echo "last_line: ${LFBFL_last_line}"
     split_last_line_result=""

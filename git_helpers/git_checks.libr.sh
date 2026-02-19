@@ -50,13 +50,17 @@ check_files(){
   declare -r LFBFL_send_body_3=\
 "Les nouveaux preloadings sont interdits -> #Prefetch()"
   # shellcheck disable=SC2312
-  if git diff --cached --name-only | grep models;
+  if
+    git diff --cached --name-only\
+    | grep models;
   then
     notify-send "${LFBFL_send_summary_1}" "${LFBFL_send_body_1}"
     notify-send "${LFBFL_send_summary_1}" "${LFBFL_send_body_2}"
   fi
   # shellcheck disable=SC2312
-  if git diff --cached --name-only | grep serializer;
+  if
+    git diff --cached --name-only\
+    | grep serializer;
   then
     notify-send "${LFBFL_send_summary_2}" "${LFBFL_send_body_3}"
   fi
@@ -74,7 +78,9 @@ check_no_abusive_trailing_comma(){
   LFBFL_send_body_1+=" au lieu d'une autre valeur dans une variable."
   readonly LFBFL_send_body_1
   # shellcheck disable=SC2312
-  if git diff --cached -r | grep ' = .*,\s*$';
+  if
+    git diff --cached -r\
+    | grep ' = .*,\s*$';
   then
     notify-send "${LFBFL_send_summary_1}" "${LFBFL_send_body_1}"
     return 1
@@ -85,8 +91,9 @@ check_no_abusive_trailing_comma(){
 
 check_black_code_formatting(){
   # attention ça ne marche que sur les fichiers "stagés" avec git add
-  declare -r LFBFL_files_string=$(\
-    git diff --cached --name-only | grep '\.py'\
+  declare -r LFBFL_files_string=$(
+    git diff --cached --name-only\
+    | grep '\.py'
   )
   echo "${LFBFL_files_string}"
   declare -a LFBFL_some_files

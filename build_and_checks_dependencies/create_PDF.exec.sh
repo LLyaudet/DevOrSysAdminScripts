@@ -73,7 +73,9 @@ create_PDF(){
 
   # shellcheck disable=SC2155
   declare -r LFBFL_number_of_commits=$(
-    git shortlog | space_starting_lines | wc -l
+    git shortlog\
+    | space_starting_lines\
+    | wc -l
   )
 
   LFBFL_number_of_lines="$(code_lines_count_all) total lines,"
@@ -130,7 +132,8 @@ create_PDF(){
     # LFBFL_base_file_name=$(basename "${LFBFL_file_name}")
     LFBFL_cleaned_path1="${LFBFL_file_name//_/\\_}"
     LFBFL_cleaned_path2=$(
-      sed -e 's/\//:/g' -e 's/\.//g' <(echo "${LFBFL_file_name}")
+      echo "${LFBFL_file_name}"\
+      | sed -e 's/\//:/g' -e 's/\.//g'
     )
     LFBFL_new_lines="  ${LFBFL_cleaned_path1}"
     if [[ ${#LFBFL_new_lines} -gt 70 ]]; then
@@ -222,31 +225,33 @@ create_PDF(){
   for LFBFL_tree in "${LFBFL_trees[@]}"; do
     LFBFL_tree_path="${LFBFL_subdir2}/temp/${LFBFL_tree}"
     # shellcheck disable=SC2312
-    grep '.\{71\}' "${LFBFL_tree_path}" | while read -r LFBFL_line; do
+    grep '.\{71\}' "${LFBFL_tree_path}"\
+      | while read -r LFBFL_line;
+    do
       # echo "LFBFL_line: ${LFBFL_line}"
       # shellcheck disable=SC2312
-      LFBFL_prefix=$(\
+      LFBFL_prefix=$(
         echo "${LFBFL_line}"\
-          | sed -E -e 's/(.*)─[^─]+$/\1/g' -e 's/[^ ]+$//g'\
+        | sed -E -e 's/(.*)─[^─]+$/\1/g' -e 's/[^ ]+$//g'
       )
       LFBFL_prefix+="│ "
       # echo "LFBFL_prefix: ${LFBFL_prefix}"
       # shellcheck disable=SC2312
-      LFBFL_file_name=$(\
+      LFBFL_file_name=$(
         echo "${LFBFL_line}"\
-          | sed -E 's|.* (([a-zA-Z0-9\._/-]+).)$|\1|g'\
+        | sed -E 's|.* (([a-zA-Z0-9\._/-]+).)$|\1|g'
       )
       # echo "LFBFL_file_name: ${LFBFL_file_name}"
       # shellcheck disable=SC2312
-      LFBFL_line_start=$(\
+      LFBFL_line_start=$(
         echo "${LFBFL_line}"\
-          | sed -E -e "s/(.*)[ ]*${LFBFL_file_name}/\1/g"\
-                   -e 's/ *$//g'
+        | sed -E -e "s/(.*)[ ]*${LFBFL_file_name}/\1/g"\
+                 -e 's/ *$//g'
       )
       # echo "LFBFL_line_start: ${LFBFL_line_start}"
-      LFBFL_line=$(\
+      LFBFL_line=$(
         echo "${LFBFL_line}"\
-          | sed -E -e 's/\[/\\\[/g' -e 's/\]/\\\]/g'\
+        | sed -E -e 's/\[/\\\[/g' -e 's/\]/\\\]/g'
       )
       LFBFL_new_lines="${LFBFL_prefix}${LFBFL_file_name}"
       if [[ ${#LFBFL_new_lines} -gt 70 ]]; then
@@ -293,11 +298,13 @@ create_PDF(){
 "./${LFBFL_subdir2}/temp/${repository_name}.html"
 
   # shellcheck disable=SC2001,SC2312
-  echo "${abstract}" | sed -e 's/\\n/\n/g'\
+  echo "${abstract}"\
+    | sed -e 's/\\n/\n/g'\
     > "./${LFBFL_subdir2}/temp/abstract_temp"
 
   # shellcheck disable=SC2001,SC2312
-  echo "${acknowledgments}" | sed -e 's/\\n/\n/g'\
+  echo "${acknowledgments}"\
+    | sed -e 's/\\n/\n/g'\
     > "./${LFBFL_subdir2}/temp/acknowledgments_temp"
 
   # But the filling still occurs, in case the dev want to refill

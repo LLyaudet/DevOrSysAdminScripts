@@ -27,8 +27,6 @@ A listing of the current suppressed warnings/errors from shellcheck:
              # shellcheck disable=SC2145
              all_self_code_lines "$@"\
                | empty_lines_after_file_name
-- SC2155 : Declare and assign separately to avoid masking return value
-           Main false positive is on declare -r (1 line instead of 3)
 - SC2162 : read without -r will mangle backslashes.
            False positive when read is used without variable:
            https://github.com/koalaman/shellcheck/issues/623
@@ -43,6 +41,5 @@ The command to check if there is anything else:
 grep -r "shellcheck disable" . | grep -v -e '.git' -e "=SC1090$"\
   -e "=SC1091$" -e "=SC1090,SC1091$" -e "=SC1111$" -e "=SC2001$"\
   -e "=SC2034$" -e "=SC2125$" -e "=SC2034,SC2125$" -e "=SC2145$"\
-  -e "=SC2155$" -e "=SC2162$" -e "=SC2164$" -e "=SC2248$"\
-  -e "=SC2312$" -e "=SC2001,SC2312$" -e "=SC2145,SC2312$"\
-  -e "=SC2155,SC2312$" -e "=SC2162,SC2312$"
+  -e "=SC2162$" -e "=SC2164$" -e "=SC2248$" -e "=SC2312$"\
+  -e "=SC2162,SC2312$"

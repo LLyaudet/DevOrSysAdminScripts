@@ -84,7 +84,6 @@ commit_a_file_renamed_comment(){
   fi
   #-------------------------------------------------------------------
 
-  # shellcheck disable=SC2155
   declare -r LFBFL_renaming_lines=$(
     git log -p -1\
     | grep '^diff --git' -A 1
@@ -97,7 +96,6 @@ commit_a_file_renamed_comment(){
   mapfile -t LFBFL_renaming_lines_array <<< "${LFBFL_renaming_lines}"
   readonly LFBFL_renaming_lines_array
 
-  # shellcheck disable=SC2155
   declare -r LFBFL_timestamp=$(date --iso-8601="minute")
   if [[ LFBFL_verbose -eq 1 ]]; then
     echo "LFBFL_timestamp: ${LFBFL_timestamp}"

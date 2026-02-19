@@ -71,13 +71,10 @@ create_PDF(){
   author_website=""
   grep_variable "${LFBFL_data_file_name}" author_website
 
-  # shellcheck disable=SC2155
   declare -r LFBFL_current_date=$(date -I"date")
 
-  # shellcheck disable=SC2155
   declare -r LFBFL_current_git_SHA1=$(git rev-parse HEAD)
 
-  # shellcheck disable=SC2155
   declare -r LFBFL_number_of_commits=$(
     git shortlog\
     | space_starting_lines\

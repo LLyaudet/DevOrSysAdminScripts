@@ -30,31 +30,31 @@ get_COMMON_TEXT_PATHS_GLOB_PATTERNS(){
   fi
 
   # shellcheck disable=SC2034
-  declare -gr COMMON_TEXT_PATHS_GLOB_PATTERNS=(\
-    '**/*.c'\
-    '**/*.css'\
-    '**/*.h'\
-    '**/*.htm'\
-    '**/*.html'\
-    '**/*.js'\
-    '**/*.json'\
-    '**/*.md'\
-    '**/*.php'\
-    '**/*.py'\
-    '**/*.sh'\
-    '**/*.sql'\
-    '**/*.tex'\
-    '**/*.toml'\
-    '**/*.tpl'\
-    '**/*.ts'\
-    '**/*.txt'\
-    '**/*.yml'\
-    '**/COPYING'\
-    '**/COPYING.LESSER'\
-    '**/pre-commit'\
-    '**/post-commit'\
-    '**/.gitignore'\
-    '**/py.typed'\
+  declare -agr COMMON_TEXT_PATHS_GLOB_PATTERNS=(
+    '**/*.c'
+    '**/*.css'
+    '**/*.h'
+    '**/*.htm'
+    '**/*.html'
+    '**/*.js'
+    '**/*.json'
+    '**/*.md'
+    '**/*.php'
+    '**/*.py'
+    '**/*.sh'
+    '**/*.sql'
+    '**/*.tex'
+    '**/*.toml'
+    '**/*.tpl'
+    '**/*.ts'
+    '**/*.txt'
+    '**/*.yml'
+    '**/COPYING'
+    '**/COPYING.LESSER'
+    '**/pre-commit'
+    '**/post-commit'
+    '**/.gitignore'
+    '**/py.typed'
   )
 }
 
@@ -65,30 +65,30 @@ get_COMMON_TEXT_FILES_GLOB_PATTERNS(){
   fi
 
   # shellcheck disable=SC2034
-  declare -gr COMMON_TEXT_FILES_GLOB_PATTERNS=(\
-    '*.c'\
-    '*.css'\
-    '*.h'\
-    '*.htm'\
-    '*.html'\
-    '*.js'\
-    '*.json'\
-    '*.md'\
-    '*.php'\
-    '*.py'\
-    '*.sh'\
-    '*.sql'\
-    '*.tex'\
-    '*.toml'\
-    '*.tpl'\
-    '*.ts'\
-    '*.txt'\
-    '*.yml'\
-    'COPYING'\
-    'COPYING.LESSER'\
-    'pre-commit'\
-    'post-commit'\
-    '.gitignore'\
-    'py.typed'\
+  declare -agr COMMON_TEXT_FILES_GLOB_PATTERNS=(
+    '*.c'
+    '*.css'
+    '*.h'
+    '*.htm'
+    '*.html'
+    '*.js'
+    '*.json'
+    '*.md'
+    '*.php'
+    '*.py'
+    '*.sh'
+    '*.sql'
+    '*.tex'
+    '*.toml'
+    '*.tpl'
+    '*.ts'
+    '*.txt'
+    '*.yml'
+    'COPYING'
+    'COPYING.LESSER'
+    'pre-commit'
+    'post-commit'
+    '.gitignore'
+    'py.typed'
   )
 }

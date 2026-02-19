@@ -39,7 +39,7 @@ LFBFL_some_directory="${LFBFL_this_file_directory}/../"
 pushd .
 # shellcheck disable=SC2164
 cd "${LFBFL_some_directory}"
-# shellcheck disable=SC1091
+# shellcheck source=strings_functions.libr.sh
 source "build_and_checks_dependencies/strings_functions.libr.sh"
 # shellcheck disable=SC2164
 popd
@@ -103,14 +103,10 @@ commit_a_file_renamed_comment(){
     echo "LFBFL_timestamp: ${LFBFL_timestamp}"
   fi
   get_split_score_simple 1 "${LFBFL_max_comment_line_length}" _
-  # shellcheck disable=SC2154
   LFBFL_split_score_command1="${get_split_score_result}"
-  # shellcheck disable=SC2154
   LFBFL_split_score_command_properties1="${get_split_score_result2}"
   get_split_score_simple 1 "${LFBFL_max_comment_line_length}" /
-  # shellcheck disable=SC2154
   LFBFL_split_score_command2="${get_split_score_result}"
-  # shellcheck disable=SC2154
   LFBFL_split_score_command_properties2="${get_split_score_result2}"
   declare -i LFBFL_renaming_happened=0
   declare -i LFBFL_i
@@ -226,7 +222,6 @@ commit_a_file_renamed_comment(){
       "${LFBFL_comment_prefix2}" "${LFBFL_max_comment_line_length}"\
       '"' "${LFBFL_split_score_command1}"\
       "${LFBFL_split_score_command_properties1}"
-    # shellcheck disable=SC2154
     LFBFL_old_file_name2="${repeated_split_last_line_result}"
     # -----
     LFBFL_old_file_directory2="${LFBFL_comment_prefix2}"
@@ -235,7 +230,6 @@ commit_a_file_renamed_comment(){
       "${LFBFL_comment_prefix2}" "${LFBFL_max_comment_line_length}"\
       '"' "${LFBFL_split_score_command2}"\
       "${LFBFL_split_score_command_properties2}"
-    # shellcheck disable=SC2154
     LFBFL_old_file_directory2="${repeated_split_last_line_result}"
     # -----
     LFBFL_new_file_name2="${LFBFL_comment_prefix2}"
@@ -244,7 +238,6 @@ commit_a_file_renamed_comment(){
       "${LFBFL_comment_prefix2}" "${LFBFL_max_comment_line_length}"\
       '"' "${LFBFL_split_score_command1}"\
       "${LFBFL_split_score_command_properties1}"
-    # shellcheck disable=SC2154
     LFBFL_new_file_name2="${repeated_split_last_line_result}"
     # -----
     LFBFL_new_file_directory2="${LFBFL_comment_prefix2}"
@@ -253,7 +246,6 @@ commit_a_file_renamed_comment(){
       "${LFBFL_comment_prefix2}" "${LFBFL_max_comment_line_length}"\
       '"' "${LFBFL_split_score_command2}"\
       "${LFBFL_split_score_command_properties2}"
-    # shellcheck disable=SC2154
     LFBFL_new_file_directory2="${repeated_split_last_line_result}"
     # Create new comments strings. -----------------------------------
     LFBFL_new_comment=""

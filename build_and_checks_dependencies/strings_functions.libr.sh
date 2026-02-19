@@ -29,9 +29,9 @@
 # "strings_functions.libr.sh".
 
 LFBFL_subdir="build_and_checks_dependencies"
-# shellcheck disable=SC1090
+# shellcheck source=get_common_text_glob_patterns.libr.sh
 source "./${LFBFL_subdir}/get_common_text_glob_patterns.libr.sh"
-# shellcheck disable=SC1090
+# shellcheck source=comparisons.libr.sh
 source "./${LFBFL_subdir}/comparisons.libr.sh"
 
 split_line_at(){

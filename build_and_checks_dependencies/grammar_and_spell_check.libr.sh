@@ -25,9 +25,9 @@
 # to "grammar_and_spell_check.libr.sh".
 
 LFBFL_subdir="build_and_checks_dependencies"
-# shellcheck disable=SC1090
+# shellcheck source=get_common_text_glob_patterns.libr.sh
 source "./${LFBFL_subdir}/get_common_text_glob_patterns.libr.sh"
-# shellcheck disable=SC1090
+# shellcheck source=lines_filters.libr.sh
 source "./${LFBFL_subdir}/lines_filters.libr.sh"
 
 grammar_and_spell_check(){
@@ -54,7 +54,6 @@ grammar_and_spell_check(){
   local LFBFL_file_path
   local LFBFL_pattern
   local LFBFL_eval_string
-  # shellcheck disable=SC2154
   for LFBFL_pattern in "${COMMON_TEXT_FILES_GLOB_PATTERNS[@]}"; do
     [[ LFBFL_verbose -eq 0 ]]\
       || echo "Iterating on pattern: ${LFBFL_pattern}"

@@ -25,13 +25,13 @@
 # to "build_licenses_templates.exec.sh".
 
 LFBFL_subdir="build_and_checks_dependencies"
-# shellcheck disable=SC1090
+# shellcheck source=comparisons.libr.sh
 source "./${LFBFL_subdir}/comparisons.libr.sh"
-# shellcheck disable=SC1090
+# shellcheck source=generate_from_template.libr.sh
 source "./${LFBFL_subdir}/generate_from_template.libr.sh"
-# shellcheck disable=SC1090
+# shellcheck source=lines_filters.libr.sh
 source "./${LFBFL_subdir}/lines_filters.libr.sh"
-# shellcheck disable=SC1090
+# shellcheck source=overwrite_if_not_equal.libr.sh
 source "./${LFBFL_subdir}/overwrite_if_not_equal.libr.sh"
 
 build_licenses_templates(){
@@ -221,7 +221,6 @@ build_licenses_templates(){
     LFBFL_license_prefix3="${LFBFL_license_prefix}${license2}"
 
   # First year according to current state of git repository.
-  # shellcheck disable=SC2155
   declare -r LFBFL_first_year=$(
     git log\
     | grep 'Date:'\
@@ -229,7 +228,6 @@ build_licenses_templates(){
     | tail -1
   )
   # Last year according to current state of git repository.
-  # shellcheck disable=SC2155
   declare -r LFBFL_last_year=$(
     git log\
     | grep 'Date:'\

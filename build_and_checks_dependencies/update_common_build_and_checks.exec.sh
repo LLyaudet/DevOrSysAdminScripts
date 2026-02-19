@@ -24,7 +24,6 @@
 # This file was renamed from "update_common_build_and_checks.sh"
 # to "update_common_build_and_checks.exec.sh".
 
-# shellcheck disable=SC1091
 source "overwrite_if_not_equal.libr.sh"
 
 update_common_build_and_checks(){

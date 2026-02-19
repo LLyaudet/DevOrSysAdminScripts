@@ -32,9 +32,9 @@
 # to "update_or_check_files_names_listing.sh"?
 
 LFBFL_subdir="build_and_checks_dependencies"
-# shellcheck disable=SC1090
+# shellcheck source=lines_filters.libr.sh
 source "./${LFBFL_subdir}/lines_filters.libr.sh"
-# shellcheck disable=SC1090
+# shellcheck source=strings_functions.libr.sh
 source "./${LFBFL_subdir}/strings_functions.libr.sh"
 
 update_or_check_files_names_listing(){
@@ -62,9 +62,7 @@ update_or_check_files_names_listing(){
     > "${files_names_listing}.temp"
   shopt -s dotglob
   get_split_score_simple 1 70 /
-  # shellcheck disable=SC2154
   split_score_command="${get_split_score_result}"
-  # shellcheck disable=SC2154
   split_score_command_properties="${get_split_score_result2}"
   suffix=\\\\ # instead of '\\' to avoid shellcheck SC1003
   find . -type f -printf '%P\n'\
@@ -83,7 +81,6 @@ update_or_check_files_names_listing(){
     fi
     repeated_split_last_line "${file_name}" "" 70 "${suffix}"\
       "${split_score_command}" "${split_score_command_properties}"
-    # shellcheck disable=SC2154
     split_file_name="${repeated_split_last_line_result}"
     if [[ "$1" == "--write" ]]; then
       # shellcheck disable=SC2001

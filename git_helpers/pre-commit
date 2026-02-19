@@ -32,7 +32,7 @@
 
 LFBFL_library="../DevOrSysAdminScripts/git_helpers/"
 LFBFL_library+="git_checks.libr.sh"
-# shellcheck disable=SC1090
+# shellcheck source=git_checks.libr.sh
 source "${LFBFL_library}"
 
 declare -ig LFBFL_git_hook_error=0

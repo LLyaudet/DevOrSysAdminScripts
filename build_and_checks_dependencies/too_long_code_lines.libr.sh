@@ -25,9 +25,9 @@
 # to "too_long_code_lines.libr.sh".
 
 LFBFL_subdir="build_and_checks_dependencies"
-# shellcheck disable=SC1090
+# shellcheck source=get_common_text_glob_patterns.libr.sh
 source "./${LFBFL_subdir}/get_common_text_glob_patterns.libr.sh"
-# shellcheck disable=SC1090
+# shellcheck source=lines_filters.libr.sh
 source "./${LFBFL_subdir}/lines_filters.libr.sh"
 
 too_long_code_lines(){
@@ -50,7 +50,6 @@ too_long_code_lines(){
   local LFBFL_line
   local LFBFL_extension
   local LFBFL_base_name
-  # shellcheck disable=SC2154
   for LFBFL_pattern in "${COMMON_TEXT_FILES_GLOB_PATTERNS[@]}"; do
     [[ LFBFL_verbose -eq 0 ]]\
       || echo "Iterating on pattern: ${LFBFL_pattern}"

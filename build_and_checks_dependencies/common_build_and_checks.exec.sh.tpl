@@ -51,7 +51,6 @@ common_build_and_checks(){
     trap 'set +o pipefail' RETURN
   fi
 
-  # shellcheck disable=SC1091
   source ./wget_sha512.libr.sh
 
   LFBFL_subdir="build_and_checks_dependencies"
@@ -230,33 +229,33 @@ common_build_and_checks(){
   chmod +x "./${LFBFL_file_path}"
 
   shopt -s globstar
-  # shellcheck disable=SC1090
+  # shellcheck source=check_shell_scripts_beginnings.libr.sh
   source "./${LFBFL_subdir}/check_shell_scripts_beginnings.libr.sh"
-  # shellcheck disable=SC1090
+  # shellcheck source=check_URLs.libr.sh
   source "./${LFBFL_subdir}/check_URLs.libr.sh"
-  # shellcheck disable=SC1090
+  # shellcheck source=comparisons.libr.sh
   source "./${LFBFL_subdir}/comparisons.libr.sh"
-  # shellcheck disable=SC1090
+  # shellcheck source=generate_from_template.libr.sh
   source "./${LFBFL_subdir}/generate_from_template.libr.sh"
-  # shellcheck disable=SC1090
+  # shellcheck source=get_common_text_glob_patterns.libr.sh
   source "./${LFBFL_subdir}/get_common_text_glob_patterns.libr.sh"
-  # shellcheck disable=SC1090
+  # shellcheck source=grammar_and_spell_check.libr.sh
   source "./${LFBFL_subdir}/grammar_and_spell_check.libr.sh"
-  # shellcheck disable=SC1090
+  # shellcheck source=lines_counts.libr.sh
   source "./${LFBFL_subdir}/lines_counts.libr.sh"
-  # shellcheck disable=SC1090
+  # shellcheck source=lines_filters.libr.sh
   source "./${LFBFL_subdir}/lines_filters.libr.sh"
-  # shellcheck disable=SC1090
+  # shellcheck source=lines_maps.libr.sh
   source "./${LFBFL_subdir}/lines_maps.libr.sh"
-  # shellcheck disable=SC1090
+  # shellcheck source=overwrite_if_not_equal.libr.sh
   source "./${LFBFL_subdir}/overwrite_if_not_equal.libr.sh"
-  # shellcheck disable=SC1090
+  # shellcheck source=python_black_complement.libr.sh
   source "./${LFBFL_subdir}/python_black_complement.libr.sh"
-  # shellcheck disable=SC1090
+  # shellcheck source=python_isort_complement.libr.sh
   source "./${LFBFL_subdir}/python_isort_complement.libr.sh"
-  # shellcheck disable=SC1090
+  # shellcheck source=strings_functions.libr.sh
   source "./${LFBFL_subdir}/strings_functions.libr.sh"
-  # shellcheck disable=SC1090
+  # shellcheck source=too_long_code_lines.libr.sh
   source "./${LFBFL_subdir}/too_long_code_lines.libr.sh"
 
   local LFBFL_data_file_name=\

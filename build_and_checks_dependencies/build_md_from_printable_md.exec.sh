@@ -25,7 +25,7 @@
 # to "build_md_from_printable_md.exec.sh".
 
 LFBFL_subdir="build_and_checks_dependencies"
-# shellcheck disable=SC1090
+# shellcheck source=overwrite_if_not_equal.libr.sh
 source "./${LFBFL_subdir}/overwrite_if_not_equal.libr.sh"
 
 build_md_from_printable_md(){

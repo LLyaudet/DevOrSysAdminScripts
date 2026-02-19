@@ -24,9 +24,9 @@
 # This file was renamed from "check_URLs.sh" to "check_URLs.libr.sh".
 
 LFBFL_subdir="build_and_checks_dependencies"
-# shellcheck disable=SC1090
+# shellcheck source=get_common_text_glob_patterns.libr.sh
 source "./${LFBFL_subdir}/get_common_text_glob_patterns.libr.sh"
-# shellcheck disable=SC1090
+# shellcheck source=lines_filters.libr.sh
 source "./${LFBFL_subdir}/lines_filters.libr.sh"
 
 check_URLs(){
@@ -54,7 +54,6 @@ check_URLs(){
   local LFBFL_base_file_name
   local LFBFL_substitution
   local LFBFL_substitution2
-  # shellcheck disable=SC2154
   for LFBFL_pattern in "${COMMON_TEXT_FILES_GLOB_PATTERNS[@]}"; do
     [[ LFBFL_verbose -eq 0 ]]\
       || echo "Iterating on pattern: ${LFBFL_pattern}"

@@ -32,7 +32,7 @@
 
 LFBFL_library="../DevOrSysAdminScripts/git_helpers/"
 LFBFL_library+="post_commit_renaming_comment.libr.sh"
-# shellcheck disable=SC1090
+# shellcheck source=post_commit_renaming_comment.libr.sh
 source "${LFBFL_library}"
 
 commit_a_file_renamed_comment --verbose --log-directory-change

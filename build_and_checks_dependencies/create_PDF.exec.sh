@@ -24,17 +24,17 @@
 # This file was renamed from "create_PDF.sh" to "create_PDF.exec.sh".
 
 LFBFL_subdir="build_and_checks_dependencies"
-# shellcheck disable=SC1090
+# shellcheck source=generate_from_template.libr.sh
 source "./${LFBFL_subdir}/generate_from_template.libr.sh"
-# shellcheck disable=SC1090
+# shellcheck source=lines_counts.libr.sh
 source "./${LFBFL_subdir}/lines_counts.libr.sh"
-# shellcheck disable=SC1090
+# shellcheck source=lines_filters.libr.sh
 source "./${LFBFL_subdir}/lines_filters.libr.sh"
-# shellcheck disable=SC1090
+# shellcheck source=lines_maps.libr.sh
 source "./${LFBFL_subdir}/lines_maps.libr.sh"
-# shellcheck disable=SC1090
+# shellcheck source=overwrite_if_not_equal.libr.sh
 source "./${LFBFL_subdir}/overwrite_if_not_equal.libr.sh"
-# shellcheck disable=SC1090
+# shellcheck source=strings_functions.libr.sh
 source "./${LFBFL_subdir}/strings_functions.libr.sh"
 
 create_PDF(){
@@ -115,12 +115,9 @@ create_PDF(){
   LFBFL_temp_files_lis="./${LFBFL_subdir2}/temp/files_lis.html.tpl"
   : > "${LFBFL_temp_files_lis}"
   get_split_score_simple 1 70 /
-  # shellcheck disable=SC2154
   declare LFBFL_score_command="${get_split_score_result}"
-  # shellcheck disable=SC2154
   declare LFBFL_score_command_properties="${get_split_score_result2}"
   get_split_score_simple 1 70 ':'
-  # shellcheck disable=SC2154
   declare LFBFL_score_command2="${get_split_score_result}"
   declare LFBFL_score_command_properties2="${get_split_score_result2}"
   declare LFBFL_suffix='%'
@@ -143,7 +140,6 @@ create_PDF(){
       repeated_split_last_line "${LFBFL_new_lines}" "" 70\
         "${LFBFL_suffix}" "${LFBFL_score_command}"\
         "${LFBFL_score_command_properties}" "\\"
-      # shellcheck disable=SC2154
       LFBFL_new_lines=${repeated_split_last_line_result}
     fi
     LFBFL_new_lines2="  ${LFBFL_cleaned_path2}"
@@ -151,7 +147,6 @@ create_PDF(){
       repeated_split_last_line "${LFBFL_new_lines2}" "" 70\
         "${LFBFL_suffix}" "${LFBFL_score_command2}"\
         "${LFBFL_score_command_properties2}"
-      # shellcheck disable=SC2154
       LFBFL_new_lines2=${repeated_split_last_line_result}
     fi
     LFBFL_new_lines3="${LFBFL_file_name}"
@@ -159,7 +154,6 @@ create_PDF(){
       repeated_split_last_line "${LFBFL_new_lines3}" "" 70\
         "${LFBFL_suffix}" "${LFBFL_score_command}"\
         "${LFBFL_score_command_properties}"
-      # shellcheck disable=SC2154
       LFBFL_new_lines3=${repeated_split_last_line_result}
     fi
     {
@@ -188,7 +182,6 @@ create_PDF(){
       repeated_split_last_line "${LFBFL_new_lines}" "-->"\
         70 "<!--" "${LFBFL_score_command}"\
         "${LFBFL_score_command_properties}"
-      # shellcheck disable=SC2154
       LFBFL_new_lines=${repeated_split_last_line_result}
     fi
     {
@@ -254,7 +247,6 @@ create_PDF(){
       if [[ ${#LFBFL_new_lines} -gt 70 ]]; then
         repeated_split_last_line "${LFBFL_new_lines}"\
           "${LFBFL_prefix}" 70 "" "" 3
-        # shellcheck disable=SC2154
         LFBFL_new_lines=${repeated_split_last_line_result}
       fi
       sed -i -e\

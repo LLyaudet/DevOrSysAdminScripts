@@ -42,7 +42,6 @@ build_and_checks(){
   fi
   readonly LFBFL_verbose
 
-  # shellcheck disable=SC1091
   source ./wget_sha512.libr.sh
 
   LFBFL_subdir="build_and_checks_dependencies"

@@ -42,7 +42,6 @@ build_and_checks(){
   fi
   readonly LFBFL_verbose
 
-  # shellcheck disable=SC1091
   source ./wget_sha512.libr.sh
 
   LFBFL_subdir="build_and_checks_dependencies"
@@ -68,9 +67,9 @@ build_and_checks(){
   declare -r\
     LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_common_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='4ed40b20d154e1eb0ae135a51d6e7fff092172ef9c565'
-  LFBFL_correct_sha512+='28f86d2591fb7978cad39b78cbdfd9300f3509838852'
-  LFBFL_correct_sha512+='d50735f8abbc3625df41d9ac6a95df9ac0d9073'
+  LFBFL_correct_sha512='4f9a77af109b9530746baef7d789c33b3426ba2a29aee'
+  LFBFL_correct_sha512+='2336e44a80c6500961626be3bcf3be71ed5e8b9d8609'
+  LFBFL_correct_sha512+='c5fbc0d56422cfacce39c6be38318ff0afceb2e'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_script}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
   chmod +x "./${LFBFL_file_path}"

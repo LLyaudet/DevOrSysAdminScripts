@@ -38,12 +38,11 @@ generate_from_template_with_block_comments(){
   local LFBFL_temp
   LFBFL_temp="$2.generate_from_template_with_block_comments.temp"
   readonly LFBFL_temp
-  echo "$3"\
-    > "${LFBFL_temp}"
-  cat "$1"\
-    >> "${LFBFL_temp}"
-  echo "$4"\
-    >> "${LFBFL_temp}"
+  {
+    echo "$3"
+    cat "$1"
+    echo "$4"
+  } > "${LFBFL_temp}"
   overwrite_if_not_equal "$2" "${LFBFL_temp}"
 }
 

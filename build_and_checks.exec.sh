@@ -49,10 +49,10 @@ build_and_checks(){
   mkdir -p "${LFBFL_subdir}/licenses_templates"
   mkdir -p "build_and_checks_variables/temp"
   if ! [[ -f "build_and_checks_variables/.gitignore" ]]; then
-    echo "temp/"\
-      > "build_and_checks_variables/.gitignore"
-    echo ""\
-      >> "build_and_checks_variables/.gitignore"
+    {
+      echo "temp/"
+      echo ""
+    } > "build_and_checks_variables/.gitignore"
   fi
 
   # LFBFL_dependencies_raw_content_download_URL
@@ -68,9 +68,9 @@ build_and_checks(){
   declare -r\
     LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_common_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='9f59b573b42e994d9aaf4bcd155749a4a1be20a21a252'
-  LFBFL_correct_sha512+='3e7381dbffcdca5d5ed71c771eb517e59074506c42e2'
-  LFBFL_correct_sha512+='6fff818bfcd59386adf4a9a62217b815eaa258f'
+  LFBFL_correct_sha512='060973025fc5748c5d14ae043cb1105c9a8f5b78d45e5'
+  LFBFL_correct_sha512+='18c41b2a7740e9d42f9e59ef6493c8f31d74dc832d25'
+  LFBFL_correct_sha512+='4cf58eaae5787f3e78d2c7f9c0f68c0e1c0e025'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_script}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
   chmod +x "./${LFBFL_file_path}"

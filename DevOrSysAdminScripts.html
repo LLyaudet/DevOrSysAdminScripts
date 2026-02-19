@@ -118,11 +118,11 @@ ol.level2 li:before{
 Some “small” useful scripts
 for enhancing development or system-administrators tasks
 </blockquote>
-<p>Current version: 2026-02-16</p>
-<p>Current number of commits: 327</p>
-<p>Current git SHA1: c275318d9133fbc4c46e8be23ea901612f71d312</p>
+<p>Current version: 2026-02-19</p>
+<p>Current number of commits: 350</p>
+<p>Current git SHA1: 76ba85ce8001d77fb58ce9ebe1efb0d5e9ae2fcf</p>
 <p>
-Code lines: 6641 total lines, 6000 not empty lines, 641 empty lines.
+Code lines: 6950 total lines, 6284 not empty lines, 666 empty lines.
 </p>
 
 
@@ -255,42 +255,45 @@ build_and_checks_variables/repository_data.txt
 build_and_checks_variables/ruff.toml
       </a></li>
       <li><a href="#subsection2.40">
-build_and_checks_variables/shellcheck_notes.txt
+build_and_checks_variables/shellcheck.ini
       </a></li>
       <li><a href="#subsection2.41">
-build_and_checks.exec.sh
+build_and_checks_variables/shellcheck_notes.txt
       </a></li>
       <li><a href="#subsection2.42">
-COPYING
+build_and_checks.exec.sh
       </a></li>
       <li><a href="#subsection2.43">
-COPYING.LESSER
+COPYING
       </a></li>
       <li><a href="#subsection2.44">
-git_helpers/git_checks.libr.sh
+COPYING.LESSER
       </a></li>
       <li><a href="#subsection2.45">
-git_helpers/post-commit
+git_helpers/git_checks.libr.sh
       </a></li>
       <li><a href="#subsection2.46">
-git_helpers/post_commit_renaming_comment.libr.sh
+git_helpers/post-commit
       </a></li>
       <li><a href="#subsection2.47">
-git_helpers/pre-commit
+git_helpers/post_commit_renaming_comment.libr.sh
       </a></li>
       <li><a href="#subsection2.48">
-LiensUtiles.txt
+git_helpers/pre-commit
       </a></li>
       <li><a href="#subsection2.49">
-README.md.tpl
+LiensUtiles.txt
       </a></li>
       <li><a href="#subsection2.50">
-unicode.libr.php
+README.md.tpl
       </a></li>
       <li><a href="#subsection2.51">
-upgrade_build_and_checks.exec.sh
+unicode.libr.php
       </a></li>
       <li><a href="#subsection2.52">
+upgrade_build_and_checks.exec.sh
+      </a></li>
+      <li><a href="#subsection2.53">
 wget_sha512.libr.sh
       </a></li>
     </ol>
@@ -345,6 +348,7 @@ wget_sha512.libr.sh
 │   ├── pylintrc.toml
 │   ├── repository_data.txt
 │   ├── ruff.toml
+│   ├── shellcheck.ini
 │   └── shellcheck_notes.txt
 ├── COPYING
 ├── COPYING.LESSER
@@ -355,57 +359,57 @@ wget_sha512.libr.sh
 │   ├── post-commit
 │   ├── post_commit_renaming_comment.libr.sh
 │   └── pre-commit
-├── .gitignore
 ├── LiensUtiles.txt
 ├── README.html
 ├── README.md
 ├── README.md.tpl
+├── .ruff_cache
 ├── unicode.libr.php
 ├── upgrade_build_and_checks.exec.sh
 └── wget_sha512.libr.sh
 
-5 directories, 58 files
+6 directories, 58 files
 </pre>
 <pre class="verbatim">
-[ 12K Feb 16 18:46]  ./
-├── [4.0K Feb 16 18:46]  build_and_checks_dependencies/
-│   ├── [3.4K Feb 14 17:57]  build_and_checks.exec.sh.tpl*
-│   ├── [3.0K Feb 16 18:12]  build_md_from_printable_md.exec.sh*
+[ 12K Feb 19 16:09]  ./
+├── [4.0K Feb 19 16:09]  build_and_checks_dependencies/
+│   ├── [3.7K Feb 19 15:54]  build_and_checks.exec.sh.tpl*
+│   ├── [3.0K Feb 19 15:33]  build_md_from_printable_md.exec.sh*
 │   ├── [2.1K Feb 15 11:34]  check_shell_scripts_beginnings.libr.sh
-│   ├── [2.7K Jan  3 19:40]  check_URLs.libr.sh
-│   ├── [ 23K Feb 16 18:40]  common_build_and_checks.exec.sh*
-│   ├── [ 19K Feb 16 17:08]  common_build_and_checks.exec.sh.tpl
-│   ├── [3.1K Feb 14 22:55]  comparisons.libr.sh
-│   ├── [ 14K Feb 15 19:16]  create_PDF.exec.sh*
-│   ├── [3.2K Feb 14 22:39]  generate_from_template.libr.sh
-│   ├── [2.0K Feb 15 11:48]  get_common_text_glob_patterns.libr.sh
-│   ├── [1.9K Jan  3 18:57]  grammar_and_spell_check.libr.sh
-│   ├── [4.0K Feb 16 18:36]  licenses_templates/
-│   │   ├── [ 12K Feb 16 18:36]  build_licenses_templates.exec.sh*
+│   ├── [2.8K Feb 19 14:54]  check_URLs.libr.sh
+│   ├── [ 23K Feb 19 15:57]  common_build_and_checks.exec.sh*
+│   ├── [ 19K Feb 18 16:15]  common_build_and_checks.exec.sh.tpl
+│   ├── [4.6K Feb 19 15:09]  comparisons.libr.sh
+│   ├── [ 14K Feb 19 15:45]  create_PDF.exec.sh*
+│   ├── [3.2K Feb 19 15:55]  generate_from_template.libr.sh
+│   ├── [2.0K Feb 19 15:19]  get_common_text_glob_patterns.libr.sh
+│   ├── [1.9K Feb 19 14:43]  grammar_and_spell_check.libr.sh
+│   ├── [4.0K Feb 19 15:41]  licenses_templates/
+│   │   ├── [ 13K Feb 19 15:41]  build_licenses_templates.exec.sh*
 │   │   ├── [ 728 Dec 30 19:32]  license_file_header_AGPLv3+.tpl
 │   │   ├── [ 707 Dec 27 21:48]  license_file_header_GPLv3+.tpl
 │   │   └── [ 728 Dec 27 21:48]  license_file_header_LGPLv3+.tpl
-│   ├── [2.2K Jan  3 18:57]  lines_counts.libr.sh
-│   ├── [6.7K Feb 14 16:16]  lines_filters.libr.sh
-│   ├── [2.8K Jan  3 18:57]  lines_maps.libr.sh
-│   ├── [1.7K Feb 14 22:16]  overwrite_if_not_equal.libr.sh
+│   ├── [2.7K Feb 17 18:48]  lines_counts.libr.sh
+│   ├── [6.8K Feb 19 15:49]  lines_filters.libr.sh
+│   ├── [2.7K Feb 19 14:47]  lines_maps.libr.sh
+│   ├── [1.8K Feb 19 15:01]  overwrite_if_not_equal.libr.sh
 │   ├── [1.4K Jan 24 18:32]  python_black_complement.libr.sh
-│   ├── [1.7K Feb 14 17:13]  python_isort_complement.libr.sh
+│   ├── [1.7K Feb 19 15:37]  python_isort_complement.libr.sh
 │   ├── [1.6K Feb  3 17:57]  split_score.exec.php
 │   ├── [1.9K Feb  3 20:11]  split_score.libr.php
-│   ├── [ 12K Feb 15 15:29]  strings_functions.libr.sh
-│   ├── [2.5K Feb 15 11:07]  too_long_code_lines.libr.sh
-│   ├── [4.0K Feb  8 11:56]  update_common_build_and_checks.exec.sh*
-│   └── [3.8K Feb 15 19:18]  *
+│   ├── [ 12K Feb 19 14:48]  strings_functions.libr.sh
+│   ├── [2.5K Feb 19 14:53]  too_long_code_lines.libr.sh
+│   ├── [4.1K Feb 19 16:09]  update_common_build_and_checks.exec.sh*
+│   └── [3.8K Feb 18 16:22]  *
 │   │ update_or_check_files_names_listing.exec.sh**
-├── [3.6K Feb 16 18:40]  build_and_checks.exec.sh*
-├── [4.0K Feb 16 18:46]  build_and_checks_variables/
+├── [3.8K Feb 19 15:57]  build_and_checks.exec.sh*
+├── [4.0K Feb 19 16:09]  build_and_checks_variables/
 │   ├── [  15 Jan  5 20:00]  bandit_baseline.json
 │   ├── [  25 Jan  5 18:49]  bandit.ini
 │   ├── [5.2K Feb 14 15:05]  DevOrSysAdminScripts.html.tpl
-│   ├── [ 22K Feb 16 18:46]  DevOrSysAdminScripts.tex
+│   ├── [ 22K Feb 19 16:02]  DevOrSysAdminScripts.tex
 │   ├── [3.8K Feb 14 15:04]  DevOrSysAdminScripts.tex.tpl
-│   ├── [ 12K Feb 15 19:29]  files_listing.tex.tpl
+│   ├── [ 12K Feb 18 16:27]  files_listing.tex.tpl
 │   ├── [3.8K Feb 16 18:43]  files_names_listing.txt
 │   ├── [  24 Jan 15 22:26]  .gitignore
 │   ├── [1.2K Feb 14 15:04]  licenses_notes.txt
@@ -413,26 +417,26 @@ wget_sha512.libr.sh
 │   ├── [ 173 Jan 30 19:40]  pylintrc.toml
 │   ├── [3.5K Feb 16 15:47]  repository_data.txt
 │   ├── [ 159 Feb 14 15:02]  ruff.toml
-│   └── [1.4K Feb 15 17:45]  shellcheck_notes.txt
+│   └── [2.0K Feb 18 15:52]  shellcheck_notes.txt
 ├── [ 34K May  6  2024]  COPYING
 ├── [7.5K Dec 27 21:48]  COPYING.LESSER
-├── [271K Feb 16 18:46]  DevOrSysAdminScripts.html
-├── [266K Feb 16 18:46]  DevOrSysAdminScripts.pdf
-├── [4.0K Feb 15 16:16]  git_helpers/
-│   ├── [3.4K Feb 14 18:48]  git_checks.libr.sh
+├── [274K Feb 19 16:02]  DevOrSysAdminScripts.html
+├── [270K Feb 19 16:02]  DevOrSysAdminScripts.pdf
+├── [4.0K Feb 19 16:02]  git_helpers/
+│   ├── [3.4K Feb 19 15:04]  git_checks.libr.sh
 │   ├── [1.2K Feb 14 17:57]  post-commit
-│   ├── [ 13K Feb 15 16:16]  post_commit_renaming_comment.libr.sh
+│   ├── [ 13K Feb 19 16:02]  post_commit_renaming_comment.libr.sh
 │   └── [1.4K Feb  8 16:41]  pre-commit
-├── [  13 Feb 15 17:49]  .gitignore
 ├── [ 830 Dec 29 19:10]  LiensUtiles.txt
 ├── [3.6K Feb 16 17:08]  README.html
 ├── [3.5K Feb 16 17:08]  README.md
 ├── [3.6K Feb 16 16:59]  README.md.tpl
+├── [4.0K Feb 14 13:01]  .ruff_cache/
 ├── [9.1K Feb 12 19:57]  unicode.libr.php
 ├── [1.4K Feb  3 14:19]  upgrade_build_and_checks.exec.sh*
-└── [1.5K Jan  3 18:57]  wget_sha512.libr.sh
+└── [1.4K Feb 19 14:41]  wget_sha512.libr.sh
 
-5 directories, 58 files
+6 directories, 57 files
 </pre>
 
 
@@ -537,15 +541,16 @@ build_and_checks(){
   fi
   readonly LFBFL_verbose
 
-  # shellcheck disable=SC1091
   source ./wget_sha512.libr.sh
 
   LFBFL_subdir="build_and_checks_dependencies"
   mkdir -p "${LFBFL_subdir}/licenses_templates"
   mkdir -p "build_and_checks_variables/temp"
   if ! [[ -f "build_and_checks_variables/.gitignore" ]]; then
-    echo "temp/" > "build_and_checks_variables/.gitignore"
-    echo "" >> "build_and_checks_variables/.gitignore"
+    {
+      echo "temp/"
+      echo ""
+    } > "build_and_checks_variables/.gitignore"
   fi
 
   # LFBFL_dependencies_raw_content_download_URL
@@ -572,15 +577,21 @@ build_and_checks(){
 if [[ "$*" == *--fixed_point_build* ]]; then
   echo "--fixed_point_build"
   source "./build_and_checks_dependencies/lines_filters.libr.sh"
-  LFBFL_data_file_name="./build_and_checks_variables/"
+  LFBFL_working_directory="."
+  if [[ -n "$1" ]]; then
+    LFBFL_working_directory="$1"
+  fi
+  LFBFL_variables_directory="${LFBFL_working_directory}/"
+  LFBFL_variables_directory+="build_and_checks_variables"
+  LFBFL_data_file_name="${LFBFL_variables_directory}/"
   LFBFL_data_file_name+="repository_data.txt"
   grep_variable "${LFBFL_data_file_name}" repository_name
   # Touching the 3 following files first let us iterate
   # upgrade_build_and_checks 2 times instead of 3 to reach
   # a fixed point.
-  touch "./build_and_checks_variables/${repository_name}.tex"
-  touch "./${repository_name}.pdf"
-  touch "./${repository_name}.html"
+  touch "${LFBFL_variables_directory}/${repository_name}.tex"
+  touch "${LFBFL_working_directory}/${repository_name}.pdf"
+  touch "${LFBFL_working_directory}/${repository_name}.html"
   # The two iterations of build_and_checks needs to complete
   # during the same minute to have a fixed point.
   build_and_checks "$@"
@@ -624,7 +635,7 @@ build_and_checks_dependencies/build_md_from_printable_md.exec.sh
 # to "build_md_from_printable_md.exec.sh".
 
 LFBFL_subdir="build_and_checks_dependencies"
-# shellcheck disable=SC1090
+# shellcheck source=overwrite_if_not_equal.libr.sh
 source "./${LFBFL_subdir}/overwrite_if_not_equal.libr.sh"
 
 build_md_from_printable_md(){
@@ -633,7 +644,6 @@ build_md_from_printable_md(){
     echo "$0 $*"
     LFBFL_verbose=1
   fi
-  # shellcheck disable=SC2034
   readonly LFBFL_verbose
 
   # Remove line returns here to keep lines short.
@@ -674,9 +684,12 @@ build_md_from_printable_md(){
 
   if [[ -f "${LFBFL_base_name}.md.tpl" ]];
   then
-    sed -Ez -e "${LFBFL_sed_expression}" -e "${LFBFL_sed_expression}"\
-      -e "${LFBFL_sed_expression}" -e "${LFBFL_sed_expression}"\
-      "${LFBFL_base_name}.md.tpl" > "${LFBFL_base_name}.md.temp"
+    sed -Ez -e "${LFBFL_sed_expression}"\
+            -e "${LFBFL_sed_expression}"\
+            -e "${LFBFL_sed_expression}"\
+            -e "${LFBFL_sed_expression}"\
+      "${LFBFL_base_name}.md.tpl"\
+      > "${LFBFL_base_name}.md.temp"
     overwrite_if_not_equal "${LFBFL_base_name}.md"\
       "${LFBFL_base_name}.md.temp"
   else
@@ -794,16 +807,28 @@ build_and_checks_dependencies/check_URLs.libr.sh
 # This file was renamed from "check_URLs.sh" to "check_URLs.libr.sh".
 
 LFBFL_subdir="build_and_checks_dependencies"
-# shellcheck disable=SC1090
+# shellcheck source=get_common_text_glob_patterns.libr.sh
 source "./${LFBFL_subdir}/get_common_text_glob_patterns.libr.sh"
-# shellcheck disable=SC1090
+# shellcheck source=lines_filters.libr.sh
 source "./${LFBFL_subdir}/lines_filters.libr.sh"
 
 check_URLs(){
+  declare -i LFBFL_verbose=0
+  if [[ "$*" == *--verbose* ]]; then
+    echo "$0 $*"
+    LFBFL_verbose=1
+  fi
+  readonly LFBFL_verbose
+
+  if [[ ! -o pipefail ]]; then
+    [[ LFBFL_verbose -eq 1 ]] &amp;&amp; echo "pipefail option activated"
+    set -o pipefail
+    trap 'set +o pipefail' RETURN
+  fi
+
   get_COMMON_TEXT_FILES_GLOB_PATTERNS
 
-  declare -A LFBFL_substitutions
-  LFBFL_substitutions=(\
+  declare -Ar LFBFL_substitutions=(\
     ["http://www.gnu.org/licenses/"]="https://www.gnu.org/licenses/"\
   )
 
@@ -812,27 +837,25 @@ check_URLs(){
   local LFBFL_base_file_name
   local LFBFL_substitution
   local LFBFL_substitution2
-  # shellcheck disable=SC2154
   for LFBFL_pattern in "${COMMON_TEXT_FILES_GLOB_PATTERNS[@]}"; do
-    [[ "$1" != "-v" ]]\
+    [[ LFBFL_verbose -eq 0 ]]\
       || echo "Iterating on pattern: ${LFBFL_pattern}"
-    # shellcheck disable=SC2312
     find . -type f -name "${LFBFL_pattern}" -printf '%P\n'\
       | xargs grep -H 'http:'\
       | grep -v "| xargs grep -H 'htt"\
       | grep -vP "['\"]http(:[^'\"]*)['\"].*['\"]https\\1['\"]"
     # Last grep just above will remove false positives from
     # substitutions that fit on one line.
-    # shellcheck disable=SC2312
     find . -type f -name "${LFBFL_pattern}" -printf '%P\n'\
-      | relevant_find | not_main_html_find\
+      | relevant_find\
+      | not_main_html_find\
       | while read -r LFBFL_file_name;
     do
       [[ -f "${LFBFL_file_name}" ]] || continue
       LFBFL_base_file_name=$(basename "${LFBFL_file_name}")
       [[ "${LFBFL_base_file_name}" != "check_URLs.libr.sh" ]]\
         || continue
-      [[ "$1" != "-v" ]]\
+      [[ LFBFL_verbose -eq 0 ]]\
         || echo "Handling the file: ${LFBFL_file_name}"
       for LFBFL_substitution in "${!LFBFL_substitutions[@]}"; do
         LFBFL_substitution2=\
@@ -898,7 +921,13 @@ common_build_and_checks(){
   fi
   readonly LFBFL_verbose
 
-  # shellcheck disable=SC1091
+  if [[ ! -o pipefail ]]; then
+    [[ "${LFBFL_verbose}" == "--verbose" ]]\
+      &amp;&amp; echo "pipefail option activated"
+    set -o pipefail
+    trap 'set +o pipefail' RETURN
+  fi
+
   source ./wget_sha512.libr.sh
 
   LFBFL_subdir="build_and_checks_dependencies"
@@ -911,9 +940,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='d69376037fadf5a0462dfe7c0402472f74da261f3100a'
-  LFBFL_correct_sha512+='f67eb64dfc3fdf11d2d5c72bb482c785623095c500b9'
-  LFBFL_correct_sha512+='ca954d940dffe4750f5952c093991408266b310'
+  LFBFL_correct_sha512='6b079fddec29dc79ef6cb86dab775823feef80fb90b8b'
+  LFBFL_correct_sha512+='96c93edf2d69cec447e8a5016236ef653b11fff6d79a'
+  LFBFL_correct_sha512+='cb1907ad3ddfc78afea2328a9512dbc9c435b60'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
   chmod +x "./${LFBFL_file_path}"
@@ -932,9 +961,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='d966792d05fd23375f5006b5446b9b747a28f1ef1fe9d'
-  LFBFL_correct_sha512+='b6f8ff45caa36564bb18ddc38ba91e076bb3abceced2'
-  LFBFL_correct_sha512+='b899c7e5987a231c5165d6dacc9ec52cbe665f5'
+  LFBFL_correct_sha512='57eb676489a194add366eaf73a5e024f72772d5206dab'
+  LFBFL_correct_sha512+='f156dc007ecbccdbfbbf02f9d07ba0cece4efad3de90'
+  LFBFL_correct_sha512+='cfadf4c9ba1b0868d2ccee222af0b93ed713294'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
@@ -942,9 +971,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='f8b6956234b7d8c18278c262091627fe79d0c28e1978c'
-  LFBFL_correct_sha512+='356baeb8d5a29cd32103ef23c71fd4fb59af1249edfb'
-  LFBFL_correct_sha512+='dbc10c498e3fdb2cacb9af784916ac2276e8412'
+  LFBFL_correct_sha512='4eb39affeacbe396201014a3d25d1ee83f2521dd6f2c1'
+  LFBFL_correct_sha512+='6687ee1915465b3c817f98e136a686b7f5929c2e2a02'
+  LFBFL_correct_sha512+='b86632efd7bc13c167ea19ec03bda15e86f1974'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
@@ -952,9 +981,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='5c04072087c56a4579e0d60c2bab85632d65db3181f62'
-  LFBFL_correct_sha512+='3c881839a94f9f9994a7deafd216a30836293191d2a8'
-  LFBFL_correct_sha512+='c3809ffaa887c0888df33c7e7ed3c8c570c6e51'
+  LFBFL_correct_sha512='ee0846d96cc1f682271f3adc9745e91763a39dd6d8231'
+  LFBFL_correct_sha512+='ebf7f6c82b4193932a95ed15b99d4fd038959ffa128e'
+  LFBFL_correct_sha512+='305b5e5238e368c05ebb322be34b049901ab007'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
   chmod +x "./${LFBFL_file_path}"
@@ -963,9 +992,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='61dcd1140cb49211829553c92514eb2b28248b68bf502'
-  LFBFL_correct_sha512+='38caed30f85975c67d2f8dc680161c5f2d981fcd39b8'
-  LFBFL_correct_sha512+='87f4f081ef391ec9d0bb8e6fcd9e56ef9f10e06'
+  LFBFL_correct_sha512='5779c3d2c64d0bb403525c410e37b0b06fcf1ef97d503'
+  LFBFL_correct_sha512+='21fd27345545a8ebea020b2d3d809ac5c1bc66f9cebe'
+  LFBFL_correct_sha512+='a8e8ea63aa539eaa179cf09a3860239c96df8e9'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
@@ -973,9 +1002,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='c9683a335ad75758d6793970d6aae87aaa8209c7b336e'
-  LFBFL_correct_sha512+='43514b8cd409e543629214012125f56c73ecb9c35585'
-  LFBFL_correct_sha512+='d815ad674ca078aca5f8d3e2b48c725585f6988'
+  LFBFL_correct_sha512='4e0915efcc9a4088b1f79c9c7efbf7da5d68e8e1b21ff'
+  LFBFL_correct_sha512+='feb4746c9d468be80affa30babf35938e15f9161db3e'
+  LFBFL_correct_sha512+='3f6d95c913b86638563d7bd2995dc58a26f8e3a'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
@@ -983,9 +1012,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='a76c188a7769a1d170d415034331b1ca8574482bc1484'
-  LFBFL_correct_sha512+='eccbbb4cadea825c0668caccaca7433fa1c476137fe9'
-  LFBFL_correct_sha512+='f2a71ad6e0ee5bfbfd180bee5a775c997d79865'
+  LFBFL_correct_sha512='02715a24232540522fad3617c702ce7e0003242dffd32'
+  LFBFL_correct_sha512+='174f7b823538bd618066328b1f71ff6888dfcde1e3ed'
+  LFBFL_correct_sha512+='9ccacf09b0e2e9e8bbbc03b5e4453f33377ae4d'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
@@ -996,9 +1025,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL2}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir2}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='a201a42c1dc00d4b28da5a6c7d68f0a960901cb3d49ad'
-  LFBFL_correct_sha512+='6454be346ab083dcf43be8b62cb04baf8d3d93acec58'
-  LFBFL_correct_sha512+='bcdcbb139da07d3881562f2fb44389ed12f3225'
+  LFBFL_correct_sha512='e78104ceca6b2dc3bec1bcf97f00f17f487b5a27882d9'
+  LFBFL_correct_sha512+='956a85503bfd9795c881a7487929ece8141c4bd12cc4'
+  LFBFL_correct_sha512+='fb765941f2124dc1199176672a5d409fdb0836b'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
   chmod +x "./${LFBFL_file_path}"
@@ -1038,9 +1067,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='3e34b8768b4356adf397f3ca1f47ef8f44da42808ca8b'
-  LFBFL_correct_sha512+='b95b830fa8bd9be46bb3cb1f012736b7a6d53549f8a9'
-  LFBFL_correct_sha512+='f60274d6db5d9699bc28270a7d42deaaa6d6d6f'
+  LFBFL_correct_sha512='d8c22afd747f1e255b773edbf705030d0064f711dd5d9'
+  LFBFL_correct_sha512+='4d8cb51049310f0fad2495103dfb7cd200500ebcc85d'
+  LFBFL_correct_sha512+='884f087a2d54fe9a47bc5c5e58b68963ee432a8'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
@@ -1048,9 +1077,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='76d2dccb649501d1e458e2a07535cc9df63e1558d55eb'
-  LFBFL_correct_sha512+='42c352844fc4338d0a438cd541cb2eb4d37c00e8ca02'
-  LFBFL_correct_sha512+='885d15150762cb3d2a56c4997e29d6a73eefca1'
+  LFBFL_correct_sha512='6d9cc9935b6635dc165077b78c6f19e3c568150a4b796'
+  LFBFL_correct_sha512+='80c2f0214e3e55defdbf9f8a3d3452574328b370d68a'
+  LFBFL_correct_sha512+='58145855e402860f61ed16a161b9e27e49a5d68'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
@@ -1058,9 +1087,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='ca4fbc93c407de6aa742b0d5e4ee767d341777d60b3e8'
-  LFBFL_correct_sha512+='e08e8582babb5ee6b305d47e385c1701810691c46ec6'
-  LFBFL_correct_sha512+='a34b5f740b8304114f96ee7052da095ee09c789'
+  LFBFL_correct_sha512='25c3e5082951260295b5f0e87ba1f2c978efdea1e8926'
+  LFBFL_correct_sha512+='072ce4d2062dc2a47bb92b9098f081e553eeae5d9154'
+  LFBFL_correct_sha512+='fdc50c9d88ae5365b776a23eb6e026b884a8374'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
@@ -1068,9 +1097,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='2b95072a4b123ec7db186e33a2bac47809721272ca22a'
-  LFBFL_correct_sha512+='289d0d528b70bfa3d02d752fed46e6b091247c586ee2'
-  LFBFL_correct_sha512+='229081c66cf9e2de98fc41563b570ef2fc67ff9'
+  LFBFL_correct_sha512='8df9334f8204bdb9b098f638d15a3db2dd0ce4446203f'
+  LFBFL_correct_sha512+='fe26678cb3c2b3b26cb0b89957490af5fa21c149a525'
+  LFBFL_correct_sha512+='baf5e3d4999f432f9ff384616631cdc111507cf'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
@@ -1088,9 +1117,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='637cddfb803fd8866fa2ab1c72bbcd5b55e2c0068a14d'
-  LFBFL_correct_sha512+='b6140ee00435a69990a6c5e08b6f0bf13ac9574a9ead'
-  LFBFL_correct_sha512+='c59d9b5adcc8f6d99d4d56ca1cc5785c7b22835'
+  LFBFL_correct_sha512='c30880d1e72331f6aa37b04c50863b53b5cb1020de0f2'
+  LFBFL_correct_sha512+='cf2c8969d464e62f74a0e56cdec8afba0ef4efc9e73c'
+  LFBFL_correct_sha512+='85718e822b08ff8c65c1e3aa59759d9e28f36f6'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
@@ -1118,9 +1147,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='ef5a942ed4f938d66ffba9292ff998564cbbe37a111b7'
-  LFBFL_correct_sha512+='eb83a6340c87a95b65d325103eb4dbc371dde6d31f72'
-  LFBFL_correct_sha512+='339674c4b6550c7a30801156b273f74fb97a165'
+  LFBFL_correct_sha512='e6b0874ca00fde41fe5e1c82c5e97fcc3b7e9707b5135'
+  LFBFL_correct_sha512+='a7d93bcb6e2c4f992fb962e15f6dcc14a10ca8f32911'
+  LFBFL_correct_sha512+='c08bc5a4b463db3814de168a0147072479412f7'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
@@ -1128,9 +1157,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='be622620998f73fceabe75d4cb0d665fbba38ae987e2f'
-  LFBFL_correct_sha512+='e1aa8dc9e0009234979c0f9e5a8d18e7a8a4653ab4da'
-  LFBFL_correct_sha512+='a2d8249f696f5237fa4e026b9b1ce6346b2fd15'
+  LFBFL_correct_sha512='7e95026a39c11b044e920c93a5ee16f12aec5f69cb60f'
+  LFBFL_correct_sha512+='31bbaee9e5cd0a5cab5928820e28c881343e0d426eb9'
+  LFBFL_correct_sha512+='37f1269263fde065dddf413f15b6b3c6d25ca96'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
@@ -1138,41 +1167,41 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='e85815f6e0bac316f35cbd20ecef1333d4e2aceae581c'
-  LFBFL_correct_sha512+='c579d62b9f756994bb2137eb1ce9a3c44cc0e5348c30'
-  LFBFL_correct_sha512+='27a0cfa434baa410b35e82d3a82c261e0a0fec2'
+  LFBFL_correct_sha512='c70be896c37f78e4b7a6f72f01f4aeb7c1f895b28a923'
+  LFBFL_correct_sha512+='7066fd546ba2d787b5e3fb0b1ecc136641019231e510'
+  LFBFL_correct_sha512+='cfcbf81b580507d00f6b9b39cdff9c540e34018'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
   chmod +x "./${LFBFL_file_path}"
 
   shopt -s globstar
-  # shellcheck disable=SC1090
+  # shellcheck source=check_shell_scripts_beginnings.libr.sh
   source "./${LFBFL_subdir}/check_shell_scripts_beginnings.libr.sh"
-  # shellcheck disable=SC1090
+  # shellcheck source=check_URLs.libr.sh
   source "./${LFBFL_subdir}/check_URLs.libr.sh"
-  # shellcheck disable=SC1090
+  # shellcheck source=comparisons.libr.sh
   source "./${LFBFL_subdir}/comparisons.libr.sh"
-  # shellcheck disable=SC1090
+  # shellcheck source=generate_from_template.libr.sh
   source "./${LFBFL_subdir}/generate_from_template.libr.sh"
-  # shellcheck disable=SC1090
+  # shellcheck source=get_common_text_glob_patterns.libr.sh
   source "./${LFBFL_subdir}/get_common_text_glob_patterns.libr.sh"
-  # shellcheck disable=SC1090
+  # shellcheck source=grammar_and_spell_check.libr.sh
   source "./${LFBFL_subdir}/grammar_and_spell_check.libr.sh"
-  # shellcheck disable=SC1090
+  # shellcheck source=lines_counts.libr.sh
   source "./${LFBFL_subdir}/lines_counts.libr.sh"
-  # shellcheck disable=SC1090
+  # shellcheck source=lines_filters.libr.sh
   source "./${LFBFL_subdir}/lines_filters.libr.sh"
-  # shellcheck disable=SC1090
+  # shellcheck source=lines_maps.libr.sh
   source "./${LFBFL_subdir}/lines_maps.libr.sh"
-  # shellcheck disable=SC1090
+  # shellcheck source=overwrite_if_not_equal.libr.sh
   source "./${LFBFL_subdir}/overwrite_if_not_equal.libr.sh"
-  # shellcheck disable=SC1090
+  # shellcheck source=python_black_complement.libr.sh
   source "./${LFBFL_subdir}/python_black_complement.libr.sh"
-  # shellcheck disable=SC1090
+  # shellcheck source=python_isort_complement.libr.sh
   source "./${LFBFL_subdir}/python_isort_complement.libr.sh"
-  # shellcheck disable=SC1090
+  # shellcheck source=strings_functions.libr.sh
   source "./${LFBFL_subdir}/strings_functions.libr.sh"
-  # shellcheck disable=SC1090
+  # shellcheck source=too_long_code_lines.libr.sh
   source "./${LFBFL_subdir}/too_long_code_lines.libr.sh"
 
   local LFBFL_data_file_name=\
@@ -1233,8 +1262,8 @@ $(stat -c %Y "${LFBFL_upgrade_venvs_ts_file}")
   echo "Building other MarkDown files"
   local LFBFL_some_directory
   declare -r LFBFL_readme="${LFBFL_working_directory}/README.md.tpl"
-  # shellcheck disable=SC2312
-  find "${LFBFL_working_directory}" -name "*.md.tpl" | relevant_find\
+  find "${LFBFL_working_directory}" -name "*.md.tpl"\
+    | relevant_find\
     | while read -r LFBFL_file_path;
   do
     [[ "${LFBFL_file_path}" == "${LFBFL_readme}" ]] &amp;&amp; continue
@@ -1247,16 +1276,22 @@ $(stat -c %Y "${LFBFL_upgrade_venvs_ts_file}")
       "${LFBFL_verbose}"
   done
 
+  declare -i LFBFL_cd_result
   pushd .
-  # shellcheck disable=SC2164
-  cd "${LFBFL_working_directory}"
+  cd "${LFBFL_working_directory}" || {
+    LFBFL_cd_result=$?
+    echo "common_build_and_checks.exec.sh no such directory"
+    # shellcheck disable=SC2248
+    return ${LFBFL_cd_result}
+  }
 
   echo "Running shellcheck"
   declare -i LFBFL_file_path_length
   declare -i LFBFL_to_skip_number
   local LFBFL_file_path_end
-  # shellcheck disable=SC2312
-  find . -name "*.sh" | relevant_find | while read -r LFBFL_file_path;
+  find . -name "*.sh"\
+    | relevant_find\
+    | while read -r LFBFL_file_path;
   do
     LFBFL_file_path_length=${#LFBFL_file_path}
     LFBFL_to_skip_number=$((LFBFL_file_path_length - 9))
@@ -1264,7 +1299,7 @@ $(stat -c %Y "${LFBFL_upgrade_venvs_ts_file}")
     if [[ "${LFBFL_file_path_end}" == "GPLv3+.sh" ]]; then
       continue
     fi
-    shellcheck --check-sourced --enable=all --external-sources\
+    shellcheck --rcfile=build_and_checks_variables/shellcheck.ini\
       "${LFBFL_file_path}"
   done
 
@@ -1325,8 +1360,8 @@ $(stat -c %Y "${LFBFL_upgrade_venvs_ts_file}")
   shopt -s lastpipe
   local LFBFL_directory_path
   declare -i LFBFL_no_toml=1
-  # shellcheck disable=SC2312
-  find . -name "pyproject.toml" | relevant_find\
+  find . -name "pyproject.toml"\
+    | relevant_find\
     | while read -r LFBFL_file_path;
   do
     if grep -q "Typing :: Typed" "${LFBFL_file_path}"; then
@@ -1430,8 +1465,8 @@ $(stat -c %Y "${LFBFL_upgrade_venvs_ts_file}")
   if [[ -n "${npm_lint_directories}" ]]; then
     echo "Running ESLint"
     local LFBFL_JS_directory
-    # shellcheck disable=SC2312
-    echo "${npm_lint_directories}" | sed -e 's/\\n/\n/g'\
+    echo "${npm_lint_directories}"\
+      | sed -e 's/\\n/\n/g'\
       | while read -r LFBFL_JS_directory;
     do
       (cd "${LFBFL_JS_directory}" &amp;&amp; npm run lint)
@@ -1444,20 +1479,19 @@ $(stat -c %Y "${LFBFL_upgrade_venvs_ts_file}")
   fi
 
   echo "Analyzing too long lines"
-  too_long_code_lines
+  too_long_code_lines "$@"
 
   echo "Analyzing shell scripts beginnings"
-  # shellcheck disable=SC2312
-  check_shell_scripts_beginnings | relevant_grep
+  check_shell_scripts_beginnings\
+    | relevant_grep
 
   echo "Analyzing URLs"
-  # shellcheck disable=SC2312
-  check_URLs | relevant_grep
+  check_URLs "$@" \
+    | relevant_grep
 
   echo "Analyzing strange characters: hover over in doubt"
   # shellcheck disable=SC1111
   LFBFL_usual_characters="\x00-\x7Fàâéèêëîïôûç©“”└─├│«»"
-  # shellcheck disable=SC2312
   grep --exclude-dir .git --color=always\
     -nPr "[^${LFBFL_usual_characters}]" .
 
@@ -1471,8 +1505,13 @@ $(stat -c %Y "${LFBFL_upgrade_venvs_ts_file}")
     ./build_and_checks_variables/post_build.sh
   fi
 
-  # shellcheck disable=SC2164
-  popd
+  declare -i LFBFL_popd_result
+  popd || {
+    LFBFL_popd_result=$?
+    echo "common_build_and_checks.exec.sh no popd"
+    # shellcheck disable=SC2248
+    return ${LFBFL_popd_result}
+  }
 }
 
 common_build_and_checks "$@"
@@ -1529,7 +1568,13 @@ common_build_and_checks(){
   fi
   readonly LFBFL_verbose
 
-  # shellcheck disable=SC1091
+  if [[ ! -o pipefail ]]; then
+    [[ "${LFBFL_verbose}" == "--verbose" ]]\
+      &amp;&amp; echo "pipefail option activated"
+    set -o pipefail
+    trap 'set +o pipefail' RETURN
+  fi
+
   source ./wget_sha512.libr.sh
 
   LFBFL_subdir="build_and_checks_dependencies"
@@ -1708,33 +1753,33 @@ common_build_and_checks(){
   chmod +x "./${LFBFL_file_path}"
 
   shopt -s globstar
-  # shellcheck disable=SC1090
+  # shellcheck source=check_shell_scripts_beginnings.libr.sh
   source "./${LFBFL_subdir}/check_shell_scripts_beginnings.libr.sh"
-  # shellcheck disable=SC1090
+  # shellcheck source=check_URLs.libr.sh
   source "./${LFBFL_subdir}/check_URLs.libr.sh"
-  # shellcheck disable=SC1090
+  # shellcheck source=comparisons.libr.sh
   source "./${LFBFL_subdir}/comparisons.libr.sh"
-  # shellcheck disable=SC1090
+  # shellcheck source=generate_from_template.libr.sh
   source "./${LFBFL_subdir}/generate_from_template.libr.sh"
-  # shellcheck disable=SC1090
+  # shellcheck source=get_common_text_glob_patterns.libr.sh
   source "./${LFBFL_subdir}/get_common_text_glob_patterns.libr.sh"
-  # shellcheck disable=SC1090
+  # shellcheck source=grammar_and_spell_check.libr.sh
   source "./${LFBFL_subdir}/grammar_and_spell_check.libr.sh"
-  # shellcheck disable=SC1090
+  # shellcheck source=lines_counts.libr.sh
   source "./${LFBFL_subdir}/lines_counts.libr.sh"
-  # shellcheck disable=SC1090
+  # shellcheck source=lines_filters.libr.sh
   source "./${LFBFL_subdir}/lines_filters.libr.sh"
-  # shellcheck disable=SC1090
+  # shellcheck source=lines_maps.libr.sh
   source "./${LFBFL_subdir}/lines_maps.libr.sh"
-  # shellcheck disable=SC1090
+  # shellcheck source=overwrite_if_not_equal.libr.sh
   source "./${LFBFL_subdir}/overwrite_if_not_equal.libr.sh"
-  # shellcheck disable=SC1090
+  # shellcheck source=python_black_complement.libr.sh
   source "./${LFBFL_subdir}/python_black_complement.libr.sh"
-  # shellcheck disable=SC1090
+  # shellcheck source=python_isort_complement.libr.sh
   source "./${LFBFL_subdir}/python_isort_complement.libr.sh"
-  # shellcheck disable=SC1090
+  # shellcheck source=strings_functions.libr.sh
   source "./${LFBFL_subdir}/strings_functions.libr.sh"
-  # shellcheck disable=SC1090
+  # shellcheck source=too_long_code_lines.libr.sh
   source "./${LFBFL_subdir}/too_long_code_lines.libr.sh"
 
   local LFBFL_data_file_name=\
@@ -1795,8 +1840,8 @@ $(stat -c %Y "${LFBFL_upgrade_venvs_ts_file}")
   echo "Building other MarkDown files"
   local LFBFL_some_directory
   declare -r LFBFL_readme="${LFBFL_working_directory}/README.md.tpl"
-  # shellcheck disable=SC2312
-  find "${LFBFL_working_directory}" -name "*.md.tpl" | relevant_find\
+  find "${LFBFL_working_directory}" -name "*.md.tpl"\
+    | relevant_find\
     | while read -r LFBFL_file_path;
   do
     [[ "${LFBFL_file_path}" == "${LFBFL_readme}" ]] &amp;&amp; continue
@@ -1809,16 +1854,22 @@ $(stat -c %Y "${LFBFL_upgrade_venvs_ts_file}")
       "${LFBFL_verbose}"
   done
 
+  declare -i LFBFL_cd_result
   pushd .
-  # shellcheck disable=SC2164
-  cd "${LFBFL_working_directory}"
+  cd "${LFBFL_working_directory}" || {
+    LFBFL_cd_result=$?
+    echo "common_build_and_checks.exec.sh no such directory"
+    # shellcheck disable=SC2248
+    return ${LFBFL_cd_result}
+  }
 
   echo "Running shellcheck"
   declare -i LFBFL_file_path_length
   declare -i LFBFL_to_skip_number
   local LFBFL_file_path_end
-  # shellcheck disable=SC2312
-  find . -name "*.sh" | relevant_find | while read -r LFBFL_file_path;
+  find . -name "*.sh"\
+    | relevant_find\
+    | while read -r LFBFL_file_path;
   do
     LFBFL_file_path_length=${#LFBFL_file_path}
     LFBFL_to_skip_number=$((LFBFL_file_path_length - 9))
@@ -1826,7 +1877,7 @@ $(stat -c %Y "${LFBFL_upgrade_venvs_ts_file}")
     if [[ "${LFBFL_file_path_end}" == "GPLv3+.sh" ]]; then
       continue
     fi
-    shellcheck --check-sourced --enable=all --external-sources\
+    shellcheck --rcfile=build_and_checks_variables/shellcheck.ini\
       "${LFBFL_file_path}"
   done
 
@@ -1887,8 +1938,8 @@ $(stat -c %Y "${LFBFL_upgrade_venvs_ts_file}")
   shopt -s lastpipe
   local LFBFL_directory_path
   declare -i LFBFL_no_toml=1
-  # shellcheck disable=SC2312
-  find . -name "pyproject.toml" | relevant_find\
+  find . -name "pyproject.toml"\
+    | relevant_find\
     | while read -r LFBFL_file_path;
   do
     if grep -q "Typing :: Typed" "${LFBFL_file_path}"; then
@@ -1992,8 +2043,8 @@ $(stat -c %Y "${LFBFL_upgrade_venvs_ts_file}")
   if [[ -n "${npm_lint_directories}" ]]; then
     echo "Running ESLint"
     local LFBFL_JS_directory
-    # shellcheck disable=SC2312
-    echo "${npm_lint_directories}" | sed -e 's/\\n/\n/g'\
+    echo "${npm_lint_directories}"\
+      | sed -e 's/\\n/\n/g'\
       | while read -r LFBFL_JS_directory;
     do
       (cd "${LFBFL_JS_directory}" &amp;&amp; npm run lint)
@@ -2006,20 +2057,19 @@ $(stat -c %Y "${LFBFL_upgrade_venvs_ts_file}")
   fi
 
   echo "Analyzing too long lines"
-  too_long_code_lines
+  too_long_code_lines "$@"
 
   echo "Analyzing shell scripts beginnings"
-  # shellcheck disable=SC2312
-  check_shell_scripts_beginnings | relevant_grep
+  check_shell_scripts_beginnings\
+    | relevant_grep
 
   echo "Analyzing URLs"
-  # shellcheck disable=SC2312
-  check_URLs | relevant_grep
+  check_URLs "$@" \
+    | relevant_grep
 
   echo "Analyzing strange characters: hover over in doubt"
   # shellcheck disable=SC1111
   LFBFL_usual_characters="\x00-\x7Fàâéèêëîïôûç©“”└─├│«»"
-  # shellcheck disable=SC2312
   grep --exclude-dir .git --color=always\
     -nPr "[^${LFBFL_usual_characters}]" .
 
@@ -2033,8 +2083,13 @@ $(stat -c %Y "${LFBFL_upgrade_venvs_ts_file}")
     ./build_and_checks_variables/post_build.sh
   fi
 
-  # shellcheck disable=SC2164
-  popd
+  declare -i LFBFL_popd_result
+  popd || {
+    LFBFL_popd_result=$?
+    echo "common_build_and_checks.exec.sh no popd"
+    # shellcheck disable=SC2248
+    return ${LFBFL_popd_result}
+  }
 }
 
 common_build_and_checks "$@"
@@ -2093,6 +2148,74 @@ equal(){
   return 1
 }
 
+some_distinct(){
+  ! equal "$@"
+}
+
+all_distinct(){
+  # Returns 1 if all the arguments strings are distinct.
+  declare -ir LFBFL_ij_max=$#
+  declare -i LFBFL_i
+  declare -i LFBFL_j
+  for ((LFBFL_i=1; LFBFL_i&lt;=LFBFL_ij_max; ++LFBFL_i)); do
+    for ((LFBFL_j=1; LFBFL_j&lt;=LFBFL_ij_max; ++LFBFL_j)); do
+      [[ LFBFL_i -eq LFBFL_j ]] &amp;&amp; continue
+      [[ "${!LFBFL_i}" == "${!LFBFL_j}" ]] &amp;&amp; return 0
+    done
+  done
+  return 1
+}
+
+all_distinct2(){
+  # Returns 1 if all the arguments strings are distinct.
+  local LFBFL_element
+  local LFBFL_previous_element
+  if [[ "$#" == 0 ]]; then
+    return 1
+  fi
+  # Not setting pipefail since the result would still be incorrect.
+  # shellcheck disable=SC2312
+  printf "%s\n" "$@" \
+    | sort\
+    | {
+      read -r LFBFL_previous_element\
+      &amp;&amp; while read -r LFBFL_element; do
+        if [[ "${LFBFL_previous_element}" == "${LFBFL_element}" ]];
+        then
+          return 0
+        fi
+        LFBFL_previous_element="${LFBFL_element}"
+      done
+      return 1
+    }
+}
+
+all_distinct3(){
+  # Returns 1 if all the arguments strings are distinct.
+  # This is the fastest of all 3; but note that version 2 is faster
+  # than this one if a call to sort is added.
+  if [[ "$#" == 0 ]]; then
+    return 1
+  fi
+  # Not setting pipefail since the result would still be incorrect.
+  # shellcheck disable=SC2162,SC2312
+  printf "%s\n" "$@" \
+    | uniq -d\
+    | read
+}
+
+some_equal(){
+  ! all_distinct "$@"
+}
+
+some_equal2(){
+  ! all_distinct2 "$@"
+}
+
+some_equal3(){
+  ! all_distinct3 "$@"
+}
+
 max(){
   # Returns the maximum string among the arguments.
   # Renvoie la chaîne la plus grande parmi celles proposées.
@@ -2102,8 +2225,13 @@ max(){
   if [[ "$#" == 0 ]]; then
     return 1
   fi
-  # shellcheck disable=SC2312
-  printf "%s\n" "${@:2}" | eval "$1 -r" | head -1
+  if [[ ! -o pipefail ]]; then
+    set -o pipefail
+    trap 'set +o pipefail' RETURN
+  fi
+  printf "%s\n" "${@:2}" \
+    | eval "$1 -r"\
+    | head -1
 }
 
 min(){
@@ -2115,18 +2243,25 @@ min(){
   if [[ "$#" == 0 ]]; then
     return 1
   fi
-  # shellcheck disable=SC2312
-  printf "%s\n" "${@:2}" | eval "$1" | head -1
+  if [[ ! -o pipefail ]]; then
+    set -o pipefail
+    trap 'set +o pipefail' RETURN
+  fi
+  printf "%s\n" "${@:2}" \
+    | eval "$1"\
+    | head -1
 }
 
 is_substring(){
   # $1=$string
   # $2=$substring
-  declare -r LFBFL_var_1=$(\
-    echo "$1" | sed -e 's/\\/\\&amp;/g' -e "s/'/\\\\&amp;/g"\
+  declare -r LFBFL_var_1=$(
+    echo "$1"\
+    | sed -e 's/\\/\\&amp;/g' -e "s/'/\\\\&amp;/g"
   )
-  declare -r LFBFL_var_2=$(\
-    echo "$2" | sed -e 's/\\/\\&amp;/g' -e "s/'/\\\\&amp;/g"\
+  declare -r LFBFL_var_2=$(
+    echo "$2"\
+    | sed -e 's/\\/\\&amp;/g' -e "s/'/\\\\&amp;/g"
   )
   local LFBFL_var_3="\$a = '${LFBFL_var_1}';"
   LFBFL_var_3+=" \$b = preg_quote('${LFBFL_var_2}');"
@@ -2184,17 +2319,17 @@ build_and_checks_dependencies/create_PDF.exec.sh
 # This file was renamed from "create_PDF.sh" to "create_PDF.exec.sh".
 
 LFBFL_subdir="build_and_checks_dependencies"
-# shellcheck disable=SC1090
+# shellcheck source=generate_from_template.libr.sh
 source "./${LFBFL_subdir}/generate_from_template.libr.sh"
-# shellcheck disable=SC1090
+# shellcheck source=lines_counts.libr.sh
 source "./${LFBFL_subdir}/lines_counts.libr.sh"
-# shellcheck disable=SC1090
+# shellcheck source=lines_filters.libr.sh
 source "./${LFBFL_subdir}/lines_filters.libr.sh"
-# shellcheck disable=SC1090
+# shellcheck source=lines_maps.libr.sh
 source "./${LFBFL_subdir}/lines_maps.libr.sh"
-# shellcheck disable=SC1090
+# shellcheck source=overwrite_if_not_equal.libr.sh
 source "./${LFBFL_subdir}/overwrite_if_not_equal.libr.sh"
-# shellcheck disable=SC1090
+# shellcheck source=strings_functions.libr.sh
 source "./${LFBFL_subdir}/strings_functions.libr.sh"
 
 create_PDF(){
@@ -2204,6 +2339,12 @@ create_PDF(){
     LFBFL_verbose=1
   fi
   readonly LFBFL_verbose
+
+  if [[ ! -o pipefail ]]; then
+    [[ LFBFL_verbose -eq 1 ]] &amp;&amp; echo "pipefail option activated"
+    set -o pipefail
+    trap 'set +o pipefail' RETURN
+  fi
 
   LFBFL_subdir2="build_and_checks_variables"
   LFBFL_data_file_name="${LFBFL_subdir2}/repository_data.txt"
@@ -2225,23 +2366,32 @@ create_PDF(){
   author_website=""
   grep_variable "${LFBFL_data_file_name}" author_website
 
-  # shellcheck disable=SC2155
   declare -r LFBFL_current_date=$(date -I"date")
 
-  # shellcheck disable=SC2155
   declare -r LFBFL_current_git_SHA1=$(git rev-parse HEAD)
 
-  # shellcheck disable=SC2155
   declare -r LFBFL_number_of_commits=$(
-    git shortlog | space_starting_lines | wc -l
+    git shortlog\
+    | space_starting_lines\
+    | wc -l
   )
 
-  LFBFL_number_of_lines="$(code_lines_count_all) total lines,"
-  LFBFL_number_of_lines+=" $(code_lines_count_not_empty)"
-  LFBFL_number_of_lines+=" not empty lines,"
-  LFBFL_number_of_lines+=" $(code_lines_count_empty) empty lines."
+  declare -ir LFBFL_all_code_lines_count=$(code_lines_count_all "$@")
+  declare -ir LFBFL_not_empty_code_lines_count=$(
+    code_lines_count_not_empty "$@"
+  )
+  declare -ir LFBFL_empty_code_lines_count=$(
+    code_lines_count_empty "$@"
+  )
 
-  # shellcheck disable=SC2312
+  local LFBFL_number_of_lines="${LFBFL_all_code_lines_count}"
+  LFBFL_number_of_lines+=" total lines,"
+  LFBFL_number_of_lines+=" ${LFBFL_not_empty_code_lines_count}"
+  LFBFL_number_of_lines+=" not empty lines,"
+  LFBFL_number_of_lines+=" ${LFBFL_empty_code_lines_count}"
+  LFBFL_number_of_lines+=" empty lines."
+  readonly LFBFL_number_of_lines
+
   tree -a --gitignore\
     -I "node_modules/"\
     -I "__pycache__/"\
@@ -2250,7 +2400,6 @@ create_PDF(){
     | replace_non_ascii_spaces\
     > "${LFBFL_subdir2}/temp/current_tree_light.txt"
 
-  # shellcheck disable=SC2312
   tree -a -DFh --gitignore\
     -I "node_modules/"\
     -I "__pycache__/"\
@@ -2269,18 +2418,14 @@ create_PDF(){
   LFBFL_temp_files_lis="./${LFBFL_subdir2}/temp/files_lis.html.tpl"
   : > "${LFBFL_temp_files_lis}"
   get_split_score_simple 1 70 /
-  # shellcheck disable=SC2154
   declare LFBFL_score_command="${get_split_score_result}"
-  # shellcheck disable=SC2154
   declare LFBFL_score_command_properties="${get_split_score_result2}"
   get_split_score_simple 1 70 ':'
-  # shellcheck disable=SC2154
   declare LFBFL_score_command2="${get_split_score_result}"
   declare LFBFL_score_command_properties2="${get_split_score_result2}"
   declare LFBFL_suffix='%'
   declare -i LFBFL_i=0
   # Remove line returns here to keep lines short.
-  # shellcheck disable=SC2312
   sed -Ez 's/\\\n//Mg' "./${LFBFL_subdir2}/files_names_listing.txt"\
     | grep -v '^//'\
     | while read -r LFBFL_file_name;
@@ -2290,14 +2435,14 @@ create_PDF(){
     # LFBFL_base_file_name=$(basename "${LFBFL_file_name}")
     LFBFL_cleaned_path1="${LFBFL_file_name//_/\\_}"
     LFBFL_cleaned_path2=$(
-      sed -e 's/\//:/g' -e 's/\.//g' &lt;(echo "${LFBFL_file_name}")
+      echo "${LFBFL_file_name}"\
+      | sed -e 's/\//:/g' -e 's/\.//g'
     )
     LFBFL_new_lines="  ${LFBFL_cleaned_path1}"
     if [[ ${#LFBFL_new_lines} -gt 70 ]]; then
       repeated_split_last_line "${LFBFL_new_lines}" "" 70\
         "${LFBFL_suffix}" "${LFBFL_score_command}"\
         "${LFBFL_score_command_properties}" "\\"
-      # shellcheck disable=SC2154
       LFBFL_new_lines=${repeated_split_last_line_result}
     fi
     LFBFL_new_lines2="  ${LFBFL_cleaned_path2}"
@@ -2305,7 +2450,6 @@ create_PDF(){
       repeated_split_last_line "${LFBFL_new_lines2}" "" 70\
         "${LFBFL_suffix}" "${LFBFL_score_command2}"\
         "${LFBFL_score_command_properties2}"
-      # shellcheck disable=SC2154
       LFBFL_new_lines2=${repeated_split_last_line_result}
     fi
     LFBFL_new_lines3="${LFBFL_file_name}"
@@ -2313,24 +2457,20 @@ create_PDF(){
       repeated_split_last_line "${LFBFL_new_lines3}" "" 70\
         "${LFBFL_suffix}" "${LFBFL_score_command}"\
         "${LFBFL_score_command_properties}"
-      # shellcheck disable=SC2154
       LFBFL_new_lines3=${repeated_split_last_line_result}
     fi
     {
       echo "\subsection{"
-      # shellcheck disable=SC2312
       echo "  ${LFBFL_file_name}"\
         | sed -e "s|  ${LFBFL_file_name}|${LFBFL_new_lines}|g"\
               -e 's/_/\\_/g'
       echo "}"
       echo "\label{"
-      # shellcheck disable=SC2312
       echo "  ${LFBFL_cleaned_path2}"\
         | sed -e "s|  ${LFBFL_cleaned_path2}|${LFBFL_new_lines2}|g"
       echo "}"
       echo ""
       echo "\VerbatimInput[numbers=left,xleftmargin=-5mm]{"
-      # shellcheck disable=SC2312
       echo "  ${LFBFL_file_name}"\
         | sed -e "s|  ${LFBFL_file_name}|${LFBFL_new_lines3}|g"
       echo "}"
@@ -2345,17 +2485,17 @@ create_PDF(){
       repeated_split_last_line "${LFBFL_new_lines}" "-->"\
         70 "&lt;!--" "${LFBFL_score_command}"\
         "${LFBFL_score_command_properties}"
-      # shellcheck disable=SC2154
       LFBFL_new_lines=${repeated_split_last_line_result}
     fi
     {
       echo "&lt;h3 id=\"subsection2.${LFBFL_i}\">2.${LFBFL_i}"
-      # shellcheck disable=SC2001,SC2312
+      # shellcheck disable=SC2001
       echo "${LFBFL_file_name}"\
         | sed -e "s|${LFBFL_file_name}|${LFBFL_new_lines}|g"
       echo "&lt;/h3>"
       echo "&lt;pre class=\"numbered_lines\">"
-      sed -e 's/&amp;/\&amp;amp;/g' -e 's/&lt;/\&amp;lt;/g' &lt; "${LFBFL_file_name}"
+      sed -e 's/&amp;/\&amp;amp;/g' -e 's/&lt;/\&amp;lt;/g'\
+        &lt; "${LFBFL_file_name}"
       echo "&lt;/pre>"
       echo ""
       echo ""
@@ -2381,38 +2521,35 @@ create_PDF(){
   declare LFBFL_tree_path
   for LFBFL_tree in "${LFBFL_trees[@]}"; do
     LFBFL_tree_path="${LFBFL_subdir2}/temp/${LFBFL_tree}"
-    # shellcheck disable=SC2312
-    grep '.\{71\}' "${LFBFL_tree_path}" | while read -r LFBFL_line; do
+    grep '.\{71\}' "${LFBFL_tree_path}"\
+      | while read -r LFBFL_line;
+    do
       # echo "LFBFL_line: ${LFBFL_line}"
-      # shellcheck disable=SC2312
-      LFBFL_prefix=$(\
+      LFBFL_prefix=$(
         echo "${LFBFL_line}"\
-          | sed -E -e 's/(.*)─[^─]+$/\1/g' -e 's/[^ ]+$//g'\
+        | sed -E -e 's/(.*)─[^─]+$/\1/g' -e 's/[^ ]+$//g'
       )
       LFBFL_prefix+="│ "
       # echo "LFBFL_prefix: ${LFBFL_prefix}"
-      # shellcheck disable=SC2312
-      LFBFL_file_name=$(\
+      LFBFL_file_name=$(
         echo "${LFBFL_line}"\
-          | sed -E 's|.* (([a-zA-Z0-9\._/-]+).)$|\1|g'\
+        | sed -E 's|.* (([a-zA-Z0-9\._/-]+).)$|\1|g'
       )
       # echo "LFBFL_file_name: ${LFBFL_file_name}"
-      # shellcheck disable=SC2312
-      LFBFL_line_start=$(\
+      LFBFL_line_start=$(
         echo "${LFBFL_line}"\
-          | sed -E -e "s/(.*)[ ]*${LFBFL_file_name}/\1/g"\
-                   -e 's/ *$//g'
+        | sed -E -e "s/(.*)[ ]*${LFBFL_file_name}/\1/g"\
+                 -e 's/ *$//g'
       )
       # echo "LFBFL_line_start: ${LFBFL_line_start}"
-      LFBFL_line=$(\
+      LFBFL_line=$(
         echo "${LFBFL_line}"\
-          | sed -E -e 's/\[/\\\[/g' -e 's/\]/\\\]/g'\
+        | sed -E -e 's/\[/\\\[/g' -e 's/\]/\\\]/g'
       )
       LFBFL_new_lines="${LFBFL_prefix}${LFBFL_file_name}"
       if [[ ${#LFBFL_new_lines} -gt 70 ]]; then
         repeated_split_last_line "${LFBFL_new_lines}"\
           "${LFBFL_prefix}" 70 "" "" 3
-        # shellcheck disable=SC2154
         LFBFL_new_lines=${repeated_split_last_line_result}
       fi
       sed -i -e\
@@ -2452,12 +2589,14 @@ create_PDF(){
   declare -r LFBFL_html_path_start=\
 "./${LFBFL_subdir2}/temp/${repository_name}.html"
 
-  # shellcheck disable=SC2001,SC2312
-  echo "${abstract}" | sed -e 's/\\n/\n/g'\
+  # shellcheck disable=SC2001
+  echo "${abstract}"\
+    | sed -e 's/\\n/\n/g'\
     > "./${LFBFL_subdir2}/temp/abstract_temp"
 
-  # shellcheck disable=SC2001,SC2312
-  echo "${acknowledgments}" | sed -e 's/\\n/\n/g'\
+  # shellcheck disable=SC2001
+  echo "${acknowledgments}"\
+    | sed -e 's/\\n/\n/g'\
     > "./${LFBFL_subdir2}/temp/acknowledgments_temp"
 
   # But the filling still occurs, in case the dev want to refill
@@ -2552,7 +2691,8 @@ create_PDF(){
     done
   else
     for ((i=0; i&lt;3; i++)); do
-      pdflatex "./${LFBFL_subdir2}/${repository_name}.tex" > /dev/null
+      pdflatex "./${LFBFL_subdir2}/${repository_name}.tex"\
+        > /dev/null
     done
   fi
 
@@ -2602,9 +2742,9 @@ build_and_checks_dependencies/generate_from_template.libr.sh
 # "generate_from_template.libr.sh".
 
 LFBFL_subdir="build_and_checks_dependencies"
-# shellcheck disable=SC1090
+# shellcheck source=lines_filters.libr.sh
 source "./${LFBFL_subdir}/lines_filters.libr.sh"
-# shellcheck disable=SC1090
+# shellcheck source=overwrite_if_not_equal.libr.sh
 source "./${LFBFL_subdir}/overwrite_if_not_equal.libr.sh"
 
 generate_from_template_with_block_comments(){
@@ -2615,9 +2755,11 @@ generate_from_template_with_block_comments(){
   local LFBFL_temp
   LFBFL_temp="$2.generate_from_template_with_block_comments.temp"
   readonly LFBFL_temp
-  echo "$3" > "${LFBFL_temp}"
-  cat "$1" >> "${LFBFL_temp}"
-  echo "$4" >> "${LFBFL_temp}"
+  {
+    echo "$3"
+    cat "$1"
+    echo "$4"
+  } > "${LFBFL_temp}"
   overwrite_if_not_equal "$2" "${LFBFL_temp}"
 }
 
@@ -2631,9 +2773,11 @@ generate_from_template_with_line_comments(){
   LFBFL_temp="$2.generate_from_template_with_line_comments.temp"
   readonly LFBFL_temp
   if [[ -n "$5" ]]; then
-    echo "$5" > "${LFBFL_temp}"
+    echo "$5"\
+      > "${LFBFL_temp}"
   fi
-  sed -e "s/^/$3/g" "$1" >> "${LFBFL_temp}"
+  sed -e "s/^/$3/g" "$1"\
+    >> "${LFBFL_temp}"
   if [[ -n "$4" ]]; then
     eval "$4"
   fi
@@ -2646,14 +2790,18 @@ split_file_in_two(){
   # $3=$file_name_part1
   # $4=$file_name_part2
   declare -ir LFBFL_line_number=$(
-    grep -n "$2" "$1" | head --lines=1 | cut -f 1 -d ':'
+    grep -n "$2" "$1"\
+    | head --lines=1\
+    | cut -f 1 -d ':'
   )
   declare -ir LFBFL_line_count=$(ll_wc -l -n "$1")
   declare -ir LFBFL_lines_after=$((
     LFBFL_line_count - LFBFL_line_number
   ))
-  head --lines="$((LFBFL_line_number - 1))" "$1" > "$3"
-  tail --lines="${LFBFL_lines_after}" "$1" > "$4"
+  head --lines="$((LFBFL_line_number - 1))" "$1"\
+    > "$3"
+  tail --lines="${LFBFL_lines_after}" "$1"\
+    > "$4"
 }
 
 insert_file_at_token(){
@@ -2717,32 +2865,31 @@ get_COMMON_TEXT_PATHS_GLOB_PATTERNS(){
     return
   fi
 
-  # shellcheck disable=SC2034
-  declare -gr COMMON_TEXT_PATHS_GLOB_PATTERNS=(\
-    '**/*.c'\
-    '**/*.css'\
-    '**/*.h'\
-    '**/*.htm'\
-    '**/*.html'\
-    '**/*.js'\
-    '**/*.json'\
-    '**/*.md'\
-    '**/*.php'\
-    '**/*.py'\
-    '**/*.sh'\
-    '**/*.sql'\
-    '**/*.tex'\
-    '**/*.toml'\
-    '**/*.tpl'\
-    '**/*.ts'\
-    '**/*.txt'\
-    '**/*.yml'\
-    '**/COPYING'\
-    '**/COPYING.LESSER'\
-    '**/pre-commit'\
-    '**/post-commit'\
-    '**/.gitignore'\
-    '**/py.typed'\
+  declare -agr COMMON_TEXT_PATHS_GLOB_PATTERNS=(
+    '**/*.c'
+    '**/*.css'
+    '**/*.h'
+    '**/*.htm'
+    '**/*.html'
+    '**/*.js'
+    '**/*.json'
+    '**/*.md'
+    '**/*.php'
+    '**/*.py'
+    '**/*.sh'
+    '**/*.sql'
+    '**/*.tex'
+    '**/*.toml'
+    '**/*.tpl'
+    '**/*.ts'
+    '**/*.txt'
+    '**/*.yml'
+    '**/COPYING'
+    '**/COPYING.LESSER'
+    '**/pre-commit'
+    '**/post-commit'
+    '**/.gitignore'
+    '**/py.typed'
   )
 }
 
@@ -2752,32 +2899,31 @@ get_COMMON_TEXT_FILES_GLOB_PATTERNS(){
     return
   fi
 
-  # shellcheck disable=SC2034
-  declare -gr COMMON_TEXT_FILES_GLOB_PATTERNS=(\
-    '*.c'\
-    '*.css'\
-    '*.h'\
-    '*.htm'\
-    '*.html'\
-    '*.js'\
-    '*.json'\
-    '*.md'\
-    '*.php'\
-    '*.py'\
-    '*.sh'\
-    '*.sql'\
-    '*.tex'\
-    '*.toml'\
-    '*.tpl'\
-    '*.ts'\
-    '*.txt'\
-    '*.yml'\
-    'COPYING'\
-    'COPYING.LESSER'\
-    'pre-commit'\
-    'post-commit'\
-    '.gitignore'\
-    'py.typed'\
+  declare -agr COMMON_TEXT_FILES_GLOB_PATTERNS=(
+    '*.c'
+    '*.css'
+    '*.h'
+    '*.htm'
+    '*.html'
+    '*.js'
+    '*.json'
+    '*.md'
+    '*.php'
+    '*.py'
+    '*.sh'
+    '*.sql'
+    '*.tex'
+    '*.toml'
+    '*.tpl'
+    '*.ts'
+    '*.txt'
+    '*.yml'
+    'COPYING'
+    'COPYING.LESSER'
+    'pre-commit'
+    'post-commit'
+    '.gitignore'
+    'py.typed'
   )
 }
 </pre>
@@ -2814,28 +2960,38 @@ build_and_checks_dependencies/grammar_and_spell_check.libr.sh
 # to "grammar_and_spell_check.libr.sh".
 
 LFBFL_subdir="build_and_checks_dependencies"
-# shellcheck disable=SC1090
+# shellcheck source=get_common_text_glob_patterns.libr.sh
 source "./${LFBFL_subdir}/get_common_text_glob_patterns.libr.sh"
-# shellcheck disable=SC1090
+# shellcheck source=lines_filters.libr.sh
 source "./${LFBFL_subdir}/lines_filters.libr.sh"
 
 grammar_and_spell_check(){
+  declare -i LFBFL_verbose=0
+  if [[ "$*" == *--verbose* ]]; then
+    echo "$0 $*"
+    LFBFL_verbose=1
+  fi
+  readonly LFBFL_verbose
+
+  if [[ ! -o pipefail ]]; then
+    [[ LFBFL_verbose -eq 1 ]] &amp;&amp; echo "pipefail option activated"
+    set -o pipefail
+    trap 'set +o pipefail' RETURN
+  fi
+
   get_COMMON_TEXT_FILES_GLOB_PATTERNS
   grammar_or_spell_checker_command=""
   grep_variable "$1" grammar_or_spell_checker_command
-  # shellcheck disable=SC2312
-  declare -r LFBFL_command=$(\
+  declare -r LFBFL_command=$(
     echo "${grammar_or_spell_checker_command}"\
-    | sed -Ez -e "s/\n//Mg"\
+    | sed -Ez -e "s/\n//Mg"
   )
   local LFBFL_file_path
   local LFBFL_pattern
   local LFBFL_eval_string
-  # shellcheck disable=SC2154
   for LFBFL_pattern in "${COMMON_TEXT_FILES_GLOB_PATTERNS[@]}"; do
-    [[ "$2" != "-v" ]]\
+    [[ LFBFL_verbose -eq 0 ]]\
       || echo "Iterating on pattern: ${LFBFL_pattern}"
-    # shellcheck disable=SC2312
     find . -type f -name "${LFBFL_pattern}" -printf '%P\n'\
        | while read -r LFBFL_file_path;
     do
@@ -2879,13 +3035,13 @@ build_and_checks_dependencies/licenses_templates/<!--
 # to "build_licenses_templates.exec.sh".
 
 LFBFL_subdir="build_and_checks_dependencies"
-# shellcheck disable=SC1090
+# shellcheck source=comparisons.libr.sh
 source "./${LFBFL_subdir}/comparisons.libr.sh"
-# shellcheck disable=SC1090
+# shellcheck source=generate_from_template.libr.sh
 source "./${LFBFL_subdir}/generate_from_template.libr.sh"
-# shellcheck disable=SC1090
+# shellcheck source=lines_filters.libr.sh
 source "./${LFBFL_subdir}/lines_filters.libr.sh"
-# shellcheck disable=SC1090
+# shellcheck source=overwrite_if_not_equal.libr.sh
 source "./${LFBFL_subdir}/overwrite_if_not_equal.libr.sh"
 
 build_licenses_templates(){
@@ -2900,6 +3056,12 @@ build_licenses_templates(){
     LFBFL_verbose=1
   fi
   readonly LFBFL_verbose
+
+  if [[ ! -o pipefail ]]; then
+    [[ LFBFL_verbose -eq 1 ]] &amp;&amp; echo "pipefail option activated"
+    set -o pipefail
+    trap 'set +o pipefail' RETURN
+  fi
 
   # Source
   local LFBFL_license_source_subdir
@@ -3069,13 +3231,19 @@ build_licenses_templates(){
     LFBFL_license_prefix3="${LFBFL_license_prefix}${license2}"
 
   # First year according to current state of git repository.
-  # shellcheck disable=SC2155,SC2312
-  declare -r LFBFL_first_year=\
-"$(git log | grep 'Date:' | cut -f 8 -d ' ' | tail -1)"
+  declare -r LFBFL_first_year=$(
+    git log\
+    | grep 'Date:'\
+    | cut -f 8 -d ' '\
+    | tail -1
+  )
   # Last year according to current state of git repository.
-  # shellcheck disable=SC2155,SC2312
-  declare -r LFBFL_last_year=\
-"$(git log | grep 'Date:' | cut -f 8 -d ' ' | head -1)"
+  declare -r LFBFL_last_year=$(
+    git log\
+    | grep 'Date:'\
+    | cut -f 8 -d ' '\
+    | head -1
+  )
   local LFBFL_copyright_string
   LFBFL_copyright_string="${LFBFL_first_year}-${LFBFL_last_year}"
   LFBFL_copyright_string+=" ${author_full_name}"
@@ -3085,7 +3253,8 @@ build_licenses_templates(){
     # $1=license_file_name
     sed -e "s/@repository_name@/${repository_name}/g"\
         -e "s/@copyright_string@/${LFBFL_copyright_string}/g"\
-        "$1.tpl" > "$1.temp"
+        "$1.tpl"\
+      > "$1.temp"
     overwrite_if_not_equal "$1" "$1.temp"
     declare -r LFBFL_result=$?
     if [[ LFBFL_verbose -eq 1 ]]; then
@@ -3095,8 +3264,9 @@ build_licenses_templates(){
         echo "License template $1 created"
       fi
     fi
-    # shellcheck disable=SC2312
-    head --lines=-1 "$1" | tail --lines=+2 > "$1.temp"
+    head --lines=-1 "$1"\
+      | tail --lines=+2\
+      > "$1.temp"
     # Strange world: tail --lines=-1 was working
     # to exclude first line.
     # I tested it months ago, and saw with my eyes the start and end
@@ -3127,9 +3297,9 @@ build_licenses_templates(){
       LFBFL_license_file_name2+=".${LFBFL_dest}"
       prepare_filled_license_file_block "${LFBFL_license_file_name2}"
     fi
-    # shellcheck disable=SC2312
     find . -type f -name "*.${LFBFL_key}" -printf '%P\n'\
-      | relevant_find | while read -r LFBFL_file_name;
+      | relevant_find\
+      | while read -r LFBFL_file_name;
     do
       is_subfile "${LFBFL_file_name}"\
         "${LFBFL_license_file_name}.temp"
@@ -3155,7 +3325,8 @@ build_licenses_templates(){
     # $1=LFBFL_license_file_name
     sed -e "s/@repository_name@/${repository_name}/g"\
         -e "s/@copyright_string@/${LFBFL_copyright_string}/g"\
-        "$1.tpl" > "$1.temp"
+        "$1.tpl"\
+      > "$1.temp"
     overwrite_if_not_equal "$1" "$1.temp"
     declare -r LFBFL_result=$?
     if [[ LFBFL_verbose -eq 1 ]]; then
@@ -3180,9 +3351,9 @@ build_licenses_templates(){
       LFBFL_license_file_name2+=".${LFBFL_dest}"
       prepare_filled_license_file_line "${LFBFL_license_file_name2}"
     fi
-    # shellcheck disable=SC2312
     find . -type f -name "*.${LFBFL_key}" -printf '%P\n'\
-      | relevant_find | while read -r LFBFL_file_name;
+      | relevant_find\
+      | while read -r LFBFL_file_name;
     do
       is_subfile "${LFBFL_file_name}" "${LFBFL_license_file_name}"
       LFBFL_not_subfile=$?
@@ -3332,53 +3503,84 @@ build_and_checks_dependencies/lines_counts.libr.sh
 # "lines_counts.libr.sh".
 
 LFBFL_subdir="build_and_checks_dependencies"
-# shellcheck disable=SC1090
+# shellcheck source=get_common_text_glob_patterns.libr.sh
 source "./${LFBFL_subdir}/get_common_text_glob_patterns.libr.sh"
-# shellcheck disable=SC1090
+# shellcheck source=lines_filters.libr.sh
 source "./${LFBFL_subdir}/lines_filters.libr.sh"
 
 all_code_lines(){
+  if [[ ! -o pipefail ]]; then
+    set -o pipefail
+    trap 'set +o pipefail' RETURN
+  fi
+  [[ "$*" != *--verbose* ]]
+  declare -ir LFBFL_verbose=$?
   get_COMMON_TEXT_FILES_GLOB_PATTERNS
   local LFBFL_pattern
-  # shellcheck disable=SC2154
   for LFBFL_pattern in "${COMMON_TEXT_FILES_GLOB_PATTERNS[@]}"; do
-    [[ "$1" != "-v" ]]\
-      || echo "Iterating on pattern: ${LFBFL_pattern}"
-    # shellcheck disable=SC2312
+    [[ LFBFL_verbose -eq 1 ]]\
+      &amp;&amp; echo "Iterating on pattern: ${LFBFL_pattern}"
     find . -type f -name "${LFBFL_pattern}" -printf '%P\n'\
       | xargs grep -H -v 'a(?!a)a'
   done
 }
 
 all_self_code_lines(){
-  # shellcheck disable=SC2312
-  all_code_lines "$@" | relevant_grep\
-    | not_license_grep | not_main_tex_grep | not_main_html_grep
+  if [[ ! -o pipefail ]]; then
+    set -o pipefail
+    trap 'set +o pipefail' RETURN
+  fi
+  # below and another lines, see SC2145 false positive
+  all_code_lines "$@" \
+    | relevant_grep\
+    | not_license_grep\
+    | not_main_tex_grep\
+    | not_main_html_grep
 }
 
 all_self_empty_code_lines(){
-  # shellcheck disable=SC2312
-  all_self_code_lines "$@" | empty_lines_after_file_name
+  if [[ ! -o pipefail ]]; then
+    set -o pipefail
+    trap 'set +o pipefail' RETURN
+  fi
+  all_self_code_lines "$@" \
+    | empty_lines_after_file_name
 }
 
 all_self_not_empty_code_lines(){
-  # shellcheck disable=SC2312
-  all_self_code_lines "$@" | not_empty_lines_after_file_name
+  if [[ ! -o pipefail ]]; then
+    set -o pipefail
+    trap 'set +o pipefail' RETURN
+  fi
+  all_self_code_lines "$@" \
+    | not_empty_lines_after_file_name
 }
 
 code_lines_count_all(){
-  # shellcheck disable=SC2312
-  all_self_code_lines "$@" | wc -l
+  if [[ ! -o pipefail ]]; then
+    set -o pipefail
+    trap 'set +o pipefail' RETURN
+  fi
+  all_self_code_lines "$@" \
+    | wc -l
 }
 
 code_lines_count_empty(){
-  # shellcheck disable=SC2312
-  all_self_empty_code_lines "$@" | wc -l
+  if [[ ! -o pipefail ]]; then
+    set -o pipefail
+    trap 'set +o pipefail' RETURN
+  fi
+  all_self_empty_code_lines "$@" \
+    | wc -l
 }
 
 code_lines_count_not_empty(){
-  # shellcheck disable=SC2312
-  all_self_not_empty_code_lines "$@" | wc -l
+  if [[ ! -o pipefail ]]; then
+    set -o pipefail
+    trap 'set +o pipefail' RETURN
+  fi
+  all_self_not_empty_code_lines "$@" \
+    | wc -l
 }
 </pre>
 
@@ -3435,6 +3637,10 @@ ll_wc(){
   # -n --no-filenames display only number(s)
   # I think I did that the first time many years ago (Teliae ?).
   # Since then, they added it as ignored... (-n)
+  if [[ ! -o pipefail ]]; then
+    set -o pipefail
+    trap 'set +o pipefail' RETURN
+  fi
   declare -a ll_wc_var_args=()
   declare -i ll_wc_var_number_only=0
   declare -i ll_wc_var_i=0
@@ -3466,8 +3672,8 @@ ll_wc(){
     # with --files0-from handling.
     # wc does not display file_name when stream...
     # hence cat of last arg "${!#}"
-    # shellcheck disable=SC2312
-    cat "${!#}" | wc "${ll_wc_var_args[@]}"
+    cat "${!#}"\
+      | wc "${ll_wc_var_args[@]}"
   else
     # echo "normal"
     wc "${ll_wc_var_args[@]}"
@@ -3500,7 +3706,8 @@ fi
 
 in_place_grep(){
   declare -r LFBFL_temp="${!#}.in_place_grep.temp"
-  grep "$@" > "${LFBFL_temp}"
+  grep "$@" \
+    > "${LFBFL_temp}"
   declare -r LFBFL_lines_before=$(ll_wc -l -n "${!#}")
   declare -r LFBFL_lines_after=$(ll_wc -l -n "${LFBFL_temp}")
   # echo "$LFBFL_lines_before"
@@ -3559,14 +3766,13 @@ not_space_starting_lines_after_file_name(){
 }
 
 not_JS_dependencies_find(){
-  # shellcheck disable=SC2312
-  grep -vE -e "(^|/)node_modules/" -e "(^|/)package-lock\.json$"
+  grep -vE -e "(^|/)node_modules/"\
+           -e "(^|/)package-lock\.json$"
 }
 
 not_JS_dependencies_grep(){
-  # shellcheck disable=SC2312
   grep -vE -e "^([^:]+/)?node_modules/"\
-    -e "^([^:]+/)?package-lock\.json:"
+           -e "^([^:]+/)?package-lock\.json:"
 }
 
 not_dependencies_find(){
@@ -3578,15 +3784,15 @@ not_dependencies_grep(){
 }
 
 not_python_cache_find(){
-  # shellcheck disable=SC2312
-  grep -vE -e "(^|/)__pycache__/" -e "(^|/)\.mypy_cache/"\
-    -e "(^|/)\.ruff_cache/"
+  grep -vE -e "(^|/)__pycache__/"\
+           -e "(^|/)\.mypy_cache/"\
+           -e "(^|/)\.ruff_cache/"
 }
 
 not_python_cache_grep(){
-  # shellcheck disable=SC2312
-  grep -vE -e "^([^:]+/)?__pycache__/" -e "^([^:]+/)?\.mypy_cache/"\
-    -e "^([^:]+/)?\.ruff_cache/"
+  grep -vE -e "^([^:]+/)?__pycache__/"\
+           -e "^([^:]+/)?\.mypy_cache/"\
+           -e "^([^:]+/)?\.ruff_cache/"
 }
 
 not_cache_find(){
@@ -3614,13 +3820,13 @@ not_archive_grep(){
 }
 
 not_license_find(){
-  # shellcheck disable=SC2312
-  grep -vE -e "(^|/)COPYING$" -e "(^|/)COPYING\.LESSER$"
+  grep -vE -e "(^|/)COPYING$"\
+           -e "(^|/)COPYING\.LESSER$"
 }
 
 not_license_grep(){
-  # shellcheck disable=SC2312
-  grep -vE -e "^([^:]+/)?COPYING:" -e "^([^:]+/)?COPYING\.LESSER:"
+  grep -vE -e "^([^:]+/)?COPYING:"\
+           -e "^([^:]+/)?COPYING\.LESSER:"
 }
 
 not_main_tex_find(){
@@ -3648,15 +3854,27 @@ not_temp_file_grep(){
 }
 
 relevant_find(){
-  # shellcheck disable=SC2312
-  not_dependencies_find | not_cache_find | not_git_find\
-  | not_archive_find | not_temp_file_find
+  if [[ ! -o pipefail ]]; then
+    set -o pipefail
+    trap 'set +o pipefail' RETURN
+  fi
+  not_dependencies_find\
+    | not_cache_find\
+    | not_git_find\
+    | not_archive_find\
+    | not_temp_file_find
 }
 
 relevant_grep(){
-  # shellcheck disable=SC2312
-  not_dependencies_grep | not_cache_grep | not_git_grep\
-  | not_archive_grep | not_temp_file_grep
+  if [[ ! -o pipefail ]]; then
+    set -o pipefail
+    trap 'set +o pipefail' RETURN
+  fi
+  not_dependencies_grep\
+    | not_cache_grep\
+    | not_git_grep\
+    | not_archive_grep\
+    | not_temp_file_grep
 }
 </pre>
 
@@ -3702,49 +3920,48 @@ build_and_checks_dependencies/lines_maps.libr.sh
 #   '2068', '2069', '206A', '206B', '206C', '206D', '206E', '206F',
 # ]
 replace_non_ascii_spaces(){
-  # shellcheck disable=SC2312
   sed -e 's/\xc2\xa0/ /g'\
-  | sed -e 's/\xe2\x80\x80/ /g'\
-  | sed -e 's/\xe2\x80\x81/ /g'\
-  | sed -e 's/\xe2\x80\x82/ /g'\
-  | sed -e 's/\xe2\x80\x83/ /g'\
-  | sed -e 's/\xe2\x80\x84/ /g'\
-  | sed -e 's/\xe2\x80\x85/ /g'\
-  | sed -e 's/\xe2\x80\x86/ /g'\
-  | sed -e 's/\xe2\x80\x87/ /g'\
-  | sed -e 's/\xe2\x80\x88/ /g'\
-  | sed -e 's/\xe2\x80\x89/ /g'\
-  | sed -e 's/\xe2\x80\x8a/ /g'\
-  | sed -e 's/\xe2\x80\x8b/ /g'\
-  | sed -e 's/\xe2\x80\x8c/ /g'\
-  | sed -e 's/\xe2\x80\x8d/ /g'\
-  | sed -e 's/\xe2\x80\x8e/ /g'\
-  | sed -e 's/\xe2\x80\x8f/ /g'\
-  | sed -e 's/\xe2\x80\xa8/ /g'\
-  | sed -e 's/\xe2\x80\xa9/ /g'\
-  | sed -e 's/\xe2\x80\xaa/ /g'\
-  | sed -e 's/\xe2\x80\xab/ /g'\
-  | sed -e 's/\xe2\x80\xac/ /g'\
-  | sed -e 's/\xe2\x80\xad/ /g'\
-  | sed -e 's/\xe2\x80\xae/ /g'\
-  | sed -e 's/\xe2\x80\xaf/ /g'\
-  | sed -e 's/\xe2\x81\x9f/ /g'\
-  | sed -e 's/\xe2\x81\xa0/ /g'\
-  | sed -e 's/\xe2\x81\xa1/ /g'\
-  | sed -e 's/\xe2\x81\xa2/ /g'\
-  | sed -e 's/\xe2\x81\xa3/ /g'\
-  | sed -e 's/\xe2\x81\xa4/ /g'\
-  | sed -e 's/\xe2\x81\xa5/ /g'\
-  | sed -e 's/\xe2\x81\xa6/ /g'\
-  | sed -e 's/\xe2\x81\xa7/ /g'\
-  | sed -e 's/\xe2\x81\xa8/ /g'\
-  | sed -e 's/\xe2\x81\xa9/ /g'\
-  | sed -e 's/\xe2\x81\xaa/ /g'\
-  | sed -e 's/\xe2\x81\xab/ /g'\
-  | sed -e 's/\xe2\x81\xac/ /g'\
-  | sed -e 's/\xe2\x81\xad/ /g'\
-  | sed -e 's/\xe2\x81\xae/ /g'\
-  | sed -e 's/\xe2\x81\xaf/ /g'
+      -e 's/\xe2\x80\x80/ /g'\
+      -e 's/\xe2\x80\x81/ /g'\
+      -e 's/\xe2\x80\x82/ /g'\
+      -e 's/\xe2\x80\x83/ /g'\
+      -e 's/\xe2\x80\x84/ /g'\
+      -e 's/\xe2\x80\x85/ /g'\
+      -e 's/\xe2\x80\x86/ /g'\
+      -e 's/\xe2\x80\x87/ /g'\
+      -e 's/\xe2\x80\x88/ /g'\
+      -e 's/\xe2\x80\x89/ /g'\
+      -e 's/\xe2\x80\x8a/ /g'\
+      -e 's/\xe2\x80\x8b/ /g'\
+      -e 's/\xe2\x80\x8c/ /g'\
+      -e 's/\xe2\x80\x8d/ /g'\
+      -e 's/\xe2\x80\x8e/ /g'\
+      -e 's/\xe2\x80\x8f/ /g'\
+      -e 's/\xe2\x80\xa8/ /g'\
+      -e 's/\xe2\x80\xa9/ /g'\
+      -e 's/\xe2\x80\xaa/ /g'\
+      -e 's/\xe2\x80\xab/ /g'\
+      -e 's/\xe2\x80\xac/ /g'\
+      -e 's/\xe2\x80\xad/ /g'\
+      -e 's/\xe2\x80\xae/ /g'\
+      -e 's/\xe2\x80\xaf/ /g'\
+      -e 's/\xe2\x81\x9f/ /g'\
+      -e 's/\xe2\x81\xa0/ /g'\
+      -e 's/\xe2\x81\xa1/ /g'\
+      -e 's/\xe2\x81\xa2/ /g'\
+      -e 's/\xe2\x81\xa3/ /g'\
+      -e 's/\xe2\x81\xa4/ /g'\
+      -e 's/\xe2\x81\xa5/ /g'\
+      -e 's/\xe2\x81\xa6/ /g'\
+      -e 's/\xe2\x81\xa7/ /g'\
+      -e 's/\xe2\x81\xa8/ /g'\
+      -e 's/\xe2\x81\xa9/ /g'\
+      -e 's/\xe2\x81\xaa/ /g'\
+      -e 's/\xe2\x81\xab/ /g'\
+      -e 's/\xe2\x81\xac/ /g'\
+      -e 's/\xe2\x81\xad/ /g'\
+      -e 's/\xe2\x81\xae/ /g'\
+      -e 's/\xe2\x81\xaf/ /g'
 }
 </pre>
 
@@ -3798,8 +4015,11 @@ overwrite_if_not_equal(){
   fi
   declare -i LFBFL_is_equal
   if [[ -n "$4" ]]; then
+    # Not setting pipefail since the result would still be incorrect.
     # shellcheck disable=SC2312
-    diff "$1" "$2" | grep -E "^(>|&lt;)" | grep -v "/$"
+    diff "$1" "$2"\
+      | grep -E "^(>|&lt;)"\
+      | grep -v "/$"
     LFBFL_is_equal=$?
   else
     diff -q "$1" "$2"
@@ -3900,20 +4120,26 @@ build_and_checks_dependencies/python_isort_complement.libr.sh
 # to "python_isort_complement.libr.sh".
 
 LFBFL_subdir="build_and_checks_dependencies"
-# shellcheck disable=SC1090
+# shellcheck source=lines_filters.libr.sh
 source "./${LFBFL_subdir}/lines_filters.libr.sh"
-# shellcheck disable=SC1090
+# shellcheck source=overwrite_if_not_equal.libr.sh
 source "./${LFBFL_subdir}/overwrite_if_not_equal.libr.sh"
 
 check_collections_abc_place(){
   echo "Checking import of _collections_abc is at the right place"
+  if [[ ! -o pipefail ]]; then
+    set -o pipefail
+    trap 'set +o pipefail' RETURN
+  fi
   declare -r LFBFL_temp=".check_collections_abc_place.temp"
-  # shellcheck disable=SC2312
-  find . -name "*.py" | relevant_find\
-    | while read -r LFBFL_file_name; do
+  find . -name "*.py"\
+    | relevant_find\
+    | while read -r LFBFL_file_name;
+  do
     [[ -f "${LFBFL_file_name}" ]] || continue
     sed -Ez 's/\n(\nfrom _collections_abc[^\n]*)/\1\n/Mg'\
-      "${LFBFL_file_name}" > "${LFBFL_file_name}${LFBFL_temp}"
+      "${LFBFL_file_name}"\
+      > "${LFBFL_file_name}${LFBFL_temp}"
     overwrite_if_not_equal "${LFBFL_file_name}"\
       "${LFBFL_file_name}${LFBFL_temp}"
   done
@@ -4091,9 +4317,9 @@ build_and_checks_dependencies/strings_functions.libr.sh
 # "strings_functions.libr.sh".
 
 LFBFL_subdir="build_and_checks_dependencies"
-# shellcheck disable=SC1090
+# shellcheck source=get_common_text_glob_patterns.libr.sh
 source "./${LFBFL_subdir}/get_common_text_glob_patterns.libr.sh"
-# shellcheck disable=SC1090
+# shellcheck source=comparisons.libr.sh
 source "./${LFBFL_subdir}/comparisons.libr.sh"
 
 split_line_at(){
@@ -4128,7 +4354,7 @@ get_split_score_simple(){
   # $3=$delimiters_strings_domain
   declare -g get_split_score_result="split_score_simple $1 '$3'"
   declare -gi get_split_score_result2
-  # shellcheck disable=SC2034,SC2125
+  # shellcheck disable=SC2125
   get_split_score_result2=7+$1*4
   # if [[ $1 -eq 1 ]]; then
   #   get_split_score_result2=7
@@ -4155,14 +4381,16 @@ split_score(){
   split_score_result=$(eval "${LFBFL_command}")
 }
 
+# This function is currently not called,
+# hence we need that shellcheck disable.
+# shellcheck disable=SC2034
 get_split_score(){
   # $1=$after_before
   # $1=$max_length
   # $2=$delimiters_strings_domain
-  # shellcheck disable=SC2034
   declare -g get_split_score_result="split_score $1 $2 '$3'"
   declare -gi get_split_score_result2
-  # shellcheck disable=SC2034,SC2125
+  # shellcheck disable=SC2125
   get_split_score_result2=5+$1*4
 }
 
@@ -4357,20 +4585,31 @@ split_last_line(){
   # The given max_length is the goal.
   # This function adapts the effective max position for the split by
   # taking into account the length of the suffix.
+  if [[ ! -o pipefail ]]; then
+    set -o pipefail
+    trap 'set +o pipefail' RETURN
+  fi
+
   declare -g split_last_line_result="$1"
   declare -ir LFBFL_max_length_plus=$(($3 + 1))
   declare -ir LFBFL_length2=$(($3 - ${#4}))
   declare -r LFBFL_regexp='.\{'"${LFBFL_max_length_plus}"'\}$'
-  # shellcheck disable=SC2312
-  if echo "$1" | sed -e 's/\\n/\n/g' | grep -q "${LFBFL_regexp}"; then
-    # shellcheck disable=SC2312
-    declare -r LFBFL_start=$(\
-      echo "$1" | sed -e 's/\\n/\n/g' | head --lines=-1\
-      | sed -z 's/\n/\\n/g'\
+  if
+    echo "$1"\
+      | sed -e 's/\\n/\n/g'\
+      | grep -q "${LFBFL_regexp}";
+  then
+    declare -r LFBFL_start=$(
+      echo "$1"\
+      | sed -e 's/\\n/\n/g'\
+      | head --lines=-1\
+      | sed -z 's/\n/\\n/g'
     )
     # echo "start: $LFBFL_start"
-    declare -r LFBFL_last_line=$(\
-      echo "$1" | sed -e 's/\\n/\n/g' | tail --lines=1\
+    declare -r LFBFL_last_line=$(
+      echo "$1"\
+      | sed -e 's/\\n/\n/g'\
+      | tail --lines=1
     )
     # echo "last_line: ${LFBFL_last_line}"
     split_last_line_result=""
@@ -4435,26 +4674,39 @@ build_and_checks_dependencies/too_long_code_lines.libr.sh
 # to "too_long_code_lines.libr.sh".
 
 LFBFL_subdir="build_and_checks_dependencies"
-# shellcheck disable=SC1090
+# shellcheck source=get_common_text_glob_patterns.libr.sh
 source "./${LFBFL_subdir}/get_common_text_glob_patterns.libr.sh"
-# shellcheck disable=SC1090
+# shellcheck source=lines_filters.libr.sh
 source "./${LFBFL_subdir}/lines_filters.libr.sh"
 
 too_long_code_lines(){
+  declare -i LFBFL_verbose=0
+  if [[ "$*" == *--verbose* ]]; then
+    echo "$0 $*"
+    LFBFL_verbose=1
+  fi
+  readonly LFBFL_verbose
+
+  if [[ ! -o pipefail ]]; then
+    [[ LFBFL_verbose -eq 1 ]] &amp;&amp; echo "pipefail option activated"
+    set -o pipefail
+    trap 'set +o pipefail' RETURN
+  fi
+
   get_COMMON_TEXT_FILES_GLOB_PATTERNS
   local LFBFL_pattern
   local LFBFL_file_name
   local LFBFL_line
   local LFBFL_extension
   local LFBFL_base_name
-  # shellcheck disable=SC2154
   for LFBFL_pattern in "${COMMON_TEXT_FILES_GLOB_PATTERNS[@]}"; do
-    [[ "$1" != "-v" ]]\
+    [[ LFBFL_verbose -eq 0 ]]\
       || echo "Iterating on pattern: ${LFBFL_pattern}"
-    # shellcheck disable=SC2312
     find . -type f -name "${LFBFL_pattern}" -printf '%P\n'\
-      | relevant_find | not_license_find\
-      | xargs grep -H '.\{71\}' | while read -r LFBFL_long_line
+      | relevant_find\
+      | not_license_find\
+      | xargs grep -H '.\{71\}'\
+      | while read -r LFBFL_long_line;
     do
       LFBFL_file_name=${LFBFL_long_line%%:*} # Drop long ':*' suffix
       LFBFL_line=${LFBFL_long_line#*:} # Drop short '*:' prefix
@@ -4514,17 +4766,21 @@ build_and_checks_dependencies/update_common_build_and_checks.exec.sh
 # This file was renamed from "update_common_build_and_checks.sh"
 # to "update_common_build_and_checks.exec.sh".
 
-# shellcheck disable=SC1091
 source "overwrite_if_not_equal.libr.sh"
 
 update_common_build_and_checks(){
   declare -i LFBFL_verbose=0
-  if [[ "$1" == "--verbose" ]]; then
+  if [[ "$*" == *--verbose* ]]; then
     echo "$0 $*"
     LFBFL_verbose=1
   fi
-  # shellcheck disable=SC2034
   readonly LFBFL_verbose
+
+  if [[ ! -o pipefail ]]; then
+    [[ LFBFL_verbose -eq 1 ]] &amp;&amp; echo "pipefail option activated"
+    set -o pipefail
+    trap 'set +o pipefail' RETURN
+  fi
 
   declare -r LFBFL_common_file_name="common_build_and_checks.exec.sh"
   cp "./${LFBFL_common_file_name}.tpl"\
@@ -4561,9 +4817,9 @@ update_common_build_and_checks(){
   local LFBFL_file_sha512_all
   local LFBFL_base_file_name
   for LFBFL_file_name in "${LFBFL_file_names[@]}"; do
-    # shellcheck disable=SC2312
     LFBFL_file_sha512=$(
-      sha512sum "./${LFBFL_file_name}" | cut -f1 -d' '
+      sha512sum "./${LFBFL_file_name}"\
+      | cut -f1 -d' '
     )
     LFBFL_file_sha512_all="local LFBFL_correct_sha512\n"
     LFBFL_file_sha512_all+="  LFBFL_correct_sha512="
@@ -4584,9 +4840,9 @@ update_common_build_and_checks(){
   declare -r LFBFL_main_file_name="build_and_checks.exec.sh"
   cp "./${LFBFL_main_file_name}.tpl" "../${LFBFL_main_file_name}.temp"
 
-  # shellcheck disable=SC2312
   LFBFL_file_sha512=$(
-    sha512sum "./${LFBFL_common_file_name}" | cut -f1 -d' '
+    sha512sum "./${LFBFL_common_file_name}"\
+    | cut -f1 -d' '
   )
   LFBFL_file_sha512_all="local LFBFL_correct_sha512\n"
   LFBFL_file_sha512_all+="  LFBFL_correct_sha512="
@@ -4646,9 +4902,9 @@ build_and_checks_dependencies/<!--
 # to "update_or_check_files_names_listing.sh"?
 
 LFBFL_subdir="build_and_checks_dependencies"
-# shellcheck disable=SC1090
+# shellcheck source=lines_filters.libr.sh
 source "./${LFBFL_subdir}/lines_filters.libr.sh"
-# shellcheck disable=SC1090
+# shellcheck source=strings_functions.libr.sh
 source "./${LFBFL_subdir}/strings_functions.libr.sh"
 
 update_or_check_files_names_listing(){
@@ -4658,6 +4914,12 @@ update_or_check_files_names_listing(){
     LFBFL_verbose=1
   fi
   readonly LFBFL_verbose
+
+  if [[ ! -o pipefail ]]; then
+    [[ LFBFL_verbose -eq 1 ]] &amp;&amp; echo "pipefail option activated"
+    set -o pipefail
+    trap 'set +o pipefail' RETURN
+  fi
 
   LFBFL_subdir2="build_and_checks_variables"
   files_names_listing="./${LFBFL_subdir2}/files_names_listing.txt"
@@ -4670,13 +4932,12 @@ update_or_check_files_names_listing(){
     > "${files_names_listing}.temp"
   shopt -s dotglob
   get_split_score_simple 1 70 /
-  # shellcheck disable=SC2154
   split_score_command="${get_split_score_result}"
-  # shellcheck disable=SC2154
   split_score_command_properties="${get_split_score_result2}"
   suffix=\\\\ # instead of '\\' to avoid shellcheck SC1003
-  # shellcheck disable=SC2312
-  find . -type f -printf '%P\n' | relevant_find | sort\
+  find . -type f -printf '%P\n'\
+    | relevant_find\
+    | sort\
     | while read -r file_name;
   do
     git check-ignore -q "${file_name}" &amp;&amp; continue
@@ -4690,7 +4951,6 @@ update_or_check_files_names_listing(){
     fi
     repeated_split_last_line "${file_name}" "" 70 "${suffix}"\
       "${split_score_command}" "${split_score_command_properties}"
-    # shellcheck disable=SC2154
     split_file_name="${repeated_split_last_line_result}"
     if [[ "$1" == "--write" ]]; then
       # shellcheck disable=SC2001
@@ -4707,8 +4967,7 @@ update_or_check_files_names_listing(){
       if [[ "$1" == "--append" ]]; then
         # shellcheck disable=SC2001
         echo "${file_name}"\
-          | sed -e\
-          "s|${file_name}|${split_file_name}|g"\
+          | sed -e "s|${file_name}|${split_file_name}|g"\
           >> "${files_names_listing}"
       fi
     fi
@@ -5638,6 +5897,18 @@ build_and_checks_variables/ruff.toml
 
 
 \subsection{
+  build\_and\_checks\_variables/shellcheck.ini
+}
+\label{
+  build_and_checks_variables:shellcheckini
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+build_and_checks_variables/shellcheck.ini
+}
+
+
+\subsection{
   build\_and\_checks\_variables/shellcheck\_notes.txt
 }
 \label{
@@ -5876,6 +6147,7 @@ build_and_checks_variables/phpmd_baseline.xml
 build_and_checks_variables/pylintrc.toml
 build_and_checks_variables/repository_data.txt
 build_and_checks_variables/ruff.toml
+build_and_checks_variables/shellcheck.ini
 build_and_checks_variables/shellcheck_notes.txt
 // build_and_checks_variables/upgrade_venvs_ts
 build_and_checks.exec.sh
@@ -6098,6 +6370,21 @@ ignore = ["D203", "D212", "D404"]
 
 
 <h3 id="subsection2.40">2.40
+build_and_checks_variables/shellcheck.ini
+</h3>
+<pre class="numbered_lines">
+enable=all
+check-sourced=true
+external-sources=true
+source-path="."
+source-path="SCRIPTDIR"
+source-path="./build_and_checks_dependencies"
+source-path="./git_helpers"
+
+</pre>
+
+
+<h3 id="subsection2.41">2.41
 build_and_checks_variables/shellcheck_notes.txt
 </h3>
 <pre class="numbered_lines">
@@ -6105,33 +6392,49 @@ A listing of the current suppressed warnings/errors from shellcheck:
 - SC1090 : Can't follow non-constant source.
            Use a directive to specify location
            # shellcheck source=bla/bli.sh
+           Only remaining cases are in common_build_and_checks
+           when sourcing some Python venv
+           source venv/bin/active
 - SC1091 : Not following (file not found most of the time).
+           Only remaining cases are in common_build_and_checks
+           when sourcing some Python venv
+           source venv/bin/active
 - SC1111 : Use of slanted double quotes (valid inside single quotes)
            False positive, but may catch some problem.
 - SC2001 : Replace some sed with bash builtin ${a//b/c}
+           False positive when c contains \n.
 - SC2034 : Unused variable
+           False positive for globals that are declared in functions
+           that are not currently called.
+           Somehow it can be used to detect dead code.
 - SC2125 : Brace expansions and globs are literal.
            False positive when assigning a variable declared with -i.
-- SC2154 : A variable is referenced but not assigned
-- SC2155 : Declare and assign separately to avoid masking return value
-           Main false positive is on declare -r (1 line instead of 3)
-- SC2164 : cd || exit/return since cd may fail
+           https://github.com/koalaman/shellcheck/issues/914
+- SC2145 : Argument mixes string and array.
+           False positive when using "$@" line return and pipes.
+           https://github.com/koalaman/shellcheck/issues/3192
+           Example:
+             # shellcheck disable=SC2145
+             all_self_code_lines "$@"\
+               | empty_lines_after_file_name
+- SC2162 : read without -r will mangle backslashes.
+           False positive when read is used without variable:
+           https://github.com/koalaman/shellcheck/issues/623
 - SC2248 : Prefer double quoting
            False positive on returning integer values.
+           https://github.com/koalaman/shellcheck/issues/3405
 - SC2312 : Some command is not invoked separately and thus its return
            value is masked. Frequent with pipes.
 
 The command to check if there is anything else:
 grep -r "shellcheck disable" . | grep -v -e '.git' -e "=SC1090$"\
   -e "=SC1091$" -e "=SC1090,SC1091$" -e "=SC1111$" -e "=SC2001$"\
-  -e "=SC2034$" -e "=SC2125$" -e "=SC2034,SC2125$" -e "=SC2154$"\
-  -e "=SC2155$" -e "=SC2164$" -e "=SC2248$" -e "=SC2312$"\
-  -e "=SC2001,SC2312$" -e "=SC2155,SC2312$"
-
+  -e "=SC2034$" -e "=SC2125$" -e "=SC2145$" -e "=SC2162$"\
+  -e "=SC2248$" -e "=SC2312$" -e "=SC2162,SC2312$"
 </pre>
 
 
-<h3 id="subsection2.41">2.41
+<h3 id="subsection2.42">2.42
 build_and_checks.exec.sh
 </h3>
 <pre class="numbered_lines">
@@ -6179,15 +6482,16 @@ build_and_checks(){
   fi
   readonly LFBFL_verbose
 
-  # shellcheck disable=SC1091
   source ./wget_sha512.libr.sh
 
   LFBFL_subdir="build_and_checks_dependencies"
   mkdir -p "${LFBFL_subdir}/licenses_templates"
   mkdir -p "build_and_checks_variables/temp"
   if ! [[ -f "build_and_checks_variables/.gitignore" ]]; then
-    echo "temp/" > "build_and_checks_variables/.gitignore"
-    echo "" >> "build_and_checks_variables/.gitignore"
+    {
+      echo "temp/"
+      echo ""
+    } > "build_and_checks_variables/.gitignore"
   fi
 
   # LFBFL_dependencies_raw_content_download_URL
@@ -6203,9 +6507,9 @@ build_and_checks(){
   declare -r\
     LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_common_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='7060c063a1f3563c6940f78cc463927a25c87e266a010'
-  LFBFL_correct_sha512+='800faf99ceb204788be2074f6306ad5b031b513ca8ed'
-  LFBFL_correct_sha512+='a19ac4ed188a333205797b7e6f13fd199b367c1'
+  LFBFL_correct_sha512='c7354652d1caf3c0793b82db3815088945a22aa99663e'
+  LFBFL_correct_sha512+='af6071f067e4474fbc76f3249b86fb2cc5d7fda64483'
+  LFBFL_correct_sha512+='c22da40afa5d8c90624f53b3d00040fe330edfc'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_script}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
   chmod +x "./${LFBFL_file_path}"
@@ -6217,15 +6521,21 @@ build_and_checks(){
 if [[ "$*" == *--fixed_point_build* ]]; then
   echo "--fixed_point_build"
   source "./build_and_checks_dependencies/lines_filters.libr.sh"
-  LFBFL_data_file_name="./build_and_checks_variables/"
+  LFBFL_working_directory="."
+  if [[ -n "$1" ]]; then
+    LFBFL_working_directory="$1"
+  fi
+  LFBFL_variables_directory="${LFBFL_working_directory}/"
+  LFBFL_variables_directory+="build_and_checks_variables"
+  LFBFL_data_file_name="${LFBFL_variables_directory}/"
   LFBFL_data_file_name+="repository_data.txt"
   grep_variable "${LFBFL_data_file_name}" repository_name
   # Touching the 3 following files first let us iterate
   # upgrade_build_and_checks 2 times instead of 3 to reach
   # a fixed point.
-  touch "./build_and_checks_variables/${repository_name}.tex"
-  touch "./${repository_name}.pdf"
-  touch "./${repository_name}.html"
+  touch "${LFBFL_variables_directory}/${repository_name}.tex"
+  touch "${LFBFL_working_directory}/${repository_name}.pdf"
+  touch "${LFBFL_working_directory}/${repository_name}.html"
   # The two iterations of build_and_checks needs to complete
   # during the same minute to have a fixed point.
   build_and_checks "$@"
@@ -6238,7 +6548,7 @@ build_and_checks "$@"
 </pre>
 
 
-<h3 id="subsection2.42">2.42
+<h3 id="subsection2.43">2.43
 COPYING
 </h3>
 <pre class="numbered_lines">
@@ -6919,7 +7229,7 @@ Public License instead of this License.  But first, please read
 </pre>
 
 
-<h3 id="subsection2.43">2.43
+<h3 id="subsection2.44">2.44
 COPYING.LESSER
 </h3>
 <pre class="numbered_lines">
@@ -7091,7 +7401,7 @@ Library.
 </pre>
 
 
-<h3 id="subsection2.44">2.44
+<h3 id="subsection2.45">2.45
 git_helpers/git_checks.libr.sh
 </h3>
 <pre class="numbered_lines">
@@ -7146,17 +7456,18 @@ check_files(){
   declare -r LFBFL_send_summary_2="ATTENTION : serializers modifiés"
   declare -r LFBFL_send_body_3=\
 "Les nouveaux preloadings sont interdits -> #Prefetch()"
-  # shellcheck disable=SC2312
-  if git diff --cached --name-only | grep models;
+  git diff --cached --name-only\
+    > /tmp/DOSAS_django_git_check1.temp
+  if grep models /tmp/DOSAS_django_git_check1.temp;
   then
     notify-send "${LFBFL_send_summary_1}" "${LFBFL_send_body_1}"
     notify-send "${LFBFL_send_summary_1}" "${LFBFL_send_body_2}"
   fi
-  # shellcheck disable=SC2312
-  if git diff --cached --name-only | grep serializer;
+  if grep serializer /tmp/DOSAS_django_git_check1.temp;
   then
     notify-send "${LFBFL_send_summary_2}" "${LFBFL_send_body_3}"
   fi
+  rm /tmp/DOSAS_django_git_check1.temp
   return 0
 }
 
@@ -7170,20 +7481,23 @@ check_no_abusive_trailing_comma(){
   local LFBFL_send_body_1="Il semblerait que vous affectiez un tuple"
   LFBFL_send_body_1+=" au lieu d'une autre valeur dans une variable."
   readonly LFBFL_send_body_1
-  # shellcheck disable=SC2312
-  if git diff --cached -r | grep ' = .*,\s*$';
+  git diff --cached -r\
+    > /tmp/DOSAS_django_git_check2.temp
+  if grep ' = .*,\s*$' /tmp/DOSAS_django_git_check2.temp;
   then
     notify-send "${LFBFL_send_summary_1}" "${LFBFL_send_body_1}"
     return 1
   fi
+  rm /tmp/DOSAS_django_git_check2.temp
   return 0
 }
 
 
 check_black_code_formatting(){
   # attention ça ne marche que sur les fichiers "stagés" avec git add
-  declare -r LFBFL_files_string=$(\
-    git diff --cached --name-only | grep '\.py'\
+  declare -r LFBFL_files_string=$(
+    git diff --cached --name-only\
+    | grep '\.py'
   )
   echo "${LFBFL_files_string}"
   declare -a LFBFL_some_files
@@ -7206,7 +7520,7 @@ check_black_code_formatting(){
 </pre>
 
 
-<h3 id="subsection2.45">2.45
+<h3 id="subsection2.46">2.46
 git_helpers/post-commit
 </h3>
 <pre class="numbered_lines">
@@ -7244,7 +7558,7 @@ git_helpers/post-commit
 
 LFBFL_library="../DevOrSysAdminScripts/git_helpers/"
 LFBFL_library+="post_commit_renaming_comment.libr.sh"
-# shellcheck disable=SC1090
+# shellcheck source=post_commit_renaming_comment.libr.sh
 source "${LFBFL_library}"
 
 commit_a_file_renamed_comment --verbose --log-directory-change
@@ -7252,7 +7566,7 @@ exit 0
 </pre>
 
 
-<h3 id="subsection2.46">2.46
+<h3 id="subsection2.47">2.47
 git_helpers/post_commit_renaming_comment.libr.sh
 </h3>
 <pre class="numbered_lines">
@@ -7294,13 +7608,23 @@ git_helpers/post_commit_renaming_comment.libr.sh
 LFBFL_this_file_path=$(realpath "${BASH_SOURCE[0]}")
 LFBFL_this_file_directory=$(dirname "${LFBFL_this_file_path}")
 LFBFL_some_directory="${LFBFL_this_file_directory}/../"
+declare -i LFBFL_cd_result2
 pushd .
-# shellcheck disable=SC2164
-cd "${LFBFL_some_directory}"
-# shellcheck disable=SC1091
+cd "${LFBFL_some_directory}" || {
+  LFBFL_cd_result2=$?
+  echo "post_commit_renaming_comment.libr.sh no such directory"
+  # shellcheck disable=SC2248
+  exit ${LFBFL_cd_result2}
+}
+# shellcheck source=strings_functions.libr.sh
 source "build_and_checks_dependencies/strings_functions.libr.sh"
-# shellcheck disable=SC2164
-popd
+declare -i LFBFL_popd_result2
+popd || {
+  LFBFL_popd_result2=$?
+  echo "post_commit_renaming_comment.libr.sh no popd"
+  # shellcheck disable=SC2248
+  exit ${LFBFL_popd_result2}
+}
 
 # Never forget that the worse security is the illusion of security
 # (Kevin Mitnick). So, do not expect to have an accurate trackability
@@ -7317,6 +7641,12 @@ commit_a_file_renamed_comment(){
     LFBFL_verbose=1
   fi
   readonly LFBFL_verbose
+
+  if [[ ! -o pipefail ]]; then
+    [[ LFBFL_verbose -eq 1 ]] &amp;&amp; echo "pipefail option activated"
+    set -o pipefail
+    trap 'set +o pipefail' RETURN
+  fi
 
   declare -i LFBFL_log_directory_change=0
   if [[ "$*" == *--log-directory-change* ]]; then
@@ -7336,9 +7666,9 @@ commit_a_file_renamed_comment(){
   fi
   #-------------------------------------------------------------------
 
-  # shellcheck disable=SC2155
   declare -r LFBFL_renaming_lines=$(
-    git log -p -1 | grep '^diff --git' -A 1
+    git log -p -1\
+    | grep '^diff --git' -A 1
   )
   if [[ LFBFL_verbose -eq 1 ]]; then
     echo "LFBFL_renaming_lines: ${LFBFL_renaming_lines}"
@@ -7348,20 +7678,15 @@ commit_a_file_renamed_comment(){
   mapfile -t LFBFL_renaming_lines_array &lt;&lt;&lt; "${LFBFL_renaming_lines}"
   readonly LFBFL_renaming_lines_array
 
-  # shellcheck disable=SC2155
   declare -r LFBFL_timestamp=$(date --iso-8601="minute")
   if [[ LFBFL_verbose -eq 1 ]]; then
     echo "LFBFL_timestamp: ${LFBFL_timestamp}"
   fi
   get_split_score_simple 1 "${LFBFL_max_comment_line_length}" _
-  # shellcheck disable=SC2154
   LFBFL_split_score_command1="${get_split_score_result}"
-  # shellcheck disable=SC2154
   LFBFL_split_score_command_properties1="${get_split_score_result2}"
   get_split_score_simple 1 "${LFBFL_max_comment_line_length}" /
-  # shellcheck disable=SC2154
   LFBFL_split_score_command2="${get_split_score_result}"
-  # shellcheck disable=SC2154
   LFBFL_split_score_command_properties2="${get_split_score_result2}"
   declare -i LFBFL_renaming_happened=0
   declare -i LFBFL_i
@@ -7401,174 +7726,177 @@ commit_a_file_renamed_comment(){
       echo "LFBFL_diff_line: ${LFBFL_diff_line}"
       echo "LFBFL_similarity_line: ${LFBFL_similarity_line}"
     fi
-    if [[ "${LFBFL_similarity_line:17:4}" == "100%" ]]; then
-      # Extract old file name from diff line. ------------------------
-      LFBFL_old_file_path=$(
-        echo "${LFBFL_diff_line}" | cut -d ' ' -f 3
-      )
-      # It starts by "a/".
-      LFBFL_old_file_path=".${LFBFL_old_file_path:1}"
-      LFBFL_old_file_name=$(basename "${LFBFL_old_file_path}")
-      LFBFL_old_file_directory=$(dirname "${LFBFL_old_file_path}")
-      # Extract new file name from diff line. ------------------------
-      LFBFL_new_file_path=$(
-        echo "${LFBFL_diff_line}" | cut -d ' ' -f 4
-      )
-      # It starts by "b/".
-      LFBFL_new_file_path=".${LFBFL_new_file_path:1}"
-      LFBFL_new_file_name=$(basename "${LFBFL_new_file_path}")
-      LFBFL_new_file_directory=$(dirname "${LFBFL_new_file_path}")
-      if [[ LFBFL_verbose -eq 1 ]]; then
-        echo "LFBFL_old_file_path: ${LFBFL_old_file_path}"
-        echo "LFBFL_old_file_name: ${LFBFL_old_file_name}"
-        echo "LFBFL_old_file_directory: ${LFBFL_old_file_directory}"
-        echo "LFBFL_new_file_path: ${LFBFL_new_file_path}"
-        echo "LFBFL_new_file_name: ${LFBFL_new_file_name}"
-        echo "LFBFL_new_file_directory: ${LFBFL_new_file_directory}"
+    if [[ "${LFBFL_similarity_line:17:4}" != "100%" ]]; then
+      continue
+    fi
+
+    # Extract old file name from diff line. --------------------------
+    LFBFL_old_file_path=$(
+      echo "${LFBFL_diff_line}"\
+      | cut -d ' ' -f 3
+    )
+    # It starts by "a/".
+    LFBFL_old_file_path=".${LFBFL_old_file_path:1}"
+    LFBFL_old_file_name=$(basename "${LFBFL_old_file_path}")
+    LFBFL_old_file_directory=$(dirname "${LFBFL_old_file_path}")
+    # Extract new file name from diff line. --------------------------
+    LFBFL_new_file_path=$(
+      echo "${LFBFL_diff_line}"\
+      | cut -d ' ' -f 4
+    )
+    # It starts by "b/".
+    LFBFL_new_file_path=".${LFBFL_new_file_path:1}"
+    LFBFL_new_file_name=$(basename "${LFBFL_new_file_path}")
+    LFBFL_new_file_directory=$(dirname "${LFBFL_new_file_path}")
+    if [[ LFBFL_verbose -eq 1 ]]; then
+      echo "LFBFL_old_file_path: ${LFBFL_old_file_path}"
+      echo "LFBFL_old_file_name: ${LFBFL_old_file_name}"
+      echo "LFBFL_old_file_directory: ${LFBFL_old_file_directory}"
+      echo "LFBFL_new_file_path: ${LFBFL_new_file_path}"
+      echo "LFBFL_new_file_name: ${LFBFL_new_file_name}"
+      echo "LFBFL_new_file_directory: ${LFBFL_new_file_directory}"
+    fi
+    # Extract "LFBFL_extension" with smart guessing for .tpl ---------
+    # and set prefix for line with ©Copyright. -----------------------
+    LFBFL_useful_file_name="${LFBFL_new_file_name}"
+    LFBFL_extension="${LFBFL_useful_file_name##*.}"
+    if [[ LFBFL_verbose -eq 1 ]]; then
+      echo "LFBFL_useful_file_name: ${LFBFL_useful_file_name}"
+      echo "LFBFL_extension: ${LFBFL_extension}"
+    fi
+    for ((LFBFL_j=0; LFBFL_j&lt;3; ++LFBFL_j)); do
+      if [[ "${LFBFL_extension}" != "tpl" ]]; then
+        break
       fi
-      # Extract "LFBFL_extension" with smart guessing for .tpl -------
-      # and set prefix for line with ©Copyright. ---------------------
-      LFBFL_useful_file_name="${LFBFL_new_file_name}"
+      LFBFL_useful_file_name="${LFBFL_useful_file_name:0:-4}"
       LFBFL_extension="${LFBFL_useful_file_name##*.}"
       if [[ LFBFL_verbose -eq 1 ]]; then
         echo "LFBFL_useful_file_name: ${LFBFL_useful_file_name}"
         echo "LFBFL_extension: ${LFBFL_extension}"
       fi
-      for ((LFBFL_j=0; LFBFL_j&lt;3; ++LFBFL_j)); do
-        if [[ "${LFBFL_extension}" != "tpl" ]]; then
-          break
-        fi
-        LFBFL_useful_file_name="${LFBFL_useful_file_name:0:-4}"
-        LFBFL_extension="${LFBFL_useful_file_name##*.}"
-        if [[ LFBFL_verbose -eq 1 ]]; then
-          echo "LFBFL_useful_file_name: ${LFBFL_useful_file_name}"
-          echo "LFBFL_extension: ${LFBFL_extension}"
-        fi
-      done
-      LFBFL_comment_prefix=""
-      if [[ "${LFBFL_extension}" == "sh" ]]; then
-        LFBFL_comment_prefix="# "
-      fi
-      if [[ "${LFBFL_extension}" == "sql" ]]; then
-        LFBFL_comment_prefix="-- "
-      fi
-      if [[ "${LFBFL_extension}" == "tex" ]]; then
-        LFBFL_comment_prefix="% "
-      fi
-      if [[ "${LFBFL_useful_file_name}" == "${LFBFL_sfn}" ]]; then
-        LFBFL_comment_prefix="// "
-      fi
-      if [[ LFBFL_verbose -eq 1 ]]; then
-        echo "LFBFL_comment_prefix: ${LFBFL_comment_prefix}"
-      fi
-      #---------------------------------------------------------------
-      # Split if necessary old_file_name, new_file_name, etc. to have
-      # comment lines below max_comment_line_length.
-      LFBFL_comment_prefix2="${LFBFL_comment_prefix}"'"'
-      # -----
-      LFBFL_old_file_name2="${LFBFL_comment_prefix2}"
-      LFBFL_old_file_name2+="${LFBFL_old_file_name}"
-      repeated_split_last_line "${LFBFL_old_file_name2}"\
-        "${LFBFL_comment_prefix2}" "${LFBFL_max_comment_line_length}"\
-        '"' "${LFBFL_split_score_command1}"\
-        "${LFBFL_split_score_command_properties1}"
-      # shellcheck disable=SC2154
-      LFBFL_old_file_name2="${repeated_split_last_line_result}"
-      # -----
-      LFBFL_old_file_directory2="${LFBFL_comment_prefix2}"
-      LFBFL_old_file_directory2+="${LFBFL_old_file_directory}"
-      repeated_split_last_line "${LFBFL_old_file_directory2}"\
-        "${LFBFL_comment_prefix2}" "${LFBFL_max_comment_line_length}"\
-        '"' "${LFBFL_split_score_command2}"\
-        "${LFBFL_split_score_command_properties2}"
-      # shellcheck disable=SC2154
-      LFBFL_old_file_directory2="${repeated_split_last_line_result}"
-      # -----
-      LFBFL_new_file_name2="${LFBFL_comment_prefix2}"
-      LFBFL_new_file_name2+="${LFBFL_new_file_name}"
-      repeated_split_last_line "${LFBFL_new_file_name2}"\
-        "${LFBFL_comment_prefix2}" "${LFBFL_max_comment_line_length}"\
-        '"' "${LFBFL_split_score_command1}"\
-        "${LFBFL_split_score_command_properties1}"
-      # shellcheck disable=SC2154
-      LFBFL_new_file_name2="${repeated_split_last_line_result}"
-      # -----
-      LFBFL_new_file_directory2="${LFBFL_comment_prefix2}"
-      LFBFL_new_file_directory2+="${LFBFL_new_file_directory}"
-      repeated_split_last_line "${LFBFL_new_file_directory2}"\
-        "${LFBFL_comment_prefix2}" "${LFBFL_max_comment_line_length}"\
-        '"' "${LFBFL_split_score_command2}"\
-        "${LFBFL_split_score_command_properties2}"
-      # shellcheck disable=SC2154
-      LFBFL_new_file_directory2="${repeated_split_last_line_result}"
-      # Create new comments strings. ---------------------------------
-      LFBFL_new_comment=""
-      if [[ "${LFBFL_new_file_name2}" != "${LFBFL_old_file_name2}" ]];
-      then
-        LFBFL_new_comment="${LFBFL_comment_prefix}"
-        LFBFL_new_comment+="${LFBFL_timestamp}"
-        LFBFL_new_comment+=": This file was renamed from\n"
-        LFBFL_new_comment+="${LFBFL_old_file_name2}"'"\n'
-        LFBFL_new_comment+="${LFBFL_comment_prefix}to\n"
-        LFBFL_new_comment+="${LFBFL_new_file_name2}"'".'
-      fi
-      if [[ LFBFL_log_directory_change -eq 1 ]] &amp;&amp; [[\
-        "${LFBFL_new_file_directory}"\
-        != "${LFBFL_old_file_directory}"\
-      ]]; then
-        LFBFL_new_comment+="\n${LFBFL_comment_prefix}"
-        LFBFL_new_comment+="${LFBFL_timestamp}"
-        LFBFL_new_comment+=": This file was moved from\n"
-        LFBFL_new_comment+="${LFBFL_old_file_directory2}"'"\n'
-        LFBFL_new_comment+="${LFBFL_comment_prefix}to\n"
-        LFBFL_new_comment+="${LFBFL_new_file_directory2}"'".'
-      fi
-      if [[ LFBFL_verbose -eq 1 ]]; then
-        echo "LFBFL_new_comment: ${LFBFL_new_comment}"
-      fi
-      # Find line with ©Copyright. -----------------------------------
-      # shellcheck disable=SC2312
-      LFBFL_copyright_line_number=$(
-        grep -n '©Copyright' "${LFBFL_new_file_path}"\
-        | head --lines=1\
-        | cut -d ':' -f 1
-      )
-      if [[ LFBFL_verbose -eq 1 ]]; then
-        echo "LFBFL_copyright_line_number:"\
-             " ${LFBFL_copyright_line_number}"
-      fi
-      if [[ LFBFL_copyright_line_number -eq 0 ]]; then
-        notify-send "${LFBFL_send_summary_2}"\
-          "${LFBFL_send_summary_2} for: ${LFBFL_new_comment}"
-        if [[ LFBFL_verbose -eq 1 ]]; then
-          echo "No copyright line. Skipping file."
-        fi
-        continue
-      fi
-      # Get total number of lines. -----------------------------------
-      LFBFL_line_count=$(wc -l &lt; "${LFBFL_new_file_path}")
-      if [[ LFBFL_verbose -eq 1 ]]; then
-        echo "LFBFL_line_count: ${LFBFL_line_count}"
-      fi
-      # Compute number of lines after. -------------------------------
-      LFBFL_lines_after=$((
-        LFBFL_line_count - LFBFL_copyright_line_number
-      ))
-      if [[ LFBFL_verbose -eq 1 ]]; then
-        echo "LFBFL_lines_after: ${LFBFL_lines_after}"
-      fi
-      # Update file. -------------------------------------------------
-      LFBFL_temp_file_path="${LFBFL_new_file_path}.LFBFL.temp"
-      head --lines="${LFBFL_copyright_line_number}"\
-        "${LFBFL_new_file_path}" > "${LFBFL_temp_file_path}"
-      echo -e "${LFBFL_new_comment}" >> "${LFBFL_temp_file_path}"
-      tail --lines="${LFBFL_lines_after}"\
-        "${LFBFL_new_file_path}" >> "${LFBFL_temp_file_path}"
-      mv "${LFBFL_temp_file_path}" "${LFBFL_new_file_path}"
-      # Add file to stage. -------------------------------------------
-      git add "${LFBFL_new_file_path}"
-      LFBFL_renaming_happened=1
+    done
+    LFBFL_comment_prefix=""
+    if [[ "${LFBFL_extension}" == "sh" ]]; then
+      LFBFL_comment_prefix="# "
     fi
+    if [[ "${LFBFL_extension}" == "sql" ]]; then
+      LFBFL_comment_prefix="-- "
+    fi
+    if [[ "${LFBFL_extension}" == "tex" ]]; then
+      LFBFL_comment_prefix="% "
+    fi
+    if [[ "${LFBFL_useful_file_name}" == "${LFBFL_sfn}" ]]; then
+      LFBFL_comment_prefix="// "
+    fi
+    if [[ LFBFL_verbose -eq 1 ]]; then
+      echo "LFBFL_comment_prefix: ${LFBFL_comment_prefix}"
+    fi
+    #-----------------------------------------------------------------
+    # Split if necessary old_file_name, new_file_name, etc. to have
+    # comment lines below max_comment_line_length.
+    LFBFL_comment_prefix2="${LFBFL_comment_prefix}"'"'
+    # -----
+    LFBFL_old_file_name2="${LFBFL_comment_prefix2}"
+    LFBFL_old_file_name2+="${LFBFL_old_file_name}"
+    repeated_split_last_line "${LFBFL_old_file_name2}"\
+      "${LFBFL_comment_prefix2}" "${LFBFL_max_comment_line_length}"\
+      '"' "${LFBFL_split_score_command1}"\
+      "${LFBFL_split_score_command_properties1}"
+    LFBFL_old_file_name2="${repeated_split_last_line_result}"
+    # -----
+    LFBFL_old_file_directory2="${LFBFL_comment_prefix2}"
+    LFBFL_old_file_directory2+="${LFBFL_old_file_directory}"
+    repeated_split_last_line "${LFBFL_old_file_directory2}"\
+      "${LFBFL_comment_prefix2}" "${LFBFL_max_comment_line_length}"\
+      '"' "${LFBFL_split_score_command2}"\
+      "${LFBFL_split_score_command_properties2}"
+    LFBFL_old_file_directory2="${repeated_split_last_line_result}"
+    # -----
+    LFBFL_new_file_name2="${LFBFL_comment_prefix2}"
+    LFBFL_new_file_name2+="${LFBFL_new_file_name}"
+    repeated_split_last_line "${LFBFL_new_file_name2}"\
+      "${LFBFL_comment_prefix2}" "${LFBFL_max_comment_line_length}"\
+      '"' "${LFBFL_split_score_command1}"\
+      "${LFBFL_split_score_command_properties1}"
+    LFBFL_new_file_name2="${repeated_split_last_line_result}"
+    # -----
+    LFBFL_new_file_directory2="${LFBFL_comment_prefix2}"
+    LFBFL_new_file_directory2+="${LFBFL_new_file_directory}"
+    repeated_split_last_line "${LFBFL_new_file_directory2}"\
+      "${LFBFL_comment_prefix2}" "${LFBFL_max_comment_line_length}"\
+      '"' "${LFBFL_split_score_command2}"\
+      "${LFBFL_split_score_command_properties2}"
+    LFBFL_new_file_directory2="${repeated_split_last_line_result}"
+    # Create new comments strings. -----------------------------------
+    LFBFL_new_comment=""
+    if [[ "${LFBFL_new_file_name2}" != "${LFBFL_old_file_name2}" ]];
+    then
+      LFBFL_new_comment="${LFBFL_comment_prefix}"
+      LFBFL_new_comment+="${LFBFL_timestamp}"
+      LFBFL_new_comment+=": This file was renamed from\n"
+      LFBFL_new_comment+="${LFBFL_old_file_name2}"'"\n'
+      LFBFL_new_comment+="${LFBFL_comment_prefix}to\n"
+      LFBFL_new_comment+="${LFBFL_new_file_name2}"'".'
+    fi
+    if [[ LFBFL_log_directory_change -eq 1 ]] &amp;&amp; [[\
+      "${LFBFL_new_file_directory}"\
+      != "${LFBFL_old_file_directory}"\
+    ]]; then
+      LFBFL_new_comment+="\n${LFBFL_comment_prefix}"
+      LFBFL_new_comment+="${LFBFL_timestamp}"
+      LFBFL_new_comment+=": This file was moved from\n"
+      LFBFL_new_comment+="${LFBFL_old_file_directory2}"'"\n'
+      LFBFL_new_comment+="${LFBFL_comment_prefix}to\n"
+      LFBFL_new_comment+="${LFBFL_new_file_directory2}"'".'
+    fi
+    if [[ LFBFL_verbose -eq 1 ]]; then
+      echo "LFBFL_new_comment: ${LFBFL_new_comment}"
+    fi
+    # Find line with ©Copyright. -------------------------------------
+    LFBFL_copyright_line_number=$(
+      grep -n '©Copyright' "${LFBFL_new_file_path}"\
+      | head --lines=1\
+      | cut -d ':' -f 1
+    )
+    if [[ LFBFL_verbose -eq 1 ]]; then
+      echo "LFBFL_copyright_line_number:"\
+           " ${LFBFL_copyright_line_number}"
+    fi
+    if [[ LFBFL_copyright_line_number -eq 0 ]]; then
+      notify-send "${LFBFL_send_summary_2}"\
+        "${LFBFL_send_summary_2} for: ${LFBFL_new_comment}"
+      if [[ LFBFL_verbose -eq 1 ]]; then
+        echo "No copyright line. Skipping file."
+      fi
+      continue
+    fi
+    # Get total number of lines. -------------------------------------
+    LFBFL_line_count=$(
+      wc -l\
+      &lt; "${LFBFL_new_file_path}"
+    )
+    if [[ LFBFL_verbose -eq 1 ]]; then
+      echo "LFBFL_line_count: ${LFBFL_line_count}"
+    fi
+    # Compute number of lines after. ---------------------------------
+    LFBFL_lines_after=$((
+      LFBFL_line_count - LFBFL_copyright_line_number
+    ))
+    if [[ LFBFL_verbose -eq 1 ]]; then
+      echo "LFBFL_lines_after: ${LFBFL_lines_after}"
+    fi
+    # Update file. ---------------------------------------------------
+    LFBFL_temp_file_path="${LFBFL_new_file_path}.LFBFL.temp"
+    {
+      head --lines="${LFBFL_copyright_line_number}"\
+        "${LFBFL_new_file_path}"
+      echo -e "${LFBFL_new_comment}"
+      tail --lines="${LFBFL_lines_after}" "${LFBFL_new_file_path}"
+    } >> "${LFBFL_temp_file_path}"
+    mv "${LFBFL_temp_file_path}" "${LFBFL_new_file_path}"
+    # Add file to stage. ---------------------------------------------
+    git add "${LFBFL_new_file_path}"
+    LFBFL_renaming_happened=1
   done
   readonly LFBFL_renaming_happened
   if [[ LFBFL_renaming_happened -eq 1 ]]; then
@@ -7582,7 +7910,7 @@ commit_a_file_renamed_comment(){
 </pre>
 
 
-<h3 id="subsection2.47">2.47
+<h3 id="subsection2.48">2.48
 git_helpers/pre-commit
 </h3>
 <pre class="numbered_lines">
@@ -7620,7 +7948,7 @@ git_helpers/pre-commit
 
 LFBFL_library="../DevOrSysAdminScripts/git_helpers/"
 LFBFL_library+="git_checks.libr.sh"
-# shellcheck disable=SC1090
+# shellcheck source=git_checks.libr.sh
 source "${LFBFL_library}"
 
 declare -ig LFBFL_git_hook_error=0
@@ -7641,7 +7969,7 @@ exit 0
 </pre>
 
 
-<h3 id="subsection2.48">2.48
+<h3 id="subsection2.49">2.49
 LiensUtiles.txt
 </h3>
 <pre class="numbered_lines">
@@ -7663,7 +7991,7 @@ calling-gpld-programs-from-a-shell-script
 </pre>
 
 
-<h3 id="subsection2.49">2.49
+<h3 id="subsection2.50">2.50
 README.md.tpl
 </h3>
 <pre class="numbered_lines">
@@ -7768,7 +8096,7 @@ badge/v2.json
 </pre>
 
 
-<h3 id="subsection2.50">2.50
+<h3 id="subsection2.51">2.51
 unicode.libr.php
 </h3>
 <pre class="numbered_lines">
@@ -8083,7 +8411,7 @@ foreach($arr as $s_hexa){
 </pre>
 
 
-<h3 id="subsection2.51">2.51
+<h3 id="subsection2.52">2.52
 upgrade_build_and_checks.exec.sh
 </h3>
 <pre class="numbered_lines">
@@ -8136,7 +8464,7 @@ upgrade_build_and_checks "$@"
 </pre>
 
 
-<h3 id="subsection2.52">2.52
+<h3 id="subsection2.53">2.53
 wget_sha512.libr.sh
 </h3>
 <pre class="numbered_lines">
@@ -8172,7 +8500,7 @@ wget_sha512(){
   # $3 correct_sha512
   # $4 optional --verbose
   local LFBFL_verbose=""
-  if [[ "$4" == "--verbose" ]]; then
+  if [[ "$*" == *--verbose* ]]; then
     echo "$0 wget_sha512 $*"
     LFBFL_verbose="--verbose"
   fi
@@ -8181,9 +8509,10 @@ wget_sha512(){
   then
     wget "${LFBFL_verbose}" -O "$1" "$2"
   fi
-  # shellcheck disable=SC2312
-  declare -r \
-    LFBFL_present_sha512=$(sha512sum "$1" | cut -f1 -d' ')
+  declare -r LFBFL_present_sha512=$(
+    sha512sum "$1"\
+    | cut -f1 -d' '
+  )
   if [[ "${LFBFL_present_sha512}" != "$3" ]];
   then
     echo "$1 does not have correct sha512"

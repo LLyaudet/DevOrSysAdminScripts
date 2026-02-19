@@ -487,6 +487,18 @@ build_and_checks_variables/ruff.toml
 
 
 \subsection{
+  build\_and\_checks\_variables/shellcheck.ini
+}
+\label{
+  build_and_checks_variables:shellcheckini
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+build_and_checks_variables/shellcheck.ini
+}
+
+
+\subsection{
   build\_and\_checks\_variables/shellcheck\_notes.txt
 }
 \label{

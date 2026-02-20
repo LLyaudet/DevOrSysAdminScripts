@@ -86,8 +86,19 @@ build_md_from_printable_md(){
     echo "No file ${LFBFL_base_name}.md.tpl"
   fi
 
-  pandoc -f markdown "${LFBFL_base_name}.md"\
-    > "${LFBFL_base_name}.html.temp"
+  pandoc --from markdown --to html --standalone\
+    --shift-heading-level-by=-1 "${LFBFL_base_name}.md"\
+    -o "${LFBFL_base_name}.html.temp"
+  # Correcting pandoc HTML "by hand".
+  # https://github.com/jgm/pandoc/issues/10957
+  # With the most open-minded answer found on Internet ;) XD.
+  # This second sed expression is what I need,
+  # but it may be unsuitable for you.
+  sed -i -E -e 's~(  <meta .*) />~\1>~g'\
+            -e 's~<html .*>~<html lang="en">~'\
+    "${LFBFL_base_name}.html.temp"
+  sed -i -Ez 's~(<img(\n|[^a-z0-9])(\n|[^>])*) />~\1>~Mg'\
+    "${LFBFL_base_name}.html.temp"
   overwrite_if_not_equal "${LFBFL_base_name}.html"\
     "${LFBFL_base_name}.html.temp"
 
@@ -98,6 +109,8 @@ build_md_from_printable_md(){
     # shellcheck disable=SC2248
     return ${LFBFL_popd_result}
   }
+  # java -Xss128M -jar "../jar_venv/vnu.jar" --exit-zero-always\
+  #   --verbose ${LFBFL_base_name}.html"
 }
 
 build_md_from_printable_md "$@"

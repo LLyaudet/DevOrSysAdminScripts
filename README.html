@@ -1,32 +1,205 @@
-<h1 id="devorsysadminscripts">DevOrSysAdminScripts</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="generator" content="pandoc">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>DevOrSysAdminScripts</title>
+  <style>
+    html {
+      color: #1a1a1a;
+      background-color: #fdfdfd;
+    }
+    body {
+      margin: 0 auto;
+      max-width: 36em;
+      padding-left: 50px;
+      padding-right: 50px;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      hyphens: auto;
+      overflow-wrap: break-word;
+      text-rendering: optimizeLegibility;
+      font-kerning: normal;
+    }
+    @media (max-width: 600px) {
+      body {
+        font-size: 0.9em;
+        padding: 12px;
+      }
+      h1 {
+        font-size: 1.8em;
+      }
+    }
+    @media print {
+      html {
+        background-color: white;
+      }
+      body {
+        background-color: transparent;
+        color: black;
+        font-size: 12pt;
+      }
+      p, h2, h3 {
+        orphans: 3;
+        widows: 3;
+      }
+      h2, h3, h4 {
+        page-break-after: avoid;
+      }
+    }
+    p {
+      margin: 1em 0;
+    }
+    a {
+      color: #1a1a1a;
+    }
+    a:visited {
+      color: #1a1a1a;
+    }
+    img {
+      max-width: 100%;
+    }
+    svg {
+      height: auto;
+      max-width: 100%;
+    }
+    h1, h2, h3, h4, h5, h6 {
+      margin-top: 1.4em;
+    }
+    h5, h6 {
+      font-size: 1em;
+      font-style: italic;
+    }
+    h6 {
+      font-weight: normal;
+    }
+    ol, ul {
+      padding-left: 1.7em;
+      margin-top: 1em;
+    }
+    li > ol, li > ul {
+      margin-top: 0;
+    }
+    blockquote {
+      margin: 1em 0 1em 1.7em;
+      padding-left: 1em;
+      border-left: 2px solid #e6e6e6;
+      color: #606060;
+    }
+    code {
+      font-family: Menlo, Monaco, Consolas, 'Lucida Console', monospace;
+      font-size: 85%;
+      margin: 0;
+      hyphens: manual;
+    }
+    pre {
+      margin: 1em 0;
+      overflow: auto;
+    }
+    pre code {
+      padding: 0;
+      overflow: visible;
+      overflow-wrap: normal;
+    }
+    .sourceCode {
+     background-color: transparent;
+     overflow: visible;
+    }
+    hr {
+      background-color: #1a1a1a;
+      border: none;
+      height: 1px;
+      margin: 1em 0;
+    }
+    table {
+      margin: 1em 0;
+      border-collapse: collapse;
+      width: 100%;
+      overflow-x: auto;
+      display: block;
+      font-variant-numeric: lining-nums tabular-nums;
+    }
+    table caption {
+      margin-bottom: 0.75em;
+    }
+    tbody {
+      margin-top: 0.5em;
+      border-top: 1px solid #1a1a1a;
+      border-bottom: 1px solid #1a1a1a;
+    }
+    th {
+      border-top: 1px solid #1a1a1a;
+      padding: 0.25em 0.5em 0.25em 0.5em;
+    }
+    td {
+      padding: 0.125em 0.5em 0.25em 0.5em;
+    }
+    header {
+      margin-bottom: 4em;
+      text-align: center;
+    }
+    #TOC li {
+      list-style: none;
+    }
+    #TOC ul {
+      padding-left: 1.3em;
+    }
+    #TOC > ul {
+      padding-left: 0;
+    }
+    #TOC a:not(:hover) {
+      text-decoration: none;
+    }
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    /* The extra [class] is a hack that increases specificity enough to
+       override a similar rule in reveal.js */
+    ul.task-list[class]{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      font-size: inherit;
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+    .display.math{display: block; text-align: center; margin: 0.5rem auto;}
+  </style>
+</head>
+<body>
+<header id="title-block-header">
+<h1 class="title">DevOrSysAdminScripts</h1>
+</header>
 <p><a
 href="https://www.codefactor.io/repository/github/llyaudet/DevOrSysAdminScripts"><img
 src="https://www.codefactor.io/repository/github/llyaudet/DevOrSysAdminScripts/badge"
-alt="CodeFactor-badge" /></a> <a
+alt="CodeFactor-badge"></a> <a
 href="https://app.codacy.com/gh/LLyaudet/DevOrSysAdminScripts/dashboard?utm_source=gh&amp;utm_medium=referral&amp;utm_content=&amp;utm_campaign=Badge_grade"><img
 src="https://app.codacy.com/project/badge/Grade/3dd6ef85e8db4460991d1ebc404b68dd"
-alt="Codacy-badge" /></a> <img
+alt="Codacy-badge"></a> <img
 src="https://img.shields.io/github/languages/top/llyaudet/DevOrSysAdminScripts"
-alt="GitHub-top-language-badge" /> <img
+alt="GitHub-top-language-badge"> <img
 src="https://img.shields.io/github/languages/code-size/llyaudet/DevOrSysAdminScripts"
-alt="GitHub-code-size-in-bytes-badge" /> <a
+alt="GitHub-code-size-in-bytes-badge"> <a
 href="https://github.com/PyCQA/bandit"><img
 src="https://img.shields.io/badge/security-bandit-yellow.svg"
-alt="Security:bandit:badge" /></a> <a
+alt="Security:bandit:badge"></a> <a
 href="https://github.com/psf/black"><img
 src="https://img.shields.io/badge/code%20style-black-000000.svg"
-alt="Code-style:black:badge" /></a> <a
+alt="Code-style:black:badge"></a> <a
 href="https://pycqa.github.io/isort/"><img
 src="https://img.shields.io/badge/%20imports-isort-%231674b1?style=flat&amp;labelColor=ef8336"
-alt="Imports:isort:badge" /></a> <a href="https://mypy-lang.org/"><img
+alt="Imports:isort:badge"></a> <a href="https://mypy-lang.org/"><img
 src="https://www.mypy-lang.org/static/mypy_badge.svg"
-alt="Typecheck:mypy:badge" /></a> <a
+alt="Typecheck:mypy:badge"></a> <a
 href="https://github.com/pylint-dev/pylint"><img
 src="https://img.shields.io/badge/linting-pylint-yellowgreen"
-alt="Linting:pylint:badge" /></a> <a
+alt="Linting:pylint:badge"></a> <a
 href="https://github.com/astral-sh/ruff"><img
 src="https://img.shields.io/endpoint?url=https://raw.githubusercontent.com/astral-sh/ruff/main/assets/badge/v2.json"
-alt="Linting:ruff:badge" /></a></p>
+alt="Linting:ruff:badge"></a></p>
 <table>
 <thead>
 <tr class="header">
@@ -71,3 +244,5 @@ file.</li>
 <p>But the files “pre-commit” and “post-commit” were not renamed, since
 it is not possible to give them other names to use them as
 pre-commit/post-commit hooks in <code>git</code>.</p>
+</body>
+</html>

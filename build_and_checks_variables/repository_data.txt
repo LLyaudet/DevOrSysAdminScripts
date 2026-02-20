@@ -108,3 +108,14 @@ less than one day.
 If it is watyouwant?, see SRANDOM XD.
 
 upgrade_venvs_time_interval_in_seconds=wat
+
+
+For the Nu HTML, CSS, and SVG checker.
+
+vnu_jar_path=../jar_venv/vnu.jar
+
+Not fully implemented yet, it will only warn that vnu jar was not
+updated since some time.
+"wat" works, but "watyouwant?" joke was not repeated ;).
+
+upgrade_vnu_jar_time_interval_in_seconds=604800

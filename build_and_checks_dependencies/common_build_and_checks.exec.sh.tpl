@@ -528,10 +528,6 @@ $(stat -c %Y "${LFBFL_upgrade_venvs_ts_file}")
   fi
   echo "---JS end---"
 
-  if [[ LFBFL_upgrade_venvs -eq 1 ]]; then
-    touch "${LFBFL_upgrade_venvs_ts_file}"
-  fi
-
   echo "Analyzing too long lines"
   too_long_code_lines "$@"
 
@@ -557,6 +553,47 @@ $(stat -c %Y "${LFBFL_upgrade_venvs_ts_file}")
 
   if [[ -f "build_and_checks_variables/post_build.sh" ]]; then
     ./build_and_checks_variables/post_build.sh
+  fi
+
+  # ------------------------------------------------------------------
+  # It is at the end that all the HTML files are generated and that
+  # we can check there are no mistakes.
+  echo "Running Nu W3C HTML CSS and SVG validator"
+  upgrade_vnu_jar_time_interval_in_seconds=""
+  grep_variable "${LFBFL_data_file_name}"\
+     upgrade_vnu_jar_time_interval_in_seconds
+  if [[ "${upgrade_vnu_jar_time_interval_in_seconds}" == "wat" ]];
+  then
+    upgrade_vnu_jar_time_interval_in_seconds=${RANDOM}
+  fi
+
+  declare -i LFBFL_vnu_jar_ts
+  vnu_jar_path=""
+  grep_variable "${LFBFL_data_file_name}" vnu_jar_path
+  if [[ -f "${vnu_jar_path}" ]]; then
+    LFBFL_vnu_jar_ts=$(stat -c %Y "${vnu_jar_path}")
+    LFBFL_current_ts=$(date +%s)
+    ((LFBFL_current_ts-=LFBFL_vnu_jar_ts))
+    ((LFBFL_current_ts-=upgrade_vnu_jar_time_interval_in_seconds))
+    if [[ LFBFL_current_ts -gt 0 ]]; then
+      echo $'/!\\ATTENTION: Nu W3C validator is too old./!\\'
+      echo "Go get the latest version here:"
+      echo "https://github.com/validator/validator/releases"
+    fi
+    declare -r LFBFL_files_for_Nu=$(
+      find . -iregex ".*\.\(css\|html\|svg\|xhtml\)"\
+      | relevant_find
+    )
+    declare -a LFBFL_files_for_Nu2
+    mapfile -t LFBFL_files_for_Nu2 <<< "${LFBFL_files_for_Nu}"
+    readonly LFBFL_files_for_Nu2
+    java -Xss128M -jar "${vnu_jar_path}" --exit-zero-always --verbose\
+      "${LFBFL_files_for_Nu2[@]}"
+  fi
+  # ------------------------------------------------------------------
+
+  if [[ LFBFL_upgrade_venvs -eq 1 ]]; then
+    touch "${LFBFL_upgrade_venvs_ts_file}"
   fi
 
   declare -i LFBFL_popd_result

@@ -37,6 +37,7 @@ check_collections_abc_place(){
     trap 'set +o pipefail' RETURN
   fi
   declare -r LFBFL_temp=".check_collections_abc_place.temp"
+  local LFBFL_file_name
   find . -name "*.py"\
     | relevant_find\
     | while read -r LFBFL_file_name;

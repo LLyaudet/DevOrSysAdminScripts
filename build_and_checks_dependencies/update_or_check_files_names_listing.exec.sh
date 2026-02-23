@@ -45,6 +45,18 @@ update_or_check_files_names_listing(){
   fi
   readonly LFBFL_verbose
 
+  declare -i LFBFL_write=0
+  if [[ "$*" == *--write* ]]; then
+    LFBFL_write=1
+  fi
+  readonly LFBFL_write
+
+  declare -i LFBFL_append=0
+  if [[ "$*" == *--append* ]]; then
+    LFBFL_append=1
+  fi
+  readonly LFBFL_append
+
   if [[ ! -o pipefail ]]; then
     [[ LFBFL_verbose -eq 1 ]] && echo "pipefail option activated"
     set -o pipefail
@@ -52,73 +64,81 @@ update_or_check_files_names_listing(){
   fi
 
   LFBFL_subdir2="build_and_checks_variables"
-  files_names_listing="./${LFBFL_subdir2}/files_names_listing.txt"
+  local LFBFL_listing="./${LFBFL_subdir2}/files_names_listing.txt"
+  readonly LFBFL_listing
 
-  if [[ "$*" == *--write* ]]; then
-    : > "${files_names_listing}"
+  if [[ LFBFL_write -eq 1 ]]; then
+    : > "${LFBFL_listing}"
   fi
   # Remove line returns here to keep lines short.
-  sed -Ez 's/\\\n//Mg' "${files_names_listing}"\
-    > "${files_names_listing}.temp"
+  sed -Ez 's/\\\n//Mg' "${LFBFL_listing}"\
+    > "${LFBFL_listing}.temp"
   shopt -s dotglob
   get_split_score_simple 1 70 /
-  split_score_command="${get_split_score_result}"
-  split_score_command_properties="${get_split_score_result2}"
-  suffix=\\\\ # instead of '\\' to avoid shellcheck SC1003
+  declare -r LFBFL_split_score_command="${get_split_score_result}"
+  local LFBFL_split_score_command_properties
+  LFBFL_split_score_command_properties="${get_split_score_result2}"
+  readonly LFBFL_split_score_command_properties
+  local LFBFL_suffix=\\\\ # instead of '\\' to avoid shellcheck SC1003
+  readonly LFBFL_suffix
+  local LFBFL_file_name
+  local LFBFL_base_file_name
+  local LFBFL_split_file_name
   find . -type f -printf '%P\n'\
     | relevant_find\
     | sort\
-    | while read -r file_name;
+    | while read -r LFBFL_file_name;
   do
-    git check-ignore -q "${file_name}" && continue
-    base_file_name=$(basename "${file_name}")
-    [[ "${base_file_name}" != files_names_listing.txt* ]]\
+    git check-ignore -q "${LFBFL_file_name}" && continue
+    LFBFL_base_file_name=$(basename "${LFBFL_file_name}")
+    [[ "${LFBFL_base_file_name}" != files_names_listing.txt* ]]\
       || continue
-    if [[ "${base_file_name}" == *.md ]]; then
-      if [[ -f "${file_name}.tpl" ]]; then
+    if [[ "${LFBFL_base_file_name}" == *.md ]]; then
+      if [[ -f "${LFBFL_file_name}.tpl" ]]; then
         continue
       fi
     fi
-    repeated_split_last_line "${file_name}" "" 70 "${suffix}"\
-      "${split_score_command}" "${split_score_command_properties}"
-    split_file_name="${repeated_split_last_line_result}"
-    if [[ "$1" == "--write" ]]; then
+    repeated_split_last_line "${LFBFL_file_name}" "" 70\
+      "${LFBFL_suffix}" "${LFBFL_split_score_command}"\
+      "${LFBFL_split_score_command_properties}"
+    LFBFL_split_file_name="${repeated_split_last_line_result}"
+    if [[ LFBFL_write -eq 1 ]]; then
       # shellcheck disable=SC2001
-      echo "${file_name}"\
-        | sed -e "s|${file_name}|${split_file_name}|g"\
-        >> "${files_names_listing}"
+      echo "${LFBFL_file_name}"\
+        | sed -e "s|${LFBFL_file_name}|${LFBFL_split_file_name}|g"\
+        >> "${LFBFL_listing}"
       continue
     fi
-    if grep -q "${file_name}\$" "${files_names_listing}.temp"; then
+    if grep -q "${LFBFL_file_name}\$" "${LFBFL_listing}.temp"; then
       :
     else
       echo\
-      "The file ${file_name} is not listed in ${files_names_listing}."
-      if [[ "$1" == "--append" ]]; then
+      "The file ${LFBFL_file_name} is not listed in ${LFBFL_listing}."
+      if [[ LFBFL_append -eq 1 ]]; then
         # shellcheck disable=SC2001
-        echo "${file_name}"\
-          | sed -e "s|${file_name}|${split_file_name}|g"\
-          >> "${files_names_listing}"
+        echo "${LFBFL_file_name}"\
+          | sed -e "s|${LFBFL_file_name}|${LFBFL_split_file_name}|g"\
+          >> "${LFBFL_listing}"
       fi
     fi
   done
 
-  while read -r file_name;
+  while read -r LFBFL_file_name;
   do
-    [[ "${file_name}" != '//'* ]] || continue
-    base_file_name=$(basename "${file_name}")
-    if ! [[ -f "${file_name}" ]]; then
+    [[ "${LFBFL_file_name}" != '//'* ]] || continue
+    LFBFL_base_file_name=$(basename "${LFBFL_file_name}")
+    if ! [[ -f "${LFBFL_file_name}" ]]; then
       echo\
-      "The non-file ${file_name} is listed in ${files_names_listing}."
+      "The non-file ${LFBFL_file_name} is listed in ${LFBFL_listing}."
     fi
-  done < "${files_names_listing}.temp"
+  done < "${LFBFL_listing}.temp"
 
-  rm "${files_names_listing}.temp"
+  rm "${LFBFL_listing}.temp"
   shopt -u dotglob
   shopt -s globstar
 
   if [[ LFBFL_verbose -eq 1 ]]; then
-    cat "${files_names_listing}"
+    cat "${LFBFL_listing}"
   fi
 }
 

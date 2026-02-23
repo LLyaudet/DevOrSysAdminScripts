@@ -38,8 +38,6 @@ check_one_shell_script_indentation(){
 check_shell_scripts_indentation(){
   shopt -s globstar
   local LFBFL_file_name
-  local LFBFL_message=
-  readonly LFBFL_message
   for LFBFL_file_name in **/*.sh; do
     if grep -EHn '^(  )* ([^ ]|$)' "${LFBFL_file_name}"; then
       echo "${LFBFL_file_name}:${LFBFL_SH_INDENTATION_MESSAGE}"

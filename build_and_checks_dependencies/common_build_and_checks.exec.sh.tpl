@@ -77,7 +77,7 @@ common_build_and_checks(){
   LFBFL_file_name="check_shell_scripts_indentation.libr.sh"
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  @check_shell_scripts_indentation.libr.sh@
+  @sha512_check_shell_scripts_indentation.libr.sh@
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 

@@ -83,7 +83,10 @@ common_build_and_checks(){
   LFBFL_file_name="check_shell_scripts_indentation.libr.sh"
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  @check_shell_scripts_indentation.libr.sh@
+  local LFBFL_correct_sha512
+  LFBFL_correct_sha512='11182559a3b84e4a317d2eb0ebf785a9b6b3fbbf1d1f8'
+  LFBFL_correct_sha512+='b7f8350e524f1ee4ba6efec83dbae879ed558ed7189d'
+  LFBFL_correct_sha512+='8e992257758cec3d047479534e6682d24207c0e'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 

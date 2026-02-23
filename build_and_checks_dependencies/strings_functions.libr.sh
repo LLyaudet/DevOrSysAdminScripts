@@ -66,8 +66,7 @@ get_split_score_simple(){
   # $3=$delimiters_strings_domain
   declare -g get_split_score_result="split_score_simple $1 '$3'"
   declare -gi get_split_score_result2
-  # shellcheck disable=SC2125
-  get_split_score_result2=7+$1*4
+  get_split_score_result2=$((7+$1*4))
   # if [[ $1 -eq 1 ]]; then
   #   get_split_score_result2=7
   # else
@@ -102,8 +101,7 @@ get_split_score(){
   # $2=$delimiters_strings_domain
   declare -g get_split_score_result="split_score $1 $2 '$3'"
   declare -gi get_split_score_result2
-  # shellcheck disable=SC2125
-  get_split_score_result2=5+$1*4
+  get_split_score_result2=$((5+$1*4))
 }
 
 split_line_at_most(){
@@ -156,12 +154,12 @@ split_line_at_most(){
     return
   fi
   declare -r LFBFL_sort_command="sort --numeric-sort"
-  declare -r LFBFL_length_minus_1=$((${#1} - 1))
-  declare -r LFBFL_i_max=$(
+  declare -ir LFBFL_length_minus_1=$((${#1} - 1))
+  declare -ir LFBFL_i_max=$(
     min "${LFBFL_sort_command}" "${LFBFL_length_minus_1}" "$2"
   )
-  local LFBFL_i
-  local LFBFL_j
+  declare -i LFBFL_i
+  declare -i LFBFL_j
   local LFBFL_previous_char
   local LFBFL_current_char
 
@@ -251,17 +249,20 @@ split_line_at_most(){
       fi
     done
   fi
-  declare -r LFBFL_max_score=\
-$(max 'sort --numeric-sort' "${LFBFL_positions[@]}")
-  local LFBFL_best_position
+  declare -ir LFBFL_max_score=$(
+    max 'sort --numeric-sort' "${LFBFL_positions[@]}"
+  )
+  local LFBFL_value
+  declare -i LFBFL_best_position
   for ((LFBFL_i=0; LFBFL_i<=LFBFL_i_max; ++LFBFL_i)) do
     local LFBFL_value=${LFBFL_positions[${LFBFL_i}]}
     # echo "${LFBFL_i} ${LFBFL_value}"
     if [[ "${LFBFL_value}" == "${LFBFL_max_score}" ]]; then
-      LFBFL_best_position="${LFBFL_i}"
+      LFBFL_best_position=$((LFBFL_i))
     fi
   done
-  split_line_at "$1" "${LFBFL_best_position}"
+  # shellcheck disable=SC2248
+  split_line_at "$1" ${LFBFL_best_position}
   split_line_at_most_result_start="${split_line_at_result_beginning}"
   split_line_at_most_result_end="${split_line_at_result_end}"
   # echo "$split_line_at_most_result_start"

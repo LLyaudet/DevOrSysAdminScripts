@@ -51,8 +51,8 @@ create_PDF(){
     trap 'set +o pipefail' RETURN
   fi
 
-  LFBFL_subdir2="build_and_checks_variables"
-  LFBFL_data_file_name="${LFBFL_subdir2}/repository_data.txt"
+  local LFBFL_subdir2="build_and_checks_variables"
+  local LFBFL_data_file_name="${LFBFL_subdir2}/repository_data.txt"
   repository_name=""
   grep_variable "${LFBFL_data_file_name}" repository_name
 
@@ -113,23 +113,34 @@ create_PDF(){
     | replace_non_ascii_spaces\
     > "${LFBFL_subdir2}/temp/current_tree.txt.temp"
 
-  LFBFL_temp_files_listing="./${LFBFL_subdir2}/temp/"
+  local LFBFL_temp_files_listing="./${LFBFL_subdir2}/temp/"
   LFBFL_temp_files_listing+="files_listing.tex.tpl.temp"
+  readonly LFBFL_temp_files_listing
   : > "${LFBFL_temp_files_listing}"
-  LFBFL_temp_files_listing2="./${LFBFL_subdir2}/temp/"
+  local LFBFL_temp_files_listing2="./${LFBFL_subdir2}/temp/"
   LFBFL_temp_files_listing2+="files_listing.html.tpl.temp"
+  readonly LFBFL_temp_files_listing2
   : > "${LFBFL_temp_files_listing2}"
   # HTML <li> elements, hence "lis".
+  local LFBFL_temp_files_lis
   LFBFL_temp_files_lis="./${LFBFL_subdir2}/temp/files_lis.html.tpl"
+  readonly LFBFL_temp_files_lis
   : > "${LFBFL_temp_files_lis}"
   get_split_score_simple 1 70 /
-  declare LFBFL_score_command="${get_split_score_result}"
-  declare LFBFL_score_command_properties="${get_split_score_result2}"
+  declare -r LFBFL_score_command="${get_split_score_result}"
+  local LFBFL_score_command_properties="${get_split_score_result2}"
+  readonly LFBFL_score_command_properties
   get_split_score_simple 1 70 ':'
-  declare LFBFL_score_command2="${get_split_score_result}"
-  declare LFBFL_score_command_properties2="${get_split_score_result2}"
-  declare LFBFL_suffix='%'
+  declare -r LFBFL_score_command2="${get_split_score_result}"
+  local LFBFL_score_command_properties2="${get_split_score_result2}"
+  readonly LFBFL_score_command_properties2
+  declare -r LFBFL_suffix='%'
   declare -i LFBFL_i=0
+  local LFBFL_cleaned_path1
+  local LFBFL_cleaned_path2
+  local LFBFL_new_lines
+  local LFBFL_new_lines2
+  local LFBFL_new_lines3
   # Remove line returns here to keep lines short.
   sed -Ez 's/\\\n//Mg' "./${LFBFL_subdir2}/files_names_listing.txt"\
     | grep -v '^//'\
@@ -222,8 +233,14 @@ create_PDF(){
 
   # We verify if some lines are beyond 70 characters
   # in current_tree_light.txt and current_tree.txt.
-  LFBFL_trees=("current_tree_light.txt" "current_tree.txt.temp")
-  declare LFBFL_tree_path
+  declare -ar LFBFL_trees=(
+    "current_tree_light.txt"
+    "current_tree.txt.temp"
+  )
+  local LFBFL_tree_path
+  local LFBFL_line
+  local LFBFL_prefix
+  local LFBFL_line_start
   for LFBFL_tree in "${LFBFL_trees[@]}"; do
     LFBFL_tree_path="${LFBFL_subdir2}/temp/${LFBFL_tree}"
     grep '.\{71\}' "${LFBFL_tree_path}"\

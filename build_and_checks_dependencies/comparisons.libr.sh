@@ -68,7 +68,7 @@ all_distinct2(){
   # Returns 1 if all the arguments strings are distinct.
   local LFBFL_element
   local LFBFL_previous_element
-  if [[ "$#" == 0 ]]; then
+  if [[ $# -eq 0 ]]; then
     return 1
   fi
   # Not setting pipefail since the result would still be incorrect.
@@ -92,7 +92,7 @@ all_distinct3(){
   # Returns 1 if all the arguments strings are distinct.
   # This is the fastest of all 3; but note that version 2 is faster
   # than this one if a call to sort is added.
-  if [[ "$#" == 0 ]]; then
+  if [[ $# -eq 0 ]]; then
     return 1
   fi
   # Not setting pipefail since the result would still be incorrect.
@@ -120,7 +120,7 @@ max(){
   # $1=$sort command with the flags you want to be applied.
   # $ max sort a b c
   # c
-  if [[ "$#" == 0 ]]; then
+  if [[ $# -eq 0 ]]; then
     return 1
   fi
   if [[ ! -o pipefail ]]; then
@@ -138,7 +138,7 @@ min(){
   # $1=$sort command with the flags you want to be applied.
   # $ min sort a b c
   # a
-  if [[ "$#" == 0 ]]; then
+  if [[ $# -eq 0 ]]; then
     return 1
   fi
   if [[ ! -o pipefail ]]; then

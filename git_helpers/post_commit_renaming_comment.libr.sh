@@ -84,7 +84,7 @@ commit_a_file_renamed_comment(){
 
   declare -i LFBFL_max_comment_line_length=70
   if [[ -n "$3" ]]; then
-    LFBFL_max_comment_line_length="$3"
+    LFBFL_max_comment_line_length=$(($3))
   fi
   readonly LFBFL_max_comment_line_length
   if [[ LFBFL_verbose -eq 1 ]]; then

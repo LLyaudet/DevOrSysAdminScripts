@@ -46,6 +46,7 @@ too_long_code_lines(){
 
   get_COMMON_TEXT_FILES_GLOB_PATTERNS
   local LFBFL_pattern
+  local LFBFL_long_line
   local LFBFL_file_name
   local LFBFL_line
   local LFBFL_extension

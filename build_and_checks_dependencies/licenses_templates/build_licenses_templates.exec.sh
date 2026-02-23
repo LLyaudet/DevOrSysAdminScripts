@@ -69,25 +69,25 @@ build_licenses_templates(){
   LFBFL_target_license_prefix+="license_file_header_"
   readonly LFBFL_target_license_prefix
 
-  declare -ar LFBFL_licenses=(\
-    "AGPLv3+"\
-    "GPLv3+"\
+  declare -ar LFBFL_licenses=(
+    "AGPLv3+"
+    "GPLv3+"
     "LGPLv3+"
   )
 
   # ------------------------------------------------------------------
   # Various language definitions for text file formats
-  declare -ar LFBFL_block_comment_languages=(\
-    "c"\
-    "py"\
+  declare -ar LFBFL_block_comment_languages=(
+    "c"
+    "py"
   )
-  declare -ar LFBFL_block_comment_enters=(\
-    '/*'\
-    '"""'\
+  declare -ar LFBFL_block_comment_enters=(
+    '/*'
+    '"""'
   )
-  declare -ar LFBFL_block_comment_exits=(\
-    '*/'\
-    '"""'\
+  declare -ar LFBFL_block_comment_exits=(
+    '*/'
+    '"""'
   )
   equal "${#LFBFL_block_comment_languages[@]}"\
         "${#LFBFL_block_comment_enters[@]}"\
@@ -97,13 +97,13 @@ build_licenses_templates(){
     echo $'/!\\Problem with the definitions of languages arrays 1/!\\'
   fi
 
-  declare -ar LFBFL_line_comment_languages=(\
-    "sh"\
-    "tex"\
+  declare -ar LFBFL_line_comment_languages=(
+    "sh"
+    "tex"
   )
-  declare -ar LFBFL_line_comment_prefixes=(\
-    '# '\
-    '% '\
+  declare -ar LFBFL_line_comment_prefixes=(
+    '# '
+    '% '
   )
   equal "${#LFBFL_line_comment_languages[@]}"\
         "${#LFBFL_line_comment_prefixes[@]}"
@@ -267,17 +267,17 @@ build_licenses_templates(){
     # documentation on the fly...
   }
 
-  declare -A LFBFL_all_block_comment_languages
-  LFBFL_all_block_comment_languages["c"]="c"
-  LFBFL_all_block_comment_languages["php"]="c"
-  LFBFL_all_block_comment_languages["py"]="py"
+  declare -Ar LFBFL_all_block_comment_languages=(
+    ["c"]="c"
+    ["php"]="c"
+    ["py"]="py"
+  )
 
   local LFBFL_key
   local LFBFL_dest
   local LFBFL_license_file_name2
   declare -i LFBFL_not_subfile
   declare -i LFBFL_not_subfile2
-
   for LFBFL_key in "${!LFBFL_all_block_comment_languages[@]}"; do
     LFBFL_dest=${LFBFL_all_block_comment_languages[${LFBFL_key}]}
     LFBFL_license_file_name="${LFBFL_license_prefix2}.${LFBFL_dest}"
@@ -328,9 +328,10 @@ build_licenses_templates(){
     fi
   }
 
-  declare -A LFBFL_all_line_comment_languages
-  LFBFL_all_line_comment_languages["sh"]="sh"
-  LFBFL_all_line_comment_languages["tex"]="tex"
+  declare -Ar LFBFL_all_line_comment_languages=(
+    ["sh"]="sh"
+    ["tex"]="tex"
+  )
 
   for LFBFL_key in "${!LFBFL_all_line_comment_languages[@]}"; do
     LFBFL_dest=${LFBFL_all_line_comment_languages[${LFBFL_key}]}

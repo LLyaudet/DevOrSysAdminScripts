@@ -74,6 +74,13 @@ common_build_and_checks(){
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
+  LFBFL_file_name="check_shell_scripts_indentation.libr.sh"
+  LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
+  LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
+  @check_shell_scripts_indentation.libr.sh@
+  wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
+    "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
+
   LFBFL_file_name="check_URLs.libr.sh"
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
@@ -231,6 +238,8 @@ common_build_and_checks(){
   shopt -s globstar
   # shellcheck source=check_shell_scripts_beginnings.libr.sh
   source "./${LFBFL_subdir}/check_shell_scripts_beginnings.libr.sh"
+  # shellcheck source=check_shell_scripts_indentation.libr.sh
+  source "./${LFBFL_subdir}/check_shell_scripts_indentation.libr.sh"
   # shellcheck source=check_URLs.libr.sh
   source "./${LFBFL_subdir}/check_URLs.libr.sh"
   # shellcheck source=comparisons.libr.sh
@@ -525,6 +534,10 @@ common_build_and_checks(){
 
   echo "Analyzing shell scripts beginnings"
   check_shell_scripts_beginnings\
+    | relevant_grep
+
+  echo "Analyzing shell scripts indentation"
+  check_shell_scripts_indentation\
     | relevant_grep
 
   echo "Analyzing URLs"

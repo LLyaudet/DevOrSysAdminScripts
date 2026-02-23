@@ -44,30 +44,30 @@ update_common_build_and_checks(){
   cp "./${LFBFL_common_file_name}.tpl"\
      "./${LFBFL_common_file_name}.temp"
 
-  declare -r LFBFL_file_names=(\
-    "build_md_from_printable_md.exec.sh"\
-    "check_shell_scripts_beginnings.libr.sh"\
-    "check_URLs.libr.sh"\
-    "comparisons.libr.sh"\
-    "create_PDF.exec.sh"\
-    "generate_from_template.libr.sh"\
-    "get_common_text_glob_patterns.libr.sh"\
-    "grammar_and_spell_check.libr.sh"\
-    "licenses_templates/build_licenses_templates.exec.sh"\
-    "licenses_templates/license_file_header_AGPLv3+.tpl"\
-    "licenses_templates/license_file_header_GPLv3+.tpl"\
-    "licenses_templates/license_file_header_LGPLv3+.tpl"\
-    "lines_counts.libr.sh"\
-    "lines_filters.libr.sh"\
-    "lines_maps.libr.sh"\
-    "update_or_check_files_names_listing.exec.sh"\
-    "overwrite_if_not_equal.libr.sh"\
-    "python_black_complement.libr.sh"\
-    "python_isort_complement.libr.sh"\
-    "split_score.exec.php"\
-    "split_score.libr.php"\
-    "strings_functions.libr.sh"\
-    "too_long_code_lines.libr.sh"\
+  declare -ar LFBFL_file_names=(
+    "build_md_from_printable_md.exec.sh"
+    "check_shell_scripts_beginnings.libr.sh"
+    "check_URLs.libr.sh"
+    "comparisons.libr.sh"
+    "create_PDF.exec.sh"
+    "generate_from_template.libr.sh"
+    "get_common_text_glob_patterns.libr.sh"
+    "grammar_and_spell_check.libr.sh"
+    "licenses_templates/build_licenses_templates.exec.sh"
+    "licenses_templates/license_file_header_AGPLv3+.tpl"
+    "licenses_templates/license_file_header_GPLv3+.tpl"
+    "licenses_templates/license_file_header_LGPLv3+.tpl"
+    "lines_counts.libr.sh"
+    "lines_filters.libr.sh"
+    "lines_maps.libr.sh"
+    "update_or_check_files_names_listing.exec.sh"
+    "overwrite_if_not_equal.libr.sh"
+    "python_black_complement.libr.sh"
+    "python_isort_complement.libr.sh"
+    "split_score.exec.php"
+    "split_score.libr.php"
+    "strings_functions.libr.sh"
+    "too_long_code_lines.libr.sh"
   )
 
   local LFBFL_file_name

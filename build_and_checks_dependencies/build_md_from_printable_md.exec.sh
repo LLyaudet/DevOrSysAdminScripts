@@ -94,10 +94,16 @@ build_md_from_printable_md(){
   # With the most open-minded answer found on Internet ;) XD.
   # This second sed expression is what I need,
   # but it may be unsuitable for you.
+  # Other problems:
+  # https://github.com/jgm/pandoc/issues/11484
+  local LFBFL_prewrap="s~(code \{(\n|[^}])*)(    \})"
+  LFBFL_prewrap+="~\1      white-space: pre-wrap;\n\3~M"
   sed -i -E -e 's~(  <meta .*) />~\1>~g'\
             -e 's~<html .*>~<html lang="en">~'\
+            -e '/    code\{white-space: pre-wrap;\}/d'\
     "${LFBFL_base_name}.html.temp"
-  sed -i -Ez 's~(<img(\n|[^a-z0-9])(\n|[^>])*) />~\1>~Mg'\
+  sed -i -Ez -e 's~(<img(\n|[^a-z0-9])(\n|[^>])*) />~\1>~Mg'\
+             -e "${LFBFL_prewrap}"\
     "${LFBFL_base_name}.html.temp"
   overwrite_if_not_equal "${LFBFL_base_name}.html"\
     "${LFBFL_base_name}.html.temp"

@@ -98,6 +98,7 @@ build_md_from_printable_md(){
   # https://github.com/jgm/pandoc/issues/11484
   local LFBFL_prewrap="s~(code \{(\n|[^}])*)(    \})"
   LFBFL_prewrap+="~\1      white-space: pre-wrap;\n\3~M"
+  readonly LFBFL_prewrap
   sed -i -E -e 's~(  <meta .*) />~\1>~g'\
             -e 's~<html .*>~<html lang="en">~'\
             -e '/    code\{white-space: pre-wrap;\}/d'\

@@ -75,7 +75,7 @@ create_PDF(){
 
   declare -r LFBFL_current_git_SHA1=$(git rev-parse HEAD)
 
-  declare -r LFBFL_number_of_commits=$(
+  declare -ir LFBFL_number_of_commits=$(
     git shortlog\
     | space_starting_lines\
     | wc -l

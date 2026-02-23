@@ -281,8 +281,9 @@ common_build_and_checks(){
   fi
 
   if [[ -f "${LFBFL_upgrade_venvs_ts_file}" ]]; then
-    LFBFL_upgrade_venvs_ts=\
-$(stat -c %Y "${LFBFL_upgrade_venvs_ts_file}")
+    LFBFL_upgrade_venvs_ts=$(
+      stat -c %Y "${LFBFL_upgrade_venvs_ts_file}"
+    )
     LFBFL_current_ts=$(date +%s)
     ((LFBFL_current_ts-=LFBFL_upgrade_venvs_ts))
     ((LFBFL_current_ts-=upgrade_venvs_time_interval_in_seconds))

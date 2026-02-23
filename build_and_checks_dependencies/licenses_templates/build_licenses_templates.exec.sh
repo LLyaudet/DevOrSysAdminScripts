@@ -221,14 +221,14 @@ build_licenses_templates(){
     LFBFL_license_prefix3="${LFBFL_license_prefix}${license2}"
 
   # First year according to current state of git repository.
-  declare -r LFBFL_first_year=$(
+  declare -ir LFBFL_first_year=$(
     git log\
     | grep 'Date:'\
     | cut -f 8 -d ' '\
     | tail -1
   )
   # Last year according to current state of git repository.
-  declare -r LFBFL_last_year=$(
+  declare -ir LFBFL_last_year=$(
     git log\
     | grep 'Date:'\
     | cut -f 8 -d ' '\

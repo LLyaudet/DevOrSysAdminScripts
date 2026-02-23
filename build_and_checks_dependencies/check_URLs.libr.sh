@@ -45,8 +45,8 @@ check_URLs(){
 
   get_COMMON_TEXT_FILES_GLOB_PATTERNS
 
-  declare -Ar LFBFL_substitutions=(\
-    ["http://www.gnu.org/licenses/"]="https://www.gnu.org/licenses/"\
+  declare -Ar LFBFL_substitutions=(
+    ["http://www.gnu.org/licenses/"]="https://www.gnu.org/licenses/"
   )
 
   local LFBFL_pattern

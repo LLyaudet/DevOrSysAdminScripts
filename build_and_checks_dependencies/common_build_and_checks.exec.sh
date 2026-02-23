@@ -63,9 +63,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='a92cb6678f980ecaa00b777002ec0e6326b17809443a5'
-  LFBFL_correct_sha512+='487fe5073930d4a438ded721618231627cb8d84b5f3f'
-  LFBFL_correct_sha512+='c786836cd19c0e2241913bd3703b11096f5e316'
+  LFBFL_correct_sha512='5e6560b6f4d0792ab065e5ee5746560d68aa8e0609ffe'
+  LFBFL_correct_sha512+='953fabd5e4bc740c972956375b043f1556dee03aa49a'
+  LFBFL_correct_sha512+='3a6edf10bd6e2586141baf435ce35d78df2213f'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
   chmod +x "./${LFBFL_file_path}"
@@ -84,9 +84,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='57eb676489a194add366eaf73a5e024f72772d5206dab'
-  LFBFL_correct_sha512+='f156dc007ecbccdbfbbf02f9d07ba0cece4efad3de90'
-  LFBFL_correct_sha512+='cfadf4c9ba1b0868d2ccee222af0b93ed713294'
+  LFBFL_correct_sha512='bd3d085710ce3ee75034daea6286adc21b0309cf3004a'
+  LFBFL_correct_sha512+='41b65af1878bed263c392dd8159716996420abb03cb8'
+  LFBFL_correct_sha512+='34d9b91c8859bdf8455c5b9d85d9b8d80fec062'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
@@ -94,9 +94,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='4eb39affeacbe396201014a3d25d1ee83f2521dd6f2c1'
-  LFBFL_correct_sha512+='6687ee1915465b3c817f98e136a686b7f5929c2e2a02'
-  LFBFL_correct_sha512+='b86632efd7bc13c167ea19ec03bda15e86f1974'
+  LFBFL_correct_sha512='1abcc547d6baf661c339489967108fd744321419e8e6d'
+  LFBFL_correct_sha512+='2a25896280a23243106dc72be30a4f400caf6789e9be'
+  LFBFL_correct_sha512+='740223b9e12d6155bb931aaf94bb946455c8c5c'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
@@ -104,9 +104,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='ee0846d96cc1f682271f3adc9745e91763a39dd6d8231'
-  LFBFL_correct_sha512+='ebf7f6c82b4193932a95ed15b99d4fd038959ffa128e'
-  LFBFL_correct_sha512+='305b5e5238e368c05ebb322be34b049901ab007'
+  LFBFL_correct_sha512='9e1e71db604b7b0f319ec2e5d282c2bd463a2db50a34e'
+  LFBFL_correct_sha512+='2e9c7e5940a7df18a0c6167a88ae4bef409fafcf7f48'
+  LFBFL_correct_sha512+='5b911ef09e4cb1ac24401507253e84956681716'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
   chmod +x "./${LFBFL_file_path}"
@@ -409,19 +409,10 @@ $(stat -c %Y "${LFBFL_upgrade_venvs_ts_file}")
   }
 
   echo "Running shellcheck"
-  declare -i LFBFL_file_path_length
-  declare -i LFBFL_to_skip_number
-  local LFBFL_file_path_end
   find . -name "*.sh"\
     | relevant_find\
     | while read -r LFBFL_file_path;
   do
-    LFBFL_file_path_length=${#LFBFL_file_path}
-    LFBFL_to_skip_number=$((LFBFL_file_path_length - 9))
-    LFBFL_file_path_end="${LFBFL_file_path:${LFBFL_to_skip_number}}"
-    if [[ "${LFBFL_file_path_end}" == "GPLv3+.sh" ]]; then
-      continue
-    fi
     shellcheck --rcfile=build_and_checks_variables/shellcheck.ini\
       "${LFBFL_file_path}"
   done

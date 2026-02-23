@@ -340,19 +340,10 @@ $(stat -c %Y "${LFBFL_upgrade_venvs_ts_file}")
   }
 
   echo "Running shellcheck"
-  declare -i LFBFL_file_path_length
-  declare -i LFBFL_to_skip_number
-  local LFBFL_file_path_end
   find . -name "*.sh"\
     | relevant_find\
     | while read -r LFBFL_file_path;
   do
-    LFBFL_file_path_length=${#LFBFL_file_path}
-    LFBFL_to_skip_number=$((LFBFL_file_path_length - 9))
-    LFBFL_file_path_end="${LFBFL_file_path:${LFBFL_to_skip_number}}"
-    if [[ "${LFBFL_file_path_end}" == "GPLv3+.sh" ]]; then
-      continue
-    fi
     shellcheck --rcfile=build_and_checks_variables/shellcheck.ini\
       "${LFBFL_file_path}"
   done

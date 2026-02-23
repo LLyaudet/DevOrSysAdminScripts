@@ -24,14 +24,72 @@
 # This file was renamed from "check_shell_scripts_beginnings.sh"
 # to "check_shell_scripts_beginnings.libr.sh".
 
-declare -g LFBFL_SH_INDENTATION_MESSAGE
-LFBFL_SH_INDENTATION_MESSAGE="File has some lines with odd number"
-LFBFL_SH_INDENTATION_MESSAGE+=" of spaces."
-readonly LFBFL_SH_INDENTATION_MESSAGE
-
 check_one_shell_script_indentation(){
-  if grep -EHn '^(  )* ([^ ]|$)' "$1"; then
-    echo "$1:${LFBFL_SH_INDENTATION_MESSAGE}"
+  shopt -s lastpipe
+
+  declare -i LFBFL_file_with_error=0
+  local LFBFL_some_line
+  local LFBFL_previous_line="watyouwant?"
+  local LFBFL_line_end
+  local LFBFL_previous_line_end
+  declare -i LFBFL_line_length
+  declare -i LFBFL_line_end_length
+  declare -i LFBFL_line_start_length
+  local LFBFL_spacing
+  declare -i LFBFL_offset
+  local LFBFL_substring1
+  local LFBFL_substring2
+  declare -r LFBFL_pattern='^ *-e '
+  # This grep would have been enough without some sed commands.
+  # shellcheck disable=SC2312
+  grep -EHn -B 1 '^(  )* ([^ ]|$)' "$1"\
+    | while read -r LFBFL_some_line;
+  do
+    # Note how it's funny that this loop always work because we check
+    # shell scripts beginning in another script and thus we always
+    # have a line before... WAT?
+    if [[ "${LFBFL_previous_line}" == "watyouwant?" ]]; then
+      LFBFL_previous_line="${LFBFL_some_line}"
+      continue
+    fi
+    # Remove the name of the file and then the line number
+    LFBFL_line_end=${LFBFL_some_line#*:}
+    LFBFL_line_end=${LFBFL_line_end#*:}
+    # But for the previous line '-' is used instead of ':'
+    # and filenames with '-' are much more frequent than with ':'...
+    LFBFL_line_length=${#LFBFL_some_line}
+    LFBFL_line_end_length=${#LFBFL_line_end}
+    LFBFL_line_start_length=$((
+      LFBFL_line_length-LFBFL_line_end_length
+    ))
+    LFBFL_offset=$((LFBFL_line_start_length-1))
+    # Checking if increasing number of digits in the line numbers
+    # (99 -> 100).
+    LFBFL_substring1=${LFBFL_previous_line:${LFBFL_offset}:1}
+    if [[ "${LFBFL_substring1}" == "-" ]]; then
+      ((LFBFL_offset+=1))
+    fi
+    LFBFL_previous_line_end=${LFBFL_previous_line:${LFBFL_offset}}
+    if [[ "${LFBFL_line_end}" =~ ${LFBFL_pattern} ]]; then
+      # Line starts with spacing and -e
+      # Keep max spaces
+      LFBFL_spacing=${LFBFL_line_end%%-*}
+      LFBFL_offset=${#LFBFL_spacing}
+      LFBFL_substring1=${LFBFL_line_end:${LFBFL_offset}:3}
+      LFBFL_substring2=${LFBFL_previous_line_end:${LFBFL_offset}:3}
+      if [[ "${LFBFL_substring1}" != "${LFBFL_substring2}" ]]; then
+        echo "${LFBFL_some_line}"
+        LFBFL_file_with_error=1
+      fi
+    else
+      echo "${LFBFL_some_line}"
+      LFBFL_file_with_error=1
+    fi
+    LFBFL_previous_line="watyouwant?"
+  done
+
+  if [[ LFBFL_file_with_error -eq 1 ]]; then
+    echo "$1:File has some lines with odd number of spaces."
   fi
 }
 
@@ -39,8 +97,6 @@ check_shell_scripts_indentation(){
   shopt -s globstar
   local LFBFL_file_name
   for LFBFL_file_name in **/*.sh; do
-    if grep -EHn '^(  )* ([^ ]|$)' "${LFBFL_file_name}"; then
-      echo "${LFBFL_file_name}:${LFBFL_SH_INDENTATION_MESSAGE}"
-    fi
+    check_one_shell_script_indentation "${LFBFL_file_name}"
   done
 }

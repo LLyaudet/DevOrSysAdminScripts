@@ -37,6 +37,19 @@ build_and_checks_dependencies/check_shell_scripts_beginnings.libr.sh
 
 
 \subsection{
+  build\_and\_checks\_dependencies/%
+check\_shell\_scripts\_indentation.libr.sh
+}
+\label{
+  build_and_checks_dependencies:check_shell_scripts_indentationlibrsh
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+build_and_checks_dependencies/check_shell_scripts_indentation.libr.sh
+}
+
+
+\subsection{
   build\_and\_checks\_dependencies/check\_URLs.libr.sh
 }
 \label{

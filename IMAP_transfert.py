@@ -29,7 +29,6 @@ Penser à autoriser les apps moins sûres sur Gmail si nécessaire
 import argparse
 import email
 import imaplib
-from typing import Optional
 
 
 class IMAPTransfertBadArgumentError(Exception):
@@ -58,10 +57,10 @@ def IMAP_transfert(
     from_port: int,
     to_login: str,
     to_password: str,
-    to_new_folder: Optional[str],
     to_host: str,
     to_port: int,
     *,
+    to_new_folder: str = "",
     verbose: bool = False,
 ) -> None:
     """
@@ -93,7 +92,7 @@ def IMAP_transfert(
         raise IMAPTransfertBadArgumentError(
             "To port is not positive.",
         )
-    # pylint: disable=W0105
+    # pylint: disable=pointless-string-statement
     """
     Maybe one day Python will ship something like that in its standard
     library:
@@ -103,13 +102,12 @@ def IMAP_transfert(
     "anything".
     """
 
-    # pylint: disable=W0105
-    """
+    # pylint: disable=unreachable
     raise SurpriseError(
         "I haven't tested this version of my script... Oooooh!\n"
         "But I linted it without this exception ;). Aaaaaaaah!\n"
         "XD XD XD\n"
-        "Untested Scream Horror Show (Soon on BrainfuckedFlix)"
+        "Untested Scream Horror Show (Soon on BrainfuckedFlix)",
     )
     # """
     # I haven't tested any version with an empty to_new_folder...
@@ -124,9 +122,7 @@ def IMAP_transfert(
     to_account = imaplib.IMAP4_SSL(host=to_host, port=to_port)
     to_account.login(to_login, to_password)
 
-    if to_new_folder is None:
-        to_new_folder = ""
-    elif to_new_folder != "":
+    if to_new_folder != "":
         if verbose:
             print("Creating new folder in to account.")
         to_account.create(to_new_folder)
@@ -203,7 +199,7 @@ def main() -> None:
     parser.add_argument(
         "--to_new_folder",
         type=str,
-        default=None,
+        default="",
         help="Transfert emails into a new folder of this name.",
     )
     parser.add_argument(
@@ -245,20 +241,20 @@ def main() -> None:
             "IMAP transfert:\n"
             "-----------------------------------------------------\n"
             "From account:\n"
-            " - Login: {args.from_login}\n"
-            " - Password: {args.from_password}\n"
-            " - Host: {args.from_host}\n"
-            " - Port: {args.from_port}\n"
+            f" - Login: {args.from_login}\n"
+            f" - Password: {args.from_password}\n"
+            f" - Host: {args.from_host}\n"
+            f" - Port: {args.from_port}\n"
             "To account:\n"
-            " - Login: {args.to_login}\n"
-            " - Password: {args.to_password}\n"
-            " - Host: {args.to_host}\n"
-            " - Port: {args.to_port}\n"
+            f" - Login: {args.to_login}\n"
+            f" - Password: {args.to_password}\n"
+            f" - Host: {args.to_host}\n"
+            f" - Port: {args.to_port}\n"
             "-----------------------------------------------------\n",
         )
         if args.to_new_folder is not None:
             print(
-                "Emails will go in folder {args.to_new_folder}"
+                f"Emails will go in folder {args.to_new_folder}"
                 " after it is created.",
             )
     try:
@@ -271,7 +267,7 @@ def main() -> None:
             args.to_password,
             args.to_host,
             args.to_port,
-            args.to_new_folder,
+            to_new_folder=args.to_new_folder,
             verbose=args.verbose,
         )
     except (IMAPTransfertBadArgumentError, SurpriseError) as e:

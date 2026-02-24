@@ -1,21 +1,41 @@
 [lint]
-select = ["ALL", "D211"]
+select = [
+  "ALL",
+  "D211",  # blank-line-before-class no...before-class-docstring!
+]
 # ignore = ["D203", "D212", "D404"]
 ignore = [
-  "C901",
-  "D203",
-  "D205",
-  "D212",
-  "D404",
+  "C901",  # complex-structure AKA give-me-toy-code
+  "D203",  # (want-)?incorrect-blank-line-before-class
+  "D205",  # missing-blank-line-after-summary So so cute|true ;) XD.
+  "D212",  # multi-line-summary-first-line
+  "D404",  # docstring-starts-with-this Shame! XD
+
+  # raw-string-in-exception may be useful for a real project
+  # with "dictionnaries" of errors made of constants.
   "EM101",
+
+  # commented-out-code Of course git log is always faster...
+  # Note that if you're tired or someone else in your team is,
+  # it may catch some commit that lacked some review,
+  # or automated tests: "Last manual test succeeded, ah but when I
+  # debugged at some point I commented a part that was needed in
+  # another case."...
   "ERA001",
-  "N802",
-  "PLR0912",
-  "PLR0913",
-  "PLR0915",
-  "T201",
-  "TRY003",
-  "UP045",
+
+  "N802",  # invalid-function-name IMAP, HTML, etc.
+  "PLR0912",  # too-many-branches AKA ...
+  "PLR0913",  # too-many-arguments AKA ...
+  "PLR0915",  # too-many-statements AKA ...
+  # Not enough reading when young makes brain slow to read and
+  # understand lengthy functions.
+  # If the project is finished, you may play with AKA rules.
 ]
 [lint.per-file-ignores]
-"build_and_checks_dependencies/licenses_templates/*.py" = ["INP001"]
+"build_and_checks_dependencies/licenses_templates/*.py" = [
+  "INP001"  # implicit-namespace-package
+]
+"IMAP_transfert.py" = [
+  "T201",  # print Use log instead in full applications.
+  "TRY003",  # raise-vanilla-args
+]

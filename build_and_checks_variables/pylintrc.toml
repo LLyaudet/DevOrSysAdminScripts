@@ -7,12 +7,17 @@ jobs = 0
 module-rgx = "^[_a-zA-Z0-9+]+$"
 function-rgx = "^[_a-zA-Z0-9+]+$"
 [tool.pylint."messages control"]
+# Code like R0912 is better to order disables by category.
 disable = [
-  "R0912",
-  "R0913",
-  "R0914",
-  "R0915",
-  "R0917",
+  "C1804",  # use-implicit-booleaness-not-comparison-to-string
+  "I0011",  # locally-disabled
+  "I0020",  # suppressed-message
+  "R0912",  # too-many-branches
+  "R0913",  # too-many-arguments
+  "R0914",  # too-many-locals
+  "R0915",  # too-many-statements
+  "R0917",  # too-many-positional-arguments
 ]
+enable = "all"
 [tool.pylint.reports]
 output-format = "colorized"

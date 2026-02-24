@@ -29,7 +29,12 @@ check_one_shell_script_indentation(){
 
   declare -i LFBFL_file_with_error=0
   local LFBFL_some_line
-  local LFBFL_previous_line="watyouwant?"
+  local LFBFL_previous_line="workeduntilsomeasshole"
+  # created a command named "workeduntilsomeasshole"
+  # and called it without neither indentation, nor parameters
+  # in a .sh script XD.
+  # Manual justification of the lines L-4 and L-3 was a serendipity.
+  # I just tried a joke and was lucky ;) :).
   local LFBFL_line_end
   local LFBFL_previous_line_end
   declare -i LFBFL_line_length
@@ -45,17 +50,23 @@ check_one_shell_script_indentation(){
   grep -EHn -B 1 '^(  )* ([^ ]|$)' "$1"\
     | while read -r LFBFL_some_line;
   do
+    if [[ "${LFBFL_some_line}" == "--" ]]; then
+      # When switching between code fragments, we reinit.
+      LFBFL_previous_line="workeduntilsomeasshole"
+      continue
+    fi
     # Note how it's funny that this loop always work because we check
     # shell scripts beginning in another script and thus we always
-    # have a line before... WAT?
-    if [[ "${LFBFL_previous_line}" == "watyouwant?" ]]; then
+    # have a line before.
+    if [[ "${LFBFL_previous_line}" == "workeduntilsomeasshole" ]];
+    then
       LFBFL_previous_line="${LFBFL_some_line}"
       continue
     fi
     # Remove the name of the file and then the line number
     LFBFL_line_end=${LFBFL_some_line#*:}
     LFBFL_line_end=${LFBFL_line_end#*:}
-    # But for the previous line '-' is used instead of ':'
+    # But for the previous line '-' or ':' is used instead of ':'
     # and filenames with '-' are much more frequent than with ':'...
     LFBFL_line_length=${#LFBFL_some_line}
     LFBFL_line_end_length=${#LFBFL_line_end}
@@ -85,7 +96,7 @@ check_one_shell_script_indentation(){
       echo "${LFBFL_some_line}"
       LFBFL_file_with_error=1
     fi
-    LFBFL_previous_line="watyouwant?"
+    LFBFL_previous_line="${LFBFL_some_line}"
   done
 
   if [[ LFBFL_file_with_error -eq 1 ]]; then

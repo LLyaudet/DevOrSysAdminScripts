@@ -390,7 +390,7 @@ common_build_and_checks(){
   if [[ LFBFL_upgrade_venvs -eq 1 ]]; then
     pip install --upgrade black
   fi
-  black .
+  black --config build_and_checks_variables/black.toml .
   if [[ -n "${black_venv}" ]]; then
     deactivate
   fi

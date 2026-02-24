@@ -65,6 +65,7 @@ update_or_check_files_names_listing.exec.sh
 build_and_checks_variables/.gitignore
 build_and_checks_variables/bandit.ini
 build_and_checks_variables/bandit_baseline.json
+build_and_checks_variables/black.toml
 build_and_checks_variables/DevOrSysAdminScripts.html.tpl
 // build_and_checks_variables/DevOrSysAdminScripts.tex
 build_and_checks_variables/DevOrSysAdminScripts.tex.tpl
@@ -88,6 +89,7 @@ git_helpers/git_checks.libr.sh
 git_helpers/post-commit
 git_helpers/post_commit_renaming_comment.libr.sh
 git_helpers/pre-commit
+IMAP_transfert.py
 LiensUtiles.txt
 // README.html
 // README.md

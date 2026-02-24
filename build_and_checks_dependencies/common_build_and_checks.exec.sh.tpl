@@ -279,15 +279,12 @@ common_build_and_checks(){
 
   upgrade_venvs_time_interval_in_seconds=""
   grep_variable "${LFBFL_data_file_name}"\
-     upgrade_venvs_time_interval_in_seconds
-  if [[ "${upgrade_venvs_time_interval_in_seconds}" == "wat" ]]; then
-    upgrade_venvs_time_interval_in_seconds=${RANDOM}
-  fi
-  if
-   [[ "${upgrade_venvs_time_interval_in_seconds}" == "watyouwant?" ]];
-  then
-    upgrade_venvs_time_interval_in_seconds=${SRANDOM}
-  fi
+    upgrade_venvs_time_interval_in_seconds
+  case ${upgrade_venvs_time_interval_in_seconds} in
+    wat) upgrade_venvs_time_interval_in_seconds=${RANDOM};;
+    watyouwant?) upgrade_venvs_time_interval_in_seconds=${SRANDOM};;
+    *) echo "No wat for you?";; #TempsDeCerveauDisponible XD SC2249 ;)
+  esac
 
   if [[ -f "${LFBFL_upgrade_venvs_ts_file}" ]]; then
     LFBFL_upgrade_venvs_ts=$(
@@ -504,14 +501,26 @@ common_build_and_checks(){
   if [[ LFBFL_upgrade_venvs -eq 1 ]]; then
     composer global require phpmd/phpmd
   fi
-  phpmd --color\
-    --baseline-file build_and_checks_variables/phpmd_baseline.xml\
-    . text cleancode,codesize,controversial,design,naming,unusedcode
+
+  local LFBFL_phpmd_baseline="build_and_checks_variables/"
+  LFBFL_phpmd_baseline+="phpmd_baseline.xml"
+  readonly LFBFL_phpmd_baseline
+
+  local LFBFL_temp_phpmd_baseline="build_and_checks_variables/temp/"
+  LFBFL_temp_phpmd_baseline+="phpmd_baseline.xml"
+  readonly LFBFL_temp_phpmd_baseline
+
+  local LFBFL_phpmd_rulesets="cleancode,codesize,controversial,"
+  LFBFL_phpmd_rulesets+="design,naming,unusedcode"
+  readonly LFBFL_phpmd_rulesets
+
+  phpmd --color --baseline-file "${LFBFL_phpmd_baseline}"\
+    . text "${LFBFL_phpmd_rulesets}"
   # Saving new baseline in temp if necessary.
-  rm build_and_checks_variables/temp/phpmd_baseline.xml
+  rm "${LFBFL_temp_phpmd_baseline}"
   phpmd --color --generate-baseline\
-   --baseline-file build_and_checks_variables/temp/phpmd_baseline.xml\
-   . text cleancode,codesize,controversial,design,naming,unusedcode
+    --baseline-file "${LFBFL_temp_phpmd_baseline}"\
+    . text "${LFBFL_phpmd_rulesets}"
   echo "---PHP end---"
 
   echo "---JS---"
@@ -566,7 +575,7 @@ common_build_and_checks(){
   echo "Running Nu W3C HTML CSS and SVG validator"
   upgrade_vnu_jar_time_interval_in_seconds=""
   grep_variable "${LFBFL_data_file_name}"\
-     upgrade_vnu_jar_time_interval_in_seconds
+    upgrade_vnu_jar_time_interval_in_seconds
   if [[ "${upgrade_vnu_jar_time_interval_in_seconds}" == "wat" ]];
   then
     upgrade_vnu_jar_time_interval_in_seconds=${RANDOM}

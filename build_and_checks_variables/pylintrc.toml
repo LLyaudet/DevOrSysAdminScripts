@@ -3,6 +3,16 @@ exit-zero = true
 ignore = ["node_modules"]
 jobs = 0
 [tool.pylint.basic]
+# We use uppercase acronyms like HTML, IMAP, etc.
 module-rgx = "^[_a-zA-Z0-9+]+$"
+function-rgx = "^[_a-zA-Z0-9+]+$"
+[tool.pylint."messages control"]
+disable = [
+  "R0912",
+  "R0913",
+  "R0914",
+  "R0915",
+  "R0917",
+]
 [tool.pylint.reports]
 output-format = "colorized"

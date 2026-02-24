@@ -73,13 +73,17 @@ check_one_shell_script_indentation(){
     LFBFL_line_start_length=$((
       LFBFL_line_length-LFBFL_line_end_length
     ))
-    LFBFL_offset=$((LFBFL_line_start_length-1))
+    LFBFL_offset=$((LFBFL_line_start_length-2))
     # Checking if increasing number of digits in the line numbers
     # (99 -> 100).
     LFBFL_substring1=${LFBFL_previous_line:${LFBFL_offset}:1}
-    if [[ "${LFBFL_substring1}" == "-" ]]; then
-      ((LFBFL_offset+=1))
-    fi
+    # Nice puzzle below :) Look for comments above :)
+    case ${LFBFL_substring1} in
+      -) ((LFBFL_offset+=1));;
+      :) ((LFBFL_offset+=1));;
+      [0-9]) ((LFBFL_offset+=2));;
+      *) echo ':-(';;
+    esac
     LFBFL_previous_line_end=${LFBFL_previous_line:${LFBFL_offset}}
     if [[ "${LFBFL_line_end}" =~ ${LFBFL_pattern} ]]; then
       # Line starts with spacing and -e

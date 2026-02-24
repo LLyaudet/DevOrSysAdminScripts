@@ -119,10 +119,10 @@ Some “small” useful scripts
 for enhancing development or system-administrators tasks
 </blockquote>
 <p>Current version: 2026-02-24</p>
-<p>Current number of commits: 374</p>
-<p>Current git SHA1: 4e569bf6be2791ce1ce6f703c1b66e07f68a8026</p>
+<p>Current number of commits: 380</p>
+<p>Current git SHA1: 84bf04bd13545d3fe247d795d32aa183304a462b</p>
 <p>
-Code lines: 7421 total lines, 6729 not empty lines, 692 empty lines.
+Code lines: 7770 total lines, 7046 not empty lines, 724 empty lines.
 </p>
 
 
@@ -231,72 +231,78 @@ build_and_checks_variables/bandit.ini
 build_and_checks_variables/bandit_baseline.json
       </a></li>
       <li><a href="#subsection2.32">
-build_and_checks_variables/DevOrSysAdminScripts.html.tpl
+build_and_checks_variables/black.toml
       </a></li>
       <li><a href="#subsection2.33">
-build_and_checks_variables/DevOrSysAdminScripts.tex.tpl
+build_and_checks_variables/DevOrSysAdminScripts.html.tpl
       </a></li>
       <li><a href="#subsection2.34">
-build_and_checks_variables/files_listing.tex.tpl
+build_and_checks_variables/DevOrSysAdminScripts.tex.tpl
       </a></li>
       <li><a href="#subsection2.35">
-build_and_checks_variables/files_names_listing.txt
+build_and_checks_variables/files_listing.tex.tpl
       </a></li>
       <li><a href="#subsection2.36">
-build_and_checks_variables/licenses_notes.txt
+build_and_checks_variables/files_names_listing.txt
       </a></li>
       <li><a href="#subsection2.37">
-build_and_checks_variables/phpmd_baseline.xml
+build_and_checks_variables/licenses_notes.txt
       </a></li>
       <li><a href="#subsection2.38">
-build_and_checks_variables/pylintrc.toml
+build_and_checks_variables/phpmd_baseline.xml
       </a></li>
       <li><a href="#subsection2.39">
-build_and_checks_variables/repository_data.txt
+build_and_checks_variables/pylintrc.toml
       </a></li>
       <li><a href="#subsection2.40">
-build_and_checks_variables/ruff.toml
+build_and_checks_variables/repository_data.txt
       </a></li>
       <li><a href="#subsection2.41">
-build_and_checks_variables/shellcheck.ini
+build_and_checks_variables/ruff.toml
       </a></li>
       <li><a href="#subsection2.42">
-build_and_checks_variables/shellcheck_notes.txt
+build_and_checks_variables/shellcheck.ini
       </a></li>
       <li><a href="#subsection2.43">
-build_and_checks.exec.sh
+build_and_checks_variables/shellcheck_notes.txt
       </a></li>
       <li><a href="#subsection2.44">
-COPYING
+build_and_checks.exec.sh
       </a></li>
       <li><a href="#subsection2.45">
-COPYING.LESSER
+COPYING
       </a></li>
       <li><a href="#subsection2.46">
-git_helpers/git_checks.libr.sh
+COPYING.LESSER
       </a></li>
       <li><a href="#subsection2.47">
-git_helpers/post-commit
+git_helpers/git_checks.libr.sh
       </a></li>
       <li><a href="#subsection2.48">
-git_helpers/post_commit_renaming_comment.libr.sh
+git_helpers/post-commit
       </a></li>
       <li><a href="#subsection2.49">
-git_helpers/pre-commit
+git_helpers/post_commit_renaming_comment.libr.sh
       </a></li>
       <li><a href="#subsection2.50">
-LiensUtiles.txt
+git_helpers/pre-commit
       </a></li>
       <li><a href="#subsection2.51">
-README.md.tpl
+IMAP_transfert.py
       </a></li>
       <li><a href="#subsection2.52">
-unicode.libr.php
+LiensUtiles.txt
       </a></li>
       <li><a href="#subsection2.53">
-upgrade_build_and_checks.exec.sh
+README.md.tpl
       </a></li>
       <li><a href="#subsection2.54">
+unicode.libr.php
+      </a></li>
+      <li><a href="#subsection2.55">
+upgrade_build_and_checks.exec.sh
+      </a></li>
+      <li><a href="#subsection2.56">
 wget_sha512.libr.sh
       </a></li>
     </ol>
@@ -341,6 +347,7 @@ wget_sha512.libr.sh
 ├── build_and_checks_variables
 │   ├── bandit_baseline.json
 │   ├── bandit.ini
+│   ├── black.toml
 │   ├── DevOrSysAdminScripts.html.tpl
 │   ├── DevOrSysAdminScripts.tex
 │   ├── DevOrSysAdminScripts.tex.tpl
@@ -363,6 +370,7 @@ wget_sha512.libr.sh
 │   ├── post-commit
 │   ├── post_commit_renaming_comment.libr.sh
 │   └── pre-commit
+├── IMAP_transfert.py
 ├── LiensUtiles.txt
 ├── README.html
 ├── README.md
@@ -372,7 +380,7 @@ wget_sha512.libr.sh
 ├── upgrade_build_and_checks.exec.sh
 └── wget_sha512.libr.sh
 
-6 directories, 59 files
+6 directories, 61 files
 </pre>
 <pre class="verbatim">
 [ 12K Feb 19 16:09]  ./
@@ -1487,7 +1495,7 @@ common_build_and_checks(){
   if [[ LFBFL_upgrade_venvs -eq 1 ]]; then
     pip install --upgrade black
   fi
-  black .
+  black --config build_and_checks_variables/black.toml .
   if [[ -n "${black_venv}" ]]; then
     deactivate
   fi
@@ -2116,7 +2124,7 @@ common_build_and_checks(){
   if [[ LFBFL_upgrade_venvs -eq 1 ]]; then
     pip install --upgrade black
   fi
-  black .
+  black --config build_and_checks_variables/black.toml .
   if [[ -n "${black_venv}" ]]; then
     deactivate
   fi
@@ -5319,6 +5327,15 @@ build_and_checks_variables/bandit_baseline.json
 
 
 <h3 id="subsection2.32">2.32
+build_and_checks_variables/black.toml
+</h3>
+<pre class="numbered_lines">
+[tool.black]
+line-length = 70
+</pre>
+
+
+<h3 id="subsection2.33">2.33
 build_and_checks_variables/DevOrSysAdminScripts.html.tpl
 </h3>
 <pre class="numbered_lines">
@@ -5550,7 +5567,7 @@ pres.forEach(
 </pre>
 
 
-<h3 id="subsection2.33">2.33
+<h3 id="subsection2.34">2.34
 build_and_checks_variables/DevOrSysAdminScripts.tex.tpl
 </h3>
 <pre class="numbered_lines">
@@ -5699,7 +5716,7 @@ whilst GNU coreutils is GPLv3+ licensed.
 </pre>
 
 
-<h3 id="subsection2.34">2.34
+<h3 id="subsection2.35">2.35
 build_and_checks_variables/files_listing.tex.tpl
 </h3>
 <pre class="numbered_lines">
@@ -5738,6 +5755,19 @@ check\_shell\_scripts\_beginnings.libr.sh
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
 build_and_checks_dependencies/check_shell_scripts_beginnings.libr.sh
+}
+
+
+\subsection{
+  build\_and\_checks\_dependencies/%
+check\_shell\_scripts\_indentation.libr.sh
+}
+\label{
+  build_and_checks_dependencies:check_shell_scripts_indentationlibrsh
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+build_and_checks_dependencies/check_shell_scripts_indentation.libr.sh
 }
 
 
@@ -6084,6 +6114,18 @@ build_and_checks_variables/bandit_baseline.json
 
 
 \subsection{
+  build\_and\_checks\_variables/black.toml
+}
+\label{
+  build_and_checks_variables:blacktoml
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+build_and_checks_variables/black.toml
+}
+
+
+\subsection{
   build\_and\_checks\_variables/DevOrSysAdminScripts.html.tpl
 }
 \label{
@@ -6300,6 +6342,18 @@ git_helpers/pre-commit
 
 
 \subsection{
+  IMAP\_transfert.py
+}
+\label{
+  IMAP_transfertpy
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+IMAP_transfert.py
+}
+
+
+\subsection{
   LiensUtiles.txt
 }
 \label{
@@ -6362,7 +6416,7 @@ wget_sha512.libr.sh
 </pre>
 
 
-<h3 id="subsection2.35">2.35
+<h3 id="subsection2.36">2.36
 build_and_checks_variables/files_names_listing.txt
 </h3>
 <pre class="numbered_lines">
@@ -6433,6 +6487,7 @@ update_or_check_files_names_listing.exec.sh
 build_and_checks_variables/.gitignore
 build_and_checks_variables/bandit.ini
 build_and_checks_variables/bandit_baseline.json
+build_and_checks_variables/black.toml
 build_and_checks_variables/DevOrSysAdminScripts.html.tpl
 // build_and_checks_variables/DevOrSysAdminScripts.tex
 build_and_checks_variables/DevOrSysAdminScripts.tex.tpl
@@ -6456,6 +6511,7 @@ git_helpers/git_checks.libr.sh
 git_helpers/post-commit
 git_helpers/post_commit_renaming_comment.libr.sh
 git_helpers/pre-commit
+IMAP_transfert.py
 LiensUtiles.txt
 // README.html
 // README.md
@@ -6466,7 +6522,7 @@ wget_sha512.libr.sh
 </pre>
 
 
-<h3 id="subsection2.36">2.36
+<h3 id="subsection2.37">2.37
 build_and_checks_variables/licenses_notes.txt
 </h3>
 <pre class="numbered_lines">
@@ -6502,7 +6558,7 @@ whilst GNU coreutils is GPLv3+ licensed.
 </pre>
 
 
-<h3 id="subsection2.37">2.37
+<h3 id="subsection2.38">2.38
 build_and_checks_variables/phpmd_baseline.xml
 </h3>
 <pre class="numbered_lines">
@@ -6521,7 +6577,7 @@ build_and_checks_variables/phpmd_baseline.xml
 </pre>
 
 
-<h3 id="subsection2.38">2.38
+<h3 id="subsection2.39">2.39
 build_and_checks_variables/pylintrc.toml
 </h3>
 <pre class="numbered_lines">
@@ -6530,13 +6586,23 @@ exit-zero = true
 ignore = ["node_modules"]
 jobs = 0
 [tool.pylint.basic]
+# We use uppercase acronyms like HTML, IMAP, etc.
 module-rgx = "^[_a-zA-Z0-9+]+$"
+function-rgx = "^[_a-zA-Z0-9+]+$"
+[tool.pylint."messages control"]
+disable = [
+  "R0912",
+  "R0913",
+  "R0914",
+  "R0915",
+  "R0917",
+]
 [tool.pylint.reports]
 output-format = "colorized"
 </pre>
 
 
-<h3 id="subsection2.39">2.39
+<h3 id="subsection2.40">2.40
 build_and_checks_variables/repository_data.txt
 </h3>
 <pre class="numbered_lines">
@@ -6664,19 +6730,35 @@ upgrade_vnu_jar_time_interval_in_seconds=604800
 </pre>
 
 
-<h3 id="subsection2.40">2.40
+<h3 id="subsection2.41">2.41
 build_and_checks_variables/ruff.toml
 </h3>
 <pre class="numbered_lines">
 [lint]
 select = ["ALL", "D211"]
-ignore = ["D203", "D212", "D404"]
+# ignore = ["D203", "D212", "D404"]
+ignore = [
+  "C901",
+  "D203",
+  "D205",
+  "D212",
+  "D404",
+  "EM101",
+  "ERA001",
+  "N802",
+  "PLR0912",
+  "PLR0913",
+  "PLR0915",
+  "T201",
+  "TRY003",
+  "UP045",
+]
 [lint.per-file-ignores]
 "build_and_checks_dependencies/licenses_templates/*.py" = ["INP001"]
 </pre>
 
 
-<h3 id="subsection2.41">2.41
+<h3 id="subsection2.42">2.42
 build_and_checks_variables/shellcheck.ini
 </h3>
 <pre class="numbered_lines">
@@ -6691,7 +6773,7 @@ source-path="./git_helpers"
 </pre>
 
 
-<h3 id="subsection2.42">2.42
+<h3 id="subsection2.43">2.43
 build_and_checks_variables/shellcheck_notes.txt
 </h3>
 <pre class="numbered_lines">
@@ -6741,7 +6823,7 @@ grep -r "shellcheck disable" . | grep -v -e '.git' -e "=SC1090$"\
 </pre>
 
 
-<h3 id="subsection2.43">2.43
+<h3 id="subsection2.44">2.44
 build_and_checks.exec.sh
 </h3>
 <pre class="numbered_lines">
@@ -6814,9 +6896,9 @@ build_and_checks(){
   declare -r\
     LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_common_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='4ac98c6888998ebf45fe166fcaecd5b104de8624abfec'
-  LFBFL_correct_sha512+='38ad0ba7442ef32c0e6b944a87344b6dfb5626895b44'
-  LFBFL_correct_sha512+='b6c5db1d098363c1ee33ba1556bdfb2ae214c89'
+  LFBFL_correct_sha512='40353d9e17d6cc494d845e132f03df6c7459d3f78ed83'
+  LFBFL_correct_sha512+='08c0c2829b4b8f774d4e106da06fcd1d57b70c9dc95d'
+  LFBFL_correct_sha512+='59dcc7b7202c104aa506bd5c19bfd3841195baa'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_script}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
   chmod +x "./${LFBFL_file_path}"
@@ -6855,7 +6937,7 @@ build_and_checks "$@"
 </pre>
 
 
-<h3 id="subsection2.44">2.44
+<h3 id="subsection2.45">2.45
 COPYING
 </h3>
 <pre class="numbered_lines">
@@ -7536,7 +7618,7 @@ Public License instead of this License.  But first, please read
 </pre>
 
 
-<h3 id="subsection2.45">2.45
+<h3 id="subsection2.46">2.46
 COPYING.LESSER
 </h3>
 <pre class="numbered_lines">
@@ -7708,7 +7790,7 @@ Library.
 </pre>
 
 
-<h3 id="subsection2.46">2.46
+<h3 id="subsection2.47">2.47
 git_helpers/git_checks.libr.sh
 </h3>
 <pre class="numbered_lines">
@@ -7827,7 +7909,7 @@ check_black_code_formatting(){
 </pre>
 
 
-<h3 id="subsection2.47">2.47
+<h3 id="subsection2.48">2.48
 git_helpers/post-commit
 </h3>
 <pre class="numbered_lines">
@@ -7873,7 +7955,7 @@ exit 0
 </pre>
 
 
-<h3 id="subsection2.48">2.48
+<h3 id="subsection2.49">2.49
 git_helpers/post_commit_renaming_comment.libr.sh
 </h3>
 <pre class="numbered_lines">
@@ -8217,7 +8299,7 @@ commit_a_file_renamed_comment(){
 </pre>
 
 
-<h3 id="subsection2.49">2.49
+<h3 id="subsection2.50">2.50
 git_helpers/pre-commit
 </h3>
 <pre class="numbered_lines">
@@ -8276,7 +8358,296 @@ exit 0
 </pre>
 
 
-<h3 id="subsection2.50">2.50
+<h3 id="subsection2.51">2.51
+IMAP_transfert.py
+</h3>
+<pre class="numbered_lines">
+"""
+This file is part of DevOrSysAdminScripts library.
+
+DevOrSysAdminScripts is free software:
+you can redistribute it and/or modify it under the terms
+of the GNU Lesser General Public License
+as published by the Free Software Foundation,
+either version 3 of the License,
+or (at your option) any later version.
+
+DevOrSysAdminScripts is distributed in the hope
+that it will be useful,
+but WITHOUT ANY WARRANTY;
+without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+See the GNU Lesser General Public License for more details.
+
+You should have received a copy of
+the GNU Lesser General Public License
+along with DevOrSysAdminScripts.
+If not, see &lt;https://www.gnu.org/licenses/>.
+
+©Copyright 2023-2026 Laurent Frédéric Bernard François Lyaudet
+
+Pour transférer d'un compte IMAP à un autre
+Penser à autoriser les apps moins sûres sur Gmail si nécessaire
+"""
+
+import argparse
+import email
+import imaplib
+from typing import Optional
+
+
+class IMAPTransfertBadArgumentError(Exception):
+    """
+    A class to avoid a linter warning,
+    that needs an Error suffix to avoid another linter warning,
+    that needs a docstring to avoid another linter warning.
+    If you don't see its intent, try badminton.
+    """
+
+
+class SurpriseError(Exception):
+    """
+    A class to avoid a linter warning,
+    that needs an Error suffix to avoid another linter warning,
+    that needs a docstring to avoid another linter warning.
+    If you don't see its intent after seeing its use, try volleyball.
+    But "Cheer up!", now you don't need "pass" XD.
+    """
+
+
+def IMAP_transfert(
+    from_login: str,
+    from_password: str,
+    from_host: str,
+    from_port: int,
+    to_login: str,
+    to_password: str,
+    to_new_folder: Optional[str],
+    to_host: str,
+    to_port: int,
+    *,
+    verbose: bool = False,
+) -> None:
+    """
+    Transfert all emails from some IMAP account"
+    to another IMAP account.
+    """
+    empty = ""
+    if from_login == "":
+        raise IMAPTransfertBadArgumentError("From login is empty.")
+    # if from_password == "":
+    if from_password == empty:
+        # https://github.com/PyCQA/bandit/issues/714
+        # Dumb
+        raise IMAPTransfertBadArgumentError("From password is empty.")
+    if from_host == "":
+        raise IMAPTransfertBadArgumentError("From host is empty.")
+    if from_port &lt;= 0:
+        raise IMAPTransfertBadArgumentError(
+            "From port is not positive.",
+        )
+    if to_login == "":
+        raise IMAPTransfertBadArgumentError("To login is empty.")
+    if to_password == empty:
+        # And Dumber The infinite collection XD
+        raise IMAPTransfertBadArgumentError("To password is empty.")
+    if to_host == "":
+        raise IMAPTransfertBadArgumentError("To host is empty.")
+    if to_port &lt;= 0:
+        raise IMAPTransfertBadArgumentError(
+            "To port is not positive.",
+        )
+    # pylint: disable=W0105
+    """
+    Maybe one day Python will ship something like that in its standard
+    library:
+    https://www.php.net/manual/fr/function.filter-var.php
+    But now urlparse doesn't do any validation.
+    You may want to check that the hosts or other fields are not
+    "anything".
+    """
+
+    # pylint: disable=W0105
+    """
+    raise SurpriseError(
+        "I haven't tested this version of my script... Oooooh!\n"
+        "But I linted it without this exception ;). Aaaaaaaah!\n"
+        "XD XD XD\n"
+        "Untested Scream Horror Show (Soon on BrainfuckedFlix)"
+    )
+    # """
+    # I haven't tested any version with an empty to_new_folder...
+
+    if verbose:
+        print("Connecting to from account.")
+    from_account = imaplib.IMAP4_SSL(host=from_host, port=from_port)
+    from_account.login(from_login, from_password)
+
+    if verbose:
+        print('Connecting to "to account".')
+    to_account = imaplib.IMAP4_SSL(host=to_host, port=to_port)
+    to_account.login(to_login, to_password)
+
+    if to_new_folder is None:
+        to_new_folder = ""
+    elif to_new_folder != "":
+        if verbose:
+            print("Creating new folder in to account.")
+        to_account.create(to_new_folder)
+
+    if verbose:
+        print("Fetching all emails ids in from account.")
+    from_account.select()
+    result, ids = from_account.uid("search", "all")
+    if verbose:
+        print(f'from_account.uid("search") result:{result} ids:{ids}')
+    ids = ids[0].decode().split()
+    if verbose:
+        print("Fetching and transfering each email in from account.")
+    for my_id in ids:
+        result, raw_message = from_account.uid(
+            "fetch",
+            my_id,
+            "(RFC822)",
+        )
+        if verbose:
+            print(
+                f'from_account.uid("fetch", {my_id})'
+                f" result:{result}",
+            )
+        message = raw_message[0][1]
+        my_email = email.message_from_string(message.decode("utf-8"))
+        flags = imaplib.ParseFlags(raw_message[0][0])
+        # flags = " ".join(flags) mypy is unhappy but IMAP flags are
+        # ASCII strings, we give mypy what it wants.
+        flags_as_strs = [flag.decode("ascii") for flag in flags]
+        flags_str = " ".join(flags_as_strs)
+        # date = imaplib.Internaldate2tuple(raw_message[0][0])
+        date = '"' + my_email["date"] + '"'
+        if verbose:
+            print(
+                f'from_account.uid("fetch", {my_id})'
+                f" flags:{flags} date:{date}",
+            )
+        to_account.append(to_new_folder, flags_str, date, message)
+
+
+def main() -> None:
+    """
+    Parse command-line arguments and
+    transfert all emails from some IMAP account
+    to another IMAP account.
+    """
+    parser = argparse.ArgumentParser(
+        description=(
+            "Transfert all emails from some IMAP account"
+            " to another IMAP account"
+        ),
+    )
+    parser.add_argument(
+        "from_login",
+        type=str,
+        help="Email account login of user one.",
+    )
+    parser.add_argument(
+        "from_password",
+        type=str,
+        help="Email account password of user one.",
+    )
+    parser.add_argument(
+        "to_login",
+        type=str,
+        help="Email account login of user two.",
+    )
+    parser.add_argument(
+        "to_password",
+        type=str,
+        help="Email account password of user two.",
+    )
+    parser.add_argument(
+        "--to_new_folder",
+        type=str,
+        default=None,
+        help="Transfert emails into a new folder of this name.",
+    )
+    parser.add_argument(
+        "--from_host",
+        type=str,
+        default="imap.gmail.com",
+        help="Host of first email account",
+    )
+    parser.add_argument(
+        "--from_port",
+        type=int,
+        default=993,
+        help="Port on host of first email account",
+    )
+    parser.add_argument(
+        "--to_host",
+        type=str,
+        default="imap.gmail.com",
+        help="Host of second email account",
+    )
+    parser.add_argument(
+        "--to_port",
+        type=int,
+        default=993,
+        help="Port on host of second email account",
+    )
+    parser.add_argument(
+        "-v",
+        "--verbose",
+        action="store_true",
+        help="Print details of operations",
+    )
+
+    args = parser.parse_args()
+
+    if args.verbose:
+        print(
+            "-----------------------------------------------------\n"
+            "IMAP transfert:\n"
+            "-----------------------------------------------------\n"
+            "From account:\n"
+            " - Login: {args.from_login}\n"
+            " - Password: {args.from_password}\n"
+            " - Host: {args.from_host}\n"
+            " - Port: {args.from_port}\n"
+            "To account:\n"
+            " - Login: {args.to_login}\n"
+            " - Password: {args.to_password}\n"
+            " - Host: {args.to_host}\n"
+            " - Port: {args.to_port}\n"
+            "-----------------------------------------------------\n",
+        )
+        if args.to_new_folder is not None:
+            print(
+                "Emails will go in folder {args.to_new_folder}"
+                " after it is created.",
+            )
+    try:
+        IMAP_transfert(
+            args.from_login,
+            args.from_password,
+            args.from_host,
+            args.from_port,
+            args.to_login,
+            args.to_password,
+            args.to_host,
+            args.to_port,
+            args.to_new_folder,
+            verbose=args.verbose,
+        )
+    except (IMAPTransfertBadArgumentError, SurpriseError) as e:
+        print(e)
+
+
+if __name__ == "__main__":
+    main()
+</pre>
+
+
+<h3 id="subsection2.52">2.52
 LiensUtiles.txt
 </h3>
 <pre class="numbered_lines">
@@ -8298,7 +8669,7 @@ calling-gpld-programs-from-a-shell-script
 </pre>
 
 
-<h3 id="subsection2.51">2.51
+<h3 id="subsection2.53">2.53
 README.md.tpl
 </h3>
 <pre class="numbered_lines">
@@ -8403,7 +8774,7 @@ badge/v2.json
 </pre>
 
 
-<h3 id="subsection2.52">2.52
+<h3 id="subsection2.54">2.54
 unicode.libr.php
 </h3>
 <pre class="numbered_lines">
@@ -8718,7 +9089,7 @@ foreach($arr as $s_hexa){
 </pre>
 
 
-<h3 id="subsection2.53">2.53
+<h3 id="subsection2.55">2.55
 upgrade_build_and_checks.exec.sh
 </h3>
 <pre class="numbered_lines">
@@ -8771,7 +9142,7 @@ upgrade_build_and_checks "$@"
 </pre>
 
 
-<h3 id="subsection2.54">2.54
+<h3 id="subsection2.56">2.56
 wget_sha512.libr.sh
 </h3>
 <pre class="numbered_lines">

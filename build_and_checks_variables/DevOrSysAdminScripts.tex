@@ -76,11 +76,11 @@ for enhancing development or system-administrators tasks
 
 Current version: 2026-02-24
 
-Current number of commits: 374
+Current number of commits: 380
 
-Current git SHA1: 4e569bf6be2791ce1ce6f703c1b66e07f68a8026
+Current git SHA1: 84bf04bd13545d3fe247d795d32aa183304a462b
 
-Code lines: 7421 total lines, 6729 not empty lines, 692 empty lines.
+Code lines: 7770 total lines, 7046 not empty lines, 724 empty lines.
 
 \tableofcontents
 \newpage
@@ -124,6 +124,7 @@ Code lines: 7421 total lines, 6729 not empty lines, 692 empty lines.
 ├── build_and_checks_variables
 │   ├── bandit_baseline.json
 │   ├── bandit.ini
+│   ├── black.toml
 │   ├── DevOrSysAdminScripts.html.tpl
 │   ├── DevOrSysAdminScripts.tex
 │   ├── DevOrSysAdminScripts.tex.tpl
@@ -146,6 +147,7 @@ Code lines: 7421 total lines, 6729 not empty lines, 692 empty lines.
 │   ├── post-commit
 │   ├── post_commit_renaming_comment.libr.sh
 │   └── pre-commit
+├── IMAP_transfert.py
 ├── LiensUtiles.txt
 ├── README.html
 ├── README.md
@@ -155,7 +157,7 @@ Code lines: 7421 total lines, 6729 not empty lines, 692 empty lines.
 ├── upgrade_build_and_checks.exec.sh
 └── wget_sha512.libr.sh
 
-6 directories, 59 files
+6 directories, 61 files
 \end{verbatim}
 
 \begin{verbatim}
@@ -661,6 +663,18 @@ build_and_checks_variables/bandit_baseline.json
 
 
 \subsection{
+  build\_and\_checks\_variables/black.toml
+}
+\label{
+  build_and_checks_variables:blacktoml
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+build_and_checks_variables/black.toml
+}
+
+
+\subsection{
   build\_and\_checks\_variables/DevOrSysAdminScripts.html.tpl
 }
 \label{
@@ -873,6 +887,18 @@ git_helpers/post_commit_renaming_comment.libr.sh
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
 git_helpers/pre-commit
+}
+
+
+\subsection{
+  IMAP\_transfert.py
+}
+\label{
+  IMAP_transfertpy
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+IMAP_transfert.py
 }
 
 

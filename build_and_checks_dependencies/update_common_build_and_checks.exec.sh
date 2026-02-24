@@ -42,7 +42,7 @@ update_common_build_and_checks(){
 
   declare -r LFBFL_common_file_name="common_build_and_checks.exec.sh"
   cp "./${LFBFL_common_file_name}.tpl"\
-     "./${LFBFL_common_file_name}.temp"
+    "./${LFBFL_common_file_name}.temp"
 
   declare -ar LFBFL_file_names=(
     "build_md_from_printable_md.exec.sh"

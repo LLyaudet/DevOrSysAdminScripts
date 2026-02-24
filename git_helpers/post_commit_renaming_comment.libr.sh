@@ -89,8 +89,8 @@ commit_a_file_renamed_comment(){
   readonly LFBFL_max_comment_line_length
   if [[ LFBFL_verbose -eq 1 ]]; then
     echo "LFBFL_log_directory_change: ${LFBFL_log_directory_change}"
-    echo\
-     "LFBFL_max_comment_line_length: ${LFBFL_max_comment_line_length}"
+    echo "LFBFL_max_comment_line_length:"\
+      "${LFBFL_max_comment_line_length}"
   fi
   #-------------------------------------------------------------------
 
@@ -288,7 +288,7 @@ commit_a_file_renamed_comment(){
     )
     if [[ LFBFL_verbose -eq 1 ]]; then
       echo "LFBFL_copyright_line_number:"\
-           " ${LFBFL_copyright_line_number}"
+        "${LFBFL_copyright_line_number}"
     fi
     if [[ LFBFL_copyright_line_number -eq 0 ]]; then
       notify-send "${LFBFL_send_summary_2}"\

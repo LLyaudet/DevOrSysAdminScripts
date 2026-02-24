@@ -286,11 +286,11 @@ create_PDF(){
   if [[ -f "./${LFBFL_subdir2}/${repository_name}.tex.tpl" ]]; then
     # If there is a template, we init the process from it.
     cp "./${LFBFL_subdir2}/${repository_name}.tex.tpl"\
-       "./${LFBFL_subdir2}/temp/${repository_name}.tex.1"
+      "./${LFBFL_subdir2}/temp/${repository_name}.tex.1"
   elif [[ -f "./${LFBFL_subdir2}/${repository_name}.tex" ]]; then
     # Otherwise if there is a tex file, we init the process from it.
     cp "./${LFBFL_subdir2}/${repository_name}.tex"\
-       "./${LFBFL_subdir2}/temp/${repository_name}.tex.1"
+      "./${LFBFL_subdir2}/temp/${repository_name}.tex.1"
   else
     echo "Neither .tex.tpl, nor .tex in ./${LFBFL_subdir2}/"
   fi
@@ -298,10 +298,10 @@ create_PDF(){
   # Same logic with repository HTML file.
   if [[ -f "./${LFBFL_subdir2}/${repository_name}.html.tpl" ]]; then
     cp "./${LFBFL_subdir2}/${repository_name}.html.tpl"\
-       "./${LFBFL_subdir2}/temp/${repository_name}.html.1"
+      "./${LFBFL_subdir2}/temp/${repository_name}.html.1"
   elif [[ -f "./${repository_name}.html" ]]; then
     cp "./${repository_name}.html"\
-       "./${LFBFL_subdir2}/temp/${repository_name}.html.1"
+      "./${LFBFL_subdir2}/temp/${repository_name}.html.1"
   else
     echo "Neither .html.tpl in ./${LFBFL_subdir2}/, nor .html in ./"
   fi

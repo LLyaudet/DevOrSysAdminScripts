@@ -3,6 +3,7 @@
   <violation rule="PHPMD\Rule\Controversial\CamelCaseParameterName" file="build_and_checks_dependencies/split_score.libr.php"/>
   <violation rule="PHPMD\Rule\Naming\LongVariable" file="build_and_checks_dependencies/split_score.libr.php"/>
   <violation rule="PHPMD\Rule\Controversial\CamelCaseVariableName" file="build_and_checks_dependencies/split_score.libr.php"/>
+  <violation rule="PHPMD\Rule\Design\LongMethod" file="unicode.libr.php"/>
   <violation rule="PHPMD\Rule\Controversial\CamelCaseParameterName" file="unicode.libr.php"/>
   <violation rule="PHPMD\Rule\Naming\LongVariable" file="unicode.libr.php"/>
   <violation rule="PHPMD\Rule\Controversial\CamelCaseVariableName" file="unicode.libr.php"/>

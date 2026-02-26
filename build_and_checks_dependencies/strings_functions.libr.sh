@@ -337,11 +337,14 @@ split_last_line(){
 
 repeated_split_last_line(){
   declare -g repeated_split_last_line_result="$1"
-  local LFBFL_i
-  for ((LFBFL_i=0; LFBFL_i<$6; ++LFBFL_i)) do
+  local LFBFL_result="$1x"
+  until
+    [[ "${LFBFL_result}" == "${repeated_split_last_line_result}" ]];
+  do
     split_last_line "${repeated_split_last_line_result}" "$2" "$3"\
       "$4" "$5" "$6" "$7"
+    LFBFL_result="${repeated_split_last_line_result}"
     repeated_split_last_line_result="${split_last_line_result}"
-    # echo "${split_last_line_result}"
+    # echo "${repeated_split_last_line_result}"
   done
 }

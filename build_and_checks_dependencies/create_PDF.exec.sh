@@ -276,7 +276,7 @@ create_PDF(){
       LFBFL_new_lines="${LFBFL_prefix}${LFBFL_file_name}"
       if [[ ${#LFBFL_new_lines} -gt 70 ]]; then
         repeated_split_last_line "${LFBFL_new_lines}"\
-          "${LFBFL_prefix}" 70 "" "" 3
+          "${LFBFL_prefix}" 70 "" "" "" ""
         LFBFL_new_lines=${repeated_split_last_line_result}
       fi
       sed -i -e\

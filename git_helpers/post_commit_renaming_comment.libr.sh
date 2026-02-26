@@ -63,6 +63,7 @@ popd || {
 # It assumes that `diff` is the current default difference utility
 # parametered with `git`. This point could be enhanced.
 commit_a_file_renamed_comment(){
+  local LFBFL_arg
   declare -i LFBFL_verbose=0
   if [[ "$*" == *--verbose* ]]; then
     echo "$0 commit_a_file_renamed_comment $*"
@@ -83,10 +84,15 @@ commit_a_file_renamed_comment(){
   readonly LFBFL_log_directory_change
 
   declare -i LFBFL_max_comment_line_length=70
-  if [[ -n "$3" ]]; then
-    LFBFL_max_comment_line_length=$(($3))
-  fi
+  for LFBFL_arg in "$@"; do
+    if [[ "${LFBFL_arg}" == --max-comment-line-length=* ]]; then
+      LFBFL_arg=${LFBFL_arg#--max-comment-line-length=}
+      LFBFL_max_comment_line_length=$((LFBFL_arg))
+      break
+    fi
+  done
   readonly LFBFL_max_comment_line_length
+
   if [[ LFBFL_verbose -eq 1 ]]; then
     echo "LFBFL_log_directory_change: ${LFBFL_log_directory_change}"
     echo "LFBFL_max_comment_line_length:"\

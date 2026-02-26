@@ -97,10 +97,14 @@ create_PDF(){
   LFBFL_number_of_lines+=" empty lines."
   readonly LFBFL_number_of_lines
 
+  # see https://gitlab.com/OldManProgrammer/unix-tree/-/issues
+  # ?show=eyJpaWQiOiI0MyIsImZ1bGxfcGF0aCI6Ik9sZE1hblByb2dyYW1t
+  # ZXIvdW5peC10cmVlIiwiaWQiOjE4NTE0NTgzOH0%3D
   tree -a --gitignore\
     -I "node_modules/"\
     -I "__pycache__/"\
     -I ".mypy_cache/"\
+    -I ".ruff_cache/"\
     -I ".git/"\
     | replace_non_ascii_spaces\
     > "${LFBFL_subdir2}/temp/current_tree_light.txt"
@@ -109,6 +113,7 @@ create_PDF(){
     -I "node_modules/"\
     -I "__pycache__/"\
     -I ".mypy_cache/"\
+    -I ".ruff_cache/"\
     -I ".git/"\
     | replace_non_ascii_spaces\
     > "${LFBFL_subdir2}/temp/current_tree.txt.temp"

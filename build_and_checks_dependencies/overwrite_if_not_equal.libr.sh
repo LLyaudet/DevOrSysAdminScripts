@@ -48,7 +48,7 @@ overwrite_if_not_equal(){
     diff "$1" "$2"\
       | grep -E "^(>|<)"\
       | grep -v "/$"
-    LFBFL_is_equal=$?
+    LFBFL_is_equal=${PIPESTATUS[2]}
   else
     diff -q "$1" "$2"
     LFBFL_is_equal=1-$?

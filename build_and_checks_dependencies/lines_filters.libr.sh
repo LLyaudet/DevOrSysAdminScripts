@@ -131,9 +131,27 @@ in_place_grep(){
 grep_variable(){
   # $1=$file
   # $2=$variable_name
+  # Options :
+  #   --replace-line-returns-by=""
   declare -r LFBFL_regexp="(?<=^$2=).*$"
   # echo $LFBFL_regexp
-  declare -r LFBFL_variable_value="$(grep -oP "${LFBFL_regexp}" "$1")"
+  local LFBFL_variable_value
+  if [[ "$*" == *--replace-line-returns-by=* ]]; then
+    local LFBFL_replace_string=""
+    local LFBFL_arg
+    for LFBFL_arg in "$@"; do
+      if [[ "${LFBFL_arg}" == --replace-line-returns-by=* ]]; then
+        LFBFL_replace_string=${LFBFL_arg#--replace-line-returns-by=}
+        break
+      fi
+    done
+    LFBFL_variable_value=$(
+      grep -oP "${LFBFL_regexp}" "$1"\
+      | sed -Ez -e 's/\n/'"${LFBFL_replace_string}"'/Mg'
+    )
+  else
+    LFBFL_variable_value=$(grep -oP "${LFBFL_regexp}" "$1")
+  fi
   # echo $LFBFL_variable_value
   declare -g "$2"="${LFBFL_variable_value}"
 }

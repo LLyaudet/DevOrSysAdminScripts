@@ -34,6 +34,20 @@ LFBFL_library="../DevOrSysAdminScripts/git_helpers/"
 LFBFL_library+="post_commit_renaming_comment.libr.sh"
 # shellcheck source=post_commit_renaming_comment.libr.sh
 source "${LFBFL_library}"
+LFBFL_library="../DevOrSysAdminScripts/build_and_checks_dependencies/"
+LFBFL_library+="lines_filters.libr.sh"
+# shellcheck source=lines_filters.libr.sh
+source "${LFBFL_library}"
 
-commit_a_file_renamed_comment --verbose --log-directory-change
+LFBFL_data_file_name="build_and_checks_variables/repository_data.txt"
+LFBFL_max_comment_line_length=""
+if [[ -f "${LFBFL_data_file_name}" ]]; then
+  grep_variable "${LFBFL_data_file_name}" "max_line_length"\
+    --result-variable-prefix="LFBFL_"
+  LFBFL_max_comment_line_length="--max-comment-line-length="
+  LFBFL_max_comment_line_length+="${LFBFL_max_line_length}"
+fi
+
+commit_a_file_renamed_comment --verbose --log-directory-change\
+  "${LFBFL_max_comment_line_length}"
 exit 0

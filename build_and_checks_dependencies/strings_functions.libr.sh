@@ -176,13 +176,7 @@ split_line_at_most(){
     LFBFL_previous_char=""
     for ((LFBFL_i=0; LFBFL_i<LFBFL_i_max; ++LFBFL_i)) do
       LFBFL_j=$((LFBFL_i+1))
-      if [[ LFBFL_i -ge 1 ]]; then
-        LFBFL_previous_char="${LFBFL_current_char}"
-      fi
       LFBFL_current_char="${1:${LFBFL_i}:1}"
-      if [[ "${LFBFL_previous_char}" == "$5" ]]; then
-        LFBFL_positions["${LFBFL_i}"]="-1"
-      fi
       if [[ "${LFBFL_current_char}" == "$5" ]]; then
         LFBFL_positions["${LFBFL_j}"]="-1"
       fi

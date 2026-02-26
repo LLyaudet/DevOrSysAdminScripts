@@ -276,7 +276,11 @@ commit_a_file_renamed_comment(){
       "${LFBFL_new_file_directory}"\
       != "${LFBFL_old_file_directory}"\
     ]]; then
-      LFBFL_new_comment+="\n${LFBFL_comment_prefix}"
+      if [[ "${LFBFL_new_file_name2}" != "${LFBFL_old_file_name2}" ]];
+      then
+        LFBFL_new_comment+="\n"
+      fi
+      LFBFL_new_comment+="${LFBFL_comment_prefix}"
       LFBFL_new_comment+="${LFBFL_timestamp}"
       LFBFL_new_comment+=": This file was moved from\n"
       LFBFL_new_comment+="${LFBFL_old_file_directory2}"'"\n'

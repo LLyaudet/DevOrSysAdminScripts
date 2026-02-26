@@ -40,11 +40,12 @@ function decimal_code_point_to_UTF8(
     $i_last_byte_significant_bits = (
       $i_code_point_in_decimal_notation % (2**6)
     );
-    $i_first_byte_significant_bits = (int) (
+    $i_first_byte_significant_bits = intdiv(
       (
         $i_code_point_in_decimal_notation
         - $i_last_byte_significant_bits
-      ) / (2**6)
+      ),
+      (2**6),
     );
     $s_result = chr(
       $i_first_byte_base_value
@@ -77,8 +78,9 @@ function decimal_code_point_to_UTF8(
       // puis l'extérieur et qu'il oublie de réoptimiser l'intérieur
       // en fonction de l'extérieur unrollé. Est-ce que j'ai raison ?
       $i_significant_bits = $i_rest % (2**$arr_data["i_bits"]);
-      $i_rest = (int) (
-        ($i_rest - $i_significant_bits) / (2**$arr_data["i_bits"])
+      $i_rest = intdiv(
+        $i_rest - $i_significant_bits,
+        2**$arr_data["i_bits"],
       );
       $s_result = (  // .= or =.
         chr($i_significant_bits + $arr_data["i_base_value"])
@@ -101,8 +103,9 @@ function decimal_code_point_to_UTF8(
     foreach($arr_arr_data_per_byte_reverse as $arr_data){
       // _Pragma unroll
       $i_significant_bits = $i_rest % (2**$arr_data["i_bits"]);
-      $i_rest = (int) (
-        ($i_rest - $i_significant_bits) / (2**$arr_data["i_bits"])
+      $i_rest = intdiv(
+        $i_rest - $i_significant_bits,
+        2**$arr_data["i_bits"],
       );
       $s_result = (  // .= or =.
         chr($i_significant_bits + $arr_data["i_base_value"])

@@ -160,7 +160,6 @@ split_line_at_most(){
   )
   declare -i LFBFL_i
   declare -i LFBFL_j
-  local LFBFL_previous_char
   local LFBFL_current_char
 
   # At the beginning, each position has score 0.
@@ -173,7 +172,6 @@ split_line_at_most(){
   # If we have a forbidden previous character,
   # we mark the forbidden positions with -1.
   if [[ -n "$5" ]]; then
-    LFBFL_previous_char=""
     for ((LFBFL_i=0; LFBFL_i<LFBFL_i_max; ++LFBFL_i)) do
       LFBFL_j=$((LFBFL_i+1))
       LFBFL_current_char="${1:${LFBFL_i}:1}"

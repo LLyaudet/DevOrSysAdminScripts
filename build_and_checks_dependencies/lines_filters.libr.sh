@@ -133,6 +133,7 @@ grep_variable(){
   # $2=$variable_name
   # Options :
   #   --replace-line-returns-by=""
+  #   --result-variable-prefix="LFBFL_" for example
   declare -r LFBFL_regexp="(?<=^$2=).*$"
   # echo $LFBFL_regexp
   local LFBFL_variable_value
@@ -152,8 +153,15 @@ grep_variable(){
   else
     LFBFL_variable_value=$(grep -oP "${LFBFL_regexp}" "$1")
   fi
+  local LFBFL_prefix=""
+  for LFBFL_arg in "$@"; do
+    if [[ "${LFBFL_arg}" == --result-variable-prefix=* ]]; then
+      LFBFL_prefix=${LFBFL_arg#--result-variable-prefix=}
+      break
+    fi
+  done
   # echo $LFBFL_variable_value
-  declare -g "$2"="${LFBFL_variable_value}"
+  declare -g "${LFBFL_prefix}$2"="${LFBFL_variable_value}"
 }
 
 repository_name=""

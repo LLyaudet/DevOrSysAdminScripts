@@ -135,11 +135,11 @@ grep_variable(){
   #   --replace-line-returns-by=""
   #   --result-variable-prefix="LFBFL_" for example
   declare -r LFBFL_regexp="(?<=^$2=).*$"
+  local LFBFL_arg
   # echo $LFBFL_regexp
   local LFBFL_variable_value
   if [[ "$*" == *--replace-line-returns-by=* ]]; then
     local LFBFL_replace_string=""
-    local LFBFL_arg
     for LFBFL_arg in "$@"; do
       if [[ "${LFBFL_arg}" == --replace-line-returns-by=* ]]; then
         LFBFL_replace_string=${LFBFL_arg#--replace-line-returns-by=}

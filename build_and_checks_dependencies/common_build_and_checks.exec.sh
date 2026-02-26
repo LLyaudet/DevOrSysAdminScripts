@@ -114,9 +114,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='d8cd5dde0b3e049344b5856bbedef76def8e953cfb4e1'
-  LFBFL_correct_sha512+='650f4c64cd26cc9cb2a2c536d9f1b8db6ab5561f844f'
-  LFBFL_correct_sha512+='2d61c506b277b7ff76d4429692d005576c7d098'
+  LFBFL_correct_sha512='c6c334ef38dfe1b2dfeccac1269ab0b89c0086d7be0a8'
+  LFBFL_correct_sha512+='b8de20262d5a6aedf3172cb7cbc57d7cb61dc1ad75b5'
+  LFBFL_correct_sha512+='514315170de840e788b4f43d8c613e2889743df'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
   chmod +x "./${LFBFL_file_path}"
@@ -210,9 +210,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='d60575393ddf0ed29ad0b7f5e8614812de4c4d61ce094'
-  LFBFL_correct_sha512+='b0e03dbc3298a7cd5696d5e5d4f875cfa51624e334e1'
-  LFBFL_correct_sha512+='f8abd24fddfe688dde9bcd2afada03c9d9a468b'
+  LFBFL_correct_sha512='18def22e65bc8867a704cb883be7c99df1b6bb7d7c623'
+  LFBFL_correct_sha512+='d624aed338fcdd1d41b06b56895167aff20e0a933ea9'
+  LFBFL_correct_sha512+='581d4481f811b062b5861c43a94bb98fe4de356'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
@@ -230,9 +230,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='8df9334f8204bdb9b098f638d15a3db2dd0ce4446203f'
-  LFBFL_correct_sha512+='fe26678cb3c2b3b26cb0b89957490af5fa21c149a525'
-  LFBFL_correct_sha512+='baf5e3d4999f432f9ff384616631cdc111507cf'
+  LFBFL_correct_sha512='2781a564d264bae84c787321481dc83ae43a1ce324ee6'
+  LFBFL_correct_sha512+='d5ceb73d5a98607fad5fe9ff8d03979b898f7cd7c712'
+  LFBFL_correct_sha512+='8215d26e76874d56aa67fb63fa9de776617d24a'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
@@ -290,9 +290,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='4a293149e4a4c2c09405ecd689007755d172f4f8996a0'
-  LFBFL_correct_sha512+='bbe8668d20a003a001f72d09a3bd46d07187de4788c4'
-  LFBFL_correct_sha512+='54415ea3a428e7563b36963a7f12acb9850297d'
+  LFBFL_correct_sha512='433858315341224e32d3e90c6f0c611ba17f88b3d3cd7'
+  LFBFL_correct_sha512+='53296c1294c4b838e8b59031e5395bdd16ad898a9030'
+  LFBFL_correct_sha512+='4c89b03779abcfc7f68e418b832eb56505f92cf'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
@@ -300,9 +300,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='11b509de8c58906143b8b7152b636313e86bf3de748d7'
-  LFBFL_correct_sha512+='20ccc70ecae35379ab3c568dec2e746378609fda229c'
-  LFBFL_correct_sha512+='e644f24ac30e8c5958d0af12e529afc818d5422'
+  LFBFL_correct_sha512='bf330ba727703e9763a04bd7a05f7ad037531f75f420b'
+  LFBFL_correct_sha512+='90595d4d8b886310170bfb2f6c423b8d7fb5ab3b5394'
+  LFBFL_correct_sha512+='413b3b17d2afcde53019c0ce25730716e77aba8'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
   chmod +x "./${LFBFL_file_path}"
@@ -341,6 +341,10 @@ common_build_and_checks(){
 
   local LFBFL_data_file_name=\
 "build_and_checks_variables/repository_data.txt"
+
+  declare -i LFBFL_max_line_length
+  grep_variable "${LFBFL_data_file_name}" max_line_length\
+    --result-variable-prefix="LFBFL_"
 
   declare -i LFBFL_upgrade_venvs=0
   declare -r LFBFL_upgrade_venvs_ts_file=\
@@ -611,7 +615,8 @@ common_build_and_checks(){
   echo "---JS end---"
 
   echo "Analyzing too long lines"
-  too_long_code_lines "$@"
+  # shellcheck disable=SC2248
+  too_long_code_lines ${LFBFL_max_line_length} "$@"
 
   echo "Analyzing shell scripts beginnings"
   check_shell_scripts_beginnings\

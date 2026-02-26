@@ -66,6 +66,12 @@ update_or_check_files_names_listing(){
   LFBFL_subdir2="build_and_checks_variables"
   local LFBFL_listing="./${LFBFL_subdir2}/files_names_listing.txt"
   readonly LFBFL_listing
+  local LFBFL_data_file_name="./${LFBFL_subdir2}/repository_data.txt"
+  readonly LFBFL_data_file_name
+
+  declare -i LFBFL_max_line_length
+  grep_variable "${LFBFL_data_file_name}" max_line_length\
+    --result-variable-prefix="LFBFL_"
 
   if [[ LFBFL_write -eq 1 ]]; then
     : > "${LFBFL_listing}"
@@ -74,7 +80,8 @@ update_or_check_files_names_listing(){
   sed -Ez 's/\\\n//Mg' "${LFBFL_listing}"\
     > "${LFBFL_listing}.temp"
   shopt -s dotglob
-  get_split_score_simple 1 70 /
+  # shellcheck disable=SC2248
+  get_split_score_simple 1 ${LFBFL_max_line_length} /
   declare -r LFBFL_split_score_command="${get_split_score_result}"
   local LFBFL_split_score_command_properties
   LFBFL_split_score_command_properties="${get_split_score_result2}"
@@ -98,8 +105,12 @@ update_or_check_files_names_listing(){
         continue
       fi
     fi
-    repeated_split_last_line "${LFBFL_file_name}" "" 70\
-      "${LFBFL_suffix}" "${LFBFL_split_score_command}"\
+    # shellcheck disable=SC2248
+    repeated_split_last_line "${LFBFL_file_name}"\
+      ""\
+      ${LFBFL_max_line_length}\
+      "${LFBFL_suffix}"\
+      "${LFBFL_split_score_command}"\
       "${LFBFL_split_score_command_properties}"
     LFBFL_split_file_name="${repeated_split_last_line_result}"
     if [[ LFBFL_write -eq 1 ]]; then

@@ -270,6 +270,10 @@ common_build_and_checks(){
   local LFBFL_data_file_name=\
 "build_and_checks_variables/repository_data.txt"
 
+  declare -i LFBFL_max_line_length
+  grep_variable "${LFBFL_data_file_name}" max_line_length\
+    --result-variable-prefix="LFBFL_"
+
   declare -i LFBFL_upgrade_venvs=0
   declare -r LFBFL_upgrade_venvs_ts_file=\
 "build_and_checks_variables/upgrade_venvs_ts"
@@ -539,7 +543,8 @@ common_build_and_checks(){
   echo "---JS end---"
 
   echo "Analyzing too long lines"
-  too_long_code_lines "$@"
+  # shellcheck disable=SC2248
+  too_long_code_lines ${LFBFL_max_line_length} "$@"
 
   echo "Analyzing shell scripts beginnings"
   check_shell_scripts_beginnings\

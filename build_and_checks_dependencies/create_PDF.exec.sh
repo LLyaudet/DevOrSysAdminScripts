@@ -71,6 +71,10 @@ create_PDF(){
   author_website=""
   grep_variable "${LFBFL_data_file_name}" author_website
 
+  declare -i LFBFL_max_line_length
+  grep_variable "${LFBFL_data_file_name}" max_line_length\
+    --result-variable-prefix="LFBFL_"
+
   declare -r LFBFL_current_date=$(date -I"date")
 
   declare -r LFBFL_current_git_SHA1=$(git rev-parse HEAD)
@@ -131,11 +135,13 @@ create_PDF(){
   LFBFL_temp_files_lis="./${LFBFL_subdir2}/temp/files_lis.html.tpl"
   readonly LFBFL_temp_files_lis
   : > "${LFBFL_temp_files_lis}"
-  get_split_score_simple 1 70 /
+  # shellcheck disable=SC2248
+  get_split_score_simple 1 ${LFBFL_max_line_length} /
   declare -r LFBFL_score_command="${get_split_score_result}"
   local LFBFL_score_command_properties="${get_split_score_result2}"
   readonly LFBFL_score_command_properties
-  get_split_score_simple 1 70 ':'
+  # shellcheck disable=SC2248
+  get_split_score_simple 1 ${LFBFL_max_line_length} ':'
   declare -r LFBFL_score_command2="${get_split_score_result}"
   local LFBFL_score_command_properties2="${get_split_score_result2}"
   readonly LFBFL_score_command_properties2
@@ -160,23 +166,36 @@ create_PDF(){
       | sed -e 's/\//:/g' -e 's/\.//g'
     )
     LFBFL_new_lines="  ${LFBFL_cleaned_path1}"
-    if [[ ${#LFBFL_new_lines} -gt 70 ]]; then
-      repeated_split_last_line "${LFBFL_new_lines}" "" 70\
-        "${LFBFL_suffix}" "${LFBFL_score_command}"\
-        "${LFBFL_score_command_properties}" "\\"
+    if [[ ${#LFBFL_new_lines} -gt LFBFL_max_line_length ]]; then
+      # shellcheck disable=SC2248
+      repeated_split_last_line "${LFBFL_new_lines}"\
+        ""\
+        ${LFBFL_max_line_length}\
+        "${LFBFL_suffix}"\
+        "${LFBFL_score_command}"\
+        "${LFBFL_score_command_properties}"\
+        "\\"
       LFBFL_new_lines=${repeated_split_last_line_result}
     fi
     LFBFL_new_lines2="  ${LFBFL_cleaned_path2}"
-    if [[ ${#LFBFL_new_lines2} -gt 70 ]]; then
-      repeated_split_last_line "${LFBFL_new_lines2}" "" 70\
-        "${LFBFL_suffix}" "${LFBFL_score_command2}"\
+    if [[ ${#LFBFL_new_lines2} -gt LFBFL_max_line_length ]]; then
+      # shellcheck disable=SC2248
+      repeated_split_last_line "${LFBFL_new_lines2}"\
+        ""\
+        ${LFBFL_max_line_length}\
+        "${LFBFL_suffix}"\
+        "${LFBFL_score_command2}"\
         "${LFBFL_score_command_properties2}"
       LFBFL_new_lines2=${repeated_split_last_line_result}
     fi
     LFBFL_new_lines3="${LFBFL_file_name}"
-    if [[ ${#LFBFL_new_lines3} -gt 70 ]]; then
-      repeated_split_last_line "${LFBFL_new_lines3}" "" 70\
-        "${LFBFL_suffix}" "${LFBFL_score_command}"\
+    if [[ ${#LFBFL_new_lines3} -gt LFBFL_max_line_length ]]; then
+      # shellcheck disable=SC2248
+      repeated_split_last_line "${LFBFL_new_lines3}"\
+        ""\
+        ${LFBFL_max_line_length}\
+        "${LFBFL_suffix}"\
+        "${LFBFL_score_command}"\
         "${LFBFL_score_command_properties}"
       LFBFL_new_lines3=${repeated_split_last_line_result}
     fi
@@ -202,9 +221,13 @@ create_PDF(){
     # echo "Listing file for HTML : ${LFBFL_file_name}"
     ((++LFBFL_i))
     LFBFL_new_lines="${LFBFL_file_name}"
-    if [[ ${#LFBFL_file_name} -gt 70 ]]; then
-      repeated_split_last_line "${LFBFL_new_lines}" "-->"\
-        70 "<!--" "${LFBFL_score_command}"\
+    if [[ ${#LFBFL_file_name} -gt LFBFL_max_line_length ]]; then
+      # shellcheck disable=SC2248
+      repeated_split_last_line "${LFBFL_new_lines}"\
+        "-->"\
+        ${LFBFL_max_line_length}\
+        "<!--"\
+        "${LFBFL_score_command}"\
         "${LFBFL_score_command_properties}"
       LFBFL_new_lines=${repeated_split_last_line_result}
     fi
@@ -236,7 +259,7 @@ create_PDF(){
     "./${LFBFL_subdir2}/temp/files_listing.html.tpl"\
     "${LFBFL_temp_files_listing2}"
 
-  # We verify if some lines are beyond 70 characters
+  # We verify if some lines are beyond max_line_length characters
   # in current_tree_light.txt and current_tree.txt.
   declare -ar LFBFL_trees=(
     "current_tree_light.txt"
@@ -246,9 +269,11 @@ create_PDF(){
   local LFBFL_line
   local LFBFL_prefix
   local LFBFL_line_start
+  declare -ir LFBFL_overlength=$((LFBFL_max_line_length+1))
   for LFBFL_tree in "${LFBFL_trees[@]}"; do
     LFBFL_tree_path="${LFBFL_subdir2}/temp/${LFBFL_tree}"
-    grep '.\{71\}' "${LFBFL_tree_path}"\
+    # shellcheck disable=SC2248
+    grep '.\{'${LFBFL_overlength}'\}' "${LFBFL_tree_path}"\
       | while read -r LFBFL_line;
     do
       # echo "LFBFL_line: ${LFBFL_line}"
@@ -274,9 +299,14 @@ create_PDF(){
         | sed -E -e 's/\[/\\\[/g' -e 's/\]/\\\]/g'
       )
       LFBFL_new_lines="${LFBFL_prefix}${LFBFL_file_name}"
-      if [[ ${#LFBFL_new_lines} -gt 70 ]]; then
+      if [[ ${#LFBFL_new_lines} -gt LFBFL_max_line_length ]]; then
+        # shellcheck disable=SC2248
         repeated_split_last_line "${LFBFL_new_lines}"\
-          "${LFBFL_prefix}" 70 "" "" "" ""
+          "${LFBFL_prefix}"\
+          ${LFBFL_max_line_length}\
+          ""\
+          ""\
+          ""
         LFBFL_new_lines=${repeated_split_last_line_result}
       fi
       sed -i -e\

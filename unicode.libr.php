@@ -45,7 +45,7 @@ function decimal_code_point_to_UTF8(
         $i_code_point_in_decimal_notation
         - $i_last_byte_significant_bits
       ),
-      (2**6),
+      2**6,
     );
     $s_result = chr(
       $i_first_byte_base_value

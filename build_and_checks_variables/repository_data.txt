@@ -22,6 +22,8 @@ author_website=https://lyaudet.eu/laurent/
 acknowledgments=Merci Dieu !
 acknowledgments=Merci Père ! Merci Seigneur ! Merci Saint Esprit !
 
+max_line_length=70
+
 grammar_or_spell_checker_command=more
 
 

@@ -31,12 +31,26 @@ source "./${LFBFL_subdir}/get_common_text_glob_patterns.libr.sh"
 source "./${LFBFL_subdir}/lines_filters.libr.sh"
 
 too_long_code_lines(){
+  # Options:
+  #   --verbose
+  #   --max-line-length
+  local LFBFL_arg
+
   declare -i LFBFL_verbose=0
   if [[ "$*" == *--verbose* ]]; then
     echo "$0 $*"
     LFBFL_verbose=1
   fi
   readonly LFBFL_verbose
+
+  declare -i LFBFL_max_line_length=70
+  for LFBFL_arg in "$@"; do
+    if [[ "${LFBFL_arg}" == --max-line-length=* ]]; then
+      LFBFL_arg=${LFBFL_arg#--max-line-length=}
+      LFBFL_max_line_length=$((LFBFL_arg))
+      break
+    fi
+  done
 
   if [[ ! -o pipefail ]]; then
     [[ LFBFL_verbose -eq 1 ]] && echo "pipefail option activated"
@@ -51,13 +65,15 @@ too_long_code_lines(){
   local LFBFL_line
   local LFBFL_extension
   local LFBFL_base_name
+  declare -ir LFBFL_overlength=$((LFBFL_max_line_length+1))
   for LFBFL_pattern in "${COMMON_TEXT_FILES_GLOB_PATTERNS[@]}"; do
     [[ LFBFL_verbose -eq 0 ]]\
       || echo "Iterating on pattern: ${LFBFL_pattern}"
+    # shellcheck disable=SC2248
     find . -type f -name "${LFBFL_pattern}" -printf '%P\n'\
       | relevant_find\
       | not_license_find\
-      | xargs grep -H '.\{71\}'\
+      | xargs grep -H '.\{'${LFBFL_overlength}'\}'\
       | while read -r LFBFL_long_line;
     do
       LFBFL_file_name=${LFBFL_long_line%%:*} # Drop long ':*' suffix
@@ -69,7 +85,7 @@ too_long_code_lines(){
         if [[ -f "${LFBFL_base_name}.md" ]]; then
           continue
         fi
-        if grep --quiet --fixed-strings "${LFBFL_line}"\
+        if grep --quiet --fixed-strings -- "${LFBFL_line}"\
           "./build_and_checks_variables/temp/files_listing.html.tpl"
         then
           continue

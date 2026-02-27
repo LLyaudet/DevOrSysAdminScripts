@@ -53,23 +53,33 @@ create_PDF(){
 
   local LFBFL_subdir2="build_and_checks_variables"
   local LFBFL_data_file_name="${LFBFL_subdir2}/repository_data.txt"
-  repository_name=""
-  grep_variable "${LFBFL_data_file_name}" repository_name
+  local LFBFL_repository_name=""
+  grep_variable "${LFBFL_data_file_name}" repository_name\
+    --result-variable-prefix="LFBFL_"\
+    --replace-line-returns-by=""
 
-  abstract=""
-  grep_variable "${LFBFL_data_file_name}" abstract
+  local LFBFL_abstract=""
+  grep_variable "${LFBFL_data_file_name}" abstract\
+    --result-variable-prefix="LFBFL_"
 
-  acknowledgments=""
-  grep_variable "${LFBFL_data_file_name}" acknowledgments
+  local LFBFL_acknowledgments=""
+  grep_variable "${LFBFL_data_file_name}" acknowledgments\
+    --result-variable-prefix="LFBFL_"
 
-  author_email=""
-  grep_variable "${LFBFL_data_file_name}" author_email
+  local LFBFL_author_email=""
+  grep_variable "${LFBFL_data_file_name}" author_email\
+    --result-variable-prefix="LFBFL_"\
+    --replace-line-returns-by=""
 
-  author_full_name=""
-  grep_variable "${LFBFL_data_file_name}" author_full_name
+  local LFBFL_author_full_name=""
+  grep_variable "${LFBFL_data_file_name}" author_full_name\
+    --result-variable-prefix="LFBFL_"\
+    --replace-line-returns-by=" "
 
-  author_website=""
-  grep_variable "${LFBFL_data_file_name}" author_website
+  local LFBFL_author_website=""
+  grep_variable "${LFBFL_data_file_name}" author_website\
+    --result-variable-prefix="LFBFL_"\
+    --replace-line-returns-by=""
 
   declare -i LFBFL_max_line_length
   grep_variable "${LFBFL_data_file_name}" max_line_length\
@@ -318,41 +328,44 @@ create_PDF(){
   overwrite_if_not_equal "${LFBFL_subdir2}/temp/current_tree.txt"\
     "${LFBFL_subdir2}/temp/current_tree.txt.temp" 1 1
 
-  if [[ -f "./${LFBFL_subdir2}/${repository_name}.tex.tpl" ]]; then
+  if [[ -f "./${LFBFL_subdir2}/${LFBFL_repository_name}.tex.tpl" ]];
+  then
     # If there is a template, we init the process from it.
-    cp "./${LFBFL_subdir2}/${repository_name}.tex.tpl"\
-      "./${LFBFL_subdir2}/temp/${repository_name}.tex.1"
-  elif [[ -f "./${LFBFL_subdir2}/${repository_name}.tex" ]]; then
+    cp "./${LFBFL_subdir2}/${LFBFL_repository_name}.tex.tpl"\
+      "./${LFBFL_subdir2}/temp/${LFBFL_repository_name}.tex.1"
+  elif [[ -f "./${LFBFL_subdir2}/${LFBFL_repository_name}.tex" ]];
+  then
     # Otherwise if there is a tex file, we init the process from it.
-    cp "./${LFBFL_subdir2}/${repository_name}.tex"\
-      "./${LFBFL_subdir2}/temp/${repository_name}.tex.1"
+    cp "./${LFBFL_subdir2}/${LFBFL_repository_name}.tex"\
+      "./${LFBFL_subdir2}/temp/${LFBFL_repository_name}.tex.1"
   else
     echo "Neither .tex.tpl, nor .tex in ./${LFBFL_subdir2}/"
   fi
 
   # Same logic with repository HTML file.
-  if [[ -f "./${LFBFL_subdir2}/${repository_name}.html.tpl" ]]; then
-    cp "./${LFBFL_subdir2}/${repository_name}.html.tpl"\
-      "./${LFBFL_subdir2}/temp/${repository_name}.html.1"
-  elif [[ -f "./${repository_name}.html" ]]; then
-    cp "./${repository_name}.html"\
-      "./${LFBFL_subdir2}/temp/${repository_name}.html.1"
+  if [[ -f "./${LFBFL_subdir2}/${LFBFL_repository_name}.html.tpl" ]];
+  then
+    cp "./${LFBFL_subdir2}/${LFBFL_repository_name}.html.tpl"\
+      "./${LFBFL_subdir2}/temp/${LFBFL_repository_name}.html.1"
+  elif [[ -f "./${LFBFL_repository_name}.html" ]]; then
+    cp "./${LFBFL_repository_name}.html"\
+      "./${LFBFL_subdir2}/temp/${LFBFL_repository_name}.html.1"
   else
     echo "Neither .html.tpl in ./${LFBFL_subdir2}/, nor .html in ./"
   fi
 
   declare -r LFBFL_tex_path_start=\
-"./${LFBFL_subdir2}/temp/${repository_name}.tex"
+"./${LFBFL_subdir2}/temp/${LFBFL_repository_name}.tex"
   declare -r LFBFL_html_path_start=\
-"./${LFBFL_subdir2}/temp/${repository_name}.html"
+"./${LFBFL_subdir2}/temp/${LFBFL_repository_name}.html"
 
   # shellcheck disable=SC2001
-  echo "${abstract}"\
+  echo "${LFBFL_abstract}"\
     | sed -e 's/\\n/\n/g'\
     > "./${LFBFL_subdir2}/temp/abstract_temp"
 
   # shellcheck disable=SC2001
-  echo "${acknowledgments}"\
+  echo "${LFBFL_acknowledgments}"\
     | sed -e 's/\\n/\n/g'\
     > "./${LFBFL_subdir2}/temp/acknowledgments_temp"
 
@@ -361,7 +374,7 @@ create_PDF(){
   # using some computed results.
   # Tex filling:
   if [[ -f "${LFBFL_tex_path_start}.1" ]]; then
-    sed -i "s|@repository_name@|${repository_name}|g"\
+    sed -i "s|@repository_name@|${LFBFL_repository_name}|g"\
       "${LFBFL_tex_path_start}.1"
 
     insert_file_at_token "${LFBFL_tex_path_start}.1" @abstract@\
@@ -373,9 +386,9 @@ create_PDF(){
       "./${LFBFL_subdir2}/temp/acknowledgments_temp"\
       "${LFBFL_tex_path_start}.3"
 
-    sed -i -e "s|@author_email@|${author_email}|g"\
-           -e "s|@author_full_name@|${author_full_name}|g"\
-           -e "s|@author_website@|${author_website}|g"\
+    sed -i -e "s|@author_email@|${LFBFL_author_email}|g"\
+           -e "s|@author_full_name@|${LFBFL_author_full_name}|g"\
+           -e "s|@author_website@|${LFBFL_author_website}|g"\
            -e "s|@current_date@|${LFBFL_current_date}|g"\
            -e "s|@current_git_SHA1@|${LFBFL_current_git_SHA1}|g"\
            -e "s|@number_of_commits@|${LFBFL_number_of_commits}|g"\
@@ -386,7 +399,7 @@ create_PDF(){
     sed -i\
       -e '/@current_tree_light@/{r current_tree_light.txt' -e 'd}'\
       -e '/@current_tree@/{r current_tree.txt' -e 'd}'\
-      "${repository_name}.tex.3"
+      "${LFBFL_repository_name}.tex.3"
     popd || (echo "popd failed" && exit)
 
     insert_file_at_token "${LFBFL_tex_path_start}.3"\
@@ -395,13 +408,13 @@ create_PDF(){
       "${LFBFL_tex_path_start}.4"
 
     overwrite_if_not_equal\
-      "./${LFBFL_subdir2}/${repository_name}.tex"\
+      "./${LFBFL_subdir2}/${LFBFL_repository_name}.tex"\
       "${LFBFL_tex_path_start}.4" 1
   fi
 
   # HTML filling:
   if [[ -f "${LFBFL_html_path_start}.1" ]]; then
-    sed -i "s|@repository_name@|${repository_name}|g"\
+    sed -i "s|@repository_name@|${LFBFL_repository_name}|g"\
       "${LFBFL_html_path_start}.1"
 
     insert_file_at_token "${LFBFL_html_path_start}.1" @abstract@\
@@ -413,9 +426,9 @@ create_PDF(){
       "./${LFBFL_subdir2}/temp/acknowledgments_temp"\
       "${LFBFL_html_path_start}.3"
 
-    sed -i -e "s|@author_email@|${author_email}|g"\
-           -e "s|@author_full_name@|${author_full_name}|g"\
-           -e "s|@author_website@|${author_website}|g"\
+    sed -i -e "s|@author_email@|${LFBFL_author_email}|g"\
+           -e "s|@author_full_name@|${LFBFL_author_full_name}|g"\
+           -e "s|@author_website@|${LFBFL_author_website}|g"\
            -e "s|@current_date@|${LFBFL_current_date}|g"\
            -e "s|@current_git_SHA1@|${LFBFL_current_git_SHA1}|g"\
            -e "s|@number_of_commits@|${LFBFL_number_of_commits}|g"\
@@ -430,7 +443,7 @@ create_PDF(){
     sed -i\
       -e '/@current_tree_light@/{r current_tree_light.txt' -e 'd}'\
       -e '/@current_tree@/{r current_tree.txt' -e 'd}'\
-      "${repository_name}.html.4"
+      "${LFBFL_repository_name}.html.4"
     popd || (echo "popd failed" && exit)
 
     insert_file_at_token "${LFBFL_html_path_start}.4"\
@@ -438,26 +451,26 @@ create_PDF(){
       "./${LFBFL_subdir2}/temp/files_listing.html.tpl"\
       "${LFBFL_html_path_start}.5"
 
-    overwrite_if_not_equal "./${repository_name}.html"\
+    overwrite_if_not_equal "./${LFBFL_repository_name}.html"\
       "${LFBFL_html_path_start}.5" 1
   fi
 
   if [[ LFBFL_verbose -eq 1 ]]; then
     for ((i=0; i<3; i++)); do
-      pdflatex "./${LFBFL_subdir2}/${repository_name}.tex"
+      pdflatex "./${LFBFL_subdir2}/${LFBFL_repository_name}.tex"
     done
   else
     for ((i=0; i<3; i++)); do
-      pdflatex "./${LFBFL_subdir2}/${repository_name}.tex"\
+      pdflatex "./${LFBFL_subdir2}/${LFBFL_repository_name}.tex"\
         > /dev/null
     done
   fi
 
   LFBFL_files_to_temp=(\
-    "${repository_name}.aux"\
-    "${repository_name}.log"\
-    "${repository_name}.out"\
-    "${repository_name}.toc"
+    "${LFBFL_repository_name}.aux"\
+    "${LFBFL_repository_name}.log"\
+    "${LFBFL_repository_name}.out"\
+    "${LFBFL_repository_name}.toc"
   )
   for LFBFL_file_name in "${LFBFL_files_to_temp[@]}"; do
     mv "${LFBFL_file_name}" "${LFBFL_subdir2}/temp/"

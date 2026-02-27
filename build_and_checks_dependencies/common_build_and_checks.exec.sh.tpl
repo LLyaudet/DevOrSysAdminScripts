@@ -289,7 +289,7 @@ common_build_and_checks(){
   declare -i LFBFL_current_ts
   local LFBFL_upgrade_venvs_answer
 
-  upgrade_venvs_time_interval_in_seconds=""
+  local upgrade_venvs_time_interval_in_seconds=""
   grep_variable "${LFBFL_data_file_name}"\
     upgrade_venvs_time_interval_in_seconds
   case ${upgrade_venvs_time_interval_in_seconds} in
@@ -312,9 +312,10 @@ common_build_and_checks(){
     LFBFL_upgrade_venvs=1
   fi
   if [[ LFBFL_upgrade_venvs -eq 1 ]]; then
-    upgrade_venvs=""
-    grep_variable "${LFBFL_data_file_name}" upgrade_venvs
-    if [[ "${upgrade_venvs}" != "auto" ]]; then
+    local LFBFL2_upgrade_venvs=""
+    grep_variable "${LFBFL_data_file_name}" upgrade_venvs\
+      --result-variable-prefix="LFBFL2_"
+    if [[ "${LFBFL2_upgrade_venvs}" != "auto" ]]; then
       read -r -n 1 -t 10\
         -p "Upgrade venvs and composer global? [Y/n]"\
         LFBFL_upgrade_venvs_answer
@@ -369,54 +370,60 @@ common_build_and_checks(){
 
   echo "---Python---"
   echo "Running isort"
-  isort_venv=""
-  grep_variable "${LFBFL_data_file_name}" isort_venv
-  if [[ -n "${isort_venv}" ]]; then
+  local LFBFL_isort_venv=""
+  grep_variable "${LFBFL_data_file_name}" isort_venv\
+    --result-variable-prefix="LFBFL_"\
+    --replace-line-returns-by=""
+  if [[ -n "${LFBFL_isort_venv}" ]]; then
     if command -v deactivate
     then
       deactivate
     fi
     # shellcheck disable=SC1090,SC1091
-    source "${isort_venv}/bin/activate"
+    source "${LFBFL_isort_venv}/bin/activate"
   fi
   if [[ LFBFL_upgrade_venvs -eq 1 ]]; then
     pip install --upgrade isort
   fi
   isort .
-  if [[ -n "${isort_venv}" ]]; then
+  if [[ -n "${LFBFL_isort_venv}" ]]; then
     deactivate
   fi
   python_isort_complement
 
   echo "Running black"
-  black_venv=""
-  grep_variable "${LFBFL_data_file_name}" black_venv
-  if [[ -n "${black_venv}" ]]; then
+  local LFBFL_black_venv=""
+  grep_variable "${LFBFL_data_file_name}" black_venv\
+    --result-variable-prefix="LFBFL_"\
+    --replace-line-returns-by=""
+  if [[ -n "${LFBFL_black_venv}" ]]; then
     if command -v deactivate
     then
       deactivate
     fi
     # shellcheck disable=SC1090,SC1091
-    source "${black_venv}/bin/activate"
+    source "${LFBFL_black_venv}/bin/activate"
   fi
   if [[ LFBFL_upgrade_venvs -eq 1 ]]; then
     pip install --upgrade black
   fi
   black --config build_and_checks_variables/black.toml .
-  if [[ -n "${black_venv}" ]]; then
+  if [[ -n "${LFBFL_black_venv}" ]]; then
     deactivate
   fi
   python_black_complement
 
-  mypy_venv=""
-  grep_variable "${LFBFL_data_file_name}" mypy_venv
-  if [[ -n "${mypy_venv}" ]]; then
+  local LFBFL_mypy_venv=""
+  grep_variable "${LFBFL_data_file_name}" mypy_venv\
+    --result-variable-prefix="LFBFL_"\
+    --replace-line-returns-by=""
+  if [[ -n "${LFBFL_mypy_venv}" ]]; then
     if command -v deactivate
     then
       deactivate
     fi
     # shellcheck disable=SC1090,SC1091
-    source "${mypy_venv}/bin/activate"
+    source "${LFBFL_mypy_venv}/bin/activate"
   fi
   if [[ LFBFL_upgrade_venvs -eq 1 ]]; then
     pip install --upgrade mypy
@@ -439,20 +446,22 @@ common_build_and_checks(){
     echo "Running mypy"
     mypy .
   fi
-  if [[ -n "${mypy_venv}" ]]; then
+  if [[ -n "${LFBFL_mypy_venv}" ]]; then
     deactivate
   fi
 
   echo "Running bandit"
-  bandit_venv=""
-  grep_variable "${LFBFL_data_file_name}" bandit_venv
-  if [[ -n "${bandit_venv}" ]]; then
+  LFBFL_bandit_venv=""
+  grep_variable "${LFBFL_data_file_name}" bandit_venv\
+    --result-variable-prefix="LFBFL_"\
+    --replace-line-returns-by=""
+  if [[ -n "${LFBFL_bandit_venv}" ]]; then
     if command -v deactivate
     then
       deactivate
     fi
     # shellcheck disable=SC1090,SC1091
-    source "${bandit_venv}/bin/activate"
+    source "${LFBFL_bandit_venv}/bin/activate"
   fi
   if [[ LFBFL_upgrade_venvs -eq 1 ]]; then
     pip install --upgrade bandit
@@ -464,46 +473,50 @@ common_build_and_checks(){
   bandit --ini build_and_checks_variables/bandit.ini\
     -f json -o build_and_checks_variables/temp/bandit_baseline.json\
     -r .
-  if [[ -n "${bandit_venv}" ]]; then
+  if [[ -n "${LFBFL_bandit_venv}" ]]; then
     deactivate
   fi
 
   echo "Running pylint"
-  pylint_venv=""
-  grep_variable "${LFBFL_data_file_name}" pylint_venv
-  if [[ -n "${pylint_venv}" ]]; then
+  LFBFL_pylint_venv=""
+  grep_variable "${LFBFL_data_file_name}" pylint_venv\
+    --result-variable-prefix="LFBFL_"\
+    --replace-line-returns-by=""
+  if [[ -n "${LFBFL_pylint_venv}" ]]; then
     if command -v deactivate
     then
       deactivate
     fi
     # shellcheck disable=SC1090,SC1091
-    source "${pylint_venv}/bin/activate"
+    source "${LFBFL_pylint_venv}/bin/activate"
   fi
   if [[ LFBFL_upgrade_venvs -eq 1 ]]; then
     pip install --upgrade pylint
   fi
   pylint --rcfile build_and_checks_variables/pylintrc.toml\
     --recursive=y .
-  if [[ -n "${pylint_venv}" ]]; then
+  if [[ -n "${LFBFL_pylint_venv}" ]]; then
     deactivate
   fi
 
   echo "Running ruff"
-  ruff_venv=""
-  grep_variable "${LFBFL_data_file_name}" ruff_venv
-  if [[ -n "${ruff_venv}" ]]; then
+  LFBFL_ruff_venv=""
+  grep_variable "${LFBFL_data_file_name}" ruff_venv\
+    --result-variable-prefix="LFBFL_"\
+    --replace-line-returns-by=""
+  if [[ -n "${LFBFL_ruff_venv}" ]]; then
     if command -v deactivate
     then
       deactivate
     fi
     # shellcheck disable=SC1090,SC1091
-    source "${ruff_venv}/bin/activate"
+    source "${LFBFL_ruff_venv}/bin/activate"
   fi
   if [[ LFBFL_upgrade_venvs -eq 1 ]]; then
     pip install --upgrade ruff
   fi
   ruff check --config build_and_checks_variables/ruff.toml
-  if [[ -n "${ruff_venv}" ]]; then
+  if [[ -n "${LFBFL_ruff_venv}" ]]; then
     deactivate
   fi
   echo "---Python end---"
@@ -536,12 +549,13 @@ common_build_and_checks(){
   echo "---PHP end---"
 
   echo "---JS---"
-  npm_lint_directories=""
-  grep_variable "${LFBFL_data_file_name}" npm_lint_directories
-  if [[ -n "${npm_lint_directories}" ]]; then
+  LFBFL_npm_lint_directories=""
+  grep_variable "${LFBFL_data_file_name}" npm_lint_directories\
+    --result-variable-prefix="LFBFL_"
+  if [[ -n "${LFBFL_npm_lint_directories}" ]]; then
     echo "Running ESLint"
     local LFBFL_JS_directory
-    echo "${npm_lint_directories}"\
+    echo "${LFBFL_npm_lint_directories}"\
       | sed -e 's/\\n/\n/g'\
       | while read -r LFBFL_JS_directory;
     do
@@ -586,7 +600,7 @@ common_build_and_checks(){
   # It is at the end that all the HTML files are generated and that
   # we can check there are no mistakes.
   echo "Running Nu W3C HTML CSS and SVG validator"
-  upgrade_vnu_jar_time_interval_in_seconds=""
+  local upgrade_vnu_jar_time_interval_in_seconds=""
   grep_variable "${LFBFL_data_file_name}"\
     upgrade_vnu_jar_time_interval_in_seconds
   if [[ "${upgrade_vnu_jar_time_interval_in_seconds}" == "wat" ]];
@@ -595,10 +609,12 @@ common_build_and_checks(){
   fi
 
   declare -i LFBFL_vnu_jar_ts
-  vnu_jar_path=""
-  grep_variable "${LFBFL_data_file_name}" vnu_jar_path
-  if [[ -f "${vnu_jar_path}" ]]; then
-    LFBFL_vnu_jar_ts=$(stat -c %Y "${vnu_jar_path}")
+  local LFBFL_vnu_jar_path=""
+  grep_variable "${LFBFL_data_file_name}" vnu_jar_path\
+    --result-variable-prefix="LFBFL_"\
+    --replace-line-returns-by=""
+  if [[ -f "${LFBFL_vnu_jar_path}" ]]; then
+    LFBFL_vnu_jar_ts=$(stat -c %Y "${LFBFL_vnu_jar_path}")
     LFBFL_current_ts=$(date +%s)
     ((LFBFL_current_ts-=LFBFL_vnu_jar_ts))
     ((LFBFL_current_ts-=upgrade_vnu_jar_time_interval_in_seconds))
@@ -614,8 +630,8 @@ common_build_and_checks(){
     declare -a LFBFL_files_for_Nu2
     mapfile -t LFBFL_files_for_Nu2 <<< "${LFBFL_files_for_Nu}"
     readonly LFBFL_files_for_Nu2
-    java -Xss128M -jar "${vnu_jar_path}" --exit-zero-always --verbose\
-      "${LFBFL_files_for_Nu2[@]}"
+    java -Xss128M -jar "${LFBFL_vnu_jar_path}" --exit-zero-always\
+      --verbose "${LFBFL_files_for_Nu2[@]}"
   fi
   # ------------------------------------------------------------------
 

@@ -170,10 +170,6 @@ grep_variable(){
   # echo "${!LFBFL_variable_name}"
 }
 
-repository_name=""
-grep_variable build_and_checks_variables/repository_data.txt\
-  repository_name
-
 empty_lines(){
   grep '^$'
 }
@@ -271,19 +267,39 @@ not_license_grep(){
 }
 
 not_main_tex_find(){
-  grep -vE "(^|/)${repository_name}\.tex$"
+  local LFBFL_repository_name=""
+  grep_variable build_and_checks_variables/repository_data.txt\
+    repository_name\
+    --result-variable-prefix="LFBFL_"\
+    --replace-line-returns-by=""
+  grep -vE "(^|/)${LFBFL_repository_name}\.tex$"
 }
 
 not_main_tex_grep(){
-  grep -vE "^([^:]+/)?${repository_name}\.tex:"
+  local LFBFL_repository_name=""
+  grep_variable build_and_checks_variables/repository_data.txt\
+    repository_name\
+    --result-variable-prefix="LFBFL_"\
+    --replace-line-returns-by=""
+  grep -vE "^([^:]+/)?${LFBFL_repository_name}\.tex:"
 }
 
 not_main_html_find(){
-  grep -vE "(^|/)${repository_name}\.html$"
+  local LFBFL_repository_name=""
+  grep_variable build_and_checks_variables/repository_data.txt\
+    repository_name\
+    --result-variable-prefix="LFBFL_"\
+    --replace-line-returns-by=""
+  grep -vE "(^|/)${LFBFL_repository_name}\.html$"
 }
 
 not_main_html_grep(){
-  grep -vE "^([^:]+/)?${repository_name}\.html:"
+  local LFBFL_repository_name=""
+  grep_variable build_and_checks_variables/repository_data.txt\
+    repository_name\
+    --result-variable-prefix="LFBFL_"\
+    --replace-line-returns-by=""
+  grep -vE "^([^:]+/)?${LFBFL_repository_name}\.html:"
 }
 
 not_temp_file_find(){

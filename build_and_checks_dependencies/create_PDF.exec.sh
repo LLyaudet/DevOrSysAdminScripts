@@ -328,16 +328,21 @@ create_PDF(){
   overwrite_if_not_equal "${LFBFL_subdir2}/temp/current_tree.txt"\
     "${LFBFL_subdir2}/temp/current_tree.txt.temp" 1 1
 
+  declare -r LFBFL_tex_path_start=\
+"./${LFBFL_subdir2}/temp/${LFBFL_repository_name}.tex"
+  declare -r LFBFL_html_path_start=\
+"./${LFBFL_subdir2}/temp/${LFBFL_repository_name}.html"
+
   if [[ -f "./${LFBFL_subdir2}/${LFBFL_repository_name}.tex.tpl" ]];
   then
     # If there is a template, we init the process from it.
     cp "./${LFBFL_subdir2}/${LFBFL_repository_name}.tex.tpl"\
-      "./${LFBFL_subdir2}/temp/${LFBFL_repository_name}.tex.1"
+      "${LFBFL_tex_path_start}.1"
   elif [[ -f "./${LFBFL_subdir2}/${LFBFL_repository_name}.tex" ]];
   then
     # Otherwise if there is a tex file, we init the process from it.
     cp "./${LFBFL_subdir2}/${LFBFL_repository_name}.tex"\
-      "./${LFBFL_subdir2}/temp/${LFBFL_repository_name}.tex.1"
+      "${LFBFL_tex_path_start}.1"
   else
     echo "Neither .tex.tpl, nor .tex in ./${LFBFL_subdir2}/"
   fi
@@ -346,18 +351,12 @@ create_PDF(){
   if [[ -f "./${LFBFL_subdir2}/${LFBFL_repository_name}.html.tpl" ]];
   then
     cp "./${LFBFL_subdir2}/${LFBFL_repository_name}.html.tpl"\
-      "./${LFBFL_subdir2}/temp/${LFBFL_repository_name}.html.1"
+      "${LFBFL_html_path_start}.1"
   elif [[ -f "./${LFBFL_repository_name}.html" ]]; then
-    cp "./${LFBFL_repository_name}.html"\
-      "./${LFBFL_subdir2}/temp/${LFBFL_repository_name}.html.1"
+    cp "./${LFBFL_repository_name}.html" "${LFBFL_html_path_start}.1"
   else
     echo "Neither .html.tpl in ./${LFBFL_subdir2}/, nor .html in ./"
   fi
-
-  declare -r LFBFL_tex_path_start=\
-"./${LFBFL_subdir2}/temp/${LFBFL_repository_name}.tex"
-  declare -r LFBFL_html_path_start=\
-"./${LFBFL_subdir2}/temp/${LFBFL_repository_name}.html"
 
   # shellcheck disable=SC2001
   echo "${LFBFL_abstract}"\
@@ -460,7 +459,7 @@ create_PDF(){
   # The HTML contains everything including listings with source code.
   # It it doesn't get updated,
   # then it is useless to recompute the PDF.
-  if [[ LFBFL_HTML_updated -gt 0 ]]; then
+  if [[ LFBFL_HTML_updated -eq 0 ]]; then
     return
   fi
 

@@ -119,7 +119,7 @@ build_licenses_templates(){
   # Kamoulox do endfor, Jacques Beauregard XD
   # (C'est toujours mieux que l'inverse :) !)
   # for do endfor -> for do done (Fort Doux Donne).
-  local LFBFL_license
+  local LFBFL_some_license
   local LFBFL_license_prefix
   local LFBFL_license_prefix2
   local LFBFL_extension
@@ -131,11 +131,11 @@ build_licenses_templates(){
   local LFBFL_intermediate_file_name
   local LFBFL_file_prefix
   declare -i LFBFL_generate_from_template_result
-  for LFBFL_license in "${LFBFL_licenses[@]}"; do
+  for LFBFL_some_license in "${LFBFL_licenses[@]}"; do
     LFBFL_license_prefix="${LFBFL_source_license_prefix}"
-    LFBFL_license_prefix+="${LFBFL_license}"
+    LFBFL_license_prefix+="${LFBFL_some_license}"
     LFBFL_license_prefix2="${LFBFL_target_license_prefix}"
-    LFBFL_license_prefix2+="${LFBFL_license}"
+    LFBFL_license_prefix2+="${LFBFL_some_license}"
     for ((i=0; i<${#LFBFL_block_comment_languages[@]}; i++)); do
       LFBFL_extension=${LFBFL_block_comment_languages[i]}
       LFBFL_license_file_name="${LFBFL_license_prefix2}"
@@ -203,22 +203,28 @@ build_licenses_templates(){
   local LFBFL_data_file_name="build_and_checks_variables/"
   LFBFL_data_file_name+="repository_data.txt"
   readonly LFBFL_data_file_name
-  repository_name=""
-  license=""
-  license2=""
-  author_full_name=""
-  grep_variable "${LFBFL_data_file_name}" repository_name
-  grep_variable "${LFBFL_data_file_name}" license
-  grep_variable "${LFBFL_data_file_name}" license2
-  grep_variable "${LFBFL_data_file_name}" author_full_name
+  local LFBFL_repository_name=""
+  grep_variable "${LFBFL_data_file_name}" repository_name\
+    --result-variable-prefix="LFBFL_"\
+    --replace-line-returns-by=""
+  local LFBFL_license=""
+  grep_variable "${LFBFL_data_file_name}" license\
+    --result-variable-prefix="LFBFL_"
+  local LFBFL_license2=""
+  grep_variable "${LFBFL_data_file_name}" license2\
+    --result-variable-prefix="LFBFL_"
+  local LFBFL_author_full_name=""
+  grep_variable "${LFBFL_data_file_name}" author_full_name\
+    --result-variable-prefix="LFBFL_"\
+    --replace-line-returns-by=" "
 
   LFBFL_license_prefix="build_and_checks_variables/temp/"
   LFBFL_license_prefix+="license_file_header_"
   readonly LFBFL_license_prefix
-  LFBFL_license_prefix2="${LFBFL_license_prefix}${license}"
+  LFBFL_license_prefix2="${LFBFL_license_prefix}${LFBFL_license}"
   readonly LFBFL_license_prefix2
   declare -r\
-    LFBFL_license_prefix3="${LFBFL_license_prefix}${license2}"
+    LFBFL_license_prefix3="${LFBFL_license_prefix}${LFBFL_license2}"
 
   # First year according to current state of git repository.
   declare -ir LFBFL_first_year=$(
@@ -236,12 +242,12 @@ build_licenses_templates(){
   )
   local LFBFL_copyright_string
   LFBFL_copyright_string="${LFBFL_first_year}-${LFBFL_last_year}"
-  LFBFL_copyright_string+=" ${author_full_name}"
+  LFBFL_copyright_string+=" ${LFBFL_author_full_name}"
   readonly LFBFL_copyright_string
 
   prepare_filled_license_file_block(){
     # $1=license_file_name
-    sed -e "s/@repository_name@/${repository_name}/g"\
+    sed -e "s/@repository_name@/${LFBFL_repository_name}/g"\
         -e "s/@copyright_string@/${LFBFL_copyright_string}/g"\
         "$1.tpl"\
       > "$1.temp"
@@ -282,7 +288,7 @@ build_licenses_templates(){
     LFBFL_dest=${LFBFL_all_block_comment_languages[${LFBFL_key}]}
     LFBFL_license_file_name="${LFBFL_license_prefix2}.${LFBFL_dest}"
     prepare_filled_license_file_block "${LFBFL_license_file_name}"
-    if [[ -n "${license2}" ]]; then
+    if [[ -n "${LFBFL_license2}" ]]; then
       LFBFL_license_file_name2="${LFBFL_license_prefix3}"
       LFBFL_license_file_name2+=".${LFBFL_dest}"
       prepare_filled_license_file_block "${LFBFL_license_file_name2}"
@@ -295,7 +301,7 @@ build_licenses_templates(){
         "${LFBFL_license_file_name}.temp"
       LFBFL_not_subfile=$?
       LFBFL_not_subfile2=1
-      if [[ -n "${license2}" ]]; then
+      if [[ -n "${LFBFL_license2}" ]]; then
         is_subfile "${LFBFL_file_name}"\
           "${LFBFL_license_file_name2}.temp"
         LFBFL_not_subfile2=$?
@@ -306,14 +312,14 @@ build_licenses_templates(){
       fi
     done
     rm "${LFBFL_license_file_name}.temp"
-    if [[ -n "${license2}" ]]; then
+    if [[ -n "${LFBFL_license2}" ]]; then
       rm "${LFBFL_license_file_name2}.temp"
     fi
   done
 
   prepare_filled_license_file_line(){
     # $1=LFBFL_license_file_name
-    sed -e "s/@repository_name@/${repository_name}/g"\
+    sed -e "s/@repository_name@/${LFBFL_repository_name}/g"\
         -e "s/@copyright_string@/${LFBFL_copyright_string}/g"\
         "$1.tpl"\
       > "$1.temp"
@@ -337,7 +343,7 @@ build_licenses_templates(){
     LFBFL_dest=${LFBFL_all_line_comment_languages[${LFBFL_key}]}
     LFBFL_license_file_name="${LFBFL_license_prefix2}.${LFBFL_dest}"
     prepare_filled_license_file_line "${LFBFL_license_file_name}"
-    if [[ -n "${license2}" ]]; then
+    if [[ -n "${LFBFL_license2}" ]]; then
       LFBFL_license_file_name2="${LFBFL_license_prefix3}"
       LFBFL_license_file_name2+=".${LFBFL_dest}"
       prepare_filled_license_file_line "${LFBFL_license_file_name2}"
@@ -349,7 +355,7 @@ build_licenses_templates(){
       is_subfile "${LFBFL_file_name}" "${LFBFL_license_file_name}"
       LFBFL_not_subfile=$?
       LFBFL_not_subfile2=1
-      if [[ -n "${license2}" ]]; then
+      if [[ -n "${LFBFL_license2}" ]]; then
         is_subfile "${LFBFL_file_name}" "${LFBFL_license_file_name2}"
         LFBFL_not_subfile2=$?
       fi

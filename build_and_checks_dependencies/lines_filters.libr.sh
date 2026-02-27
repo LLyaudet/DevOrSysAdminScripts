@@ -169,7 +169,7 @@ grep_variable(){
   # echo "${LFBFL_variable_name} : ${LFBFL_variable_value}"
   # The declare line may be dropped by a local or declare
   # in outer scope.
-  declare -g "${LFBFL_variable_name}"
+  # declare -g "${LFBFL_variable_name}"
   # So the assignment must be done on another line.
   printf -v "${LFBFL_variable_name}" "%s" "${LFBFL_variable_value}"
   # echo "${!LFBFL_variable_name}"

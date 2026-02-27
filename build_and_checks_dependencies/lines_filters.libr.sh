@@ -139,17 +139,22 @@ grep_variable(){
   # echo $LFBFL_regexp
   local LFBFL_variable_value
   if [[ "$*" == *--replace-line-returns-by=* ]]; then
-    local LFBFL_replace_string=""
+    local LFBFL_s_replace=""
     for LFBFL_arg in "$@"; do
       if [[ "${LFBFL_arg}" == --replace-line-returns-by=* ]]; then
-        LFBFL_replace_string=${LFBFL_arg#--replace-line-returns-by=}
+        LFBFL_s_replace=${LFBFL_arg#--replace-line-returns-by=}
         break
       fi
     done
     LFBFL_variable_value=$(
       grep -oP "${LFBFL_regexp}" "$1"\
-      | sed -Ez -e 's/\n/'"${LFBFL_replace_string}"'/Mg'
+      | sed -Ez -e 's/\n/'"${LFBFL_s_replace}"'/Mg'
     )
+    # We remove the trailing replace string,
+    # since the intent is only to replace the intermediate \n.
+    if [[ -n "${LFBFL_s_replace}" ]]; then
+    LFBFL_variable_value=${LFBFL_variable_value%"${LFBFL_s_replace}"}
+    fi
   else
     LFBFL_variable_value=$(grep -oP "${LFBFL_regexp}" "$1")
   fi

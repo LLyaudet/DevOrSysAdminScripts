@@ -413,6 +413,7 @@ create_PDF(){
   fi
 
   # HTML filling:
+  declare -i LFBFL_HTML_updated=0
   if [[ -f "${LFBFL_html_path_start}.1" ]]; then
     sed -i "s|@repository_name@|${LFBFL_repository_name}|g"\
       "${LFBFL_html_path_start}.1"
@@ -453,6 +454,14 @@ create_PDF(){
 
     overwrite_if_not_equal "./${LFBFL_repository_name}.html"\
       "${LFBFL_html_path_start}.5" 1
+    LFBFL_HTML_updated=$?
+  fi
+
+  # The HTML contains everything including listings with source code.
+  # It it doesn't get updated,
+  # then it is useless to recompute the PDF.
+  if [[ LFBFL_HTML_updated -gt 0 ]]; then
+    return
   fi
 
   if [[ LFBFL_verbose -eq 1 ]]; then

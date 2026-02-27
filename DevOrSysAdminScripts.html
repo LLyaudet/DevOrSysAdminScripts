@@ -119,10 +119,10 @@ Some “small” useful scripts
 for enhancing development or system-administrators tasks
 </blockquote>
 <p>Current version: 2026-02-27</p>
-<p>Current number of commits: 411</p>
-<p>Current git SHA1: 45e169a06fedf0ed602f85c2f8e6ada306a0a502</p>
+<p>Current number of commits: 413</p>
+<p>Current git SHA1: a84a49dbdc1063155f05d697f645c75f219e86b1</p>
 <p>
-Code lines: 8024 total lines, 7286 not empty lines, 738 empty lines.
+Code lines: 8039 total lines, 7301 not empty lines, 738 empty lines.
 </p>
 
 
@@ -382,17 +382,17 @@ wget_sha512.libr.sh
 5 directories, 61 files
 </pre>
 <pre class="verbatim">
-[ 12K Feb 27 22:05]  ./
-├── [4.0K Feb 27 22:05]  build_and_checks_dependencies/
+[ 12K Feb 27 22:39]  ./
+├── [4.0K Feb 27 22:39]  build_and_checks_dependencies/
 │   ├── [3.7K Feb 27 20:35]  build_and_checks.exec.sh.tpl*
 │   ├── [3.9K Feb 23 19:39]  build_md_from_printable_md.exec.sh*
 │   ├── [2.1K Feb 15 11:34]  check_shell_scripts_beginnings.libr.sh
 │   ├── [4.0K Feb 24 17:34]  check_shell_scripts_indentation.libr.sh
 │   ├── [2.9K Feb 23 17:21]  check_URLs.libr.sh
-│   ├── [ 27K Feb 27 22:04]  common_build_and_checks.exec.sh*
+│   ├── [ 27K Feb 27 22:24]  common_build_and_checks.exec.sh*
 │   ├── [ 23K Feb 27 21:22]  common_build_and_checks.exec.sh.tpl
 │   ├── [4.7K Feb 23 17:34]  comparisons.libr.sh
-│   ├── [ 17K Feb 27 22:04]  create_PDF.exec.sh*
+│   ├── [ 17K Feb 27 22:23]  create_PDF.exec.sh*
 │   ├── [3.3K Feb 19 18:48]  generate_from_template.libr.sh
 │   ├── [1.9K Feb 19 17:18]  get_common_text_glob_patterns.libr.sh
 │   ├── [2.2K Feb 27 19:33]  grammar_and_spell_check.libr.sh
@@ -414,14 +414,14 @@ wget_sha512.libr.sh
 │   ├── [4.1K Feb 24 17:35]  update_common_build_and_checks.exec.sh*
 │   └── [4.8K Feb 26 22:35]  *
 │   │ update_or_check_files_names_listing.exec.sh**
-├── [3.9K Feb 27 22:04]  build_and_checks.exec.sh*
-├── [4.0K Feb 27 22:05]  build_and_checks_variables/
+├── [3.9K Feb 27 22:24]  build_and_checks.exec.sh*
+├── [4.0K Feb 27 22:39]  build_and_checks_variables/
 │   ├── [  15 Jan  5 20:00]  bandit_baseline.json
 │   ├── [  25 Jan  5 18:49]  bandit.ini
 │   ├── [  30 Feb 27 16:27]  black.toml
-│   ├── [5.2K Feb 14 15:05]  DevOrSysAdminScripts.html.tpl
-│   ├── [ 23K Feb 27 22:05]  DevOrSysAdminScripts.tex
-│   ├── [3.8K Feb 14 15:04]  DevOrSysAdminScripts.tex.tpl
+│   ├── [5.3K Feb 27 22:39]  DevOrSysAdminScripts.html.tpl
+│   ├── [ 23K Feb 27 22:31]  DevOrSysAdminScripts.tex
+│   ├── [3.9K Feb 27 22:28]  DevOrSysAdminScripts.tex.tpl
 │   ├── [ 13K Feb 27 16:27]  files_listing.tex.tpl
 │   ├── [4.0K Feb 24 20:40]  files_names_listing.txt
 │   ├── [  24 Jan 15 22:26]  .gitignore
@@ -434,8 +434,8 @@ wget_sha512.libr.sh
 │   └── [2.1K Feb 19 19:36]  shellcheck_notes.txt
 ├── [ 34K May  6  2024]  COPYING
 ├── [7.5K Dec 27 21:48]  COPYING.LESSER
-├── [308K Feb 27 22:05]  DevOrSysAdminScripts.html
-├── [297K Feb 27 22:05]  DevOrSysAdminScripts.pdf
+├── [309K Feb 27 22:31]  DevOrSysAdminScripts.html
+├── [298K Feb 27 22:31]  DevOrSysAdminScripts.pdf
 ├── [4.0K Feb 27 20:20]  git_helpers/
 │   ├── [3.5K Feb 19 17:00]  git_checks.libr.sh
 │   ├── [1.8K Feb 27 20:20]  post-commit
@@ -469,8 +469,11 @@ The text of the licenses is available at:
 >https://www.gnu.org/licenses/</span></a>.
 The git repository of this source code is also available at:
 <a href="https://github.com/LLyaudet/DevOrSysAdminScripts/"><span
-  style="font-family:monospace"
+ style="font-family:monospace"
 >https://github.com/LLyaudet/DevOrSysAdminScripts/</span></a>.
+Clone it with this URL:
+<span style="font-family:monospace"
+>git@github.com:LLyaudet/DevOrSysAdminScripts.git</span>.
 </p>
 
 <div>
@@ -1152,9 +1155,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='b6616ed822c4d435a868a1745ddf907b313736e7c3388'
-  LFBFL_correct_sha512+='1ba1bb5dc63693ea90076a60abe8bc0923563c694c38'
-  LFBFL_correct_sha512+='a546891994bf068f9f7645c31585069610f8845'
+  LFBFL_correct_sha512='485cdee460a381180f9a1ab5ca8ebf3c5d25a3660f99f'
+  LFBFL_correct_sha512+='7edd8854ea85e43b111afb3d4d44d683744632a774d9'
+  LFBFL_correct_sha512+='f92317744d72fed37389627c3496b688eec12dc'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
   chmod +x "./${LFBFL_file_path}"
@@ -2677,6 +2680,16 @@ create_PDF(){
     --result-variable-prefix="LFBFL_"\
     --replace-line-returns-by=""
 
+  local LFBFL_repository_web_url=""
+  grep_variable "${LFBFL_data_file_name}" repository_web_url\
+    --result-variable-prefix="LFBFL_"\
+    --replace-line-returns-by=""
+
+  local LFBFL_repository_git_url=""
+  grep_variable "${LFBFL_data_file_name}" repository_git_url\
+    --result-variable-prefix="LFBFL_"\
+    --replace-line-returns-by=""
+
   local LFBFL_abstract=""
   grep_variable "${LFBFL_data_file_name}" abstract\
     --result-variable-prefix="LFBFL_"
@@ -2992,7 +3005,16 @@ create_PDF(){
   # using some computed results.
   # Tex filling:
   if [[ -f "${LFBFL_tex_path_start}.1" ]]; then
-    sed -i "s|@repository_name@|${LFBFL_repository_name}|g"\
+    sed -i -e "s|@repository_name@|${LFBFL_repository_name}|g"\
+           -e "s|@repository_web_url@|${LFBFL_repository_web_url}|g"\
+           -e "s|@repository_git_url@|${LFBFL_repository_git_url}|g"\
+           -e "s|@author_email@|${LFBFL_author_email}|g"\
+           -e "s|@author_full_name@|${LFBFL_author_full_name}|g"\
+           -e "s|@author_website@|${LFBFL_author_website}|g"\
+           -e "s|@current_date@|${LFBFL_current_date}|g"\
+           -e "s|@current_git_SHA1@|${LFBFL_current_git_SHA1}|g"\
+           -e "s|@number_of_commits@|${LFBFL_number_of_commits}|g"\
+           -e "s|@number_of_lines@|${LFBFL_number_of_lines}|g"\
       "${LFBFL_tex_path_start}.1"
 
     insert_file_at_token "${LFBFL_tex_path_start}.1" @abstract@\
@@ -3002,15 +3024,6 @@ create_PDF(){
     insert_file_at_token "${LFBFL_tex_path_start}.2"\
       @acknowledgments@\
       "./${LFBFL_subdir2}/temp/acknowledgments_temp"\
-      "${LFBFL_tex_path_start}.3"
-
-    sed -i -e "s|@author_email@|${LFBFL_author_email}|g"\
-           -e "s|@author_full_name@|${LFBFL_author_full_name}|g"\
-           -e "s|@author_website@|${LFBFL_author_website}|g"\
-           -e "s|@current_date@|${LFBFL_current_date}|g"\
-           -e "s|@current_git_SHA1@|${LFBFL_current_git_SHA1}|g"\
-           -e "s|@number_of_commits@|${LFBFL_number_of_commits}|g"\
-           -e "s|@number_of_lines@|${LFBFL_number_of_lines}|g"\
       "${LFBFL_tex_path_start}.3"
 
     pushd "./${LFBFL_subdir2}/temp/" || (echo "pushd failed" &amp;&amp; exit)
@@ -3033,7 +3046,16 @@ create_PDF(){
   # HTML filling:
   declare -i LFBFL_HTML_updated=0
   if [[ -f "${LFBFL_html_path_start}.1" ]]; then
-    sed -i "s|@repository_name@|${LFBFL_repository_name}|g"\
+    sed -i -e "s|@repository_name@|${LFBFL_repository_name}|g"\
+           -e "s|@repository_web_url@|${LFBFL_repository_web_url}|g"\
+           -e "s|@repository_git_url@|${LFBFL_repository_git_url}|g"\
+           -e "s|@author_email@|${LFBFL_author_email}|g"\
+           -e "s|@author_full_name@|${LFBFL_author_full_name}|g"\
+           -e "s|@author_website@|${LFBFL_author_website}|g"\
+           -e "s|@current_date@|${LFBFL_current_date}|g"\
+           -e "s|@current_git_SHA1@|${LFBFL_current_git_SHA1}|g"\
+           -e "s|@number_of_commits@|${LFBFL_number_of_commits}|g"\
+           -e "s|@number_of_lines@|${LFBFL_number_of_lines}|g"\
       "${LFBFL_html_path_start}.1"
 
     insert_file_at_token "${LFBFL_html_path_start}.1" @abstract@\
@@ -3043,15 +3065,6 @@ create_PDF(){
     insert_file_at_token "${LFBFL_html_path_start}.2"\
       @acknowledgments@\
       "./${LFBFL_subdir2}/temp/acknowledgments_temp"\
-      "${LFBFL_html_path_start}.3"
-
-    sed -i -e "s|@author_email@|${LFBFL_author_email}|g"\
-           -e "s|@author_full_name@|${LFBFL_author_full_name}|g"\
-           -e "s|@author_website@|${LFBFL_author_website}|g"\
-           -e "s|@current_date@|${LFBFL_current_date}|g"\
-           -e "s|@current_git_SHA1@|${LFBFL_current_git_SHA1}|g"\
-           -e "s|@number_of_commits@|${LFBFL_number_of_commits}|g"\
-           -e "s|@number_of_lines@|${LFBFL_number_of_lines}|g"\
       "${LFBFL_html_path_start}.3"
 
     insert_file_at_token "${LFBFL_html_path_start}.3"\
@@ -5703,9 +5716,12 @@ The text of the licenses is available at:
   style="font-family:monospace"
 >https://www.gnu.org/licenses/&lt;/span>&lt;/a>.
 The git repository of this source code is also available at:
-&lt;a href="https://github.com/LLyaudet/@repository_name@/">&lt;span
-  style="font-family:monospace"
->https://github.com/LLyaudet/@repository_name@/&lt;/span>&lt;/a>.
+&lt;a href="@repository_web_url@">&lt;span
+ style="font-family:monospace"
+>@repository_web_url@&lt;/span>&lt;/a>.
+Clone it with this URL:
+&lt;span style="font-family:monospace"
+>@repository_git_url@&lt;/span>.
 &lt;/p>
 
 &lt;div>
@@ -5880,7 +5896,9 @@ All the PHP scripts source code is covered by LGPLv3+.
 The text of the licenses is available at:
 \url{https://www.gnu.org/licenses/}.
 The git repository of this source code is also available at:
-\url{https://github.com/LLyaudet/@repository_name@/}.
+\url{@repository_web_url@}.
+Clone it with this URL:
+\url{@repository_git_url@}.
 
 Here is a listing of the dependencies of the code in this repository:
 \begin{itemize}
@@ -7126,9 +7144,9 @@ build_and_checks(){
   declare -r\
     LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_common_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='0857eba8746a8b7b4b5363acda3c4c8cd62c08b7992d0'
-  LFBFL_correct_sha512+='2f08f301e96d781d73849c058e740c98643f00550b71'
-  LFBFL_correct_sha512+='78b50cb028ac348559665a5843376e765ab79d1'
+  LFBFL_correct_sha512='b838ea704913baaf45efd1b069a85c3dbc3b1a0d558a3'
+  LFBFL_correct_sha512+='c62a4b6f18b0eeaa8a553c2cd6af1990c7223ae1f8d9'
+  LFBFL_correct_sha512+='f285d40c8ada967239d5124f800f1fd19f278d1'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_script}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
   chmod +x "./${LFBFL_file_path}"

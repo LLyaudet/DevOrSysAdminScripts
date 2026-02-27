@@ -160,9 +160,12 @@ The text of the licenses is available at:
   style="font-family:monospace"
 >https://www.gnu.org/licenses/</span></a>.
 The git repository of this source code is also available at:
-<a href="https://github.com/LLyaudet/@repository_name@/"><span
-  style="font-family:monospace"
->https://github.com/LLyaudet/@repository_name@/</span></a>.
+<a href="@repository_web_url@"><span
+ style="font-family:monospace"
+>@repository_web_url@</span></a>.
+Clone it with this URL:
+<span style="font-family:monospace"
+>@repository_git_url@</span>.
 </p>
 
 <div>

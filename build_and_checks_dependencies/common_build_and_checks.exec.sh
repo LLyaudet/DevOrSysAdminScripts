@@ -114,9 +114,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='b6616ed822c4d435a868a1745ddf907b313736e7c3388'
-  LFBFL_correct_sha512+='1ba1bb5dc63693ea90076a60abe8bc0923563c694c38'
-  LFBFL_correct_sha512+='a546891994bf068f9f7645c31585069610f8845'
+  LFBFL_correct_sha512='485cdee460a381180f9a1ab5ca8ebf3c5d25a3660f99f'
+  LFBFL_correct_sha512+='7edd8854ea85e43b111afb3d4d44d683744632a774d9'
+  LFBFL_correct_sha512+='f92317744d72fed37389627c3496b688eec12dc'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
   chmod +x "./${LFBFL_file_path}"

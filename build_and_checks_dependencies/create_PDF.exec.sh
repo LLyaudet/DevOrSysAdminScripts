@@ -58,6 +58,16 @@ create_PDF(){
     --result-variable-prefix="LFBFL_"\
     --replace-line-returns-by=""
 
+  local LFBFL_repository_web_url=""
+  grep_variable "${LFBFL_data_file_name}" repository_web_url\
+    --result-variable-prefix="LFBFL_"\
+    --replace-line-returns-by=""
+
+  local LFBFL_repository_git_url=""
+  grep_variable "${LFBFL_data_file_name}" repository_git_url\
+    --result-variable-prefix="LFBFL_"\
+    --replace-line-returns-by=""
+
   local LFBFL_abstract=""
   grep_variable "${LFBFL_data_file_name}" abstract\
     --result-variable-prefix="LFBFL_"
@@ -373,7 +383,16 @@ create_PDF(){
   # using some computed results.
   # Tex filling:
   if [[ -f "${LFBFL_tex_path_start}.1" ]]; then
-    sed -i "s|@repository_name@|${LFBFL_repository_name}|g"\
+    sed -i -e "s|@repository_name@|${LFBFL_repository_name}|g"\
+           -e "s|@repository_web_url@|${LFBFL_repository_web_url}|g"\
+           -e "s|@repository_git_url@|${LFBFL_repository_git_url}|g"\
+           -e "s|@author_email@|${LFBFL_author_email}|g"\
+           -e "s|@author_full_name@|${LFBFL_author_full_name}|g"\
+           -e "s|@author_website@|${LFBFL_author_website}|g"\
+           -e "s|@current_date@|${LFBFL_current_date}|g"\
+           -e "s|@current_git_SHA1@|${LFBFL_current_git_SHA1}|g"\
+           -e "s|@number_of_commits@|${LFBFL_number_of_commits}|g"\
+           -e "s|@number_of_lines@|${LFBFL_number_of_lines}|g"\
       "${LFBFL_tex_path_start}.1"
 
     insert_file_at_token "${LFBFL_tex_path_start}.1" @abstract@\
@@ -383,15 +402,6 @@ create_PDF(){
     insert_file_at_token "${LFBFL_tex_path_start}.2"\
       @acknowledgments@\
       "./${LFBFL_subdir2}/temp/acknowledgments_temp"\
-      "${LFBFL_tex_path_start}.3"
-
-    sed -i -e "s|@author_email@|${LFBFL_author_email}|g"\
-           -e "s|@author_full_name@|${LFBFL_author_full_name}|g"\
-           -e "s|@author_website@|${LFBFL_author_website}|g"\
-           -e "s|@current_date@|${LFBFL_current_date}|g"\
-           -e "s|@current_git_SHA1@|${LFBFL_current_git_SHA1}|g"\
-           -e "s|@number_of_commits@|${LFBFL_number_of_commits}|g"\
-           -e "s|@number_of_lines@|${LFBFL_number_of_lines}|g"\
       "${LFBFL_tex_path_start}.3"
 
     pushd "./${LFBFL_subdir2}/temp/" || (echo "pushd failed" && exit)
@@ -414,7 +424,16 @@ create_PDF(){
   # HTML filling:
   declare -i LFBFL_HTML_updated=0
   if [[ -f "${LFBFL_html_path_start}.1" ]]; then
-    sed -i "s|@repository_name@|${LFBFL_repository_name}|g"\
+    sed -i -e "s|@repository_name@|${LFBFL_repository_name}|g"\
+           -e "s|@repository_web_url@|${LFBFL_repository_web_url}|g"\
+           -e "s|@repository_git_url@|${LFBFL_repository_git_url}|g"\
+           -e "s|@author_email@|${LFBFL_author_email}|g"\
+           -e "s|@author_full_name@|${LFBFL_author_full_name}|g"\
+           -e "s|@author_website@|${LFBFL_author_website}|g"\
+           -e "s|@current_date@|${LFBFL_current_date}|g"\
+           -e "s|@current_git_SHA1@|${LFBFL_current_git_SHA1}|g"\
+           -e "s|@number_of_commits@|${LFBFL_number_of_commits}|g"\
+           -e "s|@number_of_lines@|${LFBFL_number_of_lines}|g"\
       "${LFBFL_html_path_start}.1"
 
     insert_file_at_token "${LFBFL_html_path_start}.1" @abstract@\
@@ -424,15 +443,6 @@ create_PDF(){
     insert_file_at_token "${LFBFL_html_path_start}.2"\
       @acknowledgments@\
       "./${LFBFL_subdir2}/temp/acknowledgments_temp"\
-      "${LFBFL_html_path_start}.3"
-
-    sed -i -e "s|@author_email@|${LFBFL_author_email}|g"\
-           -e "s|@author_full_name@|${LFBFL_author_full_name}|g"\
-           -e "s|@author_website@|${LFBFL_author_website}|g"\
-           -e "s|@current_date@|${LFBFL_current_date}|g"\
-           -e "s|@current_git_SHA1@|${LFBFL_current_git_SHA1}|g"\
-           -e "s|@number_of_commits@|${LFBFL_number_of_commits}|g"\
-           -e "s|@number_of_lines@|${LFBFL_number_of_lines}|g"\
       "${LFBFL_html_path_start}.3"
 
     insert_file_at_token "${LFBFL_html_path_start}.3"\

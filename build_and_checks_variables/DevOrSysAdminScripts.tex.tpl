@@ -105,7 +105,9 @@ All the PHP scripts source code is covered by LGPLv3+.
 The text of the licenses is available at:
 \url{https://www.gnu.org/licenses/}.
 The git repository of this source code is also available at:
-\url{https://github.com/LLyaudet/@repository_name@/}.
+\url{@repository_web_url@}.
+Clone it with this URL:
+\url{@repository_git_url@}.
 
 Here is a listing of the dependencies of the code in this repository:
 \begin{itemize}

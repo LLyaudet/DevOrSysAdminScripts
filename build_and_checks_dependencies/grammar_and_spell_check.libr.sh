@@ -45,12 +45,14 @@ grammar_and_spell_check(){
   fi
 
   get_COMMON_TEXT_FILES_GLOB_PATTERNS
-  grammar_or_spell_checker_command=""
-  grep_variable "$1" grammar_or_spell_checker_command
-  declare -r LFBFL_command=$(
-    echo "${grammar_or_spell_checker_command}"\
-    | sed -Ez -e "s/\n//Mg"
-  )
+  local LFBFL_grammar_or_spell_checker_command=""
+  grep_variable "$1" grammar_or_spell_checker_command\
+    --result-variable-prefix="LFBFL_"\
+    --replace-line-returns-by=""
+  declare -r LFBFL_command="${LFBFL_grammar_or_spell_checker_command}"
+  if [[ -z "${LFBFL_command}" ]]; then
+    return
+  fi
   local LFBFL_file_path
   local LFBFL_pattern
   local LFBFL_eval_string

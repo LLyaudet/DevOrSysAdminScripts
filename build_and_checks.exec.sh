@@ -67,9 +67,9 @@ build_and_checks(){
   declare -r\
     LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_common_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='62a390943c20eab1a307b496215cd26320bc1ca921c66'
-  LFBFL_correct_sha512+='67ff8c155f732e30dbbf212c880ab8162c45f4de5b6f'
-  LFBFL_correct_sha512+='279d36529954fd9e8dd330669679d168dffa3bc'
+  LFBFL_correct_sha512='2f571f6f9b4a6b2ec79a38c07c8e927546310f929e916'
+  LFBFL_correct_sha512+='e3667c162f1da6f1cc1c05610f6a4cd7d9fa0f8c0b6f'
+  LFBFL_correct_sha512+='0df1962d924589c9565cc3b49340d77729b6efc'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_script}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
   chmod +x "./${LFBFL_file_path}"
@@ -89,13 +89,16 @@ if [[ "$*" == *--fixed_point_build* ]]; then
   LFBFL_variables_directory+="build_and_checks_variables"
   LFBFL_data_file_name="${LFBFL_variables_directory}/"
   LFBFL_data_file_name+="repository_data.txt"
-  grep_variable "${LFBFL_data_file_name}" repository_name
+  LFBFL_repository_name=""
+  grep_variable "${LFBFL_data_file_name}" repository_name\
+    --result-variable-prefix="LFBFL_"\
+    --replace-line-returns-by=""
   # Touching the 3 following files first let us iterate
   # upgrade_build_and_checks 2 times instead of 3 to reach
   # a fixed point.
-  touch "${LFBFL_variables_directory}/${repository_name}.tex"
-  touch "${LFBFL_working_directory}/${repository_name}.pdf"
-  touch "${LFBFL_working_directory}/${repository_name}.html"
+  touch "${LFBFL_variables_directory}/${LFBFL_repository_name}.tex"
+  touch "${LFBFL_working_directory}/${LFBFL_repository_name}.pdf"
+  touch "${LFBFL_working_directory}/${LFBFL_repository_name}.html"
   # The two iterations of build_and_checks needs to complete
   # during the same minute to have a fixed point.
   build_and_checks "$@"

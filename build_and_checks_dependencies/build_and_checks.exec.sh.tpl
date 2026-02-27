@@ -86,13 +86,16 @@ if [[ "$*" == *--fixed_point_build* ]]; then
   LFBFL_variables_directory+="build_and_checks_variables"
   LFBFL_data_file_name="${LFBFL_variables_directory}/"
   LFBFL_data_file_name+="repository_data.txt"
-  grep_variable "${LFBFL_data_file_name}" repository_name
+  LFBFL_repository_name=""
+  grep_variable "${LFBFL_data_file_name}" repository_name\
+    --result-variable-prefix="LFBFL_"\
+    --replace-line-returns-by=""
   # Touching the 3 following files first let us iterate
   # upgrade_build_and_checks 2 times instead of 3 to reach
   # a fixed point.
-  touch "${LFBFL_variables_directory}/${repository_name}.tex"
-  touch "${LFBFL_working_directory}/${repository_name}.pdf"
-  touch "${LFBFL_working_directory}/${repository_name}.html"
+  touch "${LFBFL_variables_directory}/${LFBFL_repository_name}.tex"
+  touch "${LFBFL_working_directory}/${LFBFL_repository_name}.pdf"
+  touch "${LFBFL_working_directory}/${LFBFL_repository_name}.html"
   # The two iterations of build_and_checks needs to complete
   # during the same minute to have a fixed point.
   build_and_checks "$@"

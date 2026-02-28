@@ -64,7 +64,7 @@ def IMAP_transfert(
     verbose: bool = False,
 ) -> None:
     """
-    Transfert all emails from some IMAP account"
+    Transfert all emails from some IMAP account
     to another IMAP account.
     """
     empty = ""

@@ -32,8 +32,9 @@
 # but that's not the end of the world.
 check_no_empty_line_after_python_function_docstring(){
   echo "Checking empty lines after Python function docstrings"
-  pcregrep -M $'def [^"]*"""([^"]|"(?!""))*"""\n\n(?!\s*def)'\
-    -- **/*.py
+  pcre2grep -M --\
+    $'def ([^"]|"(?!""))*"""([^"]|"(?!""))*"""\n\n(?!\s*def)'\
+    **/*.py
 }
 
 python_black_complement(){

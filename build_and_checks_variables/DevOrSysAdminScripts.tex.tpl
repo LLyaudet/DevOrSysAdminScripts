@@ -101,6 +101,7 @@ Code lines: @number_of_lines@
 This repository is dual licensed.
 All the Bash scripts source code is covered by GPLv3+.
 All the PHP scripts source code is covered by LGPLv3+.
+All the Python scripts source code is covered by LGPLv3+.
 
 The text of the licenses is available at:
 \url{https://www.gnu.org/licenses/}.

@@ -1,6 +1,7 @@
 This repository is dual licensed.
 All the Bash scripts source code is covered by GPLv3+.
 All the PHP scripts source code is covered by LGPLv3+.
+All the Python scripts source code is covered by LGPLv3+.
 
 Here is a listing of the dependencies of the code in this repository:
 - The following dependencies are GPLv3+ licensed:

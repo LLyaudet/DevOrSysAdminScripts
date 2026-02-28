@@ -172,6 +172,7 @@ create_PDF(){
   local LFBFL_new_lines
   local LFBFL_new_lines2
   local LFBFL_new_lines3
+  local LFBFL_file_name
   # Remove line returns here to keep lines short.
   sed -Ez 's/\\\n//Mg' "./${LFBFL_subdir2}/files_names_listing.txt"\
     | grep -v '^//'\
@@ -288,8 +289,11 @@ create_PDF(){
   local LFBFL_tree_path
   local LFBFL_line
   local LFBFL_prefix
+  declare -i LFBFL_prefix_last_position
+  local LFBFL_char
   local LFBFL_line_start
   declare -ir LFBFL_overlength=$((LFBFL_max_line_length+1))
+  local LFBFL_file_name2
   for LFBFL_tree in "${LFBFL_trees[@]}"; do
     LFBFL_tree_path="${LFBFL_subdir2}/temp/${LFBFL_tree}"
     # shellcheck disable=SC2248
@@ -299,24 +303,40 @@ create_PDF(){
       # echo "LFBFL_line: ${LFBFL_line}"
       LFBFL_prefix=$(
         echo "${LFBFL_line}"\
-        | sed -E -e 's/(.*)─[^─]+$/\1/g' -e 's/[^ ]+$//g'
+        | sed -E -e 's/(.*)──[^─]+$/\1/g'
       )
-      LFBFL_prefix+="│ "
+      # echo "LFBFL_prefix: ${LFBFL_prefix}"
+      LFBFL_prefix_last_position=$((${#LFBFL_prefix}-1))
+      LFBFL_char="${LFBFL_prefix:${LFBFL_prefix_last_position}:1}"
+      # echo "LFBFL_char: ${LFBFL_char}"
+      LFBFL_prefix=$(
+        echo "${LFBFL_prefix}"\
+        | sed -E -e 's/[^ ]+$//g'
+      )
+      if [[ "${LFBFL_char}" == "└" ]]; then
+        LFBFL_prefix+="  "
+      else
+        LFBFL_prefix+="│ "
+      fi
       # echo "LFBFL_prefix: ${LFBFL_prefix}"
       LFBFL_file_name=$(
         echo "${LFBFL_line}"\
         | sed -E 's|.* (([a-zA-Z0-9\._/-]+).)$|\1|g'
       )
       # echo "LFBFL_file_name: ${LFBFL_file_name}"
+      LFBFL_file_name2=$(
+        echo "${LFBFL_file_name}"\
+        | sed -E -e 's/\*/\\\*/g'
+      )
       LFBFL_line_start=$(
         echo "${LFBFL_line}"\
-        | sed -E -e "s/(.*)[ ]*${LFBFL_file_name}/\1/g"\
+        | sed -E -e "s/(.*)[ ]*${LFBFL_file_name2}/\1/g"\
                  -e 's/ *$//g'
       )
       # echo "LFBFL_line_start: ${LFBFL_line_start}"
       LFBFL_line=$(
         echo "${LFBFL_line}"\
-        | sed -E -e 's/\[/\\\[/g' -e 's/\]/\\\]/g'
+        | sed -E -e 's/\[/\\\[/g' -e 's/\]/\\\]/g' -e 's/\*/\\\*/g'
       )
       LFBFL_new_lines="${LFBFL_prefix}${LFBFL_file_name}"
       if [[ ${#LFBFL_new_lines} -gt LFBFL_max_line_length ]]; then

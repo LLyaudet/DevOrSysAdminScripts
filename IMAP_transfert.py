@@ -143,10 +143,7 @@ def IMAP_transfert(
             "(RFC822)",
         )
         if verbose:
-            print(
-                f'from_account.uid("fetch", {my_id})'
-                f" result:{result}",
-            )
+            print(f'from_account.uid("fetch", {my_id}) result:{result}')
         message = raw_message[0][1]
         my_email = email.message_from_string(message.decode("utf-8"))
         flags = imaplib.ParseFlags(raw_message[0][0])

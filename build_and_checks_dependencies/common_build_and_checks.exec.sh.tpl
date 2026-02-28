@@ -289,12 +289,13 @@ common_build_and_checks(){
   declare -i LFBFL_current_ts
   local LFBFL_upgrade_venvs_answer
 
-  local upgrade_venvs_time_interval_in_seconds=""
+  local LFBFL_upgrade_venvs_time_interval_in_seconds=""
   grep_variable "${LFBFL_data_file_name}"\
-    upgrade_venvs_time_interval_in_seconds
-  case ${upgrade_venvs_time_interval_in_seconds} in
-    wat) upgrade_venvs_time_interval_in_seconds=${RANDOM};;
-    watyouwant?) upgrade_venvs_time_interval_in_seconds=${SRANDOM};;
+    upgrade_venvs_time_interval_in_seconds\
+    --result-variable-prefix="LFBFL_"
+  case ${LFBFL_upgrade_venvs_time_interval_in_seconds} in
+    wat) LFBFL_upgrade_venvs_time_interval_in_seconds=${RANDOM};;
+    watyouwant?) LFBFL_upgrade_venvs_time_interval_in_seconds=${SRANDOM};;
     *) echo "No wat for you?";; #TempsDeCerveauDisponible XD SC2249 ;)
   esac
 
@@ -304,7 +305,7 @@ common_build_and_checks(){
     )
     LFBFL_current_ts=$(date +%s)
     ((LFBFL_current_ts-=LFBFL_upgrade_venvs_ts))
-    ((LFBFL_current_ts-=upgrade_venvs_time_interval_in_seconds))
+    ((LFBFL_current_ts-=LFBFL_upgrade_venvs_time_interval_in_seconds))
     if [[ LFBFL_current_ts -gt 0 ]]; then
       LFBFL_upgrade_venvs=1
     fi
@@ -600,12 +601,14 @@ common_build_and_checks(){
   # It is at the end that all the HTML files are generated and that
   # we can check there are no mistakes.
   echo "Running Nu W3C HTML CSS and SVG validator"
-  local upgrade_vnu_jar_time_interval_in_seconds=""
+  local LFBFL_upgrade_vnu_jar_time_interval_in_seconds=""
   grep_variable "${LFBFL_data_file_name}"\
-    upgrade_vnu_jar_time_interval_in_seconds
-  if [[ "${upgrade_vnu_jar_time_interval_in_seconds}" == "wat" ]];
+    upgrade_vnu_jar_time_interval_in_seconds\
+    --result-variable-prefix="LFBFL_"
+
+  if [[ "${LFBFL_upgrade_vnu_jar_time_interval_in_seconds}" == "wat" ]];
   then
-    upgrade_vnu_jar_time_interval_in_seconds=${RANDOM}
+    LFBFL_upgrade_vnu_jar_time_interval_in_seconds=${RANDOM}
   fi
 
   declare -i LFBFL_vnu_jar_ts
@@ -617,7 +620,7 @@ common_build_and_checks(){
     LFBFL_vnu_jar_ts=$(stat -c %Y "${LFBFL_vnu_jar_path}")
     LFBFL_current_ts=$(date +%s)
     ((LFBFL_current_ts-=LFBFL_vnu_jar_ts))
-    ((LFBFL_current_ts-=upgrade_vnu_jar_time_interval_in_seconds))
+    ((LFBFL_current_ts-=LFBFL_upgrade_vnu_jar_time_interval_in_seconds))
     if [[ LFBFL_current_ts -gt 0 ]]; then
       echo $'/!\\ATTENTION: Nu W3C validator is too old./!\\'
       echo "Go get the latest version here:"

@@ -6,8 +6,8 @@ All the Python scripts source code is covered by LGPLv3+.
 Here is a listing of the dependencies of the code in this repository:
 - The following dependencies are GPLv3+ licensed:
 basename, bash (and its builtins), cat, chmod, cp, cut, date, diff,
-dirname, find, grep, head, mkdir, mv, realpath, rm, sed, sha512sum,
-shellcheck, sort, tail, wc, wget, xargs
+dirname, env, find, grep, head, mkdir, mv, realpath, rm, sed,
+sha512sum, shellcheck, sort, tail, touch, wc, wget, xargs
 - The following dependencies are GPLv2+ licensed:
 more, pandoc, pdftex, pdflatex, tree
 - The following dependencies are GPLv2 licensed:

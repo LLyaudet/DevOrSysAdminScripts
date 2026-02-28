@@ -176,8 +176,8 @@ Here is a listing of the dependencies of the code in this repository:
 <ul>
 <li> The following dependencies are GPLv3+ licensed:<br>
 basename, bash (and its builtins), cat, chmod, cp, cut, date, diff,
-dirname, find, grep, head, mkdir, mv, realpath, rm, sed, sha512sum,
-shellcheck, sort, tail, wc, wget, xargs
+dirname, env, find, grep, head, mkdir, mv, realpath, rm, sed,
+sha512sum, shellcheck, sort, tail, touch, wc, wget, xargs
 <li> The following dependencies are GPLv2+ licensed:<br>
 more, pandoc, pdftex, pdflatex, tree
 <li> The following dependencies are GPLv2 licensed:<br>

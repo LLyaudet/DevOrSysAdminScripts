@@ -114,8 +114,8 @@ Here is a listing of the dependencies of the code in this repository:
 \begin{itemize}
 \item The following dependencies are GPLv3+ licensed:\newline
 basename, bash (and its builtins), cat, chmod, cp, cut, date, diff,
-dirname, find, grep, head, mkdir, mv, realpath, rm, sed, sha512sum,
-shellcheck, sort, tail, wc, wget, xargs
+dirname, env, find, grep, head, mkdir, mv, realpath, rm, sed,
+sha512sum, shellcheck, sort, tail, touch, wc, wget, xargs
 \item The following dependencies are GPLv2+ licensed:\newline
 more, pandoc, pdftex, pdflatex, tree
 \item The following dependencies are GPLv2 licensed:\newline

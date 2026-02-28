@@ -115,28 +115,146 @@ Here is a listing of the dependencies of the code in this repository:
 \item The following dependencies are GPLv3+ licensed:\newline
 basename, bash (and its builtins), cat, chmod, cp, cut, date, diff,
 dirname, env, find, grep, head, mkdir, mv, realpath, rm, sed,
-sha512sum, shellcheck, sort, tail, touch, wc, wget, xargs
+sha512sum, shellcheck, sort, tail, touch, wc, wget, xargs;
 \item The following dependencies are GPLv2+ licensed:\newline
-more, pandoc, pdftex, pdflatex, tree
+more, pandoc, pdftex, pdflatex, tree;
 \item The following dependencies are GPLv2 licensed:\newline
-git, pylint
+git, pylint;
 \item The following dependencies are LGPLv2.1+ licensed:\newline
-notify-send
+notify-send;
 \item The following dependencies are MIT licensed:\newline
-black, isort, mypy, ruff
+black, isort, mypy, ruff;
 \item The following dependencies are Apache-2.0 licensed:\newline
-bandit
+bandit;
 \item The following dependencies are BSD-3-Clause licensed:\newline
-phpmd
-\item php is licensed under PHP License v3.01
-\item tex is licensed under Knuth license
-\item pcregrep has a custom license from Cambridge University
+phpmd;
+\item php is licensed under PHP License v3.01;
+\item tex is licensed under Knuth license;
+\item pcregrep, pcre2grep has a custom license from Cambridge
+University, but PCRE2 has BSD-3-Clause WITH PCRE2-exception.
 \end{itemize}
 
 Remark: Some commands listed under GPLv3+ are POSIX
 and can have different implementations under another license;
 for example, uutils coreutils is MIT licensed,
 whilst GNU coreutils is GPLv3+ licensed.
+
+Bash can be found at the following URLs:
+\url{https://www.gnu.org/software/bash/},
+\url{https://tiswww.case.edu/php/chet/bash/bashtop.html},
+\url{https://savannah.gnu.org/projects/bash/}.
+
+GNU coreutils can be found at the following URLs:
+\url{https://www.gnu.org/software/coreutils/},
+\url{https://savannah.gnu.org/projects/coreutils/}.
+
+uutils coreutils can be found at the following URLs:
+\url{https://uutils.github.io/coreutils/},
+\url{https://github.com/uutils/coreutils}.
+
+diff (GNU diffutils) can be found at the following URLs:
+\url{https://www.gnu.org/software/diffutils/},
+\url{https://savannah.gnu.org/projects/diffutils/}.
+
+find, xargs (GNU findutils) can be found at the following URLs:
+\url{https://www.gnu.org/software/findutils/},
+\url{https://savannah.gnu.org/projects/findutils/}.
+
+grep (GNU grep) can be found at the following URLs:
+\url{https://www.gnu.org/software/grep/},
+\url{https://savannah.gnu.org/projects/grep/}.
+
+sed (GNU sed) can be found at the following URLs:
+\url{https://www.gnu.org/software/sed/},
+\url{https://savannah.gnu.org/projects/sed/}.
+
+ShellCheck can be found at the following URLs:
+\url{https://www.shellcheck.net/},
+\url{https://github.com/koalaman/shellcheck}.
+
+GNU Wget can be found at the following URLs:
+\url{https://www.gnu.org/software/wget/},
+\url{https://savannah.gnu.org/projects/wget/}.
+
+more of util-linux can be found at the following URLs:
+\url{https://www.kernel.org/pub/linux/utils/util-linux/},
+\url{https://git.kernel.org/pub/scm/utils/util-linux/util-linux.git/},
+\url{https://github.com/util-linux/util-linux} official?
+
+pandoc can be found at the following URLs:
+\url{https://pandoc.org/},
+\url{https://github.com/jgm/pandoc}.
+
+pdftex/pdflatex can be found at the following URLs:
+\url{https://www.tug.org/applications/pdftex/},
+\url{https://tug.org/texlive/svn/}.
+
+tree can be found at the following URLs:
+\url{https://oldmanprogrammer.net/source.php?dir=projects/tree},
+\url{https://gitlab.com/OldManProgrammer/unix-tree},
+\url{https://github.com/Old-Man-Programmer/tree}.
+
+git can be found at the following URLs:
+\url{https://git-scm.com/about},
+\url{https://github.com/git/git}.
+
+pylint can be found at the following URLs:
+\url{https://www.pylint.org/},
+\url{https://pylint.readthedocs.io/en/stable/},
+\url{https://github.com/pylint-dev/pylint},
+\url{https://pypi.org/project/pylint/}.
+
+notify-send can be found at the following URLs:
+\url{https://gitlab.gnome.org/GNOME/libnotify/},
+\url{https://gnome.pages.gitlab.gnome.org/libnotify/}.
+
+black can be found at the following URLs:
+\url{https://github.com/psf/black},
+\url{https://black.readthedocs.io/en/stable/},
+\url{https://pypi.org/project/black/}.
+
+isort can be found at the following URLs:
+\url{https://pycqa.github.io/isort/},
+\url{https://github.com/pycqa/isort/},
+\url{https://pypi.org/project/isort/}.
+
+mypy can be found at the following URLs:
+\url{https://mypy-lang.org/},
+\url{https://mypy.readthedocs.io/en/stable/},
+\url{https://github.com/python/mypy},
+\url{https://pypi.org/project/mypy/}.
+
+ruff can be found at the following URLs:
+\url{https://docs.astral.sh/ruff/},
+\url{https://github.com/astral-sh/ruff},
+\url{https://pypi.org/project/ruff/}.
+
+bandit can be found at the following URLs:
+\url{https://bandit.readthedocs.io/en/latest/},
+\url{https://github.com/PyCQA/bandit},
+\url{https://pypi.org/project/bandit/}.
+
+phpmd can be found at the following URLs:
+\url{https://phpmd.org/},
+\url{https://github.com/phpmd/phpmd},
+\url{https://packagist.org/packages/phpmd/phpmd}.
+
+php can be found at the following URLs:
+\url{https://www.php.net/},
+\url{https://github.com/php/php-src}.
+
+tex can be found at the following URLs:
+\url{https://ctan.org/tex-archive/systems/knuth/dist/tex}.
+
+pcregrep, pcre2grep can be found at the following URLs:
+\url{https://www.pcre.org/},
+\url{https://pcre2project.github.io/pcre2/},
+\url{https://github.com/PCRE2Project/pcre1},
+\url{https://github.com/PCRE2Project/pcre2},
+\url{https://github.com/PCRE2Project/pcre2/blob/main/src/pcre2grep.c}.
+
+If you see something that I missed regarding my dependencies,
+please tell me/email me :).
 
 @files_listing_VerbatimInput@
 

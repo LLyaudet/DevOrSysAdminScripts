@@ -7,24 +7,142 @@ Here is a listing of the dependencies of the code in this repository:
 - The following dependencies are GPLv3+ licensed:
 basename, bash (and its builtins), cat, chmod, cp, cut, date, diff,
 dirname, env, find, grep, head, mkdir, mv, realpath, rm, sed,
-sha512sum, shellcheck, sort, tail, touch, wc, wget, xargs
+sha512sum, shellcheck, sort, tail, touch, wc, wget, xargs;
 - The following dependencies are GPLv2+ licensed:
-more, pandoc, pdftex, pdflatex, tree
+more, pandoc, pdftex, pdflatex, tree;
 - The following dependencies are GPLv2 licensed:
-git, pylint
+git, pylint;
 - The following dependencies are LGPLv2.1+ licensed:
-notify-send
+notify-send;
 - The following dependencies are MIT licensed:
-black, isort, mypy, ruff
+black, isort, mypy, ruff;
 - The following dependencies are Apache-2.0 licensed:
-bandit
+bandit;
 - The following dependencies are BSD-3-Clause licensed:
-phpmd
-- php is licensed under PHP License v3.01
-- tex is licensed under Knuth license
-- pcregrep has a custom license from Cambridge University
+phpmd;
+- php is licensed under PHP License v3.01;
+- tex is licensed under Knuth license;
+- pcregrep, pcre2grep has a custom license from Cambridge University,
+but PCRE2 has BSD-3-Clause WITH PCRE2-exception.
 
 Remark: Some commands listed under GPLv3+ are POSIX
 and can have different implementations under another license;
 for example, uutils coreutils is MIT licensed,
 whilst GNU coreutils is GPLv3+ licensed.
+
+Bash can be found at the following URLs:
+https://www.gnu.org/software/bash/
+https://tiswww.case.edu/php/chet/bash/bashtop.html
+https://savannah.gnu.org/projects/bash/
+
+GNU coreutils can be found at the following URLs:
+https://www.gnu.org/software/coreutils/
+https://savannah.gnu.org/projects/coreutils/
+
+uutils coreutils can be found at the following URLs:
+https://uutils.github.io/coreutils/
+https://github.com/uutils/coreutils
+
+diff (GNU diffutils) can be found at the following URLs:
+https://www.gnu.org/software/diffutils/
+https://savannah.gnu.org/projects/diffutils/
+
+find, xargs (GNU findutils) can be found at the following URLs:
+https://www.gnu.org/software/findutils/
+https://savannah.gnu.org/projects/findutils/
+
+grep (GNU grep) can be found at the following URLs:
+https://www.gnu.org/software/grep/
+https://savannah.gnu.org/projects/grep/
+
+sed (GNU sed) can be found at the following URLs:
+https://www.gnu.org/software/sed/
+https://savannah.gnu.org/projects/sed/
+
+ShellCheck can be found at the following URLs:
+https://www.shellcheck.net/
+https://github.com/koalaman/shellcheck
+
+GNU Wget can be found at the following URLs:
+https://www.gnu.org/software/wget/
+https://savannah.gnu.org/projects/wget/
+
+more of util-linux can be found at the following URLs:
+https://www.kernel.org/pub/linux/utils/util-linux/
+https://git.kernel.org/pub/scm/utils/util-linux/util-linux.git/
+https://github.com/util-linux/util-linux official?
+
+pandoc can be found at the following URLs:
+https://pandoc.org/
+https://github.com/jgm/pandoc
+
+pdftex/pdflatex can be found at the following URLs:
+https://www.tug.org/applications/pdftex/
+https://tug.org/texlive/svn/
+
+tree can be found at the following URLs:
+https://oldmanprogrammer.net/source.php?dir=projects/tree
+https://gitlab.com/OldManProgrammer/unix-tree
+https://github.com/Old-Man-Programmer/tree
+
+git can be found at the following URLs:
+https://git-scm.com/about
+https://github.com/git/git
+
+pylint can be found at the following URLs:
+https://www.pylint.org/
+https://pylint.readthedocs.io/en/stable/
+https://github.com/pylint-dev/pylint
+https://pypi.org/project/pylint/
+
+notify-send can be found at the following URLs:
+https://gitlab.gnome.org/GNOME/libnotify/
+https://gnome.pages.gitlab.gnome.org/libnotify/
+
+black can be found at the following URLs:
+https://github.com/psf/black
+https://black.readthedocs.io/en/stable/
+https://pypi.org/project/black/
+
+isort can be found at the following URLs:
+https://pycqa.github.io/isort/
+https://github.com/pycqa/isort/
+https://pypi.org/project/isort/
+
+mypy can be found at the following URLs:
+https://mypy-lang.org/
+https://mypy.readthedocs.io/en/stable/
+https://github.com/python/mypy
+https://pypi.org/project/mypy/
+
+ruff can be found at the following URLs:
+https://docs.astral.sh/ruff/
+https://github.com/astral-sh/ruff
+https://pypi.org/project/ruff/
+
+bandit can be found at the following URLs:
+https://bandit.readthedocs.io/en/latest/
+https://github.com/PyCQA/bandit
+https://pypi.org/project/bandit/
+
+phpmd can be found at the following URLs:
+https://phpmd.org/
+https://github.com/phpmd/phpmd
+https://packagist.org/packages/phpmd/phpmd
+
+php can be found at the following URLs:
+https://www.php.net/
+https://github.com/php/php-src
+
+tex can be found at the following URLs:
+https://ctan.org/tex-archive/systems/knuth/dist/tex
+
+pcregrep, pcre2grep can be found at the following URLs:
+https://www.pcre.org/
+https://pcre2project.github.io/pcre2/
+https://github.com/PCRE2Project/pcre1
+https://github.com/PCRE2Project/pcre2
+https://github.com/PCRE2Project/pcre2/blob/main/src/pcre2grep.c
+
+If you see something that I missed regarding my dependencies,
+please tell me/email me :).

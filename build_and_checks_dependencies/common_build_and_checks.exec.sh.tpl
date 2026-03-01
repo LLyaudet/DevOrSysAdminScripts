@@ -390,7 +390,7 @@ common_build_and_checks(){
   if [[ -n "${LFBFL_isort_venv}" ]]; then
     deactivate
   fi
-  python_isort_complement
+  python_isort_complement "$@"
 
   echo "Running black"
   local LFBFL_black_venv=""
@@ -412,7 +412,7 @@ common_build_and_checks(){
   if [[ -n "${LFBFL_black_venv}" ]]; then
     deactivate
   fi
-  python_black_complement
+  python_black_complement "$@"
 
   local LFBFL_mypy_venv=""
   grep_variable "${LFBFL_data_file_name}" mypy_venv\

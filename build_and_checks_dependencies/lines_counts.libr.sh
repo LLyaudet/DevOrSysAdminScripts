@@ -25,6 +25,8 @@
 # "lines_counts.libr.sh".
 
 LFBFL_subdir="build_and_checks_dependencies"
+# shellcheck source=common_options.libr.sh
+source "./${LFBFL_subdir}/common_options.libr.sh"
 # shellcheck source=get_common_text_glob_patterns.libr.sh
 source "./${LFBFL_subdir}/get_common_text_glob_patterns.libr.sh"
 # shellcheck source=lines_filters.libr.sh
@@ -33,39 +35,15 @@ source "./${LFBFL_subdir}/lines_filters.libr.sh"
 all_code_lines(){
   # Options:
   #   --verbose
-  #   --root-directory=""
-  local LFBFL_arg
-
-  # [[ "$*" != *--verbose* ]]
-  # declare -ir LFBFL_verbose=$?
-  # This function is called many times;
-  # maybe less verbose code before is better.
-  declare -i LFBFL_verbose=0
-  if [[ "$*" == *--verbose* ]]; then
-    echo "$0 $*"
-    LFBFL_verbose=1
-  fi
-  readonly LFBFL_verbose
-
-  local LFBFL_root_directory=""
-  for LFBFL_arg in "$@"; do
-    if [[ "${LFBFL_arg}" == --root-directory=* ]]; then
-      LFBFL_root_directory=${LFBFL_arg#--root-directory=}
-      LFBFL_root_directory=${LFBFL_root_directory/#~/${HOME}}
-      break
-    fi
-  done
-
-  if [[ -n "${LFBFL_root_directory}" ]]; then
-    declare -i LFBFL_pushd_result
-    pushd "${LFBFL_root_directory}" || {
-      LFBFL_pushd_result=$?
-      echo "lines_counts.libr.sh all_code_lines()"\
-        "--root-directory=${LFBFL_root_directory} no such directory."
-      # shellcheck disable=SC2248
-      return ${LFBFL_pushd_result}
-    }
-  fi
+  #   --work-directory=""
+  declare -i LFBFL_i_verbose=0
+  # shellcheck disable=SC2034
+  local LFBFL_verbose=""
+  get_verbose_option "$@"
+  local LFBFL_work_directory=""
+  get_work_directory_option "$@"
+  pushd_to_work_directory\
+    && trap 'popd_from_work_directory' RETURN
 
   if [[ ! -o pipefail ]]; then
     set -o pipefail
@@ -75,24 +53,27 @@ all_code_lines(){
   get_COMMON_TEXT_FILES_GLOB_PATTERNS
   local LFBFL_pattern
   for LFBFL_pattern in "${COMMON_TEXT_FILES_GLOB_PATTERNS[@]}"; do
-    [[ LFBFL_verbose -eq 1 ]]\
+    [[ LFBFL_i_verbose -eq 1 ]]\
       && echo "Iterating on pattern: ${LFBFL_pattern}"
     find . -type f -name "${LFBFL_pattern}" -printf '%P\n'\
       | xargs grep -H -v 'a(?!a)a'
   done
-
-  if [[ -n "${LFBFL_root_directory}" ]]; then
-    declare -i LFBFL_popd_result
-    popd || {
-      LFBFL_popd_result=$?
-      echo "lines_counts.libr.sh all_code_lines() popd failed."
-      # shellcheck disable=SC2248
-      return ${LFBFL_popd_result}
-    }
-  fi
 }
 
 all_self_code_lines(){
+  # Options:
+  #   --verbose
+  #   --work-directory=""
+  # shellcheck disable=SC2034
+  declare -i LFBFL_i_verbose=0
+  # shellcheck disable=SC2034
+  local LFBFL_verbose=""
+  get_verbose_option "$@"
+  local LFBFL_work_directory=""
+  get_work_directory_option "$@"
+  pushd_to_work_directory\
+    && trap 'popd_from_work_directory' RETURN
+
   if [[ ! -o pipefail ]]; then
     set -o pipefail
     trap 'set +o pipefail' RETURN
@@ -106,6 +87,14 @@ all_self_code_lines(){
 }
 
 all_self_empty_code_lines(){
+  # Options:
+  #   --verbose
+  # shellcheck disable=SC2034
+  declare -i LFBFL_i_verbose=0
+  # shellcheck disable=SC2034
+  local LFBFL_verbose=""
+  get_verbose_option "$@"
+
   if [[ ! -o pipefail ]]; then
     set -o pipefail
     trap 'set +o pipefail' RETURN
@@ -115,6 +104,14 @@ all_self_empty_code_lines(){
 }
 
 all_self_not_empty_code_lines(){
+  # Options:
+  #   --verbose
+  # shellcheck disable=SC2034
+  declare -i LFBFL_i_verbose=0
+  # shellcheck disable=SC2034
+  local LFBFL_verbose=""
+  get_verbose_option "$@"
+
   if [[ ! -o pipefail ]]; then
     set -o pipefail
     trap 'set +o pipefail' RETURN
@@ -124,6 +121,14 @@ all_self_not_empty_code_lines(){
 }
 
 code_lines_count_all(){
+  # Options:
+  #   --verbose
+  # shellcheck disable=SC2034
+  declare -i LFBFL_i_verbose=0
+  # shellcheck disable=SC2034
+  local LFBFL_verbose=""
+  get_verbose_option "$@"
+
   if [[ ! -o pipefail ]]; then
     set -o pipefail
     trap 'set +o pipefail' RETURN
@@ -133,6 +138,14 @@ code_lines_count_all(){
 }
 
 code_lines_count_empty(){
+  # Options:
+  #   --verbose
+  # shellcheck disable=SC2034
+  declare -i LFBFL_i_verbose=0
+  # shellcheck disable=SC2034
+  local LFBFL_verbose=""
+  get_verbose_option "$@"
+
   if [[ ! -o pipefail ]]; then
     set -o pipefail
     trap 'set +o pipefail' RETURN
@@ -142,6 +155,14 @@ code_lines_count_empty(){
 }
 
 code_lines_count_not_empty(){
+  # Options:
+  #   --verbose
+  # shellcheck disable=SC2034
+  declare -i LFBFL_i_verbose=0
+  # shellcheck disable=SC2034
+  local LFBFL_verbose=""
+  get_verbose_option "$@"
+
   if [[ ! -o pipefail ]]; then
     set -o pipefail
     trap 'set +o pipefail' RETURN

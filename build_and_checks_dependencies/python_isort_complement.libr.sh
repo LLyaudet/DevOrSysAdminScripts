@@ -25,13 +25,28 @@
 # to "python_isort_complement.libr.sh".
 
 LFBFL_subdir="build_and_checks_dependencies"
+# shellcheck source=common_options.libr.sh
+source "./${LFBFL_subdir}/common_options.libr.sh"
 # shellcheck source=lines_filters.libr.sh
 source "./${LFBFL_subdir}/lines_filters.libr.sh"
 # shellcheck source=overwrite_if_not_equal.libr.sh
 source "./${LFBFL_subdir}/overwrite_if_not_equal.libr.sh"
 
 check_collections_abc_place(){
-  echo "Checking import of _collections_abc is at the right place"
+  # Options:
+  #   --verbose
+  #   --work-directory=""
+  declare -i LFBFL_i_verbose=0
+  # shellcheck disable=SC2034
+  local LFBFL_verbose=""
+  get_verbose_option "$@"
+  local LFBFL_work_directory=""
+  get_work_directory_option "$@"
+  pushd_to_work_directory\
+    && trap 'popd_from_work_directory' RETURN
+
+  [[ LFBFL_i_verbose -eq 1 ]]\
+    && echo "Checking import of _collections_abc is at the right place"
   if [[ ! -o pipefail ]]; then
     set -o pipefail
     trap 'set +o pipefail' RETURN
@@ -54,45 +69,16 @@ check_collections_abc_place(){
 python_isort_complement(){
   # Options:
   #   --verbose
-  #   --root-directory=""
-  local LFBFL_arg
+  #   --work-directory=""
+  # shellcheck disable=SC2034
+  declare -i LFBFL_i_verbose=0
+  # shellcheck disable=SC2034
+  local LFBFL_verbose=""
+  get_verbose_option "$@"
+  local LFBFL_work_directory=""
+  get_work_directory_option "$@"
+  pushd_to_work_directory\
+    && trap 'popd_from_work_directory' RETURN
 
-  declare -i LFBFL_verbose=0
-  if [[ "$*" == *--verbose* ]]; then
-    echo "$0 $*"
-    LFBFL_verbose=1
-  fi
-  readonly LFBFL_verbose
-
-  local LFBFL_root_directory=""
-  for LFBFL_arg in "$@"; do
-    if [[ "${LFBFL_arg}" == --root-directory=* ]]; then
-      LFBFL_root_directory=${LFBFL_arg#--root-directory=}
-      LFBFL_root_directory=${LFBFL_root_directory/#~/${HOME}}
-      break
-    fi
-  done
-
-  if [[ -n "${LFBFL_root_directory}" ]]; then
-    declare -i LFBFL_pushd_result
-    pushd "${LFBFL_root_directory}" || {
-      LFBFL_pushd_result=$?
-      echo "python_isort_complement.libr.sh"\
-        "--root-directory=${LFBFL_root_directory} no such directory."
-      # shellcheck disable=SC2248
-      return ${LFBFL_pushd_result}
-    }
-  fi
-
-  check_collections_abc_place
-
-  if [[ -n "${LFBFL_root_directory}" ]]; then
-    declare -i LFBFL_popd_result
-    popd || {
-      LFBFL_popd_result=$?
-      echo "python_isort_complement.libr.sh popd failed."
-      # shellcheck disable=SC2248
-      return ${LFBFL_popd_result}
-    }
-  fi
+  check_collections_abc_place "$@"
 }

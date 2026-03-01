@@ -24,6 +24,9 @@
 # This file was renamed from "python_black_complement.sh"
 # to "python_black_complement.libr.sh".
 
+# shellcheck source=common_options.libr.sh
+source "./build_and_checks_dependencies/common_options.libr.sh"
+
 # It was rejected to enhance black with this currently.
 # https://github.com/psf/black/issues/2370
 # And moreover, at some point, I saw the reverse rule
@@ -31,7 +34,20 @@
 # This regexp may give false positives,
 # but that's not the end of the world.
 check_no_empty_line_after_python_function_docstring(){
-  echo "Checking empty lines after Python function docstrings"
+  # Options:
+  #   --verbose
+  #   --work-directory=""
+  declare -i LFBFL_i_verbose=0
+  # shellcheck disable=SC2034
+  local LFBFL_verbose=""
+  get_verbose_option "$@"
+  local LFBFL_work_directory=""
+  get_work_directory_option "$@"
+  pushd_to_work_directory\
+    && trap 'popd_from_work_directory' RETURN
+
+  [[ LFBFL_i_verbose -eq 1 ]]\
+    && echo "Checking empty lines after Python function docstrings"
   pcre2grep -M --\
     $'def ([^"]|"(?!""))*"""([^"]|"(?!""))*"""\n\n(?!\s*def)'\
     **/*.py
@@ -40,45 +56,16 @@ check_no_empty_line_after_python_function_docstring(){
 python_black_complement(){
   # Options:
   #   --verbose
-  #   --root-directory=""
-  local LFBFL_arg
+  #   --work-directory=""
+  # shellcheck disable=SC2034
+  declare -i LFBFL_i_verbose=0
+  # shellcheck disable=SC2034
+  local LFBFL_verbose=""
+  get_verbose_option "$@"
+  local LFBFL_work_directory=""
+  get_work_directory_option "$@"
+  pushd_to_work_directory\
+    && trap 'popd_from_work_directory' RETURN
 
-  declare -i LFBFL_verbose=0
-  if [[ "$*" == *--verbose* ]]; then
-    echo "$0 $*"
-    LFBFL_verbose=1
-  fi
-  readonly LFBFL_verbose
-
-  local LFBFL_root_directory=""
-  for LFBFL_arg in "$@"; do
-    if [[ "${LFBFL_arg}" == --root-directory=* ]]; then
-      LFBFL_root_directory=${LFBFL_arg#--root-directory=}
-      LFBFL_root_directory=${LFBFL_root_directory/#~/${HOME}}
-      break
-    fi
-  done
-
-  if [[ -n "${LFBFL_root_directory}" ]]; then
-    declare -i LFBFL_pushd_result
-    pushd "${LFBFL_root_directory}" || {
-      LFBFL_pushd_result=$?
-      echo "python_black_complement.libr.sh"\
-        "--root-directory=${LFBFL_root_directory} no such directory."
-      # shellcheck disable=SC2248
-      return ${LFBFL_pushd_result}
-    }
-  fi
-
-  check_no_empty_line_after_python_function_docstring
-
-  if [[ -n "${LFBFL_root_directory}" ]]; then
-    declare -i LFBFL_popd_result
-    popd || {
-      LFBFL_popd_result=$?
-      echo "python_black_complement.libr.sh popd failed."
-      # shellcheck disable=SC2248
-      return ${LFBFL_popd_result}
-    }
-  fi
+  check_no_empty_line_after_python_function_docstring "$@"
 }

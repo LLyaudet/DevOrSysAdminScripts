@@ -24,6 +24,8 @@
 # This file was renamed from "check_URLs.sh" to "check_URLs.libr.sh".
 
 LFBFL_subdir="build_and_checks_dependencies"
+# shellcheck source=common_options.libr.sh
+source "./${LFBFL_subdir}/common_options.libr.sh"
 # shellcheck source=get_common_text_glob_patterns.libr.sh
 source "./${LFBFL_subdir}/get_common_text_glob_patterns.libr.sh"
 # shellcheck source=lines_filters.libr.sh
@@ -32,27 +34,18 @@ source "./${LFBFL_subdir}/lines_filters.libr.sh"
 check_URLs(){
   # Options:
   #   --verbose
-  #   --root-directory=""
-  local LFBFL_arg
-
-  declare -i LFBFL_verbose=0
-  if [[ "$*" == *--verbose* ]]; then
-    echo "$0 $*"
-    LFBFL_verbose=1
-  fi
-  readonly LFBFL_verbose
-
-  local LFBFL_root_directory=""
-  for LFBFL_arg in "$@"; do
-    if [[ "${LFBFL_arg}" == --root-directory=* ]]; then
-      LFBFL_root_directory=${LFBFL_arg#--root-directory=}
-      LFBFL_root_directory=${LFBFL_root_directory/#~/${HOME}}
-      break
-    fi
-  done
+  #   --work-directory=""
+  declare -i LFBFL_i_verbose=0
+  # shellcheck disable=SC2034
+  local LFBFL_verbose=""
+  get_verbose_option "$@"
+  local LFBFL_work_directory=""
+  get_work_directory_option "$@"
+  pushd_to_work_directory\
+    && trap 'popd_from_work_directory' RETURN
 
   if [[ ! -o pipefail ]]; then
-    [[ LFBFL_verbose -eq 1 ]] && echo "pipefail option activated"
+    [[ LFBFL_i_verbose -eq 1 ]] && echo "pipefail option activated"
     set -o pipefail
     trap 'set +o pipefail' RETURN
   fi
@@ -63,24 +56,13 @@ check_URLs(){
     ["http://www.gnu.org/licenses/"]="https://www.gnu.org/licenses/"
   )
 
-  if [[ -n "${LFBFL_root_directory}" ]]; then
-    declare -i LFBFL_pushd_result
-    pushd "${LFBFL_root_directory}" || {
-      LFBFL_pushd_result=$?
-      echo "check_URLs.libr.sh"\
-        "--root-directory=${LFBFL_root_directory} no such directory."
-      # shellcheck disable=SC2248
-      return ${LFBFL_pushd_result}
-    }
-  fi
-
   local LFBFL_pattern
   local LFBFL_file_name
   local LFBFL_base_file_name
   local LFBFL_substitution
   local LFBFL_substitution2
   for LFBFL_pattern in "${COMMON_TEXT_FILES_GLOB_PATTERNS[@]}"; do
-    [[ LFBFL_verbose -eq 0 ]]\
+    [[ LFBFL_i_verbose -eq 0 ]]\
       || echo "Iterating on pattern: ${LFBFL_pattern}"
     find . -type f -name "${LFBFL_pattern}" -printf '%P\n'\
       | xargs grep -H 'http:'\
@@ -97,7 +79,7 @@ check_URLs(){
       LFBFL_base_file_name=$(basename "${LFBFL_file_name}")
       [[ "${LFBFL_base_file_name}" != "check_URLs.libr.sh" ]]\
         || continue
-      [[ LFBFL_verbose -eq 0 ]]\
+      [[ LFBFL_i_verbose -eq 0 ]]\
         || echo "Handling the file: ${LFBFL_file_name}"
       for LFBFL_substitution in "${!LFBFL_substitutions[@]}"; do
         LFBFL_substitution2=\
@@ -109,14 +91,4 @@ ${LFBFL_substitutions[${LFBFL_substitution}]}
       done
     done
   done
-
-  if [[ -n "${LFBFL_root_directory}" ]]; then
-    declare -i LFBFL_popd_result
-    popd || {
-      LFBFL_popd_result=$?
-      echo "check_URLs.libr.sh popd failed."
-      # shellcheck disable=SC2248
-      return ${LFBFL_popd_result}
-    }
-  fi
 }

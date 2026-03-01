@@ -33,6 +33,8 @@ check_URLs(){
   # Options:
   #   --verbose
   #   --root-directory=""
+  local LFBFL_arg
+
   declare -i LFBFL_verbose=0
   if [[ "$*" == *--verbose* ]]; then
     echo "$0 $*"

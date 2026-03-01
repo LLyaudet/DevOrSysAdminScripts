@@ -34,6 +34,7 @@ too_long_code_lines(){
   # Options:
   #   --verbose
   #   --max-line-length
+  #   --root-directory=""
   local LFBFL_arg
 
   declare -i LFBFL_verbose=0
@@ -44,11 +45,17 @@ too_long_code_lines(){
   readonly LFBFL_verbose
 
   declare -i LFBFL_max_line_length=70
+  local LFBFL_root_directory=""
   for LFBFL_arg in "$@"; do
     if [[ "${LFBFL_arg}" == --max-line-length=* ]]; then
       LFBFL_arg=${LFBFL_arg#--max-line-length=}
       LFBFL_max_line_length=$((LFBFL_arg))
-      break
+      continue
+    fi
+    if [[ "${LFBFL_arg}" == --root-directory=* ]]; then
+      LFBFL_root_directory=${LFBFL_arg#--root-directory=}
+      LFBFL_root_directory=${LFBFL_root_directory/#~/${HOME}}
+      continue
     fi
   done
 
@@ -56,6 +63,17 @@ too_long_code_lines(){
     [[ LFBFL_verbose -eq 1 ]] && echo "pipefail option activated"
     set -o pipefail
     trap 'set +o pipefail' RETURN
+  fi
+
+  if [[ -n "${LFBFL_root_directory}" ]]; then
+    declare -i LFBFL_pushd_result
+    pushd "${LFBFL_root_directory}" || {
+      LFBFL_pushd_result=$?
+      echo "too_long_code_lines.libr.sh"\
+        "--root-directory=${LFBFL_root_directory} no such directory."
+      # shellcheck disable=SC2248
+      return ${LFBFL_pushd_result}
+    }
   fi
 
   get_COMMON_TEXT_FILES_GLOB_PATTERNS
@@ -100,4 +118,14 @@ too_long_code_lines(){
       fi
     done
   done
+
+  if [[ -n "${LFBFL_root_directory}" ]]; then
+    declare -i LFBFL_popd_result
+    popd || {
+      LFBFL_popd_result=$?
+      echo "too_long_code_lines.libr.sh popd failed."
+      # shellcheck disable=SC2248
+      return ${LFBFL_popd_result}
+    }
+  fi
 }

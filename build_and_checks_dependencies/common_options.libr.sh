@@ -24,13 +24,59 @@
 
 get_where_was_i(){
   # Auxiliary function needed below.
-  # See usages below.
+  # See usages below if you want to reuse it.
+  # $1=offset
   LFBFL_where_was_i="$0"
-  if [[ "${BASH_SOURCE[2]}" != "" && "${BASH_SOURCE[2]}" != "$0" ]]; then
-    LFBFL_where_was_i+=" ${BASH_SOURCE[2]}"
+  if [[ "${BASH_SOURCE[$1]}" != "" && "${BASH_SOURCE[$1]}" != "$0" ]]; then
+    LFBFL_where_was_i+=" ${BASH_SOURCE[$1]}"
   fi
-  if [[ "${FUNCNAME[2]}" != "" ]]; then
-    LFBFL_where_was_i+=" ${FUNCNAME[2]}()"
+  if [[ "${FUNCNAME[$1]}" != "" ]]; then
+    LFBFL_where_was_i+=" ${FUNCNAME[$1]}()"
+  fi
+}
+
+enhanced_pushd(){
+  # Auxiliary function needed below.
+  # See usages below if you want to reuse it.
+  # $1=to_directory
+  # $2=offset_for_where_was_i
+  # $3=error_message_intermediate_complement
+  if [[ -n "$1" ]]; then
+    local LFBFL_real_path1
+    LFBFL_real_path1=$(realpath "${DIRSTACK[0]}")
+    local LFBFL_real_path2
+    LFBFL_real_path2=$(realpath "$1")
+    if [[ "${LFBFL_real_path1}" == "${LFBFL_real_path2}" ]]; then
+      return 111
+    fi
+
+    declare -i LFBFL_i_pushd_result
+    pushd "$1" || {
+      LFBFL_i_pushd_result=$?
+      local LFBFL_where_was_i
+      get_where_was_i $2
+      echo "${LFBFL_where_was_i} $3$1 no such directory."
+      # shellcheck disable=SC2248
+      return ${LFBFL_i_pushd_result}
+    }
+  fi
+}
+
+enhanced_popd(){
+  # Auxiliary function needed below.
+  # See usages below if you want to reuse it.
+  # $1=to_directory
+  # $2=offset_for_where_was_i
+  if [[ -n "$1" ]]; then
+    declare -i LFBFL_i_popd_result
+    popd || {
+      LFBFL_i_popd_result=$?
+      local LFBFL_where_was_i
+      get_where_was_i $2
+      echo "$2 popd failed."
+      # shellcheck disable=SC2248
+      return ${LFBFL_i_popd_result}
+    }
   fi
 }
 
@@ -55,7 +101,7 @@ get_verbose_option(){
   # But it is not bug free.
   if [[ "$*" == *--verbose* ]]; then
     local LFBFL_where_was_i
-    get_where_was_i
+    get_where_was_i 2
     echo "${LFBFL_where_was_i} $*"
     LFBFL_i_verbose=1
     LFBFL_verbose="--verbose"
@@ -66,8 +112,8 @@ get_verbose_option(){
 # Add the four following lines at the start of a function.
 #   local LFBFL_work_directory=""
 #   get_work_directory_option "$@"
-#   pushd_to_work_directory
-#   trap 'enhanced_popd' RETURN
+#   pushd_to_work_directory\
+#     && trap 'popd_from_work_directory' RETURN
 
 get_work_directory_option(){
   # This command is to be called in another one with same arguments.
@@ -84,30 +130,9 @@ get_work_directory_option(){
 }
 
 pushd_to_work_directory(){
-  if [[ -n "${LFBFL_work_directory}" ]]; then
-    declare -i LFBFL_i_pushd_result
-    pushd "${LFBFL_work_directory}" || {
-      local LFBFL_where_was_i
-      get_where_was_i
-      LFBFL_i_pushd_result=$?
-      echo "${LFBFL_where_was_i} --root-directory=${LFBFL_work_directory}"\
-        "no such directory."
-      # shellcheck disable=SC2248
-      return ${LFBFL_i_pushd_result}
-    }
-  fi
+  enhanced_pushd "${LFBFL_work_directory}" 3 " --work-directory="
 }
 
-enhanced_popd(){
-  if [[ -n "${LFBFL_work_directory}" ]]; then
-    declare -i LFBFL_i_popd_result
-    popd || {
-      local LFBFL_where_was_i
-      get_where_was_i
-      LFBFL_i_popd_result=$?
-      echo "${LFBFL_where_was_i} popd failed."
-      # shellcheck disable=SC2248
-      return ${LFBFL_i_popd_result}
-    }
-  fi
+popd_from_work_directory(){
+  enhanced_popd "${LFBFL_work_directory}" 3
 }

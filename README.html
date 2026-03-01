@@ -240,6 +240,9 @@ vowel).</li>
 these functions can be reused and go in some “.libr.sh” file, either
 they are truly specific to this script and they are kept in “.exec.sh”
 file.</li>
+<li>When using <code>source</code> builtin, although any path/filename
+with a slash will only be searched for from the current directory
+(tested), we add the prefix “./”, to make it explicit.</li>
 </ul>
 <p>But the files “pre-commit” and “post-commit” were not renamed, since
 it is not possible to give them other names to use them as

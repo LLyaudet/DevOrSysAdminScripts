@@ -42,6 +42,9 @@ I tried to follow some conventions for my bash code:
   either these functions can be reused and go in some ".libr.sh" file,
   either they are truly specific to this script and they are kept
   in ".exec.sh" file.
+- When using `source` builtin, although any path/filename with a slash
+  will only be searched for from the current directory (tested),
+  we add the prefix "./", to make it explicit.
 
 But the files "pre-commit" and "post-commit" were not renamed,
 since it is not possible to give them other names to use them as

@@ -31,12 +31,37 @@ source "./${LFBFL_subdir}/get_common_text_glob_patterns.libr.sh"
 source "./${LFBFL_subdir}/lines_filters.libr.sh"
 
 grammar_and_spell_check(){
+  # Options:
+  #   --verbose
+  #   --root-directory=""
+  local LFBFL_arg
+
   declare -i LFBFL_verbose=0
   if [[ "$*" == *--verbose* ]]; then
     echo "$0 $*"
     LFBFL_verbose=1
   fi
   readonly LFBFL_verbose
+
+  local LFBFL_root_directory=""
+  for LFBFL_arg in "$@"; do
+    if [[ "${LFBFL_arg}" == --root-directory=* ]]; then
+      LFBFL_root_directory=${LFBFL_arg#--root-directory=}
+      LFBFL_root_directory=${LFBFL_root_directory/#~/${HOME}}
+      break
+    fi
+  done
+
+  if [[ -n "${LFBFL_root_directory}" ]]; then
+    declare -i LFBFL_pushd_result
+    pushd "${LFBFL_root_directory}" || {
+      LFBFL_pushd_result=$?
+      echo "grammar_and_spell_check.libr.sh"\
+        "--root-directory=${LFBFL_root_directory} no such directory."
+      # shellcheck disable=SC2248
+      return ${LFBFL_pushd_result}
+    }
+  fi
 
   if [[ ! -o pipefail ]]; then
     [[ LFBFL_verbose -eq 1 ]] && echo "pipefail option activated"
@@ -66,4 +91,14 @@ grammar_and_spell_check(){
       eval "${LFBFL_eval_string}"
     done
   done
+
+  if [[ -n "${LFBFL_root_directory}" ]]; then
+    declare -i LFBFL_popd_result
+    popd || {
+      LFBFL_popd_result=$?
+      echo "grammar_and_spell_check.libr.sh popd failed."
+      # shellcheck disable=SC2248
+      return ${LFBFL_popd_result}
+    }
+  fi
 }

@@ -49,6 +49,7 @@ update_common_build_and_checks(){
     "check_shell_scripts_beginnings.libr.sh"
     "check_shell_scripts_indentation.libr.sh"
     "check_URLs.libr.sh"
+    "common_options.libr.sh"
     "comparisons.libr.sh"
     "create_PDF.exec.sh"
     "generate_from_template.libr.sh"

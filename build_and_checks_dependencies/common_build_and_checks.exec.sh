@@ -100,6 +100,16 @@ common_build_and_checks(){
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
+  LFBFL_file_name="common_options.libr.sh"
+  LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
+  LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
+  local LFBFL_correct_sha512
+  LFBFL_correct_sha512='dd796f67e213325a79a2d8b2bcd79749aece73619badf'
+  LFBFL_correct_sha512+='a3e386d5d567690dd7a1b10aed7f75aa487a1a76f8c5'
+  LFBFL_correct_sha512+='d1e8d80f8235f4da1af004370ead6aa0472a80a'
+  wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
+    "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
+
   LFBFL_file_name="comparisons.libr.sh"
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
@@ -314,6 +324,8 @@ common_build_and_checks(){
   source "./${LFBFL_subdir}/check_shell_scripts_indentation.libr.sh"
   # shellcheck source=check_URLs.libr.sh
   source "./${LFBFL_subdir}/check_URLs.libr.sh"
+  # shellcheck source=common_options.libr.sh
+  source "./${LFBFL_subdir}/common_options.libr.sh"
   # shellcheck source=comparisons.libr.sh
   source "./${LFBFL_subdir}/comparisons.libr.sh"
   # shellcheck source=generate_from_template.libr.sh

@@ -35,6 +35,7 @@ build_and_checks_dependencies/check_shell_scripts_indentation.libr.sh
 build_and_checks_dependencies/check_URLs.libr.sh
 build_and_checks_dependencies/common_build_and_checks.exec.sh
 build_and_checks_dependencies/common_build_and_checks.exec.sh.tpl
+build_and_checks_dependencies/common_options.libr.sh
 build_and_checks_dependencies/comparisons.libr.sh
 build_and_checks_dependencies/create_PDF.exec.sh
 build_and_checks_dependencies/generate_from_template.libr.sh

@@ -88,6 +88,13 @@ common_build_and_checks(){
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
+  LFBFL_file_name="common_options.libr.sh"
+  LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
+  LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
+  @sha512_common_options.libr.sh@
+  wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
+    "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
+
   LFBFL_file_name="comparisons.libr.sh"
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
@@ -242,6 +249,8 @@ common_build_and_checks(){
   source "./${LFBFL_subdir}/check_shell_scripts_indentation.libr.sh"
   # shellcheck source=check_URLs.libr.sh
   source "./${LFBFL_subdir}/check_URLs.libr.sh"
+  # shellcheck source=common_options.libr.sh
+  source "./${LFBFL_subdir}/common_options.libr.sh"
   # shellcheck source=comparisons.libr.sh
   source "./${LFBFL_subdir}/comparisons.libr.sh"
   # shellcheck source=generate_from_template.libr.sh

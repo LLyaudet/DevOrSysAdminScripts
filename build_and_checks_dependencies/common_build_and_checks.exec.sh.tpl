@@ -567,14 +567,15 @@ common_build_and_checks(){
 
   echo "Analyzing too long lines"
   # shellcheck disable=SC2248
-  too_long_code_lines --max-line-length=${LFBFL_max_line_length} "$@"
+  too_long_code_lines "${LFBFL_verbose}"\
+    --max-line-length=${LFBFL_max_line_length}
 
   echo "Analyzing shell scripts beginnings"
   check_shell_scripts_beginnings "${LFBFL_verbose}"\
     | relevant_grep
 
   echo "Analyzing shell scripts indentation"
-  check_shell_scripts_indentation\
+  check_shell_scripts_indentation "${LFBFL_verbose}"\
     | relevant_grep
 
   echo "Analyzing URLs"

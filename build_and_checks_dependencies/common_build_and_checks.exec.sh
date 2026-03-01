@@ -84,9 +84,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='d473359eaef8164f8e7ab85fcd8812b3ce46e2731ef96'
-  LFBFL_correct_sha512+='ff46df693890131abf064c9f2b1beacbabd50aad778f'
-  LFBFL_correct_sha512+='6d3b9b669bc0469f868f1ae69660fd4b89990f1'
+  LFBFL_correct_sha512='072585093a41484c8e4e163df1b65fe8c23ca4da8b799'
+  LFBFL_correct_sha512+='7ba18f09e64467e51eb78cb39a2e474cc26d50ed2af6'
+  LFBFL_correct_sha512+='e8d699c32ed113259935badbc547218cf19ac34'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
@@ -639,14 +639,15 @@ common_build_and_checks(){
 
   echo "Analyzing too long lines"
   # shellcheck disable=SC2248
-  too_long_code_lines --max-line-length=${LFBFL_max_line_length} "$@"
+  too_long_code_lines "${LFBFL_verbose}"\
+    --max-line-length=${LFBFL_max_line_length}
 
   echo "Analyzing shell scripts beginnings"
   check_shell_scripts_beginnings "${LFBFL_verbose}"\
     | relevant_grep
 
   echo "Analyzing shell scripts indentation"
-  check_shell_scripts_indentation\
+  check_shell_scripts_indentation "${LFBFL_verbose}"\
     | relevant_grep
 
   echo "Analyzing URLs"

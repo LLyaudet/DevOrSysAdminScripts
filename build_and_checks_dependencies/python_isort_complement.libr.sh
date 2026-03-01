@@ -52,5 +52,47 @@ check_collections_abc_place(){
 }
 
 python_isort_complement(){
+  # Options:
+  #   --verbose
+  #   --root-directory=""
+  local LFBFL_arg
+
+  declare -i LFBFL_verbose=0
+  if [[ "$*" == *--verbose* ]]; then
+    echo "$0 $*"
+    LFBFL_verbose=1
+  fi
+  readonly LFBFL_verbose
+
+  local LFBFL_root_directory=""
+  for LFBFL_arg in "$@"; do
+    if [[ "${LFBFL_arg}" == --root-directory=* ]]; then
+      LFBFL_root_directory=${LFBFL_arg#--root-directory=}
+      LFBFL_root_directory=${LFBFL_root_directory/#~/${HOME}}
+      break
+    fi
+  done
+
+  if [[ -n "${LFBFL_root_directory}" ]]; then
+    declare -i LFBFL_pushd_result
+    pushd "${LFBFL_root_directory}" || {
+      LFBFL_pushd_result=$?
+      echo "python_isort_complement.libr.sh"\
+        "--root-directory=${LFBFL_root_directory} no such directory."
+      # shellcheck disable=SC2248
+      return ${LFBFL_pushd_result}
+    }
+  fi
+
   check_collections_abc_place
+
+  if [[ -n "${LFBFL_root_directory}" ]]; then
+    declare -i LFBFL_popd_result
+    popd || {
+      LFBFL_popd_result=$?
+      echo "python_isort_complement.libr.sh popd failed."
+      # shellcheck disable=SC2248
+      return ${LFBFL_popd_result}
+    }
+  fi
 }

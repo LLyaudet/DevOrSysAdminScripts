@@ -74,9 +74,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='e0cdfc2d653daf9f15a3447f40e41fe03a332ac4054c4'
-  LFBFL_correct_sha512+='0950efc0b9f58912791068c081babf7a7a9e72bacd57'
-  LFBFL_correct_sha512+='8e600bbb5e0c51466e60e91e5b6dda6173b088b'
+  LFBFL_correct_sha512='5be5b285da199e86bf7afb1e11b3af1451a2692e10f80'
+  LFBFL_correct_sha512+='eac5f38d43b4955d480e733e08ce34926ae25e3326a4'
+  LFBFL_correct_sha512+='1de468006c999be7cb4864d11c92fa158e2f48a'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
@@ -423,13 +423,13 @@ common_build_and_checks(){
       "${LFBFL_verbose}"
   done
 
-  declare -i LFBFL_cd_result
-  pushd .
-  cd "${LFBFL_working_directory}" || {
-    LFBFL_cd_result=$?
-    echo "common_build_and_checks.exec.sh no such directory"
+  declare -i LFBFL_pushd_result
+  pushd "${LFBFL_working_directory}" || {
+    LFBFL_pushd_result=$?
+    echo "common_build_and_checks.exec.sh"\
+        "working directory ${LFBFL_root_directory} no such directory."
     # shellcheck disable=SC2248
-    return ${LFBFL_cd_result}
+    return ${LFBFL_pushd_result}
   }
 
   echo "Running shellcheck"
@@ -717,7 +717,7 @@ common_build_and_checks(){
   declare -i LFBFL_popd_result
   popd || {
     LFBFL_popd_result=$?
-    echo "common_build_and_checks.exec.sh no popd"
+    echo "common_build_and_checks.exec.sh popd failed."
     # shellcheck disable=SC2248
     return ${LFBFL_popd_result}
   }

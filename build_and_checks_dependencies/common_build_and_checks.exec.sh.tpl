@@ -351,13 +351,13 @@ common_build_and_checks(){
       "${LFBFL_verbose}"
   done
 
-  declare -i LFBFL_cd_result
-  pushd .
-  cd "${LFBFL_working_directory}" || {
-    LFBFL_cd_result=$?
-    echo "common_build_and_checks.exec.sh no such directory"
+  declare -i LFBFL_pushd_result
+  pushd "${LFBFL_working_directory}" || {
+    LFBFL_pushd_result=$?
+    echo "common_build_and_checks.exec.sh"\
+        "working directory ${LFBFL_root_directory} no such directory."
     # shellcheck disable=SC2248
-    return ${LFBFL_cd_result}
+    return ${LFBFL_pushd_result}
   }
 
   echo "Running shellcheck"
@@ -645,7 +645,7 @@ common_build_and_checks(){
   declare -i LFBFL_popd_result
   popd || {
     LFBFL_popd_result=$?
-    echo "common_build_and_checks.exec.sh no popd"
+    echo "common_build_and_checks.exec.sh popd failed."
     # shellcheck disable=SC2248
     return ${LFBFL_popd_result}
   }

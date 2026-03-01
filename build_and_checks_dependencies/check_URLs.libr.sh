@@ -30,12 +30,24 @@ source "./${LFBFL_subdir}/get_common_text_glob_patterns.libr.sh"
 source "./${LFBFL_subdir}/lines_filters.libr.sh"
 
 check_URLs(){
+  # Options:
+  #   --verbose
+  #   --root-directory=""
   declare -i LFBFL_verbose=0
   if [[ "$*" == *--verbose* ]]; then
     echo "$0 $*"
     LFBFL_verbose=1
   fi
   readonly LFBFL_verbose
+
+  local LFBFL_root_directory=""
+  for LFBFL_arg in "$@"; do
+    if [[ "${LFBFL_arg}" == --root-directory=* ]]; then
+      LFBFL_root_directory=${LFBFL_arg#--root-directory=}
+      LFBFL_root_directory=${LFBFL_root_directory/#~/${HOME}}
+      break
+    fi
+  done
 
   if [[ ! -o pipefail ]]; then
     [[ LFBFL_verbose -eq 1 ]] && echo "pipefail option activated"
@@ -48,6 +60,17 @@ check_URLs(){
   declare -Ar LFBFL_substitutions=(
     ["http://www.gnu.org/licenses/"]="https://www.gnu.org/licenses/"
   )
+
+  if [[ -n "${LFBFL_root_directory}" ]]; then
+    declare -i LFBFL_pushd_result
+    pushd "${LFBFL_root_directory}" || {
+      LFBFL_pushd_result=$?
+      echo "check_URLs.libr.sh"\
+        "--root-directory=${LFBFL_root_directory} no such directory."
+      # shellcheck disable=SC2248
+      return ${LFBFL_pushd_result}
+    }
+  fi
 
   local LFBFL_pattern
   local LFBFL_file_name
@@ -84,4 +107,14 @@ ${LFBFL_substitutions[${LFBFL_substitution}]}
       done
     done
   done
+
+  if [[ -n "${LFBFL_root_directory}" ]]; then
+    declare -i LFBFL_popd_result
+    popd || {
+      LFBFL_popd_result=$?
+      echo "check_URLs.libr.sh popd failed."
+      # shellcheck disable=SC2248
+      return ${LFBFL_popd_result}
+    }
+  fi
 }

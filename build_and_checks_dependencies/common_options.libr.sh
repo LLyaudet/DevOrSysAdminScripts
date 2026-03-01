@@ -54,7 +54,7 @@ enhanced_pushd(){
     pushd "$1" || {
       LFBFL_i_pushd_result=$?
       local LFBFL_where_was_i
-      get_where_was_i $2
+      get_where_was_i "$2"
       echo "${LFBFL_where_was_i} $3$1 no such directory."
       # shellcheck disable=SC2248
       return ${LFBFL_i_pushd_result}
@@ -72,7 +72,7 @@ enhanced_popd(){
     popd || {
       LFBFL_i_popd_result=$?
       local LFBFL_where_was_i
-      get_where_was_i $2
+      get_where_was_i "$2"
       echo "$2 popd failed."
       # shellcheck disable=SC2248
       return ${LFBFL_i_popd_result}
@@ -103,7 +103,9 @@ get_verbose_option(){
     local LFBFL_where_was_i
     get_where_was_i 2
     echo "${LFBFL_where_was_i} $*"
+    # shellcheck disable=SC2034
     LFBFL_i_verbose=1
+    # shellcheck disable=SC2034
     LFBFL_verbose="--verbose"
   fi
 }

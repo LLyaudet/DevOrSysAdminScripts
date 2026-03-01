@@ -570,7 +570,7 @@ common_build_and_checks(){
   too_long_code_lines --max-line-length=${LFBFL_max_line_length} "$@"
 
   echo "Analyzing shell scripts beginnings"
-  check_shell_scripts_beginnings\
+  check_shell_scripts_beginnings "${LFBFL_verbose}"\
     | relevant_grep
 
   echo "Analyzing shell scripts indentation"

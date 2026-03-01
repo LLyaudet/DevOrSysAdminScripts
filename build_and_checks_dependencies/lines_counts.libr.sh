@@ -31,12 +31,47 @@ source "./${LFBFL_subdir}/get_common_text_glob_patterns.libr.sh"
 source "./${LFBFL_subdir}/lines_filters.libr.sh"
 
 all_code_lines(){
+  # Options:
+  #   --verbose
+  #   --root-directory=""
+  local LFBFL_arg
+
+  # [[ "$*" != *--verbose* ]]
+  # declare -ir LFBFL_verbose=$?
+  # This function is called many times;
+  # maybe less verbose code before is better.
+  declare -i LFBFL_verbose=0
+  if [[ "$*" == *--verbose* ]]; then
+    echo "$0 $*"
+    LFBFL_verbose=1
+  fi
+  readonly LFBFL_verbose
+
+  local LFBFL_root_directory=""
+  for LFBFL_arg in "$@"; do
+    if [[ "${LFBFL_arg}" == --root-directory=* ]]; then
+      LFBFL_root_directory=${LFBFL_arg#--root-directory=}
+      LFBFL_root_directory=${LFBFL_root_directory/#~/${HOME}}
+      break
+    fi
+  done
+
+  if [[ -n "${LFBFL_root_directory}" ]]; then
+    declare -i LFBFL_pushd_result
+    pushd "${LFBFL_root_directory}" || {
+      LFBFL_pushd_result=$?
+      echo "lines_counts.libr.sh all_code_lines()"\
+        "--root-directory=${LFBFL_root_directory} no such directory."
+      # shellcheck disable=SC2248
+      return ${LFBFL_pushd_result}
+    }
+  fi
+
   if [[ ! -o pipefail ]]; then
     set -o pipefail
     trap 'set +o pipefail' RETURN
   fi
-  [[ "$*" != *--verbose* ]]
-  declare -ir LFBFL_verbose=$?
+
   get_COMMON_TEXT_FILES_GLOB_PATTERNS
   local LFBFL_pattern
   for LFBFL_pattern in "${COMMON_TEXT_FILES_GLOB_PATTERNS[@]}"; do
@@ -45,6 +80,16 @@ all_code_lines(){
     find . -type f -name "${LFBFL_pattern}" -printf '%P\n'\
       | xargs grep -H -v 'a(?!a)a'
   done
+
+  if [[ -n "${LFBFL_root_directory}" ]]; then
+    declare -i LFBFL_popd_result
+    popd || {
+      LFBFL_popd_result=$?
+      echo "lines_counts.libr.sh all_code_lines() popd failed."
+      # shellcheck disable=SC2248
+      return ${LFBFL_popd_result}
+    }
+  fi
 }
 
 all_self_code_lines(){

@@ -139,118 +139,119 @@ and can have different implementations under another license;
 for example, uutils coreutils is MIT licensed,
 whilst GNU coreutils is GPLv3+ licensed.
 
-Bash can be found at the following URLs:
-\url{https://www.gnu.org/software/bash/},
-\url{https://tiswww.case.edu/php/chet/bash/bashtop.html},
+Bash can be found at the following URLs:\newline
+\url{https://www.gnu.org/software/bash/},\newline
+\url{https://tiswww.case.edu/php/chet/bash/bashtop.html},\newline
 \url{https://savannah.gnu.org/projects/bash/}.
 
-GNU coreutils can be found at the following URLs:
-\url{https://www.gnu.org/software/coreutils/},
+GNU coreutils can be found at the following URLs:\newline
+\url{https://www.gnu.org/software/coreutils/},\newline
 \url{https://savannah.gnu.org/projects/coreutils/}.
 
-uutils coreutils can be found at the following URLs:
-\url{https://uutils.github.io/coreutils/},
+uutils coreutils can be found at the following URLs:\newline
+\url{https://uutils.github.io/coreutils/},\newline
 \url{https://github.com/uutils/coreutils}.
 
-diff (GNU diffutils) can be found at the following URLs:
-\url{https://www.gnu.org/software/diffutils/},
+diff (GNU diffutils) can be found at the following URLs:\newline
+\url{https://www.gnu.org/software/diffutils/},\newline
 \url{https://savannah.gnu.org/projects/diffutils/}.
 
-find, xargs (GNU findutils) can be found at the following URLs:
-\url{https://www.gnu.org/software/findutils/},
+find, xargs (GNU findutils) can be found at the following URLs:\newline
+\url{https://www.gnu.org/software/findutils/},\newline
 \url{https://savannah.gnu.org/projects/findutils/}.
 
-grep (GNU grep) can be found at the following URLs:
-\url{https://www.gnu.org/software/grep/},
+grep (GNU grep) can be found at the following URLs:\newline
+\url{https://www.gnu.org/software/grep/},\newline
 \url{https://savannah.gnu.org/projects/grep/}.
 
-sed (GNU sed) can be found at the following URLs:
-\url{https://www.gnu.org/software/sed/},
+sed (GNU sed) can be found at the following URLs:\newline
+\url{https://www.gnu.org/software/sed/},\newline
 \url{https://savannah.gnu.org/projects/sed/}.
 
-ShellCheck can be found at the following URLs:
-\url{https://www.shellcheck.net/},
+ShellCheck can be found at the following URLs:\newline
+\url{https://www.shellcheck.net/},\newline
 \url{https://github.com/koalaman/shellcheck}.
 
-GNU Wget can be found at the following URLs:
-\url{https://www.gnu.org/software/wget/},
+GNU Wget can be found at the following URLs:\newline
+\url{https://www.gnu.org/software/wget/},\newline
 \url{https://savannah.gnu.org/projects/wget/}.
 
-more of util-linux can be found at the following URLs:
-\url{https://www.kernel.org/pub/linux/utils/util-linux/},
+more of util-linux can be found at the following URLs:\newline
+\url{https://www.kernel.org/pub/linux/utils/util-linux/},\newline
 \url{https://git.kernel.org/pub/scm/utils/util-linux/util-linux.git/},
+\newline
 \url{https://github.com/util-linux/util-linux} official?
 
-pandoc can be found at the following URLs:
-\url{https://pandoc.org/},
+pandoc can be found at the following URLs:\newline
+\url{https://pandoc.org/},\newline
 \url{https://github.com/jgm/pandoc}.
 
-pdftex/pdflatex can be found at the following URLs:
-\url{https://www.tug.org/applications/pdftex/},
+pdftex/pdflatex can be found at the following URLs:\newline
+\url{https://www.tug.org/applications/pdftex/},\newline
 \url{https://tug.org/texlive/svn/}.
 
-tree can be found at the following URLs:
-\url{https://oldmanprogrammer.net/source.php?dir=projects/tree},
-\url{https://gitlab.com/OldManProgrammer/unix-tree},
+tree can be found at the following URLs:\newline
+\url{https://oldmanprogrammer.net/source.php?dir=projects/tree},\newline
+\url{https://gitlab.com/OldManProgrammer/unix-tree},\newline
 \url{https://github.com/Old-Man-Programmer/tree}.
 
-git can be found at the following URLs:
-\url{https://git-scm.com/about},
+git can be found at the following URLs:\newline
+\url{https://git-scm.com/about},\newline
 \url{https://github.com/git/git}.
 
-pylint can be found at the following URLs:
-\url{https://www.pylint.org/},
-\url{https://pylint.readthedocs.io/en/stable/},
-\url{https://github.com/pylint-dev/pylint},
+pylint can be found at the following URLs:\newline
+\url{https://www.pylint.org/},\newline
+\url{https://pylint.readthedocs.io/en/stable/},\newline
+\url{https://github.com/pylint-dev/pylint},\newline
 \url{https://pypi.org/project/pylint/}.
 
-notify-send can be found at the following URLs:
-\url{https://gitlab.gnome.org/GNOME/libnotify/},
+notify-send can be found at the following URLs:\newline
+\url{https://gitlab.gnome.org/GNOME/libnotify/},\newline
 \url{https://gnome.pages.gitlab.gnome.org/libnotify/}.
 
-black can be found at the following URLs:
-\url{https://github.com/psf/black},
-\url{https://black.readthedocs.io/en/stable/},
+black can be found at the following URLs:\newline
+\url{https://github.com/psf/black},\newline
+\url{https://black.readthedocs.io/en/stable/},\newline
 \url{https://pypi.org/project/black/}.
 
-isort can be found at the following URLs:
-\url{https://pycqa.github.io/isort/},
-\url{https://github.com/pycqa/isort/},
+isort can be found at the following URLs:\newline
+\url{https://pycqa.github.io/isort/},\newline
+\url{https://github.com/pycqa/isort/},\newline
 \url{https://pypi.org/project/isort/}.
 
-mypy can be found at the following URLs:
-\url{https://mypy-lang.org/},
-\url{https://mypy.readthedocs.io/en/stable/},
-\url{https://github.com/python/mypy},
+mypy can be found at the following URLs:\newline
+\url{https://mypy-lang.org/},\newline
+\url{https://mypy.readthedocs.io/en/stable/},\newline
+\url{https://github.com/python/mypy},\newline
 \url{https://pypi.org/project/mypy/}.
 
-ruff can be found at the following URLs:
-\url{https://docs.astral.sh/ruff/},
-\url{https://github.com/astral-sh/ruff},
+ruff can be found at the following URLs:\newline
+\url{https://docs.astral.sh/ruff/},\newline
+\url{https://github.com/astral-sh/ruff},\newline
 \url{https://pypi.org/project/ruff/}.
 
-bandit can be found at the following URLs:
-\url{https://bandit.readthedocs.io/en/latest/},
-\url{https://github.com/PyCQA/bandit},
+bandit can be found at the following URLs:\newline
+\url{https://bandit.readthedocs.io/en/latest/},\newline
+\url{https://github.com/PyCQA/bandit},\newline
 \url{https://pypi.org/project/bandit/}.
 
-phpmd can be found at the following URLs:
-\url{https://phpmd.org/},
-\url{https://github.com/phpmd/phpmd},
+phpmd can be found at the following URLs:\newline
+\url{https://phpmd.org/},\newline
+\url{https://github.com/phpmd/phpmd},\newline
 \url{https://packagist.org/packages/phpmd/phpmd}.
 
-php can be found at the following URLs:
-\url{https://www.php.net/},
+php can be found at the following URLs:\newline
+\url{https://www.php.net/},\newline
 \url{https://github.com/php/php-src}.
 
-tex can be found at the following URLs:
+tex can be found at the following URL:\newline
 \url{https://ctan.org/tex-archive/systems/knuth/dist/tex}.
 
-pcregrep, pcre2grep can be found at the following URLs:
-\url{https://www.pcre.org/},
-\url{https://pcre2project.github.io/pcre2/},
-\url{https://github.com/PCRE2Project/pcre1},
-\url{https://github.com/PCRE2Project/pcre2},
+pcregrep, pcre2grep can be found at the following URLs:\newline
+\url{https://www.pcre.org/},\newline
+\url{https://pcre2project.github.io/pcre2/},\newline
+\url{https://github.com/PCRE2Project/pcre1},\newline
+\url{https://github.com/PCRE2Project/pcre2},\newline
 \url{https://github.com/PCRE2Project/pcre2/blob/main/src/pcre2grep.c}.
 
 If you see something that I missed regarding my dependencies,

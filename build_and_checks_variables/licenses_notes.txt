@@ -134,7 +134,7 @@ php can be found at the following URLs:
 https://www.php.net/
 https://github.com/php/php-src
 
-tex can be found at the following URLs:
+tex can be found at the following URL:
 https://ctan.org/tex-archive/systems/knuth/dist/tex
 
 pcregrep, pcre2grep can be found at the following URLs:

@@ -58,20 +58,26 @@ enhanced_pushd(){
   # $1=to_directory must be sanitized with realpath before call
   # $2=offset_for_where_was_i
   # $3=error_message_intermediate_complement
-  if [[ -n "$1" ]]; then
-    is_top_dirstack_directory "$1" && return 111
-
-    declare -i LFBFL_i_pushd_result
-    pushd "$1" || {
-      LFBFL_i_pushd_result=$?
-      readonly LFBFL_i_pushd_result
-      local LFBFL_where_was_i
-      get_where_was_i "$2"
-      echo "${LFBFL_where_was_i} $3$1 no such directory."
-      # shellcheck disable=SC2248
-      return ${LFBFL_i_pushd_result}
-    }
+  # returns an error code whenever no pushd happened
+  [[ LFBFL_i_verbose -eq 1 ]] && echo "enhanced_pushd requested: $1"
+  if [[ -z "$1" ]]; then
+    return 110
   fi
+  [[ LFBFL_i_verbose -eq 1 ]] && echo "enhanced_pushd validated1"
+  is_top_dirstack_directory "$1" && return 111
+  [[ LFBFL_i_verbose -eq 1 ]] && echo "enhanced_pushd validated2"
+
+  declare -i LFBFL_i_pushd_result
+  pushd "$1" || {
+    LFBFL_i_pushd_result=$?
+    readonly LFBFL_i_pushd_result
+    local LFBFL_where_was_i
+    get_where_was_i "$2"
+    echo "${LFBFL_where_was_i} $3$1 no such directory."
+    # shellcheck disable=SC2248
+    return ${LFBFL_i_pushd_result}
+  }
+  [[ LFBFL_i_verbose -eq 1 ]] && echo "enhanced_pushd executed"
 }
 
 enhanced_popd(){
@@ -79,18 +85,22 @@ enhanced_popd(){
   # See usages below if you want to reuse it.
   # $1=to_directory
   # $2=offset_for_where_was_i
-  if [[ -n "$1" ]]; then
-    declare -i LFBFL_i_popd_result
-    popd || {
-      LFBFL_i_popd_result=$?
-      readonly LFBFL_i_popd_result
-      local LFBFL_where_was_i
-      get_where_was_i "$2"
-      echo "${LFBFL_where_was_i} popd failed."
-      # shellcheck disable=SC2248
-      return ${LFBFL_i_popd_result}
-    }
+  [[ LFBFL_i_verbose -eq 1 ]] && echo "enhanced_popd requested: $1"
+  if [[ -z "$1" ]]; then
+    return
   fi
+
+  declare -i LFBFL_i_popd_result
+  popd || {
+    LFBFL_i_popd_result=$?
+    readonly LFBFL_i_popd_result
+    local LFBFL_where_was_i
+    get_where_was_i "$2"
+    echo "${LFBFL_where_was_i} popd failed."
+    # shellcheck disable=SC2248
+    return ${LFBFL_i_popd_result}
+  }
+  [[ LFBFL_i_verbose -eq 1 ]] && echo "enhanced_popd executed"
 }
 
 

@@ -363,7 +363,8 @@ common_build_and_checks(){
       "${LFBFL_verbose}"
   done
 
-  pushd_to_work_directory
+  pushd_to_work_directory\
+    && trap 'popd_from_work_directory' RETURN
   work_directory_is_top_dirstack_directory || return
 
   echo "Running shellcheck"
@@ -651,8 +652,6 @@ common_build_and_checks(){
   if [[ LFBFL_upgrade_venvs -eq 1 ]]; then
     touch "${LFBFL_upgrade_venvs_ts_file}"
   fi
-
-  popd_from_work_directory
 }
 
 common_build_and_checks "$@"

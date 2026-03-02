@@ -34,7 +34,8 @@ common_build_and_checks(){
   # $1 LFBFL_work_directory
   # $2 LFBFL_dependencies_URL
   # $3 optional --verbose
-  local LFBFL_work_directory="$1"
+  local LFBFL_work_directory="${1:-.}"
+  LFBFL_work_directory=$(realpath "${LFBFL_work_directory}")
   # declare -r LFBFL_dependencies_URL="$2" too long
   declare -r LFBFL_start_URL="$2"
   local LFBFL_verbose=""
@@ -363,6 +364,7 @@ common_build_and_checks(){
   done
 
   pushd_to_work_directory
+  work_directory_is_top_dirstack_directory || return
 
   echo "Running shellcheck"
   find . -name "*.sh"\
@@ -394,6 +396,7 @@ common_build_and_checks(){
   if [[ -n "${LFBFL_isort_venv}" ]]; then
     deactivate
   fi
+  echo "Running python_isort_complement"
   python_isort_complement "$@"
 
   echo "Running black"
@@ -416,8 +419,10 @@ common_build_and_checks(){
   if [[ -n "${LFBFL_black_venv}" ]]; then
     deactivate
   fi
+  echo "Running python_black_complement"
   python_black_complement "$@"
 
+  echo "Probing if mypy should be runned"
   local LFBFL_mypy_venv=""
   grep_variable "${LFBFL_data_file_name}" mypy_venv\
     --result-variable-prefix="LFBFL_"\

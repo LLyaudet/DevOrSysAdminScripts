@@ -31,10 +31,10 @@
 # "common_build_and_checks.sh" to "common_build_and_checks.exec.sh".
 
 common_build_and_checks(){
-  # $1 LFBFL_working_directory
+  # $1 LFBFL_work_directory
   # $2 LFBFL_dependencies_URL
   # $3 optional --verbose
-  declare -r LFBFL_working_directory="$1"
+  local LFBFL_work_directory="$1"
   # declare -r LFBFL_dependencies_URL="$2" too long
   declare -r LFBFL_start_URL="$2"
   local LFBFL_verbose=""
@@ -340,14 +340,14 @@ common_build_and_checks(){
 
   echo "Building README.md"
   "./${LFBFL_subdir}/build_md_from_printable_md.exec.sh"\
-    "--work-directory=${LFBFL_working_directory}"\
+    "--work-directory=${LFBFL_work_directory}"\
     "--base-name=README"\
     "${LFBFL_verbose}"
 
   echo "Building other MarkDown files"
   local LFBFL_some_directory
-  declare -r LFBFL_readme="${LFBFL_working_directory}/README.md.tpl"
-  find "${LFBFL_working_directory}" -name "*.md.tpl"\
+  declare -r LFBFL_readme="${LFBFL_work_directory}/README.md.tpl"
+  find "${LFBFL_work_directory}" -name "*.md.tpl"\
     | relevant_find\
     | while read -r LFBFL_file_path;
   do
@@ -362,14 +362,7 @@ common_build_and_checks(){
       "${LFBFL_verbose}"
   done
 
-  declare -i LFBFL_pushd_result
-  pushd "${LFBFL_working_directory}" || {
-    LFBFL_pushd_result=$?
-    echo "common_build_and_checks.exec.sh"\
-        "working directory ${LFBFL_root_directory} no such directory."
-    # shellcheck disable=SC2248
-    return ${LFBFL_pushd_result}
-  }
+  pushd_to_work_directory
 
   echo "Running shellcheck"
   find . -name "*.sh"\
@@ -654,13 +647,7 @@ common_build_and_checks(){
     touch "${LFBFL_upgrade_venvs_ts_file}"
   fi
 
-  declare -i LFBFL_popd_result
-  popd || {
-    LFBFL_popd_result=$?
-    echo "common_build_and_checks.exec.sh popd failed."
-    # shellcheck disable=SC2248
-    return ${LFBFL_popd_result}
-  }
+  popd_from_work_directory
 }
 
 common_build_and_checks "$@"

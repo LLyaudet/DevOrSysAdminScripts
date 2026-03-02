@@ -116,8 +116,6 @@ check_shell_scripts_indentation(){
   #   --verbose
   #   --work-directory=""
   declare -i LFBFL_i_verbose=0
-  # shellcheck disable=SC2034
-  local LFBFL_verbose=""
   get_verbose_option "$@"
   local LFBFL_work_directory=""
   get_work_directory_option "$@"

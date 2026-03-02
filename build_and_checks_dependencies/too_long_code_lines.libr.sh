@@ -25,6 +25,8 @@
 # to "too_long_code_lines.libr.sh".
 
 LFBFL_subdir="build_and_checks_dependencies"
+# shellcheck source=common_options.libr.sh
+source "./${LFBFL_subdir}/common_options.libr.sh"
 # shellcheck source=get_common_text_glob_patterns.libr.sh
 source "./${LFBFL_subdir}/get_common_text_glob_patterns.libr.sh"
 # shellcheck source=lines_filters.libr.sh
@@ -33,47 +35,30 @@ source "./${LFBFL_subdir}/lines_filters.libr.sh"
 too_long_code_lines(){
   # Options:
   #   --verbose
+  #   --work-directory=""
   #   --max-line-length
-  #   --root-directory=""
+  declare -i LFBFL_i_verbose=0
+  get_verbose_option "$@"
+  local LFBFL_work_directory=""
+  get_work_directory_option "$@"
+  pushd_to_work_directory\
+    && trap 'popd_from_work_directory' RETURN\
+    || return
+
   local LFBFL_arg
-
-  declare -i LFBFL_verbose=0
-  if [[ "$*" == *--verbose* ]]; then
-    echo "$0 $*"
-    LFBFL_verbose=1
-  fi
-  readonly LFBFL_verbose
-
   declare -i LFBFL_max_line_length=70
-  local LFBFL_root_directory=""
   for LFBFL_arg in "$@"; do
     if [[ "${LFBFL_arg}" == --max-line-length=* ]]; then
       LFBFL_arg=${LFBFL_arg#--max-line-length=}
       LFBFL_max_line_length=$((LFBFL_arg))
-      continue
-    fi
-    if [[ "${LFBFL_arg}" == --root-directory=* ]]; then
-      LFBFL_root_directory=${LFBFL_arg#--root-directory=}
-      LFBFL_root_directory=${LFBFL_root_directory/#~/${HOME}}
-      continue
+      break
     fi
   done
 
   if [[ ! -o pipefail ]]; then
-    [[ LFBFL_verbose -eq 1 ]] && echo "pipefail option activated"
+    [[ LFBFL_i_verbose -eq 1 ]] && echo "pipefail option activated"
     set -o pipefail
     trap 'set +o pipefail' RETURN
-  fi
-
-  if [[ -n "${LFBFL_root_directory}" ]]; then
-    declare -i LFBFL_pushd_result
-    pushd "${LFBFL_root_directory}" || {
-      LFBFL_pushd_result=$?
-      echo "too_long_code_lines.libr.sh"\
-        "--root-directory=${LFBFL_root_directory} no such directory."
-      # shellcheck disable=SC2248
-      return ${LFBFL_pushd_result}
-    }
   fi
 
   get_COMMON_TEXT_FILES_GLOB_PATTERNS
@@ -85,7 +70,7 @@ too_long_code_lines(){
   local LFBFL_base_name
   declare -ir LFBFL_overlength=$((LFBFL_max_line_length+1))
   for LFBFL_pattern in "${COMMON_TEXT_FILES_GLOB_PATTERNS[@]}"; do
-    [[ LFBFL_verbose -eq 0 ]]\
+    [[ LFBFL_i_verbose -eq 0 ]]\
       || echo "Iterating on pattern: ${LFBFL_pattern}"
     # shellcheck disable=SC2248
     find . -type f -name "${LFBFL_pattern}" -printf '%P\n'\
@@ -118,14 +103,4 @@ too_long_code_lines(){
       fi
     done
   done
-
-  if [[ -n "${LFBFL_root_directory}" ]]; then
-    declare -i LFBFL_popd_result
-    popd || {
-      LFBFL_popd_result=$?
-      echo "too_long_code_lines.libr.sh popd failed."
-      # shellcheck disable=SC2248
-      return ${LFBFL_popd_result}
-    }
-  fi
 }

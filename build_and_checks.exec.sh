@@ -29,11 +29,11 @@
 # "build_and_checks.sh" to "build_and_checks.exec.sh".
 
 build_and_checks(){
-  local LFBFL_working_directory="."
+  local LFBFL_work_directory="."
   if [[ -n "$1" ]]; then
-    LFBFL_working_directory="$1"
+    LFBFL_work_directory="$1"
   fi
-  readonly LFBFL_working_directory
+  readonly LFBFL_work_directory
 
   local LFBFL_verbose=""
   if [[ "$*" == *--verbose* ]]; then
@@ -46,7 +46,7 @@ build_and_checks(){
 
   LFBFL_subdir="build_and_checks_dependencies"
   mkdir -p "${LFBFL_subdir}/licenses_templates"
-  LFBFL_variables_directory="${LFBFL_working_directory}/"
+  LFBFL_variables_directory="${LFBFL_work_directory}/"
   LFBFL_variables_directory+="build_and_checks_variables"
   mkdir -p "${LFBFL_variables_directory}/temp"
   if ! [[ -f "${LFBFL_variables_directory}/.gitignore" ]]; then
@@ -69,25 +69,25 @@ build_and_checks(){
   declare -r\
     LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_common_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='dba737a7d8e3ae54ebb36ccbd995854afbcd650ff77c0'
-  LFBFL_correct_sha512+='3725669f87e78fc7c454b229867244556d52f66e1a4a'
-  LFBFL_correct_sha512+='113d87cb2c80497b6e46eb45858ff783befb828'
+  LFBFL_correct_sha512='dd05a81bdf6937cd1f99a0618815c30e10538d4e9da61'
+  LFBFL_correct_sha512+='918438656465d56d798a78d7e32c25b1cfd8b5018a12'
+  LFBFL_correct_sha512+='a94fc3340bb6c8b156bce81efb4ad32988c3648'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_script}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
   chmod +x "./${LFBFL_file_path}"
 
-  "${LFBFL_file_path}" "${LFBFL_working_directory}"\
+  "${LFBFL_file_path}" "${LFBFL_work_directory}"\
     "${LFBFL_dependencies_URL}" "${LFBFL_verbose}"
 }
 
 if [[ "$*" == *--fixed_point_build* ]]; then
   echo "--fixed_point_build"
   source "./build_and_checks_dependencies/lines_filters.libr.sh"
-  LFBFL_working_directory="."
+  LFBFL_work_directory="."
   if [[ -n "$1" ]]; then
-    LFBFL_working_directory="$1"
+    LFBFL_work_directory="$1"
   fi
-  LFBFL_variables_directory="${LFBFL_working_directory}/"
+  LFBFL_variables_directory="${LFBFL_work_directory}/"
   LFBFL_variables_directory+="build_and_checks_variables"
   LFBFL_data_file_name="${LFBFL_variables_directory}/"
   LFBFL_data_file_name+="repository_data.txt"
@@ -99,8 +99,8 @@ if [[ "$*" == *--fixed_point_build* ]]; then
   # upgrade_build_and_checks 2 times instead of 3 to reach
   # a fixed point.
   touch "${LFBFL_variables_directory}/${LFBFL_repository_name}.tex"
-  touch "${LFBFL_working_directory}/${LFBFL_repository_name}.pdf"
-  touch "${LFBFL_working_directory}/${LFBFL_repository_name}.html"
+  touch "${LFBFL_work_directory}/${LFBFL_repository_name}.pdf"
+  touch "${LFBFL_work_directory}/${LFBFL_repository_name}.html"
   # The two iterations of build_and_checks needs to complete
   # during the same minute to have a fixed point.
   build_and_checks "$@"

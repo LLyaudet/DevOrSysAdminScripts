@@ -29,11 +29,11 @@
 # "build_and_checks.sh" to "build_and_checks.exec.sh".
 
 build_and_checks(){
-  local LFBFL_working_directory="."
+  local LFBFL_work_directory="."
   if [[ -n "$1" ]]; then
-    LFBFL_working_directory="$1"
+    LFBFL_work_directory="$1"
   fi
-  readonly LFBFL_working_directory
+  readonly LFBFL_work_directory
 
   local LFBFL_verbose=""
   if [[ "$*" == *--verbose* ]]; then
@@ -46,7 +46,7 @@ build_and_checks(){
 
   LFBFL_subdir="build_and_checks_dependencies"
   mkdir -p "${LFBFL_subdir}/licenses_templates"
-  LFBFL_variables_directory="${LFBFL_working_directory}/"
+  LFBFL_variables_directory="${LFBFL_work_directory}/"
   LFBFL_variables_directory+="build_and_checks_variables"
   mkdir -p "${LFBFL_variables_directory}/temp"
   if ! [[ -f "${LFBFL_variables_directory}/.gitignore" ]]; then
@@ -73,18 +73,18 @@ build_and_checks(){
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
   chmod +x "./${LFBFL_file_path}"
 
-  "${LFBFL_file_path}" "${LFBFL_working_directory}"\
+  "${LFBFL_file_path}" "${LFBFL_work_directory}"\
     "${LFBFL_dependencies_URL}" "${LFBFL_verbose}"
 }
 
 if [[ "$*" == *--fixed_point_build* ]]; then
   echo "--fixed_point_build"
   source "./build_and_checks_dependencies/lines_filters.libr.sh"
-  LFBFL_working_directory="."
+  LFBFL_work_directory="."
   if [[ -n "$1" ]]; then
-    LFBFL_working_directory="$1"
+    LFBFL_work_directory="$1"
   fi
-  LFBFL_variables_directory="${LFBFL_working_directory}/"
+  LFBFL_variables_directory="${LFBFL_work_directory}/"
   LFBFL_variables_directory+="build_and_checks_variables"
   LFBFL_data_file_name="${LFBFL_variables_directory}/"
   LFBFL_data_file_name+="repository_data.txt"
@@ -96,8 +96,8 @@ if [[ "$*" == *--fixed_point_build* ]]; then
   # upgrade_build_and_checks 2 times instead of 3 to reach
   # a fixed point.
   touch "${LFBFL_variables_directory}/${LFBFL_repository_name}.tex"
-  touch "${LFBFL_working_directory}/${LFBFL_repository_name}.pdf"
-  touch "${LFBFL_working_directory}/${LFBFL_repository_name}.html"
+  touch "${LFBFL_work_directory}/${LFBFL_repository_name}.pdf"
+  touch "${LFBFL_work_directory}/${LFBFL_repository_name}.html"
   # The two iterations of build_and_checks needs to complete
   # during the same minute to have a fixed point.
   build_and_checks "$@"

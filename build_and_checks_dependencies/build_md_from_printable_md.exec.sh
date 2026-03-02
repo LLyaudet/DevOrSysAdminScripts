@@ -25,16 +25,37 @@
 # to "build_md_from_printable_md.exec.sh".
 
 LFBFL_subdir="build_and_checks_dependencies"
+# shellcheck source=common_options.libr.sh
+source "./${LFBFL_subdir}/common_options.libr.sh"
 # shellcheck source=overwrite_if_not_equal.libr.sh
 source "./${LFBFL_subdir}/overwrite_if_not_equal.libr.sh"
 
 build_md_from_printable_md(){
-  declare -i LFBFL_verbose=0
-  if [[ "$*" == *--verbose* ]]; then
-    echo "$0 $*"
-    LFBFL_verbose=1
-  fi
-  readonly LFBFL_verbose
+  # Options:
+  #   --verbose
+  #   --work-directory=""
+  #   --base-name="README"
+  declare -i LFBFL_i_verbose=0
+  # shellcheck disable=SC2034
+  local LFBFL_verbose=""
+  get_verbose_option "$@"
+  local LFBFL_work_directory=""
+  get_work_directory_option "$@"
+  pushd_to_work_directory\
+    && trap 'popd_from_work_directory' RETURN
+
+  local LFBFL_base_name="README"
+  local LFBFL_arg
+  for LFBFL_arg in "$@"; do
+    if [[ "${LFBFL_arg}" == --base-name=* ]]; then
+      LFBFL_base_name=${LFBFL_arg#--base-name=}
+      if [[ LFBFL_i_verbose -eq 1 ]]; then
+        echo "Searching md file: ${LFBFL_base_name}"
+      fi
+      break
+    fi
+  done
+  readonly LFBFL_base_name
 
   # Remove line returns here to keep lines short.
   local LFBFL_sed_expression
@@ -46,31 +67,6 @@ build_md_from_printable_md(){
   # Hence it is way more complicated than 's/\\\n//Mg' expression
   # in other files.
   # Another downside is that more than one pass is needed.
-
-  declare -i LFBFL_cd_result
-  pushd .
-  if [[ -n "$1" ]];
-  then
-    if [[ LFBFL_verbose -eq 1 ]]; then
-      echo "Moving to directory: $1"
-    fi
-    cd "$1" || {
-      LFBFL_cd_result=$?
-      echo "build_md_from_printable_md no such directory"
-      # shellcheck disable=SC2248
-      return ${LFBFL_cd_result}
-    }
-  fi
-
-  local LFBFL_base_name="README"
-  if [[ -n "$2" ]];
-  then
-    if [[ LFBFL_verbose -eq 1 ]]; then
-      echo "Searching md file: $2"
-    fi
-    LFBFL_base_name="$2"
-  fi
-  readonly LFBFL_base_name
 
   if [[ -f "${LFBFL_base_name}.md.tpl" ]];
   then
@@ -109,13 +105,6 @@ build_md_from_printable_md(){
   overwrite_if_not_equal "${LFBFL_base_name}.html"\
     "${LFBFL_base_name}.html.temp"
 
-  declare -i LFBFL_popd_result
-  popd || {
-    LFBFL_popd_result=$?
-    echo "build_md_from_printable_md no popd"
-    # shellcheck disable=SC2248
-    return ${LFBFL_popd_result}
-  }
   # java -Xss128M -jar "../jar_venv/vnu.jar" --exit-zero-always\
   #   --verbose ${LFBFL_base_name}.html"
 }

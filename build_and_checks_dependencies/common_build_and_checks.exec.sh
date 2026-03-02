@@ -63,9 +63,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='5e6560b6f4d0792ab065e5ee5746560d68aa8e0609ffe'
-  LFBFL_correct_sha512+='953fabd5e4bc740c972956375b043f1556dee03aa49a'
-  LFBFL_correct_sha512+='3a6edf10bd6e2586141baf435ce35d78df2213f'
+  LFBFL_correct_sha512='f6a9745992f923ed94eb11550e5d2ac9a86b7b49d8a0f'
+  LFBFL_correct_sha512+='8f446477f43796fa354738e900ae68b2a0f027535417'
+  LFBFL_correct_sha512+='117ae10f4394b08dec4912debb02a22a7709f84'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
   chmod +x "./${LFBFL_file_path}"
@@ -104,9 +104,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='dd796f67e213325a79a2d8b2bcd79749aece73619badf'
-  LFBFL_correct_sha512+='a3e386d5d567690dd7a1b10aed7f75aa487a1a76f8c5'
-  LFBFL_correct_sha512+='d1e8d80f8235f4da1af004370ead6aa0472a80a'
+  LFBFL_correct_sha512='26bbb70826c8ed19dc7e365a7b604dda4b50ee7fc90aa'
+  LFBFL_correct_sha512+='ef65f7cae11beb2da5855d70a988acfc4ed05e8ecca7'
+  LFBFL_correct_sha512+='8db39a674375db9211bc2768745c3a10d143ebd'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
@@ -416,7 +416,9 @@ common_build_and_checks(){
 
   echo "Building README.md"
   "./${LFBFL_subdir}/build_md_from_printable_md.exec.sh"\
-    "${LFBFL_working_directory}" "README" "${LFBFL_verbose}"
+    "--work-directory=${LFBFL_working_directory}"\
+    "--base-name=README"\
+    "${LFBFL_verbose}"
 
   echo "Building other MarkDown files"
   local LFBFL_some_directory
@@ -431,7 +433,8 @@ common_build_and_checks(){
     LFBFL_file_name=$(basename "${LFBFL_file_path}")
     LFBFL_file_name=${LFBFL_file_name%.md.tpl}
     "./${LFBFL_subdir}/build_md_from_printable_md.exec.sh"\
-      "${LFBFL_some_directory}" "${LFBFL_file_name}"\
+      "--work-directory=${LFBFL_some_directory}"\
+      "--base-name=${LFBFL_file_name}"\
       "${LFBFL_verbose}"
   done
 

@@ -116,7 +116,9 @@ get_verbose_option(){
     # shellcheck disable=SC2034
     LFBFL_verbose="--verbose"
   fi
+  # shellcheck disable=SC2034
   readonly LFBFL_i_verbose
+  # shellcheck disable=SC2034
   readonly LFBFL_verbose
 }
 

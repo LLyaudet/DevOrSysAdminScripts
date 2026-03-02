@@ -341,7 +341,9 @@ common_build_and_checks(){
 
   echo "Building README.md"
   "./${LFBFL_subdir}/build_md_from_printable_md.exec.sh"\
-    "${LFBFL_working_directory}" "README" "${LFBFL_verbose}"
+    "--work-directory=${LFBFL_working_directory}"\
+    "--base-name=README"\
+    "${LFBFL_verbose}"
 
   echo "Building other MarkDown files"
   local LFBFL_some_directory
@@ -356,7 +358,8 @@ common_build_and_checks(){
     LFBFL_file_name=$(basename "${LFBFL_file_path}")
     LFBFL_file_name=${LFBFL_file_name%.md.tpl}
     "./${LFBFL_subdir}/build_md_from_printable_md.exec.sh"\
-      "${LFBFL_some_directory}" "${LFBFL_file_name}"\
+      "--work-directory=${LFBFL_some_directory}"\
+      "--base-name=${LFBFL_file_name}"\
       "${LFBFL_verbose}"
   done
 

@@ -336,8 +336,7 @@ common_build_and_checks(){
   fi
 
   echo "Building license headers"
-  "./${LFBFL_subdir2}/build_licenses_templates.exec.sh"\
-    "${LFBFL_working_directory}" "${LFBFL_verbose}"
+  "./${LFBFL_subdir2}/build_licenses_templates.exec.sh" "$@"
 
   echo "Building README.md"
   "./${LFBFL_subdir}/build_md_from_printable_md.exec.sh"\

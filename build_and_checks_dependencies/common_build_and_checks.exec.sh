@@ -168,9 +168,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL2}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir2}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='5e8f15180c1d5661daa8ef4a77800a835a99cb02eae1f'
-  LFBFL_correct_sha512+='edee9f223a8433f9309ed7bbc353a0429813ddad0153'
-  LFBFL_correct_sha512+='d0b7d39b4e877514c9996d65d7b5fb24117a032'
+  LFBFL_correct_sha512='a309547c64f46c40a889e970aebac033a79f543d8a024'
+  LFBFL_correct_sha512+='6f3312ca59e041d3e20d3a9affeaf6f3e0e5aa64be5e'
+  LFBFL_correct_sha512+='9a87cbd5fdf4ec7c1e32634a52f33b184a2916c'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
   chmod +x "./${LFBFL_file_path}"
@@ -411,8 +411,7 @@ common_build_and_checks(){
   fi
 
   echo "Building license headers"
-  "./${LFBFL_subdir2}/build_licenses_templates.exec.sh"\
-    "${LFBFL_working_directory}" "${LFBFL_verbose}"
+  "./${LFBFL_subdir2}/build_licenses_templates.exec.sh" "$@"
 
   echo "Building README.md"
   "./${LFBFL_subdir}/build_md_from_printable_md.exec.sh"\

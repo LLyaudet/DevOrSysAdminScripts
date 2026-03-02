@@ -11,8 +11,7 @@ build_and_checks_dependencies/build_and_checks.exec.sh.tpl
 
 
 \subsection{
-  build\_and\_checks\_dependencies/%
-build\_md\_from\_printable\_md.exec.sh
+  build\_and\_checks\_dependencies/build\_md\_from\_printable\_md.exec.sh
 }
 \label{
   build_and_checks_dependencies:build_md_from_printable_mdexecsh
@@ -74,8 +73,7 @@ build_and_checks_dependencies/common_build_and_checks.exec.sh
 
 
 \subsection{
-  build\_and\_checks\_dependencies/%
-common\_build\_and\_checks.exec.sh.tpl
+  build\_and\_checks\_dependencies/common\_build\_and\_checks.exec.sh.tpl
 }
 \label{
   build_and_checks_dependencies:common_build_and_checksexecshtpl
@@ -83,6 +81,18 @@ common\_build\_and\_checks.exec.sh.tpl
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
 build_and_checks_dependencies/common_build_and_checks.exec.sh.tpl
+}
+
+
+\subsection{
+  build\_and\_checks\_dependencies/common\_options.libr.sh
+}
+\label{
+  build_and_checks_dependencies:common_optionslibrsh
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+build_and_checks_dependencies/common_options.libr.sh
 }
 
 
@@ -345,13 +355,11 @@ build_and_checks_dependencies/update_common_build_and_checks.exec.sh
 update\_or\_check\_files\_names\_listing.exec.sh
 }
 \label{
-  build_and_checks_dependencies:%
-update_or_check_files_names_listingexecsh
+  build_and_checks_dependencies:update_or_check_files_names_listingexecsh
 }
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/%
-update_or_check_files_names_listing.exec.sh
+build_and_checks_dependencies/update_or_check_files_names_listing.exec.sh
 }
 
 

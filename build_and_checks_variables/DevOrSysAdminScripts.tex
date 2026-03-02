@@ -74,13 +74,13 @@ Some “small” useful scripts
 for enhancing development or system-administrators tasks
 \end{abstract}
 
-Current version: 2026-02-27
+Current version: 2026-03-02
 
-Current number of commits: 413
+Current number of commits: 459
 
-Current git SHA1: a84a49dbdc1063155f05d697f645c75f219e86b1
+Current git SHA1: d123c36890e164f80023e911a0955b96124c15ee
 
-Code lines: 8039 total lines, 7301 not empty lines, 738 empty lines.
+Code lines: 9548 total lines, 8630 not empty lines, 918 empty lines.
 
 \tableofcontents
 \newpage
@@ -98,6 +98,7 @@ Code lines: 8039 total lines, 7301 not empty lines, 738 empty lines.
 │   ├── check_URLs.libr.sh
 │   ├── common_build_and_checks.exec.sh
 │   ├── common_build_and_checks.exec.sh.tpl
+│   ├── common_options.libr.sh
 │   ├── comparisons.libr.sh
 │   ├── create_PDF.exec.sh
 │   ├── generate_from_template.libr.sh
@@ -138,6 +139,7 @@ Code lines: 8039 total lines, 7301 not empty lines, 738 empty lines.
 │   ├── ruff.toml
 │   ├── shellcheck.ini
 │   └── shellcheck_notes.txt
+├── common_build_and_checks.exec.sh.tpl
 ├── COPYING
 ├── COPYING.LESSER
 ├── DevOrSysAdminScripts.html
@@ -156,79 +158,80 @@ Code lines: 8039 total lines, 7301 not empty lines, 738 empty lines.
 ├── upgrade_build_and_checks.exec.sh
 └── wget_sha512.libr.sh
 
-5 directories, 61 files
+5 directories, 63 files
 \end{verbatim}
 
 \begin{verbatim}
-[ 12K Feb 27 22:39]  ./
-├── [4.0K Feb 27 22:39]  build_and_checks_dependencies/
-│   ├── [3.7K Feb 27 20:35]  build_and_checks.exec.sh.tpl*
-│   ├── [3.9K Feb 23 19:39]  build_md_from_printable_md.exec.sh*
-│   ├── [2.1K Feb 15 11:34]  check_shell_scripts_beginnings.libr.sh
-│   ├── [4.0K Feb 24 17:34]  check_shell_scripts_indentation.libr.sh
-│   ├── [2.9K Feb 23 17:21]  check_URLs.libr.sh
-│   ├── [ 27K Feb 27 22:24]  common_build_and_checks.exec.sh*
-│   ├── [ 23K Feb 27 21:22]  common_build_and_checks.exec.sh.tpl
+[ 12K Mar  2 17:52]  ./
+├── [4.0K Mar  2 17:52]  build_and_checks_dependencies/
+│   ├── [3.9K Mar  1 08:28]  build_and_checks.exec.sh.tpl*
+│   ├── [3.8K Mar  2 15:51]  build_md_from_printable_md.exec.sh*
+│   ├── [2.6K Mar  2 15:49]  check_shell_scripts_beginnings.libr.sh
+│   ├── [4.5K Mar  2 15:48]  check_shell_scripts_indentation.libr.sh
+│   ├── [3.2K Mar  2 15:48]  check_URLs.libr.sh
+│   ├── [ 27K Mar  2 17:52]  common_build_and_checks.exec.sh*
+│   ├── [ 22K Mar  2 17:52]  common_build_and_checks.exec.sh.tpl
+│   ├── [5.2K Mar  2 17:26]  common_options.libr.sh
 │   ├── [4.7K Feb 23 17:34]  comparisons.libr.sh
-│   ├── [ 17K Feb 27 22:23]  create_PDF.exec.sh*
+│   ├── [ 18K Mar  2 15:50]  create_PDF.exec.sh*
 │   ├── [3.3K Feb 19 18:48]  generate_from_template.libr.sh
 │   ├── [1.9K Feb 19 17:18]  get_common_text_glob_patterns.libr.sh
-│   ├── [2.2K Feb 27 19:33]  grammar_and_spell_check.libr.sh
-│   ├── [4.0K Feb 27 20:41]  licenses_templates/
-│   │   ├── [ 13K Feb 27 20:41]  build_licenses_templates.exec.sh*
-│   │   ├── [ 728 Dec 30 19:32]  license_file_header_AGPLv3+.tpl
-│   │   ├── [ 707 Dec 27 21:48]  license_file_header_GPLv3+.tpl
-│   │   └── [ 728 Dec 27 21:48]  license_file_header_LGPLv3+.tpl
-│   ├── [2.7K Feb 19 18:44]  lines_counts.libr.sh
+│   ├── [2.5K Mar  2 15:49]  grammar_and_spell_check.libr.sh
+│   ├── [4.0K Mar  2 15:48]  licenses_templates/
+│   │   ├── [ 13K Mar  2 15:48]  build_licenses_templates.exec.sh*
+│   │   ├── [ 728 Feb 28 20:38]  license_file_header_AGPLv3+.tpl
+│   │   ├── [ 707 Feb 28 20:38]  license_file_header_GPLv3+.tpl
+│   │   └── [ 728 Feb 28 20:38]  license_file_header_LGPLv3+.tpl
+│   ├── [3.9K Mar  2 15:49]  lines_counts.libr.sh
 │   ├── [8.8K Feb 27 21:26]  lines_filters.libr.sh
 │   ├── [2.7K Feb 19 16:16]  lines_maps.libr.sh
 │   ├── [1.8K Feb 26 16:58]  overwrite_if_not_equal.libr.sh
-│   ├── [1.4K Jan 24 18:32]  python_black_complement.libr.sh
-│   ├── [1.8K Feb 23 18:13]  python_isort_complement.libr.sh
+│   ├── [2.2K Mar  2 15:51]  python_black_complement.libr.sh
+│   ├── [2.6K Mar  2 15:50]  python_isort_complement.libr.sh
 │   ├── [1.6K Feb  3 17:57]  split_score.exec.php
 │   ├── [1.9K Feb  3 20:11]  split_score.libr.php
 │   ├── [ 12K Feb 26 15:37]  strings_functions.libr.sh
-│   ├── [3.2K Feb 26 21:22]  too_long_code_lines.libr.sh
-│   ├── [4.1K Feb 24 17:35]  update_common_build_and_checks.exec.sh*
-│   └── [4.8K Feb 26 22:35]  *
-│   │ update_or_check_files_names_listing.exec.sh**
-├── [3.9K Feb 27 22:24]  build_and_checks.exec.sh*
-├── [4.0K Feb 27 22:39]  build_and_checks_variables/
+│   ├── [3.5K Mar  2 15:47]  too_long_code_lines.libr.sh
+│   ├── [4.1K Mar  1 22:38]  update_common_build_and_checks.exec.sh*
+│   └── [5.1K Mar  2 15:46]  update_or_check_files_names_listing.exec.sh*
+├── [4.0K Mar  2 17:52]  build_and_checks.exec.sh*
+├── [4.0K Mar  2 17:52]  build_and_checks_variables/
 │   ├── [  15 Jan  5 20:00]  bandit_baseline.json
 │   ├── [  25 Jan  5 18:49]  bandit.ini
-│   ├── [  30 Feb 27 16:27]  black.toml
-│   ├── [5.3K Feb 27 22:39]  DevOrSysAdminScripts.html.tpl
-│   ├── [ 23K Feb 27 22:31]  DevOrSysAdminScripts.tex
-│   ├── [3.9K Feb 27 22:28]  DevOrSysAdminScripts.tex.tpl
-│   ├── [ 13K Feb 27 16:27]  files_listing.tex.tpl
-│   ├── [4.0K Feb 24 20:40]  files_names_listing.txt
+│   ├── [  30 Feb 28 20:30]  black.toml
+│   ├── [ 16K Mar  2 12:57]  DevOrSysAdminScripts.html.tpl
+│   ├── [ 28K Mar  2 17:51]  DevOrSysAdminScripts.tex
+│   ├── [8.5K Mar  2 13:01]  DevOrSysAdminScripts.tex.tpl
+│   ├── [ 13K Mar  2 15:42]  files_listing.tex.tpl
+│   ├── [4.1K Mar  1 22:37]  files_names_listing.txt
 │   ├── [  24 Jan 15 22:26]  .gitignore
-│   ├── [1.2K Feb 14 15:04]  licenses_notes.txt
+│   ├── [4.9K Mar  2 12:48]  licenses_notes.txt
 │   ├── [1001 Feb 26 15:37]  phpmd_baseline.xml
 │   ├── [ 678 Feb 24 22:38]  pylintrc.toml
-│   ├── [3.8K Feb 27 16:27]  repository_data.txt
+│   ├── [4.4K Feb 28 20:28]  repository_data.txt
 │   ├── [1.4K Feb 24 23:25]  ruff.toml
 │   ├── [ 167 Feb 19 18:39]  shellcheck.ini
 │   └── [2.1K Feb 19 19:36]  shellcheck_notes.txt
+├── [ 23K Mar  2 17:40]  common_build_and_checks.exec.sh.tpl
 ├── [ 34K May  6  2024]  COPYING
 ├── [7.5K Dec 27 21:48]  COPYING.LESSER
-├── [309K Feb 27 22:31]  DevOrSysAdminScripts.html
-├── [298K Feb 27 22:31]  DevOrSysAdminScripts.pdf
+├── [351K Mar  2 17:51]  DevOrSysAdminScripts.html
+├── [322K Mar  2 17:51]  DevOrSysAdminScripts.pdf
 ├── [4.0K Feb 27 20:20]  git_helpers/
 │   ├── [3.5K Feb 19 17:00]  git_checks.libr.sh
 │   ├── [1.8K Feb 27 20:20]  post-commit
 │   ├── [ 13K Feb 26 19:35]  post_commit_renaming_comment.libr.sh
 │   └── [1.4K Feb 19 18:42]  pre-commit
-├── [8.3K Feb 27 16:27]  IMAP_transfert.py
+├── [8.3K Feb 28 20:31]  IMAP_transfert.py
 ├── [ 830 Dec 29 19:10]  LiensUtiles.txt
-├── [7.2K Feb 23 16:51]  README.html
-├── [3.5K Feb 16 17:08]  README.md
-├── [3.6K Feb 16 16:59]  README.md.tpl
+├── [7.4K Mar  1 22:30]  README.html
+├── [3.7K Mar  1 22:30]  README.md
+├── [3.7K Mar  1 22:29]  README.md.tpl
 ├── [9.1K Feb 26 15:05]  unicode.libr.php
 ├── [1.4K Feb  3 14:19]  upgrade_build_and_checks.exec.sh*
 └── [1.4K Feb 19 14:41]  wget_sha512.libr.sh
 
-5 directories, 61 files
+5 directories, 63 files
 \end{verbatim}
 
 \section{Listing of files}
@@ -237,6 +240,7 @@ Code lines: 8039 total lines, 7301 not empty lines, 738 empty lines.
 This repository is dual licensed.
 All the Bash scripts source code is covered by GPLv3+.
 All the PHP scripts source code is covered by LGPLv3+.
+All the Python scripts source code is covered by LGPLv3+.
 
 The text of the licenses is available at:
 \url{https://www.gnu.org/licenses/}.
@@ -249,29 +253,152 @@ Here is a listing of the dependencies of the code in this repository:
 \begin{itemize}
 \item The following dependencies are GPLv3+ licensed:\newline
 basename, bash (and its builtins), cat, chmod, cp, cut, date, diff,
-dirname, find, grep, head, mkdir, mv, realpath, rm, sed, sha512sum,
-shellcheck, sort, tail, wc, wget, xargs
+dirname, env, find, grep, head, mkdir, mv, realpath, rm, sed,
+sha512sum, shellcheck, sort, tail, touch, wc, wget, xargs;
 \item The following dependencies are GPLv2+ licensed:\newline
-more, pandoc, pdftex, pdflatex, tree
+more, pandoc, pdftex, pdflatex, tree;
 \item The following dependencies are GPLv2 licensed:\newline
-git, pylint
+git, pylint;
 \item The following dependencies are LGPLv2.1+ licensed:\newline
-notify-send
+notify-send;
 \item The following dependencies are MIT licensed:\newline
-black, isort, mypy, ruff
+black, isort, mypy, ruff;
 \item The following dependencies are Apache-2.0 licensed:\newline
-bandit
+bandit;
 \item The following dependencies are BSD-3-Clause licensed:\newline
-phpmd
-\item php is licensed under PHP License v3.01
-\item tex is licensed under Knuth license
-\item pcregrep has a custom license from Cambridge University
+phpmd;
+\item php is licensed under PHP License v3.01;
+\item tex is licensed under Knuth license;
+\item pcregrep, pcre2grep has a custom license from Cambridge
+University, but PCRE2 has BSD-3-Clause WITH PCRE2-exception.
 \end{itemize}
 
 Remark: Some commands listed under GPLv3+ are POSIX
 and can have different implementations under another license;
 for example, uutils coreutils is MIT licensed,
 whilst GNU coreutils is GPLv3+ licensed.
+
+Bash can be found at the following URLs:\newline
+\url{https://www.gnu.org/software/bash/},\newline
+\url{https://tiswww.case.edu/php/chet/bash/bashtop.html},\newline
+\url{https://savannah.gnu.org/projects/bash/}.
+
+GNU coreutils can be found at the following URLs:\newline
+\url{https://www.gnu.org/software/coreutils/},\newline
+\url{https://savannah.gnu.org/projects/coreutils/}.
+
+uutils coreutils can be found at the following URLs:\newline
+\url{https://uutils.github.io/coreutils/},\newline
+\url{https://github.com/uutils/coreutils}.
+
+diff (GNU diffutils) can be found at the following URLs:\newline
+\url{https://www.gnu.org/software/diffutils/},\newline
+\url{https://savannah.gnu.org/projects/diffutils/}.
+
+find, xargs (GNU findutils) can be found at the following URLs:\newline
+\url{https://www.gnu.org/software/findutils/},\newline
+\url{https://savannah.gnu.org/projects/findutils/}.
+
+grep (GNU grep) can be found at the following URLs:\newline
+\url{https://www.gnu.org/software/grep/},\newline
+\url{https://savannah.gnu.org/projects/grep/}.
+
+sed (GNU sed) can be found at the following URLs:\newline
+\url{https://www.gnu.org/software/sed/},\newline
+\url{https://savannah.gnu.org/projects/sed/}.
+
+ShellCheck can be found at the following URLs:\newline
+\url{https://www.shellcheck.net/},\newline
+\url{https://github.com/koalaman/shellcheck}.
+
+GNU Wget can be found at the following URLs:\newline
+\url{https://www.gnu.org/software/wget/},\newline
+\url{https://savannah.gnu.org/projects/wget/}.
+
+more of util-linux can be found at the following URLs:\newline
+\url{https://www.kernel.org/pub/linux/utils/util-linux/},\newline
+{\small
+  \url{https://git.kernel.org/pub/scm/utils/util-linux/util-linux.git/}
+},
+\newline
+\url{https://github.com/util-linux/util-linux} official?
+
+pandoc can be found at the following URLs:\newline
+\url{https://pandoc.org/},\newline
+\url{https://github.com/jgm/pandoc}.
+
+pdftex/pdflatex can be found at the following URLs:\newline
+\url{https://www.tug.org/applications/pdftex/},\newline
+\url{https://tug.org/texlive/svn/}.
+
+tree can be found at the following URLs:\newline
+\url{https://oldmanprogrammer.net/source.php?dir=projects/tree},\newline
+\url{https://gitlab.com/OldManProgrammer/unix-tree},\newline
+\url{https://github.com/Old-Man-Programmer/tree}.
+
+git can be found at the following URLs:\newline
+\url{https://git-scm.com/about},\newline
+\url{https://github.com/git/git}.
+
+pylint can be found at the following URLs:\newline
+\url{https://www.pylint.org/},\newline
+\url{https://pylint.readthedocs.io/en/stable/},\newline
+\url{https://github.com/pylint-dev/pylint},\newline
+\url{https://pypi.org/project/pylint/}.
+
+notify-send can be found at the following URLs:\newline
+\url{https://gitlab.gnome.org/GNOME/libnotify/},\newline
+\url{https://gnome.pages.gitlab.gnome.org/libnotify/}.
+
+black can be found at the following URLs:\newline
+\url{https://github.com/psf/black},\newline
+\url{https://black.readthedocs.io/en/stable/},\newline
+\url{https://pypi.org/project/black/}.
+
+isort can be found at the following URLs:\newline
+\url{https://pycqa.github.io/isort/},\newline
+\url{https://github.com/pycqa/isort/},\newline
+\url{https://pypi.org/project/isort/}.
+
+mypy can be found at the following URLs:\newline
+\url{https://mypy-lang.org/},\newline
+\url{https://mypy.readthedocs.io/en/stable/},\newline
+\url{https://github.com/python/mypy},\newline
+\url{https://pypi.org/project/mypy/}.
+
+ruff can be found at the following URLs:\newline
+\url{https://docs.astral.sh/ruff/},\newline
+\url{https://github.com/astral-sh/ruff},\newline
+\url{https://pypi.org/project/ruff/}.
+
+bandit can be found at the following URLs:\newline
+\url{https://bandit.readthedocs.io/en/latest/},\newline
+\url{https://github.com/PyCQA/bandit},\newline
+\url{https://pypi.org/project/bandit/}.
+
+phpmd can be found at the following URLs:\newline
+\url{https://phpmd.org/},\newline
+\url{https://github.com/phpmd/phpmd},\newline
+\url{https://packagist.org/packages/phpmd/phpmd}.
+
+php can be found at the following URLs:\newline
+\url{https://www.php.net/},\newline
+\url{https://github.com/php/php-src}.
+
+tex can be found at the following URL:\newline
+\url{https://ctan.org/tex-archive/systems/knuth/dist/tex}.
+
+pcregrep, pcre2grep can be found at the following URLs:\newline
+\url{https://www.pcre.org/},\newline
+\url{https://pcre2project.github.io/pcre2/},\newline
+\url{https://github.com/PCRE2Project/pcre1},\newline
+\url{https://github.com/PCRE2Project/pcre2},\newline
+{\small
+  \url{https://github.com/PCRE2Project/pcre2/blob/main/src/pcre2grep.c}
+}.
+
+If you see something that I missed regarding my dependencies,
+please tell me/email me :).
 
 \subsection{
   build\_and\_checks\_dependencies/build\_and\_checks.exec.sh.tpl
@@ -286,8 +413,7 @@ build_and_checks_dependencies/build_and_checks.exec.sh.tpl
 
 
 \subsection{
-  build\_and\_checks\_dependencies/%
-build\_md\_from\_printable\_md.exec.sh
+  build\_and\_checks\_dependencies/build\_md\_from\_printable\_md.exec.sh
 }
 \label{
   build_and_checks_dependencies:build_md_from_printable_mdexecsh
@@ -349,8 +475,7 @@ build_and_checks_dependencies/common_build_and_checks.exec.sh
 
 
 \subsection{
-  build\_and\_checks\_dependencies/%
-common\_build\_and\_checks.exec.sh.tpl
+  build\_and\_checks\_dependencies/common\_build\_and\_checks.exec.sh.tpl
 }
 \label{
   build_and_checks_dependencies:common_build_and_checksexecshtpl
@@ -358,6 +483,18 @@ common\_build\_and\_checks.exec.sh.tpl
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
 build_and_checks_dependencies/common_build_and_checks.exec.sh.tpl
+}
+
+
+\subsection{
+  build\_and\_checks\_dependencies/common\_options.libr.sh
+}
+\label{
+  build_and_checks_dependencies:common_optionslibrsh
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+build_and_checks_dependencies/common_options.libr.sh
 }
 
 
@@ -620,13 +757,11 @@ build_and_checks_dependencies/update_common_build_and_checks.exec.sh
 update\_or\_check\_files\_names\_listing.exec.sh
 }
 \label{
-  build_and_checks_dependencies:%
-update_or_check_files_names_listingexecsh
+  build_and_checks_dependencies:update_or_check_files_names_listingexecsh
 }
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/%
-update_or_check_files_names_listing.exec.sh
+build_and_checks_dependencies/update_or_check_files_names_listing.exec.sh
 }
 
 

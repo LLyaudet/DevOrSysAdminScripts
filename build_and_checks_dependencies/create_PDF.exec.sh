@@ -49,7 +49,7 @@ create_PDF(){
   get_work_directory_option "$@"
   pushd_to_work_directory\
     && trap 'popd_from_work_directory' RETURN
-  work_directory_is_top_dirstack_directory || return
+  can_continue_after_enhanced_pushd || return
 
   if [[ ! -o pipefail ]]; then
     [[ LFBFL_i_verbose -eq 1 ]] && echo "pipefail option activated"
@@ -404,6 +404,10 @@ create_PDF(){
     | sed -e 's/\\n/\n/g'\
     > "./${LFBFL_subdir2}/temp/acknowledgments_temp"
 
+  local LFBFL_temp_path
+  LFBFL_temp_path=$(realpath "./${LFBFL_subdir2}/temp/")
+  readonly LFBFL_temp_path
+
   # But the filling still occurs, in case the dev want to refill
   # part of the tex/html file that he modified with @token@
   # using some computed results.
@@ -430,14 +434,16 @@ create_PDF(){
       "./${LFBFL_subdir2}/temp/acknowledgments_temp"\
       "${LFBFL_tex_path_start}.3"
 
-    enhanced_pushd "./${LFBFL_subdir2}/temp/" 2\
-      || return
+    enhanced_pushd "${LFBFL_temp_path}" 2
+    can_continue_after_enhanced_pushd || return
     sed -i\
       -e '/@current_tree_light@/{r current_tree_light.txt' -e 'd}'\
       -e '/@current_tree@/{r current_tree.txt' -e 'd}'\
       "${LFBFL_repository_name}.tex.3"
-    enhanced_popd "./${LFBFL_subdir2}/temp/" 2\
-      || return
+    if [[ enhanced_pushd_result -eq 0 ]]; then
+      enhanced_popd "${LFBFL_temp_path}" 2\
+        || return
+    fi
 
     insert_file_at_token "${LFBFL_tex_path_start}.3"\
       @files_listing_VerbatimInput@\
@@ -477,14 +483,16 @@ create_PDF(){
       @files_lis@ "${LFBFL_temp_files_lis}"\
       "${LFBFL_html_path_start}.4"
 
-    enhanced_pushd "./${LFBFL_subdir2}/temp/" 2\
-      || return
+    enhanced_pushd "${LFBFL_temp_path}" 2
+    can_continue_after_enhanced_pushd || return
     sed -i\
       -e '/@current_tree_light@/{r current_tree_light.txt' -e 'd}'\
       -e '/@current_tree@/{r current_tree.txt' -e 'd}'\
       "${LFBFL_repository_name}.html.4"
-    enhanced_popd "./${LFBFL_subdir2}/temp/" 2\
-      || return
+    if [[ enhanced_pushd_result -eq 0 ]]; then
+      enhanced_popd "${LFBFL_temp_path}" 2\
+        || return
+    fi
 
     insert_file_at_token "${LFBFL_html_path_start}.4"\
       @files_listing_HTMLPreInput@\
@@ -497,7 +505,7 @@ create_PDF(){
   fi
 
   # The HTML contains everything including listings with source code.
-  # It it doesn't get updated,
+  # If it doesn't get updated,
   # then it is useless to recompute the PDF.
   if [[ LFBFL_HTML_updated -eq 0 ]]; then
     return

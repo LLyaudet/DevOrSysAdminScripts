@@ -119,10 +119,10 @@ Some “small” useful scripts
 for enhancing development or system-administrators tasks
 </blockquote>
 <p>Current version: 2026-03-02</p>
-<p>Current number of commits: 467</p>
-<p>Current git SHA1: b959b7ae38237a0179233b68367c79a9897d3946</p>
+<p>Current number of commits: 468</p>
+<p>Current git SHA1: 6a0b1155cdd132511c62354967d09a953b4d9f1a</p>
 <p>
-Code lines: 0 total lines, 0 not empty lines, 0 empty lines.
+Code lines: 8985 total lines, 8115 not empty lines, 870 empty lines.
 </p>
 
 
@@ -385,14 +385,14 @@ wget_sha512.libr.sh
 5 directories, 62 files
 </pre>
 <pre class="verbatim">
-[ 12K Mar  2 20:03]  ./
-├── [4.0K Mar  2 20:03]  build_and_checks_dependencies/
+[ 12K Mar  2 20:14]  ./
+├── [4.0K Mar  2 20:14]  build_and_checks_dependencies/
 │   ├── [3.8K Mar  2 18:25]  build_and_checks.exec.sh.tpl*
 │   ├── [3.8K Mar  2 19:19]  build_md_from_printable_md.exec.sh*
 │   ├── [2.6K Mar  2 19:19]  check_shell_scripts_beginnings.libr.sh
 │   ├── [4.5K Mar  2 19:19]  check_shell_scripts_indentation.libr.sh
 │   ├── [3.1K Mar  2 19:48]  check_URLs.libr.sh
-│   ├── [ 28K Mar  2 20:03]  common_build_and_checks.exec.sh*
+│   ├── [ 28K Mar  2 20:14]  common_build_and_checks.exec.sh*
 │   ├── [ 23K Mar  2 20:03]  common_build_and_checks.exec.sh.tpl
 │   ├── [6.7K Mar  2 20:01]  common_options.libr.sh
 │   ├── [4.8K Mar  2 19:58]  comparisons.libr.sh
@@ -405,7 +405,7 @@ wget_sha512.libr.sh
 │   │   ├── [ 728 Feb 28 20:38]  license_file_header_AGPLv3+.tpl
 │   │   ├── [ 707 Feb 28 20:38]  license_file_header_GPLv3+.tpl
 │   │   └── [ 728 Feb 28 20:38]  license_file_header_LGPLv3+.tpl
-│   ├── [3.8K Mar  2 19:52]  lines_counts.libr.sh
+│   ├── [3.8K Mar  2 20:12]  lines_counts.libr.sh
 │   ├── [8.8K Mar  2 19:58]  lines_filters.libr.sh
 │   ├── [2.7K Feb 19 16:16]  lines_maps.libr.sh
 │   ├── [1.8K Feb 26 16:58]  overwrite_if_not_equal.libr.sh
@@ -417,13 +417,13 @@ wget_sha512.libr.sh
 │   ├── [3.4K Mar  2 19:48]  too_long_code_lines.libr.sh
 │   ├── [4.1K Mar  1 22:38]  update_common_build_and_checks.exec.sh*
 │   └── [5.0K Mar  2 19:49]  update_or_check_files_names_listing.exec.sh*
-├── [4.0K Mar  2 20:03]  build_and_checks.exec.sh*
-├── [4.0K Mar  2 20:03]  build_and_checks_variables/
+├── [4.0K Mar  2 20:14]  build_and_checks.exec.sh*
+├── [4.0K Mar  2 20:14]  build_and_checks_variables/
 │   ├── [  15 Jan  5 20:00]  bandit_baseline.json
 │   ├── [  25 Jan  5 18:49]  bandit.ini
 │   ├── [  30 Feb 28 20:30]  black.toml
 │   ├── [ 16K Mar  2 12:57]  DevOrSysAdminScripts.html.tpl
-│   ├── [ 28K Mar  2 20:02]  DevOrSysAdminScripts.tex
+│   ├── [ 28K Mar  2 20:03]  DevOrSysAdminScripts.tex
 │   ├── [8.5K Mar  2 13:01]  DevOrSysAdminScripts.tex.tpl
 │   ├── [ 13K Mar  2 15:42]  files_listing.tex.tpl
 │   ├── [4.1K Mar  1 22:37]  files_names_listing.txt
@@ -437,8 +437,8 @@ wget_sha512.libr.sh
 │   └── [2.1K Feb 19 19:36]  shellcheck_notes.txt
 ├── [ 34K May  6  2024]  COPYING
 ├── [7.5K Dec 27 21:48]  COPYING.LESSER
-├── [353K Mar  2 20:02]  DevOrSysAdminScripts.html
-├── [323K Mar  2 20:02]  DevOrSysAdminScripts.pdf
+├── [353K Mar  2 20:03]  DevOrSysAdminScripts.html
+├── [323K Mar  2 20:03]  DevOrSysAdminScripts.pdf
 ├── [4.0K Feb 27 20:20]  git_helpers/
 │   ├── [3.5K Feb 19 17:00]  git_checks.libr.sh
 │   ├── [1.8K Feb 27 20:20]  post-commit
@@ -1582,9 +1582,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='750d45b2a31cc73b62b861f1007bb132d44407b517619'
-  LFBFL_correct_sha512+='d77333cfb531c6445ba47ab4349f84a29b6455f88817'
-  LFBFL_correct_sha512+='00b9d3be2ae1542cb6fe2ced2f713a9417d76b7'
+  LFBFL_correct_sha512='329b117980dfa7a17d321510e255decf430382c3ed240'
+  LFBFL_correct_sha512+='ad7869c1e209b0a441d597275604d192df5995517123'
+  LFBFL_correct_sha512+='9d70a1dbb4be285bf01dadfcdc4ad8abe76c2a9'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
@@ -4557,14 +4557,13 @@ all_self_code_lines(){
   # Options:
   #   --verbose
   #   --work-directory=""
-  # shellcheck disable=SC2034
   declare -i LFBFL_i_verbose=0
   get_verbose_option "$@"
   local LFBFL_work_directory=""
   get_work_directory_option "$@"
   pushd_to_work_directory\
-    &amp;&amp; trap 'popd_from_work_directory' RETURN\
-    || return
+    &amp;&amp; trap 'popd_from_work_directory' RETURN
+  can_continue_after_enhanced_pushd || return
 
   enhanced_set_pipefail &amp;&amp; trap 'enhanced_unset_pipefail' RETURN
 
@@ -8399,9 +8398,9 @@ build_and_checks(){
   declare -r\
     LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_common_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='c0fb56223c968af2fc65df9abfe5c32a8c59b12fc863b'
-  LFBFL_correct_sha512+='b4b72283e2a701441ce39405d4117c35c995ab66422d'
-  LFBFL_correct_sha512+='4bf9dec3a557dedeffaa263fabc59c272fb1d71'
+  LFBFL_correct_sha512='21ba86f4cb5b88d7e4a81b95442f25eedff9d3850d5b3'
+  LFBFL_correct_sha512+='8222baf0c6df2eefab2e92f69faf552b2f4b57d2870d'
+  LFBFL_correct_sha512+='fd5c4e831c9e48a2d9c232cdd58e16c4979ed3c'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_script}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
   chmod +x "./${LFBFL_file_path}"

@@ -60,14 +60,13 @@ all_self_code_lines(){
   # Options:
   #   --verbose
   #   --work-directory=""
-  # shellcheck disable=SC2034
   declare -i LFBFL_i_verbose=0
   get_verbose_option "$@"
   local LFBFL_work_directory=""
   get_work_directory_option "$@"
   pushd_to_work_directory\
-    && trap 'popd_from_work_directory' RETURN\
-    || return
+    && trap 'popd_from_work_directory' RETURN
+  can_continue_after_enhanced_pushd || return
 
   enhanced_set_pipefail && trap 'enhanced_unset_pipefail' RETURN
 

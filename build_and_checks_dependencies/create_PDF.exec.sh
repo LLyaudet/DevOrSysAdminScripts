@@ -24,6 +24,8 @@
 # This file was renamed from "create_PDF.sh" to "create_PDF.exec.sh".
 
 LFBFL_subdir="build_and_checks_dependencies"
+# shellcheck source=common_options.libr.sh
+source "./${LFBFL_subdir}/common_options.libr.sh"
 # shellcheck source=generate_from_template.libr.sh
 source "./${LFBFL_subdir}/generate_from_template.libr.sh"
 # shellcheck source=lines_counts.libr.sh
@@ -38,15 +40,20 @@ source "./${LFBFL_subdir}/overwrite_if_not_equal.libr.sh"
 source "./${LFBFL_subdir}/strings_functions.libr.sh"
 
 create_PDF(){
-  declare -i LFBFL_verbose=0
-  if [[ "$*" == *--verbose* ]]; then
-    echo "$0 $*"
-    LFBFL_verbose=1
-  fi
-  readonly LFBFL_verbose
+  # Options:
+  #   --verbose
+  #   --work-directory=""
+  declare -i LFBFL_i_verbose=0
+  # shellcheck disable=SC2034
+  local LFBFL_verbose=""
+  get_verbose_option "$@"
+  local LFBFL_work_directory=""
+  get_work_directory_option "$@"
+  pushd_to_work_directory\
+    && trap 'popd_from_work_directory' RETURN
 
   if [[ ! -o pipefail ]]; then
-    [[ LFBFL_verbose -eq 1 ]] && echo "pipefail option activated"
+    [[ LFBFL_i_verbose -eq 1 ]] && echo "pipefail option activated"
     set -o pipefail
     trap 'set +o pipefail' RETURN
   fi
@@ -493,7 +500,7 @@ create_PDF(){
     return
   fi
 
-  if [[ LFBFL_verbose -eq 1 ]]; then
+  if [[ LFBFL_i_verbose -eq 1 ]]; then
     for ((i=0; i<3; i++)); do
       pdflatex "./${LFBFL_subdir2}/${LFBFL_repository_name}.tex"
     done

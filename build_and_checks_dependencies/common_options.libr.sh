@@ -60,22 +60,27 @@ enhanced_pushd(){
   # $3=error_message_intermediate_complement
   # returns an error code whenever no pushd happened
   [[ LFBFL_i_verbose -eq 1 ]] && echo "enhanced_pushd requested: $1"
+  declare -ig enhanced_pushd_result=0
   if [[ -z "$1" ]]; then
-    return 110
+    enhanced_pushd_result=110
+    # shellcheck disable=SC2248
+    return ${enhanced_pushd_result}
   fi
   [[ LFBFL_i_verbose -eq 1 ]] && echo "enhanced_pushd validated1"
-  is_top_dirstack_directory "$1" && return 111
+  is_top_dirstack_directory "$1" && {
+    enhanced_pushd_result=111
+    # shellcheck disable=SC2248
+    return ${enhanced_pushd_result}
+  }
   [[ LFBFL_i_verbose -eq 1 ]] && echo "enhanced_pushd validated2"
 
-  declare -i LFBFL_i_pushd_result
   pushd "$1" || {
-    LFBFL_i_pushd_result=$?
-    readonly LFBFL_i_pushd_result
+    enhanced_pushd_result=$?
     local LFBFL_where_was_i
     get_where_was_i "$2"
     echo "${LFBFL_where_was_i} $3$1 no such directory."
     # shellcheck disable=SC2248
-    return ${LFBFL_i_pushd_result}
+    return ${enhanced_pushd_result}
   }
   [[ LFBFL_i_verbose -eq 1 ]] && echo "enhanced_pushd executed"
 }
@@ -103,6 +108,12 @@ enhanced_popd(){
   [[ LFBFL_i_verbose -eq 1 ]] && echo "enhanced_popd executed"
 }
 
+can_continue_after_enhanced_pushd(){
+  [[ enhanced_pushd_result -eq 0\
+  || enhanced_pushd_result -eq 110\
+  || enhanced_pushd_result -eq 111\
+  ]]
+}
 
 # Main usage for the next functions relative to verbose mode:
 # Add the two following lines at the start of a function.
@@ -155,7 +166,7 @@ get_verbose_option(){
 #   get_work_directory_option "$@"
 #   pushd_to_work_directory\
 #     && trap 'popd_from_work_directory' RETURN
-#   work_directory_is_top_dirstack_directory || return
+#   can_continue_after_enhanced_pushd || return
 
 get_work_directory_option(){
   # This command is to be called in another one with same arguments.

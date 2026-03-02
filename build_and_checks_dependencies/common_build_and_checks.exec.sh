@@ -64,9 +64,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='bdcb7a1907e25aa86a9b4199af0295deac7630e53b964'
-  LFBFL_correct_sha512+='31e7771b4849f40fffe9c0c432b8e6af564ef33d70f0'
-  LFBFL_correct_sha512+='63b7d9db5cdaac55a82936a463247bd1cfe3fc1'
+  LFBFL_correct_sha512='debb2bdda6f77ef82be5c17a547077d5c3db2bea62f92'
+  LFBFL_correct_sha512+='6b092815c4d7a2dbd9b8461923bff8e38199d776a71b'
+  LFBFL_correct_sha512+='c8d417fa396a556898c3d783681afb8c235922f'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
   chmod +x "./${LFBFL_file_path}"
@@ -75,9 +75,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='2e21ebd2938e1f457257483ba4c3d0f11c4c22ab0c79b'
-  LFBFL_correct_sha512+='d02dd7e1284bcfdb587d0555753537d1ee7195758d31'
-  LFBFL_correct_sha512+='eeb5b79a007dadfd0cd339ebe676e0e5da30762'
+  LFBFL_correct_sha512='239c41539d866e50bfbe32e91b4ebaf80e751e2621e86'
+  LFBFL_correct_sha512+='4c70c01b918f1d563eba5cca49bca8967c292edc9c29'
+  LFBFL_correct_sha512+='1fd372c53cad764b9bfb742b5dbdc0d4832db5c'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
@@ -85,9 +85,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='a2a1049990835e82efd14f1672c0d65417771668b113a'
-  LFBFL_correct_sha512+='51b6889b760a9079b4844eaae78226c1a24eee7a87ef'
-  LFBFL_correct_sha512+='d419d21bb96150e9c0a505372a315a498e55830'
+  LFBFL_correct_sha512='4afb238c86c2f4ea796364a2c4462f113396d6f60ace1'
+  LFBFL_correct_sha512+='b8602fa56ddae83645f541bbf6be0d200264c36b8cab'
+  LFBFL_correct_sha512+='6c74a75807cb09d5c1712f3d810dc0e8c49dc0b'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
@@ -95,9 +95,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='605b707fa8fdb7c70aab1ce6d6dbdad51e808bd272397'
-  LFBFL_correct_sha512+='53165579d9c114da46872bfd929439486514ccc3bef0'
-  LFBFL_correct_sha512+='374de9272ac8932defea93daf1e6c4cb6134b6a'
+  LFBFL_correct_sha512='2c29d1fda4042636e7302f72de571f92d4f7e470310bf'
+  LFBFL_correct_sha512+='1180af796e5d710cd008b504d755d0951cb3f76bc63f'
+  LFBFL_correct_sha512+='dcd2dcb480f2baa16637101ca4216a2be93f54d'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
@@ -105,9 +105,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='3bb7550d58f336ea092b5b2d93ce6736a07e61b6786f5'
-  LFBFL_correct_sha512+='fbd52d597746bfdde505387b33ed8778435257bed18b'
-  LFBFL_correct_sha512+='2042e4e996c53e48c0dd5e1aa7b9ea613bffa7e'
+  LFBFL_correct_sha512='e67009c7c8031f8a56f96d2bf7887e5121938d7c68cd7'
+  LFBFL_correct_sha512+='ffc45ad888ee022857f67ab8fedac97fa87781333526'
+  LFBFL_correct_sha512+='d0e0f13bd5daa1b8aa01dfc55aee44930958e4e'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
@@ -125,9 +125,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='587ac2ebb2e66f63c0ba88d2074e4a4be0e380dcc962c'
-  LFBFL_correct_sha512+='0c67f880d3ac6a0543871c2e8e974af52862d077e159'
-  LFBFL_correct_sha512+='386063bebf0e1f531faacecb47ca1e5067a9d10'
+  LFBFL_correct_sha512='94ebcdf53c46c2699a580c21a8d5fcb09ba46b093762a'
+  LFBFL_correct_sha512+='4fc3ab4f5ce5bbe757e937e3e7bda222ceef6f6398cb'
+  LFBFL_correct_sha512+='290b0fe9aad74ca6e5b6bd6c561150a42fab8dc'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
   chmod +x "./${LFBFL_file_path}"
@@ -156,9 +156,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='cbd8b44f3ff9278cf54c15cfa026552611f22953c5c33'
-  LFBFL_correct_sha512+='1428b5d901e6a1eb61f342733415783583fe9b996c18'
-  LFBFL_correct_sha512+='90d4e4aa9d0458b1e36f15ef6f1f8e4bce84cb2'
+  LFBFL_correct_sha512='90d133adf3dc9a7b75f18e5ab64846157e2b36a1f83e7'
+  LFBFL_correct_sha512+='1bc1f0a31781c978167593f51d6f9775f5c4091df586'
+  LFBFL_correct_sha512+='7c7cfda01ebe11475eb9a71ddc3b365cc345d3f'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
@@ -169,9 +169,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL2}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir2}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='aca58bc600f42e4f26af7927d384e2fd2d5e39f7478f5'
-  LFBFL_correct_sha512+='c98b18243a184f4a5ebfd25d4a3639e382651ec427e0'
-  LFBFL_correct_sha512+='b7abfa5768875ed441b56eb3e2942c5a6bd5b29'
+  LFBFL_correct_sha512='7cae7c2e3cd7c3146f1c8752920cc6be238227b12e32b'
+  LFBFL_correct_sha512+='4fdb3061126ecb8e2e077882ef8ecf10f248bca1c43c'
+  LFBFL_correct_sha512+='f18810ac71bd6ae3f152a25ab7aff7723d7dc8f'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
   chmod +x "./${LFBFL_file_path}"
@@ -211,9 +211,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='c03c76167e21a276945a1affd56f72522cf92dc3a7fa0'
-  LFBFL_correct_sha512+='97aa14587d1ef059b1f477da1da7ff50b3774dc0ff7b'
-  LFBFL_correct_sha512+='cfbe2d66f5fecac69150b061212bf8f8a26b83a'
+  LFBFL_correct_sha512='f13bad4bd7091d8719706be7cf5df5fa024899c43df6d'
+  LFBFL_correct_sha512+='38317bd46a893d059a82cb3481727648862713ba844d'
+  LFBFL_correct_sha512+='4d2ff8841954ecbc2c1fe7297914754c1e98cbd'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
@@ -251,9 +251,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='049da2d72b87c96a28022df9ad5ea8e60728989dbe8e8'
-  LFBFL_correct_sha512+='8c8296c4e66e1052c02bf34204584d951dd7e1280f55'
-  LFBFL_correct_sha512+='a5125b898f82074a69d7ef3762064c7c8a13cee'
+  LFBFL_correct_sha512='38058e326270c15885c5b01112c984fbef97bcf82c7b7'
+  LFBFL_correct_sha512+='a8023a496edb38c187808360170861e27c8e6a770d44'
+  LFBFL_correct_sha512+='a4f265732ac969c2dd875fcf383d081a35c029f'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
@@ -261,9 +261,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='ba02a1273bd2c117acc106ff0fe9468eaa2ba4279421e'
-  LFBFL_correct_sha512+='20ad373888ca1a746ae183b54b641f884e755333ecaa'
-  LFBFL_correct_sha512+='1abc1b935be3c1c8d0a9f83da9f44ab7ec2279f'
+  LFBFL_correct_sha512='d8a40cf571c4140d8565e1e1e752a99ce68e9d514725d'
+  LFBFL_correct_sha512+='194236a000d2127330d53e6be70e3312a2d61bff4542'
+  LFBFL_correct_sha512+='67279a31e22ab1bade53b8be9644118e9e4ea21'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
@@ -301,9 +301,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='13d29efcc33c913f4fdd82e9766ccaff364b03cc9b561'
-  LFBFL_correct_sha512+='ace1132398385763681df7801c916d2c95f540775a76'
-  LFBFL_correct_sha512+='3a9f84bbb7428667a424fd6dc1c9bc9c041a856'
+  LFBFL_correct_sha512='692002fd362636fbb0ed8fd5345c6325d43b87b262a2a'
+  LFBFL_correct_sha512+='1d258661221ddc6a7324d27e7a9dbe2149fa291fcb46'
+  LFBFL_correct_sha512+='d8e33bf9df03d71b7d3bda4f827250bd2ca7991'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
@@ -311,9 +311,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='2f117e5db3df4db7e2ff0a8dfbd843dc3ecf80890f37c'
-  LFBFL_correct_sha512+='4bcf987e9011f672ae3b2aca622e6659a83c197c96b8'
-  LFBFL_correct_sha512+='7689b93da0a582923e6a7c4f74600a89dfd001d'
+  LFBFL_correct_sha512='78181135c4660fd94a130caf3637100c416bf136c678e'
+  LFBFL_correct_sha512+='4431f76e66217cd3967cbb419890e4ea60eeeaed435f'
+  LFBFL_correct_sha512+='fce28e16c9153e04666237e1eeafbb2eaf2f25e'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
   chmod +x "./${LFBFL_file_path}"
@@ -440,7 +440,7 @@ common_build_and_checks(){
 
   pushd_to_work_directory\
     && trap 'popd_from_work_directory' RETURN
-  work_directory_is_top_dirstack_directory || return
+  can_continue_after_enhanced_pushd || return
 
   echo "Running shellcheck"
   find . -name "*.sh"\

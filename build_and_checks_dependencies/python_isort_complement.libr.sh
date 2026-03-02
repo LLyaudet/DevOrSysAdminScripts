@@ -42,7 +42,7 @@ check_collections_abc_place(){
   get_work_directory_option "$@"
   pushd_to_work_directory\
     && trap 'popd_from_work_directory' RETURN
-  work_directory_is_top_dirstack_directory || return
+  can_continue_after_enhanced_pushd || return
 
   [[ LFBFL_i_verbose -eq 1 ]]\
     && echo "Checking import of _collections_abc is at the right place"
@@ -76,7 +76,7 @@ python_isort_complement(){
   get_work_directory_option "$@"
   pushd_to_work_directory\
     && trap 'popd_from_work_directory' RETURN
-  work_directory_is_top_dirstack_directory || return
+  can_continue_after_enhanced_pushd || return
 
   check_collections_abc_place "$@"
 }

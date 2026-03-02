@@ -41,7 +41,7 @@ build_md_from_printable_md(){
   get_work_directory_option "$@"
   pushd_to_work_directory\
     && trap 'popd_from_work_directory' RETURN
-  work_directory_is_top_dirstack_directory || return
+  can_continue_after_enhanced_pushd || return
 
   local LFBFL_base_name="README"
   local LFBFL_arg

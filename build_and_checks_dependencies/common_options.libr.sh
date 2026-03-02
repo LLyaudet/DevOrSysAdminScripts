@@ -156,7 +156,7 @@ get_work_directory_option(){
     if [[ "${LFBFL_arg}" == --work-directory=* ]]; then
       LFBFL_work_directory=${LFBFL_arg#--work-directory=}
       LFBFL_work_directory=${LFBFL_work_directory:-.}
-      LFBFL_work_directory=${LFBFL_work_directory/#~/${HOME}}
+      # LFBFL_work_directory=${LFBFL_work_directory/#~/${HOME}} line below
       LFBFL_work_directory=$(realpath "${LFBFL_work_directory}")
       break
     fi

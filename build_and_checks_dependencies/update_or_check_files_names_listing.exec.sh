@@ -63,11 +63,7 @@ update_or_check_files_names_listing(){
   fi
   readonly LFBFL_append
 
-  if [[ ! -o pipefail ]]; then
-    [[ LFBFL_i_verbose -eq 1 ]] && echo "pipefail option activated"
-    set -o pipefail
-    trap 'set +o pipefail' RETURN
-  fi
+  enhanced_set_pipefail && trap 'enhanced_unset_pipefail' RETURN
 
   LFBFL_subdir2="build_and_checks_variables"
   local LFBFL_listing="./${LFBFL_subdir2}/files_names_listing.txt"

@@ -44,10 +44,7 @@ all_code_lines(){
     && trap 'popd_from_work_directory' RETURN
   can_continue_after_enhanced_pushd || return
 
-  if [[ ! -o pipefail ]]; then
-    set -o pipefail
-    trap 'set +o pipefail' RETURN
-  fi
+  enhanced_set_pipefail && trap 'enhanced_unset_pipefail' RETURN
 
   get_COMMON_TEXT_FILES_GLOB_PATTERNS
   local LFBFL_pattern
@@ -72,10 +69,8 @@ all_self_code_lines(){
     && trap 'popd_from_work_directory' RETURN\
     || return
 
-  if [[ ! -o pipefail ]]; then
-    set -o pipefail
-    trap 'set +o pipefail' RETURN
-  fi
+  enhanced_set_pipefail && trap 'enhanced_unset_pipefail' RETURN
+
   # below and another lines, see SC2145 false positive
   all_code_lines "$@" \
     | relevant_grep\
@@ -91,10 +86,8 @@ all_self_empty_code_lines(){
   declare -i LFBFL_i_verbose=0
   get_verbose_option "$@"
 
-  if [[ ! -o pipefail ]]; then
-    set -o pipefail
-    trap 'set +o pipefail' RETURN
-  fi
+  enhanced_set_pipefail && trap 'enhanced_unset_pipefail' RETURN
+
   all_self_code_lines "$@" \
     | empty_lines_after_file_name
 }
@@ -106,10 +99,8 @@ all_self_not_empty_code_lines(){
   declare -i LFBFL_i_verbose=0
   get_verbose_option "$@"
 
-  if [[ ! -o pipefail ]]; then
-    set -o pipefail
-    trap 'set +o pipefail' RETURN
-  fi
+  enhanced_set_pipefail && trap 'enhanced_unset_pipefail' RETURN
+
   all_self_code_lines "$@" \
     | not_empty_lines_after_file_name
 }
@@ -121,10 +112,8 @@ code_lines_count_all(){
   declare -i LFBFL_i_verbose=0
   get_verbose_option "$@"
 
-  if [[ ! -o pipefail ]]; then
-    set -o pipefail
-    trap 'set +o pipefail' RETURN
-  fi
+  enhanced_set_pipefail && trap 'enhanced_unset_pipefail' RETURN
+
   all_self_code_lines "$@" \
     | wc -l
 }
@@ -136,10 +125,8 @@ code_lines_count_empty(){
   declare -i LFBFL_i_verbose=0
   get_verbose_option "$@"
 
-  if [[ ! -o pipefail ]]; then
-    set -o pipefail
-    trap 'set +o pipefail' RETURN
-  fi
+  enhanced_set_pipefail && trap 'enhanced_unset_pipefail' RETURN
+
   all_self_empty_code_lines "$@" \
     | wc -l
 }
@@ -151,10 +138,8 @@ code_lines_count_not_empty(){
   declare -i LFBFL_i_verbose=0
   get_verbose_option "$@"
 
-  if [[ ! -o pipefail ]]; then
-    set -o pipefail
-    trap 'set +o pipefail' RETURN
-  fi
+  enhanced_set_pipefail && trap 'enhanced_unset_pipefail' RETURN
+
   all_self_not_empty_code_lines "$@" \
     | wc -l
 }

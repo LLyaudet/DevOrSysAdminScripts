@@ -30,6 +30,9 @@
 # it can be copied somewhere in your home directory
 # and sourced in your .bashrc.
 
+# shellcheck source=common_options.libr.sh
+source "./build_and_checks_dependencies/common_options.libr.sh"
+
 ll_wc(){
   # current options to wc:
   # -c --bytes
@@ -46,10 +49,7 @@ ll_wc(){
   # -n --no-filenames display only number(s)
   # I think I did that the first time many years ago (Teliae ?).
   # Since then, they added it as ignored... (-n)
-  if [[ ! -o pipefail ]]; then
-    set -o pipefail
-    trap 'set +o pipefail' RETURN
-  fi
+  enhanced_set_pipefail && trap 'enhanced_unset_pipefail' RETURN
   declare -a ll_wc_var_args=()
   declare -i ll_wc_var_number_only=0
   declare -i ll_wc_var_i=0
@@ -316,10 +316,7 @@ not_temp_file_grep(){
 }
 
 relevant_find(){
-  if [[ ! -o pipefail ]]; then
-    set -o pipefail
-    trap 'set +o pipefail' RETURN
-  fi
+  enhanced_set_pipefail && trap 'enhanced_unset_pipefail' RETURN
   not_dependencies_find\
     | not_cache_find\
     | not_git_find\
@@ -328,10 +325,7 @@ relevant_find(){
 }
 
 relevant_grep(){
-  if [[ ! -o pipefail ]]; then
-    set -o pipefail
-    trap 'set +o pipefail' RETURN
-  fi
+  enhanced_set_pipefail && trap 'enhanced_unset_pipefail' RETURN
   not_dependencies_grep\
     | not_cache_grep\
     | not_git_grep\

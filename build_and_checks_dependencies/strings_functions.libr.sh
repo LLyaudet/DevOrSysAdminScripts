@@ -290,10 +290,7 @@ split_last_line(){
   # The given max_length is the goal.
   # This function adapts the effective max position for the split by
   # taking into account the length of the suffix.
-  if [[ ! -o pipefail ]]; then
-    set -o pipefail
-    trap 'set +o pipefail' RETURN
-  fi
+  enhanced_set_pipefail && trap 'enhanced_unset_pipefail' RETURN
 
   declare -g split_last_line_result="$1"
   declare -ir LFBFL_max_length_plus=$(($3 + 1))

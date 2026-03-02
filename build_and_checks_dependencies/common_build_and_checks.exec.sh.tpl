@@ -39,18 +39,14 @@ common_build_and_checks(){
   # declare -r LFBFL_dependencies_URL="$2" too long
   declare -r LFBFL_start_URL="$2"
   local LFBFL_verbose=""
+  declare -i LFBFL_i_verbose=0
   if [[ "$*" == *--verbose* ]]; then
     echo "$0 $*"
     LFBFL_verbose="--verbose"
+    LFBFL_i_verbose=1
   fi
   readonly LFBFL_verbose
-
-  if [[ ! -o pipefail ]]; then
-    [[ "${LFBFL_verbose}" == "--verbose" ]]\
-      && echo "pipefail option activated"
-    set -o pipefail
-    trap 'set +o pipefail' RETURN
-  fi
+  readonly LFBFL_i_verbose
 
   source ./wget_sha512.libr.sh
 
@@ -276,6 +272,8 @@ common_build_and_checks(){
   source "./${LFBFL_subdir}/strings_functions.libr.sh"
   # shellcheck source=too_long_code_lines.libr.sh
   source "./${LFBFL_subdir}/too_long_code_lines.libr.sh"
+
+  enhanced_set_pipefail && trap 'enhanced_unset_pipefail' RETURN
 
   local LFBFL_data_file_name=\
 "build_and_checks_variables/repository_data.txt"

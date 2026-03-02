@@ -198,3 +198,37 @@ popd_from_work_directory(){
 work_directory_is_top_dirstack_directory(){
   is_top_dirstack_directory "${LFBFL_work_directory}"
 }
+
+
+# Functions relative to shell options:
+# - pipefail usage:
+#     enhanced_set_pipefail && trap 'enhanced_unset_pipefail' RETURN
+#   or maybe:
+#     enhanced_unset_pipefail && trap 'enhanced_set_pipefail' RETURN
+#   if you need to unset it in one function.
+
+enhanced_set_pipefail(){
+  if [[ -o pipefail ]]; then
+    return 1
+  fi
+  if [[ LFBFL_i_verbose -eq 1 ]]; then
+    local LFBFL_where_was_i
+    get_where_was_i 2
+    echo "${LFBFL_where_was_i} pipefail option activated."
+  fi
+  set -o pipefail
+  return 0
+}
+
+enhanced_unset_pipefail(){
+  if [[ ! -o pipefail ]]; then
+    return 1
+  fi
+  if [[ LFBFL_i_verbose -eq 1 ]]; then
+    local LFBFL_where_was_i
+    get_where_was_i 2
+    echo "${LFBFL_where_was_i} pipefail option unactivated."
+  fi
+  set +o pipefail
+  return 0
+}

@@ -43,11 +43,7 @@ check_URLs(){
     && trap 'popd_from_work_directory' RETURN
   can_continue_after_enhanced_pushd || return
 
-  if [[ ! -o pipefail ]]; then
-    [[ LFBFL_i_verbose -eq 1 ]] && echo "pipefail option activated"
-    set -o pipefail
-    trap 'set +o pipefail' RETURN
-  fi
+  enhanced_set_pipefail && trap 'enhanced_unset_pipefail' RETURN
 
   get_COMMON_TEXT_FILES_GLOB_PATTERNS
 

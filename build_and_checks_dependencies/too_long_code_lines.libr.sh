@@ -55,11 +55,7 @@ too_long_code_lines(){
     fi
   done
 
-  if [[ ! -o pipefail ]]; then
-    [[ LFBFL_i_verbose -eq 1 ]] && echo "pipefail option activated"
-    set -o pipefail
-    trap 'set +o pipefail' RETURN
-  fi
+  enhanced_set_pipefail && trap 'enhanced_unset_pipefail' RETURN
 
   get_COMMON_TEXT_FILES_GLOB_PATTERNS
   local LFBFL_pattern

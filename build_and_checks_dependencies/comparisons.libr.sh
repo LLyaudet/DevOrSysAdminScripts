@@ -23,6 +23,9 @@
 # ©Copyright 2023-2026 Laurent Frédéric Bernard François Lyaudet
 # The file "comparisons.sh" was renamed to "comparisons.libr.sh".
 
+# shellcheck source=common_options.libr.sh
+source "./build_and_checks_dependencies/common_options.libr.sh"
+
 equal(){
   # Returns 1 if all the arguments strings are equal.
   # Renvoie 1 dans $? si toutes les chaînes en arguments sont égales.
@@ -123,10 +126,7 @@ max(){
   if [[ $# -eq 0 ]]; then
     return 1
   fi
-  if [[ ! -o pipefail ]]; then
-    set -o pipefail
-    trap 'set +o pipefail' RETURN
-  fi
+  enhanced_set_pipefail && trap 'enhanced_unset_pipefail' RETURN
   printf "%s\n" "${@:2}" \
     | eval "$1 -r"\
     | head -1
@@ -141,10 +141,7 @@ min(){
   if [[ $# -eq 0 ]]; then
     return 1
   fi
-  if [[ ! -o pipefail ]]; then
-    set -o pipefail
-    trap 'set +o pipefail' RETURN
-  fi
+  enhanced_set_pipefail && trap 'enhanced_unset_pipefail' RETURN
   printf "%s\n" "${@:2}" \
     | eval "$1"\
     | head -1

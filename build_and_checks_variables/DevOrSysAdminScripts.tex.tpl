@@ -178,7 +178,9 @@ GNU Wget can be found at the following URLs:\newline
 
 more of util-linux can be found at the following URLs:\newline
 \url{https://www.kernel.org/pub/linux/utils/util-linux/},\newline
-\url{https://git.kernel.org/pub/scm/utils/util-linux/util-linux.git/},
+{\small
+  \url{https://git.kernel.org/pub/scm/utils/util-linux/util-linux.git/}
+},
 \newline
 \url{https://github.com/util-linux/util-linux} official?
 
@@ -252,7 +254,9 @@ pcregrep, pcre2grep can be found at the following URLs:\newline
 \url{https://pcre2project.github.io/pcre2/},\newline
 \url{https://github.com/PCRE2Project/pcre1},\newline
 \url{https://github.com/PCRE2Project/pcre2},\newline
-\url{https://github.com/PCRE2Project/pcre2/blob/main/src/pcre2grep.c}.
+{\small
+  \url{https://github.com/PCRE2Project/pcre2/blob/main/src/pcre2grep.c}
+}.
 
 If you see something that I missed regarding my dependencies,
 please tell me/email me :).

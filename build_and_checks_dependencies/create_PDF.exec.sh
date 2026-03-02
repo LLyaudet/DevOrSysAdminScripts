@@ -50,7 +50,8 @@ create_PDF(){
   local LFBFL_work_directory=""
   get_work_directory_option "$@"
   pushd_to_work_directory\
-    && trap 'popd_from_work_directory' RETURN
+    && trap 'popd_from_work_directory' RETURN\
+    || return
 
   if [[ ! -o pipefail ]]; then
     [[ LFBFL_i_verbose -eq 1 ]] && echo "pipefail option activated"
@@ -431,12 +432,14 @@ create_PDF(){
       "./${LFBFL_subdir2}/temp/acknowledgments_temp"\
       "${LFBFL_tex_path_start}.3"
 
-    pushd "./${LFBFL_subdir2}/temp/" || (echo "pushd failed" && exit)
+    enhanced_pushd "./${LFBFL_subdir2}/temp/" 2\
+      || return
     sed -i\
       -e '/@current_tree_light@/{r current_tree_light.txt' -e 'd}'\
       -e '/@current_tree@/{r current_tree.txt' -e 'd}'\
       "${LFBFL_repository_name}.tex.3"
-    popd || (echo "popd failed" && exit)
+    enhanced_popd "./${LFBFL_subdir2}/temp/" 2\
+      || return
 
     insert_file_at_token "${LFBFL_tex_path_start}.3"\
       @files_listing_VerbatimInput@\
@@ -476,12 +479,14 @@ create_PDF(){
       @files_lis@ "${LFBFL_temp_files_lis}"\
       "${LFBFL_html_path_start}.4"
 
-    pushd "./${LFBFL_subdir2}/temp/" || (echo "pushd failed" && exit)
+    enhanced_pushd "./${LFBFL_subdir2}/temp/" 2\
+      || return
     sed -i\
       -e '/@current_tree_light@/{r current_tree_light.txt' -e 'd}'\
       -e '/@current_tree@/{r current_tree.txt' -e 'd}'\
       "${LFBFL_repository_name}.html.4"
-    popd || (echo "popd failed" && exit)
+    enhanced_popd "./${LFBFL_subdir2}/temp/" 2\
+      || return
 
     insert_file_at_token "${LFBFL_html_path_start}.4"\
       @files_listing_HTMLPreInput@\

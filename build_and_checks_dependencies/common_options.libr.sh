@@ -87,16 +87,31 @@ enhanced_popd(){
   fi
 }
 
-# Main usage for the next function relative to verbose mode:
-# Add the three following lines at the start of a function.
+
+# Main usage for the next functions relative to verbose mode:
+# Add the two following lines at the start of a function.
 #   declare -i LFBFL_i_verbose=0
-#   local LFBFL_verbose=""
 #   get_verbose_option "$@"
-# /!\ You really need all of the three lines. /!\
+# /!\ You really need all of the two lines. /!\
 # Otherwise, the call to get_verbose_option may impact a function above;
 # in case you didn't copy all of "$@" in nested function calls...
 # /!\ The same warning applies for other functions below. /!\
 # /!\ I will not repeat it below. /!\
+# Use get_verbose_options_array, if needed.
+
+get_verbose_options_array(){
+  # Use this constant with code like:
+  # "${LFBFL_VERBOSE_OPTIONS[LFBFL_i_verbose]}"
+  # It could be extended if there is more than one level of verboseness.
+  if [[ -n "${LFBFL_VERBOSE_OPTIONS}" ]]; then
+    return
+  fi
+
+  declare -agr LFBFL_VERBOSE_OPTIONS=(
+    ""
+    "--verbose"
+  )
+}
 
 get_verbose_option(){
   # This command is to be called in another one with same arguments.
@@ -111,16 +126,12 @@ get_verbose_option(){
     get_where_was_i 2
     readonly LFBFL_i_popd_result
     echo "${LFBFL_where_was_i} $*"
-    # shellcheck disable=SC2034
     LFBFL_i_verbose=1
-    # shellcheck disable=SC2034
-    LFBFL_verbose="--verbose"
   fi
   # shellcheck disable=SC2034
   readonly LFBFL_i_verbose
-  # shellcheck disable=SC2034
-  readonly LFBFL_verbose
 }
+
 
 # Main usage for the next functions relative to work_directory:
 # Add the five following lines at the start of a function.

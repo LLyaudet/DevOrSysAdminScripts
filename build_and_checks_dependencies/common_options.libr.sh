@@ -38,22 +38,28 @@ get_where_was_i(){
   # offsets in the same function.
 }
 
+is_top_dirstack_directory(){
+  # This function should not be needed since when testing "${DIRSTACK[0]}"
+  # is already a realpath. But I keep it, in case it is needed.
+  # https://lists.gnu.org/archive/html/help-bash/2026-03/msg00005.html
+  # $1=to_directory needs to be "realpathed" already
+  if [[ -z "$1" ]]; then
+    return
+  fi
+  local LFBFL_real_path
+  LFBFL_real_path=$(realpath "${DIRSTACK[0]}")
+  readonly LFBFL_real_path
+  [[ "${LFBFL_real_path}" == "$1" ]]
+}
+
 enhanced_pushd(){
   # Auxiliary function needed below.
   # See usages below if you want to reuse it.
-  # $1=to_directory
+  # $1=to_directory must be sanitized with realpath before call
   # $2=offset_for_where_was_i
   # $3=error_message_intermediate_complement
   if [[ -n "$1" ]]; then
-    local LFBFL_real_path1
-    LFBFL_real_path1=$(realpath "${DIRSTACK[0]}")
-    readonly LFBFL_real_path1
-    local LFBFL_real_path2
-    LFBFL_real_path2=$(realpath "$1")
-    readonly LFBFL_real_path2
-    if [[ "${LFBFL_real_path1}" == "${LFBFL_real_path2}" ]]; then
-      return 111
-    fi
+    is_top_dirstack_directory "$1" && return 111
 
     declare -i LFBFL_i_pushd_result
     pushd "$1" || {
@@ -80,7 +86,7 @@ enhanced_popd(){
       readonly LFBFL_i_popd_result
       local LFBFL_where_was_i
       get_where_was_i "$2"
-      echo "$2 popd failed."
+      echo "${LFBFL_where_was_i} popd failed."
       # shellcheck disable=SC2248
       return ${LFBFL_i_popd_result}
     }
@@ -138,8 +144,8 @@ get_verbose_option(){
 #   local LFBFL_work_directory=""
 #   get_work_directory_option "$@"
 #   pushd_to_work_directory\
-#     && trap 'popd_from_work_directory' RETURN\
-#     || return
+#     && trap 'popd_from_work_directory' RETURN
+#   work_directory_is_top_dirstack_directory || return
 
 get_work_directory_option(){
   # This command is to be called in another one with same arguments.
@@ -149,7 +155,9 @@ get_work_directory_option(){
   for LFBFL_arg in "$@"; do
     if [[ "${LFBFL_arg}" == --work-directory=* ]]; then
       LFBFL_work_directory=${LFBFL_arg#--work-directory=}
+      LFBFL_work_directory=${LFBFL_work_directory:-.}
       LFBFL_work_directory=${LFBFL_work_directory/#~/${HOME}}
+      LFBFL_work_directory=$(realpath "${LFBFL_work_directory}")
       break
     fi
   done
@@ -162,4 +170,8 @@ pushd_to_work_directory(){
 
 popd_from_work_directory(){
   enhanced_popd "${LFBFL_work_directory}" 3
+}
+
+work_directory_is_top_dirstack_directory(){
+  is_top_dirstack_directory "${LFBFL_work_directory}"
 }

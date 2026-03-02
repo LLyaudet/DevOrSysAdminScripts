@@ -190,8 +190,8 @@ build_licenses_templates(){
   # Now that base license templates generated languages license
   # templates in working directory, we can go there.
   pushd_to_work_directory\
-    && trap 'popd_from_work_directory' RETURN\
-    || return
+    && trap 'popd_from_work_directory' RETURN
+  work_directory_is_top_dirstack_directory || return
 
   local LFBFL_data_file_name="build_and_checks_variables/"
   LFBFL_data_file_name+="repository_data.txt"

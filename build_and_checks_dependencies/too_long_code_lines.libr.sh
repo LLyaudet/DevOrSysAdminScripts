@@ -42,8 +42,8 @@ too_long_code_lines(){
   local LFBFL_work_directory=""
   get_work_directory_option "$@"
   pushd_to_work_directory\
-    && trap 'popd_from_work_directory' RETURN\
-    || return
+    && trap 'popd_from_work_directory' RETURN
+  work_directory_is_top_dirstack_directory || return
 
   local LFBFL_arg
   declare -i LFBFL_max_line_length=70

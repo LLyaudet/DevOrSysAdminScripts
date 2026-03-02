@@ -48,8 +48,8 @@ update_or_check_files_names_listing(){
   local LFBFL_work_directory=""
   get_work_directory_option "$@"
   pushd_to_work_directory\
-    && trap 'popd_from_work_directory' RETURN\
-    || return
+    && trap 'popd_from_work_directory' RETURN
+  work_directory_is_top_dirstack_directory || return
 
   declare -i LFBFL_write=0
   if [[ "$*" == *--write* ]]; then

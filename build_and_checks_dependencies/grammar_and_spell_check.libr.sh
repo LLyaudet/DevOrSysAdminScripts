@@ -41,8 +41,8 @@ grammar_and_spell_check(){
   local LFBFL_work_directory=""
   get_work_directory_option "$@"
   pushd_to_work_directory\
-    && trap 'popd_from_work_directory' RETURN\
-    || return
+    && trap 'popd_from_work_directory' RETURN
+  work_directory_is_top_dirstack_directory || return
 
   if [[ ! -o pipefail ]]; then
     [[ LFBFL_i_verbose -eq 1 ]] && echo "pipefail option activated"

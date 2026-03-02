@@ -24,6 +24,9 @@
 # This file was renamed from "check_shell_scripts_beginnings.sh"
 # to "check_shell_scripts_beginnings.libr.sh".
 
+# shellcheck source=common_options.libr.sh
+source "./build_and_checks_dependencies/common_options.libr.sh"
+
 check_one_shell_script_indentation(){
   shopt -s lastpipe
 
@@ -111,52 +114,22 @@ check_one_shell_script_indentation(){
 check_shell_scripts_indentation(){
   # Options:
   #   --verbose
-  #   --root-directory=""
-  local LFBFL_arg
-
-  declare -i LFBFL_verbose=0
-  if [[ "$*" == *--verbose* ]]; then
-    echo "$0 $*"
-    LFBFL_verbose=1
-  fi
-  readonly LFBFL_verbose
-
-  local LFBFL_root_directory=""
-  for LFBFL_arg in "$@"; do
-    if [[ "${LFBFL_arg}" == --root-directory=* ]]; then
-      LFBFL_root_directory=${LFBFL_arg#--root-directory=}
-      LFBFL_root_directory=${LFBFL_root_directory/#~/${HOME}}
-      break
-    fi
-  done
-
-  if [[ -n "${LFBFL_root_directory}" ]]; then
-    declare -i LFBFL_pushd_result
-    pushd "${LFBFL_root_directory}" || {
-      LFBFL_pushd_result=$?
-      echo "check_shell_scripts_indentation.libr.sh"\
-        "--root-directory=${LFBFL_root_directory} no such directory."
-      # shellcheck disable=SC2248
-      return ${LFBFL_pushd_result}
-    }
-  fi
+  #   --work-directory=""
+  declare -i LFBFL_i_verbose=0
+  # shellcheck disable=SC2034
+  local LFBFL_verbose=""
+  get_verbose_option "$@"
+  local LFBFL_work_directory=""
+  get_work_directory_option "$@"
+  pushd_to_work_directory\
+    && trap 'popd_from_work_directory' RETURN
 
   shopt -s globstar
   local LFBFL_file_name
 
   for LFBFL_file_name in **/*.sh; do
-    [[ LFBFL_verbose -eq 1 ]]\
+    [[ LFBFL_i_verbose -eq 1 ]]\
       && echo "${LFBFL_file_name}:Checking shell script indentation."
     check_one_shell_script_indentation "${LFBFL_file_name}"
   done
-
-  if [[ -n "${LFBFL_root_directory}" ]]; then
-    declare -i LFBFL_popd_result
-    popd || {
-      LFBFL_popd_result=$?
-      echo "check_shell_scripts_indentation.libr.sh popd failed."
-      # shellcheck disable=SC2248
-      return ${LFBFL_popd_result}
-    }
-  fi
 }

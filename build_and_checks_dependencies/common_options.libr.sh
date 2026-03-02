@@ -33,6 +33,9 @@ get_where_was_i(){
   if [[ "${FUNCNAME[$1]}" != "" ]]; then
     LFBFL_where_was_i+=" ${FUNCNAME[$1]}()"
   fi
+  readonly LFBFL_where_was_i
+  # Comment out line above in case someone would use distinct
+  # offsets in the same function.
 }
 
 enhanced_pushd(){
@@ -44,8 +47,10 @@ enhanced_pushd(){
   if [[ -n "$1" ]]; then
     local LFBFL_real_path1
     LFBFL_real_path1=$(realpath "${DIRSTACK[0]}")
+    readonly LFBFL_real_path1
     local LFBFL_real_path2
     LFBFL_real_path2=$(realpath "$1")
+    readonly LFBFL_real_path2
     if [[ "${LFBFL_real_path1}" == "${LFBFL_real_path2}" ]]; then
       return 111
     fi
@@ -53,6 +58,7 @@ enhanced_pushd(){
     declare -i LFBFL_i_pushd_result
     pushd "$1" || {
       LFBFL_i_pushd_result=$?
+      readonly LFBFL_i_pushd_result
       local LFBFL_where_was_i
       get_where_was_i "$2"
       echo "${LFBFL_where_was_i} $3$1 no such directory."
@@ -71,6 +77,7 @@ enhanced_popd(){
     declare -i LFBFL_i_popd_result
     popd || {
       LFBFL_i_popd_result=$?
+      readonly LFBFL_i_popd_result
       local LFBFL_where_was_i
       get_where_was_i "$2"
       echo "$2 popd failed."
@@ -102,12 +109,15 @@ get_verbose_option(){
   if [[ "$*" == *--verbose* ]]; then
     local LFBFL_where_was_i
     get_where_was_i 2
+    readonly LFBFL_i_popd_result
     echo "${LFBFL_where_was_i} $*"
     # shellcheck disable=SC2034
     LFBFL_i_verbose=1
     # shellcheck disable=SC2034
     LFBFL_verbose="--verbose"
   fi
+  readonly LFBFL_i_verbose
+  readonly LFBFL_verbose
 }
 
 # Main usage for the next functions relative to work_directory:
@@ -129,6 +139,7 @@ get_work_directory_option(){
       break
     fi
   done
+  readonly LFBFL_work_directory
 }
 
 pushd_to_work_directory(){

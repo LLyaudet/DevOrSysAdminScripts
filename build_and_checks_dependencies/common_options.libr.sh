@@ -83,6 +83,7 @@ enhanced_pushd(){
     return ${enhanced_pushd_result}
   }
   [[ LFBFL_i_verbose -eq 1 ]] && echo "enhanced_pushd executed"
+  return 0
 }
 
 enhanced_popd(){
@@ -92,7 +93,7 @@ enhanced_popd(){
   # $2=offset_for_where_was_i
   [[ LFBFL_i_verbose -eq 1 ]] && echo "enhanced_popd requested: $1"
   if [[ -z "$1" ]]; then
-    return
+    return 0
   fi
 
   declare -i LFBFL_i_popd_result
@@ -106,6 +107,7 @@ enhanced_popd(){
     return ${LFBFL_i_popd_result}
   }
   [[ LFBFL_i_verbose -eq 1 ]] && echo "enhanced_popd executed"
+  return 0
 }
 
 can_continue_after_enhanced_pushd(){

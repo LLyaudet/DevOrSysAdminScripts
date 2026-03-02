@@ -43,7 +43,8 @@ all_code_lines(){
   local LFBFL_work_directory=""
   get_work_directory_option "$@"
   pushd_to_work_directory\
-    && trap 'popd_from_work_directory' RETURN
+    && trap 'popd_from_work_directory' RETURN\
+    || return
 
   if [[ ! -o pipefail ]]; then
     set -o pipefail
@@ -72,7 +73,8 @@ all_self_code_lines(){
   local LFBFL_work_directory=""
   get_work_directory_option "$@"
   pushd_to_work_directory\
-    && trap 'popd_from_work_directory' RETURN
+    && trap 'popd_from_work_directory' RETURN\
+    || return
 
   if [[ ! -o pipefail ]]; then
     set -o pipefail

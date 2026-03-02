@@ -42,7 +42,8 @@ check_URLs(){
   local LFBFL_work_directory=""
   get_work_directory_option "$@"
   pushd_to_work_directory\
-    && trap 'popd_from_work_directory' RETURN
+    && trap 'popd_from_work_directory' RETURN\
+    || return
 
   if [[ ! -o pipefail ]]; then
     [[ LFBFL_i_verbose -eq 1 ]] && echo "pipefail option activated"

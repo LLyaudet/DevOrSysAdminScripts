@@ -42,7 +42,8 @@ build_md_from_printable_md(){
   local LFBFL_work_directory=""
   get_work_directory_option "$@"
   pushd_to_work_directory\
-    && trap 'popd_from_work_directory' RETURN
+    && trap 'popd_from_work_directory' RETURN\
+    || return
 
   local LFBFL_base_name="README"
   local LFBFL_arg

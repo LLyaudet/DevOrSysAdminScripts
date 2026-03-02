@@ -43,7 +43,8 @@ check_collections_abc_place(){
   local LFBFL_work_directory=""
   get_work_directory_option "$@"
   pushd_to_work_directory\
-    && trap 'popd_from_work_directory' RETURN
+    && trap 'popd_from_work_directory' RETURN\
+    || return
 
   [[ LFBFL_i_verbose -eq 1 ]]\
     && echo "Checking import of _collections_abc is at the right place"
@@ -78,7 +79,8 @@ python_isort_complement(){
   local LFBFL_work_directory=""
   get_work_directory_option "$@"
   pushd_to_work_directory\
-    && trap 'popd_from_work_directory' RETURN
+    && trap 'popd_from_work_directory' RETURN\
+    || return
 
   check_collections_abc_place "$@"
 }

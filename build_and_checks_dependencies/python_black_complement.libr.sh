@@ -44,7 +44,8 @@ check_no_empty_line_after_python_function_docstring(){
   local LFBFL_work_directory=""
   get_work_directory_option "$@"
   pushd_to_work_directory\
-    && trap 'popd_from_work_directory' RETURN
+    && trap 'popd_from_work_directory' RETURN\
+    || return
 
   [[ LFBFL_i_verbose -eq 1 ]]\
     && echo "Checking empty lines after Python function docstrings"
@@ -65,7 +66,8 @@ python_black_complement(){
   local LFBFL_work_directory=""
   get_work_directory_option "$@"
   pushd_to_work_directory\
-    && trap 'popd_from_work_directory' RETURN
+    && trap 'popd_from_work_directory' RETURN\
+    || return
 
   check_no_empty_line_after_python_function_docstring "$@"
 }

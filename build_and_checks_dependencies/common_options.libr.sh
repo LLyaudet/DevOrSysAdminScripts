@@ -123,11 +123,12 @@ get_verbose_option(){
 }
 
 # Main usage for the next functions relative to work_directory:
-# Add the four following lines at the start of a function.
+# Add the five following lines at the start of a function.
 #   local LFBFL_work_directory=""
 #   get_work_directory_option "$@"
 #   pushd_to_work_directory\
-#     && trap 'popd_from_work_directory' RETURN
+#     && trap 'popd_from_work_directory' RETURN\
+#     || return
 
 get_work_directory_option(){
   # This command is to be called in another one with same arguments.

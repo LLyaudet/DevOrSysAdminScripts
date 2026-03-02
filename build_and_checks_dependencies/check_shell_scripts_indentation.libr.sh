@@ -122,7 +122,8 @@ check_shell_scripts_indentation(){
   local LFBFL_work_directory=""
   get_work_directory_option "$@"
   pushd_to_work_directory\
-    && trap 'popd_from_work_directory' RETURN
+    && trap 'popd_from_work_directory' RETURN\
+    || return
 
   shopt -s globstar
   local LFBFL_file_name

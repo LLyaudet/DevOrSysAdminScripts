@@ -108,9 +108,15 @@ create_PDF(){
     | wc -l
   )
 
-  code_lines_count_all "$@"
-  code_lines_count_not_empty "$@"
-  code_lines_count_empty "$@"
+  local LFBFL_redirect="/dev/stdout"
+  if [[ LFBFL_i_verbose -eq 0 ]]; then
+    LFBFL_redirect="/dev/null"
+  fi
+  {
+    code_lines_count_all "$@"
+    code_lines_count_not_empty "$@"
+    code_lines_count_empty "$@"
+  } &> "${LFBFL_redirect}"
 
   local LFBFL_number_of_lines="${code_lines_count_all_result}"
   LFBFL_number_of_lines+=" total lines,"

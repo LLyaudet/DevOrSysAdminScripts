@@ -31,17 +31,25 @@ A listing of the current suppressed warnings/errors from shellcheck:
              # shellcheck disable=SC2145
              all_self_code_lines "$@"\
                | empty_lines_after_file_name
+- SC2154 : var is referenced but not assigned.
+           Very useful but false positive when I play with
+           variable variable names.
 - SC2162 : read without -r will mangle backslashes.
            False positive when read is used without variable:
            https://github.com/koalaman/shellcheck/issues/623
 - SC2248 : Prefer double quoting
            False positive on returning integer values.
            https://github.com/koalaman/shellcheck/issues/3405
+- SC2309 : -eq treats this as a variable.
+             Use = to compare as string (or expand explicitly with $var).
+           Very useful but false positive when I play with
+           variable variable names.
 - SC2312 : Some command is not invoked separately and thus its return
            value is masked. Frequent with pipes.
 
 The command to check if there is anything else:
 grep -r "shellcheck disable" . | grep -v -e '.git' -e "=SC1090$"\
   -e "=SC1091$" -e "=SC1090,SC1091$" -e "=SC1111$" -e "=SC2001$"\
-  -e "=SC2034$" -e "=SC2086$" -e "=SC2125$" -e "=SC2145$" -e "=SC2162$"\
-  -e "=SC2248$" -e "=SC2312$" -e "=SC2162,SC2312$"
+  -e "=SC2034$" -e "=SC2086$" -e "=SC2125$" -e "=SC2145$" -e "=SC2154$"\
+  -e "=SC2162$" -e "=SC2248$" -e "=SC2309$" -e "=SC2312$"\
+  -e "=SC2154,SC2309$" -e "=SC2162,SC2312$"

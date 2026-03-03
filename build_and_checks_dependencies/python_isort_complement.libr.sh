@@ -47,7 +47,8 @@ check_collections_abc_place(){
   [[ LFBFL_i_verbose -eq 1 ]]\
     && echo "Checking import of _collections_abc is at the right place"
 
-  enhanced_set_pipefail && trap 'enhanced_unset_pipefail' RETURN
+  enhanced_set_shell_option pipefail\
+    && trap 'enhanced_unset_shell_option pipefail' RETURN
 
   declare -r LFBFL_temp=".check_collections_abc_place.temp"
   local LFBFL_file_name

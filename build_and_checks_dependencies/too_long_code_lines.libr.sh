@@ -55,7 +55,8 @@ too_long_code_lines(){
     fi
   done
 
-  enhanced_set_pipefail && trap 'enhanced_unset_pipefail' RETURN
+  enhanced_set_shell_option pipefail\
+    && trap 'enhanced_unset_shell_option pipefail' RETURN
 
   get_COMMON_TEXT_FILES_GLOB_PATTERNS
   local LFBFL_pattern

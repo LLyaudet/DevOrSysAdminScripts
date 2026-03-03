@@ -126,7 +126,8 @@ max(){
   if [[ $# -eq 0 ]]; then
     return 1
   fi
-  enhanced_set_pipefail && trap 'enhanced_unset_pipefail' RETURN
+  enhanced_set_shell_option pipefail\
+    && trap 'enhanced_unset_shell_option pipefail' RETURN
   printf "%s\n" "${@:2}" \
     | eval "$1 -r"\
     | head -1
@@ -141,7 +142,8 @@ min(){
   if [[ $# -eq 0 ]]; then
     return 1
   fi
-  enhanced_set_pipefail && trap 'enhanced_unset_pipefail' RETURN
+  enhanced_set_shell_option pipefail\
+    && trap 'enhanced_unset_shell_option pipefail' RETURN
   printf "%s\n" "${@:2}" \
     | eval "$1"\
     | head -1

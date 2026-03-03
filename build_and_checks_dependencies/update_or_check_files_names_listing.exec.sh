@@ -63,7 +63,8 @@ update_or_check_files_names_listing(){
   fi
   readonly LFBFL_append
 
-  enhanced_set_pipefail && trap 'enhanced_unset_pipefail' RETURN
+  enhanced_set_shell_option pipefail\
+    && trap 'enhanced_unset_shell_option pipefail' RETURN
 
   LFBFL_subdir2="build_and_checks_variables"
   local LFBFL_listing="./${LFBFL_subdir2}/files_names_listing.txt"

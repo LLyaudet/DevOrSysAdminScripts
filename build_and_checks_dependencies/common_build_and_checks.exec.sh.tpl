@@ -273,7 +273,8 @@ common_build_and_checks(){
   # shellcheck source=too_long_code_lines.libr.sh
   source "./${LFBFL_subdir}/too_long_code_lines.libr.sh"
 
-  enhanced_set_pipefail && trap 'enhanced_unset_pipefail' RETURN
+  enhanced_set_shell_option pipefail\
+    && trap 'enhanced_unset_shell_option pipefail' RETURN
 
   local LFBFL_data_file_name=\
 "build_and_checks_variables/repository_data.txt"

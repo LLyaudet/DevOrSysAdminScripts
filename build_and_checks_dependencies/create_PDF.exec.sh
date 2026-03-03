@@ -51,7 +51,8 @@ create_PDF(){
     && trap 'popd_from_work_directory' RETURN
   can_continue_after_enhanced_pushd || return
 
-  enhanced_set_pipefail && trap 'enhanced_unset_pipefail' RETURN
+  enhanced_set_shell_option pipefail\
+    && trap 'enhanced_unset_shell_option pipefail' RETURN
 
   local LFBFL_subdir2="build_and_checks_variables"
   local LFBFL_data_file_name="${LFBFL_subdir2}/repository_data.txt"

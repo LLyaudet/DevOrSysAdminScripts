@@ -45,7 +45,8 @@ build_licenses_templates(){
   local LFBFL_work_directory=""
   get_work_directory_option "$@"
 
-  enhanced_set_pipefail && trap 'enhanced_unset_pipefail' RETURN
+  enhanced_set_shell_option pipefail\
+    && trap 'enhanced_unset_shell_option pipefail' RETURN
 
   # Source
   local LFBFL_license_source_subdir

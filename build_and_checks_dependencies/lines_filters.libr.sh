@@ -49,7 +49,8 @@ ll_wc(){
   # -n --no-filenames display only number(s)
   # I think I did that the first time many years ago (Teliae ?).
   # Since then, they added it as ignored... (-n)
-  enhanced_set_pipefail && trap 'enhanced_unset_pipefail' RETURN
+  enhanced_set_shell_option pipefail\
+    && trap 'enhanced_unset_shell_option pipefail' RETURN
   declare -a ll_wc_var_args=()
   declare -i ll_wc_var_number_only=0
   declare -i ll_wc_var_i=0
@@ -316,7 +317,8 @@ not_temp_file_grep(){
 }
 
 relevant_find(){
-  enhanced_set_pipefail && trap 'enhanced_unset_pipefail' RETURN
+  enhanced_set_shell_option pipefail\
+    && trap 'enhanced_unset_shell_option pipefail' RETURN
   not_dependencies_find\
     | not_cache_find\
     | not_git_find\
@@ -325,7 +327,8 @@ relevant_find(){
 }
 
 relevant_grep(){
-  enhanced_set_pipefail && trap 'enhanced_unset_pipefail' RETURN
+  enhanced_set_shell_option pipefail\
+    && trap 'enhanced_unset_shell_option pipefail' RETURN
   not_dependencies_grep\
     | not_cache_grep\
     | not_git_grep\

@@ -293,6 +293,39 @@ common_build_and_checks(){
   enhanced_set_shell_option pipefail\
     && trap 'enhanced_unset_shell_option pipefail' RETURN
 
+  echo "Building license headers"
+  "./${LFBFL_subdir2}/build_licenses_templates.exec.sh"\
+    "${LFBFL_some_common_options[@]}"
+
+  echo "Building README.md"
+  "./${LFBFL_subdir}/build_md_from_printable_md.exec.sh"\
+    "--work-directory=${LFBFL_work_directory}"\
+    "--base-name=README"\
+    "${LFBFL_verbose}"
+
+  echo "Building other MarkDown files"
+  local LFBFL_some_directory
+  declare -r LFBFL_readme="${LFBFL_work_directory}/README.md.tpl"
+  find "${LFBFL_work_directory}" -name "*.md.tpl"\
+    | relevant_find\
+    | while read -r LFBFL_file_path;
+  do
+    [[ "${LFBFL_file_path}" == "${LFBFL_readme}" ]] && continue
+    echo "Found template ${LFBFL_file_path}"
+    LFBFL_some_directory=$(dirname "${LFBFL_file_path}")
+    LFBFL_file_name=$(basename "${LFBFL_file_path}")
+    LFBFL_file_name=${LFBFL_file_name%.md.tpl}
+    "./${LFBFL_subdir}/build_md_from_printable_md.exec.sh"\
+      "--work-directory=${LFBFL_some_directory}"\
+      "--base-name=${LFBFL_file_name}"\
+      "${LFBFL_verbose}"
+  done
+
+  declare -i LFBFL_will_popd
+  pushd_to_work_directory
+  LFBFL_will_popd=$?
+  can_continue_after_enhanced_pushd || return
+
   local LFBFL_data_file_name=\
 "build_and_checks_variables/repository_data.txt"
 
@@ -337,39 +370,6 @@ common_build_and_checks(){
       fi
     fi
   fi
-
-  echo "Building license headers"
-  "./${LFBFL_subdir2}/build_licenses_templates.exec.sh"\
-    "${LFBFL_some_common_options[@]}"
-
-  echo "Building README.md"
-  "./${LFBFL_subdir}/build_md_from_printable_md.exec.sh"\
-    "--work-directory=${LFBFL_work_directory}"\
-    "--base-name=README"\
-    "${LFBFL_verbose}"
-
-  echo "Building other MarkDown files"
-  local LFBFL_some_directory
-  declare -r LFBFL_readme="${LFBFL_work_directory}/README.md.tpl"
-  find "${LFBFL_work_directory}" -name "*.md.tpl"\
-    | relevant_find\
-    | while read -r LFBFL_file_path;
-  do
-    [[ "${LFBFL_file_path}" == "${LFBFL_readme}" ]] && continue
-    echo "Found template ${LFBFL_file_path}"
-    LFBFL_some_directory=$(dirname "${LFBFL_file_path}")
-    LFBFL_file_name=$(basename "${LFBFL_file_path}")
-    LFBFL_file_name=${LFBFL_file_name%.md.tpl}
-    "./${LFBFL_subdir}/build_md_from_printable_md.exec.sh"\
-      "--work-directory=${LFBFL_some_directory}"\
-      "--base-name=${LFBFL_file_name}"\
-      "${LFBFL_verbose}"
-  done
-
-  declare -i LFBFL_will_popd
-  pushd_to_work_directory
-  LFBFL_will_popd=$?
-  can_continue_after_enhanced_pushd || return
 
   echo "Running shellcheck"
   find . -name "*.sh"\

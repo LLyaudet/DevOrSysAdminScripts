@@ -25,6 +25,8 @@
 # to "build_licenses_templates.exec.sh".
 
 LFBFL_subdir="build_and_checks_dependencies"
+# shellcheck source=check_shell_scripts_beginnings.libr.sh
+source "./${LFBFL_subdir}/check_shell_scripts_beginnings.libr.sh"
 # shellcheck source=common_options.libr.sh
 source "./${LFBFL_subdir}/common_options.libr.sh"
 # shellcheck source=comparisons.libr.sh
@@ -162,8 +164,10 @@ build_licenses_templates(){
       LFBFL_intermediate_file_name+="${LFBFL_temp2}"
       LFBFL_file_prefix=""
       if [[ "${LFBFL_extension}" == "sh" ]]; then
-        LFBFL_file_prefix="#!/usr/bin/env bash"
+        LFBFL_file_prefix="${LFBFL_SHELL_SCRIPT_BEGINNING}"
       fi
+      # The sed command is here to remove trailing spaces of previously
+      # empty lines after comment prefix is added to the line.
       generate_from_template_with_line_comments\
         "${LFBFL_license_prefix}.tpl"\
         "${LFBFL_license_file_name}.tpl"\

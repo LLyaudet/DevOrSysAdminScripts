@@ -21,8 +21,6 @@
 # If not, see <https://www.gnu.org/licenses/>.
 #
 # ©Copyright 2023-2026 Laurent Frédéric Bernard François Lyaudet
-# This file was renamed from "check_shell_scripts_beginnings.sh"
-# to "check_shell_scripts_beginnings.libr.sh".
 
 # shellcheck source=common_options.libr.sh
 source "./build_and_checks_dependencies/common_options.libr.sh"

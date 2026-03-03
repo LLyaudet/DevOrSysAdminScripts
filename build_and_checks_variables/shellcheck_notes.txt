@@ -21,6 +21,11 @@ A listing of the current suppressed warnings/errors from shellcheck:
            False positive when returning integer variable
            via an indirection like return ${!foo}.
            See SC2248 below and the corresponding issue on GitHub.
+- SC2119 : Use foo "$@" if function's $1 should mean script's $1.
+           False positive when passing arguments would yield
+           a wrong result.
+- SC2120 : foo references arguments, but none are ever passed.
+           False positives when some arguments are meant for debug in CLI.
 - SC2125 : Brace expansions and globs are literal.
            False positive when assigning a variable declared with -i.
            https://github.com/koalaman/shellcheck/issues/914
@@ -50,6 +55,6 @@ A listing of the current suppressed warnings/errors from shellcheck:
 The command to check if there is anything else:
 grep -r "shellcheck disable" . | grep -v -e '.git' -e "=SC1090$"\
   -e "=SC1091$" -e "=SC1090,SC1091$" -e "=SC1111$" -e "=SC2001$"\
-  -e "=SC2034$" -e "=SC2086$" -e "=SC2125$" -e "=SC2145$" -e "=SC2154$"\
-  -e "=SC2162$" -e "=SC2248$" -e "=SC2309$" -e "=SC2312$"\
-  -e "=SC2154,SC2309$" -e "=SC2162,SC2312$"
+  -e "=SC2034$" -e "=SC2086$" -e "=SC2119$" -e "=SC2120$" -e "=SC2125$"\
+  -e "=SC2145$" -e "=SC2154$" -e "=SC2162$" -e "=SC2248$" -e "=SC2309$"\
+  -e "=SC2312$" -e "=SC2154,SC2309$" -e "=SC2162,SC2312$"

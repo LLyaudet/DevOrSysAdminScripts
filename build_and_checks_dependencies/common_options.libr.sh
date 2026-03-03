@@ -83,6 +83,7 @@ enhanced_pushd(){
     return ${enhanced_pushd_result}
   }
   [[ LFBFL_i_verbose -eq 1 ]] && echo "enhanced_pushd executed"
+  # shellcheck disable=SC2248
   return ${enhanced_pushd_result}
 }
 
@@ -222,7 +223,8 @@ enhanced_set_shell_option(){
   declare -gi "${LFBFL_result_name}"=0
   if [[ -o "$1" ]]; then
     printf -v "${LFBFL_result_name}" "%d" "1"
-    return "${!LFBFL_result_name}"
+    # shellcheck disable=SC2086
+    return ${!LFBFL_result_name}
   fi
   set -o "$1"
   if [[ LFBFL_i_verbose -eq 1 ]]; then
@@ -230,7 +232,8 @@ enhanced_set_shell_option(){
     get_where_was_i 2
     echo "${LFBFL_where_was_i} $1 shell option activated."
   fi
-  return "${!LFBFL_result_name}"
+  # shellcheck disable=SC2086
+  return ${!LFBFL_result_name}
 }
 
 enhanced_unset_shell_option(){
@@ -239,7 +242,8 @@ enhanced_unset_shell_option(){
   declare -gi "${LFBFL_result_name}"=0
   if [[ ! -o "$1" ]]; then
     printf -v "${LFBFL_result_name}" "%d" "1"
-    return "${!LFBFL_result_name}"
+    # shellcheck disable=SC2086
+    return ${!LFBFL_result_name}
   fi
   set +o "$1"
   if [[ LFBFL_i_verbose -eq 1 ]]; then
@@ -247,7 +251,8 @@ enhanced_unset_shell_option(){
     get_where_was_i 2
     echo "${LFBFL_where_was_i} $1 shell option unactivated."
   fi
-  return "${!LFBFL_result_name}"
+  # shellcheck disable=SC2086
+  return ${!LFBFL_result_name}
 }
 
 enhanced_set_bash_option(){
@@ -258,7 +263,8 @@ enhanced_set_bash_option(){
   # if [[ "${BASHOPTS}" =~ ${LFBFL_regexp} ]]; then
   if shopt -q "$1"; then
     printf -v "${LFBFL_result_name}" "%d" "1"
-    return "${!LFBFL_result_name}"
+    # shellcheck disable=SC2086
+    return ${!LFBFL_result_name}
   fi
   shopt -s "$1"
   if [[ LFBFL_i_verbose -eq 1 ]]; then
@@ -266,7 +272,8 @@ enhanced_set_bash_option(){
     get_where_was_i 2
     echo "${LFBFL_where_was_i} $1 bash option activated."
   fi
-  return "${!LFBFL_result_name}"
+  # shellcheck disable=SC2086
+  return ${!LFBFL_result_name}
 }
 
 enhanced_unset_bash_option(){
@@ -275,7 +282,8 @@ enhanced_unset_bash_option(){
   declare -gi "${LFBFL_result_name}"=0
   if ! shopt -q "$1"; then
     printf -v "${LFBFL_result_name}" "%d" "1"
-    return "${!LFBFL_result_name}"
+    # shellcheck disable=SC2086
+    return ${!LFBFL_result_name}
   fi
   shopt -u "$1"
   if [[ LFBFL_i_verbose -eq 1 ]]; then
@@ -283,5 +291,6 @@ enhanced_unset_bash_option(){
     get_where_was_i 2
     echo "${LFBFL_where_was_i} $1 bash option unactivated."
   fi
-  return "${!LFBFL_result_name}"
+  # shellcheck disable=SC2086
+  return ${!LFBFL_result_name}
 }

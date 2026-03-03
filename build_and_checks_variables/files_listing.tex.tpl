@@ -290,6 +290,18 @@ build_and_checks_dependencies/python_isort_complement.libr.sh
 
 
 \subsection{
+  build\_and\_checks\_dependencies/repository\_data.libr.sh
+}
+\label{
+  build_and_checks_dependencies:repository_datalibrsh
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+build_and_checks_dependencies/repository_data.libr.sh
+}
+
+
+\subsection{
   build\_and\_checks\_dependencies/split\_score.exec.php
 }
 \label{
@@ -648,6 +660,18 @@ IMAP_transfert.py
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
 LiensUtiles.txt
+}
+
+
+\subsection{
+  miscellaneous/spampty\_data.txt
+}
+\label{
+  miscellaneous:spampty_datatxt
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+miscellaneous/spampty_data.txt
 }
 
 

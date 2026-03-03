@@ -74,13 +74,13 @@ Some “small” useful scripts
 for enhancing development or system-administrators tasks
 \end{abstract}
 
-Current version: 2026-03-02
+Current version: 2026-03-03
 
-Current number of commits: 468
+Current number of commits: 505
 
-Current git SHA1: 6a0b1155cdd132511c62354967d09a953b4d9f1a
+Current git SHA1: 1534e38a62ed970b6dee54351d8f4902d79e828f
 
-Code lines: 8985 total lines, 8115 not empty lines, 870 empty lines.
+Code lines: 9378 total lines, 8468 not empty lines, 910 empty lines.
 
 \tableofcontents
 \newpage
@@ -115,6 +115,7 @@ Code lines: 8985 total lines, 8115 not empty lines, 870 empty lines.
 │   ├── overwrite_if_not_equal.libr.sh
 │   ├── python_black_complement.libr.sh
 │   ├── python_isort_complement.libr.sh
+│   ├── repository_data.libr.sh
 │   ├── split_score.exec.php
 │   ├── split_score.libr.php
 │   ├── strings_functions.libr.sh
@@ -150,6 +151,8 @@ Code lines: 8985 total lines, 8115 not empty lines, 870 empty lines.
 │   └── pre-commit
 ├── IMAP_transfert.py
 ├── LiensUtiles.txt
+├── miscellaneous
+│   └── spampty_data.txt
 ├── README.html
 ├── README.md
 ├── README.md.tpl
@@ -157,71 +160,74 @@ Code lines: 8985 total lines, 8115 not empty lines, 870 empty lines.
 ├── upgrade_build_and_checks.exec.sh
 └── wget_sha512.libr.sh
 
-5 directories, 62 files
+6 directories, 64 files
 \end{verbatim}
 
 \begin{verbatim}
-[ 12K Mar  2 20:14]  ./
-├── [4.0K Mar  2 20:14]  build_and_checks_dependencies/
+[ 12K Mar  3 21:00]  ./
+├── [4.0K Mar  3 21:00]  build_and_checks_dependencies/
 │   ├── [3.8K Mar  2 18:25]  build_and_checks.exec.sh.tpl*
 │   ├── [3.8K Mar  2 19:19]  build_md_from_printable_md.exec.sh*
-│   ├── [2.6K Mar  2 19:19]  check_shell_scripts_beginnings.libr.sh
-│   ├── [4.5K Mar  2 19:19]  check_shell_scripts_indentation.libr.sh
-│   ├── [3.1K Mar  2 19:48]  check_URLs.libr.sh
-│   ├── [ 28K Mar  2 20:14]  common_build_and_checks.exec.sh*
-│   ├── [ 23K Mar  2 20:03]  common_build_and_checks.exec.sh.tpl
-│   ├── [6.7K Mar  2 20:01]  common_options.libr.sh
-│   ├── [4.8K Mar  2 19:58]  comparisons.libr.sh
-│   ├── [ 18K Mar  2 19:54]  create_PDF.exec.sh*
+│   ├── [2.8K Mar  3 08:41]  check_shell_scripts_beginnings.libr.sh
+│   ├── [4.7K Mar  3 08:41]  check_shell_scripts_indentation.libr.sh
+│   ├── [3.1K Mar  3 10:22]  check_URLs.libr.sh
+│   ├── [ 29K Mar  3 20:54]  common_build_and_checks.exec.sh*
+│   ├── [ 24K Mar  3 18:32]  common_build_and_checks.exec.sh.tpl
+│   ├── [9.0K Mar  3 16:14]  common_options.libr.sh
+│   ├── [4.8K Mar  3 19:09]  comparisons.libr.sh
+│   ├── [ 18K Mar  3 19:03]  create_PDF.exec.sh*
 │   ├── [3.3K Feb 19 18:48]  generate_from_template.libr.sh
 │   ├── [1.9K Feb 19 17:18]  get_common_text_glob_patterns.libr.sh
-│   ├── [2.4K Mar  2 19:51]  grammar_and_spell_check.libr.sh
-│   ├── [4.0K Mar  2 19:48]  licenses_templates/
-│   │   ├── [ 12K Mar  2 19:48]  build_licenses_templates.exec.sh*
+│   ├── [2.4K Mar  3 10:22]  grammar_and_spell_check.libr.sh
+│   ├── [4.0K Mar  3 19:13]  licenses_templates/
+│   │   ├── [ 13K Mar  3 19:13]  build_licenses_templates.exec.sh*
 │   │   ├── [ 728 Feb 28 20:38]  license_file_header_AGPLv3+.tpl
 │   │   ├── [ 707 Feb 28 20:38]  license_file_header_GPLv3+.tpl
 │   │   └── [ 728 Feb 28 20:38]  license_file_header_LGPLv3+.tpl
-│   ├── [3.8K Mar  2 20:12]  lines_counts.libr.sh
-│   ├── [8.8K Mar  2 19:58]  lines_filters.libr.sh
+│   ├── [4.8K Mar  3 18:49]  lines_counts.libr.sh
+│   ├── [ 10K Mar  3 20:10]  lines_filters.libr.sh
 │   ├── [2.7K Feb 19 16:16]  lines_maps.libr.sh
 │   ├── [1.8K Feb 26 16:58]  overwrite_if_not_equal.libr.sh
-│   ├── [2.2K Mar  2 19:19]  python_black_complement.libr.sh
-│   ├── [2.5K Mar  2 19:53]  python_isort_complement.libr.sh
+│   ├── [2.3K Mar  3 10:30]  python_black_complement.libr.sh
+│   ├── [2.6K Mar  3 10:22]  python_isort_complement.libr.sh
+│   ├── [2.0K Mar  3 17:16]  repository_data.libr.sh
 │   ├── [1.6K Feb  3 17:57]  split_score.exec.php
 │   ├── [1.9K Feb  3 20:11]  split_score.libr.php
-│   ├── [ 12K Mar  2 19:49]  strings_functions.libr.sh
-│   ├── [3.4K Mar  2 19:48]  too_long_code_lines.libr.sh
-│   ├── [4.1K Mar  1 22:38]  update_common_build_and_checks.exec.sh*
-│   └── [5.0K Mar  2 19:49]  update_or_check_files_names_listing.exec.sh*
-├── [4.0K Mar  2 20:14]  build_and_checks.exec.sh*
-├── [4.0K Mar  2 20:14]  build_and_checks_variables/
+│   ├── [ 13K Mar  3 20:35]  strings_functions.libr.sh
+│   ├── [3.4K Mar  3 10:22]  too_long_code_lines.libr.sh
+│   ├── [4.2K Mar  3 17:18]  update_common_build_and_checks.exec.sh*
+│   └── [5.0K Mar  3 20:41]  update_or_check_files_names_listing.exec.sh*
+├── [4.0K Mar  3 20:54]  build_and_checks.exec.sh*
+├── [4.0K Mar  3 21:00]  build_and_checks_variables/
 │   ├── [  15 Jan  5 20:00]  bandit_baseline.json
 │   ├── [  25 Jan  5 18:49]  bandit.ini
 │   ├── [  30 Feb 28 20:30]  black.toml
 │   ├── [ 16K Mar  2 12:57]  DevOrSysAdminScripts.html.tpl
-│   ├── [ 28K Mar  2 20:03]  DevOrSysAdminScripts.tex
+│   ├── [ 29K Mar  3 20:54]  DevOrSysAdminScripts.tex
 │   ├── [8.5K Mar  2 13:01]  DevOrSysAdminScripts.tex.tpl
-│   ├── [ 13K Mar  2 15:42]  files_listing.tex.tpl
-│   ├── [4.1K Mar  1 22:37]  files_names_listing.txt
+│   ├── [ 13K Mar  3 20:54]  files_listing.tex.tpl
+│   ├── [4.1K Mar  3 20:39]  files_names_listing.txt
 │   ├── [  24 Jan 15 22:26]  .gitignore
 │   ├── [4.9K Mar  2 12:48]  licenses_notes.txt
 │   ├── [1001 Feb 26 15:37]  phpmd_baseline.xml
 │   ├── [ 678 Feb 24 22:38]  pylintrc.toml
-│   ├── [4.4K Feb 28 20:28]  repository_data.txt
+│   ├── [4.4K Mar  3 20:47]  repository_data.txt
 │   ├── [1.4K Feb 24 23:25]  ruff.toml
 │   ├── [ 167 Feb 19 18:39]  shellcheck.ini
-│   └── [2.1K Feb 19 19:36]  shellcheck_notes.txt
+│   └── [3.1K Mar  3 18:56]  shellcheck_notes.txt
 ├── [ 34K May  6  2024]  COPYING
 ├── [7.5K Dec 27 21:48]  COPYING.LESSER
-├── [353K Mar  2 20:03]  DevOrSysAdminScripts.html
-├── [323K Mar  2 20:03]  DevOrSysAdminScripts.pdf
-├── [4.0K Feb 27 20:20]  git_helpers/
-│   ├── [3.5K Feb 19 17:00]  git_checks.libr.sh
-│   ├── [1.8K Feb 27 20:20]  post-commit
-│   ├── [ 13K Feb 26 19:35]  post_commit_renaming_comment.libr.sh
-│   └── [1.4K Feb 19 18:42]  pre-commit
+├── [367K Mar  3 20:54]  DevOrSysAdminScripts.html
+├── [333K Mar  3 20:54]  DevOrSysAdminScripts.pdf
+├── [4.0K Mar  3 20:51]  git_helpers/
+│   ├── [3.8K Mar  3 20:51]  git_checks.libr.sh
+│   ├── [1.8K Feb 27 20:20]  post-commit*
+│   ├── [ 13K Mar  3 10:50]  post_commit_renaming_comment.libr.sh
+│   └── [1.4K Feb 19 18:42]  pre-commit*
 ├── [8.3K Feb 28 20:31]  IMAP_transfert.py
 ├── [ 830 Dec 29 19:10]  LiensUtiles.txt
+├── [4.0K Mar  3 19:56]  miscellaneous/
+│   └── [  94 Mar  3 19:56]  spampty_data.txt
 ├── [7.4K Mar  1 22:30]  README.html
 ├── [3.7K Mar  1 22:30]  README.md
 ├── [3.7K Mar  1 22:29]  README.md.tpl
@@ -229,7 +235,7 @@ Code lines: 8985 total lines, 8115 not empty lines, 870 empty lines.
 ├── [1.4K Feb  3 14:19]  upgrade_build_and_checks.exec.sh*
 └── [1.4K Feb 19 14:41]  wget_sha512.libr.sh
 
-5 directories, 62 files
+6 directories, 64 files
 \end{verbatim}
 
 \section{Listing of files}
@@ -690,6 +696,18 @@ build_and_checks_dependencies/python_isort_complement.libr.sh
 
 
 \subsection{
+  build\_and\_checks\_dependencies/repository\_data.libr.sh
+}
+\label{
+  build_and_checks_dependencies:repository_datalibrsh
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+build_and_checks_dependencies/repository_data.libr.sh
+}
+
+
+\subsection{
   build\_and\_checks\_dependencies/split\_score.exec.php
 }
 \label{
@@ -1048,6 +1066,18 @@ IMAP_transfert.py
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
 LiensUtiles.txt
+}
+
+
+\subsection{
+  miscellaneous/spampty\_data.txt
+}
+\label{
+  miscellaneous:spampty_datatxt
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+miscellaneous/spampty_data.txt
 }
 
 

@@ -1,0 +1,8 @@
+
+ 
+a
+ a
+empty.txt:
+space.txt: 
+normal.txt:a
+normal_again.txt: a

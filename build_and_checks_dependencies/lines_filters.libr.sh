@@ -185,11 +185,21 @@ not_empty_lines(){
 }
 
 space_starting_lines(){
-  grep '^[ ]'
+  grep '^ '
 }
 
 not_space_starting_lines(){
+  grep -v '^ '
+}
+
+# Space starting or empty lines = spampty
+spampty_lines(){
+  grep -E '^( |$)'
+}
+
+not_spampty_lines(){
   grep '^[^ ]'
+  # grep -v -E '^( |$)'
 }
 
 empty_lines_after_file_name(){
@@ -205,8 +215,25 @@ space_starting_lines_after_file_name(){
 }
 
 not_space_starting_lines_after_file_name(){
-  grep '^[^:]\+:[^ ]'
+  grep -v '^[^:]\+: '
 }
+
+spampty_lines_after_file_name(){
+  grep -E '^[^:]+:( |$)'
+}
+
+not_spampty_lines_after_file_name(){
+  # The two variants results differ on lines without filename before.
+  # Since the intent of the function is only on lines "blabla.sh:whatever",
+  # use the fastest one. I didn't do extensive testing and just assumed
+  # that the "positive" one is faster as usual when querying database.
+  # But there is no index here ;) XD.
+  grep '^[^:]\+:[^ ]'
+  # grep -v -E '^[^:]+:( |$)'
+}
+
+# If you need to test the previous 12 functions,
+# look at file spampty_data.txt in miscellaneous.
 
 not_JS_dependencies_find(){
   grep -vE -e "(^|/)node_modules/"\

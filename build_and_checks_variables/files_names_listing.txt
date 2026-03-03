@@ -93,6 +93,7 @@ git_helpers/post_commit_renaming_comment.libr.sh
 git_helpers/pre-commit
 IMAP_transfert.py
 LiensUtiles.txt
+miscellaneous/spampty_data.txt
 // README.html
 // README.md
 README.md.tpl

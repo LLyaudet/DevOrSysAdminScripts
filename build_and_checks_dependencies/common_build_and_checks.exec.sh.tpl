@@ -36,6 +36,8 @@ common_build_and_checks(){
   # $3 optional --verbose
   local LFBFL_work_directory="${1:-.}"
   LFBFL_work_directory=$(realpath "${LFBFL_work_directory}")
+  local LFBFL_work_directory_option="--work-directory="
+  LFBFL_work_directory_option+="${LFBFL_work_directory}"
   # declare -r LFBFL_dependencies_URL="$2" too long
   declare -r LFBFL_start_URL="$2"
   local LFBFL_verbose=""
@@ -342,7 +344,8 @@ common_build_and_checks(){
   fi
 
   echo "Building license headers"
-  "./${LFBFL_subdir2}/build_licenses_templates.exec.sh" "$@"
+  "./${LFBFL_subdir2}/build_licenses_templates.exec.sh" "$@" \
+    "${LFBFL_work_directory_option}"
 
   echo "Building README.md"
   "./${LFBFL_subdir}/build_md_from_printable_md.exec.sh"\
@@ -368,8 +371,9 @@ common_build_and_checks(){
       "${LFBFL_verbose}"
   done
 
-  pushd_to_work_directory\
-    && trap 'popd_from_work_directory' RETURN
+  declare -i LFBFL_will_popd
+  pushd_to_work_directory
+  LFBFL_will_popd=$?
   can_continue_after_enhanced_pushd || return
 
   echo "Running shellcheck"
@@ -603,11 +607,19 @@ common_build_and_checks(){
   grep --exclude-dir .git --binary-files=without-match --color=always\
     -nPr "[^${LFBFL_usual_characters}]" .
 
+  [[ LFBFL_will_popd -eq 0 ]] && popd_from_work_directory
+
   echo "Checking listed files"
-  "./${LFBFL_subdir}/update_or_check_files_names_listing.exec.sh"
+  "./${LFBFL_subdir}/update_or_check_files_names_listing.exec.sh" "$@" \
+    "${LFBFL_work_directory_option}"
 
   echo "Creating the PDF file of the listing of the source code"
-  "./${LFBFL_subdir}/create_PDF.exec.sh" "${LFBFL_verbose}"
+  "./${LFBFL_subdir}/create_PDF.exec.sh" "${LFBFL_verbose}" "$@" \
+    "${LFBFL_work_directory_option}"
+
+  pushd_to_work_directory\
+    && trap 'popd_from_work_directory' RETURN
+  can_continue_after_enhanced_pushd || return
 
   if [[ -f "build_and_checks_variables/post_build.sh" ]]; then
     ./build_and_checks_variables/post_build.sh

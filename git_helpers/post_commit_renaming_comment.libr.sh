@@ -44,6 +44,8 @@ cd "${LFBFL_some_directory}" || {
   # shellcheck disable=SC2248
   exit ${LFBFL_cd_result2}
 }
+# shellcheck source=common_options.libr.sh
+source "build_and_checks_dependencies/common_options.libr.sh"
 # shellcheck source=strings_functions.libr.sh
 source "build_and_checks_dependencies/strings_functions.libr.sh"
 declare -i LFBFL_popd_result2
@@ -63,19 +65,15 @@ popd || {
 # It assumes that `diff` is the current default difference utility
 # parametered with `git`. This point could be enhanced.
 commit_a_file_renamed_comment(){
+  # Options:
+  #   --verbose
+  #   --log-directory-change
+  #   --max-comment-line-length
+  declare -i LFBFL_i_verbose=0
+  get_verbose_option "$@"
+  local LFBFL_work_directory=""
+  get_work_directory_option "$@"
   local LFBFL_arg
-  declare -i LFBFL_verbose=0
-  if [[ "$*" == *--verbose* ]]; then
-    echo "$0 commit_a_file_renamed_comment $*"
-    LFBFL_verbose=1
-  fi
-  readonly LFBFL_verbose
-
-  if [[ ! -o pipefail ]]; then
-    [[ LFBFL_verbose -eq 1 ]] && echo "pipefail option activated"
-    set -o pipefail
-    trap 'set +o pipefail' RETURN
-  fi
 
   declare -i LFBFL_log_directory_change=0
   if [[ "$*" == *--log-directory-change* ]]; then
@@ -99,6 +97,9 @@ commit_a_file_renamed_comment(){
       "${LFBFL_max_comment_line_length}"
   fi
   #-------------------------------------------------------------------
+
+  enhanced_set_shell_option pipefail\
+    && trap 'enhanced_unset_shell_option pipefail' RETURN
 
   declare -r LFBFL_renaming_lines=$(
     git log -p -1\

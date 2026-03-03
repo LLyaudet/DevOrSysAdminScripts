@@ -246,8 +246,9 @@ enhanced_unset_shell_option(){
 
 enhanced_set_bash_option(){
   # $1=optname some bash option for shopt
-  declare -r LFBFL_regexp="^(.*:)?$1(:.*)?$"
-  if [[ "${BASHOPTS}" =~ ${LFBFL_regexp} ]]; then
+  # declare -r LFBFL_regexp="^(.*:)?$1(:.*)?$" funny but brainfucked
+  # if [[ "${BASHOPTS}" =~ ${LFBFL_regexp} ]]; then
+  if shopt -q "$1"; then
     return 1
   fi
   shopt -s "$1"
@@ -261,8 +262,7 @@ enhanced_set_bash_option(){
 
 enhanced_unset_bash_option(){
   # $1=optname some bash option for shopt
-  declare -r LFBFL_regexp="^(.*:)?$1(:.*)?$"
-  if [[ ! "${BASHOPTS}" =~ ${LFBFL_regexp} ]]; then
+  if ! shopt -q "$1"; then
     return 1
   fi
   shopt -u "$1"

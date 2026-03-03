@@ -94,7 +94,7 @@ all_distinct2(){
 all_distinct3(){
   # Returns 1 if all the arguments strings are distinct.
   # This is the fastest of all 3; but note that version 2 is faster
-  # than this one if a call to sort is added.
+  # than this one if a call to sort is added to this one.
   if [[ $# -eq 0 ]]; then
     return 1
   fi

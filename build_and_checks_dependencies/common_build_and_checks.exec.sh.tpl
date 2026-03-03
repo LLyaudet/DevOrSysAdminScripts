@@ -301,11 +301,16 @@ common_build_and_checks(){
   grep_variable "${LFBFL_data_file_name}"\
     upgrade_venvs_time_interval_in_seconds\
     --result-variable-prefix="LFBFL_"
+  enhanced_set_bash_option extglob
   case ${LFBFL_upgrade_venvs_time_interval_in_seconds} in
     wat) LFBFL_upgrade_venvs_time_interval_in_seconds=${RANDOM};;
-    watyouwant?) LFBFL_upgrade_venvs_time_interval_in_seconds=${SRANDOM};;
+    watyouwant\?) LFBFL_upgrade_venvs_time_interval_in_seconds=${SRANDOM};;
+    +([0-9])) : ;;
     *) echo "No wat for you?";; #TempsDeCerveauDisponible XD SC2249 ;)
   esac
+  # shellcheck disable=SC2154,SC2309
+  [[ enhanced_set_bash_option_extglob_result -eq 0 ]]\
+    && enhanced_unset_bash_option extglob
 
   if [[ -f "${LFBFL_upgrade_venvs_ts_file}" ]]; then
     LFBFL_upgrade_venvs_ts=$(

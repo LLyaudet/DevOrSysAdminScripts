@@ -101,9 +101,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='901d834ce1eaad52b10bef1e0b0a306fff995cab94f19'
-  LFBFL_correct_sha512+='b2c605908c8786330a57cff2d9ac1df60197ef8a2344'
-  LFBFL_correct_sha512+='661bf6644bfb35e3b4234452956b2ffa69d3804'
+  LFBFL_correct_sha512='1c5b17cbbeb7d3018f4d1bf1ce2d4c7452ce3fa8557c2'
+  LFBFL_correct_sha512+='a2391c448181b51e336c03fafdb1c51b9d7168837773'
+  LFBFL_correct_sha512+='fe15a1235ada2337efae17e54e71e99ec313760'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
@@ -376,11 +376,16 @@ common_build_and_checks(){
   grep_variable "${LFBFL_data_file_name}"\
     upgrade_venvs_time_interval_in_seconds\
     --result-variable-prefix="LFBFL_"
+  enhanced_set_bash_option extglob
   case ${LFBFL_upgrade_venvs_time_interval_in_seconds} in
     wat) LFBFL_upgrade_venvs_time_interval_in_seconds=${RANDOM};;
-    watyouwant?) LFBFL_upgrade_venvs_time_interval_in_seconds=${SRANDOM};;
+    watyouwant\?) LFBFL_upgrade_venvs_time_interval_in_seconds=${SRANDOM};;
+    +([0-9])) : ;;
     *) echo "No wat for you?";; #TempsDeCerveauDisponible XD SC2249 ;)
   esac
+  # shellcheck disable=SC2154,SC2309
+  [[ enhanced_set_bash_option_extglob_result -eq 0 ]]\
+    && enhanced_unset_bash_option extglob
 
   if [[ -f "${LFBFL_upgrade_venvs_ts_file}" ]]; then
     LFBFL_upgrade_venvs_ts=$(

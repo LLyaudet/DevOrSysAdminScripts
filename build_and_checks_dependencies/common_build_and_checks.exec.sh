@@ -36,8 +36,6 @@ common_build_and_checks(){
   # $3 optional --verbose
   local LFBFL_work_directory="${1:-.}"
   LFBFL_work_directory=$(realpath "${LFBFL_work_directory}")
-  local LFBFL_work_directory_option="--work-directory="
-  LFBFL_work_directory_option+="${LFBFL_work_directory}"
   # declare -r LFBFL_dependencies_URL="$2" too long
   declare -r LFBFL_start_URL="$2"
   local LFBFL_verbose=""
@@ -49,6 +47,10 @@ common_build_and_checks(){
   fi
   readonly LFBFL_verbose
   readonly LFBFL_i_verbose
+  declare -ar LFBFL_some_common_options=(
+    "${LFBFL_verbose}"
+    "$--work-directory={LFBFL_work_directory}"
+  )
 
   source ./wget_sha512.libr.sh
 
@@ -392,7 +394,8 @@ common_build_and_checks(){
   local LFBFL_upgrade_venvs_answer
 
   local LFBFL_upgrade_venvs_time_interval_in_seconds=""
-  get_upgrade_venvs_time_interval_in_seconds "${LFBFL_data_file_name}" "$@"
+  get_upgrade_venvs_time_interval_in_seconds "${LFBFL_data_file_name}"\
+    "${LFBFL_some_common_options[@]}"
 
   if [[ -f "${LFBFL_upgrade_venvs_ts_file}" ]]; then
     LFBFL_upgrade_venvs_ts=$(
@@ -422,8 +425,8 @@ common_build_and_checks(){
   fi
 
   echo "Building license headers"
-  "./${LFBFL_subdir2}/build_licenses_templates.exec.sh" "$@" \
-    "${LFBFL_work_directory_option}"
+  "./${LFBFL_subdir2}/build_licenses_templates.exec.sh"\
+    "${LFBFL_some_common_options[@]}"
 
   echo "Building README.md"
   "./${LFBFL_subdir}/build_md_from_printable_md.exec.sh"\
@@ -485,7 +488,7 @@ common_build_and_checks(){
     deactivate
   fi
   echo "Running python_isort_complement"
-  python_isort_complement "$@"
+  python_isort_complement "${LFBFL_some_common_options[@]}"
 
   echo "Running black"
   local LFBFL_black_venv=""
@@ -508,7 +511,7 @@ common_build_and_checks(){
     deactivate
   fi
   echo "Running python_black_complement"
-  python_black_complement "$@"
+  python_black_complement "${LFBFL_some_common_options[@]}"
 
   echo "Probing if mypy should be runned"
   local LFBFL_mypy_venv=""
@@ -664,19 +667,19 @@ common_build_and_checks(){
 
   echo "Analyzing too long lines"
   # shellcheck disable=SC2248
-  too_long_code_lines "${LFBFL_verbose}"\
+  too_long_code_lines "${LFBFL_some_common_options[@]}" \
     --max-line-length=${LFBFL_max_line_length}
 
   echo "Analyzing shell scripts beginnings"
-  check_shell_scripts_beginnings "${LFBFL_verbose}"\
+  check_shell_scripts_beginnings "${LFBFL_some_common_options[@]}" \
     | relevant_grep
 
   echo "Analyzing shell scripts indentation"
-  check_shell_scripts_indentation "${LFBFL_verbose}"\
+  check_shell_scripts_indentation "${LFBFL_some_common_options[@]}" \
     | relevant_grep
 
   echo "Analyzing URLs"
-  check_URLs "$@" \
+  check_URLs "${LFBFL_some_common_options[@]}" \
     | relevant_grep
 
   echo "Analyzing strange characters: hover over in doubt"
@@ -688,12 +691,11 @@ common_build_and_checks(){
   [[ LFBFL_will_popd -eq 0 ]] && popd_from_work_directory
 
   echo "Checking listed files"
-  "./${LFBFL_subdir}/update_or_check_files_names_listing.exec.sh" "$@" \
-    "${LFBFL_work_directory_option}"
+  "./${LFBFL_subdir}/update_or_check_files_names_listing.exec.sh"\
+    "${LFBFL_some_common_options[@]}"
 
   echo "Creating the PDF file of the listing of the source code"
-  "./${LFBFL_subdir}/create_PDF.exec.sh" "${LFBFL_verbose}" "$@" \
-    "${LFBFL_work_directory_option}"
+  "./${LFBFL_subdir}/create_PDF.exec.sh" "${LFBFL_some_common_options[@]}"
 
   pushd_to_work_directory\
     && trap 'popd_from_work_directory' RETURN

@@ -378,14 +378,6 @@ common_build_and_checks(){
   grep_variable "${LFBFL_data_file_name}" max_line_length\
     --result-variable-prefix="LFBFL_"
 
-  local LFBFL_update_max_length="s/^line-length = [0-9]*$"
-  LFBFL_update_max_length+="/line-length = ${LFBFL_max_line_length}/"
-  sed -E -e "${LFBFL_update_max_length}"\
-    build_and_checks_variables/black.toml\
-    > build_and_checks_variables/black.toml.temp
-  overwrite_if_not_equal build_and_checks_variables/black.toml\
-    build_and_checks_variables/black.toml.temp
-
   declare -i LFBFL_upgrade_venvs=0
   declare -r LFBFL_upgrade_venvs_ts_file=\
 "build_and_checks_variables/upgrade_venvs_ts"
@@ -491,6 +483,15 @@ common_build_and_checks(){
   python_isort_complement "${LFBFL_some_common_options[@]}"
 
   echo "Running black"
+  # First, we update the configuration file with max_line_length.
+  local LFBFL_update_max_length="s/^line-length = [0-9]*$"
+  LFBFL_update_max_length+="/line-length = ${LFBFL_max_line_length}/"
+  sed -E -e "${LFBFL_update_max_length}"\
+    build_and_checks_variables/black.toml\
+    > build_and_checks_variables/black.toml.temp
+  overwrite_if_not_equal build_and_checks_variables/black.toml\
+    build_and_checks_variables/black.toml.temp
+
   local LFBFL_black_venv=""
   grep_variable "${LFBFL_data_file_name}" black_venv\
     --result-variable-prefix="LFBFL_"\

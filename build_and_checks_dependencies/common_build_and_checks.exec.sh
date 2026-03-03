@@ -702,7 +702,7 @@ common_build_and_checks(){
   can_continue_after_enhanced_pushd || return
 
   if [[ -f "build_and_checks_variables/post_build.sh" ]]; then
-    ./build_and_checks_variables/post_build.sh
+    ./build_and_checks_variables/post_build.sh "${LFBFL_verbose}"
   fi
 
   # ------------------------------------------------------------------

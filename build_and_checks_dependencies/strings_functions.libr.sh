@@ -43,6 +43,11 @@ split_line_at(){
   # echo "$split_line_at_result_end"
 }
 
+declare -gir SPLIT_SCORE_PROPERTY_DELIMITER_UNIFORM=1
+declare -gir SPLIT_SCORE_PROPERTY_POSITION_UNIFORM=2
+declare -gir SPLIT_SCORE_PROPERTY_LARGER_AFTER=4
+declare -gir SPLIT_SCORE_PROPERTY_LARGER_BEFORE=8
+
 split_score_simple(){
   # $1=$after_before
   # $2=$delimiters_strings_domain concatenated characters/delimiters
@@ -66,12 +71,23 @@ get_split_score_simple(){
   # $3=$delimiters_strings_domain
   declare -g get_split_score_result="split_score_simple $1 '$3'"
   declare -gi get_split_score_result2
-  get_split_score_result2=$((7+$1*4))
+  # get_split_score_result2=$((11-$1*4))
   # if [[ $1 -eq 1 ]]; then
   #   get_split_score_result2=7
   # else
   #   get_split_score_result2=11
   # fi
+  get_split_score_result2=$((
+    SPLIT_SCORE_PROPERTY_DELIMITER_UNIFORM
+    + SPLIT_SCORE_PROPERTY_POSITION_UNIFORM
+    + SPLIT_SCORE_PROPERTY_LARGER_BEFORE
+    + (
+      $1 * (
+        SPLIT_SCORE_PROPERTY_LARGER_AFTER
+        - SPLIT_SCORE_PROPERTY_LARGER_BEFORE
+      )
+    )
+  ))
 }
 
 get_split_score_exec(){
@@ -101,7 +117,17 @@ get_split_score(){
   # $2=$delimiters_strings_domain
   declare -g get_split_score_result="split_score $1 $2 '$3'"
   declare -gi get_split_score_result2
-  get_split_score_result2=$((5+$1*4))
+  # get_split_score_result2=$((9-$1*4))
+  get_split_score_result2=$((
+    SPLIT_SCORE_PROPERTY_DELIMITER_UNIFORM
+    + SPLIT_SCORE_PROPERTY_LARGER_BEFORE
+    + (
+      $1 * (
+        SPLIT_SCORE_PROPERTY_LARGER_AFTER
+        - SPLIT_SCORE_PROPERTY_LARGER_BEFORE
+      )
+    )
+  ))
 }
 
 split_line_at_most(){
@@ -144,7 +170,7 @@ split_line_at_most(){
   declare -A LFBFL_positions
   # echo "$1 $2 $3 $4"
   # For my use case in bash scripts, I will need only an array of
-  # characters. See get_split_score_after_before().
+  # characters. See get_split_score().
   if [[ -n "$6" ]]; then
     echo "split_line_at_most() \$4 NOT IMPLEMENTED YET"
   fi

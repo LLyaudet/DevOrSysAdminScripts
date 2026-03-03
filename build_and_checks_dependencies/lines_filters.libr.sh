@@ -202,6 +202,24 @@ not_spampty_lines(){
   # grep -v -E '^( |$)'
 }
 
+all_space_lines(){
+  grep '^[ ]\+$'
+}
+
+not_all_space_lines(){
+  grep -v '^[ ]\+$'
+}
+
+# All space or empty lines = aspampty
+aspampty_lines(){
+  grep '^[ ]*$'
+}
+
+not_aspampty_lines(){
+  grep '[^ ]'
+  # grep -v '^[ ]*$'
+}
+
 empty_lines_after_file_name(){
   grep '^[^:]\+:$'
 }
@@ -232,8 +250,27 @@ not_spampty_lines_after_file_name(){
   # grep -v -E '^[^:]+:( |$)'
 }
 
-# If you need to test the previous 12 functions,
+all_space_lines_after_file_name(){
+  grep '^[^:]\+:[ ]\+$'
+}
+
+not_all_space_lines_after_file_name(){
+  grep -v '^[^:]\+:[ ]\+$'
+}
+
+aspampty_lines_after_file_name(){
+  grep '^[^:]\+:[ ]*$'
+}
+
+not_aspampty_lines_after_file_name(){
+  grep -v '^[^:]\+:[ ]*$'
+}
+
+# If you need to test the previous 20 functions,
 # look at file spampty_data.txt in miscellaneous.
+# And give a try at something like:
+# cat -E <(cat miscellaneous/spampty_data.txt | empty_lines)
+# :). Nice command :).
 
 not_JS_dependencies_find(){
   grep -vE -e "(^|/)node_modules/"\

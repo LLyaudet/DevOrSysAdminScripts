@@ -1,8 +1,10 @@
 
  
+     
 a
  a
 empty.txt:
-space.txt: 
+one_space.txt: 
+all_space.txt:     
 normal.txt:a
 normal_again.txt: a

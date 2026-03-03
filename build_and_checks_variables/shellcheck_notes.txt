@@ -17,6 +17,10 @@ A listing of the current suppressed warnings/errors from shellcheck:
            False positive for globals that are declared in functions
            that are not currently called.
            Somehow it can be used to detect dead code.
+- SC2086 : Double quote to prevent globbing and word splitting.
+           False positive when returning integer variable
+           via an indirection like return ${!foo}.
+           See SC2248 below and the corresponding issue on GitHub.
 - SC2125 : Brace expansions and globs are literal.
            False positive when assigning a variable declared with -i.
            https://github.com/koalaman/shellcheck/issues/914
@@ -39,5 +43,5 @@ A listing of the current suppressed warnings/errors from shellcheck:
 The command to check if there is anything else:
 grep -r "shellcheck disable" . | grep -v -e '.git' -e "=SC1090$"\
   -e "=SC1091$" -e "=SC1090,SC1091$" -e "=SC1111$" -e "=SC2001$"\
-  -e "=SC2034$" -e "=SC2125$" -e "=SC2145$" -e "=SC2162$"\
+  -e "=SC2034$" -e "=SC2086$" -e "=SC2125$" -e "=SC2145$" -e "=SC2162$"\
   -e "=SC2248$" -e "=SC2312$" -e "=SC2162,SC2312$"

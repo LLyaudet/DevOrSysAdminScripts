@@ -64,21 +64,22 @@ you create a config language "à la CSS" for cascading dependencies ;)
 XD fit into JSON the dumbest possible way and you stop bothering
 about dependency conflicts for the rest of history of informatics.
 {
- "A":{
-  "1.1.1": {
-    "B": {
-      "2.2.2": {
-        "C": {
-           // Dumb, you did not found it by yourself? Failed exam.
-          "3.3.3" : {}
+  "A":{
+    "1.1.1": {
+      "B": {
+        "2.2.2": {
+          "C": {
+            // Dumb, you did not found it by yourself? Failed exam.
+            "3.3.3" : {}
+          }
         }
-      }
-    },
-    "D": {
-      "0.1.0": {
-        "C": {
-           // Dumb, you did not found it by yourself? Failed exam.
-          "4.4.4" : {}
+      },
+      "D": {
+        "0.1.0": {
+          "C": {
+            // Dumb, you did not found it by yourself? Failed exam.
+            "4.4.4" : {}
+          }
         }
       }
     }

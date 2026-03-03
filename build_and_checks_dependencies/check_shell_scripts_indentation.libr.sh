@@ -22,8 +22,11 @@
 #
 # ©Copyright 2023-2026 Laurent Frédéric Bernard François Lyaudet
 
+LFBFL_subdir="build_and_checks_dependencies"
 # shellcheck source=common_options.libr.sh
-source "./build_and_checks_dependencies/common_options.libr.sh"
+source "./${LFBFL_subdir}/common_options.libr.sh"
+# shellcheck source=lines_filters.libr.sh
+source "./${LFBFL_subdir}/lines_filters.libr.sh"
 
 check_one_shell_script_indentation(){
   shopt -s lastpipe
@@ -121,12 +124,16 @@ check_shell_scripts_indentation(){
     && trap 'popd_from_work_directory' RETURN
   can_continue_after_enhanced_pushd || return
 
-  shopt -s globstar
-  local LFBFL_file_name
+  # shopt -s globstar
+  local LFBFL_file_path
 
-  for LFBFL_file_name in **/*.sh; do
+  # for LFBFL_file_path in **/*.sh; do
+  find . -type f -name "*.sh" -printf '%P\n'\
+    | relevant_find\
+    | while read -r LFBFL_file_path;
+  do
     [[ LFBFL_i_verbose -eq 1 ]]\
-      && echo "${LFBFL_file_name}:Checking shell script indentation."
-    check_one_shell_script_indentation "${LFBFL_file_name}"
+      && echo "${LFBFL_file_path}:Checking shell script indentation."
+    check_one_shell_script_indentation "${LFBFL_file_path}"
   done
 }

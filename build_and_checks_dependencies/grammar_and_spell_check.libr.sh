@@ -62,6 +62,7 @@ grammar_and_spell_check(){
     [[ LFBFL_i_verbose -eq 0 ]]\
       || echo "Iterating on pattern: ${LFBFL_pattern}"
     find . -type f -name "${LFBFL_pattern}" -printf '%P\n'\
+      | relevant_find\
       | while read -r LFBFL_file_path;
     do
       LFBFL_eval_string="${LFBFL_command} ${LFBFL_file_path}"

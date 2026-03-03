@@ -24,14 +24,17 @@
 # This file was renamed from "check_shell_scripts_beginnings.sh"
 # to "check_shell_scripts_beginnings.libr.sh".
 
+LFBFL_subdir="build_and_checks_dependencies"
 # shellcheck source=common_options.libr.sh
-source "./build_and_checks_dependencies/common_options.libr.sh"
+source "./${LFBFL_subdir}/common_options.libr.sh"
+# shellcheck source=lines_filters.libr.sh
+source "./${LFBFL_subdir}/lines_filters.libr.sh"
 
 declare -gr LFBFL_SHELL_SCRIPT_BEGINNING="#!/usr/bin/env bash"
 
 check_one_shell_script_beginning(){
-  # declare -r LFBFL_file_name=$(basename "$1")
-  # if [[ "${LFBFL_file_name}" =~ license_file_header_.*\.sh ]]; then
+  # declare -r LFBFL_file_path=$(basename "$1")
+  # if [[ "${LFBFL_file_path}" =~ license_file_header_.*\.sh ]]; then
   #   return 0
   # fi
   # diff <(head -n 1 "$1") <(echo '#!/usr/bin/env bash')
@@ -59,15 +62,19 @@ check_shell_scripts_beginnings(){
     && trap 'popd_from_work_directory' RETURN
   can_continue_after_enhanced_pushd || return
 
-  shopt -s globstar
-  local LFBFL_file_name
+  # shopt -s globstar
+  local LFBFL_file_path
   local LFBFL_head
 
-  for LFBFL_file_name in **/*.sh; do
+  # for LFBFL_file_path in **/*.sh; do
+  find . -type f -name "*.sh" -printf '%P\n'\
+    | relevant_find\
+    | while read -r LFBFL_file_path;
+  do
     [[ LFBFL_i_verbose -eq 1 ]]\
-      && echo "${LFBFL_file_name}:Checking shell script beginning."
-    LFBFL_head=$(head -n 1 "${LFBFL_file_name}")
+      && echo "${LFBFL_file_path}:Checking shell script beginning."
+    LFBFL_head=$(head -n 1 "${LFBFL_file_path}")
     [[ "${LFBFL_head}" == "${LFBFL_SHELL_SCRIPT_BEGINNING}" ]]\
-      || echo "${LFBFL_file_name}:File has wrong shell script beginning."
+      || echo "${LFBFL_file_path}:File has wrong shell script beginning."
   done
 }

@@ -71,9 +71,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='239c41539d866e50bfbe32e91b4ebaf80e751e2621e86'
-  LFBFL_correct_sha512+='4c70c01b918f1d563eba5cca49bca8967c292edc9c29'
-  LFBFL_correct_sha512+='1fd372c53cad764b9bfb742b5dbdc0d4832db5c'
+  LFBFL_correct_sha512='13346ffc2efcff3d0628b2a28855d1cd752f2ad3882fe'
+  LFBFL_correct_sha512+='9aa3dca9c50c96e0b2780b5107d9bb7cf90eb885a80b'
+  LFBFL_correct_sha512+='6ed84ea329f6d7c06ba0e8c368e78ed9ecfe2ac'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
@@ -81,9 +81,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='4afb238c86c2f4ea796364a2c4462f113396d6f60ace1'
-  LFBFL_correct_sha512+='b8602fa56ddae83645f541bbf6be0d200264c36b8cab'
-  LFBFL_correct_sha512+='6c74a75807cb09d5c1712f3d810dc0e8c49dc0b'
+  LFBFL_correct_sha512='fe468954776cc2ddbde072daa41e01181cfa7d066fc2a'
+  LFBFL_correct_sha512+='117647331d01b43bf04809f239bc2733ca987bd8433a'
+  LFBFL_correct_sha512+='aabc7e19241f3f2481268eac77a051e940524b2'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
@@ -152,9 +152,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='b8d4cb07fca28c3904b75e0d24debe2ad2b3b1b1c8bd9'
-  LFBFL_correct_sha512+='6436c2236ee385ba5d8fa8462f4b71cb5f756b15719c'
-  LFBFL_correct_sha512+='e1ea5defed2d1b01d236d8bc3f6535eb48ed804'
+  LFBFL_correct_sha512='2cb385c54a06a95ca5703202fe6ecda5bf466a90cfbbd'
+  LFBFL_correct_sha512+='64c98cef1db5a626ff8e6ae55776c17eb5be77364886'
+  LFBFL_correct_sha512+='e1e202d3b8282e5d140a4d4b2f51a662021c909'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 

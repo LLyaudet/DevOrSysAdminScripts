@@ -200,35 +200,76 @@ work_directory_is_top_dirstack_directory(){
 }
 
 
-# Functions relative to shell options:
-# - pipefail usage:
-#     enhanced_set_pipefail && trap 'enhanced_unset_pipefail' RETURN
+# Functions relative to shell and bash options
+# (See SHELLOPTS and BASHOPTS, set and shopt):
+# - shell options usage, example with pipefail:
+#     enhanced_set_shell_option pipefail\
+#       && trap 'enhanced_unset_shell_option pipefail' RETURN
 #   or maybe:
-#     enhanced_unset_pipefail && trap 'enhanced_set_pipefail' RETURN
-#   if you need to unset it in one function.
+#     enhanced_unset_shell_option pipefail\
+#       && trap 'enhanced_set_shell_option pipefail' RETURN
+#   if you need to unset it in some function.
+# - bash options usage, example with globstar:
+#     enhanced_set_bash_option globstar\
+#       && trap 'enhanced_unset_bash_option globstar' RETURN
+#   or maybe:
+#     enhanced_unset_bash_option globstar\
+#       && trap 'enhanced_set_bash_option globstar' RETURN
 
-enhanced_set_pipefail(){
-  if [[ -o pipefail ]]; then
+enhanced_set_shell_option(){
+  # $1=optname some shell option for set
+  if [[ -o "$1" ]]; then
     return 1
   fi
+  set -o "$1"
   if [[ LFBFL_i_verbose -eq 1 ]]; then
     local LFBFL_where_was_i
     get_where_was_i 2
-    echo "${LFBFL_where_was_i} pipefail option activated."
+    echo "${LFBFL_where_was_i} $1 shell option activated."
   fi
-  set -o pipefail
   return 0
 }
 
-enhanced_unset_pipefail(){
-  if [[ ! -o pipefail ]]; then
+enhanced_unset_shell_option(){
+  # $1=optname some shell option for set
+  if [[ ! -o "$1" ]]; then
     return 1
   fi
+  set +o "$1"
   if [[ LFBFL_i_verbose -eq 1 ]]; then
     local LFBFL_where_was_i
     get_where_was_i 2
-    echo "${LFBFL_where_was_i} pipefail option unactivated."
+    echo "${LFBFL_where_was_i} $1 shell option unactivated."
   fi
-  set +o pipefail
+  return 0
+}
+
+enhanced_set_bash_option(){
+  # $1=optname some bash option for shopt
+  declare -r LFBFL_regexp="^(.*:)?$1(:.*)?$"
+  if [[ "$BASHOPTS" =~ ${LFBFL_regexp} ]]; then
+    return 1
+  fi
+  shopt -s "$1"
+  if [[ LFBFL_i_verbose -eq 1 ]]; then
+    local LFBFL_where_was_i
+    get_where_was_i 2
+    echo "${LFBFL_where_was_i} $1 bash option activated."
+  fi
+  return 0
+}
+
+enhanced_unset_bash_option(){
+  # $1=optname some bash option for shopt
+  declare -r LFBFL_regexp="^(.*:)?$1(:.*)?$"
+  if [[ ! "$BASHOPTS" =~ ${LFBFL_regexp} ]]; then
+    return 1
+  fi
+  shopt -u "$1"
+  if [[ LFBFL_i_verbose -eq 1 ]]; then
+    local LFBFL_where_was_i
+    get_where_was_i 2
+    echo "${LFBFL_where_was_i} $1 bash option unactivated."
+  fi
   return 0
 }

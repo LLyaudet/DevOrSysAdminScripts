@@ -82,7 +82,7 @@ update_or_check_files_names_listing(){
   # Remove line returns here to keep lines short.
   sed -Ez 's/\\\n//Mg' "${LFBFL_listing}"\
     > "${LFBFL_listing}.temp"
-  shopt -s dotglob
+  # shopt -s dotglob was needed at some point but I don't see why now.
   # shellcheck disable=SC2248
   get_split_score_simple 1 ${LFBFL_max_line_length} /
   declare -r LFBFL_split_score_command="${get_split_score_result}"
@@ -148,8 +148,6 @@ update_or_check_files_names_listing(){
   done < "${LFBFL_listing}.temp"
 
   rm "${LFBFL_listing}.temp"
-  shopt -u dotglob
-  shopt -s globstar
 
   if [[ LFBFL_i_verbose -eq 1 ]]; then
     cat "${LFBFL_listing}"

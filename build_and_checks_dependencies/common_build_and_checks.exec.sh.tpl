@@ -239,7 +239,6 @@ common_build_and_checks(){
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
   chmod +x "./${LFBFL_file_path}"
 
-  shopt -s globstar
   # shellcheck source=check_shell_scripts_beginnings.libr.sh
   source "./${LFBFL_subdir}/check_shell_scripts_beginnings.libr.sh"
   # shellcheck source=check_shell_scripts_indentation.libr.sh

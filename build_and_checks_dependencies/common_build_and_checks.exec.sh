@@ -247,9 +247,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='38058e326270c15885c5b01112c984fbef97bcf82c7b7'
-  LFBFL_correct_sha512+='a8023a496edb38c187808360170861e27c8e6a770d44'
-  LFBFL_correct_sha512+='a4f265732ac969c2dd875fcf383d081a35c029f'
+  LFBFL_correct_sha512='ce29513479932cc7c2f8d79fc10ef2f3803b578c18106'
+  LFBFL_correct_sha512+='9d5ba6462734acfe9907240f1c0b0fa1fecae672e722'
+  LFBFL_correct_sha512+='e72c1bdf94077693cb86af1bbc34f18fb4400fa'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
@@ -307,14 +307,13 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='5b62c60d6d705a45cf8d095dbdad6ffa089ab22cf2cc2'
-  LFBFL_correct_sha512+='da9533c96660c0b8802065aaf3d34f65659eab6e0c8a'
-  LFBFL_correct_sha512+='91a7d425cc9140dec39a78dbc273ec9dc68171a'
+  LFBFL_correct_sha512='b89a394b82643d4bac7e92726b722141183387a9387c6'
+  LFBFL_correct_sha512+='379fd5c470db88b6f8c28fcbf53c51bc678a59d825d7'
+  LFBFL_correct_sha512+='4a5b2e99301d5c093d0f64ae674c4671df74931'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
   chmod +x "./${LFBFL_file_path}"
 
-  shopt -s globstar
   # shellcheck source=check_shell_scripts_beginnings.libr.sh
   source "./${LFBFL_subdir}/check_shell_scripts_beginnings.libr.sh"
   # shellcheck source=check_shell_scripts_indentation.libr.sh

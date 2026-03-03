@@ -108,19 +108,15 @@ create_PDF(){
     | wc -l
   )
 
-  declare -ir LFBFL_all_code_lines_count=$(code_lines_count_all "$@")
-  declare -ir LFBFL_not_empty_code_lines_count=$(
-    code_lines_count_not_empty "$@"
-  )
-  declare -ir LFBFL_empty_code_lines_count=$(
-    code_lines_count_empty "$@"
-  )
+  code_lines_count_all "$@"
+  code_lines_count_not_empty "$@"
+  code_lines_count_empty "$@"
 
-  local LFBFL_number_of_lines="${LFBFL_all_code_lines_count}"
+  local LFBFL_number_of_lines="${code_lines_count_all_result}"
   LFBFL_number_of_lines+=" total lines,"
-  LFBFL_number_of_lines+=" ${LFBFL_not_empty_code_lines_count}"
+  LFBFL_number_of_lines+=" ${code_lines_count_not_empty_result}"
   LFBFL_number_of_lines+=" not empty lines,"
-  LFBFL_number_of_lines+=" ${LFBFL_empty_code_lines_count}"
+  LFBFL_number_of_lines+=" ${code_lines_count_empty_result}"
   LFBFL_number_of_lines+=" empty lines."
   readonly LFBFL_number_of_lines
 

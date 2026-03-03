@@ -80,6 +80,7 @@ all_self_code_lines(){
     | not_main_html_grep
 }
 
+# shellcheck disable=SC2120
 all_self_empty_code_lines(){
   # Options:
   #   --verbose
@@ -94,6 +95,7 @@ all_self_empty_code_lines(){
     | empty_lines_after_file_name
 }
 
+# shellcheck disable=SC2120
 all_self_not_empty_code_lines(){
   # Options:
   #   --verbose
@@ -118,8 +120,15 @@ code_lines_count_all(){
   enhanced_set_shell_option pipefail\
     && trap 'enhanced_unset_shell_option pipefail' RETURN
 
-  all_self_code_lines "$@" \
+  declare -gi code_lines_count_all_result
+  code_lines_count_all_result=$(
+    all_self_code_lines\
     | wc -l
+  )
+  # The echo is for command line use.
+  # A script should use the result value instead.
+  # shellcheck disable=SC2248
+  echo ${code_lines_count_all_result}
 }
 
 code_lines_count_empty(){
@@ -132,8 +141,16 @@ code_lines_count_empty(){
   enhanced_set_shell_option pipefail\
     && trap 'enhanced_unset_shell_option pipefail' RETURN
 
-  all_self_empty_code_lines "$@" \
+  declare -gi code_lines_count_empty_result
+  # shellcheck disable=SC2119
+  code_lines_count_empty_result=$(
+    all_self_empty_code_lines\
     | wc -l
+  )
+  # The echo is for command line use.
+  # A script should use the result value instead.
+  # shellcheck disable=SC2248
+  echo ${code_lines_count_empty_result}
 }
 
 code_lines_count_not_empty(){
@@ -146,6 +163,14 @@ code_lines_count_not_empty(){
   enhanced_set_shell_option pipefail\
     && trap 'enhanced_unset_shell_option pipefail' RETURN
 
-  all_self_not_empty_code_lines "$@" \
+  declare -gi code_lines_count_not_empty_result
+  # shellcheck disable=SC2119
+  code_lines_count_not_empty_result=$(
+    all_self_not_empty_code_lines\
     | wc -l
+  )
+  # The echo is for command line use.
+  # A script should use the result value instead.
+  # shellcheck disable=SC2248
+  echo ${code_lines_count_not_empty_result}
 }

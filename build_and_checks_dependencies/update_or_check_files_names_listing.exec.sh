@@ -79,7 +79,7 @@ update_or_check_files_names_listing(){
   if [[ LFBFL_write -eq 1 ]]; then
     : > "${LFBFL_listing}"
   fi
-  # Remove line returns here to keep lines short.
+  # Remove line returns that are here to keep lines short.
   sed -Ez 's/\\\n//Mg' "${LFBFL_listing}"\
     > "${LFBFL_listing}.temp"
   # shopt -s dotglob was needed at some point but I don't see why now.

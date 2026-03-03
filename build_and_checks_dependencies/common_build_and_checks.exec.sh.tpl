@@ -203,6 +203,13 @@ common_build_and_checks(){
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
+  LFBFL_file_name="repository_data.libr.sh"
+  LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
+  LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
+  @sha512_repository_data.libr.sh@
+  wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
+    "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
+
   LFBFL_file_name="split_score.exec.php"
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
@@ -272,6 +279,13 @@ common_build_and_checks(){
   # shellcheck source=too_long_code_lines.libr.sh
   source "./${LFBFL_subdir}/too_long_code_lines.libr.sh"
 
+  enhanced_set_bash_option extglob
+  # shellcheck source=repository_data.libr.sh
+  source "./${LFBFL_subdir}/repository_data.libr.sh"
+  # shellcheck disable=SC2154,SC2309
+  [[ enhanced_set_bash_option_extglob_result -eq 0 ]]\
+    && enhanced_unset_bash_option extglob
+
   enhanced_set_shell_option pipefail\
     && trap 'enhanced_unset_shell_option pipefail' RETURN
 
@@ -298,19 +312,7 @@ common_build_and_checks(){
   local LFBFL_upgrade_venvs_answer
 
   local LFBFL_upgrade_venvs_time_interval_in_seconds=""
-  grep_variable "${LFBFL_data_file_name}"\
-    upgrade_venvs_time_interval_in_seconds\
-    --result-variable-prefix="LFBFL_"
-  enhanced_set_bash_option extglob
-  case ${LFBFL_upgrade_venvs_time_interval_in_seconds} in
-    wat) LFBFL_upgrade_venvs_time_interval_in_seconds=${RANDOM};;
-    watyouwant\?) LFBFL_upgrade_venvs_time_interval_in_seconds=${SRANDOM};;
-    +([0-9])) : ;;
-    *) echo "No wat for you?";; #TempsDeCerveauDisponible XD SC2249 ;)
-  esac
-  # shellcheck disable=SC2154,SC2309
-  [[ enhanced_set_bash_option_extglob_result -eq 0 ]]\
-    && enhanced_unset_bash_option extglob
+  get_upgrade_venvs_time_interval_in_seconds "${LFBFL_data_file_name}" "$@"
 
   if [[ -f "${LFBFL_upgrade_venvs_ts_file}" ]]; then
     LFBFL_upgrade_venvs_ts=$(

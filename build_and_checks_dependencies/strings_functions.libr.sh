@@ -330,40 +330,44 @@ split_last_line(){
 
   # Testing if some line is too long.
   echo "$1"\
-    | sed -e 's/\\n/\n/g'\
     | grep -q "${LFBFL_regexp}";
-  if [[ ${PIPESTATUS[2]} -eq 1 ]]; then
+  if [[ ${PIPESTATUS[1]} -eq 1 ]]; then
     return
   fi
 
   declare -r LFBFL_start=$(
     echo "$1"\
-    | sed -e 's/\\n/\n/g'\
-    | head --lines=-1\
-    | sed -z 's/\n/\\n/g'
+    | head --lines=-1
   )
-  # echo "start: $LFBFL_start"
+  # echo "start: ${LFBFL_start}"
   declare -r LFBFL_last_line=$(
     echo "$1"\
-    | sed -e 's/\\n/\n/g'\
     | tail --lines=1
   )
   # echo "last_line: ${LFBFL_last_line}"
   split_last_line_result=""
   if [[ -n "${LFBFL_start}" ]]; then
     split_last_line_result="${LFBFL_start}"
+    # Last line-return of LFBFL_start seems dropped by $() and not ="${}".
+    # echo "${#split_last_line_result}" "${split_last_line_result}"
+    split_last_line_result+=$'\n'
+    something="${split_last_line_result}"
+    # echo "${#something}" "${something}"
   fi
   if [[ -n "$5" ]]; then
     split_line_at_most "${LFBFL_last_line}" "${LFBFL_length2}"\
       "$5" "$6" "$7"
-    split_last_line_result+="${split_line_at_most_result_start}$4"
-    split_last_line_result+="\n"
+    split_last_line_result+="${split_line_at_most_result_start}"
+    split_last_line_result+="$4"
+    split_last_line_result+=$'\n'
     split_last_line_result+="$2${split_line_at_most_result_end}"
   else
     split_last_line_result+="${LFBFL_last_line:0:${LFBFL_length2}}"
-    split_last_line_result+="$4\n"
+    split_last_line_result+="$4"
+    split_last_line_result+=$'\n'
     split_last_line_result+="$2${LFBFL_last_line:${LFBFL_length2}}"
   fi
+  # echo "result: ${split_last_line_result}"
 }
 
 repeated_split_last_line(){

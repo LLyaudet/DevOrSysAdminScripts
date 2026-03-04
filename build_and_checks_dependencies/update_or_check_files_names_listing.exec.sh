@@ -89,7 +89,7 @@ update_or_check_files_names_listing(){
   local LFBFL_split_score_command_properties
   LFBFL_split_score_command_properties="${get_split_score_result2}"
   readonly LFBFL_split_score_command_properties
-  local LFBFL_suffix=\\\\ # instead of '\\' to avoid shellcheck SC1003
+  local LFBFL_suffix=\\ # instead of '\' to avoid shellcheck SC1003
   readonly LFBFL_suffix
   local LFBFL_file_name
   local LFBFL_base_file_name

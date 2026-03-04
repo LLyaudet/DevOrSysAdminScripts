@@ -347,7 +347,7 @@ split_last_line(){
     # echo "last_line: ${LFBFL_last_line}"
     split_last_line_result=""
     if [[ -n "${LFBFL_start}" ]]; then
-      split_last_line_result="${LFBFL_start}\n"
+      split_last_line_result="${LFBFL_start}"
     fi
     if [[ -n "$5" ]]; then
       split_line_at_most "${LFBFL_last_line}" "${LFBFL_length2}"\

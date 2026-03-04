@@ -327,39 +327,42 @@ split_last_line(){
   declare -ir LFBFL_max_length_plus=$(($3 + 1))
   declare -ir LFBFL_length2=$(($3 - ${#4}))
   declare -r LFBFL_regexp='.\{'"${LFBFL_max_length_plus}"'\}$'
-  if
+
+  # Testing if some line is too long.
+  echo "$1"\
+    | sed -e 's/\\n/\n/g'\
+    | grep -q "${LFBFL_regexp}";
+  if [[ ${PIPESTATUS[2]} -eq 1 ]]; then
+    return
+  fi
+
+  declare -r LFBFL_start=$(
     echo "$1"\
-      | sed -e 's/\\n/\n/g'\
-      | grep -q "${LFBFL_regexp}";
-  then
-    declare -r LFBFL_start=$(
-      echo "$1"\
-      | sed -e 's/\\n/\n/g'\
-      | head --lines=-1\
-      | sed -z 's/\n/\\n/g'
-    )
-    # echo "start: $LFBFL_start"
-    declare -r LFBFL_last_line=$(
-      echo "$1"\
-      | sed -e 's/\\n/\n/g'\
-      | tail --lines=1
-    )
-    # echo "last_line: ${LFBFL_last_line}"
-    split_last_line_result=""
-    if [[ -n "${LFBFL_start}" ]]; then
-      split_last_line_result="${LFBFL_start}"
-    fi
-    if [[ -n "$5" ]]; then
-      split_line_at_most "${LFBFL_last_line}" "${LFBFL_length2}"\
-        "$5" "$6" "$7"
-      split_last_line_result+="${split_line_at_most_result_start}$4"
-      split_last_line_result+="\n"
-      split_last_line_result+="$2${split_line_at_most_result_end}"
-    else
-      split_last_line_result+="${LFBFL_last_line:0:${LFBFL_length2}}"
-      split_last_line_result+="$4\n"
-      split_last_line_result+="$2${LFBFL_last_line:${LFBFL_length2}}"
-    fi
+    | sed -e 's/\\n/\n/g'\
+    | head --lines=-1\
+    | sed -z 's/\n/\\n/g'
+  )
+  # echo "start: $LFBFL_start"
+  declare -r LFBFL_last_line=$(
+    echo "$1"\
+    | sed -e 's/\\n/\n/g'\
+    | tail --lines=1
+  )
+  # echo "last_line: ${LFBFL_last_line}"
+  split_last_line_result=""
+  if [[ -n "${LFBFL_start}" ]]; then
+    split_last_line_result="${LFBFL_start}"
+  fi
+  if [[ -n "$5" ]]; then
+    split_line_at_most "${LFBFL_last_line}" "${LFBFL_length2}"\
+      "$5" "$6" "$7"
+    split_last_line_result+="${split_line_at_most_result_start}$4"
+    split_last_line_result+="\n"
+    split_last_line_result+="$2${split_line_at_most_result_end}"
+  else
+    split_last_line_result+="${LFBFL_last_line:0:${LFBFL_length2}}"
+    split_last_line_result+="$4\n"
+    split_last_line_result+="$2${LFBFL_last_line:${LFBFL_length2}}"
   fi
 }
 

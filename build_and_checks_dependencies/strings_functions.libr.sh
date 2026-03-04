@@ -351,7 +351,7 @@ split_last_line(){
     # Last line-return of LFBFL_start seems dropped by $() and not ="${}".
     # echo "${#split_last_line_result}" "${split_last_line_result}"
     split_last_line_result+=$'\n'
-    something="${split_last_line_result}"
+    # something="${split_last_line_result}"
     # echo "${#something}" "${something}"
   fi
   if [[ -n "$5" ]]; then

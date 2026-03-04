@@ -36,7 +36,7 @@ source "./${LFBFL_subdir}/comparisons.libr.sh"
 
 split_line_at(){
   # $1=$line
-  # $2=$position
+  # $2=$position : number of characters in split_line_at_result_beginning
   declare -g split_line_at_result_beginning="${1:0:$2}"
   declare -g split_line_at_result_end="${1:$2}"
   # echo "$split_line_at_result_beginning"
@@ -272,11 +272,15 @@ split_line_at_most(){
   )
   local LFBFL_value
   declare -i LFBFL_best_position
-  for ((LFBFL_i=0; LFBFL_i<=LFBFL_i_max; ++LFBFL_i)) do
+  for ((LFBFL_i=LFBFL_i_max; LFBFL_i>=0; --LFBFL_i)) do
+    if [[ LFBFL_i -eq 0 ]]; then
+      echo $'/!\\ split_line_at_most bug: no split position found. /!\\'
+    fi
     local LFBFL_value=${LFBFL_positions[${LFBFL_i}]}
     # echo "${LFBFL_i} ${LFBFL_value}"
     if [[ "${LFBFL_value}" == "${LFBFL_max_score}" ]]; then
       LFBFL_best_position=$((LFBFL_i))
+      break
     fi
   done
   # shellcheck disable=SC2248

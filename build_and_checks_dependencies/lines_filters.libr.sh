@@ -129,6 +129,97 @@ in_place_grep(){
   mv "${LFBFL_temp}" "${!#}"
 }
 
+grep_fixed_string_with_anchor(){
+  # $1=filepath
+  # $2=some_fixed_string
+  # Options:
+  #   --enforce-line-starts-with-fixed-string
+  #   --enforce-line-ends-with-fixed-string
+  #   Apart from $1 and $2 and the options above,
+  #   all other arguments are considered grep_options like --quiet
+  #   for example.
+  #   But note that --fixed-strings will be added below, you don't need to
+  #   supply it.
+  declare -a LFBFL_grep_options=()
+  declare -a LFBFL_grep_options2=()
+  declare -i LFBFL_i=0
+  declare -i LFBFL_enforce_line_starts=0
+  declare -i LFBFL_enforce_line_ends=0
+  declare -i LFBFL_quiet=0
+  local LFBFL_arg
+  for LFBFL_arg in "$@"; do
+    ((++LFBFL_i))
+    if [[ LFBFL_i -lt 3 ]]; then
+      continue
+    fi
+    if [[ "${LFBFL_arg}" == "--enforce-line-starts-with-fixed-string" ]];
+    then
+      LFBFL_enforce_line_starts=1
+      continue
+    fi
+    if [[ "${LFBFL_arg}" == "--enforce-line-ends-with-fixed-string" ]];
+    then
+      LFBFL_enforce_line_ends=1
+      continue
+    fi
+    if [[ "${LFBFL_arg}" == "-q" || "${LFBFL_arg}" == "--quiet" ]];
+    then
+      LFBFL_quiet=1
+      LFBFL_grep_options+=("${LFBFL_arg}")
+      continue
+    fi
+    LFBFL_grep_options2+=("${LFBFL_arg}")
+  done
+
+  if [[
+    LFBFL_enforce_line_starts -eq 0
+    && LFBFL_enforce_line_ends -eq 0
+    ]];
+  then
+     grep "${LFBFL_grep_options[@]}" --fixed-strings -- "$2" "$1"
+    return
+  fi
+
+  declare -i LFBFL_fixed_string_length=${#2}
+  declare -i LFBFL_i_result=1
+  local LFBFL_some_line
+  local LFBFL_line_part
+  while read -r LFBFL_some_line;
+  do
+    echo "Some line: ${LFBFL_some_line}"
+    if [[ "${LFBFL_some_line}" == "$2" ]]; then
+      echo "${LFBFL_quiet}"
+      [[ LFBFL_quiet -eq 1 ]] || echo "${LFBFL_some_line}"
+      LFBFL_i_result=0
+      continue
+    fi
+    if [[
+      LFBFL_enforce_line_starts -eq 1
+      && LFBFL_enforce_line_ends -eq 1
+      ]];
+    then
+      continue
+    fi
+    if [[ LFBFL_enforce_line_starts -eq 1 ]]; then
+      LFBFL_line_part=${LFBFL_some_line:0:${LFBFL_fixed_string_length}}
+    fi
+    if [[ LFBFL_enforce_line_ends -eq 1 ]]; then
+      LFBFL_line_part=${LFBFL_some_line: -${LFBFL_fixed_string_length}}
+    fi
+    echo "Some part: ${LFBFL_line_part}"
+    if [[ "${LFBFL_line_part}" == "$2" ]]; then
+      [[ LFBFL_quiet -eq 1 ]] || echo "${LFBFL_some_line}"
+      LFBFL_i_result=0
+    fi
+  done < <(
+    grep "${LFBFL_grep_options2[@]}" --color=never --fixed-strings --\
+    "$2" "$1"
+  )
+  LFBFL_i_result=$((LFBFL_i_result | $?))
+  # shellcheck disable=SC2248
+  return ${LFBFL_i_result}
+}
+
 grep_variable(){
   # $1=$file
   # $2=$variable_name

@@ -371,6 +371,9 @@ split_last_line(){
 }
 
 repeated_split_last_line(){
+  # See split_last_line for the first arguments.
+  # $8=final_suffix to handle when the end of the original string
+  #    is the suffix.
   declare -g repeated_split_last_line_result="$1"
   local LFBFL_result="$1x"
   until
@@ -382,4 +385,12 @@ repeated_split_last_line(){
     repeated_split_last_line_result="${split_last_line_result}"
     # echo "${repeated_split_last_line_result}"
   done
+  if [[ -n "$4" && -n "$8" ]]; then
+    declare -ir LFBFL_offset=$((-${#4}))
+    local LFBFL_lines_end
+    LFBFL_lines_end="${repeated_split_last_line_result: ${LFBFL_offset}}"
+    if [[ "${LFBFL_lines_end}" == "${LFBFL_suffix}" ]]; then
+      repeated_split_last_line_result+="${LFBFL_final_suffix}"
+    fi
+  fi
 }

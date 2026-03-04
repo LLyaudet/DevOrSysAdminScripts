@@ -80,7 +80,7 @@ update_or_check_files_names_listing(){
     : > "${LFBFL_listing}"
   fi
   # Remove line returns that are here to keep lines short.
-  sed -Ez 's/\\\n//Mg' "${LFBFL_listing}"\
+  sed -Ez 's/(.)\\\n/\1/Mg' "${LFBFL_listing}"\
     > "${LFBFL_listing}.temp"
   # shopt -s dotglob was needed at some point but I don't see why now.
   # shellcheck disable=SC2248
@@ -91,6 +91,9 @@ update_or_check_files_names_listing(){
   readonly LFBFL_split_score_command_properties
   local LFBFL_suffix=\\ # instead of '\' to avoid shellcheck SC1003
   readonly LFBFL_suffix
+  # There is always a $'\n' final suffix from >>.
+  # But when origin string ends with the suffix we must add something.
+  declare -r LFBFL_final_suffix=$'\n\\'
   local LFBFL_file_name
   local LFBFL_base_file_name
   local LFBFL_split_file_name
@@ -108,18 +111,21 @@ update_or_check_files_names_listing(){
         continue
       fi
     fi
+    if [[ LFBFL_i_verbose -eq 1 ]]; then
+      echo "Non-ignored file: ${LFBFL_file_name}"
+    fi
     # shellcheck disable=SC2248
     repeated_split_last_line "${LFBFL_file_name}"\
       ""\
       ${LFBFL_max_line_length}\
       "${LFBFL_suffix}"\
       "${LFBFL_split_score_command}"\
-      "${LFBFL_split_score_command_properties}"
-    LFBFL_split_file_name="${repeated_split_last_line_result}"
+      "${LFBFL_split_score_command_properties}"\
+      ""\
+      "${LFBFL_final_suffix}"
     if [[ LFBFL_write -eq 1 ]]; then
       # shellcheck disable=SC2001
-      echo "${LFBFL_file_name}"\
-        | sed -e "s|${LFBFL_file_name}|${LFBFL_split_file_name}|g"\
+      echo "${repeated_split_last_line_result}"\
         >> "${LFBFL_listing}"
       continue
     fi
@@ -130,8 +136,7 @@ update_or_check_files_names_listing(){
       "The file ${LFBFL_file_name} is not listed in ${LFBFL_listing}."
       if [[ LFBFL_append -eq 1 ]]; then
         # shellcheck disable=SC2001
-        echo "${LFBFL_file_name}"\
-          | sed -e "s|${LFBFL_file_name}|${LFBFL_split_file_name}|g"\
+        echo "${repeated_split_last_line_result}"\
           >> "${LFBFL_listing}"
       fi
     fi

@@ -72,8 +72,19 @@ split_file_in_two(){
   # $2=$token assume that token is the only thing on his line.
   # $3=$file_name_part1
   # $4=$file_name_part2
+  # Other arguments are options for grep.
+  declare -a LFBFL_grep_options=()
+  declare -i LFBFL_i=0
+  local LFBFL_arg
+  for LFBFL_arg in "$@"; do
+    ((++LFBFL_i))
+    if [[ LFBFL_i -lt 5 ]]; then
+      continue
+    fi
+    LFBFL_grep_options+=("${LFBFL_arg}")
+  done
   declare -ir LFBFL_line_number=$(
-    grep -n "$2" "$1"\
+    grep -n "${LFBFL_grep_options[@]}" -- "$2" "$1"\
     | head --lines=1\
     | cut -f 1 -d ':'
   )
@@ -102,7 +113,7 @@ insert_file_at_token(){
   fi
   readonly LFBFL_result_file_name
   split_file_in_two "$1" "$2" "${LFBFL_start_file_name}"\
-    "${LFBFL_end_file_name}"
+    "${LFBFL_end_file_name}" --fixed-strings
   cat "${LFBFL_start_file_name}" "$3" "${LFBFL_end_file_name}"\
     > "${LFBFL_result_file_name}"
   rm "${LFBFL_start_file_name}" "${LFBFL_end_file_name}"

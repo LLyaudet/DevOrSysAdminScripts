@@ -338,11 +338,11 @@ create_PDF(){
       # printf "LFBFL_file_name: %s\n" "${LFBFL_file_name}"
       LFBFL_keep_length=$((${#LFBFL_line} - ${#LFBFL_file_name}))
       LFBFL_line_start=${LFBFL_line:0:${LFBFL_keep_length}}
-      # printf "LFBFL_line_start: %s\n" "${LFBFL_line_start}"
-      LFBFL_line=$(
-        printf "%s" "${LFBFL_line}"\
-        | sed -E -e 's/\[/\\\[/g' -e 's/\]/\\\]/g' -e 's/\*/\\\*/g'
+      LFBFL_line_start=$(
+        printf "%s" "${LFBFL_line_start}"\
+        | sed -e 's/ *$//g'
       )
+      # printf "LFBFL_line_start: %s\n" "${LFBFL_line_start}"
       LFBFL_new_lines="${LFBFL_prefix}${LFBFL_file_name}"
       if [[ ${#LFBFL_new_lines} -gt LFBFL_max_line_length ]]; then
         # shellcheck disable=SC2248

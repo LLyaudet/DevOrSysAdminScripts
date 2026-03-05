@@ -94,7 +94,8 @@ update_or_check_files_names_listing(){
   # There is always a $'\n' final suffix from >>.
   # But when origin string ends with the suffix we must add something.
 
-  local LFBFL_s_file_paths=$(
+  local LFBFL_s_file_paths
+  LFBFL_s_file_paths=$(
     find . -type f -printf '%P\n'\
     | relevant_find\
     | sort
@@ -105,7 +106,6 @@ update_or_check_files_names_listing(){
   declare -r LFBFL_final_suffix=$'\n\\'
   local LFBFL_file_path
   local LFBFL_base_file_name
-  local LFBFL_split_file_name
   for LFBFL_file_path in "${LFBFL_arr_file_paths[@]}"; do
     git check-ignore -q "${LFBFL_file_path}" && continue
     LFBFL_base_file_name=$(basename "${LFBFL_file_path}")
@@ -149,8 +149,7 @@ update_or_check_files_names_listing(){
     fi
   done
 
-  local LFBFL_s_file_paths=$(cat "${LFBFL_listing}.temp")
-  declare -a LFBFL_arr_file_paths
+  LFBFL_s_file_paths=$(cat "${LFBFL_listing}.temp")
   mapfile -t LFBFL_arr_file_paths <<< "${LFBFL_s_file_paths}"
 
   for LFBFL_file_path in "${LFBFL_arr_file_paths[@]}"; do

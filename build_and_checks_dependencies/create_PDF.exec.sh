@@ -183,12 +183,12 @@ create_PDF(){
     | grep -v '^//'\
     | while read -r LFBFL_file_name;
   do
-    echo "Listing file for tex/HTML : ${LFBFL_file_name}"
-    # echo "Listing file for tex : ${LFBFL_file_name}"
+    printf "Listing file for tex/HTML : %s\n" "${LFBFL_file_name}"
+    # printf "Listing file for tex : %s\n" "${LFBFL_file_name}"
     # LFBFL_base_file_name=$(basename "${LFBFL_file_name}")
     LFBFL_cleaned_path1="${LFBFL_file_name//_/\\_}"
     LFBFL_cleaned_path2=$(
-      echo "${LFBFL_file_name}"\
+      printf "%s" "${LFBFL_file_name}"\
       | sed -e 's/\//:/g' -e 's/\.//g'
     )
     LFBFL_new_lines="  ${LFBFL_cleaned_path1}"
@@ -226,25 +226,21 @@ create_PDF(){
       LFBFL_new_lines3=${repeated_split_last_line_result}
     fi
     {
-      echo "\subsection{"
-      echo "  ${LFBFL_file_name}"\
-        | sed -e "s|  ${LFBFL_file_name}|${LFBFL_new_lines}|g"\
-              -e 's/_/\\_/g'
-      echo "}"
-      echo "\label{"
-      echo "  ${LFBFL_cleaned_path2}"\
-        | sed -e "s|  ${LFBFL_cleaned_path2}|${LFBFL_new_lines2}|g"
-      echo "}"
-      echo ""
-      echo "\VerbatimInput[numbers=left,xleftmargin=-5mm]{"
-      echo "  ${LFBFL_file_name}"\
-        | sed -e "s|  ${LFBFL_file_name}|${LFBFL_new_lines3}|g"
-      echo "}"
-      echo ""
-      echo ""
+      printf "\\subsection{\n"
+      printf "%s\n" "${LFBFL_new_lines}"
+      printf "}\n"
+      printf "\\label{\n"
+      printf "%s\n" "${LFBFL_new_lines2}"
+      printf "}\n"
+      printf "\n"
+      printf "\\VerbatimInput[numbers=left,xleftmargin=-5mm]{\n"
+      printf "%s\n" "${LFBFL_new_lines3}"
+      printf "}\n"
+      printf "\n"
+      printf "\n"
     } >> "${LFBFL_temp_files_listing}"
 
-    # echo "Listing file for HTML : ${LFBFL_file_name}"
+    # printf "Listing file for HTML : %s\n" "${LFBFL_file_name}"
     ((++LFBFL_i))
     LFBFL_new_lines="${LFBFL_file_name}"
     if [[ ${#LFBFL_file_name} -gt LFBFL_max_line_length ]]; then
@@ -258,24 +254,20 @@ create_PDF(){
       LFBFL_new_lines=${repeated_split_last_line_result}
     fi
     {
-      echo "<h3 id=\"subsection2.${LFBFL_i}\">2.${LFBFL_i}"
-      # shellcheck disable=SC2001
-      echo "${LFBFL_file_name}"\
-        | sed -e "s|${LFBFL_file_name}|${LFBFL_new_lines}|g"
-      echo "</h3>"
-      echo "<pre class=\"numbered_lines\">"
+      printf "<h3 id=\"subsection2.%s\">2.%s\n" "${LFBFL_i}" "${LFBFL_i}"
+      printf "%s\n" "${LFBFL_new_lines}"
+      printf "</h3>\n"
+      printf "<pre class=\"numbered_lines\">\n"
       sed -e 's/&/\&amp;/g' -e 's/</\&lt;/g'\
         < "${LFBFL_file_name}"
-      echo "</pre>"
-      echo ""
-      echo ""
+      printf "</pre>\n"
+      printf "\n"
+      printf "\n"
     } >> "${LFBFL_temp_files_listing2}"
     {
-      echo "      <li><a href=\"#subsection2.${LFBFL_i}\">"
-      # shellcheck disable=SC2001
-      echo "${LFBFL_file_name}"\
-        | sed -e "s|${LFBFL_file_name}|${LFBFL_new_lines}|g"
-      echo "      </a></li>"
+      printf "      <li><a href=\"#subsection2.%s\">\n" "${LFBFL_i}"
+      printf "%s\n" "${LFBFL_new_lines}"
+      printf "      </a></li>\n"
     } >> "${LFBFL_temp_files_lis}"
   done
   overwrite_if_not_equal "./${LFBFL_subdir2}/files_listing.tex.tpl"\
@@ -305,17 +297,17 @@ create_PDF(){
     grep '.\{'${LFBFL_overlength}'\}' "${LFBFL_tree_path}"\
       | while read -r LFBFL_line;
     do
-      # echo "LFBFL_line: ${LFBFL_line}"
+      # printf "LFBFL_line: %s\n" "${LFBFL_line}"
       LFBFL_prefix=$(
-        echo "${LFBFL_line}"\
+        printf "%s" "${LFBFL_line}"\
         | sed -E -e 's/(.*)──[^─]+$/\1/g'
       )
-      # echo "LFBFL_prefix: ${LFBFL_prefix}"
+      # printf "LFBFL_prefix: %s\n" "${LFBFL_prefix}"
       LFBFL_prefix_last_position=$((${#LFBFL_prefix}-1))
       LFBFL_char="${LFBFL_prefix:${LFBFL_prefix_last_position}:1}"
-      # echo "LFBFL_char: ${LFBFL_char}"
+      # printf "LFBFL_char: %s\n" "${LFBFL_char}"
       LFBFL_prefix=$(
-        echo "${LFBFL_prefix}"\
+        printf "%s" "${LFBFL_prefix}"\
         | sed -E -e 's/[^ ]+$//g'
       )
       if [[ "${LFBFL_char}" == "└" ]]; then
@@ -323,24 +315,24 @@ create_PDF(){
       else
         LFBFL_prefix+="│ "
       fi
-      # echo "LFBFL_prefix: ${LFBFL_prefix}"
+      # printf "LFBFL_prefix: %s\n" ${LFBFL_prefix}
       LFBFL_file_name=$(
-        echo "${LFBFL_line}"\
+        printf "%s" "${LFBFL_line}"\
         | sed -E 's|.* (([a-zA-Z0-9\._/-]+).)$|\1|g'
       )
-      # echo "LFBFL_file_name: ${LFBFL_file_name}"
+      # printf "LFBFL_file_name: %s\n" "${LFBFL_file_name}"
       LFBFL_file_name2=$(
-        echo "${LFBFL_file_name}"\
+        printf "%s" "${LFBFL_file_name}"\
         | sed -E -e 's/\*/\\\*/g'
       )
       LFBFL_line_start=$(
-        echo "${LFBFL_line}"\
+        printf "%s" "${LFBFL_line}"\
         | sed -E -e "s/(.*)[ ]*${LFBFL_file_name2}/\1/g"\
                  -e 's/ *$//g'
       )
-      # echo "LFBFL_line_start: ${LFBFL_line_start}"
+      # printf "LFBFL_line_start: %s\n" "${LFBFL_line_start}"
       LFBFL_line=$(
-        echo "${LFBFL_line}"\
+        printf "%s" "${LFBFL_line}"\
         | sed -E -e 's/\[/\\\[/g' -e 's/\]/\\\]/g' -e 's/\*/\\\*/g'
       )
       LFBFL_new_lines="${LFBFL_prefix}${LFBFL_file_name}"
@@ -379,7 +371,7 @@ create_PDF(){
     cp "./${LFBFL_subdir2}/${LFBFL_repository_name}.tex"\
       "${LFBFL_tex_path_start}.1"
   else
-    echo "Neither .tex.tpl, nor .tex in ./${LFBFL_subdir2}/"
+    printf "Neither .tex.tpl, nor .tex in ./%s/\n" "${LFBFL_subdir2}"
   fi
 
   # Same logic with repository HTML file.
@@ -390,16 +382,17 @@ create_PDF(){
   elif [[ -f "./${LFBFL_repository_name}.html" ]]; then
     cp "./${LFBFL_repository_name}.html" "${LFBFL_html_path_start}.1"
   else
-    echo "Neither .html.tpl in ./${LFBFL_subdir2}/, nor .html in ./"
+    printf "Neither .html.tpl in ./%s/, nor .html in ./\n"\
+      "${LFBFL_subdir2}"
   fi
 
   # shellcheck disable=SC2001
-  echo "${LFBFL_abstract}"\
+  printf "%s\n" "${LFBFL_abstract}"\
     | sed -e 's/\\n/\n/g'\
     > "./${LFBFL_subdir2}/temp/abstract_temp"
 
   # shellcheck disable=SC2001
-  echo "${LFBFL_acknowledgments}"\
+  printf "%s\n" "${LFBFL_acknowledgments}"\
     | sed -e 's/\\n/\n/g'\
     > "./${LFBFL_subdir2}/temp/acknowledgments_temp"
 
@@ -509,6 +502,7 @@ create_PDF(){
   if [[ LFBFL_HTML_updated -eq 0 ]]; then
     return
   fi
+  return
 
   if [[ LFBFL_i_verbose -eq 1 ]]; then
     for ((i=0; i<3; i++)); do

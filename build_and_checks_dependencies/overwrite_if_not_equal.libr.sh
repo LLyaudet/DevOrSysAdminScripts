@@ -30,6 +30,8 @@ overwrite_if_not_equal(){
   # $3=$keep_temp
   # $4=$tree_mode : when the two files are the output of tree command,
   # we ignore if all the differences are only on directories.
+  # $5=--quiet : we even don't want the message of diff saying that
+  #              files are distinct
   # Return 0 target was the same
   #        1 target was different
   #        2 target did not already exist
@@ -50,7 +52,11 @@ overwrite_if_not_equal(){
       | grep -v "/$"
     LFBFL_is_equal=${PIPESTATUS[2]}
   else
-    diff -q "$1" "$2"
+    if [[ -n "$5" ]]; then
+      diff -q "$1" "$2" > /dev/null
+    else
+      diff -q "$1" "$2"
+    fi
     LFBFL_is_equal=1-$?
   fi
   if [[ LFBFL_is_equal -eq 1 ]]; then

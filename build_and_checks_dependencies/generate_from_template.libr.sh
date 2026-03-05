@@ -103,6 +103,8 @@ insert_file_at_token(){
   # $2=$token assume that token is the only thing on his line.
   # $3=$file_name_to_insert
   # $4=$file_name_result
+  # Options:
+  #   $5=--quiet to suppress diff output in overwrite_if_not_equal
   declare -r LFBFL_start_file_name="$1.insert_file_at_token1.temp"
   declare -r LFBFL_end_file_name="$1.insert_file_at_token2.temp"
   local LFBFL_result_file_name
@@ -118,6 +120,6 @@ insert_file_at_token(){
     > "${LFBFL_result_file_name}"
   rm "${LFBFL_start_file_name}" "${LFBFL_end_file_name}"
   if [[ -z "$4" ]]; then
-    overwrite_if_not_equal "$1" "${LFBFL_result_file_name}"
+    overwrite_if_not_equal "$1" "${LFBFL_result_file_name}" "" "" "$5"
   fi
 }

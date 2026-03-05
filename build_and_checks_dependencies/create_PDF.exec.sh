@@ -358,7 +358,9 @@ create_PDF(){
         > "${LFBFL_tree_path}.some_line.temp"
       insert_file_at_token "${LFBFL_tree_path}"\
         "${LFBFL_line}"\
-        "${LFBFL_tree_path}.some_line.temp"
+        "${LFBFL_tree_path}.some_line.temp"\
+        ""\
+        --quiet
     done
     rm -f "${LFBFL_tree_path}.some_line.temp"
   done

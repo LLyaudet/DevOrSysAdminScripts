@@ -57,15 +57,19 @@ grammar_and_spell_check(){
     return
   fi
   local LFBFL_file_path
+  local LFBFL_s_files_paths
+  declare -a LFBFL_arr_files_paths
   local LFBFL_pattern
   local LFBFL_eval_string
   for LFBFL_pattern in "${COMMON_TEXT_FILES_GLOB_PATTERNS[@]}"; do
     [[ LFBFL_i_verbose -eq 0 ]]\
       || echo "Iterating on pattern: ${LFBFL_pattern}"
-    find . -type f -name "${LFBFL_pattern}" -printf '%P\n'\
-      | relevant_find\
-      | while read -r LFBFL_file_path;
-    do
+    LFBFL_s_files_paths=$(
+      find . -type f -name "${LFBFL_pattern}" -printf '%P\n'\
+      | relevant_find
+    )
+    mapfile -t LFBFL_arr_files_paths <<< "${LFBFL_s_files_paths}"
+    for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do
       LFBFL_eval_string="${LFBFL_command} ${LFBFL_file_path}"
       eval "${LFBFL_eval_string}"
     done

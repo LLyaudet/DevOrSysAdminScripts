@@ -88,7 +88,7 @@ check_one_shell_script_indentation(){
       -) ((LFBFL_offset+=1));;
       :) ((LFBFL_offset+=1));;
       [0-9]) ((LFBFL_offset+=2));;
-      *) echo ':-(';;
+      *) printf ":-(\n";;
     esac
     LFBFL_previous_line_end=${LFBFL_previous_line:${LFBFL_offset}}
     if [[ "${LFBFL_line_end}" =~ ${LFBFL_pattern} ]]; then
@@ -99,18 +99,18 @@ check_one_shell_script_indentation(){
       LFBFL_substring1=${LFBFL_line_end:${LFBFL_offset}:3}
       LFBFL_substring2=${LFBFL_previous_line_end:${LFBFL_offset}:3}
       if [[ "${LFBFL_substring1}" != "${LFBFL_substring2}" ]]; then
-        echo "${LFBFL_some_line}"
+        printf "%s\n" "${LFBFL_some_line}"
         LFBFL_file_with_error=1
       fi
     else
-      echo "${LFBFL_some_line}"
+      printf "%s\n" "${LFBFL_some_line}"
       LFBFL_file_with_error=1
     fi
     LFBFL_previous_line="${LFBFL_some_line}"
   done
 
   if [[ LFBFL_file_with_error -eq 1 ]]; then
-    echo "$1:File has some lines with odd number of spaces."
+    printf "%s:File has some lines with odd number of spaces.\n" "$1"
   fi
 }
 
@@ -127,15 +127,19 @@ check_shell_scripts_indentation(){
   can_continue_after_enhanced_pushd || return
 
   # shopt -s globstar
-  local LFBFL_file_path
-
   # for LFBFL_file_path in **/*.sh; do
-  find . -type f -name "*.sh" -printf '%P\n'\
-    | relevant_find\
-    | while read -r LFBFL_file_path;
-  do
+  local LFBFL_file_path
+  declare -r LFBFL_s_files_paths=$(
+    find . -type f -name "*.sh" -printf '%P\n'\
+    | relevant_find
+  )
+  declare -a LFBFL_arr_files_paths
+  mapfile -t LFBFL_arr_files_paths <<< "${LFBFL_s_files_paths}"
+  readonly LFBFL_arr_files_paths
+  for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do
     [[ LFBFL_i_verbose -eq 1 ]]\
-      && echo "${LFBFL_file_path}:Checking shell script indentation."
+      && printf "%s:Checking shell script indentation.\n"\
+          "${LFBFL_file_path}"
     check_one_shell_script_indentation "${LFBFL_file_path}"
   done
 }

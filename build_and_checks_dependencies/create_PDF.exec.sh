@@ -279,7 +279,7 @@ create_PDF(){
     "${LFBFL_temp_files_listing}"
   sed -i -e "s|\\n</pre>|</pre>|g" "${LFBFL_temp_files_listing2}"
   overwrite_if_not_equal\
-    "./${LFBFL_subdir2}/temp/files_listing.html.tpl"\
+    "${LFBFL_temp_path}/files_listing.html.tpl"\
     "${LFBFL_temp_files_listing2}"
 
   # We verify if some lines are beyond max_line_length characters

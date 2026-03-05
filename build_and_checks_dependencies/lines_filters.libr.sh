@@ -176,20 +176,24 @@ grep_fixed_string_with_anchor(){
     && LFBFL_enforce_line_ends -eq 0
     ]];
   then
-     grep "${LFBFL_grep_options[@]}" --fixed-strings -- "$2" "$1"
+    grep "${LFBFL_grep_options[@]}" --fixed-strings -- "$2" "$1"
     return
   fi
+  declare -r LFBFL_s_lines=$(
+    grep "${LFBFL_grep_options2[@]}" --color=never --fixed-strings --\
+      "$2" "$1"
+  )
+  declare -a LFBFL_arr_lines
+  mapfile -t LFBFL_arr_lines <<< "${LFBFL_s_lines}"
+  readonly LFBFL_arr_lines
 
   declare -i LFBFL_fixed_string_length=${#2}
   declare -i LFBFL_i_result=1
   local LFBFL_some_line
   local LFBFL_line_part
-  while read -r LFBFL_some_line;
-  do
-    echo "Some line: ${LFBFL_some_line}"
+  for LFBFL_some_line in "${LFBFL_arr_lines[@]}"; do
     if [[ "${LFBFL_some_line}" == "$2" ]]; then
-      echo "${LFBFL_quiet}"
-      [[ LFBFL_quiet -eq 1 ]] || echo "${LFBFL_some_line}"
+      [[ LFBFL_quiet -eq 1 ]] || printf "%s\n" "${LFBFL_some_line}"
       LFBFL_i_result=0
       continue
     fi
@@ -206,15 +210,11 @@ grep_fixed_string_with_anchor(){
     if [[ LFBFL_enforce_line_ends -eq 1 ]]; then
       LFBFL_line_part=${LFBFL_some_line: -${LFBFL_fixed_string_length}}
     fi
-    echo "Some part: ${LFBFL_line_part}"
     if [[ "${LFBFL_line_part}" == "$2" ]]; then
-      [[ LFBFL_quiet -eq 1 ]] || echo "${LFBFL_some_line}"
+      [[ LFBFL_quiet -eq 1 ]] || printf "%s\n" "${LFBFL_some_line}"
       LFBFL_i_result=0
     fi
-  done < <(
-    grep "${LFBFL_grep_options2[@]}" --color=never --fixed-strings --\
-    "$2" "$1"
-  )
+  done
   LFBFL_i_result=$((LFBFL_i_result | $?))
   # shellcheck disable=SC2248
   return ${LFBFL_i_result}

@@ -152,6 +152,16 @@ create_PDF(){
     | replace_non_ascii_spaces\
     > "${LFBFL_temp_path}/current_tree.txt.temp"
 
+  local LFBFL_s_file_paths
+  LFBFL_s_file_paths=$(
+    sed -Ez 's/(.)\\\n/\1/Mg' "./${LFBFL_subdir2}/files_names_listing.txt"\
+    | grep -v '^//'
+  )
+  readonly LFBFL_s_file_paths
+  declare -a LFBFL_arr_file_paths
+  mapfile -t LFBFL_arr_file_paths <<< "${LFBFL_s_file_paths}"
+  readonly LFBFL_arr_file_paths
+
   local LFBFL_temp_files_listing="${LFBFL_temp_path}/"
   LFBFL_temp_files_listing+="files_listing.tex.tpl.temp"
   readonly LFBFL_temp_files_listing
@@ -182,18 +192,15 @@ create_PDF(){
   local LFBFL_new_lines
   local LFBFL_new_lines2
   local LFBFL_new_lines3
-  local LFBFL_file_name
+  local LFBFL_file_path
   # Remove line returns here to keep lines short.
-  sed -Ez 's/\\\n//Mg' "./${LFBFL_subdir2}/files_names_listing.txt"\
-    | grep -v '^//'\
-    | while read -r LFBFL_file_name;
-  do
-    printf "Listing file for tex/HTML : %s\n" "${LFBFL_file_name}"
-    # printf "Listing file for tex : %s\n" "${LFBFL_file_name}"
-    # LFBFL_base_file_name=$(basename "${LFBFL_file_name}")
-    LFBFL_cleaned_path1="${LFBFL_file_name//_/\\_}"
+  for LFBFL_file_path in "${LFBFL_arr_file_paths[@]}"; do
+    printf "Listing file for tex/HTML : %s\n" "${LFBFL_file_path}"
+    # printf "Listing file for tex : %s\n" "${LFBFL_file_path}"
+    # LFBFL_base_file_name=$(basename "${LFBFL_file_path}")
+    LFBFL_cleaned_path1="${LFBFL_file_path//_/\\_}"
     LFBFL_cleaned_path2=$(
-      printf "%s" "${LFBFL_file_name}"\
+      printf "%s" "${LFBFL_file_path}"\
       | sed -e 's/\//:/g' -e 's/\.//g'
     )
     LFBFL_new_lines="  ${LFBFL_cleaned_path1}"
@@ -219,7 +226,7 @@ create_PDF(){
         "${LFBFL_score_command_properties2}"
       LFBFL_new_lines2=${repeated_split_last_line_result}
     fi
-    LFBFL_new_lines3="${LFBFL_file_name}"
+    LFBFL_new_lines3="${LFBFL_file_path}"
     if [[ ${#LFBFL_new_lines3} -gt LFBFL_max_line_length ]]; then
       # shellcheck disable=SC2248
       repeated_split_last_line "${LFBFL_new_lines3}"\
@@ -245,10 +252,10 @@ create_PDF(){
       printf "\n"
     } >> "${LFBFL_temp_files_listing}"
 
-    # printf "Listing file for HTML : %s\n" "${LFBFL_file_name}"
+    # printf "Listing file for HTML : %s\n" "${LFBFL_file_path}"
     ((++LFBFL_i))
-    LFBFL_new_lines="${LFBFL_file_name}"
-    if [[ ${#LFBFL_file_name} -gt LFBFL_max_line_length ]]; then
+    LFBFL_new_lines="${LFBFL_file_path}"
+    if [[ ${#LFBFL_file_path} -gt LFBFL_max_line_length ]]; then
       # shellcheck disable=SC2248
       repeated_split_last_line "${LFBFL_new_lines}"\
         "-->"\
@@ -264,7 +271,7 @@ create_PDF(){
       printf "</h3>\n"
       printf "<pre class=\"numbered_lines\">\n"
       sed -e 's/&/\&amp;/g' -e 's/</\&lt;/g'\
-        < "${LFBFL_file_name}"
+        < "${LFBFL_file_path}"
       printf "</pre>\n"
       printf "\n"
       printf "\n"
@@ -295,13 +302,16 @@ create_PDF(){
   local LFBFL_char
   local LFBFL_line_start
   declare -ir LFBFL_overlength=$((LFBFL_max_line_length+1))
-  local LFBFL_file_name2
+  local LFBFL_file_name
+  local LFBFL_s_lines
+  declare -a LFBFL_arr_lines
+  declare -i LFBFL_keep_length
   for LFBFL_tree in "${LFBFL_trees[@]}"; do
     LFBFL_tree_path="${LFBFL_temp_path}/${LFBFL_tree}"
     # shellcheck disable=SC2248
-    grep '.\{'${LFBFL_overlength}'\}' "${LFBFL_tree_path}"\
-      | while read -r LFBFL_line;
-    do
+    LFBFL_s_lines=$(grep '.\{'${LFBFL_overlength}'\}' "${LFBFL_tree_path}")
+    mapfile -t LFBFL_arr_lines <<< "${LFBFL_s_lines}"
+    for LFBFL_line in "${LFBFL_arr_lines[@]}"; do
       # printf "LFBFL_line: %s\n" "${LFBFL_line}"
       LFBFL_prefix=$(
         printf "%s" "${LFBFL_line}"\
@@ -320,21 +330,14 @@ create_PDF(){
       else
         LFBFL_prefix+="│ "
       fi
-      # printf "LFBFL_prefix: %s\n" ${LFBFL_prefix}
+      # printf "LFBFL_prefix: %s\n" "${LFBFL_prefix}"
       LFBFL_file_name=$(
         printf "%s" "${LFBFL_line}"\
         | sed -E 's|.* (([a-zA-Z0-9\._/-]+).)$|\1|g'
       )
       # printf "LFBFL_file_name: %s\n" "${LFBFL_file_name}"
-      LFBFL_file_name2=$(
-        printf "%s" "${LFBFL_file_name}"\
-        | sed -E -e 's/\*/\\\*/g'
-      )
-      LFBFL_line_start=$(
-        printf "%s" "${LFBFL_line}"\
-        | sed -E -e "s/(.*)[ ]*${LFBFL_file_name2}/\1/g"\
-                 -e 's/ *$//g'
-      )
+      LFBFL_keep_length=$((${#LFBFL_line} - ${#LFBFL_file_name}))
+      LFBFL_line_start=${LFBFL_line:0:${LFBFL_keep_length}}
       # printf "LFBFL_line_start: %s\n" "${LFBFL_line_start}"
       LFBFL_line=$(
         printf "%s" "${LFBFL_line}"\
@@ -351,10 +354,13 @@ create_PDF(){
           ""
         LFBFL_new_lines=${repeated_split_last_line_result}
       fi
-      sed -i -e\
-        "s/${LFBFL_line}/${LFBFL_line_start}\n${LFBFL_new_lines}/g"\
-        "${LFBFL_tree_path}"
+      printf "%s\n%s\n" "${LFBFL_line_start}" "${LFBFL_new_lines}"\
+        > "${LFBFL_tree_path}.some_line.temp"
+      insert_file_at_token "${LFBFL_tree_path}"\
+        "${LFBFL_line}"\
+        "${LFBFL_tree_path}.some_line.temp"
     done
+    rm -f "${LFBFL_tree_path}.some_line.temp"
   done
 
   overwrite_if_not_equal "${LFBFL_temp_path}/current_tree.txt"\

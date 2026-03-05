@@ -74,13 +74,13 @@ Some “small” useful scripts
 for enhancing development or system-administrators tasks
 \end{abstract}
 
-Current version: 2026-03-03
+Current version: 2026-03-05
 
-Current number of commits: 505
+Current number of commits: 532
 
-Current git SHA1: 1534e38a62ed970b6dee54351d8f4902d79e828f
+Current git SHA1: 9c112177599a6d2582ed34deb49cc85abf49effd
 
-Code lines: 9378 total lines, 8468 not empty lines, 910 empty lines.
+Code lines: 9616 total lines, 8687 not empty lines, 929 empty lines.
 
 \tableofcontents
 \newpage
@@ -152,7 +152,32 @@ Code lines: 9378 total lines, 8468 not empty lines, 910 empty lines.
 ├── IMAP_transfert.py
 ├── LiensUtiles.txt
 ├── miscellaneous
-│   └── spampty_data.txt
+│   ├──
+│   │ 123456789012345678901234567890123456789012345678901234567890123456789
+│   │ 0123\
+│   ├──
+│   │ 123456789012345678901234567890123456789012345678901234567890123456789
+│   │ 01234\
+│   ├──
+│   │ 123456789012345678901234567890123456789012345678901234567890123456789
+│   │ 012345
+│   ├──
+│   │ 123456789012345678901234567890123456789012345678901234567890123456789
+│   │ 012345\
+│   ├──
+│   │ 123456789012345678901234567890123456789012345678901234567890123456789
+│   │ 0123456
+│   ├──
+│   │ 123456789012345678901234567890123456789012345678901234567890123456789
+│   │ 0123456\
+│   ├──
+│   │ a_long_long_long_long_long_long_long_long_long_filename_so_that_you_c
+│   │ an_see_that_it_works.txt
+│   ├── funny.sh
+│   ├── spampty_data.txt
+│   └──
+│     yet_another_long_long_long_long_long_long_long_long_long_filename_so_
+│     that_you_can_see_that_it_works.txt
 ├── README.html
 ├── README.md
 ├── README.md.tpl
@@ -160,23 +185,23 @@ Code lines: 9378 total lines, 8468 not empty lines, 910 empty lines.
 ├── upgrade_build_and_checks.exec.sh
 └── wget_sha512.libr.sh
 
-6 directories, 64 files
+6 directories, 73 files
 \end{verbatim}
 
 \begin{verbatim}
-[ 12K Mar  3 21:00]  ./
-├── [4.0K Mar  3 21:00]  build_and_checks_dependencies/
+[ 12K Mar  5 19:47]  ./
+├── [4.0K Mar  5 19:47]  build_and_checks_dependencies/
 │   ├── [3.8K Mar  2 18:25]  build_and_checks.exec.sh.tpl*
 │   ├── [3.8K Mar  2 19:19]  build_md_from_printable_md.exec.sh*
 │   ├── [2.8K Mar  3 08:41]  check_shell_scripts_beginnings.libr.sh
-│   ├── [4.7K Mar  3 08:41]  check_shell_scripts_indentation.libr.sh
+│   ├── [4.8K Mar  5 16:21]  check_shell_scripts_indentation.libr.sh
 │   ├── [3.1K Mar  3 10:22]  check_URLs.libr.sh
-│   ├── [ 29K Mar  3 20:54]  common_build_and_checks.exec.sh*
+│   ├── [ 29K Mar  5 19:45]  common_build_and_checks.exec.sh*
 │   ├── [ 24K Mar  3 18:32]  common_build_and_checks.exec.sh.tpl
 │   ├── [9.0K Mar  3 16:14]  common_options.libr.sh
 │   ├── [4.8K Mar  3 19:09]  comparisons.libr.sh
-│   ├── [ 18K Mar  3 19:03]  create_PDF.exec.sh*
-│   ├── [3.3K Feb 19 18:48]  generate_from_template.libr.sh
+│   ├── [ 18K Mar  5 19:44]  create_PDF.exec.sh*
+│   ├── [3.6K Mar  5 19:33]  generate_from_template.libr.sh
 │   ├── [1.9K Feb 19 17:18]  get_common_text_glob_patterns.libr.sh
 │   ├── [2.4K Mar  3 10:22]  grammar_and_spell_check.libr.sh
 │   ├── [4.0K Mar  3 19:13]  licenses_templates/
@@ -185,7 +210,7 @@ Code lines: 9378 total lines, 8468 not empty lines, 910 empty lines.
 │   │   ├── [ 707 Feb 28 20:38]  license_file_header_GPLv3+.tpl
 │   │   └── [ 728 Feb 28 20:38]  license_file_header_LGPLv3+.tpl
 │   ├── [4.8K Mar  3 18:49]  lines_counts.libr.sh
-│   ├── [ 10K Mar  3 20:10]  lines_filters.libr.sh
+│   ├── [ 13K Mar  5 15:54]  lines_filters.libr.sh
 │   ├── [2.7K Feb 19 16:16]  lines_maps.libr.sh
 │   ├── [1.8K Feb 26 16:58]  overwrite_if_not_equal.libr.sh
 │   ├── [2.3K Mar  3 10:30]  python_black_complement.libr.sh
@@ -193,20 +218,20 @@ Code lines: 9378 total lines, 8468 not empty lines, 910 empty lines.
 │   ├── [2.0K Mar  3 17:16]  repository_data.libr.sh
 │   ├── [1.6K Feb  3 17:57]  split_score.exec.php
 │   ├── [1.9K Feb  3 20:11]  split_score.libr.php
-│   ├── [ 13K Mar  3 20:35]  strings_functions.libr.sh
-│   ├── [3.4K Mar  3 10:22]  too_long_code_lines.libr.sh
+│   ├── [ 13K Mar  5 16:40]  strings_functions.libr.sh
+│   ├── [3.4K Mar  4 17:55]  too_long_code_lines.libr.sh
 │   ├── [4.2K Mar  3 17:18]  update_common_build_and_checks.exec.sh*
-│   └── [5.0K Mar  3 20:41]  update_or_check_files_names_listing.exec.sh*
-├── [4.0K Mar  3 20:54]  build_and_checks.exec.sh*
-├── [4.0K Mar  3 21:00]  build_and_checks_variables/
+│   └── [5.5K Mar  5 16:43]  update_or_check_files_names_listing.exec.sh*
+├── [4.0K Mar  5 19:45]  build_and_checks.exec.sh*
+├── [4.0K Mar  5 19:47]  build_and_checks_variables/
 │   ├── [  15 Jan  5 20:00]  bandit_baseline.json
 │   ├── [  25 Jan  5 18:49]  bandit.ini
 │   ├── [  30 Feb 28 20:30]  black.toml
 │   ├── [ 16K Mar  2 12:57]  DevOrSysAdminScripts.html.tpl
-│   ├── [ 29K Mar  3 20:54]  DevOrSysAdminScripts.tex
+│   ├── [ 31K Mar  5 19:47]  DevOrSysAdminScripts.tex
 │   ├── [8.5K Mar  2 13:01]  DevOrSysAdminScripts.tex.tpl
-│   ├── [ 13K Mar  3 20:54]  files_listing.tex.tpl
-│   ├── [4.1K Mar  3 20:39]  files_names_listing.txt
+│   ├── [ 14K Mar  5 17:00]  files_listing.tex.tpl
+│   ├── [5.0K Mar  5 16:36]  files_names_listing.txt
 │   ├── [  24 Jan 15 22:26]  .gitignore
 │   ├── [4.9K Mar  2 12:48]  licenses_notes.txt
 │   ├── [1001 Feb 26 15:37]  phpmd_baseline.xml
@@ -217,8 +242,8 @@ Code lines: 9378 total lines, 8468 not empty lines, 910 empty lines.
 │   └── [3.1K Mar  3 18:56]  shellcheck_notes.txt
 ├── [ 34K May  6  2024]  COPYING
 ├── [7.5K Dec 27 21:48]  COPYING.LESSER
-├── [367K Mar  3 20:54]  DevOrSysAdminScripts.html
-├── [333K Mar  3 20:54]  DevOrSysAdminScripts.pdf
+├── [377K Mar  5 19:47]  DevOrSysAdminScripts.html
+├── [341K Mar  5 19:47]  DevOrSysAdminScripts.pdf
 ├── [4.0K Mar  3 20:51]  git_helpers/
 │   ├── [3.8K Mar  3 20:51]  git_checks.libr.sh
 │   ├── [1.8K Feb 27 20:20]  post-commit*
@@ -226,8 +251,33 @@ Code lines: 9378 total lines, 8468 not empty lines, 910 empty lines.
 │   └── [1.4K Feb 19 18:42]  pre-commit*
 ├── [8.3K Feb 28 20:31]  IMAP_transfert.py
 ├── [ 830 Dec 29 19:10]  LiensUtiles.txt
-├── [4.0K Mar  3 19:56]  miscellaneous/
-│   └── [  94 Mar  3 19:56]  spampty_data.txt
+├── [4.0K Mar  5 16:23]  miscellaneous/
+│   ├── [   0 Mar  4 10:37]
+│   │ 123456789012345678901234567890123456789012345678901234567890123456789
+│   │ 0123\
+│   ├── [   0 Mar  4 10:03]
+│   │ 123456789012345678901234567890123456789012345678901234567890123456789
+│   │ 01234\
+│   ├── [   0 Mar  4 10:01]
+│   │ 123456789012345678901234567890123456789012345678901234567890123456789
+│   │ 012345
+│   ├── [   0 Mar  4 10:37]
+│   │ 123456789012345678901234567890123456789012345678901234567890123456789
+│   │ 012345\
+│   ├── [   0 Mar  4 10:37]
+│   │ 123456789012345678901234567890123456789012345678901234567890123456789
+│   │ 0123456
+│   ├── [   0 Mar  4 10:37]
+│   │ 123456789012345678901234567890123456789012345678901234567890123456789
+│   │ 0123456\
+│   ├── [   0 Mar  4 09:13]
+│   │ a_long_long_long_long_long_long_long_long_long_filename_so_that_you_c
+│   │ an_see_that_it_works.txt
+│   ├── [1.3K Mar  5 16:23]  funny.sh
+│   ├── [  94 Mar  3 19:56]  spampty_data.txt
+│   └── [   0 Mar  4 09:13]
+│     yet_another_long_long_long_long_long_long_long_long_long_filename_so_
+│     that_you_can_see_that_it_works.txt
 ├── [7.4K Mar  1 22:30]  README.html
 ├── [3.7K Mar  1 22:30]  README.md
 ├── [3.7K Mar  1 22:29]  README.md.tpl
@@ -235,7 +285,7 @@ Code lines: 9378 total lines, 8468 not empty lines, 910 empty lines.
 ├── [1.4K Feb  3 14:19]  upgrade_build_and_checks.exec.sh*
 └── [1.4K Feb 19 14:41]  wget_sha512.libr.sh
 
-6 directories, 64 files
+6 directories, 73 files
 \end{verbatim}
 
 \section{Listing of files}
@@ -1070,6 +1120,18 @@ LiensUtiles.txt
 
 
 \subsection{
+  miscellaneous/funny.sh
+}
+\label{
+  miscellaneous:funnysh
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+miscellaneous/funny.sh
+}
+
+
+\subsection{
   miscellaneous/spampty\_data.txt
 }
 \label{
@@ -1078,6 +1140,24 @@ LiensUtiles.txt
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
 miscellaneous/spampty_data.txt
+}
+
+
+\subsection{
+  miscellaneous/%
+yet\_another\_long\_long\_long\_long\_long\_long\_long\_long\_long\_filena%
+me\_so\_that\_you\_can\_see\_that\_it\_works.txt
+}
+\label{
+  miscellaneous:%
+yet_another_long_long_long_long_long_long_long_long_long_filename_so_that_%
+you_can_see_that_it_workstxt
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+miscellaneous/%
+yet_another_long_long_long_long_long_long_long_long_long_filename_so_that_%
+you_can_see_that_it_works.txt
 }
 
 

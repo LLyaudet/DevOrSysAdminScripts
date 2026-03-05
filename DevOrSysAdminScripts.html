@@ -118,11 +118,11 @@ ol.level2 li:before{
 Some “small” useful scripts
 for enhancing development or system-administrators tasks
 </blockquote>
-<p>Current version: 2026-03-03</p>
-<p>Current number of commits: 505</p>
-<p>Current git SHA1: 1534e38a62ed970b6dee54351d8f4902d79e828f</p>
+<p>Current version: 2026-03-05</p>
+<p>Current number of commits: 532</p>
+<p>Current git SHA1: 9c112177599a6d2582ed34deb49cc85abf49effd</p>
 <p>
-Code lines: 9378 total lines, 8468 not empty lines, 910 empty lines.
+Code lines: 9616 total lines, 8687 not empty lines, 929 empty lines.
 </p>
 
 
@@ -299,18 +299,26 @@ IMAP_transfert.py
 LiensUtiles.txt
       </a></li>
       <li><a href="#subsection2.55">
-miscellaneous/spampty_data.txt
+miscellaneous/funny.sh
       </a></li>
       <li><a href="#subsection2.56">
-README.md.tpl
+miscellaneous/spampty_data.txt
       </a></li>
       <li><a href="#subsection2.57">
-unicode.libr.php
+miscellaneous/<!--
+-->yet_another_long_long_long_long_long_long_long_long_long_filename_so<!--
+-->_that_you_can_see_that_it_works.txt
       </a></li>
       <li><a href="#subsection2.58">
-upgrade_build_and_checks.exec.sh
+README.md.tpl
       </a></li>
       <li><a href="#subsection2.59">
+unicode.libr.php
+      </a></li>
+      <li><a href="#subsection2.60">
+upgrade_build_and_checks.exec.sh
+      </a></li>
+      <li><a href="#subsection2.61">
 wget_sha512.libr.sh
       </a></li>
     </ol>
@@ -383,7 +391,32 @@ wget_sha512.libr.sh
 ├── IMAP_transfert.py
 ├── LiensUtiles.txt
 ├── miscellaneous
-│   └── spampty_data.txt
+│   ├──
+│   │ 123456789012345678901234567890123456789012345678901234567890123456789
+│   │ 0123\
+│   ├──
+│   │ 123456789012345678901234567890123456789012345678901234567890123456789
+│   │ 01234\
+│   ├──
+│   │ 123456789012345678901234567890123456789012345678901234567890123456789
+│   │ 012345
+│   ├──
+│   │ 123456789012345678901234567890123456789012345678901234567890123456789
+│   │ 012345\
+│   ├──
+│   │ 123456789012345678901234567890123456789012345678901234567890123456789
+│   │ 0123456
+│   ├──
+│   │ 123456789012345678901234567890123456789012345678901234567890123456789
+│   │ 0123456\
+│   ├──
+│   │ a_long_long_long_long_long_long_long_long_long_filename_so_that_you_c
+│   │ an_see_that_it_works.txt
+│   ├── funny.sh
+│   ├── spampty_data.txt
+│   └──
+│     yet_another_long_long_long_long_long_long_long_long_long_filename_so_
+│     that_you_can_see_that_it_works.txt
 ├── README.html
 ├── README.md
 ├── README.md.tpl
@@ -391,22 +424,22 @@ wget_sha512.libr.sh
 ├── upgrade_build_and_checks.exec.sh
 └── wget_sha512.libr.sh
 
-6 directories, 64 files
+6 directories, 73 files
 </pre>
 <pre class="verbatim">
-[ 12K Mar  3 21:00]  ./
-├── [4.0K Mar  3 21:00]  build_and_checks_dependencies/
+[ 12K Mar  5 19:47]  ./
+├── [4.0K Mar  5 19:47]  build_and_checks_dependencies/
 │   ├── [3.8K Mar  2 18:25]  build_and_checks.exec.sh.tpl*
 │   ├── [3.8K Mar  2 19:19]  build_md_from_printable_md.exec.sh*
 │   ├── [2.8K Mar  3 08:41]  check_shell_scripts_beginnings.libr.sh
-│   ├── [4.7K Mar  3 08:41]  check_shell_scripts_indentation.libr.sh
+│   ├── [4.8K Mar  5 16:21]  check_shell_scripts_indentation.libr.sh
 │   ├── [3.1K Mar  3 10:22]  check_URLs.libr.sh
-│   ├── [ 29K Mar  3 20:54]  common_build_and_checks.exec.sh*
+│   ├── [ 29K Mar  5 19:45]  common_build_and_checks.exec.sh*
 │   ├── [ 24K Mar  3 18:32]  common_build_and_checks.exec.sh.tpl
 │   ├── [9.0K Mar  3 16:14]  common_options.libr.sh
 │   ├── [4.8K Mar  3 19:09]  comparisons.libr.sh
-│   ├── [ 18K Mar  3 19:03]  create_PDF.exec.sh*
-│   ├── [3.3K Feb 19 18:48]  generate_from_template.libr.sh
+│   ├── [ 18K Mar  5 19:44]  create_PDF.exec.sh*
+│   ├── [3.6K Mar  5 19:33]  generate_from_template.libr.sh
 │   ├── [1.9K Feb 19 17:18]  get_common_text_glob_patterns.libr.sh
 │   ├── [2.4K Mar  3 10:22]  grammar_and_spell_check.libr.sh
 │   ├── [4.0K Mar  3 19:13]  licenses_templates/
@@ -415,7 +448,7 @@ wget_sha512.libr.sh
 │   │   ├── [ 707 Feb 28 20:38]  license_file_header_GPLv3+.tpl
 │   │   └── [ 728 Feb 28 20:38]  license_file_header_LGPLv3+.tpl
 │   ├── [4.8K Mar  3 18:49]  lines_counts.libr.sh
-│   ├── [ 10K Mar  3 20:10]  lines_filters.libr.sh
+│   ├── [ 13K Mar  5 15:54]  lines_filters.libr.sh
 │   ├── [2.7K Feb 19 16:16]  lines_maps.libr.sh
 │   ├── [1.8K Feb 26 16:58]  overwrite_if_not_equal.libr.sh
 │   ├── [2.3K Mar  3 10:30]  python_black_complement.libr.sh
@@ -423,20 +456,20 @@ wget_sha512.libr.sh
 │   ├── [2.0K Mar  3 17:16]  repository_data.libr.sh
 │   ├── [1.6K Feb  3 17:57]  split_score.exec.php
 │   ├── [1.9K Feb  3 20:11]  split_score.libr.php
-│   ├── [ 13K Mar  3 20:35]  strings_functions.libr.sh
-│   ├── [3.4K Mar  3 10:22]  too_long_code_lines.libr.sh
+│   ├── [ 13K Mar  5 16:40]  strings_functions.libr.sh
+│   ├── [3.4K Mar  4 17:55]  too_long_code_lines.libr.sh
 │   ├── [4.2K Mar  3 17:18]  update_common_build_and_checks.exec.sh*
-│   └── [5.0K Mar  3 20:41]  update_or_check_files_names_listing.exec.sh*
-├── [4.0K Mar  3 20:54]  build_and_checks.exec.sh*
-├── [4.0K Mar  3 21:00]  build_and_checks_variables/
+│   └── [5.5K Mar  5 16:43]  update_or_check_files_names_listing.exec.sh*
+├── [4.0K Mar  5 19:45]  build_and_checks.exec.sh*
+├── [4.0K Mar  5 19:47]  build_and_checks_variables/
 │   ├── [  15 Jan  5 20:00]  bandit_baseline.json
 │   ├── [  25 Jan  5 18:49]  bandit.ini
 │   ├── [  30 Feb 28 20:30]  black.toml
 │   ├── [ 16K Mar  2 12:57]  DevOrSysAdminScripts.html.tpl
-│   ├── [ 29K Mar  3 20:54]  DevOrSysAdminScripts.tex
+│   ├── [ 31K Mar  5 19:47]  DevOrSysAdminScripts.tex
 │   ├── [8.5K Mar  2 13:01]  DevOrSysAdminScripts.tex.tpl
-│   ├── [ 13K Mar  3 20:54]  files_listing.tex.tpl
-│   ├── [4.1K Mar  3 20:39]  files_names_listing.txt
+│   ├── [ 14K Mar  5 17:00]  files_listing.tex.tpl
+│   ├── [5.0K Mar  5 16:36]  files_names_listing.txt
 │   ├── [  24 Jan 15 22:26]  .gitignore
 │   ├── [4.9K Mar  2 12:48]  licenses_notes.txt
 │   ├── [1001 Feb 26 15:37]  phpmd_baseline.xml
@@ -447,8 +480,8 @@ wget_sha512.libr.sh
 │   └── [3.1K Mar  3 18:56]  shellcheck_notes.txt
 ├── [ 34K May  6  2024]  COPYING
 ├── [7.5K Dec 27 21:48]  COPYING.LESSER
-├── [367K Mar  3 20:54]  DevOrSysAdminScripts.html
-├── [333K Mar  3 20:54]  DevOrSysAdminScripts.pdf
+├── [377K Mar  5 19:47]  DevOrSysAdminScripts.html
+├── [341K Mar  5 19:47]  DevOrSysAdminScripts.pdf
 ├── [4.0K Mar  3 20:51]  git_helpers/
 │   ├── [3.8K Mar  3 20:51]  git_checks.libr.sh
 │   ├── [1.8K Feb 27 20:20]  post-commit*
@@ -456,8 +489,33 @@ wget_sha512.libr.sh
 │   └── [1.4K Feb 19 18:42]  pre-commit*
 ├── [8.3K Feb 28 20:31]  IMAP_transfert.py
 ├── [ 830 Dec 29 19:10]  LiensUtiles.txt
-├── [4.0K Mar  3 19:56]  miscellaneous/
-│   └── [  94 Mar  3 19:56]  spampty_data.txt
+├── [4.0K Mar  5 16:23]  miscellaneous/
+│   ├── [   0 Mar  4 10:37]
+│   │ 123456789012345678901234567890123456789012345678901234567890123456789
+│   │ 0123\
+│   ├── [   0 Mar  4 10:03]
+│   │ 123456789012345678901234567890123456789012345678901234567890123456789
+│   │ 01234\
+│   ├── [   0 Mar  4 10:01]
+│   │ 123456789012345678901234567890123456789012345678901234567890123456789
+│   │ 012345
+│   ├── [   0 Mar  4 10:37]
+│   │ 123456789012345678901234567890123456789012345678901234567890123456789
+│   │ 012345\
+│   ├── [   0 Mar  4 10:37]
+│   │ 123456789012345678901234567890123456789012345678901234567890123456789
+│   │ 0123456
+│   ├── [   0 Mar  4 10:37]
+│   │ 123456789012345678901234567890123456789012345678901234567890123456789
+│   │ 0123456\
+│   ├── [   0 Mar  4 09:13]
+│   │ a_long_long_long_long_long_long_long_long_long_filename_so_that_you_c
+│   │ an_see_that_it_works.txt
+│   ├── [1.3K Mar  5 16:23]  funny.sh
+│   ├── [  94 Mar  3 19:56]  spampty_data.txt
+│   └── [   0 Mar  4 09:13]
+│     yet_another_long_long_long_long_long_long_long_long_long_filename_so_
+│     that_you_can_see_that_it_works.txt
 ├── [7.4K Mar  1 22:30]  README.html
 ├── [3.7K Mar  1 22:30]  README.md
 ├── [3.7K Mar  1 22:29]  README.md.tpl
@@ -465,7 +523,7 @@ wget_sha512.libr.sh
 ├── [1.4K Feb  3 14:19]  upgrade_build_and_checks.exec.sh*
 └── [1.4K Feb 19 14:41]  wget_sha512.libr.sh
 
-6 directories, 64 files
+6 directories, 73 files
 </pre>
 
 
@@ -1186,8 +1244,6 @@ source "./${LFBFL_subdir}/common_options.libr.sh"
 source "./${LFBFL_subdir}/lines_filters.libr.sh"
 
 check_one_shell_script_indentation(){
-  shopt -s lastpipe
-
   declare -i LFBFL_file_with_error=0
   local LFBFL_some_line
   local LFBFL_previous_line="workeduntilsomeasshole"
@@ -1207,10 +1263,14 @@ check_one_shell_script_indentation(){
   local LFBFL_substring2
   declare -r LFBFL_pattern='^ *-e '
   # This grep would have been enough without some sed commands.
-  # shellcheck disable=SC2312
-  grep -EHn -B 1 '^(  )* ([^ ]|$)' "$1"\
-    | while read -r LFBFL_some_line;
-  do
+  declare -r LFBFL_s_lines=$(
+    grep -EHn -B 1 '^(  )* ([^ ]|$)' "$1"
+  )
+  declare -a LFBFL_arr_lines
+  mapfile -t LFBFL_arr_lines &lt;&lt;&lt; "${LFBFL_s_lines}"
+  readonly LFBFL_arr_lines
+
+  for LFBFL_some_line in "${LFBFL_arr_lines[@]}"; do
     if [[ "${LFBFL_some_line}" == "--" ]]; then
       # When switching between code fragments, we reinit.
       LFBFL_previous_line="workeduntilsomeasshole"
@@ -1488,9 +1548,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='fe468954776cc2ddbde072daa41e01181cfa7d066fc2a'
-  LFBFL_correct_sha512+='117647331d01b43bf04809f239bc2733ca987bd8433a'
-  LFBFL_correct_sha512+='aabc7e19241f3f2481268eac77a051e940524b2'
+  LFBFL_correct_sha512='2ddb8563896f04c04d033965915082526b22ddf367356'
+  LFBFL_correct_sha512+='dd10505286f459876e639cbd5f5a328ee0e39939f010'
+  LFBFL_correct_sha512+='fac0833224c786d18abffd1f20c9ae84c8e7f9f'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
@@ -1528,9 +1588,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='e20c8bc26689140726045820432bcf5adc8422c69dbb9'
-  LFBFL_correct_sha512+='9a0b4a38bc82030c4151744d679ff372e30aa2f8a2d8'
-  LFBFL_correct_sha512+='57bda2a0e89d32b77ddf223c0a427007c21cd96'
+  LFBFL_correct_sha512='983acc9185fce5c064b475a234d0008c8c286fa4e9d6f'
+  LFBFL_correct_sha512+='c8be96f49bb73f5e3a0d901f2487f2a704f4f481417a'
+  LFBFL_correct_sha512+='bcc413088301404b50131964668978e2799a78b'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
   chmod +x "./${LFBFL_file_path}"
@@ -1539,9 +1599,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='5779c3d2c64d0bb403525c410e37b0b06fcf1ef97d503'
-  LFBFL_correct_sha512+='21fd27345545a8ebea020b2d3d809ac5c1bc66f9cebe'
-  LFBFL_correct_sha512+='a8e8ea63aa539eaa179cf09a3860239c96df8e9'
+  LFBFL_correct_sha512='7d90727e83305c1269ed80ab59a138bb70fd36833bbb2'
+  LFBFL_correct_sha512+='3713a9fcf8910fb1578c6f089c107f351a4c0fdad048'
+  LFBFL_correct_sha512+='73c7d5870c45d4d5f1364af543d33eaecadd4f3'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
@@ -1624,9 +1684,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='ff7968ddd58944c291b7765b0d4cb3f9acc7ac3a94610'
-  LFBFL_correct_sha512+='b768c3983ff93ffc78a27893e2d58812b12f8efac2b1'
-  LFBFL_correct_sha512+='40b7927987fc0cbb4de6cbf07202774adf7da87'
+  LFBFL_correct_sha512='739357424121ecb80696cc5620ce4b51ec6e2b2d7c31e'
+  LFBFL_correct_sha512+='968b6f8b45da6546042d405a2a725e7fe7e7f8467e1f'
+  LFBFL_correct_sha512+='4904156d3e9d5b6947f739313fa9571599054fe'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
@@ -1704,9 +1764,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='4abbc3b1ad8ccf7f73eb834cd66f4781af623546ec5e6'
-  LFBFL_correct_sha512+='cb1eec69c9520fd9578538ddedbde624416ec3572b95'
-  LFBFL_correct_sha512+='7a183c5feea398e65cf9b1a9b47f195960151d6'
+  LFBFL_correct_sha512='30db86474889d21a62976c8d69fed289d1f0d5e33dc4d'
+  LFBFL_correct_sha512+='57b7bca7098bc48ed06a60a6392b3f1f8e34a0903cc0'
+  LFBFL_correct_sha512+='96207fafc18fdfbda28409afc1b10e1d4fe874b'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
@@ -1714,9 +1774,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='fb5571eead378f7de8add4a277a71450f82d095990219'
-  LFBFL_correct_sha512+='6ed559bfd2896511d406983d19b7816c62c2bb9ebc6c'
-  LFBFL_correct_sha512+='7ae6b877c74b466b19904ed0e12282ae0a5475c'
+  LFBFL_correct_sha512='12172cd22a13672131b8e1fbd2894e3f6be70d23751cc'
+  LFBFL_correct_sha512+='7602fff28cc41e94882354e7f1b97bd8a08cd3819b91'
+  LFBFL_correct_sha512+='ab00bc7b502542313034c8d966821b8ed707313'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
@@ -1724,9 +1784,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='f4f91e21cbe4084dd85bd0a1787519834147acdb4c887'
-  LFBFL_correct_sha512+='dc8460ef21c5434e3e37d09dbe14c945c6f6cac7cc9f'
-  LFBFL_correct_sha512+='b1e16e288f97498d7a89a2d92744d658524b4a0'
+  LFBFL_correct_sha512='a93461e1f83560cc9be0e8881173c3eaf7b00d1ee4397'
+  LFBFL_correct_sha512+='751c9dbb683327746e7111c382c51f2d52e98d4f7cfd'
+  LFBFL_correct_sha512+='6a8e66f2ce32ec5c8382348addc1460cd3ab3d9'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
   chmod +x "./${LFBFL_file_path}"
@@ -3473,6 +3533,11 @@ create_PDF(){
   LFBFL_number_of_lines+=" empty lines."
   readonly LFBFL_number_of_lines
 
+  local LFBFL_temp_path
+  # LFBFL_temp_path=$(realpath "./${LFBFL_subdir2}/temp") for pushd
+  LFBFL_temp_path="./${LFBFL_subdir2}/temp"
+  readonly LFBFL_temp_path
+
   # see https://gitlab.com/OldManProgrammer/unix-tree/-/issues
   # ?show=eyJpaWQiOiI0MyIsImZ1bGxfcGF0aCI6Ik9sZE1hblByb2dyYW1t
   # ZXIvdW5peC10cmVlIiwiaWQiOjE4NTE0NTgzOH0%3D
@@ -3483,7 +3548,7 @@ create_PDF(){
     -I ".ruff_cache/"\
     -I ".git/"\
     | replace_non_ascii_spaces\
-    > "${LFBFL_subdir2}/temp/current_tree_light.txt"
+    > "${LFBFL_temp_path}/current_tree_light.txt"
 
   tree -a -DFh --gitignore\
     -I "node_modules/"\
@@ -3492,19 +3557,29 @@ create_PDF(){
     -I ".ruff_cache/"\
     -I ".git/"\
     | replace_non_ascii_spaces\
-    > "${LFBFL_subdir2}/temp/current_tree.txt.temp"
+    > "${LFBFL_temp_path}/current_tree.txt.temp"
 
-  local LFBFL_temp_files_listing="./${LFBFL_subdir2}/temp/"
+  local LFBFL_s_file_paths
+  LFBFL_s_file_paths=$(
+    sed -Ez 's/(.)\\\n/\1/Mg' "./${LFBFL_subdir2}/files_names_listing.txt"\
+    | grep -v '^//'
+  )
+  readonly LFBFL_s_file_paths
+  declare -a LFBFL_arr_file_paths
+  mapfile -t LFBFL_arr_file_paths &lt;&lt;&lt; "${LFBFL_s_file_paths}"
+  readonly LFBFL_arr_file_paths
+
+  local LFBFL_temp_files_listing="${LFBFL_temp_path}/"
   LFBFL_temp_files_listing+="files_listing.tex.tpl.temp"
   readonly LFBFL_temp_files_listing
   : > "${LFBFL_temp_files_listing}"
-  local LFBFL_temp_files_listing2="./${LFBFL_subdir2}/temp/"
+  local LFBFL_temp_files_listing2="${LFBFL_temp_path}/"
   LFBFL_temp_files_listing2+="files_listing.html.tpl.temp"
   readonly LFBFL_temp_files_listing2
   : > "${LFBFL_temp_files_listing2}"
   # HTML &lt;li> elements, hence "lis".
   local LFBFL_temp_files_lis
-  LFBFL_temp_files_lis="./${LFBFL_subdir2}/temp/files_lis.html.tpl"
+  LFBFL_temp_files_lis="${LFBFL_temp_path}/files_lis.html.tpl"
   readonly LFBFL_temp_files_lis
   : > "${LFBFL_temp_files_lis}"
   # shellcheck disable=SC2248
@@ -3524,18 +3599,15 @@ create_PDF(){
   local LFBFL_new_lines
   local LFBFL_new_lines2
   local LFBFL_new_lines3
-  local LFBFL_file_name
+  local LFBFL_file_path
   # Remove line returns here to keep lines short.
-  sed -Ez 's/\\\n//Mg' "./${LFBFL_subdir2}/files_names_listing.txt"\
-    | grep -v '^//'\
-    | while read -r LFBFL_file_name;
-  do
-    echo "Listing file for tex/HTML : ${LFBFL_file_name}"
-    # echo "Listing file for tex : ${LFBFL_file_name}"
-    # LFBFL_base_file_name=$(basename "${LFBFL_file_name}")
-    LFBFL_cleaned_path1="${LFBFL_file_name//_/\\_}"
+  for LFBFL_file_path in "${LFBFL_arr_file_paths[@]}"; do
+    printf "Listing file for tex/HTML : %s\n" "${LFBFL_file_path}"
+    # printf "Listing file for tex : %s\n" "${LFBFL_file_path}"
+    # LFBFL_base_file_name=$(basename "${LFBFL_file_path}")
+    LFBFL_cleaned_path1="${LFBFL_file_path//_/\\_}"
     LFBFL_cleaned_path2=$(
-      echo "${LFBFL_file_name}"\
+      printf "%s" "${LFBFL_file_path}"\
       | sed -e 's/\//:/g' -e 's/\.//g'
     )
     LFBFL_new_lines="  ${LFBFL_cleaned_path1}"
@@ -3561,7 +3633,7 @@ create_PDF(){
         "${LFBFL_score_command_properties2}"
       LFBFL_new_lines2=${repeated_split_last_line_result}
     fi
-    LFBFL_new_lines3="${LFBFL_file_name}"
+    LFBFL_new_lines3="${LFBFL_file_path}"
     if [[ ${#LFBFL_new_lines3} -gt LFBFL_max_line_length ]]; then
       # shellcheck disable=SC2248
       repeated_split_last_line "${LFBFL_new_lines3}"\
@@ -3573,28 +3645,24 @@ create_PDF(){
       LFBFL_new_lines3=${repeated_split_last_line_result}
     fi
     {
-      echo "\subsection{"
-      echo "  ${LFBFL_file_name}"\
-        | sed -e "s|  ${LFBFL_file_name}|${LFBFL_new_lines}|g"\
-              -e 's/_/\\_/g'
-      echo "}"
-      echo "\label{"
-      echo "  ${LFBFL_cleaned_path2}"\
-        | sed -e "s|  ${LFBFL_cleaned_path2}|${LFBFL_new_lines2}|g"
-      echo "}"
-      echo ""
-      echo "\VerbatimInput[numbers=left,xleftmargin=-5mm]{"
-      echo "  ${LFBFL_file_name}"\
-        | sed -e "s|  ${LFBFL_file_name}|${LFBFL_new_lines3}|g"
-      echo "}"
-      echo ""
-      echo ""
+      printf "\\subsection{\n"
+      printf "%s\n" "${LFBFL_new_lines}"
+      printf "}\n"
+      printf "\\label{\n"
+      printf "%s\n" "${LFBFL_new_lines2}"
+      printf "}\n"
+      printf "\n"
+      printf "\\VerbatimInput[numbers=left,xleftmargin=-5mm]{\n"
+      printf "%s\n" "${LFBFL_new_lines3}"
+      printf "}\n"
+      printf "\n"
+      printf "\n"
     } >> "${LFBFL_temp_files_listing}"
 
-    # echo "Listing file for HTML : ${LFBFL_file_name}"
+    # printf "Listing file for HTML : %s\n" "${LFBFL_file_path}"
     ((++LFBFL_i))
-    LFBFL_new_lines="${LFBFL_file_name}"
-    if [[ ${#LFBFL_file_name} -gt LFBFL_max_line_length ]]; then
+    LFBFL_new_lines="${LFBFL_file_path}"
+    if [[ ${#LFBFL_file_path} -gt LFBFL_max_line_length ]]; then
       # shellcheck disable=SC2248
       repeated_split_last_line "${LFBFL_new_lines}"\
         "-->"\
@@ -3605,31 +3673,27 @@ create_PDF(){
       LFBFL_new_lines=${repeated_split_last_line_result}
     fi
     {
-      echo "&lt;h3 id=\"subsection2.${LFBFL_i}\">2.${LFBFL_i}"
-      # shellcheck disable=SC2001
-      echo "${LFBFL_file_name}"\
-        | sed -e "s|${LFBFL_file_name}|${LFBFL_new_lines}|g"
-      echo "&lt;/h3>"
-      echo "&lt;pre class=\"numbered_lines\">"
+      printf "&lt;h3 id=\"subsection2.%s\">2.%s\n" "${LFBFL_i}" "${LFBFL_i}"
+      printf "%s\n" "${LFBFL_new_lines}"
+      printf "&lt;/h3>\n"
+      printf "&lt;pre class=\"numbered_lines\">\n"
       sed -e 's/&amp;/\&amp;amp;/g' -e 's/&lt;/\&amp;lt;/g'\
-        &lt; "${LFBFL_file_name}"
-      echo "&lt;/pre>"
-      echo ""
-      echo ""
+        &lt; "${LFBFL_file_path}"
+      printf "&lt;/pre>\n"
+      printf "\n"
+      printf "\n"
     } >> "${LFBFL_temp_files_listing2}"
     {
-      echo "      &lt;li>&lt;a href=\"#subsection2.${LFBFL_i}\">"
-      # shellcheck disable=SC2001
-      echo "${LFBFL_file_name}"\
-        | sed -e "s|${LFBFL_file_name}|${LFBFL_new_lines}|g"
-      echo "      &lt;/a>&lt;/li>"
+      printf "      &lt;li>&lt;a href=\"#subsection2.%s\">\n" "${LFBFL_i}"
+      printf "%s\n" "${LFBFL_new_lines}"
+      printf "      &lt;/a>&lt;/li>\n"
     } >> "${LFBFL_temp_files_lis}"
   done
   overwrite_if_not_equal "./${LFBFL_subdir2}/files_listing.tex.tpl"\
     "${LFBFL_temp_files_listing}"
   sed -i -e "s|\\n&lt;/pre>|&lt;/pre>|g" "${LFBFL_temp_files_listing2}"
   overwrite_if_not_equal\
-    "./${LFBFL_subdir2}/temp/files_listing.html.tpl"\
+    "${LFBFL_temp_path}/files_listing.html.tpl"\
     "${LFBFL_temp_files_listing2}"
 
   # We verify if some lines are beyond max_line_length characters
@@ -3645,24 +3709,27 @@ create_PDF(){
   local LFBFL_char
   local LFBFL_line_start
   declare -ir LFBFL_overlength=$((LFBFL_max_line_length+1))
-  local LFBFL_file_name2
+  local LFBFL_file_name
+  local LFBFL_s_lines
+  declare -a LFBFL_arr_lines
+  declare -i LFBFL_keep_length
   for LFBFL_tree in "${LFBFL_trees[@]}"; do
-    LFBFL_tree_path="${LFBFL_subdir2}/temp/${LFBFL_tree}"
+    LFBFL_tree_path="${LFBFL_temp_path}/${LFBFL_tree}"
     # shellcheck disable=SC2248
-    grep '.\{'${LFBFL_overlength}'\}' "${LFBFL_tree_path}"\
-      | while read -r LFBFL_line;
-    do
-      # echo "LFBFL_line: ${LFBFL_line}"
+    LFBFL_s_lines=$(grep '.\{'${LFBFL_overlength}'\}' "${LFBFL_tree_path}")
+    mapfile -t LFBFL_arr_lines &lt;&lt;&lt; "${LFBFL_s_lines}"
+    for LFBFL_line in "${LFBFL_arr_lines[@]}"; do
+      # printf "LFBFL_line: %s\n" "${LFBFL_line}"
       LFBFL_prefix=$(
-        echo "${LFBFL_line}"\
+        printf "%s" "${LFBFL_line}"\
         | sed -E -e 's/(.*)──[^─]+$/\1/g'
       )
-      # echo "LFBFL_prefix: ${LFBFL_prefix}"
+      # printf "LFBFL_prefix: %s\n" "${LFBFL_prefix}"
       LFBFL_prefix_last_position=$((${#LFBFL_prefix}-1))
       LFBFL_char="${LFBFL_prefix:${LFBFL_prefix_last_position}:1}"
-      # echo "LFBFL_char: ${LFBFL_char}"
+      # printf "LFBFL_char: %s\n" "${LFBFL_char}"
       LFBFL_prefix=$(
-        echo "${LFBFL_prefix}"\
+        printf "%s" "${LFBFL_prefix}"\
         | sed -E -e 's/[^ ]+$//g'
       )
       if [[ "${LFBFL_char}" == "└" ]]; then
@@ -3670,26 +3737,19 @@ create_PDF(){
       else
         LFBFL_prefix+="│ "
       fi
-      # echo "LFBFL_prefix: ${LFBFL_prefix}"
+      # printf "LFBFL_prefix: %s\n" "${LFBFL_prefix}"
       LFBFL_file_name=$(
-        echo "${LFBFL_line}"\
+        printf "%s" "${LFBFL_line}"\
         | sed -E 's|.* (([a-zA-Z0-9\._/-]+).)$|\1|g'
       )
-      # echo "LFBFL_file_name: ${LFBFL_file_name}"
-      LFBFL_file_name2=$(
-        echo "${LFBFL_file_name}"\
-        | sed -E -e 's/\*/\\\*/g'
-      )
+      # printf "LFBFL_file_name: %s\n" "${LFBFL_file_name}"
+      LFBFL_keep_length=$((${#LFBFL_line} - ${#LFBFL_file_name}))
+      LFBFL_line_start=${LFBFL_line:0:${LFBFL_keep_length}}
       LFBFL_line_start=$(
-        echo "${LFBFL_line}"\
-        | sed -E -e "s/(.*)[ ]*${LFBFL_file_name2}/\1/g"\
-                 -e 's/ *$//g'
+        printf "%s" "${LFBFL_line_start}"\
+        | sed -e 's/ *$//g'
       )
-      # echo "LFBFL_line_start: ${LFBFL_line_start}"
-      LFBFL_line=$(
-        echo "${LFBFL_line}"\
-        | sed -E -e 's/\[/\\\[/g' -e 's/\]/\\\]/g' -e 's/\*/\\\*/g'
-      )
+      # printf "LFBFL_line_start: %s\n" "${LFBFL_line_start}"
       LFBFL_new_lines="${LFBFL_prefix}${LFBFL_file_name}"
       if [[ ${#LFBFL_new_lines} -gt LFBFL_max_line_length ]]; then
         # shellcheck disable=SC2248
@@ -3701,19 +3761,22 @@ create_PDF(){
           ""
         LFBFL_new_lines=${repeated_split_last_line_result}
       fi
-      sed -i -e\
-        "s/${LFBFL_line}/${LFBFL_line_start}\n${LFBFL_new_lines}/g"\
-        "${LFBFL_tree_path}"
+      printf "%s\n%s\n" "${LFBFL_line_start}" "${LFBFL_new_lines}"\
+        > "${LFBFL_tree_path}.some_line.temp"
+      insert_file_at_token "${LFBFL_tree_path}"\
+        "${LFBFL_line}"\
+        "${LFBFL_tree_path}.some_line.temp"
     done
+    rm -f "${LFBFL_tree_path}.some_line.temp"
   done
 
-  overwrite_if_not_equal "${LFBFL_subdir2}/temp/current_tree.txt"\
-    "${LFBFL_subdir2}/temp/current_tree.txt.temp" 1 1
+  overwrite_if_not_equal "${LFBFL_temp_path}/current_tree.txt"\
+    "${LFBFL_temp_path}/current_tree.txt.temp" 1 1
 
   declare -r LFBFL_tex_path_start=\
-"./${LFBFL_subdir2}/temp/${LFBFL_repository_name}.tex"
+"${LFBFL_temp_path}/${LFBFL_repository_name}.tex"
   declare -r LFBFL_html_path_start=\
-"./${LFBFL_subdir2}/temp/${LFBFL_repository_name}.html"
+"${LFBFL_temp_path}/${LFBFL_repository_name}.html"
 
   if [[ -f "./${LFBFL_subdir2}/${LFBFL_repository_name}.tex.tpl" ]];
   then
@@ -3726,7 +3789,7 @@ create_PDF(){
     cp "./${LFBFL_subdir2}/${LFBFL_repository_name}.tex"\
       "${LFBFL_tex_path_start}.1"
   else
-    echo "Neither .tex.tpl, nor .tex in ./${LFBFL_subdir2}/"
+    printf "Neither .tex.tpl, nor .tex in ./%s/\n" "${LFBFL_subdir2}"
   fi
 
   # Same logic with repository HTML file.
@@ -3737,22 +3800,19 @@ create_PDF(){
   elif [[ -f "./${LFBFL_repository_name}.html" ]]; then
     cp "./${LFBFL_repository_name}.html" "${LFBFL_html_path_start}.1"
   else
-    echo "Neither .html.tpl in ./${LFBFL_subdir2}/, nor .html in ./"
+    printf "Neither .html.tpl in ./%s/, nor .html in ./\n"\
+      "${LFBFL_subdir2}"
   fi
 
   # shellcheck disable=SC2001
-  echo "${LFBFL_abstract}"\
+  printf "%s\n" "${LFBFL_abstract}"\
     | sed -e 's/\\n/\n/g'\
-    > "./${LFBFL_subdir2}/temp/abstract_temp"
+    > "${LFBFL_temp_path}/abstract_temp"
 
   # shellcheck disable=SC2001
-  echo "${LFBFL_acknowledgments}"\
+  printf "%s\n" "${LFBFL_acknowledgments}"\
     | sed -e 's/\\n/\n/g'\
-    > "./${LFBFL_subdir2}/temp/acknowledgments_temp"
-
-  local LFBFL_temp_path
-  LFBFL_temp_path=$(realpath "./${LFBFL_subdir2}/temp/")
-  readonly LFBFL_temp_path
+    > "${LFBFL_temp_path}/acknowledgments_temp"
 
   # But the filling still occurs, in case the dev want to refill
   # part of the tex/html file that he modified with @token@
@@ -3772,33 +3832,32 @@ create_PDF(){
       "${LFBFL_tex_path_start}.1"
 
     insert_file_at_token "${LFBFL_tex_path_start}.1" @abstract@\
-      "./${LFBFL_subdir2}/temp/abstract_temp"\
+      "${LFBFL_temp_path}/abstract_temp"\
       "${LFBFL_tex_path_start}.2"
 
     insert_file_at_token "${LFBFL_tex_path_start}.2"\
       @acknowledgments@\
-      "./${LFBFL_subdir2}/temp/acknowledgments_temp"\
+      "${LFBFL_temp_path}/acknowledgments_temp"\
       "${LFBFL_tex_path_start}.3"
 
-    enhanced_pushd "${LFBFL_temp_path}" 2
-    can_continue_after_enhanced_pushd || return
-    sed -i\
-      -e '/@current_tree_light@/{r current_tree_light.txt' -e 'd}'\
-      -e '/@current_tree@/{r current_tree.txt' -e 'd}'\
-      "${LFBFL_repository_name}.tex.3"
-    if [[ enhanced_pushd_result -eq 0 ]]; then
-      enhanced_popd "${LFBFL_temp_path}" 2\
-        || return
-    fi
-
     insert_file_at_token "${LFBFL_tex_path_start}.3"\
+      @current_tree_light@\
+      "${LFBFL_temp_path}/current_tree_light.txt"\
+      "${LFBFL_tex_path_start}.4"
+
+    insert_file_at_token "${LFBFL_tex_path_start}.4"\
+      @current_tree@\
+      "${LFBFL_temp_path}/current_tree.txt"\
+      "${LFBFL_tex_path_start}.5"
+
+    insert_file_at_token "${LFBFL_tex_path_start}.5"\
       @files_listing_VerbatimInput@\
       "./${LFBFL_subdir2}/files_listing.tex.tpl"\
-      "${LFBFL_tex_path_start}.4"
+      "${LFBFL_tex_path_start}.6"
 
     overwrite_if_not_equal\
       "./${LFBFL_subdir2}/${LFBFL_repository_name}.tex"\
-      "${LFBFL_tex_path_start}.4" 1
+      "${LFBFL_tex_path_start}.6" 1
   fi
 
   # HTML filling:
@@ -3817,36 +3876,35 @@ create_PDF(){
       "${LFBFL_html_path_start}.1"
 
     insert_file_at_token "${LFBFL_html_path_start}.1" @abstract@\
-      "./${LFBFL_subdir2}/temp/abstract_temp"\
+      "${LFBFL_temp_path}/abstract_temp"\
       "${LFBFL_html_path_start}.2"
 
     insert_file_at_token "${LFBFL_html_path_start}.2"\
       @acknowledgments@\
-      "./${LFBFL_subdir2}/temp/acknowledgments_temp"\
+      "${LFBFL_temp_path}/acknowledgments_temp"\
       "${LFBFL_html_path_start}.3"
 
     insert_file_at_token "${LFBFL_html_path_start}.3"\
       @files_lis@ "${LFBFL_temp_files_lis}"\
       "${LFBFL_html_path_start}.4"
 
-    enhanced_pushd "${LFBFL_temp_path}" 2
-    can_continue_after_enhanced_pushd || return
-    sed -i\
-      -e '/@current_tree_light@/{r current_tree_light.txt' -e 'd}'\
-      -e '/@current_tree@/{r current_tree.txt' -e 'd}'\
-      "${LFBFL_repository_name}.html.4"
-    if [[ enhanced_pushd_result -eq 0 ]]; then
-      enhanced_popd "${LFBFL_temp_path}" 2\
-        || return
-    fi
-
     insert_file_at_token "${LFBFL_html_path_start}.4"\
-      @files_listing_HTMLPreInput@\
-      "./${LFBFL_subdir2}/temp/files_listing.html.tpl"\
+      @current_tree_light@\
+      "${LFBFL_temp_path}/current_tree_light.txt"\
       "${LFBFL_html_path_start}.5"
 
+    insert_file_at_token "${LFBFL_html_path_start}.5"\
+      @current_tree@\
+      "${LFBFL_temp_path}/current_tree.txt"\
+      "${LFBFL_html_path_start}.6"
+
+    insert_file_at_token "${LFBFL_html_path_start}.6"\
+      @files_listing_HTMLPreInput@\
+      "${LFBFL_temp_path}/files_listing.html.tpl"\
+      "${LFBFL_html_path_start}.7"
+
     overwrite_if_not_equal "./${LFBFL_repository_name}.html"\
-      "${LFBFL_html_path_start}.5" 1
+      "${LFBFL_html_path_start}.7" 1
     LFBFL_HTML_updated=$?
   fi
 
@@ -3875,7 +3933,7 @@ create_PDF(){
     "${LFBFL_repository_name}.toc"
   )
   for LFBFL_file_name in "${LFBFL_files_to_temp[@]}"; do
-    mv "${LFBFL_file_name}" "${LFBFL_subdir2}/temp/"
+    mv "${LFBFL_file_name}" "${LFBFL_temp_path}/"
   done
 }
 
@@ -3961,8 +4019,19 @@ split_file_in_two(){
   # $2=$token assume that token is the only thing on his line.
   # $3=$file_name_part1
   # $4=$file_name_part2
+  # Other arguments are options for grep.
+  declare -a LFBFL_grep_options=()
+  declare -i LFBFL_i=0
+  local LFBFL_arg
+  for LFBFL_arg in "$@"; do
+    ((++LFBFL_i))
+    if [[ LFBFL_i -lt 5 ]]; then
+      continue
+    fi
+    LFBFL_grep_options+=("${LFBFL_arg}")
+  done
   declare -ir LFBFL_line_number=$(
-    grep -n "$2" "$1"\
+    grep -n "${LFBFL_grep_options[@]}" -- "$2" "$1"\
     | head --lines=1\
     | cut -f 1 -d ':'
   )
@@ -3991,7 +4060,7 @@ insert_file_at_token(){
   fi
   readonly LFBFL_result_file_name
   split_file_in_two "$1" "$2" "${LFBFL_start_file_name}"\
-    "${LFBFL_end_file_name}"
+    "${LFBFL_end_file_name}" --fixed-strings
   cat "${LFBFL_start_file_name}" "$3" "${LFBFL_end_file_name}"\
     > "${LFBFL_result_file_name}"
   rm "${LFBFL_start_file_name}" "${LFBFL_end_file_name}"
@@ -4961,6 +5030,97 @@ in_place_grep(){
   mv "${LFBFL_temp}" "${!#}"
 }
 
+grep_fixed_string_with_anchor(){
+  # $1=filepath
+  # $2=some_fixed_string
+  # Options:
+  #   --enforce-line-starts-with-fixed-string
+  #   --enforce-line-ends-with-fixed-string
+  #   Apart from $1 and $2 and the options above,
+  #   all other arguments are considered grep_options like --quiet
+  #   for example.
+  #   But note that --fixed-strings will be added below, you don't need to
+  #   supply it.
+  declare -a LFBFL_grep_options=()
+  declare -a LFBFL_grep_options2=()
+  declare -i LFBFL_i=0
+  declare -i LFBFL_enforce_line_starts=0
+  declare -i LFBFL_enforce_line_ends=0
+  declare -i LFBFL_quiet=0
+  local LFBFL_arg
+  for LFBFL_arg in "$@"; do
+    ((++LFBFL_i))
+    if [[ LFBFL_i -lt 3 ]]; then
+      continue
+    fi
+    if [[ "${LFBFL_arg}" == "--enforce-line-starts-with-fixed-string" ]];
+    then
+      LFBFL_enforce_line_starts=1
+      continue
+    fi
+    if [[ "${LFBFL_arg}" == "--enforce-line-ends-with-fixed-string" ]];
+    then
+      LFBFL_enforce_line_ends=1
+      continue
+    fi
+    if [[ "${LFBFL_arg}" == "-q" || "${LFBFL_arg}" == "--quiet" ]];
+    then
+      LFBFL_quiet=1
+      LFBFL_grep_options+=("${LFBFL_arg}")
+      continue
+    fi
+    LFBFL_grep_options2+=("${LFBFL_arg}")
+  done
+
+  if [[
+    LFBFL_enforce_line_starts -eq 0
+    &amp;&amp; LFBFL_enforce_line_ends -eq 0
+    ]];
+  then
+    grep "${LFBFL_grep_options[@]}" --fixed-strings -- "$2" "$1"
+    return
+  fi
+  declare -r LFBFL_s_lines=$(
+    grep "${LFBFL_grep_options2[@]}" --color=never --fixed-strings --\
+      "$2" "$1"
+  )
+  declare -a LFBFL_arr_lines
+  mapfile -t LFBFL_arr_lines &lt;&lt;&lt; "${LFBFL_s_lines}"
+  readonly LFBFL_arr_lines
+
+  declare -i LFBFL_fixed_string_length=${#2}
+  declare -i LFBFL_i_result=1
+  local LFBFL_some_line
+  local LFBFL_line_part
+  for LFBFL_some_line in "${LFBFL_arr_lines[@]}"; do
+    if [[ "${LFBFL_some_line}" == "$2" ]]; then
+      [[ LFBFL_quiet -eq 1 ]] || printf "%s\n" "${LFBFL_some_line}"
+      LFBFL_i_result=0
+      continue
+    fi
+    if [[
+      LFBFL_enforce_line_starts -eq 1
+      &amp;&amp; LFBFL_enforce_line_ends -eq 1
+      ]];
+    then
+      continue
+    fi
+    if [[ LFBFL_enforce_line_starts -eq 1 ]]; then
+      LFBFL_line_part=${LFBFL_some_line:0:${LFBFL_fixed_string_length}}
+    fi
+    if [[ LFBFL_enforce_line_ends -eq 1 ]]; then
+      LFBFL_line_part=${LFBFL_some_line: -${LFBFL_fixed_string_length}}
+    fi
+    if [[ "${LFBFL_line_part}" == "$2" ]]; then
+      [[ LFBFL_quiet -eq 1 ]] || printf "%s\n" "${LFBFL_some_line}"
+      LFBFL_i_result=0
+    fi
+  done
+  LFBFL_i_result=$((LFBFL_i_result | $?))
+  # shellcheck disable=SC2248
+  return ${LFBFL_i_result}
+}
+
 grep_variable(){
   # $1=$file
   # $2=$variable_name
@@ -5804,7 +5964,7 @@ source "./${LFBFL_subdir}/comparisons.libr.sh"
 
 split_line_at(){
   # $1=$line
-  # $2=$position
+  # $2=$position : number of characters in split_line_at_result_beginning
   declare -g split_line_at_result_beginning="${1:0:$2}"
   declare -g split_line_at_result_end="${1:$2}"
   # echo "$split_line_at_result_beginning"
@@ -6040,11 +6200,15 @@ split_line_at_most(){
   )
   local LFBFL_value
   declare -i LFBFL_best_position
-  for ((LFBFL_i=0; LFBFL_i&lt;=LFBFL_i_max; ++LFBFL_i)) do
+  for ((LFBFL_i=LFBFL_i_max; LFBFL_i>=0; --LFBFL_i)) do
+    if [[ LFBFL_i -eq 0 ]]; then
+      echo $'/!\\ split_line_at_most bug: no split position found. /!\\'
+    fi
     local LFBFL_value=${LFBFL_positions[${LFBFL_i}]}
     # echo "${LFBFL_i} ${LFBFL_value}"
     if [[ "${LFBFL_value}" == "${LFBFL_max_score}" ]]; then
       LFBFL_best_position=$((LFBFL_i))
+      break
     fi
   done
   # shellcheck disable=SC2248
@@ -6091,43 +6255,53 @@ split_last_line(){
   declare -ir LFBFL_max_length_plus=$(($3 + 1))
   declare -ir LFBFL_length2=$(($3 - ${#4}))
   declare -r LFBFL_regexp='.\{'"${LFBFL_max_length_plus}"'\}$'
-  if
-    echo "$1"\
-      | sed -e 's/\\n/\n/g'\
-      | grep -q "${LFBFL_regexp}";
-  then
-    declare -r LFBFL_start=$(
-      echo "$1"\
-      | sed -e 's/\\n/\n/g'\
-      | head --lines=-1\
-      | sed -z 's/\n/\\n/g'
-    )
-    # echo "start: $LFBFL_start"
-    declare -r LFBFL_last_line=$(
-      echo "$1"\
-      | sed -e 's/\\n/\n/g'\
-      | tail --lines=1
-    )
-    # echo "last_line: ${LFBFL_last_line}"
-    split_last_line_result=""
-    if [[ -n "${LFBFL_start}" ]]; then
-      split_last_line_result="${LFBFL_start}\n"
-    fi
-    if [[ -n "$5" ]]; then
-      split_line_at_most "${LFBFL_last_line}" "${LFBFL_length2}"\
-        "$5" "$6" "$7"
-      split_last_line_result+="${split_line_at_most_result_start}$4"
-      split_last_line_result+="\n"
-      split_last_line_result+="$2${split_line_at_most_result_end}"
-    else
-      split_last_line_result+="${LFBFL_last_line:0:${LFBFL_length2}}"
-      split_last_line_result+="$4\n"
-      split_last_line_result+="$2${LFBFL_last_line:${LFBFL_length2}}"
-    fi
+
+  # Testing if some line is too long.
+  echo "$1"\
+    | grep -q "${LFBFL_regexp}";
+  if [[ ${PIPESTATUS[1]} -eq 1 ]]; then
+    return
   fi
+
+  declare -r LFBFL_start=$(
+    echo "$1"\
+    | head --lines=-1
+  )
+  # echo "start: ${LFBFL_start}"
+  declare -r LFBFL_last_line=$(
+    echo "$1"\
+    | tail --lines=1
+  )
+  # echo "last_line: ${LFBFL_last_line}"
+  split_last_line_result=""
+  if [[ -n "${LFBFL_start}" ]]; then
+    split_last_line_result="${LFBFL_start}"
+    # Last line-return of LFBFL_start seems dropped by $() and not ="${}".
+    # echo "${#split_last_line_result}" "${split_last_line_result}"
+    split_last_line_result+=$'\n'
+    # something="${split_last_line_result}"
+    # echo "${#something}" "${something}"
+  fi
+  if [[ -n "$5" ]]; then
+    split_line_at_most "${LFBFL_last_line}" "${LFBFL_length2}"\
+      "$5" "$6" "$7"
+    split_last_line_result+="${split_line_at_most_result_start}"
+    split_last_line_result+="$4"
+    split_last_line_result+=$'\n'
+    split_last_line_result+="$2${split_line_at_most_result_end}"
+  else
+    split_last_line_result+="${LFBFL_last_line:0:${LFBFL_length2}}"
+    split_last_line_result+="$4"
+    split_last_line_result+=$'\n'
+    split_last_line_result+="$2${LFBFL_last_line:${LFBFL_length2}}"
+  fi
+  # echo "result: ${split_last_line_result}"
 }
 
 repeated_split_last_line(){
+  # See split_last_line for the first arguments.
+  # $8=final_suffix to handle when the end of the original string
+  #    is the suffix.
   declare -g repeated_split_last_line_result="$1"
   local LFBFL_result="$1x"
   until
@@ -6139,6 +6313,14 @@ repeated_split_last_line(){
     repeated_split_last_line_result="${split_last_line_result}"
     # echo "${repeated_split_last_line_result}"
   done
+  if [[ -n "$4" &amp;&amp; -n "$8" ]]; then
+    declare -ir LFBFL_offset=$((-${#4}))
+    local LFBFL_lines_end
+    LFBFL_lines_end="${repeated_split_last_line_result: ${LFBFL_offset}}"
+    if [[ "${LFBFL_lines_end}" == "$4" ]]; then
+      repeated_split_last_line_result+="$8"
+    fi
+  fi
 }
 </pre>
 
@@ -6227,7 +6409,7 @@ too_long_code_lines(){
     do
       LFBFL_file_name=${LFBFL_long_line%%:*} # Drop long ':*' suffix
       LFBFL_line=${LFBFL_long_line#*:} # Drop short '*:' prefix
-      LFBFL_line="${LFBFL_line/%\\/}" # Drop/Replace '\' suffix by ''
+      # LFBFL_line="${LFBFL_line/%\\/}" # Drop/Replace '\' suffix by ''
       LFBFL_extension=${LFBFL_file_name##*.} # Drop long '*.' prefix
       LFBFL_base_name=${LFBFL_file_name%.*} # Drop short '.*' suffix
       if [[ "${LFBFL_extension}" == "html" ]]; then
@@ -6469,7 +6651,7 @@ update_or_check_files_names_listing(){
     : > "${LFBFL_listing}"
   fi
   # Remove line returns that are here to keep lines short.
-  sed -Ez 's/\\\n//Mg' "${LFBFL_listing}"\
+  sed -Ez 's/(.)\\\n/\1/Mg' "${LFBFL_listing}"\
     > "${LFBFL_listing}.temp"
   # shopt -s dotglob was needed at some point but I don't see why now.
   # shellcheck disable=SC2248
@@ -6478,63 +6660,77 @@ update_or_check_files_names_listing(){
   local LFBFL_split_score_command_properties
   LFBFL_split_score_command_properties="${get_split_score_result2}"
   readonly LFBFL_split_score_command_properties
-  local LFBFL_suffix=\\\\ # instead of '\\' to avoid shellcheck SC1003
+  local LFBFL_suffix=\\ # instead of '\' to avoid shellcheck SC1003
   readonly LFBFL_suffix
-  local LFBFL_file_name
-  local LFBFL_base_file_name
-  local LFBFL_split_file_name
-  find . -type f -printf '%P\n'\
+  # There is always a $'\n' final suffix from >>.
+  # But when origin string ends with the suffix we must add something.
+
+  local LFBFL_s_file_paths
+  LFBFL_s_file_paths=$(
+    find . -type f -printf '%P\n'\
     | relevant_find\
-    | sort\
-    | while read -r LFBFL_file_name;
-  do
-    git check-ignore -q "${LFBFL_file_name}" &amp;&amp; continue
-    LFBFL_base_file_name=$(basename "${LFBFL_file_name}")
+    | sort
+  )
+  declare -a LFBFL_arr_file_paths
+  mapfile -t LFBFL_arr_file_paths &lt;&lt;&lt; "${LFBFL_s_file_paths}"
+
+  declare -r LFBFL_final_suffix=$'\n\\'
+  local LFBFL_file_path
+  local LFBFL_base_file_name
+  for LFBFL_file_path in "${LFBFL_arr_file_paths[@]}"; do
+    git check-ignore -q "${LFBFL_file_path}" &amp;&amp; continue
+    LFBFL_base_file_name=$(basename "${LFBFL_file_path}")
     [[ "${LFBFL_base_file_name}" != files_names_listing.txt* ]]\
       || continue
     if [[ "${LFBFL_base_file_name}" == *.md ]]; then
-      if [[ -f "${LFBFL_file_name}.tpl" ]]; then
+      if [[ -f "${LFBFL_file_path}.tpl" ]]; then
         continue
       fi
     fi
+    if [[ LFBFL_i_verbose -eq 1 ]]; then
+      echo "Non-ignored file: ${LFBFL_file_path}"
+    fi
     # shellcheck disable=SC2248
-    repeated_split_last_line "${LFBFL_file_name}"\
+    repeated_split_last_line "${LFBFL_file_path}"\
       ""\
       ${LFBFL_max_line_length}\
       "${LFBFL_suffix}"\
       "${LFBFL_split_score_command}"\
-      "${LFBFL_split_score_command_properties}"
-    LFBFL_split_file_name="${repeated_split_last_line_result}"
+      "${LFBFL_split_score_command_properties}"\
+      ""\
+      "${LFBFL_final_suffix}"
     if [[ LFBFL_write -eq 1 ]]; then
       # shellcheck disable=SC2001
-      echo "${LFBFL_file_name}"\
-        | sed -e "s|${LFBFL_file_name}|${LFBFL_split_file_name}|g"\
+      echo "${repeated_split_last_line_result}"\
         >> "${LFBFL_listing}"
       continue
     fi
-    if grep -q "${LFBFL_file_name}\$" "${LFBFL_listing}.temp"; then
+    if grep_fixed_string_with_anchor "${LFBFL_listing}.temp"\
+        "${LFBFL_file_path}" --quiet --enforce-line-ends-with-fixed-string;
+    then
       :
     else
       echo\
-      "The file ${LFBFL_file_name} is not listed in ${LFBFL_listing}."
+      "The file ${LFBFL_file_path} is not listed in ${LFBFL_listing}."
       if [[ LFBFL_append -eq 1 ]]; then
         # shellcheck disable=SC2001
-        echo "${LFBFL_file_name}"\
-          | sed -e "s|${LFBFL_file_name}|${LFBFL_split_file_name}|g"\
+        echo "${repeated_split_last_line_result}"\
           >> "${LFBFL_listing}"
       fi
     fi
   done
 
-  while read -r LFBFL_file_name;
-  do
-    [[ "${LFBFL_file_name}" != '//'* ]] || continue
-    LFBFL_base_file_name=$(basename "${LFBFL_file_name}")
-    if ! [[ -f "${LFBFL_file_name}" ]]; then
+  LFBFL_s_file_paths=$(cat "${LFBFL_listing}.temp")
+  mapfile -t LFBFL_arr_file_paths &lt;&lt;&lt; "${LFBFL_s_file_paths}"
+
+  for LFBFL_file_path in "${LFBFL_arr_file_paths[@]}"; do
+    [[ "${LFBFL_file_path}" != '//'* ]] || continue
+    LFBFL_base_file_name=$(basename "${LFBFL_file_path}")
+    if ! [[ -f "${LFBFL_file_path}" ]]; then
       echo\
-      "The non-file ${LFBFL_file_name} is listed in ${LFBFL_listing}."
+      "The non-file ${LFBFL_file_path} is listed in ${LFBFL_listing}."
     fi
-  done &lt; "${LFBFL_listing}.temp"
+  done
 
   rm "${LFBFL_listing}.temp"
 
@@ -8068,6 +8264,18 @@ LiensUtiles.txt
 
 
 \subsection{
+  miscellaneous/funny.sh
+}
+\label{
+  miscellaneous:funnysh
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+miscellaneous/funny.sh
+}
+
+
+\subsection{
   miscellaneous/spampty\_data.txt
 }
 \label{
@@ -8076,6 +8284,24 @@ LiensUtiles.txt
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
 miscellaneous/spampty_data.txt
+}
+
+
+\subsection{
+  miscellaneous/%
+yet\_another\_long\_long\_long\_long\_long\_long\_long\_long\_long\_filena%
+me\_so\_that\_you\_can\_see\_that\_it\_works.txt
+}
+\label{
+  miscellaneous:%
+yet_another_long_long_long_long_long_long_long_long_long_filename_so_that_%
+you_can_see_that_it_workstxt
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+miscellaneous/%
+yet_another_long_long_long_long_long_long_long_long_long_filename_so_that_%
+you_can_see_that_it_works.txt
 }
 
 
@@ -8229,7 +8455,34 @@ git_helpers/post_commit_renaming_comment.libr.sh
 git_helpers/pre-commit
 IMAP_transfert.py
 LiensUtiles.txt
+// Uncomment some files in miscellaneous to do some testing.
+// miscellaneous/\
+123456789012345678901234567890123456789012345678901234567890123456789012345
+// miscellaneous/\
+12345678901234567890123456789012345678901234567890123456789012345678901234\
+56
+// miscellaneous/\
+12345678901234567890123456789012345678901234567890123456789012345678901234\
+56\
+\
+// miscellaneous/\
+12345678901234567890123456789012345678901234567890123456789012345678901234\
+5\
+\
+// miscellaneous/\
+12345678901234567890123456789012345678901234567890123456789012345678901234\
+\
+// miscellaneous/\
+1234567890123456789012345678901234567890123456789012345678901234567890123\
+\
+// miscellaneous/\
+a_long_long_long_long_long_long_long_long_long_filename_so_that_you_can_se\
+e_that_it_works.txt
+miscellaneous/funny.sh
 miscellaneous/spampty_data.txt
+miscellaneous/\
+yet_another_long_long_long_long_long_long_long_long_long_filename_so_that_\
+you_can_see_that_it_works.txt
 // README.html
 // README.md
 README.md.tpl
@@ -8792,9 +9045,9 @@ build_and_checks(){
   declare -r\
     LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_common_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='4696142346f9a90b479491908301e460cdd44093fe49b'
-  LFBFL_correct_sha512+='bbe5de6075ac9ef4e00510a856c705143833b3d23f7d'
-  LFBFL_correct_sha512+='9aeb4fae8d58255945f12707661df32971c406b'
+  LFBFL_correct_sha512='2a67f603bba1c301a237b6cba57a7aee38994f5231ffb'
+  LFBFL_correct_sha512+='8d4e50667eea63f89181e02e1cb352122b21ed7b2711'
+  LFBFL_correct_sha512+='d13a6ef2ef09bbfe9db759cb8455b18b5d36bcc'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_script}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
   chmod +x "./${LFBFL_file_path}"
@@ -10595,6 +10848,56 @@ calling-gpld-programs-from-a-shell-script
 
 
 <h3 id="subsection2.55">2.55
+miscellaneous/funny.sh
+</h3>
+<pre class="numbered_lines">
+#!/usr/bin/env bash
+# This file is part of DevOrSysAdminScripts library.
+#
+# DevOrSysAdminScripts is free software:
+# you can redistribute it and/or modify it under the terms
+# of the GNU General Public License
+# as published by the Free Software Foundation,
+# either version 3 of the License,
+# or (at your option) any later version.
+#
+# DevOrSysAdminScripts is distributed in the hope
+# that it will be useful,
+# but WITHOUT ANY WARRANTY;
+# without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+# See the GNU General Public License for more details.
+#
+# You should have received a copy of
+# the GNU General Public License
+# along with DevOrSysAdminScripts.
+# If not, see &lt;https://www.gnu.org/licenses/>.
+#
+# ©Copyright 2023-2026 Laurent Frédéric Bernard François Lyaudet
+
+unprotected_funny(){
+  # Works in a script but not in shell if job control is active.
+  shopt -s lastpipe
+  declare -i LFBFL_i_result=0
+  local LFBFL_line
+  echo "hahaha" | while read -r LFBFL_line; do
+    if [[ "${LFBFL_line}" == "hahaha" ]]; then
+      LFBFL_i_result=1
+    fi
+  done
+  [[ LFBFL_i_result -eq 1 ]] &amp;&amp; echo "I had a good laugh."
+}
+
+protected_funny(){
+  # Always works regarding the echoes.
+  echo "hahaha" | while read -r LFBFL_line; do
+    unprotected_funny
+  done
+}
+</pre>
+
+
+<h3 id="subsection2.56">2.56
 miscellaneous/spampty_data.txt
 </h3>
 <pre class="numbered_lines">
@@ -10611,7 +10914,16 @@ normal_again.txt: a
 </pre>
 
 
-<h3 id="subsection2.56">2.56
+<h3 id="subsection2.57">2.57
+miscellaneous/<!--
+-->yet_another_long_long_long_long_long_long_long_long_long_filename_so<!--
+-->_that_you_can_see_that_it_works.txt
+</h3>
+<pre class="numbered_lines">
+</pre>
+
+
+<h3 id="subsection2.58">2.58
 README.md.tpl
 </h3>
 <pre class="numbered_lines">
@@ -10719,7 +11031,7 @@ badge/v2.json
 </pre>
 
 
-<h3 id="subsection2.57">2.57
+<h3 id="subsection2.59">2.59
 unicode.libr.php
 </h3>
 <pre class="numbered_lines">
@@ -11037,7 +11349,7 @@ foreach($arr as $s_hexa){
 </pre>
 
 
-<h3 id="subsection2.58">2.58
+<h3 id="subsection2.60">2.60
 upgrade_build_and_checks.exec.sh
 </h3>
 <pre class="numbered_lines">
@@ -11090,7 +11402,7 @@ upgrade_build_and_checks "$@"
 </pre>
 
 
-<h3 id="subsection2.59">2.59
+<h3 id="subsection2.61">2.61
 wget_sha512.libr.sh
 </h3>
 <pre class="numbered_lines">

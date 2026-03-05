@@ -29,8 +29,6 @@ source "./${LFBFL_subdir}/common_options.libr.sh"
 source "./${LFBFL_subdir}/lines_filters.libr.sh"
 
 check_one_shell_script_indentation(){
-  shopt -s lastpipe
-
   declare -i LFBFL_file_with_error=0
   local LFBFL_some_line
   local LFBFL_previous_line="workeduntilsomeasshole"
@@ -50,10 +48,14 @@ check_one_shell_script_indentation(){
   local LFBFL_substring2
   declare -r LFBFL_pattern='^ *-e '
   # This grep would have been enough without some sed commands.
-  # shellcheck disable=SC2312
-  grep -EHn -B 1 '^(  )* ([^ ]|$)' "$1"\
-    | while read -r LFBFL_some_line;
-  do
+  declare -r LFBFL_s_lines=$(
+    grep -EHn -B 1 '^(  )* ([^ ]|$)' "$1"
+  )
+  declare -a LFBFL_arr_lines
+  mapfile -t LFBFL_arr_lines <<< "${LFBFL_s_lines}"
+  readonly LFBFL_arr_lines
+
+  for LFBFL_some_line in "${LFBFL_arr_lines[@]}"; do
     if [[ "${LFBFL_some_line}" == "--" ]]; then
       # When switching between code fragments, we reinit.
       LFBFL_previous_line="workeduntilsomeasshole"

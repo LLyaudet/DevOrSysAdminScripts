@@ -389,8 +389,8 @@ repeated_split_last_line(){
     declare -ir LFBFL_offset=$((-${#4}))
     local LFBFL_lines_end
     LFBFL_lines_end="${repeated_split_last_line_result: ${LFBFL_offset}}"
-    if [[ "${LFBFL_lines_end}" == "${LFBFL_suffix}" ]]; then
-      repeated_split_last_line_result+="${LFBFL_final_suffix}"
+    if [[ "${LFBFL_lines_end}" == "$4" ]]; then
+      repeated_split_last_line_result+="$8"
     fi
   fi
 }

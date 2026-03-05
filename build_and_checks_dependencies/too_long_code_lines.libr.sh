@@ -66,16 +66,25 @@ too_long_code_lines(){
   local LFBFL_extension
   local LFBFL_base_name
   declare -ir LFBFL_overlength=$((LFBFL_max_line_length+1))
+  local LFBFL_s_long_lines
+  declare -a LFBFL_arr_long_lines
   for LFBFL_pattern in "${COMMON_TEXT_FILES_GLOB_PATTERNS[@]}"; do
-    [[ LFBFL_i_verbose -eq 0 ]]\
-      || echo "Iterating on pattern: ${LFBFL_pattern}"
+    [[ LFBFL_i_verbose -eq 1 ]]\
+      && printf "Iterating on pattern: %s.\n" "${LFBFL_pattern}"
     # shellcheck disable=SC2248
-    find . -type f -name "${LFBFL_pattern}" -printf '%P\n'\
+    LFBFL_s_long_lines=$(
+      find . -type f -name "${LFBFL_pattern}" -printf '%P\n'\
       | relevant_find\
       | not_license_find\
-      | xargs grep -H '.\{'${LFBFL_overlength}'\}'\
-      | while read -r LFBFL_long_line;
-    do
+      | xargs grep -H '.\{'${LFBFL_overlength}'\}'
+    )
+    if [[ -z "${LFBFL_s_long_lines}" ]]; then
+      [[ LFBFL_i_verbose -eq 1 ]]\
+        && printf "No file found with long lines.\n"
+      continue
+    fi
+    mapfile -t LFBFL_arr_long_lines <<< "${LFBFL_s_long_lines}"
+    for LFBFL_long_line in "${LFBFL_arr_long_lines[@]}"; do
       LFBFL_file_name=${LFBFL_long_line%%:*} # Drop long ':*' suffix
       LFBFL_line=${LFBFL_long_line#*:} # Drop short '*:' prefix
       # LFBFL_line="${LFBFL_line/%\\/}" # Drop/Replace '\' suffix by ''
@@ -90,13 +99,13 @@ too_long_code_lines(){
         then
           continue
         fi
-        echo "${LFBFL_long_line}"
+        printf "%s\n" "${LFBFL_long_line}"
       elif [[ "${LFBFL_extension}" == "md" ]]; then
         if ! [[ -f "${LFBFL_base_name}.md.tpl" ]]; then
-          echo "${LFBFL_long_line}"
+          printf "%s\n" "${LFBFL_long_line}"
         fi
       else
-        echo "${LFBFL_long_line}"
+        printf "%s\n" "${LFBFL_long_line}"
       fi
     done
   done

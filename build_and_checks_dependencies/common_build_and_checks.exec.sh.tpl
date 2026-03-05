@@ -573,6 +573,8 @@ common_build_and_checks(){
   phpmd --color --generate-baseline\
     --baseline-file "${LFBFL_temp_phpmd_baseline}"\
     . text "${LFBFL_phpmd_rulesets}"
+  sed -i -e 's/" file="/"\n    file="/g' "${LFBFL_temp_phpmd_baseline}"
+  diff "${LFBFL_phpmd_baseline}" "${LFBFL_temp_phpmd_baseline}"
   echo "---PHP end---"
 
   echo "---JS---"

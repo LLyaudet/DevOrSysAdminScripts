@@ -51,17 +51,21 @@ check_collections_abc_place(){
     && trap 'enhanced_unset_shell_option pipefail' RETURN
 
   declare -r LFBFL_temp=".check_collections_abc_place.temp"
-  local LFBFL_file_name
-  find . -name "*.py"\
-    | relevant_find\
-    | while read -r LFBFL_file_name;
-  do
-    [[ -f "${LFBFL_file_name}" ]] || continue
+  local LFBFL_file_path
+  declare -r LFBFL_s_files_paths=$(
+    find . -type f -name "*.py" -printf '%P\n'\
+    | relevant_find
+  )
+  declare -a LFBFL_arr_files_paths
+  mapfile -t LFBFL_arr_files_paths <<< "${LFBFL_s_files_paths}"
+  readonly LFBFL_arr_files_paths
+  for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do
+    [[ -f "${LFBFL_file_path}" ]] || continue
     sed -Ez 's/\n(\nfrom _collections_abc[^\n]*)/\1\n/Mg'\
-      "${LFBFL_file_name}"\
-      > "${LFBFL_file_name}${LFBFL_temp}"
-    overwrite_if_not_equal "${LFBFL_file_name}"\
-      "${LFBFL_file_name}${LFBFL_temp}"
+      "${LFBFL_file_path}"\
+      > "${LFBFL_file_path}${LFBFL_temp}"
+    overwrite_if_not_equal "${LFBFL_file_path}"\
+      "${LFBFL_file_path}${LFBFL_temp}"
   done
 }
 

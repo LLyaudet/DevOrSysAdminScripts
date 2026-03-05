@@ -47,7 +47,7 @@ check_one_shell_script_beginning(){
   # ------------------------------------------------------------------
   declare -r LFBFL_head=$(head -n 1 "$1")
   [[ "${LFBFL_head}" == "${LFBFL_SHELL_SCRIPT_BEGINNING}" ]]\
-    || echo "$1:File has wrong shell script beginning."
+    || printf "%s:File has wrong shell script beginning.\n" "$1"
 }
 
 check_shell_scripts_beginnings(){
@@ -63,18 +63,27 @@ check_shell_scripts_beginnings(){
   can_continue_after_enhanced_pushd || return
 
   # shopt -s globstar
+  # for LFBFL_file_path in **/*.sh; do
   local LFBFL_file_path
   local LFBFL_head
-
-  # for LFBFL_file_path in **/*.sh; do
-  find . -type f -name "*.sh" -printf '%P\n'\
-    | relevant_find\
-    | while read -r LFBFL_file_path;
-  do
+  declare -r LFBFL_s_files_paths=$(
+    find . -type f -name "*.sh" -printf '%P\n'\
+    | relevant_find
+  )
+  if [[ -z "${LFBFL_s_files_paths}" ]]; then
     [[ LFBFL_i_verbose -eq 1 ]]\
-      && echo "${LFBFL_file_path}:Checking shell script beginning."
+      && printf "check_shell_scripts_beginnings: No file found.\n"
+    return
+  fi
+  declare -a LFBFL_arr_files_paths
+  mapfile -t LFBFL_arr_files_paths <<< "${LFBFL_s_files_paths}"
+  for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do
+    [[ LFBFL_i_verbose -eq 1 ]]\
+      && printf "%s:Checking shell script beginning.\n"\
+          "${LFBFL_file_path}"
     LFBFL_head=$(head -n 1 "${LFBFL_file_path}")
     [[ "${LFBFL_head}" == "${LFBFL_SHELL_SCRIPT_BEGINNING}" ]]\
-      || echo "${LFBFL_file_path}:File has wrong shell script beginning."
+      || printf "%s:File has wrong shell script beginning.\n"\
+          "${LFBFL_file_path}"
   done
 }

@@ -126,6 +126,11 @@ create_PDF(){
   LFBFL_number_of_lines+=" empty lines."
   readonly LFBFL_number_of_lines
 
+  local LFBFL_temp_path
+  # LFBFL_temp_path=$(realpath "./${LFBFL_subdir2}/temp") for pushd
+  LFBFL_temp_path="./${LFBFL_subdir2}/temp"
+  readonly LFBFL_temp_path
+
   # see https://gitlab.com/OldManProgrammer/unix-tree/-/issues
   # ?show=eyJpaWQiOiI0MyIsImZ1bGxfcGF0aCI6Ik9sZE1hblByb2dyYW1t
   # ZXIvdW5peC10cmVlIiwiaWQiOjE4NTE0NTgzOH0%3D
@@ -136,7 +141,7 @@ create_PDF(){
     -I ".ruff_cache/"\
     -I ".git/"\
     | replace_non_ascii_spaces\
-    > "${LFBFL_subdir2}/temp/current_tree_light.txt"
+    > "${LFBFL_temp_path}/current_tree_light.txt"
 
   tree -a -DFh --gitignore\
     -I "node_modules/"\
@@ -145,19 +150,19 @@ create_PDF(){
     -I ".ruff_cache/"\
     -I ".git/"\
     | replace_non_ascii_spaces\
-    > "${LFBFL_subdir2}/temp/current_tree.txt.temp"
+    > "${LFBFL_temp_path}/current_tree.txt.temp"
 
-  local LFBFL_temp_files_listing="./${LFBFL_subdir2}/temp/"
+  local LFBFL_temp_files_listing="${LFBFL_temp_path}/"
   LFBFL_temp_files_listing+="files_listing.tex.tpl.temp"
   readonly LFBFL_temp_files_listing
   : > "${LFBFL_temp_files_listing}"
-  local LFBFL_temp_files_listing2="./${LFBFL_subdir2}/temp/"
+  local LFBFL_temp_files_listing2="${LFBFL_temp_path}/"
   LFBFL_temp_files_listing2+="files_listing.html.tpl.temp"
   readonly LFBFL_temp_files_listing2
   : > "${LFBFL_temp_files_listing2}"
   # HTML <li> elements, hence "lis".
   local LFBFL_temp_files_lis
-  LFBFL_temp_files_lis="./${LFBFL_subdir2}/temp/files_lis.html.tpl"
+  LFBFL_temp_files_lis="${LFBFL_temp_path}/files_lis.html.tpl"
   readonly LFBFL_temp_files_lis
   : > "${LFBFL_temp_files_lis}"
   # shellcheck disable=SC2248
@@ -292,7 +297,7 @@ create_PDF(){
   declare -ir LFBFL_overlength=$((LFBFL_max_line_length+1))
   local LFBFL_file_name2
   for LFBFL_tree in "${LFBFL_trees[@]}"; do
-    LFBFL_tree_path="${LFBFL_subdir2}/temp/${LFBFL_tree}"
+    LFBFL_tree_path="${LFBFL_temp_path}/${LFBFL_tree}"
     # shellcheck disable=SC2248
     grep '.\{'${LFBFL_overlength}'\}' "${LFBFL_tree_path}"\
       | while read -r LFBFL_line;
@@ -352,13 +357,13 @@ create_PDF(){
     done
   done
 
-  overwrite_if_not_equal "${LFBFL_subdir2}/temp/current_tree.txt"\
-    "${LFBFL_subdir2}/temp/current_tree.txt.temp" 1 1
+  overwrite_if_not_equal "${LFBFL_temp_path}/current_tree.txt"\
+    "${LFBFL_temp_path}/current_tree.txt.temp" 1 1
 
   declare -r LFBFL_tex_path_start=\
-"./${LFBFL_subdir2}/temp/${LFBFL_repository_name}.tex"
+"${LFBFL_temp_path}/${LFBFL_repository_name}.tex"
   declare -r LFBFL_html_path_start=\
-"./${LFBFL_subdir2}/temp/${LFBFL_repository_name}.html"
+"${LFBFL_temp_path}/${LFBFL_repository_name}.html"
 
   if [[ -f "./${LFBFL_subdir2}/${LFBFL_repository_name}.tex.tpl" ]];
   then
@@ -389,16 +394,12 @@ create_PDF(){
   # shellcheck disable=SC2001
   printf "%s\n" "${LFBFL_abstract}"\
     | sed -e 's/\\n/\n/g'\
-    > "./${LFBFL_subdir2}/temp/abstract_temp"
+    > "${LFBFL_temp_path}/abstract_temp"
 
   # shellcheck disable=SC2001
   printf "%s\n" "${LFBFL_acknowledgments}"\
     | sed -e 's/\\n/\n/g'\
-    > "./${LFBFL_subdir2}/temp/acknowledgments_temp"
-
-  local LFBFL_temp_path
-  LFBFL_temp_path=$(realpath "./${LFBFL_subdir2}/temp/")
-  readonly LFBFL_temp_path
+    > "${LFBFL_temp_path}/acknowledgments_temp"
 
   # But the filling still occurs, in case the dev want to refill
   # part of the tex/html file that he modified with @token@
@@ -418,33 +419,32 @@ create_PDF(){
       "${LFBFL_tex_path_start}.1"
 
     insert_file_at_token "${LFBFL_tex_path_start}.1" @abstract@\
-      "./${LFBFL_subdir2}/temp/abstract_temp"\
+      "${LFBFL_temp_path}/abstract_temp"\
       "${LFBFL_tex_path_start}.2"
 
     insert_file_at_token "${LFBFL_tex_path_start}.2"\
       @acknowledgments@\
-      "./${LFBFL_subdir2}/temp/acknowledgments_temp"\
+      "${LFBFL_temp_path}/acknowledgments_temp"\
       "${LFBFL_tex_path_start}.3"
 
-    enhanced_pushd "${LFBFL_temp_path}" 2
-    can_continue_after_enhanced_pushd || return
-    sed -i\
-      -e '/@current_tree_light@/{r current_tree_light.txt' -e 'd}'\
-      -e '/@current_tree@/{r current_tree.txt' -e 'd}'\
-      "${LFBFL_repository_name}.tex.3"
-    if [[ enhanced_pushd_result -eq 0 ]]; then
-      enhanced_popd "${LFBFL_temp_path}" 2\
-        || return
-    fi
-
     insert_file_at_token "${LFBFL_tex_path_start}.3"\
+      @current_tree_light@\
+      "${LFBFL_temp_path}/current_tree_light.txt"\
+      "${LFBFL_tex_path_start}.4"
+
+    insert_file_at_token "${LFBFL_tex_path_start}.4"\
+      @current_tree@\
+      "${LFBFL_temp_path}/current_tree.txt"\
+      "${LFBFL_tex_path_start}.5"
+
+    insert_file_at_token "${LFBFL_tex_path_start}.5"\
       @files_listing_VerbatimInput@\
       "./${LFBFL_subdir2}/files_listing.tex.tpl"\
-      "${LFBFL_tex_path_start}.4"
+      "${LFBFL_tex_path_start}.6"
 
     overwrite_if_not_equal\
       "./${LFBFL_subdir2}/${LFBFL_repository_name}.tex"\
-      "${LFBFL_tex_path_start}.4" 1
+      "${LFBFL_tex_path_start}.6" 1
   fi
 
   # HTML filling:
@@ -463,36 +463,35 @@ create_PDF(){
       "${LFBFL_html_path_start}.1"
 
     insert_file_at_token "${LFBFL_html_path_start}.1" @abstract@\
-      "./${LFBFL_subdir2}/temp/abstract_temp"\
+      "${LFBFL_temp_path}/abstract_temp"\
       "${LFBFL_html_path_start}.2"
 
     insert_file_at_token "${LFBFL_html_path_start}.2"\
       @acknowledgments@\
-      "./${LFBFL_subdir2}/temp/acknowledgments_temp"\
+      "${LFBFL_temp_path}/acknowledgments_temp"\
       "${LFBFL_html_path_start}.3"
 
     insert_file_at_token "${LFBFL_html_path_start}.3"\
       @files_lis@ "${LFBFL_temp_files_lis}"\
       "${LFBFL_html_path_start}.4"
 
-    enhanced_pushd "${LFBFL_temp_path}" 2
-    can_continue_after_enhanced_pushd || return
-    sed -i\
-      -e '/@current_tree_light@/{r current_tree_light.txt' -e 'd}'\
-      -e '/@current_tree@/{r current_tree.txt' -e 'd}'\
-      "${LFBFL_repository_name}.html.4"
-    if [[ enhanced_pushd_result -eq 0 ]]; then
-      enhanced_popd "${LFBFL_temp_path}" 2\
-        || return
-    fi
-
     insert_file_at_token "${LFBFL_html_path_start}.4"\
-      @files_listing_HTMLPreInput@\
-      "./${LFBFL_subdir2}/temp/files_listing.html.tpl"\
+      @current_tree_light@\
+      "${LFBFL_temp_path}/current_tree_light.txt"\
       "${LFBFL_html_path_start}.5"
 
+    insert_file_at_token "${LFBFL_html_path_start}.5"\
+      @current_tree@\
+      "${LFBFL_temp_path}/current_tree.txt"\
+      "${LFBFL_html_path_start}.6"
+
+    insert_file_at_token "${LFBFL_html_path_start}.6"\
+      @files_listing_HTMLPreInput@\
+      "${LFBFL_temp_path}/files_listing.html.tpl"\
+      "${LFBFL_html_path_start}.7"
+
     overwrite_if_not_equal "./${LFBFL_repository_name}.html"\
-      "${LFBFL_html_path_start}.5" 1
+      "${LFBFL_html_path_start}.7" 1
     LFBFL_HTML_updated=$?
   fi
 
@@ -502,7 +501,6 @@ create_PDF(){
   if [[ LFBFL_HTML_updated -eq 0 ]]; then
     return
   fi
-  return
 
   if [[ LFBFL_i_verbose -eq 1 ]]; then
     for ((i=0; i<3; i++)); do
@@ -522,7 +520,7 @@ create_PDF(){
     "${LFBFL_repository_name}.toc"
   )
   for LFBFL_file_name in "${LFBFL_files_to_temp[@]}"; do
-    mv "${LFBFL_file_name}" "${LFBFL_subdir2}/temp/"
+    mv "${LFBFL_file_name}" "${LFBFL_temp_path}/"
   done
 }
 

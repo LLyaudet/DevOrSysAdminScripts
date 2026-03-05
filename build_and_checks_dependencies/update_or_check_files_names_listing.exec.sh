@@ -93,29 +93,34 @@ update_or_check_files_names_listing(){
   readonly LFBFL_suffix
   # There is always a $'\n' final suffix from >>.
   # But when origin string ends with the suffix we must add something.
+
+  local LFBFL_s_file_paths=$(
+    find . -type f -printf '%P\n'\
+    | relevant_find\
+    | sort
+  )
+  declare -a LFBFL_arr_file_paths
+  mapfile -t LFBFL_arr_file_paths <<< "${LFBFL_s_file_paths}"
+
   declare -r LFBFL_final_suffix=$'\n\\'
-  local LFBFL_file_name
+  local LFBFL_file_path
   local LFBFL_base_file_name
   local LFBFL_split_file_name
-  find . -type f -printf '%P\n'\
-    | relevant_find\
-    | sort\
-    | while read -r LFBFL_file_name;
-  do
-    git check-ignore -q "${LFBFL_file_name}" && continue
-    LFBFL_base_file_name=$(basename "${LFBFL_file_name}")
+  for LFBFL_file_path in "${LFBFL_arr_file_paths[@]}"; do
+    git check-ignore -q "${LFBFL_file_path}" && continue
+    LFBFL_base_file_name=$(basename "${LFBFL_file_path}")
     [[ "${LFBFL_base_file_name}" != files_names_listing.txt* ]]\
       || continue
     if [[ "${LFBFL_base_file_name}" == *.md ]]; then
-      if [[ -f "${LFBFL_file_name}.tpl" ]]; then
+      if [[ -f "${LFBFL_file_path}.tpl" ]]; then
         continue
       fi
     fi
     if [[ LFBFL_i_verbose -eq 1 ]]; then
-      echo "Non-ignored file: ${LFBFL_file_name}"
+      echo "Non-ignored file: ${LFBFL_file_path}"
     fi
     # shellcheck disable=SC2248
-    repeated_split_last_line "${LFBFL_file_name}"\
+    repeated_split_last_line "${LFBFL_file_path}"\
       ""\
       ${LFBFL_max_line_length}\
       "${LFBFL_suffix}"\
@@ -129,11 +134,13 @@ update_or_check_files_names_listing(){
         >> "${LFBFL_listing}"
       continue
     fi
-    if grep -q "${LFBFL_file_name}\$" "${LFBFL_listing}.temp"; then
+    if grep_fixed_string_with_anchor "${LFBFL_listing}.temp"\
+        "${LFBFL_file_path}" --quiet --enforce-line-ends-with-fixed-string;
+    then
       :
     else
       echo\
-      "The file ${LFBFL_file_name} is not listed in ${LFBFL_listing}."
+      "The file ${LFBFL_file_path} is not listed in ${LFBFL_listing}."
       if [[ LFBFL_append -eq 1 ]]; then
         # shellcheck disable=SC2001
         echo "${repeated_split_last_line_result}"\
@@ -142,15 +149,18 @@ update_or_check_files_names_listing(){
     fi
   done
 
-  while read -r LFBFL_file_name;
-  do
-    [[ "${LFBFL_file_name}" != '//'* ]] || continue
-    LFBFL_base_file_name=$(basename "${LFBFL_file_name}")
-    if ! [[ -f "${LFBFL_file_name}" ]]; then
+  local LFBFL_s_file_paths=$(cat "${LFBFL_listing}.temp")
+  declare -a LFBFL_arr_file_paths
+  mapfile -t LFBFL_arr_file_paths <<< "${LFBFL_s_file_paths}"
+
+  for LFBFL_file_path in "${LFBFL_arr_file_paths[@]}"; do
+    [[ "${LFBFL_file_path}" != '//'* ]] || continue
+    LFBFL_base_file_name=$(basename "${LFBFL_file_path}")
+    if ! [[ -f "${LFBFL_file_path}" ]]; then
       echo\
-      "The non-file ${LFBFL_file_name} is listed in ${LFBFL_listing}."
+      "The non-file ${LFBFL_file_path} is listed in ${LFBFL_listing}."
     fi
-  done < "${LFBFL_listing}.temp"
+  done
 
   rm "${LFBFL_listing}.temp"
 

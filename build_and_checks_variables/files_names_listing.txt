@@ -93,7 +93,34 @@ git_helpers/post_commit_renaming_comment.libr.sh
 git_helpers/pre-commit
 IMAP_transfert.py
 LiensUtiles.txt
+// Uncomment some files in miscellaneous to do some testing.
+// miscellaneous/\
+123456789012345678901234567890123456789012345678901234567890123456789012345
+// miscellaneous/\
+12345678901234567890123456789012345678901234567890123456789012345678901234\
+56
+// miscellaneous/\
+12345678901234567890123456789012345678901234567890123456789012345678901234\
+56\
+\
+// miscellaneous/\
+12345678901234567890123456789012345678901234567890123456789012345678901234\
+5\
+\
+// miscellaneous/\
+12345678901234567890123456789012345678901234567890123456789012345678901234\
+\
+// miscellaneous/\
+1234567890123456789012345678901234567890123456789012345678901234567890123\
+\
+// miscellaneous/\
+a_long_long_long_long_long_long_long_long_long_filename_so_that_you_can_se\
+e_that_it_works.txt
+miscellaneous/funny.sh
 miscellaneous/spampty_data.txt
+miscellaneous/\
+yet_another_long_long_long_long_long_long_long_long_long_filename_so_that_\
+you_can_see_that_it_works.txt
 // README.html
 // README.md
 README.md.tpl

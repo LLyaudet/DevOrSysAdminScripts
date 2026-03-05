@@ -53,36 +53,44 @@ check_URLs(){
   )
 
   local LFBFL_pattern
-  local LFBFL_file_name
   local LFBFL_base_file_name
   local LFBFL_substitution
   local LFBFL_substitution2
+  local LFBFL_file_path
+  local LFBFL_s_files_paths
+  declare -a LFBFL_arr_files_paths
   for LFBFL_pattern in "${COMMON_TEXT_FILES_GLOB_PATTERNS[@]}"; do
-    [[ LFBFL_i_verbose -eq 0 ]]\
-      || echo "Iterating on pattern: ${LFBFL_pattern}"
+    [[ LFBFL_i_verbose -eq 1 ]]\
+      && printf "Iterating on pattern: %s.\n" "${LFBFL_pattern}"
     find . -type f -name "${LFBFL_pattern}" -printf '%P\n'\
       | xargs grep -H 'http:'\
       | grep -v "| xargs grep -H 'htt"\
       | grep -vP "['\"]http(:[^'\"]*)['\"].*['\"]https\\1['\"]"
     # Last grep just above will remove false positives from
     # substitutions that fit on one line.
-    find . -type f -name "${LFBFL_pattern}" -printf '%P\n'\
+
+    LFBFL_s_files_paths=$(
+      find . -type f -name "${LFBFL_pattern}" -printf '%P\n'\
       | relevant_find\
-      | not_main_html_find\
-      | while read -r LFBFL_file_name;
-    do
-      [[ -f "${LFBFL_file_name}" ]] || continue
-      LFBFL_base_file_name=$(basename "${LFBFL_file_name}")
+      | not_main_html_find
+    )
+    if [[ -z "${LFBFL_s_files_paths}" ]]; then
+      [[ LFBFL_i_verbose -eq 1 ]] && printf "No file found.\n"
+      continue
+    fi
+    mapfile -t LFBFL_arr_files_paths <<< "${LFBFL_s_files_paths}"
+    for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do
+      [[ -f "${LFBFL_file_path}" ]] || continue
+      LFBFL_base_file_name=$(basename "${LFBFL_file_path}")
       [[ "${LFBFL_base_file_name}" != "check_URLs.libr.sh" ]]\
         || continue
-      [[ LFBFL_i_verbose -eq 0 ]]\
-        || echo "Handling the file: ${LFBFL_file_name}"
+      [[ LFBFL_i_verbose -eq 1 ]]\
+        && printf "Handling the file: %s.\n" "${LFBFL_file_path}"
       for LFBFL_substitution in "${!LFBFL_substitutions[@]}"; do
-        LFBFL_substitution2=\
-${LFBFL_substitutions[${LFBFL_substitution}]}
-        if grep -q "${LFBFL_substitution}" "${LFBFL_file_name}"; then
+        LFBFL_substitution2=${LFBFL_substitutions[${LFBFL_substitution}]}
+        if grep -q "${LFBFL_substitution}" "${LFBFL_file_path}"; then
           sed -i "s|${LFBFL_substitution}|${LFBFL_substitution2}|g"\
-            "${LFBFL_file_name}"
+            "${LFBFL_file_path}"
         fi
       done
     done

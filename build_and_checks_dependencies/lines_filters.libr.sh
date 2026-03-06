@@ -118,11 +118,15 @@ in_place_grep(){
   declare -r LFBFL_temp="${!#}.in_place_grep.temp"
   grep "$@" \
     > "${LFBFL_temp}"
-  declare -ir LFBFL_lines_before=$(ll_wc -l -n "${!#}")
-  declare -ir LFBFL_lines_after=$(ll_wc -l -n "${LFBFL_temp}")
+  # declare -ir LFBFL_lines_before=$(ll_wc -l -n "${!#}")
+  # declare -ir LFBFL_lines_after=$(ll_wc -l -n "${LFBFL_temp}")
   # echo "$LFBFL_lines_before"
   # echo "$LFBFL_lines_after"
-  if [[ "${LFBFL_lines_before}" ==  "${LFBFL_lines_after}" ]]; then
+  # if [[ LFBFL_lines_before -eq LFBFL_lines_after ]]; then
+  # Almost as fast (on large files) and correct in all cases :).
+  # Thanks Paul Eggert for the suggestion :).
+  # https://debbugs.gnu.org/cgi/bugreport.cgi?bug=80547
+  if cmp --silent "${LFBFL_temp}" "${!#}"; then
     rm "${LFBFL_temp}"
     return
   fi

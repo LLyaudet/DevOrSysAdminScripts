@@ -1,4 +1,6 @@
-A listing of the current suppressed warnings/errors from shellcheck:
+A listing of the current suppressed warnings/errors from shellcheck,
+and also some of the warnings that were suppressed in some previous
+state of the git repository (in that case, we use X suffix, see SC2162X):
 - SC1090 : Can't follow non-constant source.
            Use a directive to specify location
            # shellcheck source=bla/bli.sh
@@ -39,7 +41,7 @@ A listing of the current suppressed warnings/errors from shellcheck:
 - SC2154 : var is referenced but not assigned.
            Very useful but false positive when I play with
            variable variable names.
-- SC2162 : read without -r will mangle backslashes.
+- SC2162X: read without -r will mangle backslashes.
            False positive when read is used without variable:
            https://github.com/koalaman/shellcheck/issues/623
 - SC2248 : Prefer double quoting
@@ -56,5 +58,5 @@ The command to check if there is anything else:
 grep -r "shellcheck disable" . | grep -v -e '.git' -e "=SC1090$"\
   -e "=SC1091$" -e "=SC1090,SC1091$" -e "=SC1111$" -e "=SC2001$"\
   -e "=SC2034$" -e "=SC2086$" -e "=SC2119$" -e "=SC2120$" -e "=SC2125$"\
-  -e "=SC2145$" -e "=SC2154$" -e "=SC2162$" -e "=SC2248$" -e "=SC2309$"\
-  -e "=SC2312$" -e "=SC2154,SC2309$" -e "=SC2162,SC2312$"
+  -e "=SC2145$" -e "=SC2154$" -e "=SC2248$" -e "=SC2309$"\
+  -e "=SC2312$" -e "=SC2154,SC2309$"

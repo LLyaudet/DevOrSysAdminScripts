@@ -309,20 +309,26 @@ common_build_and_checks(){
   echo "Building other MarkDown files"
   local LFBFL_some_directory
   declare -r LFBFL_readme="${LFBFL_work_directory}/README.md.tpl"
-  find "${LFBFL_work_directory}" -name "*.md.tpl"\
-    | relevant_find\
-    | while read -r LFBFL_file_path;
-  do
-    [[ "${LFBFL_file_path}" == "${LFBFL_readme}" ]] && continue
-    echo "Found template ${LFBFL_file_path}"
-    LFBFL_some_directory=$(dirname "${LFBFL_file_path}")
-    LFBFL_file_name=$(basename "${LFBFL_file_path}")
-    LFBFL_file_name=${LFBFL_file_name%.md.tpl}
-    "./${LFBFL_subdir}/build_md_from_printable_md.exec.sh"\
-      "--work-directory=${LFBFL_some_directory}"\
-      "--base-name=${LFBFL_file_name}"\
-      "${LFBFL_verbose}"
-  done
+  local LFBFL_s_files_paths
+  LFBFL_s_files_paths=$(
+    find "${LFBFL_work_directory}" -type f -name "*.md.tpl"\
+    | relevant_find
+  )
+  declare -a LFBFL_arr_files_paths
+  if [[ -n "${LFBFL_s_files_paths}" ]]; then
+    mapfile -t LFBFL_arr_files_paths <<< "${LFBFL_s_files_paths}"
+    for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do
+      [[ "${LFBFL_file_path}" == "${LFBFL_readme}" ]] && continue
+      echo "Found template ${LFBFL_file_path}"
+      LFBFL_some_directory=$(dirname "${LFBFL_file_path}")
+      LFBFL_file_name=$(basename "${LFBFL_file_path}")
+      LFBFL_file_name=${LFBFL_file_name%.md.tpl}
+      "./${LFBFL_subdir}/build_md_from_printable_md.exec.sh"\
+        "--work-directory=${LFBFL_some_directory}"\
+        "--base-name=${LFBFL_file_name}"\
+        "${LFBFL_verbose}"
+    done
+  fi
 
   declare -i LFBFL_will_popd
   pushd_to_work_directory
@@ -375,13 +381,17 @@ common_build_and_checks(){
   fi
 
   echo "Running shellcheck"
-  find . -name "*.sh"\
-    | relevant_find\
-    | while read -r LFBFL_file_path;
-  do
-    shellcheck --rcfile=build_and_checks_variables/shellcheck.ini\
-      "${LFBFL_file_path}"
-  done
+  LFBFL_s_files_paths=$(
+    find . -type f -name "*.sh"\
+    | relevant_find
+  )
+  if [[ -n "${LFBFL_s_files_paths}" ]]; then
+    mapfile -t LFBFL_arr_files_paths <<< "${LFBFL_s_files_paths}"
+    for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do
+      shellcheck --rcfile=build_and_checks_variables/shellcheck.ini\
+        "${LFBFL_file_path}"
+    done
+  fi
 
   echo "---Python---"
   echo "Running isort"
@@ -458,17 +468,21 @@ common_build_and_checks(){
   shopt -s lastpipe
   local LFBFL_directory_path
   declare -i LFBFL_no_toml=1
-  find . -name "pyproject.toml"\
-    | relevant_find\
-    | while read -r LFBFL_file_path;
-  do
-    if grep -q "Typing :: Typed" "${LFBFL_file_path}"; then
-      echo "Running mypy"
-      LFBFL_directory_path=$(dirname "${LFBFL_file_path}")
-      mypy "${LFBFL_directory_path}"
-    fi
-    LFBFL_no_toml=0
-  done
+  LFBFL_s_files_paths=$(
+    find . -type f -name "pyproject.toml"\
+    | relevant_find
+  )
+  if [[ -n "${LFBFL_s_files_paths}" ]]; then
+    mapfile -t LFBFL_arr_files_paths <<< "${LFBFL_s_files_paths}"
+    for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do
+      if grep -q "Typing :: Typed" "${LFBFL_file_path}"; then
+        echo "Running mypy"
+        LFBFL_directory_path=$(dirname "${LFBFL_file_path}")
+        mypy "${LFBFL_directory_path}"
+      fi
+      LFBFL_no_toml=0
+    done
+  fi
   if [[ LFBFL_no_toml -eq 1 ]]; then
     echo "Running mypy"
     mypy .
@@ -584,10 +598,9 @@ common_build_and_checks(){
   if [[ -n "${LFBFL_npm_lint_directories}" ]]; then
     echo "Running ESLint"
     local LFBFL_JS_directory
-    echo "${LFBFL_npm_lint_directories}"\
-      | sed -e 's/\\n/\n/g'\
-      | while read -r LFBFL_JS_directory;
-    do
+    declare -a LFBFL_arr_paths
+    mapfile -t LFBFL_arr_paths <<< "${LFBFL_npm_lint_directories}"
+    for LFBFL_JS_directory in "${LFBFL_arr_paths[@]}"; do
       (cd "${LFBFL_JS_directory}" && npm run lint)
     done
   fi

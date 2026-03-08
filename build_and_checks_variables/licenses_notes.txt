@@ -15,7 +15,7 @@ git, pylint;
 - The following dependencies are LGPLv2.1+ licensed:
 notify-send;
 - The following dependencies are MIT licensed:
-black, isort, mypy, ruff;
+black, isort, mypy, pip, ruff;
 - The following dependencies are Apache-2.0 licensed:
 bandit;
 - The following dependencies are BSD-3-Clause licensed:
@@ -23,7 +23,10 @@ phpmd;
 - php is licensed under PHP License v3.01;
 - tex is licensed under Knuth license;
 - pcregrep, pcre2grep has a custom license from Cambridge University,
-but PCRE2 has BSD-3-Clause WITH PCRE2-exception.
+but PCRE2 has BSD-3-Clause WITH PCRE2-exception,
+- python3 is licensed under PSF License Version 2 and the Zero-Clause BSD
+license.
+
 
 Remark: Some commands listed under GPLv3+ are POSIX
 and can have different implementations under another license;
@@ -115,6 +118,11 @@ https://mypy.readthedocs.io/en/stable/
 https://github.com/python/mypy
 https://pypi.org/project/mypy/
 
+pip can be found at the following URLs:
+https://pip.pypa.io/en/stable/
+https://github.com/pypa/pip
+https://pypi.org/project/pip/ (egg and chicken ;) )
+
 ruff can be found at the following URLs:
 https://docs.astral.sh/ruff/
 https://github.com/astral-sh/ruff
@@ -143,6 +151,10 @@ https://pcre2project.github.io/pcre2/
 https://github.com/PCRE2Project/pcre1
 https://github.com/PCRE2Project/pcre2
 https://github.com/PCRE2Project/pcre2/blob/main/src/pcre2grep.c
+
+python3 can be found at the following URLs:
+https://www.python.org/
+https://docs.python.org/3/
 
 If you see something that I missed regarding my dependencies,
 please tell me/email me :).

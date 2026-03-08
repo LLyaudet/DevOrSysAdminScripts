@@ -185,7 +185,7 @@ git, pylint;
 <li> The following dependencies are LGPLv2.1+ licensed:<br>
 notify-send;
 <li> The following dependencies are MIT licensed:<br>
-black, isort, mypy, ruff;
+black, isort, mypy, pip, ruff;
 <li> The following dependencies are Apache-2.0 licensed:<br>
 bandit;
 <li> The following dependencies are BSD-3-Clause licensed:<br>
@@ -194,6 +194,8 @@ phpmd;
 <li> tex is licensed under Knuth license;
 <li> pcregrep, pcre2grep has a custom license from Cambridge
 University, but PCRE2 has BSD-3-Clause WITH PCRE2-exception.
+<li> python3 is licensed under PSF License Version 2 and the Zero-Clause
+BSD license.
 </ul>
 </div>
 
@@ -425,6 +427,19 @@ mypy can be found at the following URLs:<br>
 </p>
 
 <p>
+pip can be found at the following URLs:<br>
+<a href="https://pip.pypa.io/en/stable/"><span
+  style="font-family:monospace"
+>https://pip.pypa.io/en/stable/</span></a>,<br>
+<a href="https://github.com/pypa/pip"><span
+  style="font-family:monospace"
+>https://github.com/pypa/pip</span></a>,<br>
+<a href="https://pypi.org/project/pip/"><span
+  style="font-family:monospace"
+>https://pypi.org/project/pip/</span></a> (egg and chicken ;) ).
+</p>
+
+<p>
 ruff can be found at the following URLs:<br>
 <a href="https://docs.astral.sh/ruff/"><span
   style="font-family:monospace"
@@ -500,6 +515,16 @@ href="https://github.com/PCRE2Project/pcre2/blob/main/src/pcre2grep.c"
   style="font-family:monospace"
 >https://github.com/PCRE2Project/pcre2/blob/main/src/pcre2grep.c</span
 ></a>.
+</p>
+
+<p>
+python3 can be found at the following URLs:<br>
+<a href="https://www.python.org/"><span
+  style="font-family:monospace"
+>https://www.python.org/</span></a>,<br>
+<a href="https://docs.python.org/3/"><span
+  style="font-family:monospace"
+>https://docs.python.org/3/</span></a>.
 </p>
 
 <p>

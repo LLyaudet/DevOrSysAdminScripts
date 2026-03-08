@@ -123,7 +123,7 @@ git, pylint;
 \item The following dependencies are LGPLv2.1+ licensed:\newline
 notify-send;
 \item The following dependencies are MIT licensed:\newline
-black, isort, mypy, ruff;
+black, isort, mypy, pip, ruff;
 \item The following dependencies are Apache-2.0 licensed:\newline
 bandit;
 \item The following dependencies are BSD-3-Clause licensed:\newline
@@ -131,7 +131,9 @@ phpmd;
 \item php is licensed under PHP License v3.01;
 \item tex is licensed under Knuth license;
 \item pcregrep, pcre2grep has a custom license from Cambridge
-University, but PCRE2 has BSD-3-Clause WITH PCRE2-exception.
+University, but PCRE2 has BSD-3-Clause WITH PCRE2-exception,
+\item python3 is licensed under PSF License Version 2 and the Zero-Clause
+BSD license.
 \end{itemize}
 
 Remark: Some commands listed under GPLv3+ are POSIX
@@ -227,6 +229,11 @@ mypy can be found at the following URLs:\newline
 \url{https://github.com/python/mypy},\newline
 \url{https://pypi.org/project/mypy/}.
 
+pip can be found at the following URLs:\newline
+\url{https://pip.pypa.io/en/stable/},\newline
+\url{https://github.com/pypa/pip},\newline
+\url{https://pypi.org/project/pip/} (egg and chicken ;) ).
+
 ruff can be found at the following URLs:\newline
 \url{https://docs.astral.sh/ruff/},\newline
 \url{https://github.com/astral-sh/ruff},\newline
@@ -257,6 +264,10 @@ pcregrep, pcre2grep can be found at the following URLs:\newline
 {\small
   \url{https://github.com/PCRE2Project/pcre2/blob/main/src/pcre2grep.c}
 }.
+
+python3 can be found at the following URLs:\newline
+\url{https://www.python.org/},\newline
+\url{https://docs.python.org/3/}.
 
 If you see something that I missed regarding my dependencies,
 please tell me/email me :).

@@ -49,7 +49,7 @@ check_no_empty_line_after_python_function_docstring(){
     && trap 'enhanced_unset_bash_option globstar' RETURN
 
   [[ LFBFL_i_verbose -eq 1 ]]\
-    && echo "Checking empty lines after Python function docstrings"
+    && printf "Checking empty lines after Python function docstrings\n"
   pcre2grep -M --\
     $'def ([^"]|"(?!""))*"""([^"]|"(?!""))*"""\n\n(?!\s*def)'\
     **/*.py

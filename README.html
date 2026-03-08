@@ -243,6 +243,10 @@ file.</li>
 <li>When using <code>source</code> builtin, although any path/filename
 with a slash will only be searched for from the current directory
 (tested), we add the prefix “./”, to make it explicit.</li>
+<li>We use mapfile instead of read -r most of the time, but with the
+following exceptions: real use of read -r to read the command line of
+the shell, comments (of course), and a file funny.sh where it is kind of
+required to use read -r.</li>
 </ul>
 <p>But the files “pre-commit” and “post-commit” were not renamed, since
 it is not possible to give them other names to use them as

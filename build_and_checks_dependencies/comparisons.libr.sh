@@ -71,38 +71,58 @@ all_distinct2(){
   # Returns 1 if all the arguments strings are distinct.
   local LFBFL_element
   local LFBFL_previous_element
-  if [[ $# -eq 0 ]]; then
+  if [[ $# -le 1 ]]; then
     return 1
   fi
-  # Not setting pipefail since the result would still be incorrect.
-  # shellcheck disable=SC2312
-  printf "%s\n" "$@" \
-    | sort\
-    | {
-      read -r LFBFL_previous_element\
-      && while read -r LFBFL_element; do
-        if [[ "${LFBFL_previous_element}" == "${LFBFL_element}" ]];
-        then
-          return 0
-        fi
-        LFBFL_previous_element="${LFBFL_element}"
-      done
-      return 1
-    }
+  declare -r LFBFL_s_sorted_arguments=$(
+    printf "%s\n" "$@" \
+    | sort
+  )
+  declare -a LFBFL_arr_sorted_arguments
+  mapfile -t LFBFL_arr_sorted_arguments <<< "${LFBFL_s_sorted_arguments}"
+  declare -i LFBFL_i
+  declare -ir LFBFL_i_max=${#LFBFL_arr_sorted_arguments[@]}
+  LFBFL_previous_element=${LFBFL_arr_sorted_arguments[0]}
+  for ((LFBFL_i=1; LFBFL_i<LFBFL_i_max; ++LFBFL_i)); do
+    LFBFL_element="${LFBFL_arr_sorted_arguments[${LFBFL_i}]}"
+    if [[ "${LFBFL_previous_element}" == "${LFBFL_element}" ]]; then
+      return 0
+    fi
+    LFBFL_previous_element="${LFBFL_element}"
+  done
+  return 1
 }
 
 all_distinct3(){
   # Returns 1 if all the arguments strings are distinct.
-  # This is the fastest of all 3; but note that version 2 is faster
-  # than this one if a call to sort is added to this one.
-  if [[ $# -eq 0 ]]; then
+  # all_distinct3 is slower than old all_distinct2 since a call to sort is
+  # needed:
+  # the manual of uniq says it doesn't detect non-adjacent repeated lines.
+  # A few weeks ago, when testing without sort, I had no bug...
+  # I may have tested all_distinct3 a a b and not all_distinct3 a b a
+  # There is a sort also in all_distinct2, but uniq could have an option to
+  # sort before "applying -d", or sort could have an option for printing
+  # duplicates only. It would complement -u option of sort.
+  # Both solutions would avoid one pipe and one more shell command call.
+  # Note that old all_distinct2 was faster with pipes and read -r commands,
+  # but read -r has small drawbacks. Using mapfile is a cleaner way to do
+  # it, since it handles arguments with spaces from scratch.
+  # Arguments with line-returns are still not handled.
+  # Use C, PHP or Python for example for that.
+  # Somehow Bash was made to push people to stop being lazy and do actual C
+  # code, even if it needs compiling something, adding a makefile, etc. XD
+  # Note that C code would be faster with all_distinct2 blueprint,
+  # that's the reason I kept all 3 versions, see the (asymptotic)
+  # complexity and simple algorithms ideas on this toy problem.
+  if [[ $# -le 1 ]]; then
     return 1
   fi
-  # Not setting pipefail since the result would still be incorrect.
-  # shellcheck disable=SC2162,SC2312
-  printf "%s\n" "$@" \
-    | uniq -d\
-    | read
+  declare -r LFBFL_s_duplicated_arguments=$(
+    printf "%s\n" "$@" \
+    | sort\
+    | uniq -d
+  )
+  [[ -n "${LFBFL_s_duplicated_arguments}" ]]
 }
 
 some_equal(){
@@ -153,11 +173,11 @@ is_substring(){
   # $1=$string
   # $2=$substring
   declare -r LFBFL_var_1=$(
-    echo "$1"\
+    printf "%s" "$1"\
     | sed -e 's/\\/\\&/g' -e "s/'/\\\\&/g"
   )
   declare -r LFBFL_var_2=$(
-    echo "$2"\
+    printf "%s" "$2"\
     | sed -e 's/\\/\\&/g' -e "s/'/\\\\&/g"
   )
   local LFBFL_var_3="\$a = '${LFBFL_var_1}';"

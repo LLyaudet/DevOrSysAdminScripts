@@ -74,13 +74,13 @@ Some “small” useful scripts
 for enhancing development or system-administrators tasks
 \end{abstract}
 
-Current version: 2026-03-05
+Current version: 2026-03-08
 
-Current number of commits: 532
+Current number of commits: 547
 
-Current git SHA1: 9c112177599a6d2582ed34deb49cc85abf49effd
+Current git SHA1: ff4c1bd87a97afce1f637cc9b1d942ddc1760ea0
 
-Code lines: 9616 total lines, 8687 not empty lines, 929 empty lines.
+Code lines: 9779 total lines, 8841 not empty lines, 938 empty lines.
 
 \tableofcontents
 \newpage
@@ -189,52 +189,52 @@ Code lines: 9616 total lines, 8687 not empty lines, 929 empty lines.
 \end{verbatim}
 
 \begin{verbatim}
-[ 12K Mar  5 19:47]  ./
-├── [4.0K Mar  5 19:47]  build_and_checks_dependencies/
+[ 12K Mar  8 17:14]  ./
+├── [4.0K Mar  8 17:14]  build_and_checks_dependencies/
 │   ├── [3.8K Mar  2 18:25]  build_and_checks.exec.sh.tpl*
 │   ├── [3.8K Mar  2 19:19]  build_md_from_printable_md.exec.sh*
-│   ├── [2.8K Mar  3 08:41]  check_shell_scripts_beginnings.libr.sh
-│   ├── [4.8K Mar  5 16:21]  check_shell_scripts_indentation.libr.sh
-│   ├── [3.1K Mar  3 10:22]  check_URLs.libr.sh
-│   ├── [ 29K Mar  5 19:45]  common_build_and_checks.exec.sh*
-│   ├── [ 24K Mar  3 18:32]  common_build_and_checks.exec.sh.tpl
+│   ├── [3.1K Mar  5 22:21]  check_shell_scripts_beginnings.libr.sh
+│   ├── [5.0K Mar  5 21:47]  check_shell_scripts_indentation.libr.sh
+│   ├── [3.4K Mar  5 21:17]  check_URLs.libr.sh
+│   ├── [ 29K Mar  8 17:01]  common_build_and_checks.exec.sh*
+│   ├── [ 24K Mar  5 21:39]  common_build_and_checks.exec.sh.tpl
 │   ├── [9.0K Mar  3 16:14]  common_options.libr.sh
 │   ├── [4.8K Mar  3 19:09]  comparisons.libr.sh
-│   ├── [ 18K Mar  5 19:44]  create_PDF.exec.sh*
-│   ├── [3.6K Mar  5 19:33]  generate_from_template.libr.sh
-│   ├── [1.9K Feb 19 17:18]  get_common_text_glob_patterns.libr.sh
-│   ├── [2.4K Mar  3 10:22]  grammar_and_spell_check.libr.sh
-│   ├── [4.0K Mar  3 19:13]  licenses_templates/
-│   │   ├── [ 13K Mar  3 19:13]  build_licenses_templates.exec.sh*
+│   ├── [ 18K Mar  5 22:12]  create_PDF.exec.sh*
+│   ├── [3.7K Mar  5 22:11]  generate_from_template.libr.sh
+│   ├── [2.0K Mar  5 21:22]  get_common_text_glob_patterns.libr.sh
+│   ├── [2.7K Mar  5 22:27]  grammar_and_spell_check.libr.sh
+│   ├── [4.0K Mar  5 21:05]  licenses_templates/
+│   │   ├── [ 13K Mar  5 21:05]  build_licenses_templates.exec.sh*
 │   │   ├── [ 728 Feb 28 20:38]  license_file_header_AGPLv3+.tpl
 │   │   ├── [ 707 Feb 28 20:38]  license_file_header_GPLv3+.tpl
 │   │   └── [ 728 Feb 28 20:38]  license_file_header_LGPLv3+.tpl
 │   ├── [4.8K Mar  3 18:49]  lines_counts.libr.sh
-│   ├── [ 13K Mar  5 15:54]  lines_filters.libr.sh
+│   ├── [ 13K Mar  6 19:25]  lines_filters.libr.sh
 │   ├── [2.7K Feb 19 16:16]  lines_maps.libr.sh
-│   ├── [1.8K Feb 26 16:58]  overwrite_if_not_equal.libr.sh
+│   ├── [2.0K Mar  5 22:11]  overwrite_if_not_equal.libr.sh
 │   ├── [2.3K Mar  3 10:30]  python_black_complement.libr.sh
-│   ├── [2.6K Mar  3 10:22]  python_isort_complement.libr.sh
+│   ├── [2.8K Mar  5 20:33]  python_isort_complement.libr.sh
 │   ├── [2.0K Mar  3 17:16]  repository_data.libr.sh
 │   ├── [1.6K Feb  3 17:57]  split_score.exec.php
 │   ├── [1.9K Feb  3 20:11]  split_score.libr.php
 │   ├── [ 13K Mar  5 16:40]  strings_functions.libr.sh
-│   ├── [3.4K Mar  4 17:55]  too_long_code_lines.libr.sh
+│   ├── [3.8K Mar  5 21:28]  too_long_code_lines.libr.sh
 │   ├── [4.2K Mar  3 17:18]  update_common_build_and_checks.exec.sh*
 │   └── [5.5K Mar  5 16:43]  update_or_check_files_names_listing.exec.sh*
-├── [4.0K Mar  5 19:45]  build_and_checks.exec.sh*
-├── [4.0K Mar  5 19:47]  build_and_checks_variables/
+├── [4.0K Mar  8 17:01]  build_and_checks.exec.sh*
+├── [4.0K Mar  8 17:14]  build_and_checks_variables/
 │   ├── [  15 Jan  5 20:00]  bandit_baseline.json
 │   ├── [  25 Jan  5 18:49]  bandit.ini
 │   ├── [  30 Feb 28 20:30]  black.toml
-│   ├── [ 16K Mar  2 12:57]  DevOrSysAdminScripts.html.tpl
-│   ├── [ 31K Mar  5 19:47]  DevOrSysAdminScripts.tex
-│   ├── [8.5K Mar  2 13:01]  DevOrSysAdminScripts.tex.tpl
+│   ├── [ 16K Mar  8 17:00]  DevOrSysAdminScripts.html.tpl
+│   ├── [ 32K Mar  8 17:14]  DevOrSysAdminScripts.tex
+│   ├── [8.9K Mar  8 16:55]  DevOrSysAdminScripts.tex.tpl
 │   ├── [ 14K Mar  5 17:00]  files_listing.tex.tpl
 │   ├── [5.0K Mar  5 16:36]  files_names_listing.txt
 │   ├── [  24 Jan 15 22:26]  .gitignore
-│   ├── [4.9K Mar  2 12:48]  licenses_notes.txt
-│   ├── [1001 Feb 26 15:37]  phpmd_baseline.xml
+│   ├── [5.2K Mar  8 16:52]  licenses_notes.txt
+│   ├── [1.0K Mar  5 21:36]  phpmd_baseline.xml
 │   ├── [ 678 Feb 24 22:38]  pylintrc.toml
 │   ├── [4.4K Mar  3 20:47]  repository_data.txt
 │   ├── [1.4K Feb 24 23:25]  ruff.toml
@@ -242,8 +242,8 @@ Code lines: 9616 total lines, 8687 not empty lines, 929 empty lines.
 │   └── [3.1K Mar  3 18:56]  shellcheck_notes.txt
 ├── [ 34K May  6  2024]  COPYING
 ├── [7.5K Dec 27 21:48]  COPYING.LESSER
-├── [377K Mar  5 19:47]  DevOrSysAdminScripts.html
-├── [341K Mar  5 19:47]  DevOrSysAdminScripts.pdf
+├── [382K Mar  8 17:14]  DevOrSysAdminScripts.html
+├── [344K Mar  8 17:14]  DevOrSysAdminScripts.pdf
 ├── [4.0K Mar  3 20:51]  git_helpers/
 │   ├── [3.8K Mar  3 20:51]  git_checks.libr.sh
 │   ├── [1.8K Feb 27 20:20]  post-commit*
@@ -316,7 +316,7 @@ git, pylint;
 \item The following dependencies are LGPLv2.1+ licensed:\newline
 notify-send;
 \item The following dependencies are MIT licensed:\newline
-black, isort, mypy, ruff;
+black, isort, mypy, pip, ruff;
 \item The following dependencies are Apache-2.0 licensed:\newline
 bandit;
 \item The following dependencies are BSD-3-Clause licensed:\newline
@@ -324,7 +324,9 @@ phpmd;
 \item php is licensed under PHP License v3.01;
 \item tex is licensed under Knuth license;
 \item pcregrep, pcre2grep has a custom license from Cambridge
-University, but PCRE2 has BSD-3-Clause WITH PCRE2-exception.
+University, but PCRE2 has BSD-3-Clause WITH PCRE2-exception,
+\item python3 is licensed under PSF License Version 2 and the Zero-Clause
+BSD license.
 \end{itemize}
 
 Remark: Some commands listed under GPLv3+ are POSIX
@@ -420,6 +422,11 @@ mypy can be found at the following URLs:\newline
 \url{https://github.com/python/mypy},\newline
 \url{https://pypi.org/project/mypy/}.
 
+pip can be found at the following URLs:\newline
+\url{https://pip.pypa.io/en/stable/},\newline
+\url{https://github.com/pypa/pip},\newline
+\url{https://pypi.org/project/pip/} (egg and chicken ;) ).
+
 ruff can be found at the following URLs:\newline
 \url{https://docs.astral.sh/ruff/},\newline
 \url{https://github.com/astral-sh/ruff},\newline
@@ -450,6 +457,10 @@ pcregrep, pcre2grep can be found at the following URLs:\newline
 {\small
   \url{https://github.com/PCRE2Project/pcre2/blob/main/src/pcre2grep.c}
 }.
+
+python3 can be found at the following URLs:\newline
+\url{https://www.python.org/},\newline
+\url{https://docs.python.org/3/}.
 
 If you see something that I missed regarding my dependencies,
 please tell me/email me :).

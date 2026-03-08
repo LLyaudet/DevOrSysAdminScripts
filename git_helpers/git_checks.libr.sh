@@ -99,7 +99,7 @@ check_black_code_formatting(){
     git diff --cached --name-only\
     | grep '\.py'
   )
-  echo "${LFBFL_files_string}"
+  printf "%s\n" "${LFBFL_files_string}"
   declare -a LFBFL_some_files
   mapfile -t LFBFL_some_files <<< "${LFBFL_files_string}"
   readonly LFBFL_some_files
@@ -108,7 +108,7 @@ check_black_code_formatting(){
   # default.
   local LFBFL_file
   for LFBFL_file in "${LFBFL_some_files[@]}"; do
-    echo "Black will check formatting on file ${LFBFL_file}"
+    printf "Black will check formatting on file %s\n" "${LFBFL_file}"
     if ! black --check --diff "${LFBFL_file}";
     then
       LFBFL_error=1

@@ -40,7 +40,7 @@ declare -i LFBFL_cd_result2
 pushd .
 cd "${LFBFL_some_directory}" || {
   LFBFL_cd_result2=$?
-  echo "post_commit_renaming_comment.libr.sh no such directory"
+  printf "post_commit_renaming_comment.libr.sh no such directory"
   # shellcheck disable=SC2248
   exit ${LFBFL_cd_result2}
 }
@@ -51,7 +51,7 @@ source "build_and_checks_dependencies/strings_functions.libr.sh"
 declare -i LFBFL_popd_result2
 popd || {
   LFBFL_popd_result2=$?
-  echo "post_commit_renaming_comment.libr.sh no popd"
+  printf "post_commit_renaming_comment.libr.sh no popd"
   # shellcheck disable=SC2248
   exit ${LFBFL_popd_result2}
 }
@@ -74,6 +74,7 @@ commit_a_file_renamed_comment(){
   local LFBFL_work_directory=""
   get_work_directory_option "$@"
   local LFBFL_arg
+  local LFBFL_s_format
 
   declare -i LFBFL_log_directory_change=0
   if [[ "$*" == *--log-directory-change* ]]; then
@@ -92,8 +93,10 @@ commit_a_file_renamed_comment(){
   readonly LFBFL_max_comment_line_length
 
   if [[ LFBFL_i_verbose -eq 1 ]]; then
-    echo "LFBFL_log_directory_change: ${LFBFL_log_directory_change}"
-    echo "LFBFL_max_comment_line_length:"\
+    LFBFL_s_format="LFBFL_log_directory_change: %s\n"
+    LFBFL_s_format+="LFBFL_max_comment_line_length: %s\n"
+    printf "${LFBFL_s_format}"\
+      "${LFBFL_log_directory_change}"\
       "${LFBFL_max_comment_line_length}"
   fi
   #-------------------------------------------------------------------
@@ -106,7 +109,7 @@ commit_a_file_renamed_comment(){
     | grep '^diff --git' -A 1
   )
   if [[ LFBFL_i_verbose -eq 1 ]]; then
-    echo "LFBFL_renaming_lines: ${LFBFL_renaming_lines}"
+    printf "LFBFL_renaming_lines: %s\n" "${LFBFL_renaming_lines}"
   fi
 
   declare -a LFBFL_renaming_lines_array
@@ -115,7 +118,7 @@ commit_a_file_renamed_comment(){
 
   declare -r LFBFL_timestamp=$(date --iso-8601="minute")
   if [[ LFBFL_i_verbose -eq 1 ]]; then
-    echo "LFBFL_timestamp: ${LFBFL_timestamp}"
+    printf "LFBFL_timestamp: %s\n" "${LFBFL_timestamp}"
   fi
   get_split_score_simple 1 "${LFBFL_max_comment_line_length}" _
   LFBFL_split_score_command1="${get_split_score_result}"
@@ -158,8 +161,9 @@ commit_a_file_renamed_comment(){
     # We need to increment 3 times since grep adds "--" lines between.
     LFBFL_i=$((LFBFL_i + 1))
     if [[ LFBFL_i_verbose -eq 1 ]]; then
-      echo "LFBFL_diff_line: ${LFBFL_diff_line}"
-      echo "LFBFL_similarity_line: ${LFBFL_similarity_line}"
+      printf "LFBFL_diff_line: %s\nLFBFL_similarity_line: %s\n"\
+        "${LFBFL_diff_line}"\
+        "${LFBFL_similarity_line}"
     fi
     if [[ "${LFBFL_similarity_line:17:4}" != "100%" ]]; then
       continue
@@ -167,7 +171,7 @@ commit_a_file_renamed_comment(){
 
     # Extract old file name from diff line. --------------------------
     LFBFL_old_file_path=$(
-      echo "${LFBFL_diff_line}"\
+      printf "%s" "${LFBFL_diff_line}"\
       | cut -d ' ' -f 3
     )
     # It starts by "a/".
@@ -176,7 +180,7 @@ commit_a_file_renamed_comment(){
     LFBFL_old_file_directory=$(dirname "${LFBFL_old_file_path}")
     # Extract new file name from diff line. --------------------------
     LFBFL_new_file_path=$(
-      echo "${LFBFL_diff_line}"\
+      printf "%s" "${LFBFL_diff_line}"\
       | cut -d ' ' -f 4
     )
     # It starts by "b/".
@@ -184,20 +188,28 @@ commit_a_file_renamed_comment(){
     LFBFL_new_file_name=$(basename "${LFBFL_new_file_path}")
     LFBFL_new_file_directory=$(dirname "${LFBFL_new_file_path}")
     if [[ LFBFL_i_verbose -eq 1 ]]; then
-      echo "LFBFL_old_file_path: ${LFBFL_old_file_path}"
-      echo "LFBFL_old_file_name: ${LFBFL_old_file_name}"
-      echo "LFBFL_old_file_directory: ${LFBFL_old_file_directory}"
-      echo "LFBFL_new_file_path: ${LFBFL_new_file_path}"
-      echo "LFBFL_new_file_name: ${LFBFL_new_file_name}"
-      echo "LFBFL_new_file_directory: ${LFBFL_new_file_directory}"
+      LFBFL_s_format="LFBFL_old_file_path: %s\n"
+      LFBFL_s_format+="LFBFL_old_file_name: %s\n"
+      LFBFL_s_format+="LFBFL_old_file_directory: %s\n"
+      LFBFL_s_format+="LFBFL_new_file_path: %s\n"
+      LFBFL_s_format+="LFBFL_new_file_name: %s\n"
+      LFBFL_s_format+="LFBFL_new_file_directory: %s\n"
+      printf "${LFBFL_s_format}"\
+        "${LFBFL_old_file_path}"\
+        "${LFBFL_old_file_name}"\
+        "${LFBFL_old_file_directory}"\
+        "${LFBFL_new_file_path}"\
+        "${LFBFL_new_file_name}"\
+        "${LFBFL_new_file_directory}"
     fi
     # Extract "LFBFL_extension" with smart guessing for .tpl ---------
     # and set prefix for line with ©Copyright. -----------------------
     LFBFL_useful_file_name="${LFBFL_new_file_name}"
     LFBFL_extension="${LFBFL_useful_file_name##*.}"
     if [[ LFBFL_i_verbose -eq 1 ]]; then
-      echo "LFBFL_useful_file_name: ${LFBFL_useful_file_name}"
-      echo "LFBFL_extension: ${LFBFL_extension}"
+      printf "LFBFL_useful_file_name: %s\nLFBFL_extension: %s\n"\
+        "${LFBFL_useful_file_name}"\
+        "${LFBFL_extension}"
     fi
     for ((LFBFL_j=0; LFBFL_j<3; ++LFBFL_j)); do
       if [[ "${LFBFL_extension}" != "tpl" ]]; then
@@ -206,8 +218,9 @@ commit_a_file_renamed_comment(){
       LFBFL_useful_file_name="${LFBFL_useful_file_name:0:-4}"
       LFBFL_extension="${LFBFL_useful_file_name##*.}"
       if [[ LFBFL_i_verbose -eq 1 ]]; then
-        echo "LFBFL_useful_file_name: ${LFBFL_useful_file_name}"
-        echo "LFBFL_extension: ${LFBFL_extension}"
+        printf "LFBFL_useful_file_name: %s\nLFBFL_extension: %s\n"\
+          "${LFBFL_useful_file_name}"\
+          "${LFBFL_extension}"
       fi
     done
     LFBFL_comment_prefix=""
@@ -224,7 +237,7 @@ commit_a_file_renamed_comment(){
       LFBFL_comment_prefix="// "
     fi
     if [[ LFBFL_i_verbose -eq 1 ]]; then
-      echo "LFBFL_comment_prefix: ${LFBFL_comment_prefix}"
+      printf "LFBFL_comment_prefix: %s\n" "${LFBFL_comment_prefix}"
     fi
     #-----------------------------------------------------------------
     # Split if necessary old_file_name, new_file_name, etc. to have
@@ -268,9 +281,12 @@ commit_a_file_renamed_comment(){
     then
       LFBFL_new_comment="${LFBFL_comment_prefix}"
       LFBFL_new_comment+="${LFBFL_timestamp}"
-      LFBFL_new_comment+=": This file was renamed from\n"
-      LFBFL_new_comment+="${LFBFL_old_file_name2}"'"\n'
-      LFBFL_new_comment+="${LFBFL_comment_prefix}to\n"
+      LFBFL_new_comment+=": This file was renamed from"
+      LFBFL_new_comment+=$'\n'
+      LFBFL_new_comment+="${LFBFL_old_file_name2}"'"'
+      LFBFL_new_comment+=$'\n'
+      LFBFL_new_comment+="${LFBFL_comment_prefix}to"
+      LFBFL_new_comment+=$'\n'
       LFBFL_new_comment+="${LFBFL_new_file_name2}"'".'
     fi
     if [[ LFBFL_log_directory_change -eq 1 ]] && [[\
@@ -279,17 +295,20 @@ commit_a_file_renamed_comment(){
     ]]; then
       if [[ "${LFBFL_new_file_name2}" != "${LFBFL_old_file_name2}" ]];
       then
-        LFBFL_new_comment+="\n"
+        LFBFL_new_comment+=$'\n'
       fi
       LFBFL_new_comment+="${LFBFL_comment_prefix}"
       LFBFL_new_comment+="${LFBFL_timestamp}"
-      LFBFL_new_comment+=": This file was moved from\n"
-      LFBFL_new_comment+="${LFBFL_old_file_directory2}"'"\n'
-      LFBFL_new_comment+="${LFBFL_comment_prefix}to\n"
+      LFBFL_new_comment+=": This file was moved from"
+      LFBFL_new_comment+=$'\n'
+      LFBFL_new_comment+="${LFBFL_old_file_directory2}"'"'
+      LFBFL_new_comment+=$'\n'
+      LFBFL_new_comment+="${LFBFL_comment_prefix}to"
+      LFBFL_new_comment+=$'\n'
       LFBFL_new_comment+="${LFBFL_new_file_directory2}"'".'
     fi
     if [[ LFBFL_i_verbose -eq 1 ]]; then
-      echo "LFBFL_new_comment: ${LFBFL_new_comment}"
+      printf "LFBFL_new_comment: %s\n" "${LFBFL_new_comment}"
     fi
     # Find line with ©Copyright. -------------------------------------
     LFBFL_copyright_line_number=$(
@@ -298,14 +317,14 @@ commit_a_file_renamed_comment(){
       | cut -d ':' -f 1
     )
     if [[ LFBFL_i_verbose -eq 1 ]]; then
-      echo "LFBFL_copyright_line_number:"\
+      printf "LFBFL_copyright_line_number: %s\n"\
         "${LFBFL_copyright_line_number}"
     fi
     if [[ LFBFL_copyright_line_number -eq 0 ]]; then
       notify-send "${LFBFL_send_summary_2}"\
         "${LFBFL_send_summary_2} for: ${LFBFL_new_comment}"
       if [[ LFBFL_i_verbose -eq 1 ]]; then
-        echo "No copyright line. Skipping file."
+        printf "No copyright line. Skipping file.\n"
       fi
       continue
     fi
@@ -315,21 +334,21 @@ commit_a_file_renamed_comment(){
       < "${LFBFL_new_file_path}"
     )
     if [[ LFBFL_i_verbose -eq 1 ]]; then
-      echo "LFBFL_line_count: ${LFBFL_line_count}"
+      printf "LFBFL_line_count: %s\n" "${LFBFL_line_count}"
     fi
     # Compute number of lines after. ---------------------------------
     LFBFL_lines_after=$((
       LFBFL_line_count - LFBFL_copyright_line_number
     ))
     if [[ LFBFL_i_verbose -eq 1 ]]; then
-      echo "LFBFL_lines_after: ${LFBFL_lines_after}"
+      printf "LFBFL_lines_after: %s\n" "${LFBFL_lines_after}"
     fi
     # Update file. ---------------------------------------------------
     LFBFL_temp_file_path="${LFBFL_new_file_path}.LFBFL.temp"
     {
       head --lines="${LFBFL_copyright_line_number}"\
         "${LFBFL_new_file_path}"
-      echo -e "${LFBFL_new_comment}"
+      printf "%s\n" "${LFBFL_new_comment}"
       tail --lines="${LFBFL_lines_after}" "${LFBFL_new_file_path}"
     } >> "${LFBFL_temp_file_path}"
     mv "${LFBFL_temp_file_path}" "${LFBFL_new_file_path}"

@@ -29,13 +29,13 @@ source "overwrite_if_not_equal.libr.sh"
 update_common_build_and_checks(){
   declare -i LFBFL_verbose=0
   if [[ "$*" == *--verbose* ]]; then
-    echo "$0 $*"
+    printf "%s %s\n" "$0" "$*"
     LFBFL_verbose=1
   fi
   readonly LFBFL_verbose
 
   if [[ ! -o pipefail ]]; then
-    [[ LFBFL_verbose -eq 1 ]] && echo "pipefail option activated"
+    [[ LFBFL_verbose -eq 1 ]] && printf "pipefail option activated\n"
     set -o pipefail
     trap 'set +o pipefail' RETURN
   fi

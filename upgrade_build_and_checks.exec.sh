@@ -27,7 +27,7 @@
 upgrade_build_and_checks(){
   local LFBFL_verbose=""
   if [[ "$*" == *--verbose* ]]; then
-    echo "$0 $*"
+    printf "%s %s\n" "$0" "$*"
     LFBFL_verbose="--verbose"
   fi
   local LFBFL_fixed_point_build=""

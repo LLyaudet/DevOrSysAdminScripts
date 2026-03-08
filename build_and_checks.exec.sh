@@ -37,7 +37,7 @@ build_and_checks(){
 
   local LFBFL_verbose=""
   if [[ "$*" == *--verbose* ]]; then
-    echo "$0 $*"
+    printf "%s %s\n" "$0" "$*"
     LFBFL_verbose="--verbose"
   fi
   readonly LFBFL_verbose
@@ -51,8 +51,7 @@ build_and_checks(){
   mkdir -p "${LFBFL_variables_directory}/temp"
   if ! [[ -f "${LFBFL_variables_directory}/.gitignore" ]]; then
     {
-      echo "temp/"
-      echo ""
+      printf "temp/\n\n"
     } > "${LFBFL_variables_directory}/.gitignore"
   fi
 
@@ -81,7 +80,7 @@ build_and_checks(){
 }
 
 if [[ "$*" == *--fixed_point_build* ]]; then
-  echo "--fixed_point_build"
+  printf "--fixed_point_build\n"
   source "./build_and_checks_dependencies/lines_filters.libr.sh"
   LFBFL_work_directory="."
   if [[ -n "$1" ]]; then

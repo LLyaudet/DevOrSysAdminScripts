@@ -27,7 +27,7 @@ unprotected_funny(){
   shopt -s lastpipe
   declare -i LFBFL_i_result=0
   local LFBFL_line
-  echo "hahaha" | while read -r LFBFL_line; do
+  printf "hahaha\n" | while read -r LFBFL_line; do
     if [[ "${LFBFL_line}" == "hahaha" ]]; then
       LFBFL_i_result=1
     fi
@@ -37,7 +37,7 @@ unprotected_funny(){
 
 protected_funny(){
   # Always works regarding the echoes.
-  echo "hahaha" | while read -r LFBFL_line; do
+  printf "hahaha\n" | while read -r LFBFL_line; do
     unprotected_funny
   done
 }

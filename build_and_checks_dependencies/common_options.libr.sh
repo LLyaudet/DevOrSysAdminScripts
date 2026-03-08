@@ -59,30 +59,31 @@ enhanced_pushd(){
   # $2=offset_for_where_was_i
   # $3=error_message_intermediate_complement
   # returns an error code whenever no pushd happened
-  [[ LFBFL_i_verbose -eq 1 ]] && echo "enhanced_pushd requested: $1"
+  [[ LFBFL_i_verbose -eq 1 ]]\
+    && printf "enhanced_pushd requested: %s\n" "$1"
   declare -ig enhanced_pushd_result=0
   if [[ -z "$1" ]]; then
     enhanced_pushd_result=110
     # shellcheck disable=SC2248
     return ${enhanced_pushd_result}
   fi
-  [[ LFBFL_i_verbose -eq 1 ]] && echo "enhanced_pushd validated1"
+  [[ LFBFL_i_verbose -eq 1 ]] && printf "enhanced_pushd validated1\n"
   is_top_dirstack_directory "$1" && {
     enhanced_pushd_result=111
     # shellcheck disable=SC2248
     return ${enhanced_pushd_result}
   }
-  [[ LFBFL_i_verbose -eq 1 ]] && echo "enhanced_pushd validated2"
+  [[ LFBFL_i_verbose -eq 1 ]] && printf "enhanced_pushd validated2\n"
 
   pushd "$1" || {
     enhanced_pushd_result=$?
     local LFBFL_where_was_i
     get_where_was_i "$2"
-    echo "${LFBFL_where_was_i} $3$1 no such directory."
+    printf "%s %s%s no such directory.\n" "${LFBFL_where_was_i}" "$3" "$1"
     # shellcheck disable=SC2248
     return ${enhanced_pushd_result}
   }
-  [[ LFBFL_i_verbose -eq 1 ]] && echo "enhanced_pushd executed"
+  [[ LFBFL_i_verbose -eq 1 ]] && printf "enhanced_pushd executed\n"
   # shellcheck disable=SC2248
   return ${enhanced_pushd_result}
 }
@@ -92,7 +93,8 @@ enhanced_popd(){
   # See usages below if you want to reuse it.
   # $1=to_directory
   # $2=offset_for_where_was_i
-  [[ LFBFL_i_verbose -eq 1 ]] && echo "enhanced_popd requested: $1"
+  [[ LFBFL_i_verbose -eq 1 ]]\
+    && printf "enhanced_popd requested: %s\n" "$1"
   if [[ -z "$1" ]]; then
     return 0
   fi
@@ -103,11 +105,11 @@ enhanced_popd(){
     readonly LFBFL_i_popd_result
     local LFBFL_where_was_i
     get_where_was_i "$2"
-    echo "${LFBFL_where_was_i} popd failed."
+    printf "%s popd failed.\n" "${LFBFL_where_was_i}"
     # shellcheck disable=SC2248
     return ${LFBFL_i_popd_result}
   }
-  [[ LFBFL_i_verbose -eq 1 ]] && echo "enhanced_popd executed"
+  [[ LFBFL_i_verbose -eq 1 ]] && printf "enhanced_popd executed\n"
   return 0
 }
 
@@ -155,7 +157,7 @@ get_verbose_option(){
     local LFBFL_where_was_i
     get_where_was_i 2
     readonly LFBFL_i_popd_result
-    echo "${LFBFL_where_was_i} $*"
+    printf "%s %s\n" "${LFBFL_where_was_i}" "$*"
     LFBFL_i_verbose=1
   fi
   # shellcheck disable=SC2034
@@ -230,7 +232,7 @@ enhanced_set_shell_option(){
   if [[ LFBFL_i_verbose -eq 1 ]]; then
     local LFBFL_where_was_i
     get_where_was_i 2
-    echo "${LFBFL_where_was_i} $1 shell option activated."
+    printf "%s %s shell option activated.\n" "${LFBFL_where_was_i}" "$1"
   fi
   # shellcheck disable=SC2086
   return ${!LFBFL_result_name}
@@ -249,7 +251,7 @@ enhanced_unset_shell_option(){
   if [[ LFBFL_i_verbose -eq 1 ]]; then
     local LFBFL_where_was_i
     get_where_was_i 2
-    echo "${LFBFL_where_was_i} $1 shell option unactivated."
+    printf "%s %s shell option unactivated.\n" "${LFBFL_where_was_i}" "$1"
   fi
   # shellcheck disable=SC2086
   return ${!LFBFL_result_name}
@@ -270,7 +272,7 @@ enhanced_set_bash_option(){
   if [[ LFBFL_i_verbose -eq 1 ]]; then
     local LFBFL_where_was_i
     get_where_was_i 2
-    echo "${LFBFL_where_was_i} $1 bash option activated."
+    printf "%s %s bash option activated.\n" "${LFBFL_where_was_i}" "$1"
   fi
   # shellcheck disable=SC2086
   return ${!LFBFL_result_name}
@@ -289,7 +291,7 @@ enhanced_unset_bash_option(){
   if [[ LFBFL_i_verbose -eq 1 ]]; then
     local LFBFL_where_was_i
     get_where_was_i 2
-    echo "${LFBFL_where_was_i} $1 bash option unactivated."
+    printf "%s %s bash option unactivated.\n" "${LFBFL_where_was_i}" "$1"
   fi
   # shellcheck disable=SC2086
   return ${!LFBFL_result_name}

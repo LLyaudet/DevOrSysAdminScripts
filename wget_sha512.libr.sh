@@ -31,23 +31,20 @@ wget_sha512(){
   # $4 optional --verbose
   local LFBFL_verbose=""
   if [[ "$*" == *--verbose* ]]; then
-    echo "$0 wget_sha512 $*"
+    printf "%s wget_sha512 %s\n" "$0" "$*"
     LFBFL_verbose="--verbose"
   fi
   readonly LFBFL_verbose
-  if [[ ! -f "$1" ]];
-  then
+  if [[ ! -f "$1" ]]; then
     wget "${LFBFL_verbose}" -O "$1" "$2"
   fi
   declare -r LFBFL_present_sha512=$(
     sha512sum "$1"\
     | cut -f1 -d' '
   )
-  if [[ "${LFBFL_present_sha512}" != "$3" ]];
-  then
-    echo "$1 does not have correct sha512"
-    echo "wanted $3"
-    echo "found ${LFBFL_present_sha512}"
-    exit
+  if [[ "${LFBFL_present_sha512}" != "$3" ]]; then
+    printf "%s does not have correct sha512:\n - wanted %s\n - found %s\n"\
+      "$1" "$3" "${LFBFL_present_sha512}"
+    return 1
   fi
 }

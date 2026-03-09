@@ -193,6 +193,7 @@ create_PDF(){
   local LFBFL_new_lines2
   local LFBFL_new_lines3
   local LFBFL_file_path
+  local LFBFL_s_format
   # Remove line returns here to keep lines short.
   for LFBFL_file_path in "${LFBFL_arr_file_paths[@]}"; do
     printf "Listing file for tex/HTML : %s\n" "${LFBFL_file_path}"
@@ -237,20 +238,15 @@ create_PDF(){
         "${LFBFL_score_command_properties}"
       LFBFL_new_lines3=${repeated_split_last_line_result}
     fi
-    {
-      printf "\\subsection{\n"
-      printf "%s\n" "${LFBFL_new_lines}"
-      printf "}\n"
-      printf "\\label{\n"
-      printf "%s\n" "${LFBFL_new_lines2}"
-      printf "}\n"
-      printf "\n"
-      printf "\\VerbatimInput[numbers=left,xleftmargin=-5mm]{\n"
-      printf "%s\n" "${LFBFL_new_lines3}"
-      printf "}\n"
-      printf "\n"
-      printf "\n"
-    } >> "${LFBFL_temp_files_listing}"
+    LFBFL_s_format="\\subsection{\n%s\n}\n\\label{\n%s\n}\n\n"
+    LFBFL_s_format+="\\VerbatimInput[numbers=left,xleftmargin=-5mm]"
+    LFBFL_s_format+="{\n%s\n}\n\n\n"
+    # shellcheck disable=SC2059
+    printf "${LFBFL_s_format}"\
+      "${LFBFL_new_lines}"\
+      "${LFBFL_new_lines2}"\
+      "${LFBFL_new_lines3}"\
+      >> "${LFBFL_temp_files_listing}"
 
     # printf "Listing file for HTML : %s\n" "${LFBFL_file_path}"
     ((++LFBFL_i))
@@ -266,20 +262,24 @@ create_PDF(){
       LFBFL_new_lines=${repeated_split_last_line_result}
     fi
     {
-      printf "<h3 id=\"subsection2.%s\">2.%s\n" "${LFBFL_i}" "${LFBFL_i}"
-      printf "%s\n" "${LFBFL_new_lines}"
-      printf "</h3>\n"
-      printf "<pre class=\"numbered_lines\">\n"
+      LFBFL_s_format="<h3 id=\"subsection2.%s\">2.%s\n%s\n</h3>\n"
+      LFBFL_s_format+="<pre class=\"numbered_lines\">\n"
+      # shellcheck disable=SC2059
+      printf "${LFBFL_s_format}"\
+        "${LFBFL_i}"\
+        "${LFBFL_i}"\
+        "${LFBFL_new_lines}"
       sed -e 's/&/\&amp;/g' -e 's/</\&lt;/g'\
         < "${LFBFL_file_path}"
-      printf "</pre>\n"
-      printf "\n"
-      printf "\n"
+      printf "</pre>\n\n\n"
     } >> "${LFBFL_temp_files_listing2}"
     {
-      printf "      <li><a href=\"#subsection2.%s\">\n" "${LFBFL_i}"
-      printf "%s\n" "${LFBFL_new_lines}"
-      printf "      </a></li>\n"
+      LFBFL_s_format="      <li><a href=\"#subsection2.%s\">\n%s\n"
+      LFBFL_s_format+="      </a></li>\n"
+      # shellcheck disable=SC2059
+      printf "${LFBFL_s_format}"\
+        "${LFBFL_i}"\
+        "${LFBFL_new_lines}"
     } >> "${LFBFL_temp_files_lis}"
   done
   overwrite_if_not_equal "./${LFBFL_subdir2}/files_listing.tex.tpl"\

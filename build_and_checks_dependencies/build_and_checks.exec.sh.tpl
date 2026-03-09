@@ -77,7 +77,7 @@ build_and_checks(){
 }
 
 if [[ "$*" == *--fixed_point_build* ]]; then
-  printf "--fixed_point_build\n"
+  printf -- "--fixed_point_build\n"
   source "./build_and_checks_dependencies/lines_filters.libr.sh"
   LFBFL_work_directory="."
   if [[ -n "$1" ]]; then

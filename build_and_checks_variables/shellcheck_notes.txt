@@ -19,6 +19,9 @@ state of the git repository (in that case, we use X suffix, see SC2162X):
            False positive for globals that are declared in functions
            that are not currently called.
            Somehow it can be used to detect dead code.
+- SC2059 : Don't use variables in the printf format string.
+           Use printf '..%s..' "$foo".
+           False positive when using a variable to build the format string.
 - SC2086 : Double quote to prevent globbing and word splitting.
            False positive when returning integer variable
            via an indirection like return ${!foo}.
@@ -53,10 +56,12 @@ state of the git repository (in that case, we use X suffix, see SC2162X):
            variable variable names.
 - SC2312 : Some command is not invoked separately and thus its return
            value is masked. Frequent with pipes.
+- SCNNNNX: Use printf instead of echo.
+           https://github.com/koalaman/shellcheck/issues/3419
 
 The command to check if there is anything else:
 grep -r "shellcheck disable" . | grep -v -e '.git' -e "=SC1090$"\
   -e "=SC1091$" -e "=SC1090,SC1091$" -e "=SC1111$" -e "=SC2001$"\
-  -e "=SC2034$" -e "=SC2086$" -e "=SC2119$" -e "=SC2120$" -e "=SC2125$"\
-  -e "=SC2145$" -e "=SC2154$" -e "=SC2248$" -e "=SC2309$"\
+  -e "=SC2034$" -e "=SC2059$" -e "=SC2086$" -e "=SC2119$" -e "=SC2120$"\
+  -e "=SC2125$" -e "=SC2145$" -e "=SC2154$" -e "=SC2248$" -e "=SC2309$"\
   -e "=SC2312$" -e "=SC2154,SC2309$"

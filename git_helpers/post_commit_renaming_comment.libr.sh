@@ -95,6 +95,7 @@ commit_a_file_renamed_comment(){
   if [[ LFBFL_i_verbose -eq 1 ]]; then
     LFBFL_s_format="LFBFL_log_directory_change: %s\n"
     LFBFL_s_format+="LFBFL_max_comment_line_length: %s\n"
+    # shellcheck disable=SC2059
     printf "${LFBFL_s_format}"\
       "${LFBFL_log_directory_change}"\
       "${LFBFL_max_comment_line_length}"
@@ -194,6 +195,7 @@ commit_a_file_renamed_comment(){
       LFBFL_s_format+="LFBFL_new_file_path: %s\n"
       LFBFL_s_format+="LFBFL_new_file_name: %s\n"
       LFBFL_s_format+="LFBFL_new_file_directory: %s\n"
+      # shellcheck disable=SC2059
       printf "${LFBFL_s_format}"\
         "${LFBFL_old_file_path}"\
         "${LFBFL_old_file_name}"\

@@ -302,6 +302,18 @@ build_and_checks_dependencies/repository_data.libr.sh
 
 
 \subsection{
+  build\_and\_checks\_dependencies/shell\_checks\_complement.libr.sh
+}
+\label{
+  build_and_checks_dependencies:shell_checks_complementlibrsh
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+build_and_checks_dependencies/shell_checks_complement.libr.sh
+}
+
+
+\subsection{
   build\_and\_checks\_dependencies/split\_score.exec.php
 }
 \label{

@@ -46,15 +46,17 @@ get_upgrade_venvs_time_interval_in_seconds(){
     --result-variable-prefix="LFBFL_"
 
   [[ LFBFL_i_verbose -eq 1 ]]\
-    && echo "You say \"${LFBFL_upgrade_venvs_time_interval_in_seconds}\"."
+    && printf "You say \"%s\".\n"\
+        "${LFBFL_upgrade_venvs_time_interval_in_seconds}"
 
   case ${LFBFL_upgrade_venvs_time_interval_in_seconds} in
     +([0-9])) : ;;
     wat) LFBFL_upgrade_venvs_time_interval_in_seconds=${RANDOM};;
     watyouwant\?) LFBFL_upgrade_venvs_time_interval_in_seconds=${SRANDOM};;
-    *) echo "No wat for you?";; #TempsDeCerveauDisponible XD SC2249 ;)
+    *) printf "No wat for you?\n";; #TempsDeCerveauDisponible XD SC2249 ;)
   esac
 
   [[ LFBFL_i_verbose -eq 1 ]]\
-    && echo "I say \"${LFBFL_upgrade_venvs_time_interval_in_seconds}\"."
+    && printf "I say \"%s\".\n"\
+        "${LFBFL_upgrade_venvs_time_interval_in_seconds}"
 }

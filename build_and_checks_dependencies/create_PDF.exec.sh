@@ -273,14 +273,11 @@ create_PDF(){
         < "${LFBFL_file_path}"
       printf "</pre>\n\n\n"
     } >> "${LFBFL_temp_files_listing2}"
-    {
-      LFBFL_s_format="      <li><a href=\"#subsection2.%s\">\n%s\n"
-      LFBFL_s_format+="      </a></li>\n"
-      # shellcheck disable=SC2059
-      printf "${LFBFL_s_format}"\
-        "${LFBFL_i}"\
-        "${LFBFL_new_lines}"
-    } >> "${LFBFL_temp_files_lis}"
+    LFBFL_s_format="      <li><a href=\"#subsection2.%s\">\n%s\n"
+    LFBFL_s_format+="      </a></li>\n"
+    # shellcheck disable=SC2059
+    printf "${LFBFL_s_format}" "${LFBFL_i}" "${LFBFL_new_lines}"\
+      >> "${LFBFL_temp_files_lis}"
   done
   overwrite_if_not_equal "./${LFBFL_subdir2}/files_listing.tex.tpl"\
     "${LFBFL_temp_files_listing}"

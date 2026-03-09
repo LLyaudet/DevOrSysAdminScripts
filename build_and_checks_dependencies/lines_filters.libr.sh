@@ -55,7 +55,7 @@ ll_wc(){
   declare -i ll_wc_var_number_only=0
   declare -i ll_wc_var_i=0
   for ll_wc_var_arg in "$@"; do
-    # echo "$ll_wc_var_arg"
+    # printf "%s\n" "${ll_wc_var_arg}"
     if [[ "${ll_wc_var_arg}" == "-n" ]]; then
       ll_wc_var_number_only=1
     elif [[ "${ll_wc_var_arg}" == "--no-filenames" ]]; then
@@ -69,7 +69,7 @@ ll_wc(){
     fi
   done
   # typeset -p ll_wc_var_args
-  # echo "$ll_wc_var_number_only"
+  # printf "%s\n" "${ll_wc_var_number_only}"
   if [[ ll_wc_var_number_only -gt 0 ]]; then
     # Too simple code, only the base use case is handled now.
     # Convenient but incomplete.
@@ -85,13 +85,13 @@ ll_wc(){
     cat "${!#}"\
       | wc "${ll_wc_var_args[@]}"
   else
-    # echo "normal"
+    # printf "normal\n"
     wc "${ll_wc_var_args[@]}"
   fi
 }
 
 # I submitted a patch for wc :).
-# echo "https://domain/list-path/2024-05/msg00013.html" | \
+# printf "https://domain/list-path/2024-05/msg00013.html" | \
 #   sed -e 's|domain|lists.gnu.org|' \
 #       -e 's|list-path|archive/html/bug-coreutils|'
 # I found another way to have a long URL fit on 70 characters.
@@ -120,8 +120,8 @@ in_place_grep(){
     > "${LFBFL_temp}"
   # declare -ir LFBFL_lines_before=$(ll_wc -l -n "${!#}")
   # declare -ir LFBFL_lines_after=$(ll_wc -l -n "${LFBFL_temp}")
-  # echo "$LFBFL_lines_before"
-  # echo "$LFBFL_lines_after"
+  # printf "%s\n" "${LFBFL_lines_before}"
+  # printf "%s\n" "${LFBFL_lines_after}"
   # if [[ LFBFL_lines_before -eq LFBFL_lines_after ]]; then
   # Almost as fast (on large files) and correct in all cases :).
   # Thanks Paul Eggert for the suggestion :).
@@ -232,7 +232,7 @@ grep_variable(){
   #   --result-variable-prefix="LFBFL_" for example
   declare -r LFBFL_regexp="(?<=^$2=).*$"
   local LFBFL_arg
-  # echo $LFBFL_regexp
+  # printf "%s\n" "${LFBFL_regexp}"
   local LFBFL_variable_value
   if [[ "$*" == *--replace-line-returns-by=* ]]; then
     local LFBFL_s_replace=""
@@ -262,13 +262,13 @@ grep_variable(){
     fi
   done
   declare -r LFBFL_variable_name="${LFBFL_prefix}$2"
-  # echo "${LFBFL_variable_name} : ${LFBFL_variable_value}"
+  # printf "%s : %s\n " "${LFBFL_variable_name}" "${LFBFL_variable_value}"
   # The declare line may be dropped by a local or declare
   # in outer scope.
   # declare -g "${LFBFL_variable_name}"
   # So the assignment must be done on another line.
   printf -v "${LFBFL_variable_name}" "%s" "${LFBFL_variable_value}"
-  # echo "${!LFBFL_variable_name}"
+  # printf "%s\n" "${!LFBFL_variable_name}"
 }
 
 empty_lines(){

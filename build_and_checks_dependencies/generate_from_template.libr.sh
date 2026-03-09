@@ -39,9 +39,9 @@ generate_from_template_with_block_comments(){
   LFBFL_temp="$2.generate_from_template_with_block_comments.temp"
   readonly LFBFL_temp
   {
-    echo "$3"
+    printf "%s\n" "$3"
     cat "$1"
-    echo "$4"
+    printf "%s\n" "$4"
   } > "${LFBFL_temp}"
   overwrite_if_not_equal "$2" "${LFBFL_temp}"
 }
@@ -56,7 +56,7 @@ generate_from_template_with_line_comments(){
   LFBFL_temp="$2.generate_from_template_with_line_comments.temp"
   readonly LFBFL_temp
   if [[ -n "$5" ]]; then
-    echo "$5"\
+    printf "%s\n" "$5"\
       > "${LFBFL_temp}"
   fi
   sed -e "s/^/$3/g" "$1"\

@@ -172,7 +172,7 @@ split_line_at_most(){
   # For my use case in bash scripts, I will need only an array of
   # characters. See get_split_score().
   if [[ -n "$6" ]]; then
-    printf $'split_line_at_most() $4 NOT IMPLEMENTED YET'
+    printf $'split_line_at_most() $6 NOT IMPLEMENTED YET\n'
   fi
   if [[ $2 -ge ${#1} ]]; then
     split_line_at_most_result_start=$1
@@ -274,7 +274,7 @@ split_line_at_most(){
   declare -i LFBFL_best_position
   for ((LFBFL_i=LFBFL_i_max; LFBFL_i>=0; --LFBFL_i)) do
     if [[ LFBFL_i -eq 0 ]]; then
-      printf $'/!\\ split_line_at_most bug: no split position found. /!\\'
+      printf $'/!\\split_line_at_most bug: no split position found./!\\\n'
     fi
     local LFBFL_value=${LFBFL_positions[${LFBFL_i}]}
     # printf "%s %s\n" "${LFBFL_i} ${LFBFL_value}"

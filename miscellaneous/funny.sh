@@ -32,7 +32,7 @@ unprotected_funny(){
       LFBFL_i_result=1
     fi
   done
-  [[ LFBFL_i_result -eq 1 ]] && echo "I had a good laugh."
+  [[ LFBFL_i_result -eq 1 ]] && printf "I had a good laugh.\n"
 }
 
 protected_funny(){

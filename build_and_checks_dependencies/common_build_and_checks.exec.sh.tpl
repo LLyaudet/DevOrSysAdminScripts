@@ -43,7 +43,7 @@ common_build_and_checks(){
   local LFBFL_verbose=""
   declare -i LFBFL_i_verbose=0
   if [[ "$*" == *--verbose* ]]; then
-    echo "$0 $*"
+    printf "%s %s\n" "$0" "$*"
     LFBFL_verbose="--verbose"
     LFBFL_i_verbose=1
   fi
@@ -296,17 +296,17 @@ common_build_and_checks(){
   enhanced_set_shell_option pipefail\
     && trap 'enhanced_unset_shell_option pipefail' RETURN
 
-  echo "Building license headers"
+  printf "Building license headers\n"
   "./${LFBFL_subdir2}/build_licenses_templates.exec.sh"\
     "${LFBFL_some_common_options[@]}"
 
-  echo "Building README.md"
+  printf "Building README.md\n"
   "./${LFBFL_subdir}/build_md_from_printable_md.exec.sh"\
     "--work-directory=${LFBFL_work_directory}"\
     "--base-name=README"\
     "${LFBFL_verbose}"
 
-  echo "Building other MarkDown files"
+  printf "Building other MarkDown files\n"
   local LFBFL_some_directory
   declare -r LFBFL_readme="${LFBFL_work_directory}/README.md.tpl"
   local LFBFL_s_files_paths
@@ -319,7 +319,7 @@ common_build_and_checks(){
     mapfile -t LFBFL_arr_files_paths <<< "${LFBFL_s_files_paths}"
     for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do
       [[ "${LFBFL_file_path}" == "${LFBFL_readme}" ]] && continue
-      echo "Found template ${LFBFL_file_path}"
+      printf "Found template %s.\n" "${LFBFL_file_path}"
       LFBFL_some_directory=$(dirname "${LFBFL_file_path}")
       LFBFL_file_name=$(basename "${LFBFL_file_path}")
       LFBFL_file_name=${LFBFL_file_name%.md.tpl}
@@ -380,7 +380,7 @@ common_build_and_checks(){
     fi
   fi
 
-  echo "Running shellcheck"
+  printf "Running shellcheck\n"
   LFBFL_s_files_paths=$(
     find . -type f -name "*.sh"\
     | relevant_find
@@ -393,8 +393,8 @@ common_build_and_checks(){
     done
   fi
 
-  echo "---Python---"
-  echo "Running isort"
+  printf -- "---Python---\n"
+  printf "Running isort\n"
   local LFBFL_isort_venv=""
   grep_variable "${LFBFL_data_file_name}" isort_venv\
     --result-variable-prefix="LFBFL_"\
@@ -414,10 +414,10 @@ common_build_and_checks(){
   if [[ -n "${LFBFL_isort_venv}" ]]; then
     deactivate
   fi
-  echo "Running python_isort_complement"
+  printf "Running python_isort_complement\n"
   python_isort_complement "${LFBFL_some_common_options[@]}"
 
-  echo "Running black"
+  printf "Running black\n"
   # First, we update the configuration file with max_line_length.
   local LFBFL_update_max_length="s/^line-length = [0-9]*$"
   LFBFL_update_max_length+="/line-length = ${LFBFL_max_line_length}/"
@@ -446,10 +446,10 @@ common_build_and_checks(){
   if [[ -n "${LFBFL_black_venv}" ]]; then
     deactivate
   fi
-  echo "Running python_black_complement"
+  printf "Running python_black_complement\n"
   python_black_complement "${LFBFL_some_common_options[@]}"
 
-  echo "Probing if mypy should be runned"
+  printf "Probing if mypy should be runned\n"
   local LFBFL_mypy_venv=""
   grep_variable "${LFBFL_data_file_name}" mypy_venv\
     --result-variable-prefix="LFBFL_"\
@@ -476,7 +476,7 @@ common_build_and_checks(){
     mapfile -t LFBFL_arr_files_paths <<< "${LFBFL_s_files_paths}"
     for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do
       if grep -q "Typing :: Typed" "${LFBFL_file_path}"; then
-        echo "Running mypy"
+        printf "Running mypy\n"
         LFBFL_directory_path=$(dirname "${LFBFL_file_path}")
         mypy "${LFBFL_directory_path}"
       fi
@@ -484,14 +484,14 @@ common_build_and_checks(){
     done
   fi
   if [[ LFBFL_no_toml -eq 1 ]]; then
-    echo "Running mypy"
+    printf "Running mypy\n"
     mypy .
   fi
   if [[ -n "${LFBFL_mypy_venv}" ]]; then
     deactivate
   fi
 
-  echo "Running bandit"
+  printf "Running bandit\n"
   LFBFL_bandit_venv=""
   grep_variable "${LFBFL_data_file_name}" bandit_venv\
     --result-variable-prefix="LFBFL_"\
@@ -518,7 +518,7 @@ common_build_and_checks(){
     deactivate
   fi
 
-  echo "Running pylint"
+  printf "Running pylint\n"
   LFBFL_pylint_venv=""
   grep_variable "${LFBFL_data_file_name}" pylint_venv\
     --result-variable-prefix="LFBFL_"\
@@ -540,7 +540,7 @@ common_build_and_checks(){
     deactivate
   fi
 
-  echo "Running ruff"
+  printf "Running ruff\n"
   LFBFL_ruff_venv=""
   grep_variable "${LFBFL_data_file_name}" ruff_venv\
     --result-variable-prefix="LFBFL_"\
@@ -560,10 +560,10 @@ common_build_and_checks(){
   if [[ -n "${LFBFL_ruff_venv}" ]]; then
     deactivate
   fi
-  echo "---Python end---"
+  printf -- "---Python end---\n"
 
-  echo "---PHP---"
-  echo "Running PHPMD"
+  printf -- "---PHP---\n"
+  printf "Running PHPMD\n"
   if [[ LFBFL_upgrade_venvs -eq 1 ]]; then
     composer global require phpmd/phpmd
   fi
@@ -589,14 +589,14 @@ common_build_and_checks(){
     . text "${LFBFL_phpmd_rulesets}"
   sed -i -e 's/" file="/"\n    file="/g' "${LFBFL_temp_phpmd_baseline}"
   diff "${LFBFL_phpmd_baseline}" "${LFBFL_temp_phpmd_baseline}"
-  echo "---PHP end---"
+  printf -- "---PHP end---\n"
 
-  echo "---JS---"
+  printf -- "---JS---\n"
   LFBFL_npm_lint_directories=""
   grep_variable "${LFBFL_data_file_name}" npm_lint_directories\
     --result-variable-prefix="LFBFL_"
   if [[ -n "${LFBFL_npm_lint_directories}" ]]; then
-    echo "Running ESLint"
+    printf "Running ESLint\n"
     local LFBFL_JS_directory
     declare -a LFBFL_arr_paths
     mapfile -t LFBFL_arr_paths <<< "${LFBFL_npm_lint_directories}"
@@ -604,26 +604,26 @@ common_build_and_checks(){
       (cd "${LFBFL_JS_directory}" && npm run lint)
     done
   fi
-  echo "---JS end---"
+  printf -- "---JS end---\n"
 
-  echo "Analyzing too long lines"
+  printf "Analyzing too long lines\n"
   # shellcheck disable=SC2248
   too_long_code_lines "${LFBFL_some_common_options[@]}" \
     --max-line-length=${LFBFL_max_line_length}
 
-  echo "Analyzing shell scripts beginnings"
+  printf "Analyzing shell scripts beginnings\n"
   check_shell_scripts_beginnings "${LFBFL_some_common_options[@]}" \
     | relevant_grep
 
-  echo "Analyzing shell scripts indentation"
+  printf "Analyzing shell scripts indentation\n"
   check_shell_scripts_indentation "${LFBFL_some_common_options[@]}" \
     | relevant_grep
 
-  echo "Analyzing URLs"
+  printf "Analyzing URLs\n"
   check_URLs "${LFBFL_some_common_options[@]}" \
     | relevant_grep
 
-  echo "Analyzing strange characters: hover over in doubt"
+  printf "Analyzing strange characters: hover over in doubt\n"
   # shellcheck disable=SC1111
   LFBFL_usual_characters="\x00-\x7Fàâéèêëîïôûç©“”└─├│«»"
   grep --exclude-dir .git --binary-files=without-match --color=always\
@@ -631,11 +631,11 @@ common_build_and_checks(){
 
   [[ LFBFL_will_popd -eq 0 ]] && popd_from_work_directory
 
-  echo "Checking listed files"
+  printf "Checking listed files\n"
   "./${LFBFL_subdir}/update_or_check_files_names_listing.exec.sh"\
     "${LFBFL_some_common_options[@]}"
 
-  echo "Creating the PDF file of the listing of the source code"
+  printf "Creating the PDF file of the listing of the source code\n"
   "./${LFBFL_subdir}/create_PDF.exec.sh" "${LFBFL_some_common_options[@]}"
 
   pushd_to_work_directory\
@@ -649,7 +649,7 @@ common_build_and_checks(){
   # ------------------------------------------------------------------
   # It is at the end that all the HTML files are generated and that
   # we can check there are no mistakes.
-  echo "Running Nu W3C HTML CSS and SVG validator"
+  printf "Running Nu W3C HTML CSS and SVG validator\n"
   local LFBFL_upgrade_vnu_jar_time_interval_in_seconds=""
   grep_variable "${LFBFL_data_file_name}"\
     upgrade_vnu_jar_time_interval_in_seconds\
@@ -671,9 +671,9 @@ common_build_and_checks(){
     ((LFBFL_current_ts-=LFBFL_vnu_jar_ts))
     ((LFBFL_current_ts-=LFBFL_upgrade_vnu_jar_time_interval_in_seconds))
     if [[ LFBFL_current_ts -gt 0 ]]; then
-      echo $'/!\\ATTENTION: Nu W3C validator is too old./!\\'
-      echo "Go get the latest version here:"
-      echo "https://github.com/validator/validator/releases"
+      printf $'/!\\ATTENTION: Nu W3C validator is too old./!\\\n'
+      printf "Go get the latest version here:\n"
+      printf "https://github.com/validator/validator/releases\n"
     fi
     declare -r LFBFL_files_for_Nu=$(
       find . -iregex ".*\.\(css\|html\|svg\|xhtml\)"\

@@ -280,6 +280,16 @@ common_build_and_checks(){
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
+  LFBFL_file_name="shell_checks_complement.libr.sh"
+  LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
+  LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
+  local LFBFL_correct_sha512
+  LFBFL_correct_sha512='d61f4e542cb061e22cf1aa10d23ea53785a2700d5c2c1'
+  LFBFL_correct_sha512+='93161499307f7f2d79340b4b171e76c7e52332ef4f4f'
+  LFBFL_correct_sha512+='02167c1f3a00a3e92b49428b7583a18cec0698a'
+  wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
+    "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
+
   LFBFL_file_name="split_score.exec.php"
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
@@ -359,6 +369,8 @@ common_build_and_checks(){
   source "./${LFBFL_subdir}/python_black_complement.libr.sh"
   # shellcheck source=python_isort_complement.libr.sh
   source "./${LFBFL_subdir}/python_isort_complement.libr.sh"
+  # shellcheck source=shell_checks_complement.libr.sh
+  source "./${LFBFL_subdir}/shell_checks_complement.libr.sh"
   # shellcheck source=strings_functions.libr.sh
   source "./${LFBFL_subdir}/strings_functions.libr.sh"
   # shellcheck source=too_long_code_lines.libr.sh
@@ -470,6 +482,8 @@ common_build_and_checks(){
         "${LFBFL_file_path}"
     done
   fi
+  printf "Running shell_checks_complement\n"
+  shell_checks_complement "${LFBFL_some_common_options[@]}"
 
   printf -- "---Python---\n"
   printf "Running isort\n"

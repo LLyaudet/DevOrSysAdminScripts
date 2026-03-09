@@ -57,6 +57,7 @@ build_and_checks_dependencies/overwrite_if_not_equal.libr.sh
 build_and_checks_dependencies/python_black_complement.libr.sh
 build_and_checks_dependencies/python_isort_complement.libr.sh
 build_and_checks_dependencies/repository_data.libr.sh
+build_and_checks_dependencies/shell_checks_complement.libr.sh
 build_and_checks_dependencies/split_score.exec.php
 build_and_checks_dependencies/split_score.libr.php
 build_and_checks_dependencies/strings_functions.libr.sh

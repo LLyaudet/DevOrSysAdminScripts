@@ -67,6 +67,7 @@ update_common_build_and_checks(){
     "python_black_complement.libr.sh"
     "python_isort_complement.libr.sh"
     "repository_data.libr.sh"
+    "shell_checks_complement.libr.sh"
     "split_score.exec.php"
     "split_score.libr.php"
     "strings_functions.libr.sh"

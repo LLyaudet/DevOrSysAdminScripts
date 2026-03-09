@@ -67,8 +67,7 @@ build_md_from_printable_md(){
   # in other files.
   # Another downside is that more than one pass is needed.
 
-  if [[ -f "${LFBFL_base_name}.md.tpl" ]];
-  then
+  if [[ -f "${LFBFL_base_name}.md.tpl" ]]; then
     sed -Ez -e "${LFBFL_sed_expression}"\
             -e "${LFBFL_sed_expression}"\
             -e "${LFBFL_sed_expression}"\

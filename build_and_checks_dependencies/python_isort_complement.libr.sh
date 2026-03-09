@@ -45,7 +45,7 @@ check_collections_abc_place(){
   can_continue_after_enhanced_pushd || return
 
   [[ LFBFL_i_verbose -eq 1 ]]\
-    && echo "Checking import of _collections_abc is at the right place"
+    && printf "Checking import of _collections_abc is at the right place\n"
 
   enhanced_set_shell_option pipefail\
     && trap 'enhanced_unset_shell_option pipefail' RETURN

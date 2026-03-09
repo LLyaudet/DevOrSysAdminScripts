@@ -51,7 +51,7 @@ all_code_lines(){
   local LFBFL_pattern
   for LFBFL_pattern in "${COMMON_TEXT_FILES_GLOB_PATTERNS[@]}"; do
     [[ LFBFL_i_verbose -eq 1 ]]\
-      && echo "Iterating on pattern: ${LFBFL_pattern}"
+      && printf "Iterating on pattern: %s.\n" "${LFBFL_pattern}"
     find . -type f -name "${LFBFL_pattern}" -printf '%P\n'\
       | xargs grep -H -v 'a(?!a)a'
   done
@@ -125,10 +125,10 @@ code_lines_count_all(){
     all_self_code_lines\
     | wc -l
   )
-  # The echo is for command line use.
+  # The printf is for command line use.
   # A script should use the result value instead.
   # shellcheck disable=SC2248
-  echo ${code_lines_count_all_result}
+  printf "%s\n" ${code_lines_count_all_result}
 }
 
 code_lines_count_empty(){
@@ -147,10 +147,10 @@ code_lines_count_empty(){
     all_self_empty_code_lines\
     | wc -l
   )
-  # The echo is for command line use.
+  # The printf is for command line use.
   # A script should use the result value instead.
   # shellcheck disable=SC2248
-  echo ${code_lines_count_empty_result}
+  printf "%s\n" ${code_lines_count_empty_result}
 }
 
 code_lines_count_not_empty(){
@@ -169,8 +169,8 @@ code_lines_count_not_empty(){
     all_self_not_empty_code_lines\
     | wc -l
   )
-  # The echo is for command line use.
+  # The printf is for command line use.
   # A script should use the result value instead.
   # shellcheck disable=SC2248
-  echo ${code_lines_count_not_empty_result}
+  printf "%s\n" ${code_lines_count_not_empty_result}
 }

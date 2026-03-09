@@ -49,7 +49,7 @@ build_md_from_printable_md(){
     if [[ "${LFBFL_arg}" == --base-name=* ]]; then
       LFBFL_base_name=${LFBFL_arg#--base-name=}
       if [[ LFBFL_i_verbose -eq 1 ]]; then
-        echo "Searching md file: ${LFBFL_base_name}"
+        printf "Searching md file: %s.\n" "${LFBFL_base_name}"
       fi
       break
     fi
@@ -78,7 +78,7 @@ build_md_from_printable_md(){
     overwrite_if_not_equal "${LFBFL_base_name}.md"\
       "${LFBFL_base_name}.md.temp"
   else
-    echo "No file ${LFBFL_base_name}.md.tpl"
+    printf "No file %s.md.tpl\n" "${LFBFL_base_name}"
   fi
 
   pandoc --from markdown --to html --standalone\

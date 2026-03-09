@@ -39,8 +39,8 @@ split_line_at(){
   # $2=$position : number of characters in split_line_at_result_beginning
   declare -g split_line_at_result_beginning="${1:0:$2}"
   declare -g split_line_at_result_end="${1:$2}"
-  # echo "$split_line_at_result_beginning"
-  # echo "$split_line_at_result_end"
+  # printf "%s\n" "$split_line_at_result_beginning"
+  # printf "%s\n" "$split_line_at_result_end"
 }
 
 declare -gir SPLIT_SCORE_PROPERTY_DELIMITER_UNIFORM=1
@@ -168,11 +168,11 @@ split_line_at_most(){
   declare -g split_line_at_most_result_start
   declare -g split_line_at_most_result_end
   declare -A LFBFL_positions
-  # echo "$1 $2 $3 $4"
+  # printf "%s %s %s %s\n" "$1" "$2" "$3" "$4"
   # For my use case in bash scripts, I will need only an array of
   # characters. See get_split_score().
   if [[ -n "$6" ]]; then
-    echo "split_line_at_most() \$4 NOT IMPLEMENTED YET"
+    printf $'split_line_at_most() $4 NOT IMPLEMENTED YET'
   fi
   if [[ $2 -ge ${#1} ]]; then
     split_line_at_most_result_start=$1
@@ -212,9 +212,9 @@ split_line_at_most(){
       LFBFL_i=$((LFBFL_j-1))
       LFBFL_current_char="${1:${LFBFL_i}:1}"
       eval "$3 '${LFBFL_current_char}' 0"
-      # echo "${split_score_result}|${LFBFL_i}"
+      # printf "%s|%s\n" "${split_score_result}" "${LFBFL_i}"
       if [[ split_score_result -ge 1 ]]; then
-        # echo "${split_score_result}|${LFBFL_i}"
+        # printf "%s|%s\n" "${split_score_result}" "${LFBFL_i}"
         if [[ ${LFBFL_positions["${LFBFL_i}"]} != "-1" ]]; then
           LFBFL_positions["${LFBFL_i}"]=$(
             max "${LFBFL_sort_command}"\
@@ -224,9 +224,9 @@ split_line_at_most(){
         fi
       fi
       eval "$3 '${LFBFL_current_char}' 1"
-      # echo "${split_score_result}|${LFBFL_j}"
+      # printf "%s|%s\n" "${split_score_result}" "${LFBFL_j}"
       if [[ split_score_result -ge 1 ]]; then
-        # echo "${split_score_result}|${LFBFL_j}"
+        # printf "%s|%s\n" "${split_score_result}" "${LFBFL_j}"
         if [[ ${LFBFL_positions["${LFBFL_j}"]} != "-1" ]]; then
           LFBFL_positions["${LFBFL_j}"]=$(
             max "${LFBFL_sort_command}"\
@@ -242,9 +242,9 @@ split_line_at_most(){
       LFBFL_j=$((LFBFL_i+1))
       LFBFL_current_char="${1:${LFBFL_i}:1}"
       eval "$3 '${LFBFL_current_char}' ${LFBFL_i} 0"
-      # echo "${split_score_result}|${LFBFL_i}"
+      # printf "%s|%s\n" "${split_score_result}" "${LFBFL_i}"
       if [[ split_score_result -ge 1 ]]; then
-        # echo "${split_score_result}|${LFBFL_i}"
+        # printf "%s|%s\n" "${split_score_result}" "${LFBFL_i}"
         if [[ ${LFBFL_positions["${LFBFL_i}"]} != "-1" ]]; then
           LFBFL_positions["${LFBFL_i}"]=$(
             max "${LFBFL_sort_command}"\
@@ -254,9 +254,9 @@ split_line_at_most(){
         fi
       fi
       eval "$3 '${LFBFL_current_char}' ${LFBFL_j} 1"
-      # echo "${split_score_result}|${LFBFL_j}"
+      # printf "%s|%s\n" "${split_score_result}" "${LFBFL_j}"
       if [[ split_score_result -ge 1 ]]; then
-        # echo "${split_score_result}|${LFBFL_j}"
+        # printf "%s|%s\n" "${split_score_result}" "${LFBFL_j}"
         if [[ ${LFBFL_positions["${LFBFL_j}"]} != "-1" ]]; then
           LFBFL_positions["${LFBFL_j}"]=$(
             max "${LFBFL_sort_command}"\
@@ -274,10 +274,10 @@ split_line_at_most(){
   declare -i LFBFL_best_position
   for ((LFBFL_i=LFBFL_i_max; LFBFL_i>=0; --LFBFL_i)) do
     if [[ LFBFL_i -eq 0 ]]; then
-      echo $'/!\\ split_line_at_most bug: no split position found. /!\\'
+      printf $'/!\\ split_line_at_most bug: no split position found. /!\\'
     fi
     local LFBFL_value=${LFBFL_positions[${LFBFL_i}]}
-    # echo "${LFBFL_i} ${LFBFL_value}"
+    # printf "%s %s\n" "${LFBFL_i} ${LFBFL_value}"
     if [[ "${LFBFL_value}" == "${LFBFL_max_score}" ]]; then
       LFBFL_best_position=$((LFBFL_i))
       break
@@ -287,8 +287,8 @@ split_line_at_most(){
   split_line_at "$1" ${LFBFL_best_position}
   split_line_at_most_result_start="${split_line_at_result_beginning}"
   split_line_at_most_result_end="${split_line_at_result_end}"
-  # echo "$split_line_at_most_result_start"
-  # echo "$split_line_at_most_result_end"
+  # printf "%s\n" "$split_line_at_most_result_start"
+  # printf "%s\n" "$split_line_at_most_result_end"
 }
 
 split_last_line(){
@@ -329,30 +329,31 @@ split_last_line(){
   declare -r LFBFL_regexp='.\{'"${LFBFL_max_length_plus}"'\}$'
 
   # Testing if some line is too long.
-  echo "$1"\
+  printf "%s" "$1"\
     | grep -q "${LFBFL_regexp}";
   if [[ ${PIPESTATUS[1]} -eq 1 ]]; then
     return
   fi
 
   declare -r LFBFL_start=$(
-    echo "$1"\
+    printf "%s" "$1"\
     | head --lines=-1
   )
-  # echo "start: ${LFBFL_start}"
+  # printf "start: %s\n" "${LFBFL_start}"
   declare -r LFBFL_last_line=$(
-    echo "$1"\
+    printf "%s" "$1"\
     | tail --lines=1
   )
-  # echo "last_line: ${LFBFL_last_line}"
+  # printf "last_line: %s\n" "${LFBFL_last_line}"
   split_last_line_result=""
   if [[ -n "${LFBFL_start}" ]]; then
     split_last_line_result="${LFBFL_start}"
     # Last line-return of LFBFL_start seems dropped by $() and not ="${}".
-    # echo "${#split_last_line_result}" "${split_last_line_result}"
+    # printf "%s %s\n" "${#split_last_line_result}"
+    #   "${split_last_line_result}"
     split_last_line_result+=$'\n'
     # something="${split_last_line_result}"
-    # echo "${#something}" "${something}"
+    # printf "%s %s\n" "${#something}" "${something}"
   fi
   if [[ -n "$5" ]]; then
     split_line_at_most "${LFBFL_last_line}" "${LFBFL_length2}"\
@@ -367,7 +368,7 @@ split_last_line(){
     split_last_line_result+=$'\n'
     split_last_line_result+="$2${LFBFL_last_line:${LFBFL_length2}}"
   fi
-  # echo "result: ${split_last_line_result}"
+  # printf "result: %s\n" "${split_last_line_result}"
 }
 
 repeated_split_last_line(){
@@ -383,7 +384,7 @@ repeated_split_last_line(){
       "$4" "$5" "$6" "$7"
     LFBFL_result="${repeated_split_last_line_result}"
     repeated_split_last_line_result="${split_last_line_result}"
-    # echo "${repeated_split_last_line_result}"
+    # printf "%s\n" "${repeated_split_last_line_result}"
   done
   if [[ -n "$4" && -n "$8" ]]; then
     declare -ir LFBFL_offset=$((-${#4}))

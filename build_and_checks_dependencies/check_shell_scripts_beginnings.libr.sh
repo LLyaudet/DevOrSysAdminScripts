@@ -37,11 +37,11 @@ check_one_shell_script_beginning(){
   # if [[ "${LFBFL_file_path}" =~ license_file_header_.*\.sh ]]; then
   #   return 0
   # fi
-  # diff <(head -n 1 "$1") <(echo '#!/usr/bin/env bash')
+  # diff <(head -n 1 "$1") <(printf '#!/usr/bin/env bash')
   # ------------------------------------------------------------------
   # is of course slower than
   # ------------------------------------------------------------------
-  # diff <(head -n 1 "$1") <(echo '#!/usr/bin/env bash')
+  # diff <(head -n 1 "$1") <(printf '#!/usr/bin/env bash')
   # ------------------------------------------------------------------
   # is of course slower than
   # ------------------------------------------------------------------

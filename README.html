@@ -247,6 +247,11 @@ with a slash will only be searched for from the current directory
 following exceptions: real use of read -r to read the command line of
 the shell, comments (of course), and a file funny.sh where it is kind of
 required to use read -r.</li>
+<li>We replaced all echo calls by printf calls to follow “The Open Group
+Base Specifications” since at least 2 decades: “New applications are
+encouraged to use printf instead of echo.”, <a
+href="https://pubs.opengroup.org/onlinepubs/000095399/"
+class="uri">https://pubs.opengroup.org/onlinepubs/000095399/</a>.</li>
 </ul>
 <p>But the files “pre-commit” and “post-commit” were not renamed, since
 it is not possible to give them other names to use them as

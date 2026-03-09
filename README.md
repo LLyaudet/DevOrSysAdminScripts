@@ -49,6 +49,10 @@ I tried to follow some conventions for my bash code:
   following exceptions: real use of read -r to read the command line of the
   shell, comments (of course), and a file funny.sh where it is kind of
   required to use read -r.
+- We replaced all echo calls by printf calls to follow
+  "The Open Group Base Specifications" since at least 2 decades:
+  "New applications are encouraged to use printf instead of echo.",
+  <https://pubs.opengroup.org/onlinepubs/000095399/>.
 
 But the files "pre-commit" and "post-commit" were not renamed,
 since it is not possible to give them other names to use them as

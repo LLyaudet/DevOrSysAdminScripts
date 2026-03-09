@@ -50,9 +50,8 @@ build_and_checks(){
   LFBFL_variables_directory+="build_and_checks_variables"
   mkdir -p "${LFBFL_variables_directory}/temp"
   if ! [[ -f "${LFBFL_variables_directory}/.gitignore" ]]; then
-    {
-      printf "temp/\n\n"
-    } > "${LFBFL_variables_directory}/.gitignore"
+    printf "temp/\n\n"\
+      > "${LFBFL_variables_directory}/.gitignore"
   fi
 
   # LFBFL_dependencies_raw_content_download_URL

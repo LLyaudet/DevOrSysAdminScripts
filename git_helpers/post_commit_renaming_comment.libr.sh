@@ -291,10 +291,10 @@ commit_a_file_renamed_comment(){
       LFBFL_new_comment+=$'\n'
       LFBFL_new_comment+="${LFBFL_new_file_name2}"'".'
     fi
-    if [[ LFBFL_log_directory_change -eq 1 ]] && [[\
-      "${LFBFL_new_file_directory}"\
-      != "${LFBFL_old_file_directory}"\
-    ]]; then
+    if [[ LFBFL_log_directory_change -eq 1
+      && "${LFBFL_new_file_directory}" != "${LFBFL_old_file_directory}"
+      ]];
+    then
       if [[ "${LFBFL_new_file_name2}" != "${LFBFL_old_file_name2}" ]];
       then
         LFBFL_new_comment+=$'\n'

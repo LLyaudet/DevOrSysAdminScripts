@@ -114,9 +114,9 @@ enhanced_popd(){
 }
 
 can_continue_after_enhanced_pushd(){
-  [[ enhanced_pushd_result -eq 0\
-  || enhanced_pushd_result -eq 110\
-  || enhanced_pushd_result -eq 111\
+  [[ enhanced_pushd_result -eq 0
+  || enhanced_pushd_result -eq 110
+  || enhanced_pushd_result -eq 111
   ]]
 }
 

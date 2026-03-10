@@ -76,11 +76,8 @@ split_file_in_two(){
   declare -a LFBFL_grep_options=()
   declare -i LFBFL_i=0
   local LFBFL_arg
-  for LFBFL_arg in "$@"; do
-    ((++LFBFL_i))
-    if [[ LFBFL_i -lt 5 ]]; then
-      continue
-    fi
+  for ((LFBFL_i=5; LFBFL_i<=$#; ++LFBFL_i)); do
+    LFBFL_arg="${!LFBFL_i}"
     LFBFL_grep_options+=("${LFBFL_arg}")
   done
   declare -ir LFBFL_line_number=$(

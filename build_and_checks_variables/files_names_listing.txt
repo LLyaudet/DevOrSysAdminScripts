@@ -119,7 +119,7 @@ a_long_long_long_long_long_long_long_long_long_filename_so_that_you_can_se\
 e_that_it_works.txt
 miscellaneous/funny.sh
 miscellaneous/spampty_data.txt
-miscellaneous/\
+// miscellaneous/\
 yet_another_long_long_long_long_long_long_long_long_long_filename_so_that_\
 you_can_see_that_it_works.txt
 // README.html

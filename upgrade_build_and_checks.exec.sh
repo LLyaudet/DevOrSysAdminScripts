@@ -31,8 +31,8 @@ upgrade_build_and_checks(){
     LFBFL_verbose="--verbose"
   fi
   local LFBFL_fixed_point_build=""
-  if [[ "$*" == *--fixed_point_build* ]]; then
-    LFBFL_fixed_point_build="--fixed_point_build"
+  if [[ "$*" == *--fixed-point-build* ]]; then
+    LFBFL_fixed_point_build="--fixed-point-build"
   fi
   readonly LFBFL_verbose
   (\

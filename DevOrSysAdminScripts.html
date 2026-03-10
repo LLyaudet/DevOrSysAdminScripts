@@ -119,10 +119,10 @@ Some “small” useful scripts
 for enhancing development or system-administrators tasks
 </blockquote>
 <p>Current version: 2026-03-10</p>
-<p>Current number of commits: 585</p>
-<p>Current git SHA1: 0fba46e4293748163b6781279928dcdb0be9b1c8</p>
+<p>Current number of commits: 586</p>
+<p>Current git SHA1: 02821a15a3a4a96212b8f51f3446ee6a0a9a3424</p>
 <p>
-Code lines: 10021 total lines, 9065 not empty lines, 956 empty lines.
+Code lines: 10003 total lines, 9050 not empty lines, 953 empty lines.
 </p>
 
 
@@ -426,9 +426,9 @@ wget_sha512.libr.sh
 6 directories, 74 files
 </pre>
 <pre class="verbatim">
-[ 12K Mar 10 16:31]  ./
-├── [4.0K Mar 10 16:30]  build_and_checks_dependencies/
-│   ├── [3.8K Mar  9 16:52]  build_and_checks.exec.sh.tpl*
+[ 12K Mar 10 16:39]  ./
+├── [4.0K Mar 10 16:39]  build_and_checks_dependencies/
+│   ├── [3.8K Mar 10 16:37]  build_and_checks.exec.sh.tpl*
 │   ├── [3.8K Mar 10 16:30]  build_md_from_printable_md.exec.sh*
 │   ├── [3.2K Mar 10 16:30]  check_shell_scripts_beginnings.libr.sh
 │   ├── [5.0K Mar 10 16:30]  check_shell_scripts_indentation.libr.sh
@@ -460,15 +460,15 @@ wget_sha512.libr.sh
 │   ├── [3.8K Mar 10 16:30]  too_long_code_lines.libr.sh
 │   ├── [4.2K Mar  9 16:05]  update_common_build_and_checks.exec.sh*
 │   └── [5.5K Mar 10 16:30]  update_or_check_files_names_listing.exec.sh*
-├── [4.0K Mar 10 16:30]  build_and_checks.exec.sh*
-├── [4.0K Mar 10 16:31]  build_and_checks_variables/
+├── [4.0K Mar 10 16:37]  build_and_checks.exec.sh*
+├── [4.0K Mar 10 16:39]  build_and_checks_variables/
 │   ├── [  15 Jan  5 20:00]  bandit_baseline.json
 │   ├── [  25 Jan  5 18:49]  bandit.ini
 │   ├── [  30 Feb 28 20:30]  black.toml
 │   ├── [ 16K Mar  8 17:00]  DevOrSysAdminScripts.html.tpl
-│   ├── [ 32K Mar  9 17:17]  DevOrSysAdminScripts.tex
+│   ├── [ 32K Mar 10 16:39]  DevOrSysAdminScripts.tex
 │   ├── [8.9K Mar  8 16:55]  DevOrSysAdminScripts.tex.tpl
-│   ├── [ 14K Mar  9 16:09]  files_listing.tex.tpl
+│   ├── [ 14K Mar 10 16:31]  files_listing.tex.tpl
 │   ├── [5.1K Mar 10 16:14]  files_names_listing.txt
 │   ├── [  24 Jan 15 22:26]  .gitignore
 │   ├── [5.2K Mar  8 16:52]  licenses_notes.txt
@@ -480,8 +480,8 @@ wget_sha512.libr.sh
 │   └── [3.5K Mar  9 14:46]  shellcheck_notes.txt
 ├── [ 34K May  6  2024]  COPYING
 ├── [7.5K Dec 27 21:48]  COPYING.LESSER
-├── [393K Mar 10 16:30]  DevOrSysAdminScripts.html
-├── [352K Mar  9 17:17]  DevOrSysAdminScripts.pdf
+├── [392K Mar 10 16:39]  DevOrSysAdminScripts.html
+├── [351K Mar 10 16:39]  DevOrSysAdminScripts.pdf
 ├── [4.0K Mar  9 14:42]  git_helpers/
 │   ├── [3.8K Mar  8 21:05]  git_checks.libr.sh
 │   ├── [1.8K Feb 27 20:20]  post-commit*
@@ -520,7 +520,7 @@ wget_sha512.libr.sh
 ├── [4.2K Mar  9 15:34]  README.md
 ├── [4.2K Mar  9 15:34]  README.md.tpl
 ├── [9.1K Feb 26 15:05]  unicode.libr.php
-├── [1.4K Mar  8 21:41]  upgrade_build_and_checks.exec.sh*
+├── [1.4K Mar 10 16:37]  upgrade_build_and_checks.exec.sh*
 └── [1.5K Mar  8 20:25]  wget_sha512.libr.sh
 
 6 directories, 74 files
@@ -994,8 +994,8 @@ build_and_checks(){
     "${LFBFL_dependencies_URL}" "${LFBFL_verbose}"
 }
 
-if [[ "$*" == *--fixed_point_build* ]]; then
-  printf -- "--fixed_point_build\n"
+if [[ "$*" == *--fixed-point-build* ]]; then
+  printf -- "--fixed-point-build\n"
   source "./build_and_checks_dependencies/lines_filters.libr.sh"
   LFBFL_work_directory="."
   if [[ -n "$1" ]]; then
@@ -1019,7 +1019,7 @@ if [[ "$*" == *--fixed_point_build* ]]; then
   # during the same minute to have a fixed point.
   build_and_checks "$@"
   # build_and_checks "$@" second iteration below
-  # Then calling this script without --fixed_point_build should not
+  # Then calling this script without --fixed-point-build should not
   # yield any new superficial modifications.
 fi
 
@@ -8631,24 +8631,6 @@ miscellaneous/spampty_data.txt
 
 
 \subsection{
-  miscellaneous/%
-yet\_another\_long\_long\_long\_long\_long\_long\_long\_long\_long\_filena%
-me\_so\_that\_you\_can\_see\_that\_it\_works.txt
-}
-\label{
-  miscellaneous:%
-yet_another_long_long_long_long_long_long_long_long_long_filename_so_that_%
-you_can_see_that_it_workstxt
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-miscellaneous/%
-yet_another_long_long_long_long_long_long_long_long_long_filename_so_that_%
-you_can_see_that_it_works.txt
-}
-
-
-\subsection{
   README.md.tpl
 }
 \label{
@@ -9427,8 +9409,8 @@ build_and_checks(){
     "${LFBFL_dependencies_URL}" "${LFBFL_verbose}"
 }
 
-if [[ "$*" == *--fixed_point_build* ]]; then
-  printf -- "--fixed_point_build\n"
+if [[ "$*" == *--fixed-point-build* ]]; then
+  printf -- "--fixed-point-build\n"
   source "./build_and_checks_dependencies/lines_filters.libr.sh"
   LFBFL_work_directory="."
   if [[ -n "$1" ]]; then
@@ -9452,7 +9434,7 @@ if [[ "$*" == *--fixed_point_build* ]]; then
   # during the same minute to have a fixed point.
   build_and_checks "$@"
   # build_and_checks "$@" second iteration below
-  # Then calling this script without --fixed_point_build should not
+  # Then calling this script without --fixed-point-build should not
   # yield any new superficial modifications.
 fi
 
@@ -11777,8 +11759,8 @@ upgrade_build_and_checks(){
     LFBFL_verbose="--verbose"
   fi
   local LFBFL_fixed_point_build=""
-  if [[ "$*" == *--fixed_point_build* ]]; then
-    LFBFL_fixed_point_build="--fixed_point_build"
+  if [[ "$*" == *--fixed-point-build* ]]; then
+    LFBFL_fixed_point_build="--fixed-point-build"
   fi
   readonly LFBFL_verbose
   (\

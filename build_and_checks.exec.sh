@@ -78,8 +78,8 @@ build_and_checks(){
     "${LFBFL_dependencies_URL}" "${LFBFL_verbose}"
 }
 
-if [[ "$*" == *--fixed_point_build* ]]; then
-  printf -- "--fixed_point_build\n"
+if [[ "$*" == *--fixed-point-build* ]]; then
+  printf -- "--fixed-point-build\n"
   source "./build_and_checks_dependencies/lines_filters.libr.sh"
   LFBFL_work_directory="."
   if [[ -n "$1" ]]; then
@@ -103,7 +103,7 @@ if [[ "$*" == *--fixed_point_build* ]]; then
   # during the same minute to have a fixed point.
   build_and_checks "$@"
   # build_and_checks "$@" second iteration below
-  # Then calling this script without --fixed_point_build should not
+  # Then calling this script without --fixed-point-build should not
   # yield any new superficial modifications.
 fi
 

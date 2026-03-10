@@ -690,11 +690,13 @@ common_build_and_checks(){
       find . -iregex ".*\.\(css\|html\|svg\|xhtml\)"\
       | relevant_find
     )
-    declare -a LFBFL_files_for_Nu2
-    mapfile -t LFBFL_files_for_Nu2 <<< "${LFBFL_files_for_Nu}"
-    readonly LFBFL_files_for_Nu2
-    java -Xss128M -jar "${LFBFL_vnu_jar_path}" --exit-zero-always\
-      --verbose "${LFBFL_files_for_Nu2[@]}"
+    if [[ -n "${LFBFL_files_for_Nu}" ]]; then
+      declare -a LFBFL_files_for_Nu2
+      mapfile -t LFBFL_files_for_Nu2 <<< "${LFBFL_files_for_Nu}"
+      readonly LFBFL_files_for_Nu2
+      java -Xss128M -jar "${LFBFL_vnu_jar_path}" --exit-zero-always\
+        --verbose "${LFBFL_files_for_Nu2[@]}"
+    fi
   fi
   # ------------------------------------------------------------------
 

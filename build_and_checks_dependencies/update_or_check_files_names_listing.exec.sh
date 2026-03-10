@@ -101,7 +101,9 @@ update_or_check_files_names_listing(){
     | sort
   )
   declare -a LFBFL_arr_file_paths
-  mapfile -t LFBFL_arr_file_paths <<< "${LFBFL_s_file_paths}"
+  if [[ -n "${LFBFL_s_files_paths}" ]]; then
+    mapfile -t LFBFL_arr_file_paths <<< "${LFBFL_s_file_paths}"
+  fi
 
   declare -r LFBFL_final_suffix=$'\n\\'
   local LFBFL_file_path
@@ -151,7 +153,9 @@ update_or_check_files_names_listing(){
   done
 
   LFBFL_s_file_paths=$(cat "${LFBFL_listing}.temp")
-  mapfile -t LFBFL_arr_file_paths <<< "${LFBFL_s_file_paths}"
+  if [[ -n "${LFBFL_s_files_paths}" ]]; then
+    mapfile -t LFBFL_arr_file_paths <<< "${LFBFL_s_file_paths}"
+  fi
 
   for LFBFL_file_path in "${LFBFL_arr_file_paths[@]}"; do
     [[ "${LFBFL_file_path}" != '//'* ]] || continue

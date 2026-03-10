@@ -56,6 +56,11 @@ check_collections_abc_place(){
     find . -type f -name "*.py" -printf '%P\n'\
     | relevant_find
   )
+  if [[ -z "${LFBFL_s_files_paths}" ]]; then
+    [[ LFBFL_i_verbose -eq 1 ]]\
+      && printf "check_collections_abc_place: No file found.\n"
+    return
+  fi
   declare -a LFBFL_arr_files_paths
   mapfile -t LFBFL_arr_files_paths <<< "${LFBFL_s_files_paths}"
   readonly LFBFL_arr_files_paths

@@ -187,12 +187,16 @@ grep_fixed_string_with_anchor(){
     grep "${LFBFL_grep_options2[@]}" --color=never --fixed-strings --\
       "$2" "$1"
   )
+  declare -i LFBFL_i_result=1
+  if [[ -z "${LFBFL_s_lines}" ]]; then
+    # shellcheck disable=SC2248
+    return ${LFBFL_i_result}
+  fi
   declare -a LFBFL_arr_lines
   mapfile -t LFBFL_arr_lines <<< "${LFBFL_s_lines}"
   readonly LFBFL_arr_lines
 
   declare -i LFBFL_fixed_string_length=${#2}
-  declare -i LFBFL_i_result=1
   local LFBFL_some_line
   local LFBFL_line_part
   for LFBFL_some_line in "${LFBFL_arr_lines[@]}"; do

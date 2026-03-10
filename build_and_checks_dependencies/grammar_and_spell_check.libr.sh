@@ -69,7 +69,9 @@ grammar_and_spell_check(){
       | relevant_find
     )
     if [[ -z "${LFBFL_s_files_paths}" ]]; then
-      printf "No file found.\n"
+      [[ LFBFL_i_verbose -eq 1 ]]\
+        && printf "grammar_and_spell_check: No file found.\n"
+      return
     fi
     mapfile -t LFBFL_arr_files_paths <<< "${LFBFL_s_files_paths}"
     for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do

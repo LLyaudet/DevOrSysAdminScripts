@@ -51,6 +51,10 @@ check_one_shell_script_indentation(){
   declare -r LFBFL_s_lines=$(
     grep -EHn -B 1 '^(  )* ([^ ]|$)' "$1"
   )
+  if [[ -z "${LFBFL_s_lines}" ]]; then
+    return
+  fi
+
   declare -a LFBFL_arr_lines
   mapfile -t LFBFL_arr_lines <<< "${LFBFL_s_lines}"
   readonly LFBFL_arr_lines
@@ -133,6 +137,11 @@ check_shell_scripts_indentation(){
     find . -type f -name "*.sh" -printf '%P\n'\
     | relevant_find
   )
+  if [[ -z "${LFBFL_s_files_paths}" ]]; then
+    [[ LFBFL_i_verbose -eq 1 ]]\
+      && printf "check_shell_scripts_indentation: No file found.\n"
+    return
+  fi
   declare -a LFBFL_arr_files_paths
   mapfile -t LFBFL_arr_files_paths <<< "${LFBFL_s_files_paths}"
   readonly LFBFL_arr_files_paths

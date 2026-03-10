@@ -152,15 +152,17 @@ create_PDF(){
     | replace_non_ascii_spaces\
     > "${LFBFL_temp_path}/current_tree.txt.temp"
 
-  local LFBFL_s_file_paths
-  LFBFL_s_file_paths=$(
+  local LFBFL_s_files_paths
+  LFBFL_s_files_paths=$(
     sed -Ez 's/(.)\\\n/\1/Mg' "./${LFBFL_subdir2}/files_names_listing.txt"\
     | grep -v '^//'
   )
-  readonly LFBFL_s_file_paths
-  declare -a LFBFL_arr_file_paths
-  mapfile -t LFBFL_arr_file_paths <<< "${LFBFL_s_file_paths}"
-  readonly LFBFL_arr_file_paths
+  readonly LFBFL_s_files_paths
+  declare -a LFBFL_arr_files_paths
+  if [[ -n "${LFBFL_s_files_paths}" ]]; then
+    mapfile -t LFBFL_arr_files_paths <<< "${LFBFL_s_files_paths}"
+  fi
+  readonly LFBFL_arr_files_paths
 
   local LFBFL_temp_files_listing="${LFBFL_temp_path}/"
   LFBFL_temp_files_listing+="files_listing.tex.tpl.temp"
@@ -195,7 +197,7 @@ create_PDF(){
   local LFBFL_file_path
   local LFBFL_s_format
   # Remove line returns here to keep lines short.
-  for LFBFL_file_path in "${LFBFL_arr_file_paths[@]}"; do
+  for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do
     printf "Listing file for tex/HTML : %s\n" "${LFBFL_file_path}"
     # printf "Listing file for tex : %s\n" "${LFBFL_file_path}"
     # LFBFL_base_file_name=$(basename "${LFBFL_file_path}")
@@ -307,6 +309,9 @@ create_PDF(){
     LFBFL_tree_path="${LFBFL_temp_path}/${LFBFL_tree}"
     # shellcheck disable=SC2248
     LFBFL_s_lines=$(grep '.\{'${LFBFL_overlength}'\}' "${LFBFL_tree_path}")
+    if [[ -z "${LFBFL_s_lines}" ]]; then
+      continue
+    fi
     mapfile -t LFBFL_arr_lines <<< "${LFBFL_s_lines}"
     for LFBFL_line in "${LFBFL_arr_lines[@]}"; do
       # printf "LFBFL_line: %s\n" "${LFBFL_line}"

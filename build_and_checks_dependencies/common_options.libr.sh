@@ -156,7 +156,7 @@ get_verbose_option(){
   if [[ "$*" == *--verbose* ]]; then
     local LFBFL_where_was_i
     get_where_was_i 2
-    readonly LFBFL_i_popd_result
+    readonly LFBFL_where_was_i
     printf "%s %s\n" "${LFBFL_where_was_i}" "$*"
     LFBFL_i_verbose=1
   fi

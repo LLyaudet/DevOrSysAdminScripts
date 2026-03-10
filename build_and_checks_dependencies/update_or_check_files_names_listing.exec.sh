@@ -49,7 +49,7 @@ update_or_check_files_names_listing(){
   get_work_directory_option "$@"
   pushd_to_work_directory\
     && trap 'popd_from_work_directory' RETURN
-  can_continue_after_enhanced_pushd || return
+  can_continue_after_enhanced_pushd || return 1
 
   declare -i LFBFL_write=0
   if [[ "$*" == *--write* ]]; then

@@ -43,7 +43,7 @@ check_no_empty_line_after_python_function_docstring(){
   get_work_directory_option "$@"
   pushd_to_work_directory\
     && trap 'popd_from_work_directory' RETURN
-  can_continue_after_enhanced_pushd || return
+  can_continue_after_enhanced_pushd || return 1
 
   enhanced_set_bash_option globstar\
     && trap 'enhanced_unset_bash_option globstar' RETURN
@@ -66,7 +66,7 @@ python_black_complement(){
   get_work_directory_option "$@"
   pushd_to_work_directory\
     && trap 'popd_from_work_directory' RETURN
-  can_continue_after_enhanced_pushd || return
+  can_continue_after_enhanced_pushd || return 1
 
   check_no_empty_line_after_python_function_docstring "$@"
 }

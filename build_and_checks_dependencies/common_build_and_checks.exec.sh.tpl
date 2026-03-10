@@ -342,7 +342,7 @@ common_build_and_checks(){
   declare -i LFBFL_will_popd
   pushd_to_work_directory
   LFBFL_will_popd=$?
-  can_continue_after_enhanced_pushd || return
+  can_continue_after_enhanced_pushd || return 1
 
   local LFBFL_data_file_name=\
 "build_and_checks_variables/repository_data.txt"
@@ -651,7 +651,7 @@ common_build_and_checks(){
 
   pushd_to_work_directory\
     && trap 'popd_from_work_directory' RETURN
-  can_continue_after_enhanced_pushd || return
+  can_continue_after_enhanced_pushd || return 1
 
   if [[ -f "build_and_checks_variables/post_build.sh" ]]; then
     ./build_and_checks_variables/post_build.sh "${LFBFL_verbose}"

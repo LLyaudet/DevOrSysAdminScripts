@@ -41,7 +41,7 @@ build_md_from_printable_md(){
   get_work_directory_option "$@"
   pushd_to_work_directory\
     && trap 'popd_from_work_directory' RETURN
-  can_continue_after_enhanced_pushd || return
+  can_continue_after_enhanced_pushd || return 1
 
   local LFBFL_base_name="README"
   local LFBFL_arg

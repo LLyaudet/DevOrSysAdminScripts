@@ -124,7 +124,7 @@ check_shell_scripts_indentation(){
   get_work_directory_option "$@"
   pushd_to_work_directory\
     && trap 'popd_from_work_directory' RETURN
-  can_continue_after_enhanced_pushd || return
+  can_continue_after_enhanced_pushd || return 1
 
   # shopt -s globstar
   # for LFBFL_file_path in **/*.sh; do

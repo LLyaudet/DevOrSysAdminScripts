@@ -42,7 +42,7 @@ check_collections_abc_place(){
   get_work_directory_option "$@"
   pushd_to_work_directory\
     && trap 'popd_from_work_directory' RETURN
-  can_continue_after_enhanced_pushd || return
+  can_continue_after_enhanced_pushd || return 1
 
   [[ LFBFL_i_verbose -eq 1 ]]\
     && printf "Checking import of _collections_abc is at the right place\n"
@@ -80,7 +80,7 @@ python_isort_complement(){
   get_work_directory_option "$@"
   pushd_to_work_directory\
     && trap 'popd_from_work_directory' RETURN
-  can_continue_after_enhanced_pushd || return
+  can_continue_after_enhanced_pushd || return 1
 
   check_collections_abc_place "$@"
 }

@@ -700,24 +700,6 @@ miscellaneous/spampty_data.txt
 
 
 \subsection{
-  miscellaneous/%
-yet\_another\_long\_long\_long\_long\_long\_long\_long\_long\_long\_filena%
-me\_so\_that\_you\_can\_see\_that\_it\_works.txt
-}
-\label{
-  miscellaneous:%
-yet_another_long_long_long_long_long_long_long_long_long_filename_so_that_%
-you_can_see_that_it_workstxt
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-miscellaneous/%
-yet_another_long_long_long_long_long_long_long_long_long_filename_so_that_%
-you_can_see_that_it_works.txt
-}
-
-
-\subsection{
   README.md.tpl
 }
 \label{

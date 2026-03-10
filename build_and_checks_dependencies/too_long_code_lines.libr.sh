@@ -43,7 +43,7 @@ too_long_code_lines(){
   get_work_directory_option "$@"
   pushd_to_work_directory\
     && trap 'popd_from_work_directory' RETURN
-  can_continue_after_enhanced_pushd || return
+  can_continue_after_enhanced_pushd || return 1
 
   local LFBFL_arg
   declare -i LFBFL_max_line_length=70

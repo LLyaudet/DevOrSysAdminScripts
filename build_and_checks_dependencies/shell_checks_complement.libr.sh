@@ -37,7 +37,7 @@ check_no_size_of_array_first_element(){
   get_work_directory_option "$@"
   pushd_to_work_directory\
     && trap 'popd_from_work_directory' RETURN
-  can_continue_after_enhanced_pushd || return
+  can_continue_after_enhanced_pushd || return 1
 
   enhanced_set_bash_option globstar\
     && trap 'enhanced_unset_bash_option globstar' RETURN
@@ -61,7 +61,7 @@ check_no_misplaced_then(){
   get_work_directory_option "$@"
   pushd_to_work_directory\
     && trap 'popd_from_work_directory' RETURN
-  can_continue_after_enhanced_pushd || return
+  can_continue_after_enhanced_pushd || return 1
 
   local LFBFL_arg
   declare -i LFBFL_max_line_length=70
@@ -101,7 +101,7 @@ shell_checks_complement(){
   get_work_directory_option "$@"
   pushd_to_work_directory\
     && trap 'popd_from_work_directory' RETURN
-  can_continue_after_enhanced_pushd || return
+  can_continue_after_enhanced_pushd || return 1
 
   check_no_size_of_array_first_element "$@"
   check_no_misplaced_then "$@"

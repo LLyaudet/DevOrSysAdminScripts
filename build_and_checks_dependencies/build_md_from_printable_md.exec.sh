@@ -58,9 +58,9 @@ build_md_from_printable_md(){
 
   # Remove line returns here to keep lines short.
   local LFBFL_sed_expression
-  LFBFL_sed_expression='s/(\[[a-zA-Z0-9:-]*\]: [^\n\\]*)\\\n/\1/Mg'
-  LFBFL_sed_expression+=';s/(<http[^\n\\]*)\\\n/\1/Mg'
-  LFBFL_sed_expression+=';s/(- <http[^\n\\]*)\\\n/\1/Mg'
+  LFBFL_sed_expression='s/(\n[ ]*\[[a-zA-Z0-9:-]*\]: [^\n\\]*)\\\n/\1/Mg'
+  LFBFL_sed_expression+=';s/(\n[ ]*<http[^\n\\]*)\\\n/\1/Mg'
+  LFBFL_sed_expression+=';s/(\n[ ]*- <http[^\n\\]*)\\\n/\1/Mg'
   readonly LFBFL_sed_expression
   # Since Markdown can contain code, it is limited to Markdown URLs.
   # Hence it is way more complicated than 's/\\\n//Mg' expression
@@ -78,6 +78,14 @@ build_md_from_printable_md(){
       "${LFBFL_base_name}.md.temp"
   else
     printf "No file %s.md.tpl\n" "${LFBFL_base_name}"
+    # Unfortunately, we cannot return early, since we want to propose
+    # HTML file generation with pandoc from .md file,
+    # if the file .md.tpl doesn't exist.
+  fi
+
+  if [[ ! -f "${LFBFL_base_name}.md" ]]; then
+    printf "No file %s.md\n" "${LFBFL_base_name}"
+    return 1
   fi
 
   pandoc --from markdown --to html --standalone\

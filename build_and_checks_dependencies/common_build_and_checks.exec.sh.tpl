@@ -421,7 +421,7 @@ common_build_and_checks(){
   if [[ LFBFL_upgrade_venvs -eq 1 ]]; then
     pip install --upgrade isort
   fi
-  isort .
+  isort --profile=black .
   if [[ -n "${LFBFL_isort_venv}" ]]; then
     deactivate
   fi

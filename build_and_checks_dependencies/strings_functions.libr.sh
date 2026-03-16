@@ -43,10 +43,795 @@ split_line_at(){
   # printf "%s\n" "$split_line_at_result_end"
 }
 
-declare -gir SPLIT_SCORE_PROPERTY_DELIMITER_UNIFORM=1
-declare -gir SPLIT_SCORE_PROPERTY_POSITION_UNIFORM=2
-declare -gir SPLIT_SCORE_PROPERTY_LARGER_AFTER=4
-declare -gir SPLIT_SCORE_PROPERTY_LARGER_BEFORE=8
+#--------------------------------------------------------------------------
+#--------------------------------------------------------------------------
+# Properties for the score for a possible split/cut in the string between
+# two characters.
+#--------------------------------------------------------------------------
+# Some preliminary remarks:
+# a) If the character before the split position is a forbidden previous
+#   character, the score is -1.
+#   (Usually, either we have no or one forbidden previous character that is
+#   a backslash.)
+# b) If the previous character is not forbidden,
+#   and either the character before the position is among the delimiters,
+#   or the character after the position is among the delimiters,
+#   then the score is computed according to the delimiter found,
+#   the position, and the fact that the position is after or before the
+#   delimiter.
+# c) If two consecutive delimiters are found in the string,
+#   the maximum score between the one after the first delimiter
+#   and before the second delimiter is taken for the score between the
+#   two delimiters.
+# d) Otherwise, by default,
+#   the score for cutting/splitting at some position is 0.
+# e) A substring is given by the goal length given for the resulting
+#   strings/lines after split.
+# f) When some scores are equal,
+#   we split at the rightmost position with maximum score in the substring.
+# g) Remark f) implies that below we do not need to consider strict
+#    inequalities for the score.
+# h) The score function SF(position) which will dictate our choice for
+#   split/cut position is in reality
+#   SF1a(
+#     position, previous_character, next_character, delimiters, forbiddens
+#   )
+#   but at the cost of expliciting its internal and adding verbosity,
+#   we can see that the score really depends on the following arguments
+#   SF1b(
+#     position, matched_delimiter_before, matched_delimiter_after,
+#     previous_character_is_forbidden
+#   )
+#   If it is needed,
+#   then matched_delimiter_before or matched_delimiter_after is NULL.
+#   Somehow previous_character can be seen as position.previous_character,
+#   and next_character can be seen as position.next_character.
+#   We can see that the previous or next character without
+#   knowing that it matches a delimiter is irrelevant.
+#   The fact that there is 1 or more delimiters may be interesting.
+#   The fact that there is 0 or more forbidden previous characters
+#   may be interesting, but we haven't integrated it in the split_score
+#   functions.
+#   SF1a when the previous character is not forbidden
+#   needs a score function SF2a with the following parameters
+#   SF2a(position, current_character, delimiter, is_after):
+#   SF1a(
+#     position, previous_character, next_character, delimiters, forbiddens
+#   ) = max(
+#     For all delimiter in delimiters,
+#     SF2a(position, previous_character, delimiter, TRUE),
+#     SF2a(position, next_character, delimiter, FALSE),
+#   )
+#   =  max(
+#     For all delimiter in delimiters,
+#     For all couple C in {
+#       (position.previous_character, TRUE),
+#       (position.next_character, FALSE)
+#     }
+#     SF2a(position, C.1, delimiter, C.2),
+#   )
+#   Similarly,
+#   SF1b(
+#     position, matched_delimiter_before, matched_delimiter_after,
+#     previous_character_is_forbidden
+#   ) = max(
+#     For all delimiter in delimiters,
+#     SF2b(position, matched_delimiter_before, TRUE),
+#     SF2b(position, matched_delimiter_after, FALSE),
+#   )
+#   where the score function SF2b has the following parameters
+#   SF2b(cut_position, matched_delimiter, is_after).
+#   We have also:
+#   SF1b(
+#     position, matched_delimiter_before, matched_delimiter_after,
+#     previous_character_is_forbidden
+#   ) = max(
+#     For all delimiter in delimiters,
+#     SF2c(position-1, matched_delimiter_before, TRUE),
+#     SF2c(position, matched_delimiter_after, FALSE),
+#   )
+#   where the score function SF2c has the following parameters
+#   SF2c(character_position, matched_delimiter, is_after).
+#   current_character is only used to check if it is equal to the
+#   delimiter, otherwise the score is zero;
+#   but when expressing properties it makes sense to compare after
+#   and before the same character position.
+#   position, delimiter, and is_after may all three impact the score
+#   once the current character matches the delimiter.
+#   Position is an integer from 1 to goal length.
+#   Cutting at position 0 would be stupid,
+#   and moreover there would be no previous character.
+#   Since we ask for a split, the current length is above goal length,
+#   and there is a next character at the last considered position.
+#   So, in search of properties that may have impact on the algorithm,
+#   we discard the characters to only keep matched delimiters.
+#   Let us use p1 and p2 for position1 and position2,
+#   mdb1 and mdb2 for matched_delimiter_before1, etc.,
+#   mda1 and mda2 for matched_delimiter_after1, etc.,
+#   pcif for previous_character_is_forbidden, etc.,
+#   md1 and md2 for matched_delimiter1, etc.,
+#   ia1 and ia2 for is_after1, etc.
+#
+#   What we consider as properties are of 3 forms.
+#   The first form is like:
+#     ∀ p1 ∈ [1, goal_length], ∀ p2 ∈ [1, goal_length],
+#     ∀ mdb1 ∈ delimiters ∪ {NULL}, ∀ mdb2 ∈ delimiters ∪ {NULL},
+#     ∀ mda1 ∈ delimiters ∪ {NULL}, ∀ mda2 ∈ delimiters ∪ {NULL},
+#     RelationP(p1, p2) ∧ RelationM(mdb1, mdb2, mda1, mda2)
+#     ⇒ RelationS(
+#       SF1b(p1, mdb1, mda1, false),
+#       SF1b(p2, mdb2, mda2, false),
+#     )
+#   There are many choices for RelationP, RelationM and RelationS.
+#   We can apply the without loss of generality argument only once when
+#   breaking symmetry between equivalent properties.
+#   Breaking symmetry on another relation that RelationS first
+#   is a challenge that we do not tackle.
+#   Indeed RelationS is the only relation where all variables appear.
+#   And breaking symmetry on RelationP would not allow to break symmetry
+#   on RelationM freely since some variables are correlated by the
+#   suffixes 1 or 2.
+#   But some choices for some relation may allow to break symmetry on
+#   another relation.
+#   Breaking symmetry on the result, there are only 2 choices for
+#   RelationS:
+#   RS= : SF1b(p1, mdb1, mda1, false) = SF1b(p2, mdb2, mda2, false),
+#   RS<= : SF1b(p1, mdb1, mda1, false) <= SF1b(p2, mdb2, mda2, false).
+#   But then there are 5+1 choices for RelationP:
+#   RP1 : p1 = p2,
+#   RP2 : p1 < p2,
+#   RP3 : p1 <= p2,
+#   RP4 : p1 > p2,
+#   RP5 : p1 >= p2,
+#   plus the choice that p1 and p2 are not necessarily related
+#   (empty RP or RPe).
+#   We can add RP6 : p1 = p2 + 1 and RP7 : p2 = p1 + 1, since it implies
+#   some equalities between matched delimiters.
+#   Note that  p1 = p2 + i or p2 = p1 + i with i >= 2 brings no additional
+#   logic relations compared to p1 < p2 or p2 < p1;
+#   it only yields subslices of other properties and open a slightly silly
+#   door on infinity.
+#   If we have RS=, by symmetry we can consider only RP1, RP2, RP3 and RPe,
+#   and maybe RP6.
+#   Note that RSe or empty RS would have no interest at all.
+#   There are many choices for RelationM:
+#   mdb1 is NULL ∧ mdb2 is NULL ∧ mda1 is NULL ∧ mda2 is NULL is not
+#   interesting at all since both scores are 0 or -1.
+#   mdb1 is NULL ∧ mdb2 is NULL ∧ mda1 is NULL ∧ mda2 is not NULL
+#   implies that second score is always larger, that's not an additional
+#   property that is a theorem.
+#   Hence, at least one of mdb1 or mda1, resp. mdb2 or mda2,
+#   must (have the possibility to) be non-NULL.
+#   If we start listing the remaining relations, we have:
+#   1) mdb1 is NULL ∧ mdb2 is NULL ∧ mda1 is not NULL ∧ mda2 is not NULL
+#   RMA1A2
+#   2) mdb1 is NULL ∧ mdb2 is NULL ∧ mda1 is not NULL ∧ mda2 is not NULL
+#     ∧ mda1 = mda2
+#   RMA1A2=
+#   3) mdb1 is NULL ∧ mdb2 is NULL ∧ mda1 is not NULL ∧ mda2 is not NULL
+#     ∧ mda1 != mda2 -> This case has no meaning:
+#     If we only know they are different, we cannot say anything on
+#     properties related to delimiters that are different unless the score
+#     doesn't depend on the delimiter, and that case is already handled by
+#     1). The same remark applies to some other choices.
+#     The only thing that could be said would be if we had an order on
+#     delimiters scores that are uniform for the position, or the score
+#     before some delimiter would always be =, >=, <=, etc. the score
+#     before or after another one. So it would only make sense with RPe,
+#     and mda1 <= mda2 for example, but that would trivially imply RS<=.
+#     It would end up with max(mda1, mdb1) <= max(mda2, mdb2) where max
+#     ignores NULL value. You do not deduce or specify anything new here.
+#   4) mdb1 is not NULL ∧ mdb2 is not NULL ∧ mda1 is NULL ∧ mda2 is NULL
+#   RMB1B2
+#   and so on. So if we use the short notation RM followed by A1, resp. A2,
+#   resp. B1, resp. B2, when mda1, resp. mda2, resp. mdb1, resp. mdb2,
+#   is not null, we have the following possibilities:
+#   RMA1A2, RMB1B2, RMA1B2, RMA2B1, all 4 with variant with = like RMA1A2=,
+#   RMA1A2B1, RMA1A2B2, RMA1B1B2, RMA2B1B2, all 4 (RMXXYYZZ) with variants
+#   with suffixes _1 (XX = YY), _2 (XX = ZZ), _3 (YY = ZZ),
+#   and _4 (XX = YY = ZZ)
+#   for equalities on the 1st, 2nd or 3rd couple or between the three
+#   variables by transitivity,
+#   RMALL where none is null, with suffixes A1A2 (A1 = A2), etc.
+#   RMALL_A1A2, RMALL_A1B1, RMALL_A1B2, RMALL_A2B1, RMALL_A2B2, RMALL_B1B2,
+#   for one edge;
+#   RMALL_A1A2B1, RMALL_A1A2B2, RMALL_A1B1B2, RMALL_A2B1B2, one triangle;
+#   RMALL_A1A2_B1B2, RMALL_A1B1_A2B2, RMALL_A1B2_A2B1, 2 disjoint edges;
+#   RMALL_ALL square with diagonals.
+#   So we see that we listed at least 39 possibilities only for RM.
+#   We did not list yet the possibilities where the variables not present
+#   in some equality can be NULL or not NULL, etc.
+#   We see 9 of them : RMe (40), and the following 8:
+#   RMA1A2+ = RMA1A2= ∨ RMA1A2B1_1 ∨ RMA1A2B2_1 ∨ RMALL_A1A2
+#   RMB1B2+ = RMB1B2= ∨ RMA1B1B2_3 ∨ RMA2B1B2_3 ∨ RMALL_B1B2
+#   RMA1B2+ = RMA1B2= ∨ RMA1A2B2_2 ∨ RMA1B1B2_2 ∨ RMALL_A1B2
+#   RMA2B1+ = RMA2B1= ∨ RMA1A2B1_3 ∨ RMA2B1B2_1 ∨ RMALL_A2B1
+#   RMA1A2B1+ = RMA1A2B1_4 ∨ RMALL_A1A2B1
+#   RMA1A2B2+ = RMA1A2B2_4 ∨ RMALL_A1A2B2
+#   RMA1B1B2+ = RMA1B1B2_4 ∨ RMALL_A1B1B2
+#   RMA2B1B2+ = RMA2B1B2_4 ∨ RMALL_A2B1B2
+#   We don't do complete analysis at the moment.
+#   If we wanted to filter out some possibilities,
+#   we would keep only the RM possibilities, among the 38,
+#   that are symmetric between 1 and 2:
+#   RMA1A2, RMB1B2, RMA1A2=, RMB1B2=,
+#   RMALL, RMALL_A1A2, RMALL_A2B2, RMALL_A1A2_B1B2, RMALL_A1B1_A2B2,
+#   RMALL_ALL. Still 10 possibilities.
+#   We have 1 (RS=) times 5 times 10 + 1 (RS<=) times 8 times 10 = 130
+#   combinations (life is too short ;) :) );
+#   if we keep 48 RM possibilities, there is 624 combinations,
+#   but we did not analyze totally which RM relations are useless.
+#
+#   The second form is like:
+#     ∀ p1 ∈ [1, goal_length], ∀ p2 ∈ [1, goal_length],
+#     ∀ md1 ∈ delimiters ∪ {NULL}, ∀ md2 ∈ delimiters ∪ {NULL},
+#     ∀ ia1 ∈ {TRUE,FALSE}, ∀ ia2 ∈ {TRUE,FALSE},
+#     RelationP(p1, p2) ∧ RelationMM(md1, md2) ∧ RelationIA(ia1, ia2)
+#     ⇒ RelationS(
+#       SF2b(p1, md1, ia1)
+#       SF2b(p2, md2, ia2)
+#     )
+#   The third form is like:
+#     ∀ p1 ∈ [1, goal_length], ∀ p2 ∈ [1, goal_length],
+#     ∀ md1 ∈ delimiters ∪ {NULL}, ∀ md2 ∈ delimiters ∪ {NULL},
+#     ∀ ia1 ∈ {TRUE,FALSE}, ∀ ia2 ∈ {TRUE,FALSE},
+#     RelationPP(p1, p2) ∧ RelationMM(md1, md2) ∧ RelationIA(ia1, ia2)
+#     ⇒ RelationS(
+#       SF2c(p1, md1, ia1)
+#       SF2c(p2, md2, ia2)
+#     )
+#   This time the combinatorics is much more pleasant :).
+#   As above, we have RS= and RS<=, RPe, RP1 to RP7;
+#   For RelationMM, assume that the possible delimiters correspond to
+#   integer numbers 1 to i; hence md1, resp. md2, can be seen as an integer
+#   in [0,i], either 0 for NULL or the delimiter index.
+#   Clearly, if md1 = k in [1,i] and md2 = l in [1,i], then the only
+#   information we can use is k = l or k != l.
+#   If we allow that md1 != 0 and md2 = 0,
+#   then both RS= and RS<= are false.
+#   Thus RMMe is not possible.
+#   If we allow that md1 = 0 and md2 != 0, then RS<= is always true,
+#   whilst RS= is false.
+#   Thus properties with RS<= can trivially be extended with
+#   RMM-"allow-md1-0", not useful to explicit this for the moment.
+#   If both md1 = 0 and md2 = 0, then both scores are 0 and we also learn
+#   nothing more.
+#   Thus we can focus on md1 and md2 are not NULL,
+#   and are equal RMM= or not RMM!=. It seems that a property with RMM!=
+#   could be extended to a property RMM=or!=/RMMNotNULL.
+#   and finally RIA0 to RIA8 where TRUE = 1, FALSE = 0 and the digit is
+#   3 * ia1 + ia2, and both variables can be 2 if they can be either TRUE
+#   or FALSE. Wrong ! Not pleasant ! XD
+#   So for RIA, we keep either: empty RIAe (RIA8),
+#   ia1 = ia2 RIA= (RIA0 or RIA4),
+#   ia1 = ia2 = TRUE RIA=T (RIA4), ia1 = ia2 = FALSE RIA=F (RIA0),
+#   ia1 != ia2 RIA!= (RIA1 or RIA3), ia1 != ia2 = FALSE RIA!=T1 (RIA3),
+#   ia1 != ia2 = TRUE RIA!=T2 (RIA1),
+#   ia1 = TRUE (RIA5), ia1=FALSE (RIA2),
+#   ia2 = TRUE (RIA7), ia2=FALSE (RIA6),
+#   even less pleasant XD : 11 possibilities.
+#   In total, we have now 1 (RS=) times 5 times 2 times 11
+#   + 1 (RS<=) times 8 times 2 times 11 = 286
+#   combinations (life is even shorter ;) :) ).
+#   We only listed below properties of the third form.
+# i) By the previous remark, there is a good chance that we missed some
+#   possible property.
+#   We hope we did found the properties that had a simple meaning,
+#   in particular related to the algorithm where either you
+#   loop on the string forward and keep last position with maximum score,
+#   or you loop backward and abort as soon as possible as soon you know
+#   that you found some position at the end that must have maximum score.
+# j) These properties are "boolean" flags (integers that are powers of 2).
+#   We first put the exact integers,
+#   then wondered about switching everything to exponentiation 2**i,
+#   then we took the solution that minimizes the character length between
+#   [1-9][0-9]* and 2**i, then reverted to initial before committing.
+#   Most efficient interpreted code is what we did first,
+#   if there is no opcode cache for constants.
+#   Most safe code is when the language hides the details and handles
+#   families of flags,
+#   but beware if some flag goes into the database.
+#   Most readable code is a mix: 1 is easier to read than 2**0 ;) :P,
+#   or $((2<<0))...
+#   What I would love to see in many languages is a flag type, as a subtype
+#   of integers, flag32, flag64 for C for example.
+#   I think there is no such thing because sooner or later you play with
+#   pseudo-flags that are combination of flags, hence integers.
+#   But just for the declaration to let the type checker check that the
+#   integer is a power of 2: flag32 MY_FLAG = 4;
+#   Or better flag32 MY_FLAG = 2; as an equivalent of int32 MY_FLAG = 1<<2;
+#   Another fact is that practice makes perfect, so working with the powers
+#   of 2 written out in base 10 gets you accustomed to them.
+#   Safe code should be favored since (pre-)compilation optimizes it,
+#   but for this project, I prefer to keep the integers in decimal and
+#   check that it doubles when reading my listing, because I'm familiar
+#   with that and the powers of 2 doesn't go beyond what I can check fast
+#   enough in my brain.
+# k) Some of the properties below are union of other properties,
+#   and are here to simplify not only code but understanding.
+#   split_score_properties_logical_closure() function below checks that
+#   all flags that are consequences of already activated flags are set.
+# l) We use SSP_ prefix for SPLIT_SCORE_PROPERTY_.
+# Some of these remarks are repeated below in the corresponding functions,
+# and some remarks are added just after the constants.
+#--------------------------------------------------------------------------
+# Any score after a character that matches a delimiter
+# is larger than or equal to
+# any score before a character that matches a delimiter.
+# RPPe RMMNotNull RIA!=T2 RS<=
+declare -gir SSP_ALWAYS_LARGER_AFTER=1
+
+# Any score before a character that matches a delimiter
+# is larger than or equal to
+# any score after a character that matches a delimiter.
+# RPPe RMMNotNull RIA!=T1 RS<=
+declare -gir SSP_ALWAYS_LARGER_BEFORE=2
+
+# The score doesn't depend on the delimiter that is found.
+# RPP1 RMMNotNull RIA= RS=
+declare -gir SSP_DELIMITER_UNIFORM=4
+
+# Whenever a character that matches a delimiter is found,
+# the score after is equal to the score before.
+# Or equivalently:
+# For any delimiter, and for any character position,
+# if the character at this position matches this delimiter,
+# the score after the character
+# is equal to
+# the score before the character.
+# RPP1 RMM= RIA!= RS=
+declare -gir SSP_EQUAL_AFTER_OR_BEFORE=8
+# declare -gir SSP_SAME_DELIMITER_AND_POSITION_EQUAL_AFTER_OR_BEFORE=
+
+# Whenever a character that matches a delimiter is found,
+# the score after is larger than or equal to the score before.
+# Or equivalently:
+# For any delimiter, and for any character position,
+# if the character at this position matches this delimiter,
+# the score after the character
+# is larger than or equal to
+# the score before the character.
+# RPP1 RMM= RIA!=T2 RS<=
+declare -gir SSP_LARGER_AFTER=16
+# declare -gir SSP_SAME_DELIMITER_AND_POSITION_LARGER_AFTER=
+
+# Whenever a character that matches a delimiter is found,
+# the score before is larger than or equal to the score after.
+# Or equivalently:
+# For any delimiter, and for any character position,
+# if the character at this position matches this delimiter,
+# the score before the character
+# is larger than or equal to
+# the score after the character.
+# RPP1 RMM= RIA!=T1 RS<=
+declare -gir SSP_LARGER_BEFORE=32
+# declare -gir SSP_SAME_DELIMITER_AND_POSITION_LARGER_BEFORE=
+
+# The score after, resp. before, a character that matches a delimiter
+# doesn't decrease when the position in the string increase.
+# (RPP2 or RPP3) RMM= RIA= RS<=
+declare -gir SSP_POSITION_NOT_DECREASING=64
+
+# The score after a character that matches a delimiter doesn't decrease
+# when the position in the string increases.
+# (RPP2 or RPP3) RMM= RIA=T RS<=
+declare -gir SSP_POSITION_NOT_DECREASING_AFTER=128
+
+# The score before a character that matches a delimiter doesn't decrease
+# when the position in the string increases.
+# (RPP2 or RPP3) RMM= RIA=F RS<=
+declare -gir SSP_POSITION_NOT_DECREASING_BEFORE=256
+
+# The score after, resp. before, a character that matches a delimiter
+# doesn't depend on the position in the string.
+# (RPP2 or RPP3) RMM= RIA= RS=
+declare -gir SSP_POSITION_UNIFORM=512
+
+# The score after a character that matches a delimiter doesn't depend
+# on the position in the string.
+# (RPP2 or RPP3) RMM= RIA=T RS=
+declare -gir SSP_POSITION_UNIFORM_AFTER=1024
+
+# The score before a character that matches a delimiter doesn't depend
+# on the position in the string.
+# (RPP2 or RPP3) RMM= RIA=F RS=
+declare -gir SSP_POSITION_UNIFORM_BEFORE=2048
+
+# For any delimiter,
+# any score after a character that matches this delimiter
+# is equal to
+# any score before a character that matches this delimiter.
+# RPPe RMM= RIA!= RS=
+# <=> RPPe RMM= RIAe RS=
+declare -gir SSP_SAME_DELIMITER_EQUAL_AFTER_OR_BEFORE=4096
+
+# For any delimiter,
+# any score after a character that matches this delimiter
+# is larger than or equal to
+# any score before a character that matches this delimiter.
+# RPPe RMM= RIA!=T2 RS<=
+declare -gir SSP_SAME_DELIMITER_LARGER_AFTER=8192
+
+# For any delimiter,
+# any score before a character that matches this delimiter
+# is larger than or equal to
+# any score after a character that matches this delimiter.
+# RPPe RMM= RIA!=T1 RS<=
+declare -gir SSP_SAME_DELIMITER_LARGER_BEFORE=16384
+
+# For any character position,
+# assuming that a character at this position matches some delimiter,
+# the score after a character at this position that matches a delimiter
+# is equal to
+# the score before a character at this position that matches a delimiter.
+# RPP1 RMMNotNull RIA!= RS=
+declare -gir SSP_SAME_POSITION_EQUAL_AFTER_OR_BEFORE=32768
+
+# For any character position,
+# assuming that a character at this position matches some delimiter,
+# the score after a character at this position that matches a delimiter
+# is larger than or equal to
+# the score before a character at this position that matches a delimiter.
+# RPP1 RMMNotNull RIA!=T2 RS<=
+declare -gir SSP_SAME_POSITION_LARGER_AFTER=65536
+
+# For any character position,
+# assuming that a character at this position matches some delimiter,
+# the score before a character at this position that matches a delimiter
+# is larger than or equal to
+# the score after a character at this position that matches a delimiter.
+# RPP1 RMMNotNull RIA!=T1 RS<=
+declare -gir SSP_SAME_POSITION_LARGER_BEFORE=131072
+
+# For all possible split/cut positions, the score is equal as long as
+# at least one of the previous and next characters is a delimiter.
+# Or equivalently:
+# Any score after a character that matches a delimiter
+# is equal to
+# any score before a character that matches a delimiter.
+# is_after doesn't change anything.
+# So we cut on the last position adjacent to a delimiter without
+# forbidden previous character (edge case, on last position).
+# RPPe RMMNotNull RIAe RS=
+declare -gir SSP_UNIFORM=262144
+# declare -gir SSP_ALWAYS_EQUAL_AFTER_OR_BEFORE=1
+
+#--------------------------------------------------------------------------
+# m) Note that a property telling that the score is always the same
+#   even if the current character isn't among delimiters is not needed,
+#   since, in that case, a null split score command will split at the goal
+#   length.
+#--------------------------------------------------------------------------
+#--------------------------------------------------------------------------
+
+split_score_properties_logical_closure(){
+  # $1=split_score_properties
+  # Since this code is not performance critical,
+  # we followed lexicographic order on constants,
+  # instead of an order to minimize the operations.
+  # It is also safer to avoid forgetting some relation.
+  declare -i LFBFL_i_result=$(($1))
+  declare -i LFBFL_i_result_old=0
+  declare -i LFBFL_all_flags=$((
+    SSP_ALWAYS_LARGER_AFTER
+    | SSP_ALWAYS_LARGER_BEFORE
+    | SSP_DELIMITER_UNIFORM
+    | SSP_EQUAL_AFTER_OR_BEFORE
+    | SSP_LARGER_AFTER
+    | SSP_LARGER_BEFORE
+    | SSP_POSITION_NOT_DECREASING
+    | SSP_POSITION_NOT_DECREASING_AFTER
+    | SSP_POSITION_NOT_DECREASING_BEFORE
+    | SSP_POSITION_UNIFORM
+    | SSP_POSITION_UNIFORM_AFTER
+    | SSP_POSITION_UNIFORM_BEFORE
+    | SSP_SAME_DELIMITER_EQUAL_AFTER_OR_BEFORE
+    | SSP_SAME_DELIMITER_LARGER_AFTER
+    | SSP_SAME_DELIMITER_LARGER_BEFORE
+    | SSP_SAME_POSITION_EQUAL_AFTER_OR_BEFORE
+    | SSP_SAME_POSITION_LARGER_AFTER
+    | SSP_SAME_POSITION_LARGER_BEFORE
+    | SSP_UNIFORM
+  ))
+  until [[ LFBFL_i_result_old -eq LFBFL_i_result ]]; do
+    LFBFL_i_result_old=$((LFBFL_i_result))
+    if ((LFBFL_i_result & SSP_ALWAYS_LARGER_AFTER)); then
+      LFBFL_i_result=$((
+        LFBFL_i_result
+        | SSP_LARGER_AFTER
+        | SSP_SAME_DELIMITER_LARGER_AFTER
+        | SSP_SAME_POSITION_LARGER_AFTER
+      ))
+    fi
+    if ((LFBFL_i_result & SSP_ALWAYS_LARGER_BEFORE)); then
+      LFBFL_i_result=$((
+        LFBFL_i_result
+        | SSP_LARGER_BEFORE
+        | SSP_SAME_DELIMITER_LARGER_BEFORE
+        | SSP_SAME_POSITION_LARGER_BEFORE
+      ))
+    fi
+    if ((LFBFL_i_result & SSP_POSITION_NOT_DECREASING)); then
+      LFBFL_i_result=$((
+        LFBFL_i_result
+        | SSP_POSITION_NOT_DECREASING_AFTER
+        | SSP_POSITION_NOT_DECREASING_BEFORE
+      ))
+    fi
+    if ((LFBFL_i_result & SSP_POSITION_UNIFORM)); then
+      LFBFL_i_result=$((
+        LFBFL_i_result
+        | SSP_POSITION_UNIFORM_AFTER
+        | SSP_POSITION_UNIFORM_BEFORE
+        | SSP_POSITION_NOT_DECREASING
+        | SSP_POSITION_NOT_DECREASING_AFTER
+        | SSP_POSITION_NOT_DECREASING_BEFORE
+      ))
+    fi
+    if ((LFBFL_i_result & SSP_POSITION_UNIFORM_AFTER)); then
+      LFBFL_i_result=$((
+        LFBFL_i_result
+        | SSP_POSITION_NOT_DECREASING_AFTER
+      ))
+    fi
+    if ((LFBFL_i_result & SSP_POSITION_UNIFORM_BEFORE)); then
+      LFBFL_i_result=$((
+        LFBFL_i_result
+        | SSP_POSITION_NOT_DECREASING_BEFORE
+      ))
+    fi
+    if ((LFBFL_i_result & SSP_SAME_DELIMITER_EQUAL_AFTER_OR_BEFORE)); then
+      LFBFL_i_result=$((
+        LFBFL_i_result
+        | SSP_EQUAL_AFTER_OR_BEFORE
+        | SSP_LARGER_AFTER
+        | SSP_LARGER_BEFORE
+        | SSP_SAME_DELIMITER_LARGER_AFTER
+        | SSP_SAME_DELIMITER_LARGER_BEFORE
+      ))
+    fi
+    if ((LFBFL_i_result & SSP_SAME_DELIMITER_LARGER_AFTER)); then
+      LFBFL_i_result=$((
+        LFBFL_i_result
+        | SSP_LARGER_AFTER
+      ))
+    fi
+    if ((LFBFL_i_result & SSP_SAME_DELIMITER_LARGER_BEFORE)); then
+      LFBFL_i_result=$((
+        LFBFL_i_result
+        | SSP_LARGER_BEFORE
+      ))
+    fi
+    if ((LFBFL_i_result & SSP_SAME_POSITION_EQUAL_AFTER_OR_BEFORE)); then
+      LFBFL_i_result=$((
+        LFBFL_i_result
+        | SSP_EQUAL_AFTER_OR_BEFORE
+        | SSP_LARGER_AFTER
+        | SSP_LARGER_BEFORE
+        | SSP_SAME_POSITION_LARGER_AFTER
+        | SSP_SAME_POSITION_LARGER_BEFORE
+      ))
+    fi
+    if ((LFBFL_i_result & SSP_SAME_POSITION_LARGER_AFTER)); then
+      LFBFL_i_result=$((
+        LFBFL_i_result
+        | SSP_LARGER_AFTER
+      ))
+    fi
+    if ((LFBFL_i_result & SSP_SAME_POSITION_LARGER_BEFORE)); then
+      LFBFL_i_result=$((
+        LFBFL_i_result
+        | SSP_LARGER_BEFORE
+      ))
+    fi
+    if ((LFBFL_i_result & SSP_UNIFORM)); then
+      LFBFL_i_result=$((LFBFL_all_flags))
+      break
+    fi
+    if ((LFBFL_i_result & SSP_ALWAYS_LARGER_AFTER))\
+    && ((
+      LFBFL_i_result & (
+        SSP_ALWAYS_LARGER_BEFORE
+        | SSP_EQUAL_AFTER_OR_BEFORE
+        | SSP_LARGER_BEFORE
+        | SSP_SAME_DELIMITER_EQUAL_AFTER_OR_BEFORE
+        | SSP_SAME_DELIMITER_LARGER_BEFORE
+        | SSP_SAME_POSITION_EQUAL_AFTER_OR_BEFORE
+        | SSP_SAME_POSITION_LARGER_BEFORE
+      )
+    )); then
+      LFBFL_i_result=$((LFBFL_all_flags))
+      break
+    fi
+    if ((LFBFL_i_result & SSP_ALWAYS_LARGER_BEFORE))\
+    && ((
+      LFBFL_i_result & (
+        SSP_EQUAL_AFTER_OR_BEFORE
+        | SSP_LARGER_AFTER
+        | SSP_SAME_DELIMITER_EQUAL_AFTER_OR_BEFORE
+        | SSP_SAME_DELIMITER_LARGER_AFTER
+        | SSP_SAME_POSITION_EQUAL_AFTER_OR_BEFORE
+        | SSP_SAME_POSITION_LARGER_AFTER
+      )
+    )); then
+      LFBFL_i_result=$((LFBFL_all_flags))
+      break
+    fi
+    if ((LFBFL_i_result & SSP_DELIMITER_UNIFORM))\
+    && ((LFBFL_i_result & SSP_EQUAL_AFTER_OR_BEFORE)); then
+      LFBFL_i_result=$((
+        LFBFL_i_result
+        | SSP_SAME_POSITION_EQUAL_AFTER_OR_BEFORE
+      ))
+    fi
+    if ((LFBFL_i_result & SSP_DELIMITER_UNIFORM))\
+    && ((LFBFL_i_result & SSP_LARGER_AFTER)); then
+      LFBFL_i_result=$((
+        LFBFL_i_result
+        | SSP_SAME_POSITION_LARGER_AFTER
+      ))
+    fi
+    if ((LFBFL_i_result & SSP_DELIMITER_UNIFORM))\
+    && ((LFBFL_i_result & SSP_LARGER_BEFORE)); then
+      LFBFL_i_result=$((
+        LFBFL_i_result
+        | SSP_SAME_POSITION_LARGER_BEFORE
+      ))
+    fi
+    if ((LFBFL_i_result & SSP_DELIMITER_UNIFORM))\
+    && ((LFBFL_i_result & SSP_SAME_DELIMITER_EQUAL_AFTER_OR_BEFORE)); then
+      LFBFL_i_result=$((LFBFL_all_flags))
+      break
+    fi
+    if ((LFBFL_i_result & SSP_DELIMITER_UNIFORM))\
+    && ((LFBFL_i_result & SSP_SAME_DELIMITER_LARGER_AFTER)); then
+      LFBFL_i_result=$((
+        LFBFL_i_result
+        | SSP_ALWAYS_LARGER_AFTER
+      ))
+    fi
+    if ((LFBFL_i_result & SSP_DELIMITER_UNIFORM))\
+    && ((LFBFL_i_result & SSP_SAME_DELIMITER_LARGER_BEFORE)); then
+      LFBFL_i_result=$((
+        LFBFL_i_result
+        | SSP_ALWAYS_LARGER_BEFORE
+      ))
+    fi
+    if ((LFBFL_i_result & SSP_LARGER_AFTER))\
+    && ((LFBFL_i_result & SSP_LARGER_BEFORE)); then
+      LFBFL_i_result=$((
+        LFBFL_i_result
+        | SSP_EQUAL_AFTER_OR_BEFORE
+      ))
+    fi
+    if ((LFBFL_i_result & SSP_LARGER_AFTER))\
+    && ((
+      LFBFL_i_result & (
+        SSP_POSITION_UNIFORM
+        | SSP_POSITION_UNIFORM_AFTER
+      )
+    )); then
+      LFBFL_i_result=$((
+        LFBFL_i_result
+        | SSP_SAME_DELIMITER_LARGER_AFTER
+      ))
+    fi
+    if ((LFBFL_i_result & SSP_LARGER_BEFORE))\
+    && ((
+      LFBFL_i_result & (
+        SSP_POSITION_UNIFORM
+        | SSP_POSITION_UNIFORM_BEFORE
+      )
+    )); then
+      LFBFL_i_result=$((
+        LFBFL_i_result
+        | SSP_SAME_DELIMITER_LARGER_BEFORE
+      ))
+    fi
+    if ((LFBFL_i_result & SSP_POSITION_NOT_DECREASING_AFTER))\
+    && ((LFBFL_i_result & SSP_POSITION_NOT_DECREASING_BEFORE)); then
+      LFBFL_i_result=$((
+        LFBFL_i_result
+        | SSP_POSITION_NOT_DECREASING
+      ))
+    fi
+    if ((LFBFL_i_result & SSP_POSITION_UNIFORM))\
+    && ((LFBFL_i_result & SSP_EQUAL_AFTER_OR_BEFORE)); then
+      LFBFL_i_result=$((
+        LFBFL_i_result
+        | SSP_SAME_DELIMITER_EQUAL_AFTER_OR_BEFORE
+      ))
+    fi
+    if ((LFBFL_i_result & SSP_POSITION_UNIFORM))\
+    && ((LFBFL_i_result & SSP_SAME_POSITION_EQUAL_AFTER_OR_BEFORE)); then
+      LFBFL_i_result=$((LFBFL_all_flags))
+      break
+    fi
+    if ((LFBFL_i_result & SSP_POSITION_UNIFORM))\
+    && ((LFBFL_i_result & SSP_SAME_POSITION_LARGER_AFTER)); then
+      LFBFL_i_result=$((
+        LFBFL_i_result
+        | SSP_ALWAYS_LARGER_AFTER
+      ))
+    fi
+    if ((LFBFL_i_result & SSP_POSITION_UNIFORM))\
+    && ((LFBFL_i_result & SSP_SAME_POSITION_LARGER_BEFORE)); then
+      LFBFL_i_result=$((
+        LFBFL_i_result
+        | SSP_ALWAYS_LARGER_BEFORE
+      ))
+    fi
+    if ((LFBFL_i_result & SSP_POSITION_UNIFORM_AFTER))\
+    && ((LFBFL_i_result & SSP_POSITION_UNIFORM_BEFORE)); then
+      LFBFL_i_result=$((
+        LFBFL_i_result
+        | SSP_POSITION_UNIFORM
+      ))
+    fi
+    if ((LFBFL_i_result & SSP_POSITION_UNIFORM_AFTER))\
+    && ((LFBFL_i_result & SSP_SAME_POSITION_LARGER_AFTER)); then
+      LFBFL_i_result=$((
+        LFBFL_i_result
+        | SSP_ALWAYS_LARGER_AFTER
+      ))
+    fi
+    if ((LFBFL_i_result & SSP_POSITION_UNIFORM_BEFORE))\
+    && ((LFBFL_i_result & SSP_SAME_POSITION_LARGER_BEFORE)); then
+      LFBFL_i_result=$((
+        LFBFL_i_result
+        | SSP_ALWAYS_LARGER_BEFORE
+      ))
+    fi
+    if ((LFBFL_i_result & SSP_SAME_DELIMITER_EQUAL_AFTER_OR_BEFORE))\
+    && ((
+      LFBFL_i_result & (
+        SSP_SAME_POSITION_EQUAL_AFTER_OR_BEFORE
+        | SSP_SAME_POSITION_LARGER_AFTER
+        | SSP_SAME_POSITION_LARGER_BEFORE
+      )
+    )); then
+      LFBFL_i_result=$((LFBFL_all_flags))
+      break
+    fi
+    if ((LFBFL_i_result & SSP_SAME_DELIMITER_LARGER_AFTER))\
+    && ((
+      LFBFL_i_result & (
+        SSP_SAME_POSITION_EQUAL_AFTER_OR_BEFORE
+        | SSP_SAME_POSITION_LARGER_BEFORE
+      )
+    )); then
+      LFBFL_i_result=$((LFBFL_all_flags))
+      break
+    fi
+    if ((LFBFL_i_result & SSP_SAME_DELIMITER_LARGER_AFTER))\
+    && ((LFBFL_i_result & SSP_SAME_POSITION_LARGER_AFTER)); then
+      LFBFL_i_result=$((
+        LFBFL_i_result
+        | SSP_ALWAYS_LARGER_AFTER
+      ))
+    fi
+    if ((LFBFL_i_result & SSP_SAME_DELIMITER_LARGER_BEFORE))\
+    && ((
+      LFBFL_i_result & (
+        SSP_SAME_POSITION_EQUAL_AFTER_OR_BEFORE
+        |  SSP_SAME_POSITION_LARGER_AFTER
+      )
+    )); then
+      LFBFL_i_result=$((LFBFL_all_flags))
+      break
+    fi
+    if ((LFBFL_i_result & SSP_SAME_DELIMITER_LARGER_BEFORE))\
+    && ((LFBFL_i_result & SSP_SAME_POSITION_LARGER_BEFORE)); then
+      LFBFL_i_result=$((
+        LFBFL_i_result
+        | SSP_ALWAYS_LARGER_BEFORE
+      ))
+    fi
+  done
+  declare -gi i_split_score_properties_logical_closure_result=$((
+    LFBFL_i_result
+  ))
+}
 
 split_score_simple(){
   # $1=$after_before
@@ -78,15 +863,20 @@ get_split_score_simple(){
   #   get_split_score_result2=11
   # fi
   get_split_score_result2=$((
-    SPLIT_SCORE_PROPERTY_DELIMITER_UNIFORM
-    + SPLIT_SCORE_PROPERTY_POSITION_UNIFORM
-    + SPLIT_SCORE_PROPERTY_LARGER_BEFORE
+    SSP_DELIMITER_UNIFORM
+    + SSP_POSITION_UNIFORM
+    + SSP_LARGER_BEFORE
     + (
       $1 * (
-        SPLIT_SCORE_PROPERTY_LARGER_AFTER
-        - SPLIT_SCORE_PROPERTY_LARGER_BEFORE
+        SSP_LARGER_AFTER
+        - SSP_LARGER_BEFORE
       )
     )
+  ))
+  # shellcheck disable=SC2248
+  split_score_properties_logical_closure ${get_split_score_result2}
+  get_split_score_result2=$((
+    i_split_score_properties_logical_closure_result
   ))
 }
 
@@ -119,14 +909,19 @@ get_split_score(){
   declare -gi get_split_score_result2
   # get_split_score_result2=$((9-$1*4))
   get_split_score_result2=$((
-    SPLIT_SCORE_PROPERTY_DELIMITER_UNIFORM
-    + SPLIT_SCORE_PROPERTY_LARGER_BEFORE
+    SSP_DELIMITER_UNIFORM
+    + SSP_LARGER_BEFORE
     + (
       $1 * (
-        SPLIT_SCORE_PROPERTY_LARGER_AFTER
-        - SPLIT_SCORE_PROPERTY_LARGER_BEFORE
+        SSP_LARGER_AFTER
+        - SSP_LARGER_BEFORE
       )
     )
+  ))
+  # shellcheck disable=SC2248
+  split_score_properties_logical_closure ${get_split_score_result2}
+  get_split_score_result2=$((
+    i_split_score_properties_logical_closure_result
   ))
 }
 

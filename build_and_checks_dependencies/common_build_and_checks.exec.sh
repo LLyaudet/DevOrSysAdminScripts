@@ -314,9 +314,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='2bcc71452545f83cbde9f528c8c638c8026c79f0cebcb'
-  LFBFL_correct_sha512+='959706b17db02b04fb3101349dd15814df130c192f55'
-  LFBFL_correct_sha512+='d475aef749bda6905c92da97a0deb1237dc6ae8'
+  LFBFL_correct_sha512='532ab35d3b8de0a3056511b64860955874fa9f8fffd92'
+  LFBFL_correct_sha512+='c9b749657e18dd8279cc178ee15dae18b15b146ebdf1'
+  LFBFL_correct_sha512+='cc8e876e19429f466b3873de8fa06db4ad60d17'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
@@ -502,7 +502,7 @@ common_build_and_checks(){
   if [[ LFBFL_upgrade_venvs -eq 1 ]]; then
     pip install --upgrade isort
   fi
-  isort .
+  isort --profile=black .
   if [[ -n "${LFBFL_isort_venv}" ]]; then
     deactivate
   fi

@@ -982,21 +982,29 @@ split_line_at_most(){
     split_line_at_most_result_end=""
     return
   fi
-  declare -r LFBFL_sort_command="sort --numeric-sort"
-  declare -ir LFBFL_length_minus_1=$((${#1} - 1))
-  declare -ir LFBFL_i_max=$(
-    min "${LFBFL_sort_command}" "${LFBFL_length_minus_1}" "$2"
-  )
+  # We know that ${#1} > $2, hence ${#1} - 1 >= $2
+  # Edge cases:
+  # There is always at least one character that is overlength,
+  # but we need to look only at the score before that character that is
+  # overlength, the score after that character is invalid,
+  # whatever ${#1} - 1 = $2, or ${#1} - 1 > $2.
+  # That first character that is overlength has index $2.
+  # The cut position after that character has index $2 + 1.
+  # Looping from character position going from 0 to $2, we need to drop
+  # score before character 0 and drop score after character $2.
+  # We do this with forbidden score -1.
+  declare -ir LFBFL_i_max=$(($2))
   declare -i LFBFL_i
   declare -i LFBFL_j
   local LFBFL_current_char
 
   # At the beginning, each position has score 0.
-  for ((LFBFL_i=0; LFBFL_i<=LFBFL_i_max; ++LFBFL_i)) do
+  LFBFL_positions["0"]="-1"
+  for ((LFBFL_i=1; LFBFL_i<=LFBFL_i_max; ++LFBFL_i)) do
     LFBFL_positions["${LFBFL_i}"]="0"
   done
   LFBFL_j=$((LFBFL_i+1))
-  LFBFL_positions["${LFBFL_j}"]="0"
+  LFBFL_positions["${LFBFL_j}"]="-1"
 
   # If we have a forbidden previous character,
   # we mark the forbidden positions with -1.
@@ -1010,22 +1018,14 @@ split_line_at_most(){
     done
   fi
 
-  if [[ "$4" == "7" ]]; then
-    for ((LFBFL_j=LFBFL_i_max; LFBFL_j>0; --LFBFL_j)) do
-      LFBFL_i=$((LFBFL_j-1))
+  declare -r LFBFL_sort_command="sort --numeric-sort"
+
+  if (($4 & SSP_DELIMITER_UNIFORM))\
+  && (($4 & SSP_LARGER_AFTER))\
+  && (($4 & SSP_POSITION_NOT_DECREASING_AFTER)); then
+    for ((LFBFL_i=LFBFL_i_max; LFBFL_i>=0; --LFBFL_i)) do
+      LFBFL_j=$((LFBFL_i+1))
       LFBFL_current_char="${1:${LFBFL_i}:1}"
-      eval "$3 '${LFBFL_current_char}' 0"
-      # printf "%s|%s\n" "${split_score_result}" "${LFBFL_i}"
-      if [[ split_score_result -ge 1 ]]; then
-        # printf "%s|%s\n" "${split_score_result}" "${LFBFL_i}"
-        if [[ ${LFBFL_positions["${LFBFL_i}"]} != "-1" ]]; then
-          LFBFL_positions["${LFBFL_i}"]=$(
-            max "${LFBFL_sort_command}"\
-              "${LFBFL_positions["${LFBFL_i}"]}"\
-              "${split_score_result}"
-          )
-        fi
-      fi
       eval "$3 '${LFBFL_current_char}' 1"
       # printf "%s|%s\n" "${split_score_result}" "${LFBFL_j}"
       if [[ split_score_result -ge 1 ]]; then
@@ -1039,9 +1039,59 @@ split_line_at_most(){
           break
         fi
       fi
+      eval "$3 '${LFBFL_current_char}' 0"
+      # printf "%s|%s\n" "${split_score_result}" "${LFBFL_i}"
+      if [[ split_score_result -ge 1 ]]; then
+        # printf "%s|%s\n" "${split_score_result}" "${LFBFL_i}"
+        if [[ ${LFBFL_positions["${LFBFL_i}"]} != "-1" ]]; then
+          LFBFL_positions["${LFBFL_i}"]=$(
+            max "${LFBFL_sort_command}"\
+              "${LFBFL_positions["${LFBFL_i}"]}"\
+              "${split_score_result}"
+          )
+        fi
+      fi
+    done
+  elif (($4 & SSP_DELIMITER_UNIFORM))\
+  && (($4 & SSP_LARGER_BEFORE))\
+  && (($4 & SSP_POSITION_NOT_DECREASING_BEFORE)); then
+    for ((LFBFL_i=LFBFL_i_max; LFBFL_i>=0; --LFBFL_i)) do
+      LFBFL_j=$((LFBFL_i+1))
+      LFBFL_current_char="${1:${LFBFL_i}:1}"
+      # We still need to break in second if, after computing score after,
+      # because SSP_LARGER_BEFORE implies large inequality instead of
+      # strict inequality.
+      # And since the algorithm is to take the largest position with
+      # maximum score, there is a possibility that we'll break on a found
+      # score before but for splitting on a score after.
+      eval "$3 '${LFBFL_current_char}' 1"
+      # printf "%s|%s\n" "${split_score_result}" "${LFBFL_j}"
+      if [[ split_score_result -ge 1 ]]; then
+        # printf "%s|%s\n" "${split_score_result}" "${LFBFL_j}"
+        if [[ ${LFBFL_positions["${LFBFL_j}"]} != "-1" ]]; then
+          LFBFL_positions["${LFBFL_j}"]=$(
+            max "${LFBFL_sort_command}"\
+              "${LFBFL_positions["${LFBFL_j}"]}"\
+              "${split_score_result}"
+          )
+        fi
+      fi
+      eval "$3 '${LFBFL_current_char}' 0"
+      # printf "%s|%s\n" "${split_score_result}" "${LFBFL_i}"
+      if [[ split_score_result -ge 1 ]]; then
+        # printf "%s|%s\n" "${split_score_result}" "${LFBFL_i}"
+        if [[ ${LFBFL_positions["${LFBFL_i}"]} != "-1" ]]; then
+          LFBFL_positions["${LFBFL_i}"]=$(
+            max "${LFBFL_sort_command}"\
+              "${LFBFL_positions["${LFBFL_i}"]}"\
+              "${split_score_result}"
+          )
+          break
+        fi
+      fi
     done
   else
-    for ((LFBFL_i=0; LFBFL_i<LFBFL_i_max; ++LFBFL_i)) do
+    for ((LFBFL_i=0; LFBFL_i<=LFBFL_i_max; ++LFBFL_i)) do
       LFBFL_j=$((LFBFL_i+1))
       LFBFL_current_char="${1:${LFBFL_i}:1}"
       eval "$3 '${LFBFL_current_char}' ${LFBFL_i} 0"

@@ -154,11 +154,13 @@ split_line_at(){
 #
 #   What we consider as properties are of 3 forms.
 #   The first form is like:
-#     ∀ p1 ∈ [1, goal_length], ∀ p2 ∈ [1, goal_length],
-#     ∀ mdb1 ∈ delimiters ∪ {NULL}, ∀ mdb2 ∈ delimiters ∪ {NULL},
-#     ∀ mda1 ∈ delimiters ∪ {NULL}, ∀ mda2 ∈ delimiters ∪ {NULL},
-#     RelationP(p1, p2) ∧ RelationM(mdb1, mdb2, mda1, mda2)
-#     ⇒ RelationS(
+#     For all p1 in [1, goal_length], for all p2 in [1, goal_length],
+#     for all mdb1 in delimiters union {NULL},
+#     for all mdb2 in delimiters union {NULL},
+#     for all mda1 in delimiters union {NULL},
+#     for all mda2 in delimiters union {NULL},
+#     RelationP(p1, p2) AND RelationM(mdb1, mdb2, mda1, mda2)
+#     implies RelationS(
 #       SF1b(p1, mdb1, mda1, false),
 #       SF1b(p2, mdb2, mda2, false),
 #     )
@@ -195,21 +197,24 @@ split_line_at(){
 #   and maybe RP6.
 #   Note that RSe or empty RS would have no interest at all.
 #   There are many choices for RelationM:
-#   mdb1 is NULL ∧ mdb2 is NULL ∧ mda1 is NULL ∧ mda2 is NULL is not
+#   mdb1 is NULL AND mdb2 is NULL AND mda1 is NULL AND mda2 is NULL is not
 #   interesting at all since both scores are 0 or -1.
-#   mdb1 is NULL ∧ mdb2 is NULL ∧ mda1 is NULL ∧ mda2 is not NULL
+#   mdb1 is NULL AND mdb2 is NULL AND mda1 is NULL AND mda2 is not NULL
 #   implies that second score is always larger, that's not an additional
 #   property that is a theorem.
 #   Hence, at least one of mdb1 or mda1, resp. mdb2 or mda2,
 #   must (have the possibility to) be non-NULL.
 #   If we start listing the remaining relations, we have:
-#   1) mdb1 is NULL ∧ mdb2 is NULL ∧ mda1 is not NULL ∧ mda2 is not NULL
+#   1) mdb1 is NULL AND mdb2 is NULL AND mda1 is not NULL
+#     AND mda2 is not NULL
 #   RMA1A2
-#   2) mdb1 is NULL ∧ mdb2 is NULL ∧ mda1 is not NULL ∧ mda2 is not NULL
-#     ∧ mda1 = mda2
+#   2) mdb1 is NULL AND mdb2 is NULL AND mda1 is not NULL
+#     AND mda2 is not NULL
+#     AND mda1 = mda2
 #   RMA1A2=
-#   3) mdb1 is NULL ∧ mdb2 is NULL ∧ mda1 is not NULL ∧ mda2 is not NULL
-#     ∧ mda1 != mda2 -> This case has no meaning:
+#   3) mdb1 is NULL AND mdb2 is NULL AND mda1 is not NULL
+#     AND mda2 is not NULL
+#     AND mda1 != mda2 -> This case has no meaning:
 #     If we only know they are different, we cannot say anything on
 #     properties related to delimiters that are different unless the score
 #     doesn't depend on the delimiter, and that case is already handled by
@@ -221,7 +226,8 @@ split_line_at(){
 #     and mda1 <= mda2 for example, but that would trivially imply RS<=.
 #     It would end up with max(mda1, mdb1) <= max(mda2, mdb2) where max
 #     ignores NULL value. You do not deduce or specify anything new here.
-#   4) mdb1 is not NULL ∧ mdb2 is not NULL ∧ mda1 is NULL ∧ mda2 is NULL
+#   4) mdb1 is not NULL AND mdb2 is not NULL AND mda1 is NULL
+#     AND mda2 is NULL
 #   RMB1B2
 #   and so on. So if we use the short notation RM followed by A1, resp. A2,
 #   resp. B1, resp. B2, when mda1, resp. mda2, resp. mdb1, resp. mdb2,
@@ -242,14 +248,14 @@ split_line_at(){
 #   We did not list yet the possibilities where the variables not present
 #   in some equality can be NULL or not NULL, etc.
 #   We see 9 of them : RMe (40), and the following 8:
-#   RMA1A2+ = RMA1A2= ∨ RMA1A2B1_1 ∨ RMA1A2B2_1 ∨ RMALL_A1A2
-#   RMB1B2+ = RMB1B2= ∨ RMA1B1B2_3 ∨ RMA2B1B2_3 ∨ RMALL_B1B2
-#   RMA1B2+ = RMA1B2= ∨ RMA1A2B2_2 ∨ RMA1B1B2_2 ∨ RMALL_A1B2
-#   RMA2B1+ = RMA2B1= ∨ RMA1A2B1_3 ∨ RMA2B1B2_1 ∨ RMALL_A2B1
-#   RMA1A2B1+ = RMA1A2B1_4 ∨ RMALL_A1A2B1
-#   RMA1A2B2+ = RMA1A2B2_4 ∨ RMALL_A1A2B2
-#   RMA1B1B2+ = RMA1B1B2_4 ∨ RMALL_A1B1B2
-#   RMA2B1B2+ = RMA2B1B2_4 ∨ RMALL_A2B1B2
+#   RMA1A2+ = RMA1A2= OR RMA1A2B1_1 OR RMA1A2B2_1 OR RMALL_A1A2
+#   RMB1B2+ = RMB1B2= OR RMA1B1B2_3 OR RMA2B1B2_3 OR RMALL_B1B2
+#   RMA1B2+ = RMA1B2= OR RMA1A2B2_2 OR RMA1B1B2_2 OR RMALL_A1B2
+#   RMA2B1+ = RMA2B1= OR RMA1A2B1_3 OR RMA2B1B2_1 OR RMALL_A2B1
+#   RMA1A2B1+ = RMA1A2B1_4 OR RMALL_A1A2B1
+#   RMA1A2B2+ = RMA1A2B2_4 OR RMALL_A1A2B2
+#   RMA1B1B2+ = RMA1B1B2_4 OR RMALL_A1B1B2
+#   RMA2B1B2+ = RMA2B1B2_4 OR RMALL_A2B1B2
 #   We don't do complete analysis at the moment.
 #   If we wanted to filter out some possibilities,
 #   we would keep only the RM possibilities, among the 38,
@@ -263,20 +269,22 @@ split_line_at(){
 #   but we did not analyze totally which RM relations are useless.
 #
 #   The second form is like:
-#     ∀ p1 ∈ [1, goal_length], ∀ p2 ∈ [1, goal_length],
-#     ∀ md1 ∈ delimiters ∪ {NULL}, ∀ md2 ∈ delimiters ∪ {NULL},
-#     ∀ ia1 ∈ {TRUE,FALSE}, ∀ ia2 ∈ {TRUE,FALSE},
-#     RelationP(p1, p2) ∧ RelationMM(md1, md2) ∧ RelationIA(ia1, ia2)
-#     ⇒ RelationS(
+#     For all p1 in [1, goal_length], for all p2 in [1, goal_length],
+#     for all md1 in delimiters union {NULL},
+#     for all md2 in delimiters union {NULL},
+#     for all ia1 in {TRUE,FALSE}, for all ia2 in {TRUE,FALSE},
+#     RelationP(p1, p2) AND RelationMM(md1, md2) AND RelationIA(ia1, ia2)
+#     implies RelationS(
 #       SF2b(p1, md1, ia1)
 #       SF2b(p2, md2, ia2)
 #     )
 #   The third form is like:
-#     ∀ p1 ∈ [1, goal_length], ∀ p2 ∈ [1, goal_length],
-#     ∀ md1 ∈ delimiters ∪ {NULL}, ∀ md2 ∈ delimiters ∪ {NULL},
-#     ∀ ia1 ∈ {TRUE,FALSE}, ∀ ia2 ∈ {TRUE,FALSE},
-#     RelationPP(p1, p2) ∧ RelationMM(md1, md2) ∧ RelationIA(ia1, ia2)
-#     ⇒ RelationS(
+#     for all p1 in [1, goal_length], for all p2 in [1, goal_length],
+#     for all md1 in delimiters union {NULL},
+#     for all md2 in delimiters union {NULL},
+#     for all ia1 in {TRUE,FALSE}, for all ia2 in {TRUE,FALSE},
+#     RelationPP(p1, p2) AND RelationMM(md1, md2) AND RelationIA(ia1, ia2)
+#     implies RelationS(
 #       SF2c(p1, md1, ia1)
 #       SF2c(p2, md2, ia2)
 #     )

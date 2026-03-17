@@ -512,16 +512,28 @@ create_PDF(){
     return
   fi
 
-  if [[ LFBFL_i_verbose -eq 1 ]]; then
-    for ((i=0; i<3; i++)); do
-      pdflatex "./${LFBFL_subdir2}/${LFBFL_repository_name}.tex"
-    done
-  else
-    for ((i=0; i<3; i++)); do
-      pdflatex "./${LFBFL_subdir2}/${LFBFL_repository_name}.tex"\
-        > /dev/null
-    done
+  local LFBFL_latex_command=""
+  grep_variable "${LFBFL_data_file_name}" latex_command\
+    --result-variable-prefix="LFBFL_"\
+    --replace-line-returns-by=""
+
+  case ${LFBFL_latex_command} in
+    pdflatex) : ;;
+    lualatex) : ;;
+    *) printf "Unsupported latex command" ; return 1 ;;
+  esac
+
+  local LFBFL_command
+  LFBFL_command="${LFBFL_latex_command}"
+  LFBFL_command+=" './${LFBFL_subdir2}/${LFBFL_repository_name}.tex'"
+  if [[ LFBFL_i_verbose -eq 0 ]]; then
+    LFBFL_command+=" > /dev/null"
   fi
+  readonly LFBFL_command
+
+  for ((i=0; i<3; i++)); do
+    eval "${LFBFL_command}"
+  done
 
   LFBFL_files_to_temp=(\
     "${LFBFL_repository_name}.aux"\

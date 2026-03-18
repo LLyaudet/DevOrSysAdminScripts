@@ -339,23 +339,23 @@ common_build_and_checks(){
     done
   fi
 
-  declare -i LFBFL_will_popd
+  declare -i LFBFL_i_directory_changed
   pushd_to_work_directory
-  LFBFL_will_popd=$?
+  LFBFL_i_directory_changed=$?
   can_continue_after_enhanced_pushd || return 1
 
   local LFBFL_data_file_name=\
 "build_and_checks_variables/repository_data.txt"
 
-  declare -i LFBFL_max_line_length
+  declare -i LFBFL_i_max_line_length
   grep_variable "${LFBFL_data_file_name}" max_line_length\
-    --result-variable-prefix="LFBFL_"
+    --result-variable-prefix="LFBFL_i_"
 
-  declare -i LFBFL_upgrade_venvs=0
+  declare -i LFBFL_i_upgrade_venvs=0
   declare -r LFBFL_upgrade_venvs_ts_file=\
 "build_and_checks_variables/upgrade_venvs_ts"
-  declare -i LFBFL_upgrade_venvs_ts
-  declare -i LFBFL_current_ts
+  declare -i LFBFL_i_upgrade_venvs_ts
+  declare -i LFBFL_i_current_ts
   local LFBFL_upgrade_venvs_answer
 
   local LFBFL_upgrade_venvs_time_interval_in_seconds=""
@@ -363,19 +363,19 @@ common_build_and_checks(){
     "${LFBFL_some_common_options[@]}"
 
   if [[ -f "${LFBFL_upgrade_venvs_ts_file}" ]]; then
-    LFBFL_upgrade_venvs_ts=$(
+    LFBFL_i_upgrade_venvs_ts=$(
       stat -c %Y "${LFBFL_upgrade_venvs_ts_file}"
     )
-    LFBFL_current_ts=$(date +%s)
-    ((LFBFL_current_ts-=LFBFL_upgrade_venvs_ts))
-    ((LFBFL_current_ts-=LFBFL_upgrade_venvs_time_interval_in_seconds))
-    if [[ LFBFL_current_ts -gt 0 ]]; then
-      LFBFL_upgrade_venvs=1
+    LFBFL_i_current_ts=$(date +%s)
+    ((LFBFL_i_current_ts-=LFBFL_i_upgrade_venvs_ts))
+    ((LFBFL_i_current_ts-=LFBFL_upgrade_venvs_time_interval_in_seconds))
+    if [[ LFBFL_i_current_ts -gt 0 ]]; then
+      LFBFL_i_upgrade_venvs=1
     fi
   else
-    LFBFL_upgrade_venvs=1
+    LFBFL_i_upgrade_venvs=1
   fi
-  if [[ LFBFL_upgrade_venvs -eq 1 ]]; then
+  if [[ LFBFL_i_upgrade_venvs -eq 1 ]]; then
     local LFBFL2_upgrade_venvs=""
     grep_variable "${LFBFL_data_file_name}" upgrade_venvs\
       --result-variable-prefix="LFBFL2_"
@@ -384,7 +384,7 @@ common_build_and_checks(){
         -p "Upgrade venvs and composer global? [Y/n]"\
         LFBFL_upgrade_venvs_answer
       if [[ "${LFBFL_upgrade_venvs_answer}" == "n" ]]; then
-        LFBFL_upgrade_venvs=0
+        LFBFL_i_upgrade_venvs=0
       fi
     fi
   fi
@@ -418,7 +418,7 @@ common_build_and_checks(){
     # shellcheck disable=SC1090,SC1091
     source "${LFBFL_isort_venv}/bin/activate"
   fi
-  if [[ LFBFL_upgrade_venvs -eq 1 ]]; then
+  if [[ LFBFL_i_upgrade_venvs -eq 1 ]]; then
     pip install --upgrade isort
   fi
   isort --profile=black .
@@ -431,7 +431,7 @@ common_build_and_checks(){
   printf "Running black\n"
   # First, we update the configuration file with max_line_length.
   local LFBFL_update_max_length="s/^line-length = [0-9]*$"
-  LFBFL_update_max_length+="/line-length = ${LFBFL_max_line_length}/"
+  LFBFL_update_max_length+="/line-length = ${LFBFL_i_max_line_length}/"
   sed -E -e "${LFBFL_update_max_length}"\
     build_and_checks_variables/black.toml\
     > build_and_checks_variables/black.toml.temp
@@ -450,7 +450,7 @@ common_build_and_checks(){
     # shellcheck disable=SC1090,SC1091
     source "${LFBFL_black_venv}/bin/activate"
   fi
-  if [[ LFBFL_upgrade_venvs -eq 1 ]]; then
+  if [[ LFBFL_i_upgrade_venvs -eq 1 ]]; then
     pip install --upgrade black
   fi
   black --config build_and_checks_variables/black.toml .
@@ -473,12 +473,12 @@ common_build_and_checks(){
     # shellcheck disable=SC1090,SC1091
     source "${LFBFL_mypy_venv}/bin/activate"
   fi
-  if [[ LFBFL_upgrade_venvs -eq 1 ]]; then
+  if [[ LFBFL_i_upgrade_venvs -eq 1 ]]; then
     pip install --upgrade mypy
   fi
   shopt -s lastpipe
   local LFBFL_directory_path
-  declare -i LFBFL_no_toml=1
+  declare -i LFBFL_i_no_toml=1
   LFBFL_s_files_paths=$(
     find . -type f -name "pyproject.toml"\
     | relevant_find
@@ -491,10 +491,10 @@ common_build_and_checks(){
         LFBFL_directory_path=$(dirname "${LFBFL_file_path}")
         mypy "${LFBFL_directory_path}"
       fi
-      LFBFL_no_toml=0
+      LFBFL_i_no_toml=0
     done
   fi
-  if [[ LFBFL_no_toml -eq 1 ]]; then
+  if [[ LFBFL_i_no_toml -eq 1 ]]; then
     printf "Running mypy\n"
     mypy .
   fi
@@ -515,7 +515,7 @@ common_build_and_checks(){
     # shellcheck disable=SC1090,SC1091
     source "${LFBFL_bandit_venv}/bin/activate"
   fi
-  if [[ LFBFL_upgrade_venvs -eq 1 ]]; then
+  if [[ LFBFL_i_upgrade_venvs -eq 1 ]]; then
     pip install --upgrade bandit
   fi
   bandit --ini build_and_checks_variables/bandit.ini\
@@ -542,7 +542,7 @@ common_build_and_checks(){
     # shellcheck disable=SC1090,SC1091
     source "${LFBFL_pylint_venv}/bin/activate"
   fi
-  if [[ LFBFL_upgrade_venvs -eq 1 ]]; then
+  if [[ LFBFL_i_upgrade_venvs -eq 1 ]]; then
     pip install --upgrade pylint
   fi
   pylint --rcfile build_and_checks_variables/pylintrc.toml\
@@ -564,7 +564,7 @@ common_build_and_checks(){
     # shellcheck disable=SC1090,SC1091
     source "${LFBFL_ruff_venv}/bin/activate"
   fi
-  if [[ LFBFL_upgrade_venvs -eq 1 ]]; then
+  if [[ LFBFL_i_upgrade_venvs -eq 1 ]]; then
     pip install --upgrade ruff
   fi
   ruff check --config build_and_checks_variables/ruff.toml
@@ -575,7 +575,7 @@ common_build_and_checks(){
 
   printf -- "---PHP---\n"
   printf "Running PHPMD\n"
-  if [[ LFBFL_upgrade_venvs -eq 1 ]]; then
+  if [[ LFBFL_i_upgrade_venvs -eq 1 ]]; then
     composer global require phpmd/phpmd
   fi
 
@@ -620,7 +620,7 @@ common_build_and_checks(){
   printf "Analyzing too long lines\n"
   # shellcheck disable=SC2248
   too_long_code_lines "${LFBFL_some_common_options[@]}" \
-    --max-line-length=${LFBFL_max_line_length}
+    --max-line-length=${LFBFL_i_max_line_length}
 
   printf "Analyzing shell scripts beginnings\n"
   check_shell_scripts_beginnings "${LFBFL_some_common_options[@]}" \
@@ -640,7 +640,7 @@ common_build_and_checks(){
   grep --exclude-dir .git --binary-files=without-match --color=always\
     -nPr "[^${LFBFL_usual_characters}]" .
 
-  [[ LFBFL_will_popd -eq 0 ]] && popd_from_work_directory
+  [[ LFBFL_i_directory_changed -eq 0 ]] && popd_from_work_directory
 
   printf "Checking listed files\n"
   "./${LFBFL_subdir}/update_or_check_files_names_listing.exec.sh"\
@@ -671,17 +671,17 @@ common_build_and_checks(){
     LFBFL_upgrade_vnu_jar_time_interval_in_seconds=${RANDOM}
   fi
 
-  declare -i LFBFL_vnu_jar_ts
+  declare -i LFBFL_i_vnu_jar_ts
   local LFBFL_vnu_jar_path=""
   grep_variable "${LFBFL_data_file_name}" vnu_jar_path\
     --result-variable-prefix="LFBFL_"\
     --replace-line-returns-by=""
   if [[ -f "${LFBFL_vnu_jar_path}" ]]; then
-    LFBFL_vnu_jar_ts=$(stat -c %Y "${LFBFL_vnu_jar_path}")
-    LFBFL_current_ts=$(date +%s)
-    ((LFBFL_current_ts-=LFBFL_vnu_jar_ts))
-    ((LFBFL_current_ts-=LFBFL_upgrade_vnu_jar_time_interval_in_seconds))
-    if [[ LFBFL_current_ts -gt 0 ]]; then
+    LFBFL_i_vnu_jar_ts=$(stat -c %Y "${LFBFL_vnu_jar_path}")
+    LFBFL_i_current_ts=$(date +%s)
+    ((LFBFL_i_current_ts-=LFBFL_i_vnu_jar_ts))
+    ((LFBFL_i_current_ts-=LFBFL_upgrade_vnu_jar_time_interval_in_seconds))
+    if [[ LFBFL_i_current_ts -gt 0 ]]; then
       printf $'/!\\ATTENTION: Nu W3C validator is too old./!\\\n'
       printf "Go get the latest version here:\n"
       printf "https://github.com/validator/validator/releases\n"
@@ -700,7 +700,7 @@ common_build_and_checks(){
   fi
   # ------------------------------------------------------------------
 
-  if [[ LFBFL_upgrade_venvs -eq 1 ]]; then
+  if [[ LFBFL_i_upgrade_venvs -eq 1 ]]; then
     touch "${LFBFL_upgrade_venvs_ts_file}"
   fi
 }

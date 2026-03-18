@@ -128,7 +128,7 @@ code_lines_count_all(){
   # The printf is for command line use.
   # A script should use the result value instead.
   # shellcheck disable=SC2248
-  printf "%s\n" ${code_lines_count_all_result}
+  printf "%s\n" ${i_code_lines_count_all_result}
 }
 
 code_lines_count_empty(){
@@ -150,7 +150,7 @@ code_lines_count_empty(){
   # The printf is for command line use.
   # A script should use the result value instead.
   # shellcheck disable=SC2248
-  printf "%s\n" ${code_lines_count_empty_result}
+  printf "%s\n" ${i_code_lines_count_empty_result}
 }
 
 code_lines_count_not_empty(){
@@ -172,5 +172,5 @@ code_lines_count_not_empty(){
   # The printf is for command line use.
   # A script should use the result value instead.
   # shellcheck disable=SC2248
-  printf "%s\n" ${code_lines_count_not_empty_result}
+  printf "%s\n" ${i_code_lines_count_not_empty_result}
 }

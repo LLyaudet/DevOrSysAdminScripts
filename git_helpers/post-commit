@@ -30,14 +30,25 @@
 # to
 # "./git_helpers".
 
-LFBFL_library="../DevOrSysAdminScripts/git_helpers/"
-LFBFL_library+="post_commit_renaming_comment.libr.sh"
+LFBFL_some_directory="../DevOrSysAdminScripts"
+declare -i LFBFL_i_pushd_result3
+pushd "${LFBFL_some_directory}" || {
+  LFBFL_i_pushd_result3=$?
+  printf "post-commit no such directory"
+  # shellcheck disable=SC2248
+  exit ${LFBFL_i_pushd_result3}
+}
 # shellcheck source=post_commit_renaming_comment.libr.sh
-source "${LFBFL_library}"
-LFBFL_library="../DevOrSysAdminScripts/build_and_checks_dependencies/"
-LFBFL_library+="lines_filters.libr.sh"
+source "./git_helpers/post_commit_renaming_comment.libr.sh"
 # shellcheck source=lines_filters.libr.sh
-source "${LFBFL_library}"
+source "./build_and_checks_dependencies/lines_filters.libr.sh"
+declare -i LFBFL_i_popd_result3
+popd || {
+  LFBFL_i_popd_result3=$?
+  printf "post-commit no popd"
+  # shellcheck disable=SC2248
+  exit ${LFBFL_i_popd_result3}
+}
 
 LFBFL_data_file_name="build_and_checks_variables/repository_data.txt"
 LFBFL_max_comment_line_length=""

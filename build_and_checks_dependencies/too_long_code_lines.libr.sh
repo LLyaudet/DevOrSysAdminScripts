@@ -46,11 +46,11 @@ too_long_code_lines(){
   can_continue_after_enhanced_pushd || return 1
 
   local LFBFL_arg
-  declare -i LFBFL_max_line_length=70
+  declare -i LFBFL_i_max_line_length=70
   for LFBFL_arg in "$@"; do
     if [[ "${LFBFL_arg}" == --max-line-length=* ]]; then
       LFBFL_arg=${LFBFL_arg#--max-line-length=}
-      LFBFL_max_line_length=$((LFBFL_arg))
+      LFBFL_i_max_line_length=$((LFBFL_arg))
       break
     fi
   done
@@ -65,7 +65,7 @@ too_long_code_lines(){
   local LFBFL_line
   local LFBFL_extension
   local LFBFL_base_name
-  declare -ir LFBFL_overlength=$((LFBFL_max_line_length+1))
+  declare -ir LFBFL_i_overlength=$((LFBFL_i_max_line_length+1))
   local LFBFL_s_long_lines
   declare -a LFBFL_arr_long_lines
   for LFBFL_pattern in "${COMMON_TEXT_FILES_GLOB_PATTERNS[@]}"; do
@@ -76,7 +76,7 @@ too_long_code_lines(){
       find . -type f -name "${LFBFL_pattern}" -printf '%P\n'\
       | relevant_find\
       | not_license_find\
-      | xargs grep -H '.\{'${LFBFL_overlength}'\}'
+      | xargs grep -H '.\{'${LFBFL_i_overlength}'\}'
     )
     if [[ -z "${LFBFL_s_long_lines}" ]]; then
       [[ LFBFL_i_verbose -eq 1 ]]\

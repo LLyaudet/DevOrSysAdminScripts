@@ -1027,27 +1027,27 @@ split_line_at_most(){
       LFBFL_j=$((LFBFL_i+1))
       LFBFL_current_char="${1:${LFBFL_i}:1}"
       eval "$3 '${LFBFL_current_char}' 1"
-      # printf "%s|%s\n" "${split_score_result}" "${LFBFL_j}"
-      if [[ split_score_result -ge 1 ]]; then
-        # printf "%s|%s\n" "${split_score_result}" "${LFBFL_j}"
+      # printf "%s|%s\n" "${i_split_score_result}" "${LFBFL_j}"
+      if [[ i_split_score_result -ge 1 ]]; then
+        # printf "%s|%s\n" "${i_split_score_result}" "${LFBFL_j}"
         if [[ ${LFBFL_positions["${LFBFL_j}"]} != "-1" ]]; then
           LFBFL_positions["${LFBFL_j}"]=$(
             max "${LFBFL_sort_command}"\
               "${LFBFL_positions["${LFBFL_j}"]}"\
-              "${split_score_result}"
+              "${i_split_score_result}"
           )
           break
         fi
       fi
       eval "$3 '${LFBFL_current_char}' 0"
-      # printf "%s|%s\n" "${split_score_result}" "${LFBFL_i}"
-      if [[ split_score_result -ge 1 ]]; then
-        # printf "%s|%s\n" "${split_score_result}" "${LFBFL_i}"
+      # printf "%s|%s\n" "${i_split_score_result}" "${LFBFL_i}"
+      if [[ i_split_score_result -ge 1 ]]; then
+        # printf "%s|%s\n" "${i_split_score_result}" "${LFBFL_i}"
         if [[ ${LFBFL_positions["${LFBFL_i}"]} != "-1" ]]; then
           LFBFL_positions["${LFBFL_i}"]=$(
             max "${LFBFL_sort_command}"\
               "${LFBFL_positions["${LFBFL_i}"]}"\
-              "${split_score_result}"
+              "${i_split_score_result}"
           )
         fi
       fi
@@ -1065,26 +1065,26 @@ split_line_at_most(){
       # maximum score, there is a possibility that we'll break on a found
       # score before but for splitting on a score after.
       eval "$3 '${LFBFL_current_char}' 1"
-      # printf "%s|%s\n" "${split_score_result}" "${LFBFL_j}"
-      if [[ split_score_result -ge 1 ]]; then
-        # printf "%s|%s\n" "${split_score_result}" "${LFBFL_j}"
+      # printf "%s|%s\n" "${i_split_score_result}" "${LFBFL_j}"
+      if [[ i_split_score_result -ge 1 ]]; then
+        # printf "%s|%s\n" "${i_split_score_result}" "${LFBFL_j}"
         if [[ ${LFBFL_positions["${LFBFL_j}"]} != "-1" ]]; then
           LFBFL_positions["${LFBFL_j}"]=$(
             max "${LFBFL_sort_command}"\
               "${LFBFL_positions["${LFBFL_j}"]}"\
-              "${split_score_result}"
+              "${i_split_score_result}"
           )
         fi
       fi
       eval "$3 '${LFBFL_current_char}' 0"
-      # printf "%s|%s\n" "${split_score_result}" "${LFBFL_i}"
-      if [[ split_score_result -ge 1 ]]; then
-        # printf "%s|%s\n" "${split_score_result}" "${LFBFL_i}"
+      # printf "%s|%s\n" "${i_split_score_result}" "${LFBFL_i}"
+      if [[ i_split_score_result -ge 1 ]]; then
+        # printf "%s|%s\n" "${i_split_score_result}" "${LFBFL_i}"
         if [[ ${LFBFL_positions["${LFBFL_i}"]} != "-1" ]]; then
           LFBFL_positions["${LFBFL_i}"]=$(
             max "${LFBFL_sort_command}"\
               "${LFBFL_positions["${LFBFL_i}"]}"\
-              "${split_score_result}"
+              "${i_split_score_result}"
           )
           break
         fi
@@ -1095,26 +1095,26 @@ split_line_at_most(){
       LFBFL_j=$((LFBFL_i+1))
       LFBFL_current_char="${1:${LFBFL_i}:1}"
       eval "$3 '${LFBFL_current_char}' ${LFBFL_i} 0"
-      # printf "%s|%s\n" "${split_score_result}" "${LFBFL_i}"
-      if [[ split_score_result -ge 1 ]]; then
-        # printf "%s|%s\n" "${split_score_result}" "${LFBFL_i}"
+      # printf "%s|%s\n" "${i_split_score_result}" "${LFBFL_i}"
+      if [[ i_split_score_result -ge 1 ]]; then
+        # printf "%s|%s\n" "${i_split_score_result}" "${LFBFL_i}"
         if [[ ${LFBFL_positions["${LFBFL_i}"]} != "-1" ]]; then
           LFBFL_positions["${LFBFL_i}"]=$(
             max "${LFBFL_sort_command}"\
               "${LFBFL_positions["${LFBFL_i}"]}"\
-              "${split_score_result}"
+              "${i_split_score_result}"
           )
         fi
       fi
       eval "$3 '${LFBFL_current_char}' ${LFBFL_j} 1"
-      # printf "%s|%s\n" "${split_score_result}" "${LFBFL_j}"
-      if [[ split_score_result -ge 1 ]]; then
-        # printf "%s|%s\n" "${split_score_result}" "${LFBFL_j}"
+      # printf "%s|%s\n" "${i_split_score_result}" "${LFBFL_j}"
+      if [[ i_split_score_result -ge 1 ]]; then
+        # printf "%s|%s\n" "${i_split_score_result}" "${LFBFL_j}"
         if [[ ${LFBFL_positions["${LFBFL_j}"]} != "-1" ]]; then
           LFBFL_positions["${LFBFL_j}"]=$(
             max "${LFBFL_sort_command}"\
               "${LFBFL_positions["${LFBFL_j}"]}"\
-              "${split_score_result}"
+              "${i_split_score_result}"
           )
         fi
       fi

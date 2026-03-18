@@ -36,24 +36,23 @@
 LFBFL_this_file_path=$(realpath "${BASH_SOURCE[0]}")
 LFBFL_this_file_directory=$(dirname "${LFBFL_this_file_path}")
 LFBFL_some_directory="${LFBFL_this_file_directory}/../"
-declare -i LFBFL_cd_result2
-pushd .
-cd "${LFBFL_some_directory}" || {
-  LFBFL_cd_result2=$?
+declare -i LFBFL_i_pushd_result2
+pushd "${LFBFL_some_directory}" || {
+  LFBFL_i_pushd_result2=$?
   printf "post_commit_renaming_comment.libr.sh no such directory"
   # shellcheck disable=SC2248
-  exit ${LFBFL_cd_result2}
+  exit ${LFBFL_i_pushd_result2}
 }
 # shellcheck source=common_options.libr.sh
 source "build_and_checks_dependencies/common_options.libr.sh"
 # shellcheck source=strings_functions.libr.sh
 source "build_and_checks_dependencies/strings_functions.libr.sh"
-declare -i LFBFL_popd_result2
+declare -i LFBFL_i_popd_result2
 popd || {
-  LFBFL_popd_result2=$?
+  LFBFL_i_popd_result2=$?
   printf "post_commit_renaming_comment.libr.sh no popd"
   # shellcheck disable=SC2248
-  exit ${LFBFL_popd_result2}
+  exit ${LFBFL_i_popd_result2}
 }
 
 # Never forget that the worse security is the illusion of security
@@ -76,29 +75,29 @@ commit_a_file_renamed_comment(){
   local LFBFL_arg
   local LFBFL_s_format
 
-  declare -i LFBFL_log_directory_change=0
+  declare -i LFBFL_i_log_directory_change=0
   if [[ "$*" == *--log-directory-change* ]]; then
-    LFBFL_log_directory_change=1
+    LFBFL_i_log_directory_change=1
   fi
-  readonly LFBFL_log_directory_change
+  readonly LFBFL_i_log_directory_change
 
-  declare -i LFBFL_max_comment_line_length=70
+  declare -i LFBFL_i_max_comment_line_length=70
   for LFBFL_arg in "$@"; do
     if [[ "${LFBFL_arg}" == --max-comment-line-length=* ]]; then
       LFBFL_arg=${LFBFL_arg#--max-comment-line-length=}
-      LFBFL_max_comment_line_length=$((LFBFL_arg))
+      LFBFL_i_max_comment_line_length=$((LFBFL_arg))
       break
     fi
   done
-  readonly LFBFL_max_comment_line_length
+  readonly LFBFL_i_max_comment_line_length
 
   if [[ LFBFL_i_verbose -eq 1 ]]; then
-    LFBFL_s_format="LFBFL_log_directory_change: %s\n"
-    LFBFL_s_format+="LFBFL_max_comment_line_length: %s\n"
+    LFBFL_s_format="LFBFL_i_log_directory_change: %s\n"
+    LFBFL_s_format+="LFBFL_i_max_comment_line_length: %s\n"
     # shellcheck disable=SC2059
     printf "${LFBFL_s_format}"\
-      "${LFBFL_log_directory_change}"\
-      "${LFBFL_max_comment_line_length}"
+      "${LFBFL_i_log_directory_change}"\
+      "${LFBFL_i_max_comment_line_length}"
   fi
   #-------------------------------------------------------------------
 
@@ -121,13 +120,21 @@ commit_a_file_renamed_comment(){
   if [[ LFBFL_i_verbose -eq 1 ]]; then
     printf "LFBFL_timestamp: %s\n" "${LFBFL_timestamp}"
   fi
-  get_split_score_simple 1 "${LFBFL_max_comment_line_length}" _
+  local LFBFL_split_score_command1
+  declare -i LFBFL_i_split_score_command_properties1
+  get_split_score_simple 1 "${LFBFL_i_max_comment_line_length}" _
   LFBFL_split_score_command1="${get_split_score_result}"
-  LFBFL_split_score_command_properties1="${get_split_score_result2}"
-  get_split_score_simple 1 "${LFBFL_max_comment_line_length}" /
+  LFBFL_i_split_score_command_properties1="${i_get_split_score_result2}"
+  readonly LFBFL_split_score_command1
+  readonly LFBFL_i_split_score_command_properties1
+  local LFBFL_split_score_command2
+  declare -i LFBFL_i_split_score_command_properties2
+  get_split_score_simple 1 "${LFBFL_i_max_comment_line_length}" /
   LFBFL_split_score_command2="${get_split_score_result}"
-  LFBFL_split_score_command_properties2="${get_split_score_result2}"
-  declare -i LFBFL_renaming_happened=0
+  LFBFL_i_split_score_command_properties2="${i_get_split_score_result2}"
+  readonly LFBFL_split_score_command2
+  readonly LFBFL_i_split_score_command_properties2
+  declare -i LFBFL_i_renaming_happened=0
   declare -i LFBFL_i
   declare -i LFBFL_j
   # declare -r LFBFL_special_file_name="files_names_listing.txt"
@@ -149,10 +156,10 @@ commit_a_file_renamed_comment(){
   local LFBFL_new_file_name2
   local LFBFL_new_file_directory2
   local LFBFL_new_comment
-  declare -i LFBFL_copyright_line_number
+  declare -i LFBFL_i_copyright_line_number
   declare -r LFBFL_send_summary_2="ATTENTION: No line with copyright"
-  declare -i LFBFL_line_count
-  declare -i LFBFL_lines_after
+  declare -i LFBFL_i_line_count
+  declare -i LFBFL_i_lines_after
   local LFBFL_temp_file_path
   for ((LFBFL_i=0; LFBFL_i<${#LFBFL_renaming_lines_array[@]};)); do
     LFBFL_diff_line="${LFBFL_renaming_lines_array[${LFBFL_i}]}"
@@ -249,33 +256,33 @@ commit_a_file_renamed_comment(){
     LFBFL_old_file_name2="${LFBFL_comment_prefix2}"
     LFBFL_old_file_name2+="${LFBFL_old_file_name}"
     repeated_split_last_line "${LFBFL_old_file_name2}"\
-      "${LFBFL_comment_prefix2}" "${LFBFL_max_comment_line_length}"\
+      "${LFBFL_comment_prefix2}" "${LFBFL_i_max_comment_line_length}"\
       '"' "${LFBFL_split_score_command1}"\
-      "${LFBFL_split_score_command_properties1}"
+      "${LFBFL_i_split_score_command_properties1}"
     LFBFL_old_file_name2="${repeated_split_last_line_result}"
     # -----
     LFBFL_old_file_directory2="${LFBFL_comment_prefix2}"
     LFBFL_old_file_directory2+="${LFBFL_old_file_directory}"
     repeated_split_last_line "${LFBFL_old_file_directory2}"\
-      "${LFBFL_comment_prefix2}" "${LFBFL_max_comment_line_length}"\
+      "${LFBFL_comment_prefix2}" "${LFBFL_i_max_comment_line_length}"\
       '"' "${LFBFL_split_score_command2}"\
-      "${LFBFL_split_score_command_properties2}"
+      "${LFBFL_i_split_score_command_properties2}"
     LFBFL_old_file_directory2="${repeated_split_last_line_result}"
     # -----
     LFBFL_new_file_name2="${LFBFL_comment_prefix2}"
     LFBFL_new_file_name2+="${LFBFL_new_file_name}"
     repeated_split_last_line "${LFBFL_new_file_name2}"\
-      "${LFBFL_comment_prefix2}" "${LFBFL_max_comment_line_length}"\
+      "${LFBFL_comment_prefix2}" "${LFBFL_i_max_comment_line_length}"\
       '"' "${LFBFL_split_score_command1}"\
-      "${LFBFL_split_score_command_properties1}"
+      "${LFBFL_i_split_score_command_properties1}"
     LFBFL_new_file_name2="${repeated_split_last_line_result}"
     # -----
     LFBFL_new_file_directory2="${LFBFL_comment_prefix2}"
     LFBFL_new_file_directory2+="${LFBFL_new_file_directory}"
     repeated_split_last_line "${LFBFL_new_file_directory2}"\
-      "${LFBFL_comment_prefix2}" "${LFBFL_max_comment_line_length}"\
+      "${LFBFL_comment_prefix2}" "${LFBFL_i_max_comment_line_length}"\
       '"' "${LFBFL_split_score_command2}"\
-      "${LFBFL_split_score_command_properties2}"
+      "${LFBFL_i_split_score_command_properties2}"
     LFBFL_new_file_directory2="${repeated_split_last_line_result}"
     # Create new comments strings. -----------------------------------
     LFBFL_new_comment=""
@@ -291,7 +298,7 @@ commit_a_file_renamed_comment(){
       LFBFL_new_comment+=$'\n'
       LFBFL_new_comment+="${LFBFL_new_file_name2}"'".'
     fi
-    if [[ LFBFL_log_directory_change -eq 1
+    if [[ LFBFL_i_log_directory_change -eq 1
       && "${LFBFL_new_file_directory}" != "${LFBFL_old_file_directory}"
       ]];
     then
@@ -313,16 +320,16 @@ commit_a_file_renamed_comment(){
       printf "LFBFL_new_comment: %s\n" "${LFBFL_new_comment}"
     fi
     # Find line with ©Copyright. -------------------------------------
-    LFBFL_copyright_line_number=$(
+    LFBFL_i_copyright_line_number=$(
       grep -n '©Copyright' "${LFBFL_new_file_path}"\
       | head --lines=1\
       | cut -d ':' -f 1
     )
     if [[ LFBFL_i_verbose -eq 1 ]]; then
-      printf "LFBFL_copyright_line_number: %s\n"\
-        "${LFBFL_copyright_line_number}"
+      printf "LFBFL_i_copyright_line_number: %s\n"\
+        "${LFBFL_i_copyright_line_number}"
     fi
-    if [[ LFBFL_copyright_line_number -eq 0 ]]; then
+    if [[ LFBFL_i_copyright_line_number -eq 0 ]]; then
       notify-send "${LFBFL_send_summary_2}"\
         "${LFBFL_send_summary_2} for: ${LFBFL_new_comment}"
       if [[ LFBFL_i_verbose -eq 1 ]]; then
@@ -331,35 +338,35 @@ commit_a_file_renamed_comment(){
       continue
     fi
     # Get total number of lines. -------------------------------------
-    LFBFL_line_count=$(
+    LFBFL_i_line_count=$(
       wc -l\
       < "${LFBFL_new_file_path}"
     )
     if [[ LFBFL_i_verbose -eq 1 ]]; then
-      printf "LFBFL_line_count: %s\n" "${LFBFL_line_count}"
+      printf "LFBFL_i_line_count: %s\n" "${LFBFL_i_line_count}"
     fi
     # Compute number of lines after. ---------------------------------
-    LFBFL_lines_after=$((
-      LFBFL_line_count - LFBFL_copyright_line_number
+    LFBFL_i_lines_after=$((
+      LFBFL_i_line_count - LFBFL_i_copyright_line_number
     ))
     if [[ LFBFL_i_verbose -eq 1 ]]; then
-      printf "LFBFL_lines_after: %s\n" "${LFBFL_lines_after}"
+      printf "LFBFL_i_lines_after: %s\n" "${LFBFL_i_lines_after}"
     fi
     # Update file. ---------------------------------------------------
     LFBFL_temp_file_path="${LFBFL_new_file_path}.LFBFL.temp"
     {
-      head --lines="${LFBFL_copyright_line_number}"\
+      head --lines="${LFBFL_i_copyright_line_number}"\
         "${LFBFL_new_file_path}"
       printf "%s\n" "${LFBFL_new_comment}"
-      tail --lines="${LFBFL_lines_after}" "${LFBFL_new_file_path}"
+      tail --lines="${LFBFL_i_lines_after}" "${LFBFL_new_file_path}"
     } >> "${LFBFL_temp_file_path}"
     mv "${LFBFL_temp_file_path}" "${LFBFL_new_file_path}"
     # Add file to stage. ---------------------------------------------
     git add "${LFBFL_new_file_path}"
-    LFBFL_renaming_happened=1
+    LFBFL_i_renaming_happened=1
   done
-  readonly LFBFL_renaming_happened
-  if [[ LFBFL_renaming_happened -eq 1 ]]; then
+  readonly LFBFL_i_renaming_happened
+  if [[ LFBFL_i_renaming_happened -eq 1 ]]; then
     # Commit ---------------------------------------------------------
     local LFBFL_message="commit_a_file_renamed_comment()"
     LFBFL_message+=" post-commit hook, ${LFBFL_timestamp}."

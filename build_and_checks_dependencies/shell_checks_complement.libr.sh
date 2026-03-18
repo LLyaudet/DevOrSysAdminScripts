@@ -64,15 +64,16 @@ check_no_misplaced_then(){
   can_continue_after_enhanced_pushd || return 1
 
   local LFBFL_arg
-  declare -i LFBFL_max_line_length=70
+  declare -i LFBFL_i_max_line_length=70
   for LFBFL_arg in "$@"; do
     if [[ "${LFBFL_arg}" == --max-line-length=* ]]; then
       LFBFL_arg=${LFBFL_arg#--max-line-length=}
-      LFBFL_max_line_length=$((LFBFL_arg))
+      LFBFL_i_max_line_length=$((LFBFL_arg))
       break
     fi
   done
-  declare -i LFBFL_max_previous_line_length=$((LFBFL_max_line_length - 5))
+  declare -i LFBFL_i_max_previous_line_length
+  LFBFL_i_max_previous_line_length=$((LFBFL_i_max_line_length - 5))
 
   enhanced_set_bash_option globstar\
     && trap 'enhanced_unset_bash_option globstar' RETURN
@@ -82,9 +83,9 @@ check_no_misplaced_then(){
         "Checking that shell scripts do not contain misplaced 'then'.\n"
 
   local LFBFL_regexp
-  LFBFL_regexp="^[^\n]{1,${LFBFL_max_previous_line_length}}"
+  LFBFL_regexp="^[^\n]{1,${LFBFL_i_max_previous_line_length}}"
   LFBFL_regexp+="(?<=\]\];)"
-  LFBFL_regexp+="(?<!^\s{0,${LFBFL_max_previous_line_length}}\]\];)"
+  LFBFL_regexp+="(?<!^\s{0,${LFBFL_i_max_previous_line_length}}\]\];)"
   LFBFL_regexp+="\n\s*then"
 
   pcre2grep -M -- "${LFBFL_regexp}" **/*.sh

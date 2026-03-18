@@ -74,7 +74,7 @@ update_or_check_files_names_listing(){
 
   declare -i LFBFL_i_max_line_length
   grep_variable "${LFBFL_data_file_name}" max_line_length\
-    --result-variable-prefix="LFBFL_"
+    --result-variable-prefix="LFBFL_i_"
 
   if [[ LFBFL_i_write -eq 1 ]]; then
     : > "${LFBFL_listing}"

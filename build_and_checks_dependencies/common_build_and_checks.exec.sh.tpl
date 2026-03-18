@@ -299,7 +299,7 @@ common_build_and_checks(){
   # shellcheck source=repository_data.libr.sh
   source "./${LFBFL_subdir}/repository_data.libr.sh"
   # shellcheck disable=SC2154,SC2309
-  [[ enhanced_set_bash_option_extglob_result -eq 0 ]]\
+  [[ i_enhanced_set_bash_option_extglob_result -eq 0 ]]\
     && enhanced_unset_bash_option extglob
 
   enhanced_set_shell_option pipefail\

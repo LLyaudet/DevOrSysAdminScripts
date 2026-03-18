@@ -61,31 +61,31 @@ enhanced_pushd(){
   # returns an error code whenever no pushd happened
   [[ LFBFL_i_verbose -eq 1 ]]\
     && printf "enhanced_pushd requested: %s\n" "$1"
-  declare -ig enhanced_pushd_result=0
+  declare -gi i_enhanced_pushd_result=0
   if [[ -z "$1" ]]; then
-    enhanced_pushd_result=110
+    i_enhanced_pushd_result=110
     # shellcheck disable=SC2248
-    return ${enhanced_pushd_result}
+    return ${i_enhanced_pushd_result}
   fi
   [[ LFBFL_i_verbose -eq 1 ]] && printf "enhanced_pushd validated1\n"
   is_top_dirstack_directory "$1" && {
-    enhanced_pushd_result=111
+    i_enhanced_pushd_result=111
     # shellcheck disable=SC2248
-    return ${enhanced_pushd_result}
+    return ${i_enhanced_pushd_result}
   }
   [[ LFBFL_i_verbose -eq 1 ]] && printf "enhanced_pushd validated2\n"
 
   pushd "$1" || {
-    enhanced_pushd_result=$?
+    i_enhanced_pushd_result=$?
     local LFBFL_where_was_i
     get_where_was_i "$2"
     printf "%s %s%s no such directory.\n" "${LFBFL_where_was_i}" "$3" "$1"
     # shellcheck disable=SC2248
-    return ${enhanced_pushd_result}
+    return ${i_enhanced_pushd_result}
   }
   [[ LFBFL_i_verbose -eq 1 ]] && printf "enhanced_pushd executed\n"
   # shellcheck disable=SC2248
-  return ${enhanced_pushd_result}
+  return ${i_enhanced_pushd_result}
 }
 
 enhanced_popd(){
@@ -114,9 +114,9 @@ enhanced_popd(){
 }
 
 can_continue_after_enhanced_pushd(){
-  [[ enhanced_pushd_result -eq 0
-  || enhanced_pushd_result -eq 110
-  || enhanced_pushd_result -eq 111
+  [[ i_enhanced_pushd_result -eq 0
+  || i_enhanced_pushd_result -eq 110
+  || i_enhanced_pushd_result -eq 111
   ]]
 }
 
@@ -221,7 +221,7 @@ work_directory_is_top_dirstack_directory(){
 
 enhanced_set_shell_option(){
   # $1=optname some shell option for set
-  declare -r LFBFL_result_name="enhanced_set_shell_option_$1_result"
+  declare -r LFBFL_result_name="i_enhanced_set_shell_option_$1_result"
   declare -gi "${LFBFL_result_name}"=0
   if [[ -o "$1" ]]; then
     printf -v "${LFBFL_result_name}" "%d" "1"
@@ -240,7 +240,7 @@ enhanced_set_shell_option(){
 
 enhanced_unset_shell_option(){
   # $1=optname some shell option for set
-  declare -r LFBFL_result_name="enhanced_unset_shell_option_$1_result"
+  declare -r LFBFL_result_name="i_enhanced_unset_shell_option_$1_result"
   declare -gi "${LFBFL_result_name}"=0
   if [[ ! -o "$1" ]]; then
     printf -v "${LFBFL_result_name}" "%d" "1"
@@ -259,7 +259,7 @@ enhanced_unset_shell_option(){
 
 enhanced_set_bash_option(){
   # $1=optname some bash option for shopt
-  declare -r LFBFL_result_name="enhanced_set_bash_option_$1_result"
+  declare -r LFBFL_result_name="i_enhanced_set_bash_option_$1_result"
   declare -gi "${LFBFL_result_name}"=0
   # declare -r LFBFL_regexp="^(.*:)?$1(:.*)?$" funny but brainfucked
   # if [[ "${BASHOPTS}" =~ ${LFBFL_regexp} ]]; then
@@ -280,7 +280,7 @@ enhanced_set_bash_option(){
 
 enhanced_unset_bash_option(){
   # $1=optname some bash option for shopt
-  declare -r LFBFL_result_name="enhanced_unset_bash_option_$1_result"
+  declare -r LFBFL_result_name="i_enhanced_unset_bash_option_$1_result"
   declare -gi "${LFBFL_result_name}"=0
   if ! shopt -q "$1"; then
     printf -v "${LFBFL_result_name}" "%d" "1"

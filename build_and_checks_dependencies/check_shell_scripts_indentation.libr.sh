@@ -29,7 +29,7 @@ source "./${LFBFL_subdir}/common_options.libr.sh"
 source "./${LFBFL_subdir}/lines_filters.libr.sh"
 
 check_one_shell_script_indentation(){
-  declare -i LFBFL_file_with_error=0
+  declare -i LFBFL_i_file_with_error=0
   local LFBFL_some_line
   local LFBFL_previous_line="workeduntilsomeasshole"
   # created a command named "workeduntilsomeasshole"
@@ -39,11 +39,11 @@ check_one_shell_script_indentation(){
   # I just tried a joke and was lucky ;) :).
   local LFBFL_line_end
   local LFBFL_previous_line_end
-  declare -i LFBFL_line_length
-  declare -i LFBFL_line_end_length
-  declare -i LFBFL_line_start_length
+  declare -i LFBFL_i_line_length
+  declare -i LFBFL_i_line_end_length
+  declare -i LFBFL_i_line_start_length
   local LFBFL_spacing
-  declare -i LFBFL_offset
+  declare -i LFBFL_i_offset
   local LFBFL_substring1
   local LFBFL_substring2
   declare -r LFBFL_pattern='^ *-e '
@@ -78,42 +78,42 @@ check_one_shell_script_indentation(){
     LFBFL_line_end=${LFBFL_line_end#*:}
     # But for the previous line '-' or ':' is used instead of ':'
     # and filenames with '-' are much more frequent than with ':'...
-    LFBFL_line_length=${#LFBFL_some_line}
-    LFBFL_line_end_length=${#LFBFL_line_end}
-    LFBFL_line_start_length=$((
-      LFBFL_line_length-LFBFL_line_end_length
+    LFBFL_i_line_length=${#LFBFL_some_line}
+    LFBFL_i_line_end_length=${#LFBFL_line_end}
+    LFBFL_i_line_start_length=$((
+      LFBFL_i_line_length-LFBFL_i_line_end_length
     ))
-    LFBFL_offset=$((LFBFL_line_start_length-2))
+    LFBFL_i_offset=$((LFBFL_i_line_start_length-2))
     # Checking if increasing number of digits in the line numbers
     # (99 -> 100).
-    LFBFL_substring1=${LFBFL_previous_line:${LFBFL_offset}:1}
+    LFBFL_substring1=${LFBFL_previous_line:${LFBFL_i_offset}:1}
     # Nice puzzle below :) Look for comments above :)
     case ${LFBFL_substring1} in
-      -) ((LFBFL_offset+=1));;
-      :) ((LFBFL_offset+=1));;
-      [0-9]) ((LFBFL_offset+=2));;
+      -) ((LFBFL_i_offset+=1));;
+      :) ((LFBFL_i_offset+=1));;
+      [0-9]) ((LFBFL_i_offset+=2));;
       *) printf ":-(\n";;
     esac
-    LFBFL_previous_line_end=${LFBFL_previous_line:${LFBFL_offset}}
+    LFBFL_previous_line_end=${LFBFL_previous_line:${LFBFL_i_offset}}
     if [[ "${LFBFL_line_end}" =~ ${LFBFL_pattern} ]]; then
       # Line starts with spacing and -e
       # Keep max spaces
       LFBFL_spacing=${LFBFL_line_end%%-*}
-      LFBFL_offset=${#LFBFL_spacing}
-      LFBFL_substring1=${LFBFL_line_end:${LFBFL_offset}:3}
-      LFBFL_substring2=${LFBFL_previous_line_end:${LFBFL_offset}:3}
+      LFBFL_i_offset=${#LFBFL_spacing}
+      LFBFL_substring1=${LFBFL_line_end:${LFBFL_i_offset}:3}
+      LFBFL_substring2=${LFBFL_previous_line_end:${LFBFL_i_offset}:3}
       if [[ "${LFBFL_substring1}" != "${LFBFL_substring2}" ]]; then
         printf "%s\n" "${LFBFL_some_line}"
-        LFBFL_file_with_error=1
+        LFBFL_i_file_with_error=1
       fi
     else
       printf "%s\n" "${LFBFL_some_line}"
-      LFBFL_file_with_error=1
+      LFBFL_i_file_with_error=1
     fi
     LFBFL_previous_line="${LFBFL_some_line}"
   done
 
-  if [[ LFBFL_file_with_error -eq 1 ]]; then
+  if [[ LFBFL_i_file_with_error -eq 1 ]]; then
     printf "%s:File has some lines with odd number of spaces.\n" "$1"
   fi
 }

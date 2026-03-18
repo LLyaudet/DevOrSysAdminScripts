@@ -30,23 +30,34 @@
 # to
 # "./git_helpers".
 
-LFBFL_library="../DevOrSysAdminScripts/git_helpers/"
-LFBFL_library+="git_checks.libr.sh"
+LFBFL_some_directory="../DevOrSysAdminScripts"
+declare -i LFBFL_i_pushd_result3
+pushd "${LFBFL_some_directory}" || {
+  LFBFL_i_pushd_result3=$?
+  printf "pre-commit no such directory"
+  # shellcheck disable=SC2248
+  exit ${LFBFL_i_pushd_result3}
+}
 # shellcheck source=git_checks.libr.sh
-source "${LFBFL_library}"
+source "./git_helpers/git_checks.libr.sh"
+declare -i LFBFL_i_popd_result3
+popd || {
+  LFBFL_i_popd_result3=$?
+  printf "pre-commit no popd"
+  # shellcheck disable=SC2248
+  exit ${LFBFL_i_popd_result3}
+}
 
-declare -ig LFBFL_git_hook_error=0
+declare -gi LFBFL_i_git_hook_error=0
 if ! check_files; then
-  LFBFL_git_hook_error=1
+  LFBFL_i_git_hook_error=1
 fi
 if ! check_no_abusive_trailing_comma; then
-  LFBFL_git_hook_error=1
+  LFBFL_i_git_hook_error=1
 fi
 if ! check_black_code_formatting; then
-  LFBFL_git_hook_error=1
+  LFBFL_i_git_hook_error=1
 fi
-readonly LFBFL_git_hook_error
-if [[ LFBFL_git_hook_error -eq 1 ]]; then
-  exit 1
-fi
-exit 0
+readonly LFBFL_i_git_hook_error
+# shellcheck disable=SC2248
+exit ${LFBFL_i_git_hook_error}

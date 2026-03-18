@@ -94,21 +94,29 @@ update_or_check_files_names_listing(){
   # There is always a $'\n' final suffix from >>.
   # But when origin string ends with the suffix we must add something.
 
-  local LFBFL_s_file_paths
-  LFBFL_s_file_paths=$(
+  local LFBFL_s_files_paths
+  LFBFL_s_files_paths=$(
     find . -type f -printf '%P\n'\
     | relevant_find\
     | sort
   )
-  declare -a LFBFL_arr_file_paths
+  # printf "%s\n" "${LFBFL_s_files_paths}"
+  declare -a LFBFL_arr_files_paths
   if [[ -n "${LFBFL_s_files_paths}" ]]; then
-    mapfile -t LFBFL_arr_file_paths <<< "${LFBFL_s_file_paths}"
+    if [[ LFBFL_i_verbose -eq 1 ]]; then
+      printf "Some files to process."
+    fi
+    mapfile -t LFBFL_arr_files_paths <<< "${LFBFL_s_files_paths}"
   fi
+  # printf "%s\n" "${LFBFL_arr_files_paths[@]}"
 
   declare -r LFBFL_final_suffix=$'\n\\'
   local LFBFL_file_path
   local LFBFL_base_file_name
-  for LFBFL_file_path in "${LFBFL_arr_file_paths[@]}"; do
+  for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do
+    # if [[ LFBFL_i_verbose -eq 1 ]]; then
+    #   printf "Maybe ignored file: %s\n" "${LFBFL_file_path}"
+    # fi
     git check-ignore -q "${LFBFL_file_path}" && continue
     LFBFL_base_file_name=$(basename "${LFBFL_file_path}")
     [[ "${LFBFL_base_file_name}" != files_names_listing.txt* ]]\
@@ -152,12 +160,12 @@ update_or_check_files_names_listing(){
     fi
   done
 
-  LFBFL_s_file_paths=$(cat "${LFBFL_listing}.temp")
+  LFBFL_s_files_paths=$(cat "${LFBFL_listing}.temp")
   if [[ -n "${LFBFL_s_files_paths}" ]]; then
-    mapfile -t LFBFL_arr_file_paths <<< "${LFBFL_s_file_paths}"
+    mapfile -t LFBFL_arr_files_paths <<< "${LFBFL_s_files_paths}"
   fi
 
-  for LFBFL_file_path in "${LFBFL_arr_file_paths[@]}"; do
+  for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do
     [[ "${LFBFL_file_path}" != '//'* ]] || continue
     LFBFL_base_file_name=$(basename "${LFBFL_file_path}")
     if ! [[ -f "${LFBFL_file_path}" ]]; then

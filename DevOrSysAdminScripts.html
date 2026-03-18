@@ -119,10 +119,10 @@ Some “small” useful scripts
 for enhancing development or system-administrators tasks
 </blockquote>
 <p>Current version: 2026-03-18</p>
-<p>Current number of commits: 619</p>
-<p>Current git SHA1: cf89bcaa5c4fb8a8ee3242ecec6ba00c00cf9ff6</p>
+<p>Current number of commits: 632</p>
+<p>Current git SHA1: 7fd5082c2d47614fd1852ba0a65f11d92f5da634</p>
 <p>
-Code lines: 11001 total lines, 10021 not empty lines, 980 empty lines.
+Code lines: 11266 total lines, 10244 not empty lines, 1022 empty lines.
 </p>
 
 
@@ -308,15 +308,24 @@ miscellaneous/funny.sh
 miscellaneous/spampty_data.txt
       </a></li>
       <li><a href="#subsection2.58">
-README.md.tpl
+miscellaneous/string_escaping.html
       </a></li>
       <li><a href="#subsection2.59">
-unicode.libr.php
+miscellaneous/string_escaping.xhtml
       </a></li>
       <li><a href="#subsection2.60">
-upgrade_build_and_checks.exec.sh
+README.md.tpl
       </a></li>
       <li><a href="#subsection2.61">
+string_escaping.libr.php
+      </a></li>
+      <li><a href="#subsection2.62">
+unicode.libr.php
+      </a></li>
+      <li><a href="#subsection2.63">
+upgrade_build_and_checks.exec.sh
+      </a></li>
+      <li><a href="#subsection2.64">
 wget_sha512.libr.sh
       </a></li>
     </ol>
@@ -413,28 +422,31 @@ wget_sha512.libr.sh
 │   │ an_see_that_it_works.txt
 │   ├── funny.sh
 │   ├── spampty_data.txt
+│   ├── string_escaping.html
+│   ├── string_escaping.xhtml
 │   └──
 │     yet_another_long_long_long_long_long_long_long_long_long_filename_so_
 │     that_you_can_see_that_it_works.txt
 ├── README.html
 ├── README.md
 ├── README.md.tpl
+├── string_escaping.libr.php
 ├── unicode.libr.php
 ├── upgrade_build_and_checks.exec.sh
 └── wget_sha512.libr.sh
 
-6 directories, 74 files
+6 directories, 77 files
 </pre>
 <pre class="verbatim">
-[ 12K Mar 18 15:12]  ./
-├── [4.0K Mar 18 15:12]  build_and_checks_dependencies/
+[ 12K Mar 18 17:34]  ./
+├── [4.0K Mar 18 17:34]  build_and_checks_dependencies/
 │   ├── [3.8K Mar 10 16:37]  build_and_checks.exec.sh.tpl*
 │   ├── [4.1K Mar 10 16:49]  build_md_from_printable_md.exec.sh*
 │   ├── [3.2K Mar 10 16:30]  check_shell_scripts_beginnings.libr.sh
 │   ├── [5.3K Mar 18 14:50]  check_shell_scripts_indentation.libr.sh
-│   ├── [3.4K Mar 10 16:30]  check_URLs.libr.sh
-│   ├── [ 31K Mar 18 15:05]  common_build_and_checks.exec.sh*
-│   ├── [ 26K Mar 18 15:03]  common_build_and_checks.exec.sh.tpl
+│   ├── [3.5K Mar 18 17:25]  check_URLs.libr.sh
+│   ├── [ 31K Mar 18 17:25]  common_build_and_checks.exec.sh*
+│   ├── [ 26K Mar 18 16:55]  common_build_and_checks.exec.sh.tpl
 │   ├── [9.1K Mar 18 14:42]  common_options.libr.sh
 │   ├── [6.1K Mar 18 14:25]  comparisons.libr.sh
 │   ├── [ 19K Mar 18 14:21]  create_PDF.exec.sh*
@@ -458,21 +470,21 @@ wget_sha512.libr.sh
 │   ├── [1.9K Feb  3 20:11]  split_score.libr.php
 │   ├── [ 47K Mar 18 13:07]  strings_functions.libr.sh
 │   ├── [3.8K Mar 18 14:52]  too_long_code_lines.libr.sh
-│   ├── [4.2K Mar  9 16:05]  update_common_build_and_checks.exec.sh*
-│   └── [5.7K Mar 18 12:56]  update_or_check_files_names_listing.exec.sh*
-├── [4.0K Mar 18 15:05]  build_and_checks.exec.sh*
-├── [4.0K Mar 18 15:12]  build_and_checks_variables/
+│   ├── [4.2K Mar 18 17:29]  update_common_build_and_checks.exec.sh*
+│   └── [6.0K Mar 18 17:14]  update_or_check_files_names_listing.exec.sh*
+├── [4.0K Mar 18 17:25]  build_and_checks.exec.sh*
+├── [4.0K Mar 18 17:34]  build_and_checks_variables/
 │   ├── [  15 Jan  5 20:00]  bandit_baseline.json
 │   ├── [  25 Jan  5 18:49]  bandit.ini
 │   ├── [  30 Feb 28 20:30]  black.toml
 │   ├── [ 16K Mar  8 17:00]  DevOrSysAdminScripts.html.tpl
-│   ├── [ 32K Mar 18 15:12]  DevOrSysAdminScripts.tex
+│   ├── [ 32K Mar 18 17:34]  DevOrSysAdminScripts.tex
 │   ├── [8.9K Mar 17 14:38]  DevOrSysAdminScripts.tex.tpl
-│   ├── [ 14K Mar 17 15:58]  files_listing.tex.tpl
-│   ├── [5.1K Mar 10 16:14]  files_names_listing.txt
+│   ├── [ 14K Mar 18 17:17]  files_listing.tex.tpl
+│   ├── [5.2K Mar 18 17:14]  files_names_listing.txt
 │   ├── [  24 Jan 15 22:26]  .gitignore
 │   ├── [5.2K Mar  8 16:52]  licenses_notes.txt
-│   ├── [1.0K Mar  5 21:36]  phpmd_baseline.xml
+│   ├── [1.2K Mar 18 16:43]  phpmd_baseline.xml
 │   ├── [ 678 Feb 24 22:38]  pylintrc.toml
 │   ├── [4.5K Mar 17 12:41]  repository_data.txt
 │   ├── [1.4K Feb 24 23:25]  ruff.toml
@@ -480,8 +492,8 @@ wget_sha512.libr.sh
 │   └── [3.5K Mar  9 14:46]  shellcheck_notes.txt
 ├── [ 34K May  6  2024]  COPYING
 ├── [7.5K Dec 27 21:48]  COPYING.LESSER
-├── [432K Mar 18 15:12]  DevOrSysAdminScripts.html
-├── [376K Mar 18 15:12]  DevOrSysAdminScripts.pdf
+├── [439K Mar 18 17:34]  DevOrSysAdminScripts.html
+├── [381K Mar 18 17:34]  DevOrSysAdminScripts.pdf
 ├── [4.0K Mar 18 14:56]  git_helpers/
 │   ├── [3.8K Mar 18 14:56]  git_checks.libr.sh
 │   ├── [2.1K Mar 18 12:15]  post-commit*
@@ -489,7 +501,7 @@ wget_sha512.libr.sh
 │   └── [1.8K Mar 18 13:17]  pre-commit*
 ├── [8.3K Feb 28 20:31]  IMAP_transfert.py
 ├── [ 830 Dec 29 19:10]  LiensUtiles.txt
-├── [4.0K Mar  9 15:15]  miscellaneous/
+├── [4.0K Mar 18 17:27]  miscellaneous/
 │   ├── [   0 Mar  4 10:37]
 │   │ 123456789012345678901234567890123456789012345678901234567890123456789
 │   │ 0123\
@@ -513,17 +525,20 @@ wget_sha512.libr.sh
 │   │ an_see_that_it_works.txt
 │   ├── [1.3K Mar  9 15:15]  funny.sh
 │   ├── [  94 Mar  3 19:56]  spampty_data.txt
+│   ├── [ 442 Mar 18 16:50]  string_escaping.html
+│   ├── [ 654 Mar 18 17:27]  string_escaping.xhtml
 │   └── [   0 Mar  4 09:13]
 │     yet_another_long_long_long_long_long_long_long_long_long_filename_so_
 │     that_you_can_see_that_it_works.txt
-├── [8.0K Mar 10 16:50]  README.html
-├── [4.2K Mar 10 16:50]  README.md
-├── [4.2K Mar  9 15:34]  README.md.tpl
+├── [8.1K Mar 18 15:25]  README.html
+├── [4.3K Mar 18 15:25]  README.md
+├── [4.3K Mar 18 15:25]  README.md.tpl
+├── [3.1K Mar 18 16:41]  string_escaping.libr.php
 ├── [ 12K Mar 18 14:02]  unicode.libr.php
 ├── [1.4K Mar 10 16:37]  upgrade_build_and_checks.exec.sh*
 └── [1.5K Mar  8 20:25]  wget_sha512.libr.sh
 
-6 directories, 74 files
+6 directories, 77 files
 </pre>
 
 
@@ -1480,7 +1495,9 @@ check_URLs(){
     find . -type f -name "${LFBFL_pattern}" -printf '%P\n'\
       | xargs grep -H 'http:'\
       | grep -v "| xargs grep -H 'htt"\
-      | grep -vP "['\"]http(:[^'\"]*)['\"].*['\"]https\\1['\"]"
+      | grep -vP "['\"]http(:[^'\"]*)['\"].*['\"]https\\1['\"]"\
+      | grep -v 'http://www.w3.org/1999/xhtml'\
+      | grep -v 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'
     # Last grep just above will remove false positives from
     # substitutions that fit on one line.
 
@@ -1618,9 +1635,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='284e3bf4f66835020141ddb7d34fe5e36131c10b548cb'
-  LFBFL_correct_sha512+='5d34f59ae8fccbba4c827131eb7099323bc32a71c9b5'
-  LFBFL_correct_sha512+='7c0b9ef80fbccb385c3ce492d7a256f4743be42'
+  LFBFL_correct_sha512='2a7f13c4745b9e6b852dc0254d9d43a1407fd9f6ef2e2'
+  LFBFL_correct_sha512+='506500ec06f4c81b6d7fdccb77a1b940de8ddebb9e8a'
+  LFBFL_correct_sha512+='7d7c8f404fe3f12b574121e927d1332aabf8d28'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
 
@@ -1854,9 +1871,9 @@ common_build_and_checks(){
   LFBFL_URL="${LFBFL_start_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='88e08eca01fdcbd28ed4abd6742c07f30d38352ffaaac'
-  LFBFL_correct_sha512+='26f65e78eab8b6ce734e648e9a7c0b64991a87eaa39f'
-  LFBFL_correct_sha512+='5c9eeeaf8a7eb663425f3f61f597eadfe81b6dc'
+  LFBFL_correct_sha512='087d69244eadd5fd5193495fc7c23bb98bd954b02c2dc'
+  LFBFL_correct_sha512+='9be2ac68f040e451c38dbddaeb420fb373f82ade66bc'
+  LFBFL_correct_sha512+='f8039e35a8f0ee77f2f61d58e4f4dc146dc8936'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_URL}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
   chmod +x "./${LFBFL_file_path}"
@@ -2287,8 +2304,10 @@ common_build_and_checks(){
       printf "Go get the latest version here:\n"
       printf "https://github.com/validator/validator/releases\n"
     fi
+    # vnu has false positives for xhtml
+    # find . -iregex ".*\.\(css\|html\|svg\|xhtml\)"
     declare -r LFBFL_files_for_Nu=$(
-      find . -iregex ".*\.\(css\|html\|svg\|xhtml\)"\
+      find . -iregex ".*\.\(css\|html\|svg\)"\
       | relevant_find
     )
     if [[ -n "${LFBFL_files_for_Nu}" ]]; then
@@ -3002,8 +3021,10 @@ common_build_and_checks(){
       printf "Go get the latest version here:\n"
       printf "https://github.com/validator/validator/releases\n"
     fi
+    # vnu has false positives for xhtml
+    # find . -iregex ".*\.\(css\|html\|svg\|xhtml\)"
     declare -r LFBFL_files_for_Nu=$(
-      find . -iregex ".*\.\(css\|html\|svg\|xhtml\)"\
+      find . -iregex ".*\.\(css\|html\|svg\)"\
       | relevant_find
     )
     if [[ -n "${LFBFL_files_for_Nu}" ]]; then
@@ -7681,7 +7702,7 @@ update_common_build_and_checks(){
   cp "./${LFBFL_common_file_name}.tpl"\
     "./${LFBFL_common_file_name}.temp"
 
-  declare -ar LFBFL_file_names=(
+  declare -ar LFBFL_files_names=(
     "build_md_from_printable_md.exec.sh"
     "check_shell_scripts_beginnings.libr.sh"
     "check_shell_scripts_indentation.libr.sh"
@@ -7715,7 +7736,7 @@ update_common_build_and_checks(){
   local LFBFL_file_sha512
   local LFBFL_file_sha512_all
   local LFBFL_base_file_name
-  for LFBFL_file_name in "${LFBFL_file_names[@]}"; do
+  for LFBFL_file_name in "${LFBFL_files_names[@]}"; do
     LFBFL_file_sha512=$(
       sha512sum "./${LFBFL_file_name}"\
       | cut -f1 -d' '
@@ -7862,21 +7883,29 @@ update_or_check_files_names_listing(){
   # There is always a $'\n' final suffix from >>.
   # But when origin string ends with the suffix we must add something.
 
-  local LFBFL_s_file_paths
-  LFBFL_s_file_paths=$(
+  local LFBFL_s_files_paths
+  LFBFL_s_files_paths=$(
     find . -type f -printf '%P\n'\
     | relevant_find\
     | sort
   )
-  declare -a LFBFL_arr_file_paths
+  # printf "%s\n" "${LFBFL_s_files_paths}"
+  declare -a LFBFL_arr_files_paths
   if [[ -n "${LFBFL_s_files_paths}" ]]; then
-    mapfile -t LFBFL_arr_file_paths &lt;&lt;&lt; "${LFBFL_s_file_paths}"
+    if [[ LFBFL_i_verbose -eq 1 ]]; then
+      printf "Some files to process."
+    fi
+    mapfile -t LFBFL_arr_files_paths &lt;&lt;&lt; "${LFBFL_s_files_paths}"
   fi
+  # printf "%s\n" "${LFBFL_arr_files_paths[@]}"
 
   declare -r LFBFL_final_suffix=$'\n\\'
   local LFBFL_file_path
   local LFBFL_base_file_name
-  for LFBFL_file_path in "${LFBFL_arr_file_paths[@]}"; do
+  for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do
+    # if [[ LFBFL_i_verbose -eq 1 ]]; then
+    #   printf "Maybe ignored file: %s\n" "${LFBFL_file_path}"
+    # fi
     git check-ignore -q "${LFBFL_file_path}" &amp;&amp; continue
     LFBFL_base_file_name=$(basename "${LFBFL_file_path}")
     [[ "${LFBFL_base_file_name}" != files_names_listing.txt* ]]\
@@ -7920,12 +7949,12 @@ update_or_check_files_names_listing(){
     fi
   done
 
-  LFBFL_s_file_paths=$(cat "${LFBFL_listing}.temp")
+  LFBFL_s_files_paths=$(cat "${LFBFL_listing}.temp")
   if [[ -n "${LFBFL_s_files_paths}" ]]; then
-    mapfile -t LFBFL_arr_file_paths &lt;&lt;&lt; "${LFBFL_s_file_paths}"
+    mapfile -t LFBFL_arr_files_paths &lt;&lt;&lt; "${LFBFL_s_files_paths}"
   fi
 
-  for LFBFL_file_path in "${LFBFL_arr_file_paths[@]}"; do
+  for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do
     [[ "${LFBFL_file_path}" != '//'* ]] || continue
     LFBFL_base_file_name=$(basename "${LFBFL_file_path}")
     if ! [[ -f "${LFBFL_file_path}" ]]; then
@@ -9539,6 +9568,30 @@ miscellaneous/spampty_data.txt
 
 
 \subsection{
+  miscellaneous/string\_escaping.html
+}
+\label{
+  miscellaneous:string_escapinghtml
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+miscellaneous/string_escaping.html
+}
+
+
+\subsection{
+  miscellaneous/string\_escaping.xhtml
+}
+\label{
+  miscellaneous:string_escapingxhtml
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+miscellaneous/string_escaping.xhtml
+}
+
+
+\subsection{
   README.md.tpl
 }
 \label{
@@ -9547,6 +9600,18 @@ miscellaneous/spampty_data.txt
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
 README.md.tpl
+}
+
+
+\subsection{
+  string\_escaping.libr.php
+}
+\label{
+  string_escapinglibrphp
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+string_escaping.libr.php
 }
 
 
@@ -9714,12 +9779,15 @@ a_long_long_long_long_long_long_long_long_long_filename_so_that_you_can_se\
 e_that_it_works.txt
 miscellaneous/funny.sh
 miscellaneous/spampty_data.txt
+miscellaneous/string_escaping.html
+miscellaneous/string_escaping.xhtml
 // miscellaneous/\
 yet_another_long_long_long_long_long_long_long_long_long_filename_so_that_\
 you_can_see_that_it_works.txt
 // README.html
 // README.md
 README.md.tpl
+string_escaping.libr.php
 unicode.libr.php
 upgrade_build_and_checks.exec.sh
 wget_sha512.libr.sh
@@ -9905,6 +9973,10 @@ build_and_checks_variables/phpmd_baseline.xml
     file="build_and_checks_dependencies/split_score.libr.php"/>
   &lt;violation rule="PHPMD\Rule\Controversial\CamelCaseVariableName"
     file="build_and_checks_dependencies/split_score.libr.php"/>
+  &lt;violation rule="PHPMD\Rule\Controversial\CamelCaseParameterName"
+    file="string_escaping.libr.php"/>
+  &lt;violation rule="PHPMD\Rule\Controversial\CamelCaseVariableName"
+    file="string_escaping.libr.php"/>
   &lt;violation rule="PHPMD\Rule\Design\LongMethod"
     file="unicode.libr.php"/>
   &lt;violation rule="PHPMD\Rule\Controversial\CamelCaseParameterName"
@@ -10308,9 +10380,9 @@ build_and_checks(){
   declare -r\
     LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_common_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='1008c3559f993b4d8d9cbd6bfc1e21d02ab662d249632'
-  LFBFL_correct_sha512+='5a3c4d7f1de0e3da96f9ced493a051b3c97ba02a1d49'
-  LFBFL_correct_sha512+='332777524b0bdcfbfce0f8695aee572ca3d9614'
+  LFBFL_correct_sha512='345ccc58c1af89cbe027ed4c2c27c366c274032cd025a'
+  LFBFL_correct_sha512+='9bb6e6e7ba5ab74f7fc75ddc6ca80a96b4cfd62f6d95'
+  LFBFL_correct_sha512+='9229e621ead486c21b3335f2ee5de4007f3f19d'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_script}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
   chmod +x "./${LFBFL_file_path}"
@@ -12228,6 +12300,82 @@ normal_again.txt: a
 
 
 <h3 id="subsection2.58">2.58
+miscellaneous/string_escaping.html
+</h3>
+<pre class="numbered_lines">
+&lt;!DOCTYPE html>
+&lt;html lang="en">
+&lt;head>
+  &lt;meta charset="utf-8">
+  &lt;title>Truc&lt;/title>
+&lt;/head>
+&lt;body>
+&lt;header id="title-block-header">
+&lt;h1 class="title">Truc&lt;/h1>
+&lt;/header>
+&amp;lt;abc> &amp;amp; &amp;lt;de>
+&lt;p title="&lt;&amp;>'
+ abcd`\ machin">
+This is some text
+&lt;/p>
+
+&lt;pre>
+"&amp;lt;&amp;amp;>'&amp;quot;
+abcd`\ machin"
+This is some text
+&lt;/pre>
+
+&lt;script>
+let a = 'abcd &amp; &lt; > \\ \n  \"\'';
+alert(a);
+let b = "abcd &amp; &lt; > \\ \n  \"\'";
+alert(b);
+&lt;/script>
+
+&lt;/body>
+&lt;/html>
+</pre>
+
+
+<h3 id="subsection2.59">2.59
+miscellaneous/string_escaping.xhtml
+</h3>
+<pre class="numbered_lines">
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+	  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+&lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
+&lt;head>
+&lt;meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  &lt;title>Truc&lt;/title>
+&lt;/head>
+&lt;body>
+&lt;h1 class="title">Truc&lt;/h1>
+&amp;lt;abc> &amp;amp; &amp;lt;de>
+
+&lt;p title="&amp;lt;&amp;amp;>'&amp;#10;
+ abcd`\ machin">
+This is some text
+&lt;/p>
+
+&lt;pre>
+"&amp;lt;&amp;amp;>'&amp;quot;
+abcd`\ machin"
+This is some text
+&lt;/pre>
+
+&lt;script type="text/javascript">
+let a = 'abcd &amp;amp; &amp;lt; > \\ \n  \"\'';
+alert(a);
+let b = "abcd &amp;amp; &amp;lt; > \\ \n  \"\'";
+alert(b);
+&lt;/script>
+
+&lt;/body>
+&lt;/html>
+</pre>
+
+
+<h3 id="subsection2.60">2.60
 README.md.tpl
 </h3>
 <pre class="numbered_lines">
@@ -12286,6 +12434,8 @@ I tried to follow some conventions for my bash code:
   "The Open Group Base Specifications" since at least 2 decades:
   "New applications are encouraged to use printf instead of echo.",
   &lt;https://pubs.opengroup.org/onlinepubs/000095399/>.
+- We used `_?i_` or `_?j_`, etc. in integer variables names in Bash
+  scripts.
 
 But the files "pre-commit" and "post-commit" were not renamed,
 since it is not possible to give them other names to use them as
@@ -12343,7 +12493,185 @@ badge/v2.json
 </pre>
 
 
-<h3 id="subsection2.59">2.59
+<h3 id="subsection2.61">2.61
+string_escaping.libr.php
+</h3>
+<pre class="numbered_lines">
+&lt;?php
+/*
+This file is part of DevOrSysAdminScripts library.
+
+DevOrSysAdminScripts is free software:
+you can redistribute it and/or modify it under the terms
+of the GNU Lesser General Public License
+as published by the Free Software Foundation,
+either version 3 of the License,
+or (at your option) any later version.
+
+DevOrSysAdminScripts is distributed in the hope
+that it will be useful,
+but WITHOUT ANY WARRANTY;
+without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+See the GNU Lesser General Public License for more details.
+
+You should have received a copy of
+the GNU Lesser General Public License
+along with DevOrSysAdminScripts.
+If not, see &lt;https://www.gnu.org/licenses/>.
+
+©Copyright 2023-2026 Laurent Frédéric Bernard François Lyaudet
+*/
+
+namespace string_escaping\HTML {
+  function escape_text($s_string){
+    return str_replace(
+      array(
+        '&amp;',
+        '&lt;',
+      ),
+      array(
+        '&amp;amp;',
+        '&amp;lt;',
+      ),
+      $s_string,
+    );
+  }
+
+
+
+  function escape_attribute($s_string){
+    # in double quotes
+    return str_replace(
+      array('"'),
+      array('&amp;quot;'),
+      $s_string,
+    );
+  }
+
+
+
+  function escape_pre($s_string){
+    return str_replace(
+      array(
+        '&amp;',
+        '&lt;',
+      ),
+      array(
+        '&amp;amp;',
+        '&amp;lt;',
+      ),
+      $s_string,
+    );
+  }
+}
+
+
+
+
+namespace string_escaping\XHTML {
+  function escape_text($s_string){
+    return str_replace(
+      array(
+        '&amp;',
+        '&lt;',
+      ),
+      array(
+        '&amp;amp;',
+        '&amp;lt;',
+      ),
+      $s_string,
+    );
+  }
+
+
+
+  function escape_attribute($s_string){
+    # in double quotes
+    return str_replace(
+      array(
+        '&amp;',
+        '&lt;',
+        '"',
+        "\n",
+      ),
+      array(
+        '&amp;amp;',
+        '&amp;lt;',
+        '&amp;quot;',
+        '&amp;#10;'
+      ),
+      $s_string,
+    );
+  }
+
+
+
+  function escape_pre($s_string){
+    return str_replace(
+      array(
+        '&amp;',
+        '&lt;',
+      ),
+      array(
+        '&amp;amp;',
+        '&amp;lt;',
+      ),
+      $s_string,
+    );
+  }
+}
+
+
+
+
+namespace string_escaping\JS {
+  use function string_escaping\XHTML\escape_text as XHTML_escape_text;
+
+  function escape($s_string){
+    return str_replace(
+      array(
+        '\\',
+        "\n",
+        "'",
+        '"',
+      ),
+      array(
+        '\\\\',
+        '\n',
+        '\\\'',
+        '\\"',
+      ),
+      $s_string,
+    );
+  }
+
+
+
+  function escape_for_string_definition_inside_XHTML($s_string){
+    return XHTML_escape_text(escape($s_string));
+  }
+}
+
+/*
+$ php
+&lt;?php
+require_once('string_escaping.libr.php');
+var_dump(string_escaping\HTML\escape_text('&lt;&amp;"\'truc\\'));
+var_dump(string_escaping\HTML\escape_attribute("&lt;&amp;\"\n'truc\\"));
+var_dump(string_escaping\HTML\escape_pre("&lt;&amp;\"\n'truc\\"));
+var_dump(string_escaping\XHTML\escape_text('&lt;&amp;"\'truc\\'));
+var_dump(string_escaping\XHTML\escape_attribute("&lt;&amp;\"\n'truc\\"));
+var_dump(string_escaping\XHTML\escape_pre("&lt;&amp;\"\n'truc\\"));
+var_dump(string_escaping\JS\escape("abcd &amp; &lt; > \\ \n  \"'"));
+var_dump(string_escaping\JS\escape_for_string_definition_inside_XHTML(
+  "abcd &amp; &lt; > \\ \n  \"'"
+));
+*/
+</pre>
+
+
+<h3 id="subsection2.62">2.62
 unicode.libr.php
 </h3>
 <pre class="numbered_lines">
@@ -12720,7 +13048,7 @@ foreach($arr as $s_hexa){
 </pre>
 
 
-<h3 id="subsection2.60">2.60
+<h3 id="subsection2.63">2.63
 upgrade_build_and_checks.exec.sh
 </h3>
 <pre class="numbered_lines">
@@ -12773,7 +13101,7 @@ upgrade_build_and_checks "$@"
 </pre>
 
 
-<h3 id="subsection2.61">2.61
+<h3 id="subsection2.64">2.64
 wget_sha512.libr.sh
 </h3>
 <pre class="numbered_lines">

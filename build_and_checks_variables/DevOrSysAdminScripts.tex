@@ -76,11 +76,11 @@ for enhancing development or system-administrators tasks
 
 Current version: 2026-03-18
 
-Current number of commits: 619
+Current number of commits: 632
 
-Current git SHA1: cf89bcaa5c4fb8a8ee3242ecec6ba00c00cf9ff6
+Current git SHA1: 7fd5082c2d47614fd1852ba0a65f11d92f5da634
 
-Code lines: 11001 total lines, 10021 not empty lines, 980 empty lines.
+Code lines: 11266 total lines, 10244 not empty lines, 1022 empty lines.
 
 \tableofcontents
 \newpage
@@ -176,29 +176,32 @@ Code lines: 11001 total lines, 10021 not empty lines, 980 empty lines.
 │   │ an_see_that_it_works.txt
 │   ├── funny.sh
 │   ├── spampty_data.txt
+│   ├── string_escaping.html
+│   ├── string_escaping.xhtml
 │   └──
 │     yet_another_long_long_long_long_long_long_long_long_long_filename_so_
 │     that_you_can_see_that_it_works.txt
 ├── README.html
 ├── README.md
 ├── README.md.tpl
+├── string_escaping.libr.php
 ├── unicode.libr.php
 ├── upgrade_build_and_checks.exec.sh
 └── wget_sha512.libr.sh
 
-6 directories, 74 files
+6 directories, 77 files
 \end{verbatim}
 
 \begin{verbatim}
-[ 12K Mar 18 15:12]  ./
-├── [4.0K Mar 18 15:12]  build_and_checks_dependencies/
+[ 12K Mar 18 17:34]  ./
+├── [4.0K Mar 18 17:34]  build_and_checks_dependencies/
 │   ├── [3.8K Mar 10 16:37]  build_and_checks.exec.sh.tpl*
 │   ├── [4.1K Mar 10 16:49]  build_md_from_printable_md.exec.sh*
 │   ├── [3.2K Mar 10 16:30]  check_shell_scripts_beginnings.libr.sh
 │   ├── [5.3K Mar 18 14:50]  check_shell_scripts_indentation.libr.sh
-│   ├── [3.4K Mar 10 16:30]  check_URLs.libr.sh
-│   ├── [ 31K Mar 18 15:05]  common_build_and_checks.exec.sh*
-│   ├── [ 26K Mar 18 15:03]  common_build_and_checks.exec.sh.tpl
+│   ├── [3.5K Mar 18 17:25]  check_URLs.libr.sh
+│   ├── [ 31K Mar 18 17:25]  common_build_and_checks.exec.sh*
+│   ├── [ 26K Mar 18 16:55]  common_build_and_checks.exec.sh.tpl
 │   ├── [9.1K Mar 18 14:42]  common_options.libr.sh
 │   ├── [6.1K Mar 18 14:25]  comparisons.libr.sh
 │   ├── [ 19K Mar 18 14:21]  create_PDF.exec.sh*
@@ -222,21 +225,21 @@ Code lines: 11001 total lines, 10021 not empty lines, 980 empty lines.
 │   ├── [1.9K Feb  3 20:11]  split_score.libr.php
 │   ├── [ 47K Mar 18 13:07]  strings_functions.libr.sh
 │   ├── [3.8K Mar 18 14:52]  too_long_code_lines.libr.sh
-│   ├── [4.2K Mar  9 16:05]  update_common_build_and_checks.exec.sh*
-│   └── [5.7K Mar 18 12:56]  update_or_check_files_names_listing.exec.sh*
-├── [4.0K Mar 18 15:05]  build_and_checks.exec.sh*
-├── [4.0K Mar 18 15:12]  build_and_checks_variables/
+│   ├── [4.2K Mar 18 17:29]  update_common_build_and_checks.exec.sh*
+│   └── [6.0K Mar 18 17:14]  update_or_check_files_names_listing.exec.sh*
+├── [4.0K Mar 18 17:25]  build_and_checks.exec.sh*
+├── [4.0K Mar 18 17:34]  build_and_checks_variables/
 │   ├── [  15 Jan  5 20:00]  bandit_baseline.json
 │   ├── [  25 Jan  5 18:49]  bandit.ini
 │   ├── [  30 Feb 28 20:30]  black.toml
 │   ├── [ 16K Mar  8 17:00]  DevOrSysAdminScripts.html.tpl
-│   ├── [ 32K Mar 18 15:12]  DevOrSysAdminScripts.tex
+│   ├── [ 32K Mar 18 17:34]  DevOrSysAdminScripts.tex
 │   ├── [8.9K Mar 17 14:38]  DevOrSysAdminScripts.tex.tpl
-│   ├── [ 14K Mar 17 15:58]  files_listing.tex.tpl
-│   ├── [5.1K Mar 10 16:14]  files_names_listing.txt
+│   ├── [ 14K Mar 18 17:17]  files_listing.tex.tpl
+│   ├── [5.2K Mar 18 17:14]  files_names_listing.txt
 │   ├── [  24 Jan 15 22:26]  .gitignore
 │   ├── [5.2K Mar  8 16:52]  licenses_notes.txt
-│   ├── [1.0K Mar  5 21:36]  phpmd_baseline.xml
+│   ├── [1.2K Mar 18 16:43]  phpmd_baseline.xml
 │   ├── [ 678 Feb 24 22:38]  pylintrc.toml
 │   ├── [4.5K Mar 17 12:41]  repository_data.txt
 │   ├── [1.4K Feb 24 23:25]  ruff.toml
@@ -244,8 +247,8 @@ Code lines: 11001 total lines, 10021 not empty lines, 980 empty lines.
 │   └── [3.5K Mar  9 14:46]  shellcheck_notes.txt
 ├── [ 34K May  6  2024]  COPYING
 ├── [7.5K Dec 27 21:48]  COPYING.LESSER
-├── [432K Mar 18 15:12]  DevOrSysAdminScripts.html
-├── [376K Mar 18 15:12]  DevOrSysAdminScripts.pdf
+├── [439K Mar 18 17:34]  DevOrSysAdminScripts.html
+├── [381K Mar 18 17:34]  DevOrSysAdminScripts.pdf
 ├── [4.0K Mar 18 14:56]  git_helpers/
 │   ├── [3.8K Mar 18 14:56]  git_checks.libr.sh
 │   ├── [2.1K Mar 18 12:15]  post-commit*
@@ -253,7 +256,7 @@ Code lines: 11001 total lines, 10021 not empty lines, 980 empty lines.
 │   └── [1.8K Mar 18 13:17]  pre-commit*
 ├── [8.3K Feb 28 20:31]  IMAP_transfert.py
 ├── [ 830 Dec 29 19:10]  LiensUtiles.txt
-├── [4.0K Mar  9 15:15]  miscellaneous/
+├── [4.0K Mar 18 17:27]  miscellaneous/
 │   ├── [   0 Mar  4 10:37]
 │   │ 123456789012345678901234567890123456789012345678901234567890123456789
 │   │ 0123\
@@ -277,17 +280,20 @@ Code lines: 11001 total lines, 10021 not empty lines, 980 empty lines.
 │   │ an_see_that_it_works.txt
 │   ├── [1.3K Mar  9 15:15]  funny.sh
 │   ├── [  94 Mar  3 19:56]  spampty_data.txt
+│   ├── [ 442 Mar 18 16:50]  string_escaping.html
+│   ├── [ 654 Mar 18 17:27]  string_escaping.xhtml
 │   └── [   0 Mar  4 09:13]
 │     yet_another_long_long_long_long_long_long_long_long_long_filename_so_
 │     that_you_can_see_that_it_works.txt
-├── [8.0K Mar 10 16:50]  README.html
-├── [4.2K Mar 10 16:50]  README.md
-├── [4.2K Mar  9 15:34]  README.md.tpl
+├── [8.1K Mar 18 15:25]  README.html
+├── [4.3K Mar 18 15:25]  README.md
+├── [4.3K Mar 18 15:25]  README.md.tpl
+├── [3.1K Mar 18 16:41]  string_escaping.libr.php
 ├── [ 12K Mar 18 14:02]  unicode.libr.php
 ├── [1.4K Mar 10 16:37]  upgrade_build_and_checks.exec.sh*
 └── [1.5K Mar  8 20:25]  wget_sha512.libr.sh
 
-6 directories, 74 files
+6 directories, 77 files
 \end{verbatim}
 
 \section{Listing of files}
@@ -1169,6 +1175,30 @@ miscellaneous/spampty_data.txt
 
 
 \subsection{
+  miscellaneous/string\_escaping.html
+}
+\label{
+  miscellaneous:string_escapinghtml
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+miscellaneous/string_escaping.html
+}
+
+
+\subsection{
+  miscellaneous/string\_escaping.xhtml
+}
+\label{
+  miscellaneous:string_escapingxhtml
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+miscellaneous/string_escaping.xhtml
+}
+
+
+\subsection{
   README.md.tpl
 }
 \label{
@@ -1177,6 +1207,18 @@ miscellaneous/spampty_data.txt
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
 README.md.tpl
+}
+
+
+\subsection{
+  string\_escaping.libr.php
+}
+\label{
+  string_escapinglibrphp
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+string_escaping.libr.php
 }
 
 

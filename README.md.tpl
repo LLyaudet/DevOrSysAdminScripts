@@ -53,6 +53,8 @@ I tried to follow some conventions for my bash code:
   "The Open Group Base Specifications" since at least 2 decades:
   "New applications are encouraged to use printf instead of echo.",
   <https://pubs.opengroup.org/onlinepubs/000095399/>.
+- We used `_?i_` or `_?j_`, etc. in integer variables names in Bash
+  scripts.
 
 But the files "pre-commit" and "post-commit" were not renamed,
 since it is not possible to give them other names to use them as

@@ -80,18 +80,18 @@ split_file_in_two(){
     LFBFL_arg="${!LFBFL_i}"
     LFBFL_grep_options+=("${LFBFL_arg}")
   done
-  declare -ir LFBFL_line_number=$(
+  declare -ir LFBFL_i_line_number=$(
     grep -n "${LFBFL_grep_options[@]}" -- "$2" "$1"\
     | head --lines=1\
     | cut -f 1 -d ':'
   )
-  declare -ir LFBFL_line_count=$(ll_wc -l -n "$1")
-  declare -ir LFBFL_lines_after=$((
-    LFBFL_line_count - LFBFL_line_number
+  declare -ir LFBFL_i_line_count=$(ll_wc -l -n "$1")
+  declare -ir LFBFL_i_lines_after=$((
+    LFBFL_i_line_count - LFBFL_i_line_number
   ))
-  head --lines="$((LFBFL_line_number - 1))" "$1"\
+  head --lines="$((LFBFL_i_line_number - 1))" "$1"\
     > "$3"
-  tail --lines="${LFBFL_lines_after}" "$1"\
+  tail --lines="${LFBFL_i_lines_after}" "$1"\
     > "$4"
 }
 

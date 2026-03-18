@@ -94,15 +94,15 @@ create_PDF(){
     --result-variable-prefix="LFBFL_"\
     --replace-line-returns-by=""
 
-  declare -i LFBFL_max_line_length
+  declare -i LFBFL_i_max_line_length
   grep_variable "${LFBFL_data_file_name}" max_line_length\
-    --result-variable-prefix="LFBFL_"
+    --result-variable-prefix="LFBFL_i_"
 
   declare -r LFBFL_current_date=$(date -I"date")
 
   declare -r LFBFL_current_git_SHA1=$(git rev-parse HEAD)
 
-  declare -ir LFBFL_number_of_commits=$(
+  declare -ir LFBFL_i_number_of_commits=$(
     git shortlog\
     | space_starting_lines\
     | wc -l
@@ -178,15 +178,17 @@ create_PDF(){
   readonly LFBFL_temp_files_lis
   : > "${LFBFL_temp_files_lis}"
   # shellcheck disable=SC2248
-  get_split_score_simple 1 ${LFBFL_max_line_length} /
+  get_split_score_simple 1 ${LFBFL_i_max_line_length} /
   declare -r LFBFL_score_command="${get_split_score_result}"
-  local LFBFL_score_command_properties="${get_split_score_result2}"
-  readonly LFBFL_score_command_properties
+  declare -i LFBFL_i_score_command_properties
+  LFBFL_i_score_command_properties="${i_get_split_score_result2}"
+  readonly LFBFL_i_score_command_properties
   # shellcheck disable=SC2248
-  get_split_score_simple 1 ${LFBFL_max_line_length} ':'
+  get_split_score_simple 1 ${LFBFL_i_max_line_length} ':'
   declare -r LFBFL_score_command2="${get_split_score_result}"
-  local LFBFL_score_command_properties2="${get_split_score_result2}"
-  readonly LFBFL_score_command_properties2
+  declare -i LFBFL_i_score_command_properties2
+  LFBFL_i_score_command_properties2="${i_get_split_score_result2}"
+  readonly LFBFL_i_score_command_properties2
   declare -r LFBFL_suffix='%'
   declare -i LFBFL_i=0
   local LFBFL_cleaned_path1
@@ -207,37 +209,37 @@ create_PDF(){
       | sed -e 's/\//:/g' -e 's/\.//g'
     )
     LFBFL_new_lines="  ${LFBFL_cleaned_path1}"
-    if [[ ${#LFBFL_new_lines} -gt LFBFL_max_line_length ]]; then
+    if [[ ${#LFBFL_new_lines} -gt LFBFL_i_max_line_length ]]; then
       # shellcheck disable=SC2248
       repeated_split_last_line "${LFBFL_new_lines}"\
         ""\
-        ${LFBFL_max_line_length}\
+        ${LFBFL_i_max_line_length}\
         "${LFBFL_suffix}"\
         "${LFBFL_score_command}"\
-        "${LFBFL_score_command_properties}"\
+        "${LFBFL_i_score_command_properties}"\
         "\\"
       LFBFL_new_lines=${repeated_split_last_line_result}
     fi
     LFBFL_new_lines2="  ${LFBFL_cleaned_path2}"
-    if [[ ${#LFBFL_new_lines2} -gt LFBFL_max_line_length ]]; then
+    if [[ ${#LFBFL_new_lines2} -gt LFBFL_i_max_line_length ]]; then
       # shellcheck disable=SC2248
       repeated_split_last_line "${LFBFL_new_lines2}"\
         ""\
-        ${LFBFL_max_line_length}\
+        ${LFBFL_i_max_line_length}\
         "${LFBFL_suffix}"\
         "${LFBFL_score_command2}"\
-        "${LFBFL_score_command_properties2}"
+        "${LFBFL_i_score_command_properties2}"
       LFBFL_new_lines2=${repeated_split_last_line_result}
     fi
     LFBFL_new_lines3="${LFBFL_file_path}"
-    if [[ ${#LFBFL_new_lines3} -gt LFBFL_max_line_length ]]; then
+    if [[ ${#LFBFL_new_lines3} -gt LFBFL_i_max_line_length ]]; then
       # shellcheck disable=SC2248
       repeated_split_last_line "${LFBFL_new_lines3}"\
         ""\
-        ${LFBFL_max_line_length}\
+        ${LFBFL_i_max_line_length}\
         "${LFBFL_suffix}"\
         "${LFBFL_score_command}"\
-        "${LFBFL_score_command_properties}"
+        "${LFBFL_i_score_command_properties}"
       LFBFL_new_lines3=${repeated_split_last_line_result}
     fi
     LFBFL_s_format="\\subsection{\n%s\n}\n\\label{\n%s\n}\n\n"
@@ -253,14 +255,14 @@ create_PDF(){
     # printf "Listing file for HTML : %s\n" "${LFBFL_file_path}"
     ((++LFBFL_i))
     LFBFL_new_lines="${LFBFL_file_path}"
-    if [[ ${#LFBFL_file_path} -gt LFBFL_max_line_length ]]; then
+    if [[ ${#LFBFL_file_path} -gt LFBFL_i_max_line_length ]]; then
       # shellcheck disable=SC2248
       repeated_split_last_line "${LFBFL_new_lines}"\
         "-->"\
-        ${LFBFL_max_line_length}\
+        ${LFBFL_i_max_line_length}\
         "<!--"\
         "${LFBFL_score_command}"\
-        "${LFBFL_score_command_properties}"
+        "${LFBFL_i_score_command_properties}"
       LFBFL_new_lines=${repeated_split_last_line_result}
     fi
     {
@@ -297,18 +299,20 @@ create_PDF(){
   local LFBFL_tree_path
   local LFBFL_line
   local LFBFL_prefix
-  declare -i LFBFL_prefix_last_position
+  declare -i LFBFL_i_prefix_last_position
   local LFBFL_char
   local LFBFL_line_start
-  declare -ir LFBFL_overlength=$((LFBFL_max_line_length+1))
+  declare -ir LFBFL_i_overlength=$((LFBFL_i_max_line_length+1))
   local LFBFL_file_name
   local LFBFL_s_lines
   declare -a LFBFL_arr_lines
-  declare -i LFBFL_keep_length
+  declare -i LFBFL_i_keep_length
   for LFBFL_tree in "${LFBFL_trees[@]}"; do
     LFBFL_tree_path="${LFBFL_temp_path}/${LFBFL_tree}"
     # shellcheck disable=SC2248
-    LFBFL_s_lines=$(grep '.\{'${LFBFL_overlength}'\}' "${LFBFL_tree_path}")
+    LFBFL_s_lines=$(
+      grep '.\{'${LFBFL_i_overlength}'\}' "${LFBFL_tree_path}"
+    )
     if [[ -z "${LFBFL_s_lines}" ]]; then
       continue
     fi
@@ -320,8 +324,8 @@ create_PDF(){
         | sed -E -e 's/(.*)──[^─]+$/\1/g'
       )
       # printf "LFBFL_prefix: %s\n" "${LFBFL_prefix}"
-      LFBFL_prefix_last_position=$((${#LFBFL_prefix}-1))
-      LFBFL_char="${LFBFL_prefix:${LFBFL_prefix_last_position}:1}"
+      LFBFL_i_prefix_last_position=$((${#LFBFL_prefix}-1))
+      LFBFL_char="${LFBFL_prefix:${LFBFL_i_prefix_last_position}:1}"
       # printf "LFBFL_char: %s\n" "${LFBFL_char}"
       LFBFL_prefix=$(
         printf "%s" "${LFBFL_prefix}"\
@@ -338,19 +342,19 @@ create_PDF(){
         | sed -E 's|.* (([a-zA-Z0-9\._/-]+).)$|\1|g'
       )
       # printf "LFBFL_file_name: %s\n" "${LFBFL_file_name}"
-      LFBFL_keep_length=$((${#LFBFL_line} - ${#LFBFL_file_name}))
-      LFBFL_line_start=${LFBFL_line:0:${LFBFL_keep_length}}
+      LFBFL_i_keep_length=$((${#LFBFL_line} - ${#LFBFL_file_name}))
+      LFBFL_line_start=${LFBFL_line:0:${LFBFL_i_keep_length}}
       LFBFL_line_start=$(
         printf "%s" "${LFBFL_line_start}"\
         | sed -e 's/ *$//g'
       )
       # printf "LFBFL_line_start: %s\n" "${LFBFL_line_start}"
       LFBFL_new_lines="${LFBFL_prefix}${LFBFL_file_name}"
-      if [[ ${#LFBFL_new_lines} -gt LFBFL_max_line_length ]]; then
+      if [[ ${#LFBFL_new_lines} -gt LFBFL_i_max_line_length ]]; then
         # shellcheck disable=SC2248
         repeated_split_last_line "${LFBFL_new_lines}"\
           "${LFBFL_prefix}"\
-          ${LFBFL_max_line_length}\
+          ${LFBFL_i_max_line_length}\
           ""\
           ""\
           ""
@@ -424,7 +428,7 @@ create_PDF(){
            -e "s|@author_website@|${LFBFL_author_website}|g"\
            -e "s|@current_date@|${LFBFL_current_date}|g"\
            -e "s|@current_git_SHA1@|${LFBFL_current_git_SHA1}|g"\
-           -e "s|@number_of_commits@|${LFBFL_number_of_commits}|g"\
+           -e "s|@number_of_commits@|${LFBFL_i_number_of_commits}|g"\
            -e "s|@number_of_lines@|${LFBFL_number_of_lines}|g"\
       "${LFBFL_tex_path_start}.1"
 
@@ -458,7 +462,7 @@ create_PDF(){
   fi
 
   # HTML filling:
-  declare -i LFBFL_HTML_updated=0
+  declare -i LFBFL_i_HTML_updated=0
   if [[ -f "${LFBFL_html_path_start}.1" ]]; then
     sed -i -e "s|@repository_name@|${LFBFL_repository_name}|g"\
            -e "s|@repository_web_url@|${LFBFL_repository_web_url}|g"\
@@ -468,7 +472,7 @@ create_PDF(){
            -e "s|@author_website@|${LFBFL_author_website}|g"\
            -e "s|@current_date@|${LFBFL_current_date}|g"\
            -e "s|@current_git_SHA1@|${LFBFL_current_git_SHA1}|g"\
-           -e "s|@number_of_commits@|${LFBFL_number_of_commits}|g"\
+           -e "s|@number_of_commits@|${LFBFL_i_number_of_commits}|g"\
            -e "s|@number_of_lines@|${LFBFL_number_of_lines}|g"\
       "${LFBFL_html_path_start}.1"
 
@@ -502,13 +506,13 @@ create_PDF(){
 
     overwrite_if_not_equal "./${LFBFL_repository_name}.html"\
       "${LFBFL_html_path_start}.7" 1
-    LFBFL_HTML_updated=$?
+    LFBFL_i_HTML_updated=$?
   fi
 
   # The HTML contains everything including listings with source code.
   # If it doesn't get updated,
   # then it is useless to recompute the PDF.
-  if [[ LFBFL_HTML_updated -eq 0 ]]; then
+  if [[ LFBFL_i_HTML_updated -eq 0 ]]; then
     return
   fi
 

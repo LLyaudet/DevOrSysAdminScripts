@@ -520,7 +520,7 @@ split_score_properties_logical_closure(){
   # It is also safer to avoid forgetting some relation.
   declare -i LFBFL_i_result=$(($1))
   declare -i LFBFL_i_result_old=0
-  declare -i LFBFL_all_flags=$((
+  declare -i LFBFL_i_all_flags=$((
     SSP_ALWAYS_LARGER_AFTER
     | SSP_ALWAYS_LARGER_BEFORE
     | SSP_DELIMITER_UNIFORM
@@ -633,7 +633,7 @@ split_score_properties_logical_closure(){
       ))
     fi
     if ((LFBFL_i_result & SSP_UNIFORM)); then
-      LFBFL_i_result=$((LFBFL_all_flags))
+      LFBFL_i_result=$((LFBFL_i_all_flags))
       break
     fi
     if ((LFBFL_i_result & SSP_ALWAYS_LARGER_AFTER))\
@@ -648,7 +648,7 @@ split_score_properties_logical_closure(){
         | SSP_SAME_POSITION_LARGER_BEFORE
       )
     )); then
-      LFBFL_i_result=$((LFBFL_all_flags))
+      LFBFL_i_result=$((LFBFL_i_all_flags))
       break
     fi
     if ((LFBFL_i_result & SSP_ALWAYS_LARGER_BEFORE))\
@@ -662,7 +662,7 @@ split_score_properties_logical_closure(){
         | SSP_SAME_POSITION_LARGER_AFTER
       )
     )); then
-      LFBFL_i_result=$((LFBFL_all_flags))
+      LFBFL_i_result=$((LFBFL_i_all_flags))
       break
     fi
     if ((LFBFL_i_result & SSP_DELIMITER_UNIFORM))\
@@ -688,7 +688,7 @@ split_score_properties_logical_closure(){
     fi
     if ((LFBFL_i_result & SSP_DELIMITER_UNIFORM))\
     && ((LFBFL_i_result & SSP_SAME_DELIMITER_EQUAL_AFTER_OR_BEFORE)); then
-      LFBFL_i_result=$((LFBFL_all_flags))
+      LFBFL_i_result=$((LFBFL_i_all_flags))
       break
     fi
     if ((LFBFL_i_result & SSP_DELIMITER_UNIFORM))\
@@ -752,7 +752,7 @@ split_score_properties_logical_closure(){
     fi
     if ((LFBFL_i_result & SSP_POSITION_UNIFORM))\
     && ((LFBFL_i_result & SSP_SAME_POSITION_EQUAL_AFTER_OR_BEFORE)); then
-      LFBFL_i_result=$((LFBFL_all_flags))
+      LFBFL_i_result=$((LFBFL_i_all_flags))
       break
     fi
     if ((LFBFL_i_result & SSP_POSITION_UNIFORM))\
@@ -798,7 +798,7 @@ split_score_properties_logical_closure(){
         | SSP_SAME_POSITION_LARGER_BEFORE
       )
     )); then
-      LFBFL_i_result=$((LFBFL_all_flags))
+      LFBFL_i_result=$((LFBFL_i_all_flags))
       break
     fi
     if ((LFBFL_i_result & SSP_SAME_DELIMITER_LARGER_AFTER))\
@@ -808,7 +808,7 @@ split_score_properties_logical_closure(){
         | SSP_SAME_POSITION_LARGER_BEFORE
       )
     )); then
-      LFBFL_i_result=$((LFBFL_all_flags))
+      LFBFL_i_result=$((LFBFL_i_all_flags))
       break
     fi
     if ((LFBFL_i_result & SSP_SAME_DELIMITER_LARGER_AFTER))\
@@ -825,7 +825,7 @@ split_score_properties_logical_closure(){
         |  SSP_SAME_POSITION_LARGER_AFTER
       )
     )); then
-      LFBFL_i_result=$((LFBFL_all_flags))
+      LFBFL_i_result=$((LFBFL_i_all_flags))
       break
     fi
     if ((LFBFL_i_result & SSP_SAME_DELIMITER_LARGER_BEFORE))\
@@ -846,16 +846,16 @@ split_score_simple(){
   # $2=$delimiters_strings_domain concatenated characters/delimiters
   # $3=$delimiter_string a single character
   # $4=$is_cut_after
-  declare -gi split_score_result
+  declare -gi i_split_score_result
   if [[ "$2" != *$3* ]]; then
-    split_score_result=0
+    i_split_score_result=0
     return
   fi
   if [[ "$4" == "$1" ]]; then
-    split_score_result=2
+    i_split_score_result=2
     return
   fi
-  split_score_result=1
+  i_split_score_result=1
 }
 
 get_split_score_simple(){
@@ -863,14 +863,14 @@ get_split_score_simple(){
   # $2=$max_length
   # $3=$delimiters_strings_domain
   declare -g get_split_score_result="split_score_simple $1 '$3'"
-  declare -gi get_split_score_result2
-  # get_split_score_result2=$((11-$1*4))
+  declare -gi i_get_split_score_result2
+  # i_get_split_score_result2=$((11-$1*4))
   # if [[ $1 -eq 1 ]]; then
-  #   get_split_score_result2=7
+  #   i_get_split_score_result2=7
   # else
-  #   get_split_score_result2=11
+  #   i_get_split_score_result2=11
   # fi
-  get_split_score_result2=$((
+  i_get_split_score_result2=$((
     SSP_DELIMITER_UNIFORM
     + SSP_POSITION_UNIFORM
     + SSP_LARGER_BEFORE
@@ -882,8 +882,8 @@ get_split_score_simple(){
     )
   ))
   # shellcheck disable=SC2248
-  split_score_properties_logical_closure ${get_split_score_result2}
-  get_split_score_result2=$((
+  split_score_properties_logical_closure ${i_get_split_score_result2}
+  i_get_split_score_result2=$((
     i_split_score_properties_logical_closure_result
   ))
 }
@@ -902,8 +902,8 @@ split_score(){
   # $6=$is_cut_after
   get_split_score_exec
   declare -r LFBFL_command="${SPLIT_SCORE_EXEC} $1 $2 '$3' '$4' $5 $6"
-  declare -gi split_score_result
-  split_score_result=$(eval "${LFBFL_command}")
+  declare -gi i_split_score_result
+  i_split_score_result=$(eval "${LFBFL_command}")
 }
 
 # This function is currently not called,
@@ -914,9 +914,9 @@ get_split_score(){
   # $1=$max_length
   # $2=$delimiters_strings_domain
   declare -g get_split_score_result="split_score $1 $2 '$3'"
-  declare -gi get_split_score_result2
-  # get_split_score_result2=$((9-$1*4))
-  get_split_score_result2=$((
+  declare -gi i_get_split_score_result2
+  # i_get_split_score_result2=$((9-$1*4))
+  i_get_split_score_result2=$((
     SSP_DELIMITER_UNIFORM
     + SSP_LARGER_BEFORE
     + (
@@ -927,8 +927,8 @@ get_split_score(){
     )
   ))
   # shellcheck disable=SC2248
-  split_score_properties_logical_closure ${get_split_score_result2}
-  get_split_score_result2=$((
+  split_score_properties_logical_closure ${i_get_split_score_result2}
+  i_get_split_score_result2=$((
     i_split_score_properties_logical_closure_result
   ))
 }
@@ -1120,24 +1120,24 @@ split_line_at_most(){
       fi
     done
   fi
-  declare -ir LFBFL_max_score=$(
+  declare -ir LFBFL_i_max_score=$(
     max 'sort --numeric-sort' "${LFBFL_positions[@]}"
   )
   local LFBFL_value
-  declare -i LFBFL_best_position
+  declare -i LFBFL_i_best_position
   for ((LFBFL_i=LFBFL_i_max; LFBFL_i>=0; --LFBFL_i)) do
     if [[ LFBFL_i -eq 0 ]]; then
       printf $'/!\\split_line_at_most bug: no split position found./!\\\n'
     fi
     local LFBFL_value=${LFBFL_positions[${LFBFL_i}]}
     # printf "%s %s\n" "${LFBFL_i} ${LFBFL_value}"
-    if [[ "${LFBFL_value}" == "${LFBFL_max_score}" ]]; then
-      LFBFL_best_position=$((LFBFL_i))
+    if [[ "${LFBFL_value}" == "${LFBFL_i_max_score}" ]]; then
+      LFBFL_i_best_position=$((LFBFL_i))
       break
     fi
   done
   # shellcheck disable=SC2248
-  split_line_at "$1" ${LFBFL_best_position}
+  split_line_at "$1" ${LFBFL_i_best_position}
   split_line_at_most_result_start="${split_line_at_result_beginning}"
   split_line_at_most_result_end="${split_line_at_result_end}"
   # printf "%s\n" "$split_line_at_most_result_start"
@@ -1177,9 +1177,9 @@ split_last_line(){
     && trap 'enhanced_unset_shell_option pipefail' RETURN
 
   declare -g split_last_line_result="$1"
-  declare -ir LFBFL_max_length_plus=$(($3 + 1))
-  declare -ir LFBFL_length2=$(($3 - ${#4}))
-  declare -r LFBFL_regexp='.\{'"${LFBFL_max_length_plus}"'\}$'
+  declare -ir LFBFL_i_max_length_plus=$(($3 + 1))
+  declare -ir LFBFL_i_length2=$(($3 - ${#4}))
+  declare -r LFBFL_regexp='.\{'"${LFBFL_i_max_length_plus}"'\}$'
 
   # Testing if some line is too long.
   printf "%s" "$1"\
@@ -1209,17 +1209,17 @@ split_last_line(){
     # printf "%s %s\n" "${#something}" "${something}"
   fi
   if [[ -n "$5" ]]; then
-    split_line_at_most "${LFBFL_last_line}" "${LFBFL_length2}"\
+    split_line_at_most "${LFBFL_last_line}" "${LFBFL_i_length2}"\
       "$5" "$6" "$7"
     split_last_line_result+="${split_line_at_most_result_start}"
     split_last_line_result+="$4"
     split_last_line_result+=$'\n'
     split_last_line_result+="$2${split_line_at_most_result_end}"
   else
-    split_last_line_result+="${LFBFL_last_line:0:${LFBFL_length2}}"
+    split_last_line_result+="${LFBFL_last_line:0:${LFBFL_i_length2}}"
     split_last_line_result+="$4"
     split_last_line_result+=$'\n'
-    split_last_line_result+="$2${LFBFL_last_line:${LFBFL_length2}}"
+    split_last_line_result+="$2${LFBFL_last_line:${LFBFL_i_length2}}"
   fi
   # printf "result: %s\n" "${split_last_line_result}"
 }
@@ -1240,9 +1240,9 @@ repeated_split_last_line(){
     # printf "%s\n" "${repeated_split_last_line_result}"
   done
   if [[ -n "$4" && -n "$8" ]]; then
-    declare -ir LFBFL_offset=$((-${#4}))
+    declare -ir LFBFL_i_offset=$((-${#4}))
     local LFBFL_lines_end
-    LFBFL_lines_end="${repeated_split_last_line_result: ${LFBFL_offset}}"
+    LFBFL_lines_end="${repeated_split_last_line_result: ${LFBFL_i_offset}}"
     if [[ "${LFBFL_lines_end}" == "$4" ]]; then
       repeated_split_last_line_result+="$8"
     fi

@@ -700,6 +700,30 @@ miscellaneous/spampty_data.txt
 
 
 \subsection{
+  miscellaneous/string\_escaping.html
+}
+\label{
+  miscellaneous:string_escapinghtml
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+miscellaneous/string_escaping.html
+}
+
+
+\subsection{
+  miscellaneous/string\_escaping.xhtml
+}
+\label{
+  miscellaneous:string_escapingxhtml
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+miscellaneous/string_escaping.xhtml
+}
+
+
+\subsection{
   README.md.tpl
 }
 \label{
@@ -708,6 +732,18 @@ miscellaneous/spampty_data.txt
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
 README.md.tpl
+}
+
+
+\subsection{
+  string\_escaping.libr.php
+}
+\label{
+  string_escapinglibrphp
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+string_escaping.libr.php
 }
 
 

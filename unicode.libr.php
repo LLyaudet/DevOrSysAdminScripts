@@ -196,38 +196,83 @@ function check_file_is_valid_ASCII($s_file_name){
 
 function check_string_is_valid_UTF8($s_string){
   $i_continuation_octet_needed = 0;
-  $i_character_start_position = 0;
+  $i_offset_in_octets_from_string_start = 0;
+  $i_offset_in_characters_from_string_start = -1;
+  $i_character_start_position_from_string_start = 0;
+  $i_current_line_number = 1;
+  $i_offset_in_octets_from_line_start = -1;
+  $i_offset_in_characters_from_line_start = -1;
+  $i_character_start_position_from_line_start = -1;
   for($i = 0, $i_max = strlen($s_string); $i < $i_max; ++$i){
     $i_current_octet = ord($s_string[$i]);
+    $i_offset_in_octets_from_string_start = $i;
+    $i_offset_in_octets_from_line_start += 1;
+    $i_character_start_position_from_line_start += 1;
     if($i_continuation_octet_needed > 0){
       if($i_current_octet < 128 || $i_current_octet >= 192){
         throw new Exception(
-          "Non-UTF8 character found at start position "
-          .$i_character_start_position
-          .", octet at position "
-          .$i
-          ." has value "
+          "Non-UTF8 character found on line "
+          .$i_current_line_number
+          ."; the octet "
+          .($i_offset_in_octets_from_line_start + 1)
+          .", part of the character "
+          .($i_offset_in_characters_from_line_start + 1)
+          .", has value "
           .$i_current_octet
           ." which is not a continuation octet."
+          ." This character starts at octet "
+          .($i_character_start_position_from_line_start + 1)
+          ." of the current line."
+          ." (Sequential positions without line splitting:"
+          ." This is at character "
+          .($i_offset_in_characters_from_string_start + 1)
+          ." and octet "
+          .($i_offset_in_octets_from_string_start + 1)
+          ."."
+          ." This character starts at octet "
+          .($i_character_start_position_from_string_start + 1)
+          .".)",
         );
       }
       --$i_continuation_octet_needed;
       continue;
     }
 
-    $i_character_start_position = $i;
+    $i_character_start_position_from_string_start = $i;
+    $i_offset_in_characters_from_line_start += 1;
+    $i_offset_in_characters_from_string_start += 1;
     if($i_current_octet < 128){ // 0xxxxxxx ASCII
+      if($s_string[$i] === "\n"){
+        $i_current_line_number += 1;
+        $i_offset_in_octets_from_line_start = -1;
+        $i_offset_in_characters_from_line_start = -1;
+        $i_character_start_position_from_line_start = -1;
+      }
       continue;
     }
     if($i_current_octet >= 128 && $i_current_octet < 192){
       throw new Exception(
-        "Non-UTF8 character found at start position "
-        .$i_character_start_position
-        .", octet at position "
-        .$i
-        ." has value "
+        "Non-UTF8 character found on line "
+        .$i_current_line_number
+        ."; the octet "
+        .($i_offset_in_octets_from_line_start + 1)
+        .", part of the character "
+        .($i_offset_in_characters_from_line_start + 1)
+        .", has value "
         .$i_current_octet
         ." which is a continuation octet."
+        ." This character starts at octet "
+        .($i_character_start_position_from_line_start + 1)
+        ." of the current line."
+        ." (Sequential positions without line splitting:"
+        ." This is at character "
+        .($i_offset_in_characters_from_string_start + 1)
+        ." and octet "
+        .($i_offset_in_octets_from_string_start + 1)
+        ."."
+        ." This character starts at octet "
+        .($i_character_start_position_from_string_start + 1)
+        .".)",
       );
     }
     if($i_current_octet >= 192 && $i_current_octet < 224){
@@ -246,13 +291,27 @@ function check_string_is_valid_UTF8($s_string){
       continue;
     }
     throw new Exception(
-      "Non-UTF8 character found at start position "
-      .$i_character_start_position
-      .", octet at position "
-      .$i
-      ." has value "
+      "Non-UTF8 character found on line "
+      .$i_current_line_number
+      ."; the octet "
+      .($i_offset_in_octets_from_line_start + 1)
+      .", part of the character "
+      .($i_offset_in_characters_from_line_start + 1)
+      .", has value "
       .$i_current_octet
       ." which is invalid."
+      ." This character starts at octet "
+      .($i_character_start_position_from_line_start + 1)
+      ." of the current line."
+      ." (Sequential positions without line splitting:"
+      ." This is at character "
+      .($i_offset_in_characters_from_string_start + 1)
+      ." and octet "
+      .($i_offset_in_octets_from_string_start + 1)
+      ."."
+      ." This character starts at octet "
+      .($i_character_start_position_from_string_start + 1)
+      .".)",
     );
   }
   return true;

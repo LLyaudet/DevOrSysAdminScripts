@@ -43,23 +43,23 @@ overwrite_if_not_equal(){
     fi
     return 2
   fi
-  declare -i LFBFL_is_equal
+  declare -i LFBFL_i_is_equal
   if [[ -n "$4" ]]; then
     # Not setting pipefail since the result would still be incorrect.
     # shellcheck disable=SC2312
     diff "$1" "$2"\
       | grep -E "^(>|<)"\
       | grep -v "/$"
-    LFBFL_is_equal=${PIPESTATUS[2]}
+    LFBFL_i_is_equal=${PIPESTATUS[2]}
   else
     if [[ -n "$5" ]]; then
       diff -q "$1" "$2" > /dev/null
     else
       diff -q "$1" "$2"
     fi
-    LFBFL_is_equal=1-$?
+    LFBFL_i_is_equal=1-$?
   fi
-  if [[ LFBFL_is_equal -eq 1 ]]; then
+  if [[ LFBFL_i_is_equal -eq 1 ]]; then
     if [[ -z "$3" ]]; then
       rm "$2"
     fi

@@ -52,15 +52,15 @@ ll_wc(){
   enhanced_set_shell_option pipefail\
     && trap 'enhanced_unset_shell_option pipefail' RETURN
   declare -a ll_wc_var_args=()
-  declare -i ll_wc_var_number_only=0
+  declare -i ll_wc_var_i_number_only=0
   declare -i ll_wc_var_i=0
   for ll_wc_var_arg in "$@"; do
     # printf "%s\n" "${ll_wc_var_arg}"
     if [[ "${ll_wc_var_arg}" == "-n" ]]; then
-      ll_wc_var_number_only=1
+      ll_wc_var_i_number_only=1
     elif [[ "${ll_wc_var_arg}" == "--no-filenames" ]]; then
-      ll_wc_var_number_only=1
-    elif [[ ll_wc_var_number_only -eq 0 ]]; then
+      ll_wc_var_i_number_only=1
+    elif [[ ll_wc_var_i_number_only -eq 0 ]]; then
       ll_wc_var_args[ll_wc_var_i]="${ll_wc_var_arg}"
       ll_wc_var_i=$((ll_wc_var_i + 1))
     elif [[ "${ll_wc_var_arg}" =~ -.* ]]; then
@@ -69,8 +69,8 @@ ll_wc(){
     fi
   done
   # typeset -p ll_wc_var_args
-  # printf "%s\n" "${ll_wc_var_number_only}"
-  if [[ ll_wc_var_number_only -gt 0 ]]; then
+  # printf "%s\n" "${ll_wc_var_i_number_only}"
+  if [[ ll_wc_var_i_number_only -gt 0 ]]; then
     # Too simple code, only the base use case is handled now.
     # Convenient but incomplete.
     # With more time,
@@ -118,11 +118,11 @@ in_place_grep(){
   declare -r LFBFL_temp="${!#}.in_place_grep.temp"
   grep "$@" \
     > "${LFBFL_temp}"
-  # declare -ir LFBFL_lines_before=$(ll_wc -l -n "${!#}")
-  # declare -ir LFBFL_lines_after=$(ll_wc -l -n "${LFBFL_temp}")
-  # printf "%s\n" "${LFBFL_lines_before}"
-  # printf "%s\n" "${LFBFL_lines_after}"
-  # if [[ LFBFL_lines_before -eq LFBFL_lines_after ]]; then
+  # declare -ir LFBFL_i_lines_before=$(ll_wc -l -n "${!#}")
+  # declare -ir LFBFL_i_lines_after=$(ll_wc -l -n "${LFBFL_temp}")
+  # printf "%s\n" "${LFBFL_i_lines_before}"
+  # printf "%s\n" "${LFBFL_i_lines_after}"
+  # if [[ LFBFL_i_lines_before -eq LFBFL_i_lines_after ]]; then
   # Almost as fast (on large files) and correct in all cases :).
   # Thanks Paul Eggert for the suggestion :).
   # https://debbugs.gnu.org/cgi/bugreport.cgi?bug=80547
@@ -147,9 +147,9 @@ grep_fixed_string_with_anchor(){
   declare -a LFBFL_grep_options=()
   declare -a LFBFL_grep_options2=()
   declare -i LFBFL_i=0
-  declare -i LFBFL_enforce_line_starts=0
-  declare -i LFBFL_enforce_line_ends=0
-  declare -i LFBFL_quiet=0
+  declare -i LFBFL_i_enforce_line_starts=0
+  declare -i LFBFL_i_enforce_line_ends=0
+  declare -i LFBFL_i_quiet=0
   local LFBFL_arg
   for LFBFL_arg in "$@"; do
     ((++LFBFL_i))
@@ -158,17 +158,17 @@ grep_fixed_string_with_anchor(){
     fi
     if [[ "${LFBFL_arg}" == "--enforce-line-starts-with-fixed-string" ]];
     then
-      LFBFL_enforce_line_starts=1
+      LFBFL_i_enforce_line_starts=1
       continue
     fi
     if [[ "${LFBFL_arg}" == "--enforce-line-ends-with-fixed-string" ]];
     then
-      LFBFL_enforce_line_ends=1
+      LFBFL_i_enforce_line_ends=1
       continue
     fi
     if [[ "${LFBFL_arg}" == "-q" || "${LFBFL_arg}" == "--quiet" ]];
     then
-      LFBFL_quiet=1
+      LFBFL_i_quiet=1
       LFBFL_grep_options+=("${LFBFL_arg}")
       continue
     fi
@@ -176,8 +176,8 @@ grep_fixed_string_with_anchor(){
   done
 
   if [[
-    LFBFL_enforce_line_starts -eq 0
-    && LFBFL_enforce_line_ends -eq 0
+    LFBFL_i_enforce_line_starts -eq 0
+    && LFBFL_i_enforce_line_ends -eq 0
     ]];
   then
     grep "${LFBFL_grep_options[@]}" --fixed-strings -- "$2" "$1"
@@ -196,30 +196,30 @@ grep_fixed_string_with_anchor(){
   mapfile -t LFBFL_arr_lines <<< "${LFBFL_s_lines}"
   readonly LFBFL_arr_lines
 
-  declare -i LFBFL_fixed_string_length=${#2}
+  declare -i LFBFL_i_fixed_string_length=${#2}
   local LFBFL_some_line
   local LFBFL_line_part
   for LFBFL_some_line in "${LFBFL_arr_lines[@]}"; do
     if [[ "${LFBFL_some_line}" == "$2" ]]; then
-      [[ LFBFL_quiet -eq 1 ]] || printf "%s\n" "${LFBFL_some_line}"
+      [[ LFBFL_i_quiet -eq 1 ]] || printf "%s\n" "${LFBFL_some_line}"
       LFBFL_i_result=0
       continue
     fi
     if [[
-      LFBFL_enforce_line_starts -eq 1
-      && LFBFL_enforce_line_ends -eq 1
+      LFBFL_i_enforce_line_starts -eq 1
+      && LFBFL_i_enforce_line_ends -eq 1
       ]];
     then
       continue
     fi
-    if [[ LFBFL_enforce_line_starts -eq 1 ]]; then
-      LFBFL_line_part=${LFBFL_some_line:0:${LFBFL_fixed_string_length}}
+    if [[ LFBFL_i_enforce_line_starts -eq 1 ]]; then
+      LFBFL_line_part=${LFBFL_some_line:0:${LFBFL_i_fixed_string_length}}
     fi
-    if [[ LFBFL_enforce_line_ends -eq 1 ]]; then
-      LFBFL_line_part=${LFBFL_some_line: -${LFBFL_fixed_string_length}}
+    if [[ LFBFL_i_enforce_line_ends -eq 1 ]]; then
+      LFBFL_line_part=${LFBFL_some_line: -${LFBFL_i_fixed_string_length}}
     fi
     if [[ "${LFBFL_line_part}" == "$2" ]]; then
-      [[ LFBFL_quiet -eq 1 ]] || printf "%s\n" "${LFBFL_some_line}"
+      [[ LFBFL_i_quiet -eq 1 ]] || printf "%s\n" "${LFBFL_some_line}"
       LFBFL_i_result=0
     fi
   done

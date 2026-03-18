@@ -51,17 +51,17 @@ update_or_check_files_names_listing(){
     && trap 'popd_from_work_directory' RETURN
   can_continue_after_enhanced_pushd || return 1
 
-  declare -i LFBFL_write=0
+  declare -i LFBFL_i_write=0
   if [[ "$*" == *--write* ]]; then
-    LFBFL_write=1
+    LFBFL_i_write=1
   fi
-  readonly LFBFL_write
+  readonly LFBFL_i_write
 
-  declare -i LFBFL_append=0
+  declare -i LFBFL_i_append=0
   if [[ "$*" == *--append* ]]; then
-    LFBFL_append=1
+    LFBFL_i_append=1
   fi
-  readonly LFBFL_append
+  readonly LFBFL_i_append
 
   enhanced_set_shell_option pipefail\
     && trap 'enhanced_unset_shell_option pipefail' RETURN
@@ -72,11 +72,11 @@ update_or_check_files_names_listing(){
   local LFBFL_data_file_name="./${LFBFL_subdir2}/repository_data.txt"
   readonly LFBFL_data_file_name
 
-  declare -i LFBFL_max_line_length
+  declare -i LFBFL_i_max_line_length
   grep_variable "${LFBFL_data_file_name}" max_line_length\
     --result-variable-prefix="LFBFL_"
 
-  if [[ LFBFL_write -eq 1 ]]; then
+  if [[ LFBFL_i_write -eq 1 ]]; then
     : > "${LFBFL_listing}"
   fi
   # Remove line returns that are here to keep lines short.
@@ -84,11 +84,11 @@ update_or_check_files_names_listing(){
     > "${LFBFL_listing}.temp"
   # shopt -s dotglob was needed at some point but I don't see why now.
   # shellcheck disable=SC2248
-  get_split_score_simple 1 ${LFBFL_max_line_length} /
+  get_split_score_simple 1 ${LFBFL_i_max_line_length} /
   declare -r LFBFL_split_score_command="${get_split_score_result}"
-  local LFBFL_split_score_command_properties
-  LFBFL_split_score_command_properties="${get_split_score_result2}"
-  readonly LFBFL_split_score_command_properties
+  declare -i LFBFL_i_split_score_command_properties
+  LFBFL_i_split_score_command_properties="${i_get_split_score_result2}"
+  readonly LFBFL_i_split_score_command_properties
   local LFBFL_suffix=\\ # instead of '\' to avoid shellcheck SC1003
   readonly LFBFL_suffix
   # There is always a $'\n' final suffix from >>.
@@ -124,13 +124,13 @@ update_or_check_files_names_listing(){
     # shellcheck disable=SC2248
     repeated_split_last_line "${LFBFL_file_path}"\
       ""\
-      ${LFBFL_max_line_length}\
+      ${LFBFL_i_max_line_length}\
       "${LFBFL_suffix}"\
       "${LFBFL_split_score_command}"\
-      "${LFBFL_split_score_command_properties}"\
+      "${LFBFL_i_split_score_command_properties}"\
       ""\
       "${LFBFL_final_suffix}"
-    if [[ LFBFL_write -eq 1 ]]; then
+    if [[ LFBFL_i_write -eq 1 ]]; then
       # shellcheck disable=SC2001
       printf "%s\n" "${repeated_split_last_line_result}"\
         >> "${LFBFL_listing}"
@@ -144,7 +144,7 @@ update_or_check_files_names_listing(){
       printf "The file %s is not listed in %s.\n"\
         "${LFBFL_file_path}"\
         "${LFBFL_listing}"
-      if [[ LFBFL_append -eq 1 ]]; then
+      if [[ LFBFL_i_append -eq 1 ]]; then
         # shellcheck disable=SC2001
         printf "%s\n" "${repeated_split_last_line_result}"\
           >> "${LFBFL_listing}"

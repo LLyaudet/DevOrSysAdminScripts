@@ -6,6 +6,10 @@
     file="build_and_checks_dependencies/split_score.libr.php"/>
   <violation rule="PHPMD\Rule\Controversial\CamelCaseVariableName"
     file="build_and_checks_dependencies/split_score.libr.php"/>
+  <violation rule="PHPMD\Rule\Controversial\CamelCaseParameterName"
+    file="string_escaping.libr.php"/>
+  <violation rule="PHPMD\Rule\Controversial\CamelCaseVariableName"
+    file="string_escaping.libr.php"/>
   <violation rule="PHPMD\Rule\Design\LongMethod"
     file="unicode.libr.php"/>
   <violation rule="PHPMD\Rule\Controversial\CamelCaseParameterName"

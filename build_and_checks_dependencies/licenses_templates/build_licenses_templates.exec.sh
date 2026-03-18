@@ -89,8 +89,8 @@ build_licenses_templates(){
   equal "${#LFBFL_block_comment_languages[@]}"\
         "${#LFBFL_block_comment_enters[@]}"\
         "${#LFBFL_block_comment_exits[@]}"
-  declare -i LFBFL_equal_result=$?
-  if [[ LFBFL_equal_result -eq 0 ]]; then
+  declare -i LFBFL_i_equal_result=$?
+  if [[ LFBFL_i_equal_result -eq 0 ]]; then
     printf $'/!\\Problem with the definitions of languages arrays 1/!\\\n'
     return 1
   fi
@@ -105,8 +105,8 @@ build_licenses_templates(){
   )
   equal "${#LFBFL_line_comment_languages[@]}"\
         "${#LFBFL_line_comment_prefixes[@]}"
-  LFBFL_equal_result=$?
-  if [[ LFBFL_equal_result -eq 0 ]]; then
+  LFBFL_i_equal_result=$?
+  if [[ LFBFL_i_equal_result -eq 0 ]]; then
     printf $'/!\\Problem with the definitions of languages arrays 2/!\\\n'
     return 1
   fi
@@ -129,7 +129,7 @@ build_licenses_templates(){
   local LFBFL_prefix_string
   local LFBFL_intermediate_file_name
   local LFBFL_file_prefix
-  declare -i LFBFL_generate_from_template_result
+  declare -i LFBFL_i_generate_from_template_result
   for LFBFL_some_license in "${LFBFL_licenses[@]}"; do
     LFBFL_license_prefix="${LFBFL_source_license_prefix}"
     LFBFL_license_prefix+="${LFBFL_some_license}"
@@ -145,12 +145,12 @@ build_licenses_templates(){
         "${LFBFL_license_prefix}.tpl"\
         "${LFBFL_license_file_name}.tpl"\
         "${LFBFL_enter_string}" "${LFBFL_exit_string}"
-      LFBFL_generate_from_template_result=$?
+      LFBFL_i_generate_from_template_result=$?
       if [[ LFBFL_i_verbose -eq 1 ]]; then
-        if [[ LFBFL_generate_from_template_result -eq 1 ]]; then
+        if [[ LFBFL_i_generate_from_template_result -eq 1 ]]; then
           printf "License template %s.tpl updated.\n"\
             "${LFBFL_license_file_name}"
-        elif [[ LFBFL_generate_from_template_result -eq 2 ]]; then
+        elif [[ LFBFL_i_generate_from_template_result -eq 2 ]]; then
           printf "License template %s.tpl created.\n"\
             "${LFBFL_license_file_name}"
         fi
@@ -176,12 +176,12 @@ build_licenses_templates(){
         "${LFBFL_prefix_string}"\
         "sed -Ei -e 's/\s*$//g' '${LFBFL_intermediate_file_name}'"\
         "${LFBFL_file_prefix}"
-      LFBFL_generate_from_template_result=$?
+      LFBFL_i_generate_from_template_result=$?
       if [[ LFBFL_i_verbose -eq 1 ]]; then
-        if [[ LFBFL_generate_from_template_result -eq 1 ]]; then
+        if [[ LFBFL_i_generate_from_template_result -eq 1 ]]; then
           printf "License template %s.tpl updated.\n"\
             "${LFBFL_license_file_name}"
-        elif [[ LFBFL_generate_from_template_result -eq 2 ]]; then
+        elif [[ LFBFL_i_generate_from_template_result -eq 2 ]]; then
           printf "License template %s.tpl created.\n"\
             "${LFBFL_license_file_name}"
         fi
@@ -223,21 +223,21 @@ build_licenses_templates(){
     LFBFL_license_prefix3="${LFBFL_license_prefix}${LFBFL_license2}"
 
   # First year according to current state of git repository.
-  declare -ir LFBFL_first_year=$(
+  declare -ir LFBFL_i_first_year=$(
     git log\
     | grep 'Date:'\
     | cut -f 8 -d ' '\
     | tail -1
   )
   # Last year according to current state of git repository.
-  declare -ir LFBFL_last_year=$(
+  declare -ir LFBFL_i_last_year=$(
     git log\
     | grep 'Date:'\
     | cut -f 8 -d ' '\
     | head -1
   )
   local LFBFL_copyright_string
-  LFBFL_copyright_string="${LFBFL_first_year}-${LFBFL_last_year}"
+  LFBFL_copyright_string="${LFBFL_i_first_year}-${LFBFL_i_last_year}"
   LFBFL_copyright_string+=" ${LFBFL_author_full_name}"
   readonly LFBFL_copyright_string
 
@@ -248,11 +248,11 @@ build_licenses_templates(){
         "$1.tpl"\
       > "$1.temp"
     overwrite_if_not_equal "$1" "$1.temp"
-    declare -r LFBFL_result=$?
+    declare -ir LFBFL_i_result=$?
     if [[ LFBFL_i_verbose -eq 1 ]]; then
-      if [[ LFBFL_result -eq 1 ]]; then
+      if [[ LFBFL_i_result -eq 1 ]]; then
         printf "License template %s updated.\n" "$1"
-      elif [[ LFBFL_result -eq 2 ]]; then
+      elif [[ LFBFL_i_result -eq 2 ]]; then
         printf "License template %s created.\n" "$1"
       fi
     fi
@@ -278,8 +278,8 @@ build_licenses_templates(){
   local LFBFL_key
   local LFBFL_dest
   local LFBFL_license_file_name2
-  declare -i LFBFL_not_subfile
-  declare -i LFBFL_not_subfile2
+  declare -i LFBFL_i_not_subfile
+  declare -i LFBFL_i_not_subfile2
   local LFBFL_file_path
   local LFBFL_s_files_paths
   declare -a LFBFL_arr_files_paths
@@ -304,14 +304,14 @@ build_licenses_templates(){
     for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do
       is_subfile "${LFBFL_file_path}"\
         "${LFBFL_license_file_name}.temp"
-      LFBFL_not_subfile=$?
-      LFBFL_not_subfile2=1
+      LFBFL_i_not_subfile=$?
+      LFBFL_i_not_subfile2=1
       if [[ -n "${LFBFL_license2}" ]]; then
         is_subfile "${LFBFL_file_path}"\
           "${LFBFL_license_file_name2}.temp"
-        LFBFL_not_subfile2=$?
+        LFBFL_i_not_subfile2=$?
       fi
-      if [[ LFBFL_not_subfile -ge 1 && LFBFL_not_subfile2 -ge 1 ]];
+      if [[ LFBFL_i_not_subfile -ge 1 && LFBFL_i_not_subfile2 -ge 1 ]];
       then
         printf "File %s has no/wrong license header?\n"\
           "${LFBFL_file_path}"
@@ -330,11 +330,11 @@ build_licenses_templates(){
         "$1.tpl"\
       > "$1.temp"
     overwrite_if_not_equal "$1" "$1.temp"
-    declare -r LFBFL_result=$?
+    declare -ir LFBFL_i_result=$?
     if [[ LFBFL_i_verbose -eq 1 ]]; then
-      if [[ LFBFL_result -eq 1 ]]; then
+      if [[ LFBFL_i_result -eq 1 ]]; then
         printf "License template %s updated." "$1"
-      elif [[ LFBFL_result -eq 2 ]]; then
+      elif [[ LFBFL_i_result -eq 2 ]]; then
         printf "License template %s created." "$1"
       fi
     fi
@@ -365,13 +365,13 @@ build_licenses_templates(){
     mapfile -t LFBFL_arr_files_paths <<< "${LFBFL_s_files_paths}"
     for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do
       is_subfile "${LFBFL_file_path}" "${LFBFL_license_file_name}"
-      LFBFL_not_subfile=$?
-      LFBFL_not_subfile2=1
+      LFBFL_i_not_subfile=$?
+      LFBFL_i_not_subfile2=1
       if [[ -n "${LFBFL_license2}" ]]; then
         is_subfile "${LFBFL_file_path}" "${LFBFL_license_file_name2}"
-        LFBFL_not_subfile2=$?
+        LFBFL_i_not_subfile2=$?
       fi
-      if [[ LFBFL_not_subfile -ge 1 && LFBFL_not_subfile2 -ge 1 ]];
+      if [[ LFBFL_i_not_subfile -ge 1 && LFBFL_i_not_subfile2 -ge 1 ]];
       then
         printf "File %s has no/wrong license header?\n"\
           "${LFBFL_file_path}"

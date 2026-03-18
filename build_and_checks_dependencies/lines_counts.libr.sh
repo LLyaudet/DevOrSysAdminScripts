@@ -120,8 +120,8 @@ code_lines_count_all(){
   enhanced_set_shell_option pipefail\
     && trap 'enhanced_unset_shell_option pipefail' RETURN
 
-  declare -gi code_lines_count_all_result
-  code_lines_count_all_result=$(
+  declare -gi i_code_lines_count_all_result
+  i_code_lines_count_all_result=$(
     all_self_code_lines\
     | wc -l
   )
@@ -141,9 +141,9 @@ code_lines_count_empty(){
   enhanced_set_shell_option pipefail\
     && trap 'enhanced_unset_shell_option pipefail' RETURN
 
-  declare -gi code_lines_count_empty_result
+  declare -gi i_code_lines_count_empty_result
   # shellcheck disable=SC2119
-  code_lines_count_empty_result=$(
+  i_code_lines_count_empty_result=$(
     all_self_empty_code_lines\
     | wc -l
   )
@@ -163,9 +163,9 @@ code_lines_count_not_empty(){
   enhanced_set_shell_option pipefail\
     && trap 'enhanced_unset_shell_option pipefail' RETURN
 
-  declare -gi code_lines_count_not_empty_result
+  declare -gi i_code_lines_count_not_empty_result
   # shellcheck disable=SC2119
-  code_lines_count_not_empty_result=$(
+  i_code_lines_count_not_empty_result=$(
     all_self_not_empty_code_lines\
     | wc -l
   )

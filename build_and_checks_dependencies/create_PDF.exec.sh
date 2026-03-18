@@ -118,11 +118,11 @@ create_PDF(){
     code_lines_count_empty "$@"
   } &> "${LFBFL_redirect}"
 
-  local LFBFL_number_of_lines="${code_lines_count_all_result}"
+  local LFBFL_number_of_lines="${i_code_lines_count_all_result}"
   LFBFL_number_of_lines+=" total lines,"
-  LFBFL_number_of_lines+=" ${code_lines_count_not_empty_result}"
+  LFBFL_number_of_lines+=" ${i_code_lines_count_not_empty_result}"
   LFBFL_number_of_lines+=" not empty lines,"
-  LFBFL_number_of_lines+=" ${code_lines_count_empty_result}"
+  LFBFL_number_of_lines+=" ${i_code_lines_count_empty_result}"
   LFBFL_number_of_lines+=" empty lines."
   readonly LFBFL_number_of_lines
 

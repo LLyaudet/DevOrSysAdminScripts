@@ -686,8 +686,10 @@ common_build_and_checks(){
       printf "Go get the latest version here:\n"
       printf "https://github.com/validator/validator/releases\n"
     fi
+    # vnu has false positives for xhtml
+    # find . -iregex ".*\.\(css\|html\|svg\|xhtml\)"
     declare -r LFBFL_files_for_Nu=$(
-      find . -iregex ".*\.\(css\|html\|svg\|xhtml\)"\
+      find . -iregex ".*\.\(css\|html\|svg\)"\
       | relevant_find
     )
     if [[ -n "${LFBFL_files_for_Nu}" ]]; then

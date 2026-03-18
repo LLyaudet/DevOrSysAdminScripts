@@ -44,7 +44,7 @@ update_common_build_and_checks(){
   cp "./${LFBFL_common_file_name}.tpl"\
     "./${LFBFL_common_file_name}.temp"
 
-  declare -ar LFBFL_file_names=(
+  declare -ar LFBFL_files_names=(
     "build_md_from_printable_md.exec.sh"
     "check_shell_scripts_beginnings.libr.sh"
     "check_shell_scripts_indentation.libr.sh"
@@ -78,7 +78,7 @@ update_common_build_and_checks(){
   local LFBFL_file_sha512
   local LFBFL_file_sha512_all
   local LFBFL_base_file_name
-  for LFBFL_file_name in "${LFBFL_file_names[@]}"; do
+  for LFBFL_file_name in "${LFBFL_files_names[@]}"; do
     LFBFL_file_sha512=$(
       sha512sum "./${LFBFL_file_name}"\
       | cut -f1 -d' '

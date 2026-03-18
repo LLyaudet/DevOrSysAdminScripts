@@ -50,23 +50,23 @@ check_files(){
   declare -r LFBFL_send_summary_2="ATTENTION : serializers modifiés"
   declare -r LFBFL_send_body_3=\
 "Les nouveaux preloadings sont interdits -> #Prefetch()"
-  declare -i LFBFL_error=0
+  declare -i LFBFL_i_error=0
   git diff --cached --name-only\
     > /tmp/DOSAS_django_git_check1.temp
   if grep models /tmp/DOSAS_django_git_check1.temp;
   then
     notify-send "${LFBFL_send_summary_1}" "${LFBFL_send_body_1}"
     notify-send "${LFBFL_send_summary_1}" "${LFBFL_send_body_2}"
-    LFBFL_error=1
+    LFBFL_i_error=1
   fi
   if grep serializer /tmp/DOSAS_django_git_check1.temp;
   then
     notify-send "${LFBFL_send_summary_2}" "${LFBFL_send_body_3}"
-    LFBFL_error=1
+    LFBFL_i_error=1
   fi
   rm /tmp/DOSAS_django_git_check1.temp
   # shellcheck disable=SC2248
-  return ${LFBFL_error}
+  return ${LFBFL_i_error}
 }
 
 
@@ -79,17 +79,17 @@ check_no_abusive_trailing_comma(){
   local LFBFL_send_body_1="Il semblerait que vous affectiez un tuple"
   LFBFL_send_body_1+=" au lieu d'une autre valeur dans une variable."
   readonly LFBFL_send_body_1
-  declare -i LFBFL_error=0
+  declare -i LFBFL_i_error=0
   git diff --cached -r\
     > /tmp/DOSAS_django_git_check2.temp
   if grep ' = .*,\s*$' /tmp/DOSAS_django_git_check2.temp;
   then
     notify-send "${LFBFL_send_summary_1}" "${LFBFL_send_body_1}"
-    LFBFL_error=1
+    LFBFL_i_error=1
   fi
   rm /tmp/DOSAS_django_git_check2.temp
   # shellcheck disable=SC2248
-  return ${LFBFL_error}
+  return ${LFBFL_i_error}
 }
 
 
@@ -103,7 +103,7 @@ check_black_code_formatting(){
   declare -a LFBFL_some_files
   mapfile -t LFBFL_some_files <<< "${LFBFL_files_string}"
   readonly LFBFL_some_files
-  declare -i LFBFL_error=0
+  declare -i LFBFL_i_error=0
   # Not very useful since LFBFL_file should be local to the loop by
   # default.
   local LFBFL_file
@@ -111,9 +111,9 @@ check_black_code_formatting(){
     printf "Black will check formatting on file %s\n" "${LFBFL_file}"
     if ! black --check --diff "${LFBFL_file}";
     then
-      LFBFL_error=1
+      LFBFL_i_error=1
     fi
   done
   # shellcheck disable=SC2248
-  return ${LFBFL_error}
+  return ${LFBFL_i_error}
 }

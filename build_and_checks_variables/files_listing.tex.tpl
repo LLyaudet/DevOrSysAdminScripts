@@ -146,14 +146,14 @@ build_and_checks_dependencies/get_common_text_glob_patterns.libr.sh
 
 
 \subsection{
-  build\_and\_checks\_dependencies/grammar\_and\_spell\_check.libr.sh
+  build\_and\_checks\_dependencies/grammar\_and\_spelling\_check.libr.sh
 }
 \label{
-  build_and_checks_dependencies:grammar_and_spell_checklibrsh
+  build_and_checks_dependencies:grammar_and_spelling_checklibrsh
 }
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/grammar_and_spell_check.libr.sh
+build_and_checks_dependencies/grammar_and_spelling_check.libr.sh
 }
 
 

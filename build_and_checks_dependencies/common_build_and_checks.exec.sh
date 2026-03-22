@@ -145,12 +145,12 @@ common_build_and_checks(){
   LFBFL_correct_sha512+='0fbf5df4794a2384f33e7e7dd5b65a53ab46f4a'
   wrapped_wget_sha512
 
-  LFBFL_file_name="grammar_and_spell_check.libr.sh"
+  LFBFL_file_name="grammar_and_spelling_check.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='0325e7ef5ebcc87f015e3ff90dd1a0884ef12db8193ff'
-  LFBFL_correct_sha512+='211d98438592840ee6043cab1a8e2fcd93a3ae867aca'
-  LFBFL_correct_sha512+='aa4b5862bebd4ce4e21e9602b219b1107c289c5'
+  LFBFL_correct_sha512='dc013dd4df36be7359c3975ccc1beb35d841085c62521'
+  LFBFL_correct_sha512+='51f1c2c748408d68d9e8abda7c3cc338c82a6480d79a'
+  LFBFL_correct_sha512+='8dd9106dec030313b93b4fc59b953cc124d1ad8'
   wrapped_wget_sha512
 
   # /licenses_templates/ ---------------------------------------------
@@ -310,8 +310,8 @@ common_build_and_checks(){
   source "./${LFBFL_subdir}/generate_from_template.libr.sh"
   # shellcheck source=get_common_text_glob_patterns.libr.sh
   source "./${LFBFL_subdir}/get_common_text_glob_patterns.libr.sh"
-  # shellcheck source=grammar_and_spell_check.libr.sh
-  source "./${LFBFL_subdir}/grammar_and_spell_check.libr.sh"
+  # shellcheck source=grammar_and_spelling_check.libr.sh
+  source "./${LFBFL_subdir}/grammar_and_spelling_check.libr.sh"
   # shellcheck source=lines_counts.libr.sh
   source "./${LFBFL_subdir}/lines_counts.libr.sh"
   # shellcheck source=lines_filters.libr.sh
@@ -663,7 +663,7 @@ common_build_and_checks(){
     "[^${LFBFL_usual_characters}]" .
 
   printf "Grammar and spelling check\n"
-  grammar_and_spell_check "${LFBFL_data_file_name}"\
+  grammar_and_spelling_check "${LFBFL_data_file_name}"\
     "${LFBFL_some_common_options[@]}"
 
   [[ LFBFL_i_directory_changed -eq 0 ]] && popd_from_work_directory

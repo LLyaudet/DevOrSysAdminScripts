@@ -59,7 +59,14 @@ grammar_and_spelling_check(){
     --replace-line-returns-by=""
   declare -r LFBFL_command="${LFBFL_grammar_and_spelling_checker_command}"
   if [[ -z "${LFBFL_command}" ]]; then
+    if [[ LFBFL_i_verbose -eq 1 ]]; then
+      printf "grammar_and_spelling_check: No command in configuration.\n"
+    fi
     return
+  fi
+  if [[ LFBFL_i_verbose -eq 1 ]]; then
+    printf "grammar_and_spelling_check: Command found: %s.\n"\
+      "${LFBFL_command}"
   fi
   local LFBFL_file_path
   local LFBFL_s_files_paths
@@ -67,8 +74,10 @@ grammar_and_spelling_check(){
   local LFBFL_pattern
   local LFBFL_eval_string
   for LFBFL_pattern in "${COMMON_TEXT_FILES_GLOB_PATTERNS[@]}"; do
-    [[ LFBFL_i_verbose -eq 1 ]]\
-      && printf "Iterating on pattern: %s.\n" "${LFBFL_pattern}"
+    if [[ LFBFL_i_verbose -eq 1 ]]; then
+      printf "grammar_and_spelling_check: Iterating on pattern: %s.\n"\
+        "${LFBFL_pattern}"
+    fi
     LFBFL_s_files_paths=$(
       find . -type f -name "${LFBFL_pattern}" -printf '%P\n'\
       | relevant_find
@@ -76,7 +85,7 @@ grammar_and_spelling_check(){
     if [[ -z "${LFBFL_s_files_paths}" ]]; then
       [[ LFBFL_i_verbose -eq 1 ]]\
         && printf "grammar_and_spelling_check: No file found.\n"
-      return
+      continue
     fi
     mapfile -t LFBFL_arr_files_paths <<< "${LFBFL_s_files_paths}"
     for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do

@@ -38,7 +38,7 @@ max_line_length=75
 
 latex_command=pdflatex
 
-grammar_and_spelling_checker_command=more
+grammar_and_spelling_checker_command=
 
 
 Why one venv for each Python dependency ?

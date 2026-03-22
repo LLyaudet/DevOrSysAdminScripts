@@ -29,6 +29,9 @@
 # "build_and_checks.sh" to "build_and_checks.exec.sh".
 
 build_and_checks(){
+  # $1=work_directory
+  # Options:
+  #   --verbose
   local LFBFL_work_directory="."
   if [[ -n "$1" ]]; then
     LFBFL_work_directory="$1"

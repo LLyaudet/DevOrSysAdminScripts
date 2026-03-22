@@ -148,9 +148,9 @@ common_build_and_checks(){
   LFBFL_file_name="grammar_and_spell_check.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='a34a57c303881c42c94db9d17fde07a6578839cc9e50b'
-  LFBFL_correct_sha512+='07f26b1ef85f5bf19ccba74781fa83b7e69e0aab83a1'
-  LFBFL_correct_sha512+='5d27e3231bce411f79da77dcccf4c6e482fcfe5'
+  LFBFL_correct_sha512='0325e7ef5ebcc87f015e3ff90dd1a0884ef12db8193ff'
+  LFBFL_correct_sha512+='211d98438592840ee6043cab1a8e2fcd93a3ae867aca'
+  LFBFL_correct_sha512+='aa4b5862bebd4ce4e21e9602b219b1107c289c5'
   wrapped_wget_sha512
 
   # /licenses_templates/ ---------------------------------------------
@@ -661,6 +661,10 @@ common_build_and_checks(){
   grep --binary-files=without-match --color=always --exclude-dir .git\
     --line-number --perl-regexp --recursive --\
     "[^${LFBFL_usual_characters}]" .
+
+  printf "Grammar and spelling check\n"
+  grammar_and_spell_check "${LFBFL_data_file_name}"\
+    "${LFBFL_some_common_options[@]}"
 
   [[ LFBFL_i_directory_changed -eq 0 ]] && popd_from_work_directory
 

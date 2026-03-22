@@ -608,6 +608,10 @@ common_build_and_checks(){
     --line-number --perl-regexp --recursive --\
     "[^${LFBFL_usual_characters}]" .
 
+  printf "Grammar and spelling check\n"
+  grammar_and_spell_check "${LFBFL_data_file_name}"\
+    "${LFBFL_some_common_options[@]}"
+
   [[ LFBFL_i_directory_changed -eq 0 ]] && popd_from_work_directory
 
   printf "Checking listed files\n"

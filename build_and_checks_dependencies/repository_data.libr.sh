@@ -32,7 +32,7 @@ source "./${LFBFL_subdir}/lines_filters.libr.sh"
 # And I'm kind enough to activate it inside functions that need it below.
 
 get_upgrade_venvs_time_interval_in_seconds(){
-  # $1=data_file_name
+  # $1=data_file_path
   # Options:
   #   --verbose
   declare -i LFBFL_i_verbose=0

@@ -34,7 +34,7 @@ LFBFL_some_directory="../DevOrSysAdminScripts"
 declare -i LFBFL_i_pushd_result3
 pushd "${LFBFL_some_directory}" || {
   LFBFL_i_pushd_result3=$?
-  printf "pre-commit no such directory"
+  printf "pre-commit no such directory\n"
   # shellcheck disable=SC2248
   exit ${LFBFL_i_pushd_result3}
 }
@@ -43,7 +43,7 @@ source "./git_helpers/git_checks.libr.sh"
 declare -i LFBFL_i_popd_result3
 popd || {
   LFBFL_i_popd_result3=$?
-  printf "pre-commit no popd"
+  printf "pre-commit no popd\n"
   # shellcheck disable=SC2248
   exit ${LFBFL_i_popd_result3}
 }

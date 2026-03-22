@@ -236,8 +236,8 @@ grep_fixed_string_with_anchor(){
 }
 
 grep_variable(){
-  # $1=$file
-  # $2=$variable_name
+  # $1=file_path
+  # $2=variable_name
   # Options :
   #   --replace-line-returns-by=""
   #   --result-variable-prefix="LFBFL_" for example
@@ -479,7 +479,7 @@ not_main_html_grep(){
 }
 
 not_temp_file_find(){
-  grep -vE "(^|/)build_and_checks_variables/temp/.*$"
+  grep -vE "(^|/)build_and_checks_variables/temp/"
 }
 
 not_temp_file_grep(){

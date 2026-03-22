@@ -348,8 +348,8 @@ common_build_and_checks(){
       stat -c %Y "${LFBFL_upgrade_venvs_ts_file}"
     )
     LFBFL_i_current_ts=$(date +%s)
-    ((LFBFL_i_current_ts-=LFBFL_i_upgrade_venvs_ts))
-    ((LFBFL_i_current_ts-=LFBFL_upgrade_venvs_time_interval_in_seconds))
+    ((LFBFL_i_current_ts -= LFBFL_i_upgrade_venvs_ts))
+    ((LFBFL_i_current_ts -= LFBFL_upgrade_venvs_time_interval_in_seconds))
     if [[ LFBFL_i_current_ts -gt 0 ]]; then
       LFBFL_i_upgrade_venvs=1
     fi
@@ -645,8 +645,10 @@ common_build_and_checks(){
   if [[ -f "${LFBFL_vnu_jar_path}" ]]; then
     LFBFL_i_vnu_jar_ts=$(stat -c %Y "${LFBFL_vnu_jar_path}")
     LFBFL_i_current_ts=$(date +%s)
-    ((LFBFL_i_current_ts-=LFBFL_i_vnu_jar_ts))
-    ((LFBFL_i_current_ts-=LFBFL_upgrade_vnu_jar_time_interval_in_seconds))
+    ((LFBFL_i_current_ts -= LFBFL_i_vnu_jar_ts))
+    ((
+      LFBFL_i_current_ts -= LFBFL_upgrade_vnu_jar_time_interval_in_seconds
+    ))
     if [[ LFBFL_i_current_ts -gt 0 ]]; then
       printf $'/!\\ATTENTION: Nu W3C validator is too old./!\\\n'
       printf "Go get the latest version here:\n"

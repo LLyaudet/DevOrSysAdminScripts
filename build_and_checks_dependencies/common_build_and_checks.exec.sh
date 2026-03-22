@@ -160,9 +160,9 @@ common_build_and_checks(){
   LFBFL_file_name="build_licenses_templates.exec.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL2}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir2}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='65030141e007ed852524f58cfc131d068fdc4da92c00d'
-  LFBFL_correct_sha512+='a154aae624501152d83027bfa9b6485658459454560c'
-  LFBFL_correct_sha512+='4c0c69831bd1cf19777396e35d83f701881fb91'
+  LFBFL_correct_sha512='6db7e7c50995cf27cb4459915cfd971f55bdea4c34ff6'
+  LFBFL_correct_sha512+='ece891778219f45c682d50cbc8a772941637143799fe'
+  LFBFL_correct_sha512+='80e4db168754530920e660030b87790bad5614c'
   wrapped_wget_sha512
   chmod +x "./${LFBFL_file_path}"
 

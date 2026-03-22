@@ -308,7 +308,8 @@ build_licenses_templates(){
     fi
 
     LFBFL_s_files_paths=$(
-      find . -type f -name "*.${LFBFL_key}" -printf '%P\n'\
+      find . -type f -iregex ".*\.\(${LFBFL_key}\|${LFBFL_key}\.tpl\)"\
+        -printf '%P\n'\
       | relevant_find
     )
     if [[ -z "${LFBFL_s_files_paths}" ]]; then
@@ -377,7 +378,8 @@ build_licenses_templates(){
     fi
 
     LFBFL_s_files_paths=$(
-      find . -type f -name "*.${LFBFL_key}" -printf '%P\n'\
+      find . -type f -iregex ".*\.\(${LFBFL_key}\|${LFBFL_key}\.tpl\)"\
+        -printf '%P\n'\
       | relevant_find
     )
     if [[ -z "${LFBFL_s_files_paths}" ]]; then

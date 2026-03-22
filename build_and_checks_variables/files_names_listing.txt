@@ -78,6 +78,7 @@ build_and_checks_variables/licenses_notes.txt
 build_and_checks_variables/phpmd_baseline.xml
 build_and_checks_variables/pylintrc.toml
 build_and_checks_variables/repository_data.txt
+build_and_checks_variables/repository_data.txt.tpl
 build_and_checks_variables/ruff.toml
 build_and_checks_variables/shellcheck.ini
 build_and_checks_variables/shellcheck_notes.txt

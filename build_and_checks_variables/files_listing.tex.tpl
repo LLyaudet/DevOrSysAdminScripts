@@ -532,6 +532,18 @@ build_and_checks_variables/repository_data.txt
 
 
 \subsection{
+  build\_and\_checks\_variables/repository\_data.txt.tpl
+}
+\label{
+  build_and_checks_variables:repository_datatxttpl
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+build_and_checks_variables/repository_data.txt.tpl
+}
+
+
+\subsection{
   build\_and\_checks\_variables/ruff.toml
 }
 \label{

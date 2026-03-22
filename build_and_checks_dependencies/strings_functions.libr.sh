@@ -613,6 +613,7 @@ split_score_properties_logical_closure(){
     if ((LFBFL_i_result & SSP_SAME_POSITION_EQUAL_AFTER_OR_BEFORE)); then
       LFBFL_i_result=$((
         LFBFL_i_result
+        | SSP_DELIMITER_UNIFORM
         | SSP_EQUAL_AFTER_OR_BEFORE
         | SSP_LARGER_AFTER
         | SSP_LARGER_BEFORE
@@ -833,6 +834,13 @@ split_score_properties_logical_closure(){
       LFBFL_i_result=$((
         LFBFL_i_result
         | SSP_ALWAYS_LARGER_BEFORE
+      ))
+    fi
+    if ((LFBFL_i_result & SSP_SAME_POSITION_LARGER_AFTER))\
+    && ((LFBFL_i_result & SSP_SAME_POSITION_LARGER_BEFORE)); then
+      LFBFL_i_result=$((
+        LFBFL_i_result
+        | SSP_SAME_POSITION_EQUAL_AFTER_OR_BEFORE
       ))
     fi
   done

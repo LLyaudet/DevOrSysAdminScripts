@@ -170,8 +170,7 @@ update_or_check_files_names_listing(){
 
   for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do
     [[ "${LFBFL_file_path}" != '//'* ]] || continue
-    LFBFL_base_file_name=$(basename "${LFBFL_file_path}")
-    if ! [[ -f "${LFBFL_file_path}" ]]; then
+    if [[ ! -f "${LFBFL_file_path}" ]]; then
       printf "The non-file %s is listed in %s.\n"\
         "${LFBFL_file_path}"\
         "${LFBFL_listing}"

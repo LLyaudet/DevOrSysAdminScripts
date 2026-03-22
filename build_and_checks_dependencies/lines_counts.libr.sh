@@ -50,10 +50,12 @@ all_code_lines(){
   get_COMMON_TEXT_FILES_GLOB_PATTERNS
   local LFBFL_pattern
   for LFBFL_pattern in "${COMMON_TEXT_FILES_GLOB_PATTERNS[@]}"; do
-    [[ LFBFL_i_verbose -eq 1 ]]\
-      && printf "Iterating on pattern: %s.\n" "${LFBFL_pattern}"
+    if [[ LFBFL_i_verbose -eq 1 ]]; then
+      printf "all_code_lines: Iterating on pattern: %s.\n"\
+        "${LFBFL_pattern}"
+    fi
     find . -type f -name "${LFBFL_pattern}" -printf '%P\n'\
-      | xargs grep -HP -v 'a(?!a)a'
+      | xargs grep --invert-match --perl-regexp --with-filename 'a(?!a)a'
   done
 }
 
@@ -123,7 +125,7 @@ code_lines_count_all(){
   declare -gi i_code_lines_count_all_result
   i_code_lines_count_all_result=$(
     all_self_code_lines\
-    | wc -l
+    | wc --lines
   )
   # The printf is for command line use.
   # A script should use the result value instead.
@@ -145,7 +147,7 @@ code_lines_count_empty(){
   # shellcheck disable=SC2119
   i_code_lines_count_empty_result=$(
     all_self_empty_code_lines\
-    | wc -l
+    | wc --lines
   )
   # The printf is for command line use.
   # A script should use the result value instead.
@@ -167,7 +169,7 @@ code_lines_count_not_empty(){
   # shellcheck disable=SC2119
   i_code_lines_count_not_empty_result=$(
     all_self_not_empty_code_lines\
-    | wc -l
+    | wc --lines
   )
   # The printf is for command line use.
   # A script should use the result value instead.

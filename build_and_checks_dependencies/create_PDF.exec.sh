@@ -150,6 +150,7 @@ create_PDF(){
     > "${LFBFL_temp_path}/current_tree.txt.temp"
 
   local LFBFL_s_files_paths
+  # Remove line returns that are here to keep lines short.
   LFBFL_s_files_paths=$(
     sed -Ez 's/(.)\\\n/\1/Mg' "./${LFBFL_subdir2}/files_names_listing.txt"\
     | grep -v '^//'
@@ -195,7 +196,6 @@ create_PDF(){
   local LFBFL_new_lines3
   local LFBFL_file_path
   local LFBFL_s_format
-  # Remove line returns here to keep lines short.
   for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do
     printf "Listing file for tex/HTML : %s\n" "${LFBFL_file_path}"
     # printf "Listing file for tex : %s\n" "${LFBFL_file_path}"

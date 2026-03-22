@@ -134,7 +134,7 @@ in_place_grep(){
 }
 
 grep_fixed_string_with_anchor(){
-  # $1=filepath
+  # $1=file_path
   # $2=some_fixed_string
   # Options:
   #   --enforce-line-starts-with-fixed-string

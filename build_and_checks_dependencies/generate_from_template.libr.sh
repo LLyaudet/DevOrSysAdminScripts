@@ -31,8 +31,8 @@ source "./${LFBFL_subdir}/lines_filters.libr.sh"
 source "./${LFBFL_subdir}/overwrite_if_not_equal.libr.sh"
 
 generate_from_template_with_block_comments(){
-  # $1=base_file_name
-  # $2=target_file_name
+  # $1=base_file_path
+  # $2=target_file_path
   # $3=enter_block_comment
   # $4=exit_block_comment
   local LFBFL_temp
@@ -47,8 +47,8 @@ generate_from_template_with_block_comments(){
 }
 
 generate_from_template_with_line_comments(){
-  # $1=base_file_name
-  # $2=target_file_name
+  # $1=base_file_path
+  # $2=target_file_path
   # $3=line_comment_prefix
   # $4=optional_post_processing
   # $5=file_prefix
@@ -68,20 +68,16 @@ generate_from_template_with_line_comments(){
 }
 
 split_file_in_two(){
-  # $1=$file_name
-  # $2=$token assume that token is the only thing on his line.
-  # $3=$file_name_part1
-  # $4=$file_name_part2
-  # Other arguments are options for grep.
-  declare -a LFBFL_grep_options=()
-  declare -i LFBFL_i=0
-  local LFBFL_arg
-  for ((LFBFL_i=5; LFBFL_i<=$#; ++LFBFL_i)); do
-    LFBFL_arg="${!LFBFL_i}"
-    LFBFL_grep_options+=("${LFBFL_arg}")
-  done
+  # $1=file_path
+  # $2=token assume that token is the only thing on his line,
+  #    except for a possible indentation.
+  # $3=path_of_part1_of_file
+  # $4=path_of_part2_of_file
+  # We cannot add --line-regexp with --fixed-strings because of the
+  # possible indentation in file.
   declare -ir LFBFL_i_line_number=$(
-    grep -n "${LFBFL_grep_options[@]}" -- "$2" "$1"\
+    grep_fixed_string_with_anchor "$1" "$2"\
+      --enforce-line-ends-with-fixed-string --fixed-strings --line-number\
     | head --lines=1\
     | cut -f 1 -d ':'
   )
@@ -96,10 +92,11 @@ split_file_in_two(){
 }
 
 insert_file_at_token(){
-  # $1=$file_name
-  # $2=$token assume that token is the only thing on his line.
-  # $3=$file_name_to_insert
-  # $4=$file_name_result
+  # $1=file_path
+  # $2=token assume that token is the only thing on his line,
+  #    except for a possible indentation.
+  # $3=path_of_file_to_insert
+  # $4=path_of_result_file
   # Options:
   #   $5=--quiet to suppress diff output in overwrite_if_not_equal
   declare -r LFBFL_start_file_name="$1.insert_file_at_token1.temp"
@@ -112,7 +109,7 @@ insert_file_at_token(){
   fi
   readonly LFBFL_result_file_name
   split_file_in_two "$1" "$2" "${LFBFL_start_file_name}"\
-    "${LFBFL_end_file_name}" --fixed-strings
+    "${LFBFL_end_file_name}"
   cat "${LFBFL_start_file_name}" "$3" "${LFBFL_end_file_name}"\
     > "${LFBFL_result_file_name}"
   rm "${LFBFL_start_file_name}" "${LFBFL_end_file_name}"

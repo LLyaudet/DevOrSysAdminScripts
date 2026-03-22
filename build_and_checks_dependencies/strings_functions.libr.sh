@@ -1218,7 +1218,8 @@ split_last_line(){
     # printf "%s %s\n" "${#something}" "${something}"
   fi
   if [[ -n "$5" ]]; then
-    split_line_at_most "${LFBFL_last_line}" "${LFBFL_i_length2}"\
+    # shellcheck disable=SC2248
+    split_line_at_most "${LFBFL_last_line}" ${LFBFL_i_length2}\
       "$5" "$6" "$7"
     split_last_line_result+="${split_line_at_most_result_start}"
     split_last_line_result+="$4"

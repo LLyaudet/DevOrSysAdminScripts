@@ -26,8 +26,8 @@ This file was renamed from "unicode.php" to "unicode.libr.php".
 */
 
 function decimal_code_point_to_UTF8(
-  $i_code_point_in_decimal_notation
-){
+  int $i_code_point_in_decimal_notation
+) : string {
   // var_dump($i_code_point_in_decimal_notation);
   // 0xxxxxxx ASCII
   if($i_code_point_in_decimal_notation < 128){
@@ -129,8 +129,8 @@ function decimal_code_point_to_UTF8(
 
 
 function hexa_code_point_to_UTF8(
-  $s_code_point_in_hexadecimal_notation
-){
+  string $s_code_point_in_hexadecimal_notation
+) : string {
   $s_code_point_in_hexadecimal_notation = strtoupper(
     $s_code_point_in_hexadecimal_notation
   );
@@ -167,7 +167,7 @@ function hexa_code_point_to_UTF8(
 
 
 
-function check_string_is_valid_ASCII($s_string){
+function check_string_is_valid_ASCII(string $s_string) : bool {
   for($i = 0, $i_max = strlen($s_string); $i < $i_max; ++$i){
     if(ord($s_string[$i]) > 127){
       throw new Exception(
@@ -184,7 +184,7 @@ function check_string_is_valid_ASCII($s_string){
 
 
 
-function check_file_is_valid_ASCII($s_file_name){
+function check_file_is_valid_ASCII(string $s_file_name) : bool {
   $s_string = file_get_contents($s_file_name);
   if($s_string === false){
     throw new Exception("File ".$s_file_name." not found.");
@@ -194,7 +194,7 @@ function check_file_is_valid_ASCII($s_file_name){
 
 
 
-function check_string_is_valid_UTF8($s_string){
+function check_string_is_valid_UTF8(string $s_string) : bool {
   $i_continuation_octet_needed = 0;
   $i_offset_in_octets_from_string_start = 0;
   $i_offset_in_characters_from_string_start = -1;
@@ -322,7 +322,7 @@ function check_string_is_valid_UTF8($s_string){
 
 
 
-function check_file_is_valid_UTF8($s_file_name){
+function check_file_is_valid_UTF8(string $s_file_name) : bool {
   $s_string = file_get_contents($s_file_name);
   if($s_string === false){
     throw new Exception("File ".$s_file_name." not found.");

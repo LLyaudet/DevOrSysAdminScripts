@@ -31,15 +31,16 @@ This file was renamed from "split_line_at_most.php" to
 */
 
 function generate_split_score(
-  $b_after_before,
-  $i_max_length,
-  $a_delimiter_strings_domain,
-){
+  bool $b_after_before,
+  int $i_max_length,
+  array $a_delimiter_strings_domain,
+) : Closure {
   return function(
-    $s_delimiter_string,
-    $i_cut_position,
-    $b_is_cut_after,
-  ) use ($b_after_before, $i_max_length, $a_delimiter_strings_domain){
+    string $s_delimiter_string,
+    int $i_cut_position,
+    bool $b_is_cut_after,
+  ) use ($b_after_before, $i_max_length, $a_delimiter_strings_domain)
+  : int {
     if(
       !in_array(
         $s_delimiter_string, $a_delimiter_strings_domain, true

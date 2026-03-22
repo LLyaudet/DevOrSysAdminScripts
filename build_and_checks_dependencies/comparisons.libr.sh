@@ -58,9 +58,8 @@ all_distinct(){
   declare -ir LFBFL_ij_max=$#
   declare -i LFBFL_i
   declare -i LFBFL_j
-  for ((LFBFL_i=1; LFBFL_i<=LFBFL_ij_max; ++LFBFL_i)); do
-    for ((LFBFL_j=1; LFBFL_j<=LFBFL_ij_max; ++LFBFL_j)); do
-      [[ LFBFL_i -eq LFBFL_j ]] && continue
+  for ((LFBFL_i=1; LFBFL_i<LFBFL_ij_max; ++LFBFL_i)); do
+    for ((LFBFL_j = LFBFL_i + 1; LFBFL_j<=LFBFL_ij_max; ++LFBFL_j)); do
       [[ "${!LFBFL_i}" == "${!LFBFL_j}" ]] && return 0
     done
   done

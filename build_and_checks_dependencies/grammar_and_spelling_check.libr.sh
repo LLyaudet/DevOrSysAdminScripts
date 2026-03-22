@@ -21,6 +21,10 @@
 # If not, see <https://www.gnu.org/licenses/>.
 #
 # ©Copyright 2023-2026 Laurent Frédéric Bernard François Lyaudet
+# 2026-03-22T15:30+01:00: This file was renamed from
+# "grammar_and_spell_check.libr.sh"
+# to
+# "grammar_and_spelling_check.libr.sh".
 # This file was renamed from "grammar_and_spell_check.sh"
 # to "grammar_and_spell_check.libr.sh".
 

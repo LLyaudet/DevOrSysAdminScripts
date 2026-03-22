@@ -36,7 +36,7 @@ wget_sha512(){
   fi
   readonly LFBFL_verbose
   if [[ ! -f "$1" ]]; then
-    wget "${LFBFL_verbose}" -O "$1" "$2"
+    wget ${LFBFL_verbose:+"${LFBFL_verbose}"} -O "$1" "$2"
   fi
   declare -r LFBFL_present_sha512=$(
     sha512sum "$1"\

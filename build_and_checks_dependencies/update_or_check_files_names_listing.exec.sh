@@ -105,7 +105,7 @@ update_or_check_files_names_listing(){
   declare -a LFBFL_arr_files_paths
   if [[ -n "${LFBFL_s_files_paths}" ]]; then
     if [[ LFBFL_i_verbose -eq 1 ]]; then
-      printf "Some files to process."
+      printf "update_or_check_files_names_listing: Some files to process."
     fi
     mapfile -t LFBFL_arr_files_paths <<< "${LFBFL_s_files_paths}"
   fi
@@ -115,7 +115,9 @@ update_or_check_files_names_listing(){
   local LFBFL_base_file_name
   for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do
     # if [[ LFBFL_i_verbose -eq 1 ]]; then
-    #   printf "Maybe ignored file: %s\n" "${LFBFL_file_path}"
+    #   printf\
+    #     "update_or_check_files_names_listing: Maybe ignored file: %s\n"\
+    #     "${LFBFL_file_path}"
     # fi
     git check-ignore -q "${LFBFL_file_path}" && continue
     LFBFL_base_file_name=$(basename "${LFBFL_file_path}")
@@ -127,7 +129,8 @@ update_or_check_files_names_listing(){
       fi
     fi
     if [[ LFBFL_i_verbose -eq 1 ]]; then
-      printf "Non-ignored file: %s\n" "${LFBFL_file_path}"
+      printf "update_or_check_files_names_listing: Non-ignored file: %s\n"\
+        "${LFBFL_file_path}"
     fi
     # shellcheck disable=SC2248
     repeated_split_last_line "${LFBFL_file_path}"\

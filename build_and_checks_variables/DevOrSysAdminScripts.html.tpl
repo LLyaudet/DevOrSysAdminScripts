@@ -69,7 +69,7 @@ ol.level1, ol.level2{
   /*
   list-style-type: decimal;
   Previous rule is shorter and more efficient if you need only level1.
-  But you don't have accessible counter if you use decimal.
+  But you don't have an accessible counter if you use decimal.
   */
 }
 ol.level1{

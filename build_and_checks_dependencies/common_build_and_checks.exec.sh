@@ -123,9 +123,9 @@ common_build_and_checks(){
   LFBFL_file_name="create_PDF.exec.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='a043cdaf9956bd8797a54717ec52ceaddc20cfdef3663'
-  LFBFL_correct_sha512+='bf68647486f82b04d5e6340ff46d39afa20a780f0c28'
-  LFBFL_correct_sha512+='ac3abfa3cb4c1a2faa8573912c6723b8e15528d'
+  LFBFL_correct_sha512='301560555a7e7225a2f1421062495b3f0df1b80d23fc6'
+  LFBFL_correct_sha512+='44e84a52ca322cbe1ff16f94ea3d5209673702f4cfab'
+  LFBFL_correct_sha512+='9ce76223ce8cc5f68bae517f4bb916ee9fb7964'
   wrapped_wget_sha512
   chmod +x "./${LFBFL_file_path}"
 

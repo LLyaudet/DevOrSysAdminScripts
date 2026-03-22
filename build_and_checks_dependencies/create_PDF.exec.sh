@@ -336,7 +336,7 @@ create_PDF(){
       # printf "LFBFL_prefix: %s\n" "${LFBFL_prefix}"
       LFBFL_file_name=$(
         printf "%s" "${LFBFL_line}"\
-        | sed -E 's|.* (([a-zA-Z0-9\._/-]+).)$|\1|g'
+        | sed -E 's|.* ([^ ]+)$|\1|g'
       )
       # printf "LFBFL_file_name: %s\n" "${LFBFL_file_name}"
       LFBFL_i_keep_length=$((${#LFBFL_line} - ${#LFBFL_file_name}))

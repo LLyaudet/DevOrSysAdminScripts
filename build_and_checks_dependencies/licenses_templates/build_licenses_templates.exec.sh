@@ -130,17 +130,22 @@ build_licenses_templates(){
   local LFBFL_intermediate_file_name
   local LFBFL_file_prefix
   declare -i LFBFL_i_generate_from_template_result
+  declare -i LFBFL_i
   for LFBFL_some_license in "${LFBFL_licenses[@]}"; do
     LFBFL_license_prefix="${LFBFL_source_license_prefix}"
     LFBFL_license_prefix+="${LFBFL_some_license}"
     LFBFL_license_prefix2="${LFBFL_target_license_prefix}"
     LFBFL_license_prefix2+="${LFBFL_some_license}"
-    for ((i=0; i<${#LFBFL_block_comment_languages[@]}; i++)); do
-      LFBFL_extension=${LFBFL_block_comment_languages[i]}
+    for ((
+      LFBFL_i = 0;
+      LFBFL_i < ${#LFBFL_block_comment_languages[@]};
+      ++LFBFL_i
+    )); do
+      LFBFL_extension=${LFBFL_block_comment_languages[LFBFL_i]}
       LFBFL_license_file_name="${LFBFL_license_prefix2}"
       LFBFL_license_file_name+=".${LFBFL_extension}"
-      LFBFL_enter_string=${LFBFL_block_comment_enters[i]}
-      LFBFL_exit_string=${LFBFL_block_comment_exits[i]}
+      LFBFL_enter_string=${LFBFL_block_comment_enters[LFBFL_i]}
+      LFBFL_exit_string=${LFBFL_block_comment_exits[LFBFL_i]}
       generate_from_template_with_block_comments\
         "${LFBFL_license_prefix}.tpl"\
         "${LFBFL_license_file_name}.tpl"\
@@ -157,11 +162,15 @@ build_licenses_templates(){
       fi
     done
     LFBFL_temp2=".generate_from_template_with_line_comments.temp"
-    for ((i=0; i<${#LFBFL_line_comment_languages[@]}; i++)); do
-      LFBFL_extension=${LFBFL_line_comment_languages[i]}
+    for ((
+      LFBFL_i = 0;
+      LFBFL_i < ${#LFBFL_line_comment_languages[@]};
+      ++LFBFL_i
+    )); do
+      LFBFL_extension=${LFBFL_line_comment_languages[LFBFL_i]}
       LFBFL_license_file_name="${LFBFL_license_prefix2}"
       LFBFL_license_file_name+=".${LFBFL_extension}"
-      LFBFL_prefix_string=${LFBFL_line_comment_prefixes[i]}
+      LFBFL_prefix_string=${LFBFL_line_comment_prefixes[LFBFL_i]}
       LFBFL_intermediate_file_name="${LFBFL_license_file_name}.tpl"
       LFBFL_intermediate_file_name+="${LFBFL_temp2}"
       LFBFL_file_prefix=""

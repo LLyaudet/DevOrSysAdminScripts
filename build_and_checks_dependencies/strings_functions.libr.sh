@@ -35,8 +35,8 @@ source "./${LFBFL_subdir}/get_common_text_glob_patterns.libr.sh"
 source "./${LFBFL_subdir}/comparisons.libr.sh"
 
 split_line_at(){
-  # $1=$line
-  # $2=$position : number of characters in split_line_at_result_beginning
+  # $1=line
+  # $2=position : number of characters in split_line_at_result_beginning
   declare -g split_line_at_result_beginning="${1:0:$2}"
   declare -g split_line_at_result_end="${1:$2}"
   # printf "%s\n" "$split_line_at_result_beginning"
@@ -143,7 +143,7 @@ split_line_at(){
 #   and moreover there would be no previous character.
 #   Since we ask for a split, the current length is above goal length,
 #   and there is a next character at the last considered position.
-#   So, in search of properties that may have impact on the algorithm,
+#   So, in search of properties that may have an impact on the algorithm,
 #   we discard the characters to only keep matched delimiters.
 #   Let us use p1 and p2 for position1 and position2,
 #   mdb1 and mdb2 for matched_delimiter_before1, etc.,
@@ -190,7 +190,7 @@ split_line_at(){
 #   We can add RP6 : p1 = p2 + 1 and RP7 : p2 = p1 + 1, since it implies
 #   some equalities between matched delimiters.
 #   Note that  p1 = p2 + i or p2 = p1 + i with i >= 2 brings no additional
-#   logic relations compared to p1 < p2 or p2 < p1;
+#   logical relations compared to p1 < p2 or p2 < p1;
 #   it only yields subslices of other properties and open a slightly silly
 #   door on infinity.
 #   If we have RS=, by symmetry we can consider only RP1, RP2, RP3 and RPe,
@@ -201,7 +201,7 @@ split_line_at(){
 #   interesting at all since both scores are 0 or -1.
 #   mdb1 is NULL AND mdb2 is NULL AND mda1 is NULL AND mda2 is not NULL
 #   implies that second score is always larger, that's not an additional
-#   property that is a theorem.
+#   property, that is a theorem.
 #   Hence, at least one of mdb1 or mda1, resp. mdb2 or mda2,
 #   must (have the possibility to) be non-NULL.
 #   If we start listing the remaining relations, we have:
@@ -279,7 +279,7 @@ split_line_at(){
 #       SF2b(p2, md2, ia2)
 #     )
 #   The third form is like:
-#     for all p1 in [1, goal_length], for all p2 in [1, goal_length],
+#     For all p1 in [1, goal_length], for all p2 in [1, goal_length],
 #     for all md1 in delimiters union {NULL},
 #     for all md2 in delimiters union {NULL},
 #     for all ia1 in {TRUE,FALSE}, for all ia2 in {TRUE,FALSE},
@@ -842,10 +842,10 @@ split_score_properties_logical_closure(){
 }
 
 split_score_simple(){
-  # $1=$after_before
-  # $2=$delimiters_strings_domain concatenated characters/delimiters
-  # $3=$delimiter_string a single character
-  # $4=$is_cut_after
+  # $1=after_before
+  # $2=delimiters_strings_domain concatenated characters/delimiters
+  # $3=delimiter_string a single character
+  # $4=is_cut_after
   declare -gi i_split_score_result
   if [[ "$2" != *$3* ]]; then
     i_split_score_result=0
@@ -859,9 +859,9 @@ split_score_simple(){
 }
 
 get_split_score_simple(){
-  # $1=$after_before
-  # $2=$max_length
-  # $3=$delimiters_strings_domain
+  # $1=after_before
+  # $2=max_length
+  # $3=delimiters_strings_domain
   declare -g get_split_score_result="split_score_simple $1 '$3'"
   declare -gi i_get_split_score_result2
   # i_get_split_score_result2=$((11-$1*4))
@@ -894,12 +894,12 @@ get_split_score_exec(){
 }
 
 split_score(){
-  # $1=$after_before
-  # $2=$max_length
-  # $3=$delimiters_strings_domain concatenated characters/delimiters
-  # $4=$delimiter_string a single character
-  # $5=$cut_position
-  # $6=$is_cut_after
+  # $1=after_before
+  # $2=max_length
+  # $3=delimiters_strings_domain concatenated characters/delimiters
+  # $4=delimiter_string a single character
+  # $5=cut_position
+  # $6=is_cut_after
   get_split_score_exec
   declare -r LFBFL_command="${SPLIT_SCORE_EXEC} $1 $2 '$3' '$4' $5 $6"
   declare -gi i_split_score_result
@@ -907,12 +907,12 @@ split_score(){
 }
 
 # This function is currently not called,
-# hence we need that shellcheck disable.
+# hence we need this shellcheck disable.
 # shellcheck disable=SC2034
 get_split_score(){
-  # $1=$after_before
-  # $1=$max_length
-  # $2=$delimiters_strings_domain
+  # $1=after_before
+  # $1=max_length
+  # $2=delimiters_strings_domain
   declare -g get_split_score_result="split_score $1 $2 '$3'"
   declare -gi i_get_split_score_result2
   # i_get_split_score_result2=$((9-$1*4))
@@ -934,14 +934,16 @@ get_split_score(){
 }
 
 split_line_at_most(){
-  # $1=$line
-  # $2=$max_length of beginning result string
-  # $3=$split_score_command
+  # $1=line
+  # $2=max_length of beginning result string
+  # $3=split_score_command
   #   negative score means do not consider as a possible split
-  # $4=$split_score_command_properties :
+  # $4=split_score_command_properties :
   #   These properties are flags.
   #   If someday some property is not a flag,
   #   then create split_score_command_properties2.
+  #   Old values to get a simple idea without reading everything at the
+  #   beginning of file:
   #   - null or 0 no property;
   #   - 1 split score doesn't depend on which delimiter matches;
   #   - 2 split score doesn't depend on the current position;
@@ -949,8 +951,8 @@ split_line_at_most(){
   #     than any split score before;
   #   - 8 any split score before is always larger
   #     than any split score after;
-  # $5=$forbidden_previous_character
-  # $6=$split_score_command_delimiter_strings_domain
+  # $5=forbidden_previous_character
+  # $6=split_score_command_delimiter_strings_domain
   #   optimisation if small domain
   #   - this argument can be "null", then we will use $3 only instead,
   #     in that case, only mono-character strings are considered,
@@ -965,14 +967,14 @@ split_line_at_most(){
   #     optimizations. Same for a single character or substring.
   #
   # Note that we're always looking for the last position to split
-  # among maximum score;
-  # if some position gets as score from 2 delimiters,
+  # among the positions with maximum score;
+  # if some position gets a score from 2 delimiters,
   # its score is always the maximum of the two corresponding scores.
   declare -g split_line_at_most_result_start
   declare -g split_line_at_most_result_end
   declare -A LFBFL_positions
   # printf "%s %s %s %s\n" "$1" "$2" "$3" "$4"
-  # For my use case in bash scripts, I will need only an array of
+  # For my use case in Bash scripts, I will need only an array of
   # characters. See get_split_score().
   if [[ -n "$6" ]]; then
     printf $'split_line_at_most() $6 NOT IMPLEMENTED YET\n'
@@ -1145,13 +1147,13 @@ split_line_at_most(){
 }
 
 split_last_line(){
-  # $1=$new_lines
-  # $2=$prefix
-  # $3=$max_length
-  # $4=$suffix
-  # $5=$split_score_command
-  # $6=$split_score_command_properties
-  # $7=$forbidden_previous_character ('\' usually)
+  # $1=new_lines
+  # $2=prefix
+  # $3=max_length
+  # $4=suffix
+  # $5=split_score_command
+  # $6=split_score_command_properties
+  # $7=forbidden_previous_character ('\' usually)
   # In general, a prefix/suffix can be a required line prefix/suffix
   # for all final lines like a comment prefix,
   # or it can be a continuation line prefix/suffix applied only

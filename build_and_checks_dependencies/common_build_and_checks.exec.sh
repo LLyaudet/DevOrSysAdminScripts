@@ -242,9 +242,9 @@ common_build_and_checks(){
   LFBFL_file_name="repository_data.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='793af27d8e658ed63148e6a3b45ba9b4eda1ddd3ede22'
-  LFBFL_correct_sha512+='0b2af3c6a72e46d89b3565cef6e074cf1f9fcaccc7e4'
-  LFBFL_correct_sha512+='dca98da471003bebeaabde704412ced55728094'
+  LFBFL_correct_sha512='5c2fa649caee836b1ce43542318b6e9f41c1e3e0af956'
+  LFBFL_correct_sha512+='3c63b3efec8dd1617db3d413b8d8bdcebe07785ded32'
+  LFBFL_correct_sha512+='af552e8d531f1988b3cfb9ee02cfcae049f6021'
   wrapped_wget_sha512
 
   LFBFL_file_name="shell_checks_complement.libr.sh"
@@ -266,17 +266,17 @@ common_build_and_checks(){
   LFBFL_file_name="split_score.libr.php"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='1413898a4fb4f31ca17993fd6110f7e1f32adf31c22c4'
-  LFBFL_correct_sha512+='7fa46a31d3c1511a3112a611e04fac19bb838d4476d9'
-  LFBFL_correct_sha512+='ecf77a28dd48d3d2732df7392c50e38262852d7'
+  LFBFL_correct_sha512='ca60f3621f0808f0ba28bdfb860f6f8d3d872fa26c93b'
+  LFBFL_correct_sha512+='94a9ce0b1b90f5ecb4fc4c4e1cea30368d99e7e7b3f7'
+  LFBFL_correct_sha512+='7ec5f80052754e987a51bceffc5bb8ee552c480'
   wrapped_wget_sha512
 
   LFBFL_file_name="strings_functions.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='21d587dba4893255af3dd7166324652ae80dee75a896b'
-  LFBFL_correct_sha512+='e2f685933a21a94e4f73fac80f428ec965e95e8e663a'
-  LFBFL_correct_sha512+='2596615c357f7f25047122fbe26d6a5362e08bf'
+  LFBFL_correct_sha512='eddcd974bc5e727b67e0cdb9b4247dd17897b6bd57439'
+  LFBFL_correct_sha512+='2231daa9f29daa952d5e93db926f0bfd45c511b68d06'
+  LFBFL_correct_sha512+='587f1ba08ba1d047a5ff9b8f128fbb0d22f7ffb'
   wrapped_wget_sha512
 
   LFBFL_file_name="too_long_code_lines.libr.sh"

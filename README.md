@@ -38,6 +38,9 @@ I tried to follow some conventions for my bash code:
 - I named bash files with suffixes ".libr.sh" when the script contains
   only functions definitions
   (library, abbreviation stops before a vowel).
+- But the files "pre-commit" and "post-commit" were not renamed,
+  since it is not possible to give them other names to use them as
+  pre-commit/post-commit hooks in `git`.
 - When some ".exec.sh" code is encapsulated into functions,
   either these functions can be reused and go in some ".libr.sh" file,
   either they are truly specific to this script and they are kept
@@ -55,10 +58,6 @@ I tried to follow some conventions for my bash code:
   <https://pubs.opengroup.org/onlinepubs/000095399/>.
 - We used `_?i_` or `_?j_`, etc. in integer variables names in Bash
   scripts.
-
-But the files "pre-commit" and "post-commit" were not renamed,
-since it is not possible to give them other names to use them as
-pre-commit/post-commit hooks in `git`.
 
 [CodeFactor-badge]: https://www.codefactor.io/repository/github/llyaudet/DevOrSysAdminScripts/badge
 

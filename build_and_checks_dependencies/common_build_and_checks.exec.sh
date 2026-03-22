@@ -218,9 +218,9 @@ common_build_and_checks(){
   LFBFL_file_name="overwrite_if_not_equal.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='f5641056e09a5f01ae9f4f432fd89283918f336b5b5b2'
-  LFBFL_correct_sha512+='f4514260ef11c142355acd7f879d4e12339344487e72'
-  LFBFL_correct_sha512+='c58eed79898f9a8a2ede83f4b49151f09da139a'
+  LFBFL_correct_sha512='2e2e9c804ec8e1879fc96df595f30994a0685934483ce'
+  LFBFL_correct_sha512+='c9deed4c2fb98f79d4a393e13b6511b3b740ce9f073a'
+  LFBFL_correct_sha512+='e7ed124f08a60b35c896d60dd710223d2592d16'
   wrapped_wget_sha512
 
   LFBFL_file_name="python_black_complement.libr.sh"

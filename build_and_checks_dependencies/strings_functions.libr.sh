@@ -1032,12 +1032,12 @@ split_line_at_most(){
   if (($4 & SSP_DELIMITER_UNIFORM))\
   && (($4 & SSP_LARGER_AFTER))\
   && (($4 & SSP_POSITION_NOT_DECREASING_AFTER)); then
-    for ((LFBFL_i=LFBFL_i_max; LFBFL_i>=0; --LFBFL_i)) do
-      LFBFL_j=$((LFBFL_i+1))
+    for ((LFBFL_i = LFBFL_i_max; LFBFL_i >= 0; --LFBFL_i)) do
       LFBFL_current_char="${1:${LFBFL_i}:1}"
       eval "$3 '${LFBFL_current_char}' 1"
-      # printf "%s|%s\n" "${i_split_score_result}" "${LFBFL_j}"
+      # needs j=i+1 printf "%s|%s\n" "${i_split_score_result}" "${LFBFL_j}"
       if [[ i_split_score_result -ge 1 ]]; then
+        LFBFL_j=$((LFBFL_i + 1))
         # printf "%s|%s\n" "${i_split_score_result}" "${LFBFL_j}"
         if [[ ${LFBFL_positions["${LFBFL_j}"]} != "-1" ]]; then
           LFBFL_positions["${LFBFL_j}"]=$(
@@ -1064,8 +1064,7 @@ split_line_at_most(){
   elif (($4 & SSP_DELIMITER_UNIFORM))\
   && (($4 & SSP_LARGER_BEFORE))\
   && (($4 & SSP_POSITION_NOT_DECREASING_BEFORE)); then
-    for ((LFBFL_i=LFBFL_i_max; LFBFL_i>=0; --LFBFL_i)) do
-      LFBFL_j=$((LFBFL_i+1))
+    for ((LFBFL_i = LFBFL_i_max; LFBFL_i >= 0; --LFBFL_i)) do
       LFBFL_current_char="${1:${LFBFL_i}:1}"
       # We still need to break in second if, after computing score after,
       # because SSP_LARGER_BEFORE implies large inequality instead of
@@ -1074,8 +1073,9 @@ split_line_at_most(){
       # maximum score, there is a possibility that we'll break on a found
       # score before but for splitting on a score after.
       eval "$3 '${LFBFL_current_char}' 1"
-      # printf "%s|%s\n" "${i_split_score_result}" "${LFBFL_j}"
+      # needs j=i+1 printf "%s|%s\n" "${i_split_score_result}" "${LFBFL_j}"
       if [[ i_split_score_result -ge 1 ]]; then
+        LFBFL_j=$((LFBFL_i + 1))
         # printf "%s|%s\n" "${i_split_score_result}" "${LFBFL_j}"
         if [[ ${LFBFL_positions["${LFBFL_j}"]} != "-1" ]]; then
           LFBFL_positions["${LFBFL_j}"]=$(
@@ -1100,8 +1100,7 @@ split_line_at_most(){
       fi
     done
   else
-    for ((LFBFL_i=0; LFBFL_i<=LFBFL_i_max; ++LFBFL_i)) do
-      LFBFL_j=$((LFBFL_i+1))
+    for ((LFBFL_i = 0; LFBFL_i <= LFBFL_i_max;)) do
       LFBFL_current_char="${1:${LFBFL_i}:1}"
       eval "$3 '${LFBFL_current_char}' ${LFBFL_i} 0"
       # printf "%s|%s\n" "${i_split_score_result}" "${LFBFL_i}"
@@ -1115,14 +1114,15 @@ split_line_at_most(){
           )
         fi
       fi
-      eval "$3 '${LFBFL_current_char}' ${LFBFL_j} 1"
-      # printf "%s|%s\n" "${i_split_score_result}" "${LFBFL_j}"
+      ((++LFBFL_i))
+      eval "$3 '${LFBFL_current_char}' ${LFBFL_i} 1"
+      # printf "%s|%s\n" "${i_split_score_result}" "${LFBFL_i}"
       if [[ i_split_score_result -ge 1 ]]; then
-        # printf "%s|%s\n" "${i_split_score_result}" "${LFBFL_j}"
-        if [[ ${LFBFL_positions["${LFBFL_j}"]} != "-1" ]]; then
-          LFBFL_positions["${LFBFL_j}"]=$(
+        # printf "%s|%s\n" "${i_split_score_result}" "${LFBFL_i}"
+        if [[ ${LFBFL_positions["${LFBFL_i}"]} != "-1" ]]; then
+          LFBFL_positions["${LFBFL_i}"]=$(
             max "${LFBFL_sort_command}"\
-              "${LFBFL_positions["${LFBFL_j}"]}"\
+              "${LFBFL_positions["${LFBFL_i}"]}"\
               "${i_split_score_result}"
           )
         fi
@@ -1134,7 +1134,7 @@ split_line_at_most(){
   )
   local LFBFL_value
   declare -i LFBFL_i_best_position
-  for ((LFBFL_i=LFBFL_i_max; LFBFL_i>=0; --LFBFL_i)) do
+  for ((LFBFL_i = LFBFL_i_max; LFBFL_i >= 0; --LFBFL_i)) do
     if [[ LFBFL_i -eq 0 ]]; then
       printf $'/!\\split_line_at_most bug: no split position found./!\\\n'
     fi

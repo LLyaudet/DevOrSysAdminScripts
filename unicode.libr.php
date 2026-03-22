@@ -168,15 +168,32 @@ function hexa_code_point_to_UTF8(
 
 
 function check_string_is_valid_ASCII(string $s_string) : bool {
+  $i_offset_in_octets_from_string_start = 0;
+  $i_current_line_number = 1;
+  $i_offset_in_octets_from_line_start = -1;
   for($i = 0, $i_max = strlen($s_string); $i < $i_max; ++$i){
-    if(ord($s_string[$i]) > 127){
+    $i_current_octet = ord($s_string[$i]);
+    $i_offset_in_octets_from_string_start = $i;
+    $i_offset_in_octets_from_line_start += 1;
+    if($i_current_octet > 127){
       throw new Exception(
-        "Non-ASCII character found at octet position "
-        .$i
-        .", value "
-        .ord($s_string[$i])
-        ."."
+        "Non-ASCII character found on line "
+        .$i_current_line_number
+        ."; the octet/character "
+        .($i_offset_in_octets_from_line_start + 1)
+        ." has value "
+        .$i_current_octet
+        ." which is not ASCII."
+        ." (Sequential position without line splitting:"
+        ." This is at octet/character "
+        .($i_offset_in_octets_from_string_start + 1)
+        .".)",
       );
+    }
+    // if($s_string[$i] === "\n"){
+    if($i_current_octet === 10){
+      $i_current_line_number += 1;
+      $i_offset_in_octets_from_line_start = -1;
     }
   }
   return true;
@@ -246,7 +263,8 @@ function check_string_is_valid_UTF8(string $s_string) : bool {
       $i_offset_in_octets_from_line_start
     );
     if($i_current_octet < 128){ // 0xxxxxxx ASCII
-      if($s_string[$i] === "\n"){
+      // if($s_string[$i] === "\n"){
+      if($i_current_octet === 10){
         $i_current_line_number += 1;
         $i_offset_in_octets_from_line_start = -1;
         $i_offset_in_characters_from_line_start = -1;

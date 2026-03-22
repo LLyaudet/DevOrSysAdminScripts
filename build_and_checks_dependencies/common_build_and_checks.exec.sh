@@ -194,9 +194,9 @@ common_build_and_checks(){
   LFBFL_file_name="lines_counts.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='536c0aebe0d9ad5d1c33b5b22f28e0f2666fd279d462f'
-  LFBFL_correct_sha512+='af7af73d9454870386a5bda86416a0a245a20012c232'
-  LFBFL_correct_sha512+='8bd612717ca1485ee7ade6ad6d185110854e696'
+  LFBFL_correct_sha512='a47e0dc052a77e993dbb03de73fc2e3c93022efcd6e44'
+  LFBFL_correct_sha512+='76bc8de529c25314b945779864ba27f80d91fd005a11'
+  LFBFL_correct_sha512+='da61fed51ca12450d03c81eb96c8350df3c9e31'
   wrapped_wget_sha512
 
   LFBFL_file_name="lines_filters.libr.sh"

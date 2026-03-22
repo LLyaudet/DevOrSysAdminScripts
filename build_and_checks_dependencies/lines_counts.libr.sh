@@ -86,7 +86,6 @@ all_self_code_lines(){
 all_self_empty_code_lines(){
   # Options:
   #   --verbose
-  # shellcheck disable=SC2034
   declare -i LFBFL_i_verbose=0
   get_verbose_option "$@"
 
@@ -101,7 +100,6 @@ all_self_empty_code_lines(){
 all_self_not_empty_code_lines(){
   # Options:
   #   --verbose
-  # shellcheck disable=SC2034
   declare -i LFBFL_i_verbose=0
   get_verbose_option "$@"
 
@@ -115,7 +113,6 @@ all_self_not_empty_code_lines(){
 code_lines_count_all(){
   # Options:
   #   --verbose
-  # shellcheck disable=SC2034
   declare -i LFBFL_i_verbose=0
   get_verbose_option "$@"
 
@@ -136,7 +133,6 @@ code_lines_count_all(){
 code_lines_count_empty(){
   # Options:
   #   --verbose
-  # shellcheck disable=SC2034
   declare -i LFBFL_i_verbose=0
   get_verbose_option "$@"
 
@@ -158,7 +154,6 @@ code_lines_count_empty(){
 code_lines_count_not_empty(){
   # Options:
   #   --verbose
-  # shellcheck disable=SC2034
   declare -i LFBFL_i_verbose=0
   get_verbose_option "$@"
 

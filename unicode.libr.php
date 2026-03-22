@@ -207,7 +207,6 @@ function check_string_is_valid_UTF8($s_string){
     $i_current_octet = ord($s_string[$i]);
     $i_offset_in_octets_from_string_start = $i;
     $i_offset_in_octets_from_line_start += 1;
-    $i_character_start_position_from_line_start += 1;
     if($i_continuation_octet_needed > 0){
       if($i_current_octet < 128 || $i_current_octet >= 192){
         throw new Exception(
@@ -238,15 +237,19 @@ function check_string_is_valid_UTF8($s_string){
       continue;
     }
 
-    $i_character_start_position_from_string_start = $i;
-    $i_offset_in_characters_from_line_start += 1;
     $i_offset_in_characters_from_string_start += 1;
+    $i_offset_in_characters_from_line_start += 1;
+    $i_character_start_position_from_string_start = (
+      $i_offset_in_octets_from_string_start
+    );
+    $i_character_start_position_from_line_start = (
+      $i_offset_in_octets_from_line_start
+    );
     if($i_current_octet < 128){ // 0xxxxxxx ASCII
       if($s_string[$i] === "\n"){
         $i_current_line_number += 1;
         $i_offset_in_octets_from_line_start = -1;
         $i_offset_in_characters_from_line_start = -1;
-        $i_character_start_position_from_line_start = -1;
       }
       continue;
     }

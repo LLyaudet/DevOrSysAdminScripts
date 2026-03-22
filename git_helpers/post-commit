@@ -34,7 +34,7 @@ LFBFL_some_directory="../DevOrSysAdminScripts"
 declare -i LFBFL_i_pushd_result3
 pushd "${LFBFL_some_directory}" || {
   LFBFL_i_pushd_result3=$?
-  printf "post-commit no such directory"
+  printf "post-commit no such directory\n"
   # shellcheck disable=SC2248
   exit ${LFBFL_i_pushd_result3}
 }
@@ -45,7 +45,7 @@ source "./build_and_checks_dependencies/lines_filters.libr.sh"
 declare -i LFBFL_i_popd_result3
 popd || {
   LFBFL_i_popd_result3=$?
-  printf "post-commit no popd"
+  printf "post-commit no popd\n"
   # shellcheck disable=SC2248
   exit ${LFBFL_i_popd_result3}
 }

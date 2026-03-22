@@ -282,9 +282,9 @@ common_build_and_checks(){
   LFBFL_file_name="too_long_code_lines.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='0f0558a8c5946acae0ba7e0521bb3dcf2dbc8ebb2f3bc'
-  LFBFL_correct_sha512+='f651eabe85aea5a079af9d4db975b6d02a4d94fa4462'
-  LFBFL_correct_sha512+='fdf7416c3f4b5ee4348e719683a574c5f13082a'
+  LFBFL_correct_sha512='050a4831d1502b0333c928dbec99938dcb87d26cd8b90'
+  LFBFL_correct_sha512+='2e589d2d3dea27a2680037413455eac0cc46e1d4d2d1'
+  LFBFL_correct_sha512+='9cf0da927c8c9e91a0508e39197103a49898fe5'
   wrapped_wget_sha512
 
   LFBFL_file_name="update_or_check_files_names_listing.exec.sh"

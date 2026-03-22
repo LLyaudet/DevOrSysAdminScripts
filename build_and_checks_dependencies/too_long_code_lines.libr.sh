@@ -75,15 +75,17 @@ too_long_code_lines(){
   get_COMMON_TEXT_FILES_GLOB_PATTERNS
   local LFBFL_pattern
   local LFBFL_long_line
-  local LFBFL_file_name
+  local LFBFL_file_path
   local LFBFL_line
   local LFBFL_extension
   local LFBFL_base_name
   local LFBFL_s_long_lines
   declare -a LFBFL_arr_long_lines
   for LFBFL_pattern in "${COMMON_TEXT_FILES_GLOB_PATTERNS[@]}"; do
-    [[ LFBFL_i_verbose -eq 1 ]]\
-      && printf "Iterating on pattern: %s.\n" "${LFBFL_pattern}"
+    if [[ LFBFL_i_verbose -eq 1 ]]; then
+      printf "too_long_code_lines: Iterating on pattern: %s.\n"\
+        "${LFBFL_pattern}"
+    fi
     # shellcheck disable=SC2248
     LFBFL_s_long_lines=$(
       find . -type f -name "${LFBFL_pattern}" -printf '%P\n'\
@@ -94,18 +96,18 @@ too_long_code_lines(){
     )
     if [[ -z "${LFBFL_s_long_lines}" ]]; then
       [[ LFBFL_i_verbose -eq 1 ]]\
-        && printf "No file found with long lines.\n"
+        && printf "too_long_code_lines: No file found with long lines.\n"
       continue
     fi
     mapfile -t LFBFL_arr_long_lines <<< "${LFBFL_s_long_lines}"
     for LFBFL_long_line in "${LFBFL_arr_long_lines[@]}"; do
-      LFBFL_file_name=${LFBFL_long_line%%:*} # Drop long ':*' suffix
+      LFBFL_file_path=${LFBFL_long_line%%:*} # Drop long ':*' suffix
       # Remove file_path and line_number
       LFBFL_line=${LFBFL_long_line#*:} # Drop short '*:' prefix
       LFBFL_line=${LFBFL_line#*:} # Drop short '*:' prefix
       # LFBFL_line="${LFBFL_line/%\\/}" # Drop/Replace '\' suffix by ''
-      LFBFL_extension=${LFBFL_file_name##*.} # Drop long '*.' prefix
-      LFBFL_base_name=${LFBFL_file_name%.*} # Drop short '.*' suffix
+      LFBFL_extension=${LFBFL_file_path##*.} # Drop long '*.' prefix
+      LFBFL_base_name=${LFBFL_file_path%.*} # Drop short '.*' suffix
       if [[ "${LFBFL_extension}" == "html" ]]; then
         if [[ -f "${LFBFL_base_name}.md" ]]; then
           continue

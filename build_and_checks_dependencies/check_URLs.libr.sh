@@ -60,8 +60,9 @@ check_URLs(){
   local LFBFL_s_files_paths
   declare -a LFBFL_arr_files_paths
   for LFBFL_pattern in "${COMMON_TEXT_FILES_GLOB_PATTERNS[@]}"; do
-    [[ LFBFL_i_verbose -eq 1 ]]\
-      && printf "Iterating on pattern: %s.\n" "${LFBFL_pattern}"
+    if [[ LFBFL_i_verbose -eq 1 ]]; then
+      printf "check_URLs: Iterating on pattern: %s.\n" "${LFBFL_pattern}"
+    fi
     find . -type f -name "${LFBFL_pattern}" -printf '%P\n'\
       | xargs grep -H 'http:'\
       | grep -v "| xargs grep -H 'htt"\
@@ -77,7 +78,7 @@ check_URLs(){
       | not_main_html_find
     )
     if [[ -z "${LFBFL_s_files_paths}" ]]; then
-      [[ LFBFL_i_verbose -eq 1 ]] && printf "No file found.\n"
+      [[ LFBFL_i_verbose -eq 1 ]] && printf "check_URLs: No file found.\n"
       continue
     fi
     mapfile -t LFBFL_arr_files_paths <<< "${LFBFL_s_files_paths}"
@@ -85,8 +86,9 @@ check_URLs(){
       LFBFL_base_file_name=$(basename "${LFBFL_file_path}")
       [[ "${LFBFL_base_file_name}" != "check_URLs.libr.sh" ]]\
         || continue
-      [[ LFBFL_i_verbose -eq 1 ]]\
-        && printf "Handling the file: %s.\n" "${LFBFL_file_path}"
+      if [[ LFBFL_i_verbose -eq 1 ]]; then
+        printf "check_URLs: Handling the file: %s.\n" "${LFBFL_file_path}"
+      fi
       for LFBFL_substitution in "${!LFBFL_substitutions[@]}"; do
         LFBFL_substitution2=${LFBFL_substitutions[${LFBFL_substitution}]}
         if grep -q "${LFBFL_substitution}" "${LFBFL_file_path}"; then

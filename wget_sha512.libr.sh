@@ -25,10 +25,10 @@
 # to "wget_sha512.libr.sh".
 
 wget_sha512(){
-  # $1 file_path
-  # $2 download_URL
-  # $3 correct_sha512
-  # $4 optional --verbose
+  # $1=file_path
+  # $2=download_URL
+  # $3=correct_sha512
+  # $4=optional --verbose
   local LFBFL_verbose=""
   if [[ "$*" == *--verbose* ]]; then
     printf "%s wget_sha512 %s\n" "$0" "$*"
@@ -40,7 +40,7 @@ wget_sha512(){
   fi
   declare -r LFBFL_present_sha512=$(
     sha512sum "$1"\
-    | cut -f1 -d' '
+    | cut --fields=1 --delimiter=' '
   )
   if [[ "${LFBFL_present_sha512}" != "$3" ]]; then
     printf "%s does not have correct sha512:\n - wanted %s\n - found %s\n"\

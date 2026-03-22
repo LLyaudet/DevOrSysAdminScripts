@@ -179,13 +179,13 @@ create_PDF(){
   get_split_score_simple 1 ${LFBFL_i_max_line_length} /
   declare -r LFBFL_score_command="${get_split_score_result}"
   declare -i LFBFL_i_score_command_properties
-  LFBFL_i_score_command_properties="${i_get_split_score_result2}"
+  LFBFL_i_score_command_properties=${i_get_split_score_result2}
   readonly LFBFL_i_score_command_properties
   # shellcheck disable=SC2248
   get_split_score_simple 1 ${LFBFL_i_max_line_length} ':'
   declare -r LFBFL_score_command2="${get_split_score_result}"
   declare -i LFBFL_i_score_command_properties2
-  LFBFL_i_score_command_properties2="${i_get_split_score_result2}"
+  LFBFL_i_score_command_properties2=${i_get_split_score_result2}
   readonly LFBFL_i_score_command_properties2
   declare -r LFBFL_suffix='%'
   declare -i LFBFL_i=0
@@ -213,7 +213,7 @@ create_PDF(){
         ${LFBFL_i_max_line_length}\
         "${LFBFL_suffix}"\
         "${LFBFL_score_command}"\
-        "${LFBFL_i_score_command_properties}"\
+        ${LFBFL_i_score_command_properties}\
         "\\"
       LFBFL_new_lines=${repeated_split_last_line_result}
     fi
@@ -225,7 +225,7 @@ create_PDF(){
         ${LFBFL_i_max_line_length}\
         "${LFBFL_suffix}"\
         "${LFBFL_score_command2}"\
-        "${LFBFL_i_score_command_properties2}"
+        ${LFBFL_i_score_command_properties2}
       LFBFL_new_lines2=${repeated_split_last_line_result}
     fi
     LFBFL_new_lines3="${LFBFL_file_path}"
@@ -236,7 +236,7 @@ create_PDF(){
         ${LFBFL_i_max_line_length}\
         "${LFBFL_suffix}"\
         "${LFBFL_score_command}"\
-        "${LFBFL_i_score_command_properties}"
+        ${LFBFL_i_score_command_properties}
       LFBFL_new_lines3=${repeated_split_last_line_result}
     fi
     LFBFL_s_format="\\subsection{\n%s\n}\n\\label{\n%s\n}\n\n"
@@ -259,7 +259,7 @@ create_PDF(){
         ${LFBFL_i_max_line_length}\
         "<!--"\
         "${LFBFL_score_command}"\
-        "${LFBFL_i_score_command_properties}"
+        ${LFBFL_i_score_command_properties}
       LFBFL_new_lines=${repeated_split_last_line_result}
     fi
     {

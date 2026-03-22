@@ -115,6 +115,7 @@ fi
 # 41
 
 in_place_grep(){
+  # Same arguments and options as grep.
   declare -r LFBFL_temp="${!#}.in_place_grep.temp"
   grep "$@" \
     > "${LFBFL_temp}"
@@ -178,8 +179,7 @@ grep_fixed_string_with_anchor(){
   if [[
     LFBFL_i_enforce_line_starts -eq 0
     && LFBFL_i_enforce_line_ends -eq 0
-    ]];
-  then
+  ]]; then
     grep "${LFBFL_grep_options[@]}" --fixed-strings -- "$2" "$1"
     return
   fi
@@ -201,15 +201,18 @@ grep_fixed_string_with_anchor(){
   local LFBFL_line_part
   for LFBFL_some_line in "${LFBFL_arr_lines[@]}"; do
     if [[ "${LFBFL_some_line}" == "$2" ]]; then
-      [[ LFBFL_i_quiet -eq 1 ]] || printf "%s\n" "${LFBFL_some_line}"
       LFBFL_i_result=0
+      if [[ LFBFL_i_quiet -eq 1 ]]; then
+        break
+      else
+        printf "%s\n" "${LFBFL_some_line}"
+      fi
       continue
     fi
     if [[
       LFBFL_i_enforce_line_starts -eq 1
       && LFBFL_i_enforce_line_ends -eq 1
-      ]];
-    then
+    ]]; then
       continue
     fi
     if [[ LFBFL_i_enforce_line_starts -eq 1 ]]; then
@@ -219,8 +222,12 @@ grep_fixed_string_with_anchor(){
       LFBFL_line_part=${LFBFL_some_line: -${LFBFL_i_fixed_string_length}}
     fi
     if [[ "${LFBFL_line_part}" == "$2" ]]; then
-      [[ LFBFL_i_quiet -eq 1 ]] || printf "%s\n" "${LFBFL_some_line}"
       LFBFL_i_result=0
+      if [[ LFBFL_i_quiet -eq 1 ]]; then
+        break
+      else
+        printf "%s\n" "${LFBFL_some_line}"
+      fi
     fi
   done
   LFBFL_i_result=$((LFBFL_i_result | $?))

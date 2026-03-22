@@ -58,76 +58,75 @@ common_build_and_checks(){
 
   LFBFL_subdir="build_and_checks_dependencies"
   local LFBFL_file_name
-  local LFBFL_URL
+  local LFBFL_script_download_URL
   local LFBFL_file_path
   local LFBFL_correct_sha512
 
   wrapped_wget_sha512(){
     wget_sha512 "${LFBFL_file_path}"\
-      "${LFBFL_URL}"\
+      "${LFBFL_script_download_URL}"\
       "${LFBFL_correct_sha512}"\
       "${LFBFL_verbose}"
   }
 
   LFBFL_file_name="build_md_from_printable_md.exec.sh"
-  # LFBFL_script_download_URL
-  LFBFL_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
+  LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   @sha512_build_md_from_printable_md.exec.sh@
   wrapped_wget_sha512
   chmod +x "./${LFBFL_file_path}"
 
   LFBFL_file_name="check_shell_scripts_beginnings.libr.sh"
-  LFBFL_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
+  LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   @sha512_check_shell_scripts_beginnings.libr.sh@
   wrapped_wget_sha512
 
   LFBFL_file_name="check_shell_scripts_indentation.libr.sh"
-  LFBFL_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
+  LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   @sha512_check_shell_scripts_indentation.libr.sh@
   wrapped_wget_sha512
 
   LFBFL_file_name="check_URLs.libr.sh"
-  LFBFL_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
+  LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   @sha512_check_URLs.libr.sh@
   wrapped_wget_sha512
 
   LFBFL_file_name="common_options.libr.sh"
-  LFBFL_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
+  LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   @sha512_common_options.libr.sh@
   wrapped_wget_sha512
 
   LFBFL_file_name="comparisons.libr.sh"
-  LFBFL_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
+  LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   @sha512_comparisons.libr.sh@
   wrapped_wget_sha512
 
   LFBFL_file_name="create_PDF.exec.sh"
-  LFBFL_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
+  LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   @sha512_create_PDF.exec.sh@
   wrapped_wget_sha512
   chmod +x "./${LFBFL_file_path}"
 
   LFBFL_file_name="generate_from_template.libr.sh"
-  LFBFL_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
+  LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   @sha512_generate_from_template.libr.sh@
   wrapped_wget_sha512
 
   LFBFL_file_name="get_common_text_glob_patterns.libr.sh"
-  LFBFL_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
+  LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   @sha512_get_common_text_glob_patterns.libr.sh@
   wrapped_wget_sha512
 
   LFBFL_file_name="grammar_and_spell_check.libr.sh"
-  LFBFL_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
+  LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   @sha512_grammar_and_spell_check.libr.sh@
   wrapped_wget_sha512
@@ -138,105 +137,105 @@ common_build_and_checks(){
   LFBFL_dependencies_URL2="${LFBFL_dependencies_URL}/licenses_templates"
   readonly LFBFL_dependencies_URL2
   LFBFL_file_name="build_licenses_templates.exec.sh"
-  LFBFL_URL="${LFBFL_dependencies_URL2}/${LFBFL_file_name}"
+  LFBFL_script_download_URL="${LFBFL_dependencies_URL2}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir2}/${LFBFL_file_name}"
   @sha512_build_licenses_templates.exec.sh@
   wrapped_wget_sha512
   chmod +x "./${LFBFL_file_path}"
 
   LFBFL_file_name="license_file_header_AGPLv3+.tpl"
-  LFBFL_URL="${LFBFL_dependencies_URL2}/${LFBFL_file_name}"
+  LFBFL_script_download_URL="${LFBFL_dependencies_URL2}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir2}/${LFBFL_file_name}"
   @sha512_license_file_header_AGPLv3+.tpl@
   wrapped_wget_sha512
 
   LFBFL_file_name="license_file_header_GPLv3+.tpl"
-  LFBFL_URL="${LFBFL_dependencies_URL2}/${LFBFL_file_name}"
+  LFBFL_script_download_URL="${LFBFL_dependencies_URL2}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir2}/${LFBFL_file_name}"
   @sha512_license_file_header_GPLv3+.tpl@
   wrapped_wget_sha512
 
   LFBFL_file_name="license_file_header_LGPLv3+.tpl"
-  LFBFL_URL="${LFBFL_dependencies_URL2}/${LFBFL_file_name}"
+  LFBFL_script_download_URL="${LFBFL_dependencies_URL2}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir2}/${LFBFL_file_name}"
   @sha512_license_file_header_LGPLv3+.tpl@
   wrapped_wget_sha512
   # ------------------------------------------------------------------
 
   LFBFL_file_name="lines_counts.libr.sh"
-  LFBFL_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
+  LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   @sha512_lines_counts.libr.sh@
   wrapped_wget_sha512
 
   LFBFL_file_name="lines_filters.libr.sh"
-  LFBFL_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
+  LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   @sha512_lines_filters.libr.sh@
   wrapped_wget_sha512
 
   LFBFL_file_name="lines_maps.libr.sh"
-  LFBFL_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
+  LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   @sha512_lines_maps.libr.sh@
   wrapped_wget_sha512
 
   LFBFL_file_name="overwrite_if_not_equal.libr.sh"
-  LFBFL_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
+  LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   @sha512_overwrite_if_not_equal.libr.sh@
   wrapped_wget_sha512
 
   LFBFL_file_name="python_black_complement.libr.sh"
-  LFBFL_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
+  LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   @sha512_python_black_complement.libr.sh@
   wrapped_wget_sha512
 
   LFBFL_file_name="python_isort_complement.libr.sh"
-  LFBFL_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
+  LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   @sha512_python_isort_complement.libr.sh@
   wrapped_wget_sha512
 
   LFBFL_file_name="repository_data.libr.sh"
-  LFBFL_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
+  LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   @sha512_repository_data.libr.sh@
   wrapped_wget_sha512
 
   LFBFL_file_name="shell_checks_complement.libr.sh"
-  LFBFL_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
+  LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   @sha512_shell_checks_complement.libr.sh@
   wrapped_wget_sha512
 
   LFBFL_file_name="split_score.exec.php"
-  LFBFL_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
+  LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   @sha512_split_score.exec.php@
   wrapped_wget_sha512
 
   LFBFL_file_name="split_score.libr.php"
-  LFBFL_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
+  LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   @sha512_split_score.libr.php@
   wrapped_wget_sha512
 
   LFBFL_file_name="strings_functions.libr.sh"
-  LFBFL_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
+  LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   @sha512_strings_functions.libr.sh@
   wrapped_wget_sha512
 
   LFBFL_file_name="too_long_code_lines.libr.sh"
-  LFBFL_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
+  LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   @sha512_too_long_code_lines.libr.sh@
   wrapped_wget_sha512
 
   LFBFL_file_name="update_or_check_files_names_listing.exec.sh"
-  LFBFL_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
+  LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   @sha512_update_or_check_files_names_listing.exec.sh@
   wrapped_wget_sha512

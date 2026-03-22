@@ -56,7 +56,9 @@ common_build_and_checks(){
 
   source ./wget_sha512.libr.sh
 
-  LFBFL_subdir="build_and_checks_dependencies"
+  local LFBFL_subdir="build_and_checks_dependencies"
+  declare -r LFBFL_subdir2="${LFBFL_subdir}/licenses_templates"
+  declare -r LFBFL_subdir3="build_and_checks_variables"
   local LFBFL_file_name
   local LFBFL_script_download_URL
   local LFBFL_file_path
@@ -132,7 +134,6 @@ common_build_and_checks(){
   wrapped_wget_sha512
 
   # /licenses_templates/ ---------------------------------------------
-  declare -r LFBFL_subdir2="${LFBFL_subdir}/licenses_templates"
   local LFBFL_dependencies_URL2
   LFBFL_dependencies_URL2="${LFBFL_dependencies_URL}/licenses_templates"
   readonly LFBFL_dependencies_URL2
@@ -325,16 +326,15 @@ common_build_and_checks(){
   LFBFL_i_directory_changed=$?
   can_continue_after_enhanced_pushd || return 1
 
-  local LFBFL_data_file_name=\
-"build_and_checks_variables/repository_data.txt"
+  local LFBFL_data_file_name="${LFBFL_subdir3}/repository_data.txt"
 
   declare -i LFBFL_i_max_line_length
   grep_variable "${LFBFL_data_file_name}" max_line_length\
     --result-variable-prefix="LFBFL_i_"
 
   declare -i LFBFL_i_upgrade_venvs=0
-  declare -r LFBFL_upgrade_venvs_ts_file=\
-"build_and_checks_variables/upgrade_venvs_ts"
+  local LFBFL_upgrade_venvs_ts_file="${LFBFL_subdir3}/upgrade_venvs_ts"
+  readonly LFBFL_upgrade_venvs_ts_file
   declare -i LFBFL_i_upgrade_venvs_ts
   declare -i LFBFL_i_current_ts
   local LFBFL_upgrade_venvs_answer
@@ -378,7 +378,7 @@ common_build_and_checks(){
   if [[ -n "${LFBFL_s_files_paths}" ]]; then
     mapfile -t LFBFL_arr_files_paths <<< "${LFBFL_s_files_paths}"
     for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do
-      shellcheck --rcfile=build_and_checks_variables/shellcheck.ini\
+      shellcheck "--rcfile=${LFBFL_subdir3}/shellcheck.ini"\
         "${LFBFL_file_path}"
     done
   fi
@@ -414,10 +414,10 @@ common_build_and_checks(){
   local LFBFL_update_max_length="s/^line-length = [0-9]*$"
   LFBFL_update_max_length+="/line-length = ${LFBFL_i_max_line_length}/"
   sed -E -e "${LFBFL_update_max_length}"\
-    build_and_checks_variables/black.toml\
-    > build_and_checks_variables/black.toml.temp
-  overwrite_if_not_equal build_and_checks_variables/black.toml\
-    build_and_checks_variables/black.toml.temp
+    "${LFBFL_subdir3}/black.toml"\
+    > "${LFBFL_subdir3}/black.toml.temp"
+  overwrite_if_not_equal "${LFBFL_subdir3}/black.toml"\
+    "${LFBFL_subdir3}/black.toml.temp"
 
   local LFBFL_black_venv=""
   grep_variable "${LFBFL_data_file_name}" black_venv\
@@ -434,7 +434,7 @@ common_build_and_checks(){
   if [[ LFBFL_i_upgrade_venvs -eq 1 ]]; then
     pip install --upgrade black
   fi
-  black --config build_and_checks_variables/black.toml .
+  black --config "${LFBFL_subdir3}/black.toml" .
   if [[ -n "${LFBFL_black_venv}" ]]; then
     deactivate
   fi
@@ -499,12 +499,12 @@ common_build_and_checks(){
   if [[ LFBFL_i_upgrade_venvs -eq 1 ]]; then
     pip install --upgrade bandit
   fi
-  bandit --ini build_and_checks_variables/bandit.ini\
-    -b build_and_checks_variables/bandit_baseline.json\
+  bandit --ini "${LFBFL_subdir3}/bandit.ini"\
+    -b "${LFBFL_subdir3}/bandit_baseline.json"\
     -r .
   # Saving new baseline in temp if necessary.
-  bandit --ini build_and_checks_variables/bandit.ini\
-    -f json -o build_and_checks_variables/temp/bandit_baseline.json\
+  bandit --ini "${LFBFL_subdir3}/bandit.ini"\
+    -f json -o "${LFBFL_subdir3}/temp/bandit_baseline.json"\
     -r .
   if [[ -n "${LFBFL_bandit_venv}" ]]; then
     deactivate
@@ -526,8 +526,7 @@ common_build_and_checks(){
   if [[ LFBFL_i_upgrade_venvs -eq 1 ]]; then
     pip install --upgrade pylint
   fi
-  pylint --rcfile build_and_checks_variables/pylintrc.toml\
-    --recursive=y .
+  pylint --rcfile="${LFBFL_subdir3}/pylintrc.toml" --recursive=y .
   if [[ -n "${LFBFL_pylint_venv}" ]]; then
     deactivate
   fi
@@ -548,7 +547,7 @@ common_build_and_checks(){
   if [[ LFBFL_i_upgrade_venvs -eq 1 ]]; then
     pip install --upgrade ruff
   fi
-  ruff check --config build_and_checks_variables/ruff.toml
+  ruff check --config="${LFBFL_subdir3}/ruff.toml"
   if [[ -n "${LFBFL_ruff_venv}" ]]; then
     deactivate
   fi
@@ -560,11 +559,8 @@ common_build_and_checks(){
     composer global require phpmd/phpmd
   fi
 
-  local LFBFL_phpmd_baseline="build_and_checks_variables/"
-  LFBFL_phpmd_baseline+="phpmd_baseline.xml"
-  readonly LFBFL_phpmd_baseline
-
-  local LFBFL_temp_phpmd_baseline="build_and_checks_variables/temp/"
+  declare -r LFBFL_phpmd_baseline="${LFBFL_subdir3}/phpmd_baseline.xml"
+  local LFBFL_temp_phpmd_baseline="${LFBFL_subdir3}/temp/"
   LFBFL_temp_phpmd_baseline+="phpmd_baseline.xml"
   readonly LFBFL_temp_phpmd_baseline
 
@@ -572,12 +568,12 @@ common_build_and_checks(){
   LFBFL_phpmd_rulesets+="design,naming,unusedcode"
   readonly LFBFL_phpmd_rulesets
 
-  phpmd --color --baseline-file "${LFBFL_phpmd_baseline}"\
+  phpmd --color --baseline-file="${LFBFL_phpmd_baseline}"\
     . text "${LFBFL_phpmd_rulesets}"
   # Saving new baseline in temp if necessary.
   rm "${LFBFL_temp_phpmd_baseline}"
   phpmd --color --generate-baseline\
-    --baseline-file "${LFBFL_temp_phpmd_baseline}"\
+    --baseline-file="${LFBFL_temp_phpmd_baseline}"\
     . text "${LFBFL_phpmd_rulesets}"
   sed -i -e 's/" file="/"\n    file="/g' "${LFBFL_temp_phpmd_baseline}"
   diff "${LFBFL_phpmd_baseline}" "${LFBFL_temp_phpmd_baseline}"
@@ -634,8 +630,8 @@ common_build_and_checks(){
     && trap 'popd_from_work_directory' RETURN
   can_continue_after_enhanced_pushd || return 1
 
-  if [[ -f "build_and_checks_variables/post_build.sh" ]]; then
-    ./build_and_checks_variables/post_build.sh "${LFBFL_verbose}"
+  if [[ -f "${LFBFL_subdir3}/post_build.sh" ]]; then
+    "./${LFBFL_subdir3}/post_build.sh" "${LFBFL_verbose}"
   fi
 
   # ------------------------------------------------------------------

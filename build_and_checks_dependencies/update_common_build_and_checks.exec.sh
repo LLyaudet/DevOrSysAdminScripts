@@ -54,7 +54,7 @@ update_common_build_and_checks(){
     "create_PDF.exec.sh"
     "generate_from_template.libr.sh"
     "get_common_text_glob_patterns.libr.sh"
-    "grammar_and_spell_check.libr.sh"
+    "grammar_and_spelling_check.libr.sh"
     "licenses_templates/build_licenses_templates.exec.sh"
     "licenses_templates/license_file_header_AGPLv3+.tpl"
     "licenses_templates/license_file_header_GPLv3+.tpl"

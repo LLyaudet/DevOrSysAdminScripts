@@ -27,7 +27,7 @@ max_line_length=
 
 latex_command=
 
-grammar_or_spell_checker_command=
+grammar_and_spelling_checker_command=
 
 bandit_venv=
 black_venv=

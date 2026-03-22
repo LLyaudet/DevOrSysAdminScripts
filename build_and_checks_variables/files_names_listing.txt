@@ -40,7 +40,7 @@ build_and_checks_dependencies/comparisons.libr.sh
 build_and_checks_dependencies/create_PDF.exec.sh
 build_and_checks_dependencies/generate_from_template.libr.sh
 build_and_checks_dependencies/get_common_text_glob_patterns.libr.sh
-build_and_checks_dependencies/grammar_and_spell_check.libr.sh
+build_and_checks_dependencies/grammar_and_spelling_check.libr.sh
 build_and_checks_dependencies/licenses_templates/\
 build_licenses_templates.exec.sh
 build_and_checks_dependencies/licenses_templates/\

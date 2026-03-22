@@ -36,7 +36,7 @@ source "./${LFBFL_subdir}/get_common_text_glob_patterns.libr.sh"
 # shellcheck source=lines_filters.libr.sh
 source "./${LFBFL_subdir}/lines_filters.libr.sh"
 
-grammar_and_spell_check(){
+grammar_and_spelling_check(){
   # $1=configuration_path build_and_checks_variables/repository_data.txt
   # Options:
   #   --verbose
@@ -53,11 +53,11 @@ grammar_and_spell_check(){
     && trap 'enhanced_unset_shell_option pipefail' RETURN
 
   get_COMMON_TEXT_FILES_GLOB_PATTERNS
-  local LFBFL_grammar_or_spell_checker_command=""
-  grep_variable "$1" grammar_or_spell_checker_command\
-    --result-variable-prefix="LFBFL_"\
+  local LFBFL_grammar_and_spelling_checker_command=""
+  grep_variable "$1" grammar_and_spelling_checker_command\
+    --result-variable-prefix=LFBFL_\
     --replace-line-returns-by=""
-  declare -r LFBFL_command="${LFBFL_grammar_or_spell_checker_command}"
+  declare -r LFBFL_command="${LFBFL_grammar_and_spelling_checker_command}"
   if [[ -z "${LFBFL_command}" ]]; then
     return
   fi
@@ -75,7 +75,7 @@ grammar_and_spell_check(){
     )
     if [[ -z "${LFBFL_s_files_paths}" ]]; then
       [[ LFBFL_i_verbose -eq 1 ]]\
-        && printf "grammar_and_spell_check: No file found.\n"
+        && printf "grammar_and_spelling_check: No file found.\n"
       return
     fi
     mapfile -t LFBFL_arr_files_paths <<< "${LFBFL_s_files_paths}"

@@ -127,10 +127,10 @@ common_build_and_checks(){
   @sha512_get_common_text_glob_patterns.libr.sh@
   wrapped_wget_sha512
 
-  LFBFL_file_name="grammar_and_spell_check.libr.sh"
+  LFBFL_file_name="grammar_and_spelling_check.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  @sha512_grammar_and_spell_check.libr.sh@
+  @sha512_grammar_and_spelling_check.libr.sh@
   wrapped_wget_sha512
 
   # /licenses_templates/ ---------------------------------------------
@@ -256,8 +256,8 @@ common_build_and_checks(){
   source "./${LFBFL_subdir}/generate_from_template.libr.sh"
   # shellcheck source=get_common_text_glob_patterns.libr.sh
   source "./${LFBFL_subdir}/get_common_text_glob_patterns.libr.sh"
-  # shellcheck source=grammar_and_spell_check.libr.sh
-  source "./${LFBFL_subdir}/grammar_and_spell_check.libr.sh"
+  # shellcheck source=grammar_and_spelling_check.libr.sh
+  source "./${LFBFL_subdir}/grammar_and_spelling_check.libr.sh"
   # shellcheck source=lines_counts.libr.sh
   source "./${LFBFL_subdir}/lines_counts.libr.sh"
   # shellcheck source=lines_filters.libr.sh
@@ -609,7 +609,7 @@ common_build_and_checks(){
     "[^${LFBFL_usual_characters}]" .
 
   printf "Grammar and spelling check\n"
-  grammar_and_spell_check "${LFBFL_data_file_name}"\
+  grammar_and_spelling_check "${LFBFL_data_file_name}"\
     "${LFBFL_some_common_options[@]}"
 
   [[ LFBFL_i_directory_changed -eq 0 ]] && popd_from_work_directory

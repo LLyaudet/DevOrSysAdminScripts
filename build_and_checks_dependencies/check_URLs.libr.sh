@@ -68,8 +68,8 @@ check_URLs(){
       | grep -vP "['\"]http(:[^'\"]*)['\"].*['\"]https\\1['\"]"\
       | grep -v 'http://www.w3.org/1999/xhtml'\
       | grep -v 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'
-    # Last grep just above will remove false positives from
-    # substitutions that fit on one line.
+    # Second grep after xargs grep just above will remove false positives
+    # from substitutions that fit on one line.
 
     LFBFL_s_files_paths=$(
       find . -type f -name "${LFBFL_pattern}" -printf '%P\n'\

@@ -25,7 +25,7 @@ If not, see <https://www.gnu.org/licenses/>.
 */
 
 namespace string_escaping\HTML {
-  function escape_text($s_string){
+  function escape_text(string $s_string) : string {
     return str_replace(
       array(
         '&',
@@ -41,7 +41,7 @@ namespace string_escaping\HTML {
 
 
 
-  function escape_attribute($s_string){
+  function escape_attribute(string $s_string) : string {
     # in double quotes
     return str_replace(
       array('"'),
@@ -52,7 +52,7 @@ namespace string_escaping\HTML {
 
 
 
-  function escape_pre($s_string){
+  function escape_pre(string $s_string) : string {
     return str_replace(
       array(
         '&',
@@ -71,7 +71,7 @@ namespace string_escaping\HTML {
 
 
 namespace string_escaping\XHTML {
-  function escape_text($s_string){
+  function escape_text(string $s_string) : string {
     return str_replace(
       array(
         '&',
@@ -87,7 +87,7 @@ namespace string_escaping\XHTML {
 
 
 
-  function escape_attribute($s_string){
+  function escape_attribute(string $s_string) : string {
     # in double quotes
     return str_replace(
       array(
@@ -108,7 +108,7 @@ namespace string_escaping\XHTML {
 
 
 
-  function escape_pre($s_string){
+  function escape_pre(string $s_string) : string {
     return str_replace(
       array(
         '&',
@@ -129,7 +129,7 @@ namespace string_escaping\XHTML {
 namespace string_escaping\JS {
   use function string_escaping\XHTML\escape_text as XHTML_escape_text;
 
-  function escape($s_string){
+  function escape(string $s_string) : string {
     return str_replace(
       array(
         '\\',
@@ -149,7 +149,8 @@ namespace string_escaping\JS {
 
 
 
-  function escape_for_string_definition_inside_XHTML($s_string){
+  function escape_for_string_definition_inside_XHTML(string $s_string)
+  : string {
     return XHTML_escape_text(escape($s_string));
   }
 }

@@ -511,7 +511,6 @@ common_build_and_checks(){
   if [[ LFBFL_i_upgrade_venvs -eq 1 ]]; then
     pip install --upgrade mypy
   fi
-  shopt -s lastpipe
   local LFBFL_directory_path
   declare -i LFBFL_i_no_toml=1
   LFBFL_s_files_paths=$(

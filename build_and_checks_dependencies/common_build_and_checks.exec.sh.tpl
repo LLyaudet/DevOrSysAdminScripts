@@ -61,6 +61,7 @@ common_build_and_checks(){
   local LFBFL_file_name
   local LFBFL_URL
   local LFBFL_file_path
+  local LFBFL_correct_sha512
 
   LFBFL_file_name="build_md_from_printable_md.exec.sh"
   # LFBFL_script_download_URL

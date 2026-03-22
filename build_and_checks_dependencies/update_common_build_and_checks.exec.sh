@@ -83,8 +83,7 @@ update_common_build_and_checks(){
       sha512sum "./${LFBFL_file_name}"\
       | cut -f1 -d' '
     )
-    LFBFL_file_sha512_all="local LFBFL_correct_sha512\n"
-    LFBFL_file_sha512_all+="  LFBFL_correct_sha512="
+    LFBFL_file_sha512_all="LFBFL_correct_sha512="
     LFBFL_file_sha512_all+="'${LFBFL_file_sha512:0:45}'\n"
     LFBFL_file_sha512_all+="  LFBFL_correct_sha512\+="
     LFBFL_file_sha512_all+="'${LFBFL_file_sha512:45:44}'\n"

@@ -386,16 +386,21 @@ common_build_and_checks(){
   shell_checks_complement "${LFBFL_some_common_options[@]}"
 
   printf -- "---Python---\n"
+
+  maybe_deactivate(){
+    if command -v deactivate
+    then
+      deactivate
+    fi
+  }
+
   printf "Running isort\n"
   local LFBFL_isort_venv=""
   grep_variable "${LFBFL_data_file_name}" isort_venv\
     --result-variable-prefix="LFBFL_"\
     --replace-line-returns-by=""
   if [[ -n "${LFBFL_isort_venv}" ]]; then
-    if command -v deactivate
-    then
-      deactivate
-    fi
+    maybe_deactivate
     # shellcheck disable=SC1090,SC1091
     source "${LFBFL_isort_venv}/bin/activate"
   fi
@@ -424,10 +429,7 @@ common_build_and_checks(){
     --result-variable-prefix="LFBFL_"\
     --replace-line-returns-by=""
   if [[ -n "${LFBFL_black_venv}" ]]; then
-    if command -v deactivate
-    then
-      deactivate
-    fi
+    maybe_deactivate
     # shellcheck disable=SC1090,SC1091
     source "${LFBFL_black_venv}/bin/activate"
   fi
@@ -447,10 +449,7 @@ common_build_and_checks(){
     --result-variable-prefix="LFBFL_"\
     --replace-line-returns-by=""
   if [[ -n "${LFBFL_mypy_venv}" ]]; then
-    if command -v deactivate
-    then
-      deactivate
-    fi
+    maybe_deactivate
     # shellcheck disable=SC1090,SC1091
     source "${LFBFL_mypy_venv}/bin/activate"
   fi
@@ -488,10 +487,7 @@ common_build_and_checks(){
     --result-variable-prefix="LFBFL_"\
     --replace-line-returns-by=""
   if [[ -n "${LFBFL_bandit_venv}" ]]; then
-    if command -v deactivate
-    then
-      deactivate
-    fi
+    maybe_deactivate
     # shellcheck disable=SC1090,SC1091
     source "${LFBFL_bandit_venv}/bin/activate"
   fi
@@ -515,10 +511,7 @@ common_build_and_checks(){
     --result-variable-prefix="LFBFL_"\
     --replace-line-returns-by=""
   if [[ -n "${LFBFL_pylint_venv}" ]]; then
-    if command -v deactivate
-    then
-      deactivate
-    fi
+    maybe_deactivate
     # shellcheck disable=SC1090,SC1091
     source "${LFBFL_pylint_venv}/bin/activate"
   fi
@@ -536,10 +529,7 @@ common_build_and_checks(){
     --result-variable-prefix="LFBFL_"\
     --replace-line-returns-by=""
   if [[ -n "${LFBFL_ruff_venv}" ]]; then
-    if command -v deactivate
-    then
-      deactivate
-    fi
+    maybe_deactivate
     # shellcheck disable=SC1090,SC1091
     source "${LFBFL_ruff_venv}/bin/activate"
   fi

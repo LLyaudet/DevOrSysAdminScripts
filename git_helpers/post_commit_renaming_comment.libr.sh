@@ -39,7 +39,7 @@ LFBFL_some_directory="${LFBFL_this_file_directory}/../"
 declare -i LFBFL_i_pushd_result2
 pushd "${LFBFL_some_directory}" || {
   LFBFL_i_pushd_result2=$?
-  printf "post_commit_renaming_comment.libr.sh no such directory"
+  printf "post_commit_renaming_comment.libr.sh no such directory\n"
   # shellcheck disable=SC2248
   exit ${LFBFL_i_pushd_result2}
 }
@@ -50,7 +50,7 @@ source "build_and_checks_dependencies/strings_functions.libr.sh"
 declare -i LFBFL_i_popd_result2
 popd || {
   LFBFL_i_popd_result2=$?
-  printf "post_commit_renaming_comment.libr.sh no popd"
+  printf "post_commit_renaming_comment.libr.sh no popd\n"
   # shellcheck disable=SC2248
   exit ${LFBFL_i_popd_result2}
 }

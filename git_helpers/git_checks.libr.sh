@@ -95,21 +95,21 @@ check_no_abusive_trailing_comma(){
 
 check_black_code_formatting(){
   # attention ça ne marche que sur les fichiers "stagés" avec git add
-  declare -r LFBFL_files_string=$(
+  declare -r LFBFL_s_files_paths=$(
     git diff --cached --name-only\
     | grep '\.py'
   )
-  printf "%s\n" "${LFBFL_files_string}"
-  declare -a LFBFL_some_files
-  mapfile -t LFBFL_some_files <<< "${LFBFL_files_string}"
-  readonly LFBFL_some_files
+  printf "%s\n" "${LFBFL_s_files_paths}"
+  declare -a LFBFL_arr_files_paths
+  mapfile -t LFBFL_arr_files_paths <<< "${LFBFL_s_files_paths}"
+  readonly LFBFL_arr_files_paths
   declare -i LFBFL_i_error=0
   # Not very useful since LFBFL_file should be local to the loop by
   # default.
-  local LFBFL_file
-  for LFBFL_file in "${LFBFL_some_files[@]}"; do
-    printf "Black will check formatting on file %s\n" "${LFBFL_file}"
-    if ! black --check --diff "${LFBFL_file}";
+  local LFBFL_file_path
+  for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do
+    printf "Black will check formatting on file %s\n" "${LFBFL_file_path}"
+    if ! black --check --diff "${LFBFL_file_path}";
     then
       LFBFL_i_error=1
     fi

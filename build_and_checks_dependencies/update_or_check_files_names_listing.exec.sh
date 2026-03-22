@@ -87,7 +87,7 @@ update_or_check_files_names_listing(){
   get_split_score_simple 1 ${LFBFL_i_max_line_length} /
   declare -r LFBFL_split_score_command="${get_split_score_result}"
   declare -i LFBFL_i_split_score_command_properties
-  LFBFL_i_split_score_command_properties="${i_get_split_score_result2}"
+  LFBFL_i_split_score_command_properties=${i_get_split_score_result2}
   readonly LFBFL_i_split_score_command_properties
   local LFBFL_suffix=\\ # instead of '\' to avoid shellcheck SC1003
   readonly LFBFL_suffix
@@ -138,7 +138,7 @@ update_or_check_files_names_listing(){
       ${LFBFL_i_max_line_length}\
       "${LFBFL_suffix}"\
       "${LFBFL_split_score_command}"\
-      "${LFBFL_i_split_score_command_properties}"\
+      ${LFBFL_i_split_score_command_properties}\
       ""\
       "${LFBFL_final_suffix}"
     if [[ LFBFL_i_write -eq 1 ]]; then

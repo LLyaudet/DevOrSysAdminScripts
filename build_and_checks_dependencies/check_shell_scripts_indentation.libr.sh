@@ -29,6 +29,7 @@ source "./${LFBFL_subdir}/common_options.libr.sh"
 source "./${LFBFL_subdir}/lines_filters.libr.sh"
 
 check_one_shell_script_indentation(){
+  # $1=file_path
   declare -i LFBFL_i_file_with_error=0
   local LFBFL_some_line
   local LFBFL_previous_line="workeduntilsomeasshole"
@@ -81,17 +82,17 @@ check_one_shell_script_indentation(){
     LFBFL_i_line_length=${#LFBFL_some_line}
     LFBFL_i_line_end_length=${#LFBFL_line_end}
     LFBFL_i_line_start_length=$((
-      LFBFL_i_line_length-LFBFL_i_line_end_length
+      LFBFL_i_line_length - LFBFL_i_line_end_length
     ))
-    LFBFL_i_offset=$((LFBFL_i_line_start_length-2))
+    LFBFL_i_offset=$((LFBFL_i_line_start_length - 2))
     # Checking if increasing number of digits in the line numbers
     # (99 -> 100).
     LFBFL_substring1=${LFBFL_previous_line:${LFBFL_i_offset}:1}
     # Nice puzzle below :) Look for comments above :)
     case ${LFBFL_substring1} in
-      -) ((LFBFL_i_offset+=1));;
-      :) ((LFBFL_i_offset+=1));;
-      [0-9]) ((LFBFL_i_offset+=2));;
+      -) ((LFBFL_i_offset += 1));;
+      :) ((LFBFL_i_offset += 1));;
+      [0-9]) ((LFBFL_i_offset += 2));;
       *) printf ":-(\n";;
     esac
     LFBFL_previous_line_end=${LFBFL_previous_line:${LFBFL_i_offset}}

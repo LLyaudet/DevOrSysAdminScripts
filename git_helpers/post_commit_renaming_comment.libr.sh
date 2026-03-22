@@ -300,7 +300,7 @@ commit_a_file_renamed_comment(){
     LFBFL_new_file_directory2="${repeated_split_last_line_result}"
     # Create new comments strings. -----------------------------------
     LFBFL_new_comment=""
-    if [[ "${LFBFL_new_file_name2}" != "${LFBFL_old_file_name2}" ]];
+    if [[ "${LFBFL_new_file_name}" != "${LFBFL_old_file_name}" ]];
     then
       LFBFL_new_comment="${LFBFL_comment_prefix}"
       LFBFL_new_comment+="${LFBFL_timestamp}"
@@ -316,7 +316,7 @@ commit_a_file_renamed_comment(){
       && "${LFBFL_new_file_directory}" != "${LFBFL_old_file_directory}"
       ]];
     then
-      if [[ "${LFBFL_new_file_name2}" != "${LFBFL_old_file_name2}" ]];
+      if [[ "${LFBFL_new_file_name}" != "${LFBFL_old_file_name}" ]];
       then
         LFBFL_new_comment+=$'\n'
       fi

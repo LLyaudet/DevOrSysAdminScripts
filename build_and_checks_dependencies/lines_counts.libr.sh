@@ -53,7 +53,7 @@ all_code_lines(){
     [[ LFBFL_i_verbose -eq 1 ]]\
       && printf "Iterating on pattern: %s.\n" "${LFBFL_pattern}"
     find . -type f -name "${LFBFL_pattern}" -printf '%P\n'\
-      | xargs grep -H -v 'a(?!a)a'
+      | xargs grep -HP -v 'a(?!a)a'
   done
 }
 

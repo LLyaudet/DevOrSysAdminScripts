@@ -136,3 +136,5 @@ updated since some time.
 "wat" works, but "watyouwant?" joke was not repeated ;).
 
 upgrade_vnu_jar_time_interval_in_seconds=604800
+
+use_vnu_for_xhtml=false

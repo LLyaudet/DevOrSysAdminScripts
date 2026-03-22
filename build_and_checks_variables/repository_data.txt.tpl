@@ -44,5 +44,7 @@ vnu_jar_path=
 
 upgrade_vnu_jar_time_interval_in_seconds=
 
+use_vnu_for_xhtml=
+
 npm_lint_directories=
 npm_lint_directories=

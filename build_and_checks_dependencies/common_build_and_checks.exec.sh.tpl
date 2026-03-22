@@ -657,9 +657,17 @@ common_build_and_checks(){
       printf "https://github.com/validator/validator/releases\n"
     fi
     # vnu has false positives for xhtml
-    # find . -iregex ".*\.\(css\|html\|svg\|xhtml\)"
+    local LFBFL_use_vnu_for_xhtml=""
+    grep_variable "${LFBFL_data_file_name}" use_vnu_for_xhtml\
+      --result-variable-prefix=LFBFL_
+    local LFBFL_find_regexp
+    if [[ "${LFBFL_use_vnu_for_xhtml}" == "true" ]]; then
+      LFBFL_find_regexp=".*\.\(css\|html\|svg\|xhtml\)"
+    else
+      LFBFL_find_regexp=".*\.\(css\|html\|svg\)"
+    fi
     declare -r LFBFL_files_for_Nu=$(
-      find . -iregex ".*\.\(css\|html\|svg\)"\
+      find . -iregex "${LFBFL_find_regexp}"\
       | relevant_find
     )
     if [[ -n "${LFBFL_files_for_Nu}" ]]; then

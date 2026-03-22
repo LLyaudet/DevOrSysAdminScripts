@@ -237,15 +237,15 @@ build_licenses_templates(){
   declare -ir LFBFL_i_first_year=$(
     git log\
     | grep 'Date:'\
-    | cut -f 8 -d ' '\
-    | tail -1
+    | tail -1\
+    | cut -f 8 -d ' '
   )
   # Last year according to current state of git repository.
   declare -ir LFBFL_i_last_year=$(
     git log\
     | grep 'Date:'\
-    | cut -f 8 -d ' '\
-    | head -1
+    | head -1\
+    | cut -f 8 -d ' '
   )
   local LFBFL_copyright_string
   LFBFL_copyright_string="${LFBFL_i_first_year}-${LFBFL_i_last_year}"

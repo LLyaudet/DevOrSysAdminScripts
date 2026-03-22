@@ -93,6 +93,7 @@ update_or_check_files_names_listing(){
   readonly LFBFL_suffix
   # There is always a $'\n' final suffix from >>.
   # But when origin string ends with the suffix we must add something.
+  declare -r LFBFL_final_suffix=$'\n\\'
 
   local LFBFL_s_files_paths
   LFBFL_s_files_paths=$(
@@ -110,7 +111,6 @@ update_or_check_files_names_listing(){
   fi
   # printf "%s\n" "${LFBFL_arr_files_paths[@]}"
 
-  declare -r LFBFL_final_suffix=$'\n\\'
   local LFBFL_file_path
   local LFBFL_base_file_name
   for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do

@@ -126,10 +126,7 @@ create_PDF(){
   LFBFL_number_of_lines+=" empty lines."
   readonly LFBFL_number_of_lines
 
-  local LFBFL_temp_path
-  # LFBFL_temp_path=$(realpath "./${LFBFL_subdir2}/temp") for pushd
-  LFBFL_temp_path="./${LFBFL_subdir2}/temp"
-  readonly LFBFL_temp_path
+  declare -r LFBFL_temp_path="./${LFBFL_subdir2}/temp"
 
   # see https://gitlab.com/OldManProgrammer/unix-tree/-/issues
   # ?show=eyJpaWQiOiI0MyIsImZ1bGxfcGF0aCI6Ik9sZE1hblByb2dyYW1t

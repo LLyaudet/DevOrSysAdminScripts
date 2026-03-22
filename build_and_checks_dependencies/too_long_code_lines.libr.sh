@@ -76,7 +76,8 @@ too_long_code_lines(){
       find . -type f -name "${LFBFL_pattern}" -printf '%P\n'\
       | relevant_find\
       | not_license_find\
-      | xargs grep -H '.\{'${LFBFL_i_overlength}'\}'
+      | xargs grep --line-number --with-filename\
+        '.\{'${LFBFL_i_overlength}'\}'
     )
     if [[ -z "${LFBFL_s_long_lines}" ]]; then
       [[ LFBFL_i_verbose -eq 1 ]]\
@@ -86,7 +87,9 @@ too_long_code_lines(){
     mapfile -t LFBFL_arr_long_lines <<< "${LFBFL_s_long_lines}"
     for LFBFL_long_line in "${LFBFL_arr_long_lines[@]}"; do
       LFBFL_file_name=${LFBFL_long_line%%:*} # Drop long ':*' suffix
+      # Remove file_path and line_number
       LFBFL_line=${LFBFL_long_line#*:} # Drop short '*:' prefix
+      LFBFL_line=${LFBFL_line#*:} # Drop short '*:' prefix
       # LFBFL_line="${LFBFL_line/%\\/}" # Drop/Replace '\' suffix by ''
       LFBFL_extension=${LFBFL_file_name##*.} # Drop long '*.' prefix
       LFBFL_base_name=${LFBFL_file_name%.*} # Drop short '.*' suffix

@@ -347,8 +347,8 @@ common_build_and_checks(){
 
   printf "Building README.md\n"
   "./${LFBFL_subdir}/build_md_from_printable_md.exec.sh"\
-    "--work-directory=${LFBFL_work_directory}"\
-    "--base-name=README"\
+    --work-directory="${LFBFL_work_directory}"\
+    --base-name=README\
     "${LFBFL_verbose}"
 
   printf "Building other MarkDown files\n"
@@ -369,8 +369,8 @@ common_build_and_checks(){
       LFBFL_file_name=$(basename "${LFBFL_file_path}")
       LFBFL_file_name=${LFBFL_file_name%.md.tpl}
       "./${LFBFL_subdir}/build_md_from_printable_md.exec.sh"\
-        "--work-directory=${LFBFL_some_directory}"\
-        "--base-name=${LFBFL_file_name}"\
+        --work-directory="${LFBFL_some_directory}"\
+        --base-name="${LFBFL_file_name}"\
         "${LFBFL_verbose}"
     done
   fi
@@ -384,7 +384,7 @@ common_build_and_checks(){
 
   declare -i LFBFL_i_max_line_length
   grep_variable "${LFBFL_data_file_name}" max_line_length\
-    --result-variable-prefix="LFBFL_i_"
+    --result-variable-prefix=LFBFL_i_
 
   declare -i LFBFL_i_upgrade_venvs=0
   local LFBFL_upgrade_venvs_ts_file="${LFBFL_subdir3}/upgrade_venvs_ts"
@@ -399,7 +399,7 @@ common_build_and_checks(){
 
   if [[ -f "${LFBFL_upgrade_venvs_ts_file}" ]]; then
     LFBFL_i_upgrade_venvs_ts=$(
-      stat -c %Y "${LFBFL_upgrade_venvs_ts_file}"
+      stat --format %Y "${LFBFL_upgrade_venvs_ts_file}"
     )
     LFBFL_i_current_ts=$(date +%s)
     ((LFBFL_i_current_ts -= LFBFL_i_upgrade_venvs_ts))
@@ -413,7 +413,7 @@ common_build_and_checks(){
   if [[ LFBFL_i_upgrade_venvs -eq 1 ]]; then
     local LFBFL_upgrade_venvs=""
     grep_variable "${LFBFL_data_file_name}" upgrade_venvs\
-      --result-variable-prefix="LFBFL_"
+      --result-variable-prefix=LFBFL_
     if [[ "${LFBFL_upgrade_venvs}" != "auto" ]]; then
       read -r -n 1 -t 10\
         -p "Upgrade venvs and composer global? [Y/n]"\
@@ -432,7 +432,7 @@ common_build_and_checks(){
   if [[ -n "${LFBFL_s_files_paths}" ]]; then
     mapfile -t LFBFL_arr_files_paths <<< "${LFBFL_s_files_paths}"
     for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do
-      shellcheck "--rcfile=${LFBFL_subdir3}/shellcheck.ini"\
+      shellcheck --rcfile="${LFBFL_subdir3}/shellcheck.ini"\
         "${LFBFL_file_path}"
     done
   fi
@@ -451,7 +451,7 @@ common_build_and_checks(){
   printf "Running isort\n"
   local LFBFL_isort_venv=""
   grep_variable "${LFBFL_data_file_name}" isort_venv\
-    --result-variable-prefix="LFBFL_"\
+    --result-variable-prefix=LFBFL_\
     --replace-line-returns-by=""
   if [[ -n "${LFBFL_isort_venv}" ]]; then
     maybe_deactivate
@@ -480,7 +480,7 @@ common_build_and_checks(){
 
   local LFBFL_black_venv=""
   grep_variable "${LFBFL_data_file_name}" black_venv\
-    --result-variable-prefix="LFBFL_"\
+    --result-variable-prefix=LFBFL_\
     --replace-line-returns-by=""
   if [[ -n "${LFBFL_black_venv}" ]]; then
     maybe_deactivate
@@ -490,7 +490,7 @@ common_build_and_checks(){
   if [[ LFBFL_i_upgrade_venvs -eq 1 ]]; then
     pip install --upgrade black
   fi
-  black --config "${LFBFL_subdir3}/black.toml" .
+  black --config="${LFBFL_subdir3}/black.toml" .
   if [[ -n "${LFBFL_black_venv}" ]]; then
     deactivate
   fi
@@ -500,7 +500,7 @@ common_build_and_checks(){
   printf "Probing if mypy should be runned\n"
   local LFBFL_mypy_venv=""
   grep_variable "${LFBFL_data_file_name}" mypy_venv\
-    --result-variable-prefix="LFBFL_"\
+    --result-variable-prefix=LFBFL_\
     --replace-line-returns-by=""
   if [[ -n "${LFBFL_mypy_venv}" ]]; then
     maybe_deactivate
@@ -519,7 +519,7 @@ common_build_and_checks(){
   if [[ -n "${LFBFL_s_files_paths}" ]]; then
     mapfile -t LFBFL_arr_files_paths <<< "${LFBFL_s_files_paths}"
     for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do
-      if grep -q "Typing :: Typed" "${LFBFL_file_path}"; then
+      if grep --quiet "Typing :: Typed" "${LFBFL_file_path}"; then
         printf "Running mypy\n"
         LFBFL_directory_path=$(dirname "${LFBFL_file_path}")
         mypy "${LFBFL_directory_path}"
@@ -538,7 +538,7 @@ common_build_and_checks(){
   printf "Running bandit\n"
   LFBFL_bandit_venv=""
   grep_variable "${LFBFL_data_file_name}" bandit_venv\
-    --result-variable-prefix="LFBFL_"\
+    --result-variable-prefix=LFBFL_\
     --replace-line-returns-by=""
   if [[ -n "${LFBFL_bandit_venv}" ]]; then
     maybe_deactivate
@@ -548,13 +548,14 @@ common_build_and_checks(){
   if [[ LFBFL_i_upgrade_venvs -eq 1 ]]; then
     pip install --upgrade bandit
   fi
-  bandit --ini "${LFBFL_subdir3}/bandit.ini"\
-    -b "${LFBFL_subdir3}/bandit_baseline.json"\
-    -r .
+  bandit --ini="${LFBFL_subdir3}/bandit.ini"\
+    --baseline="${LFBFL_subdir3}/bandit_baseline.json"\
+    --recursive .
   # Saving new baseline in temp if necessary.
-  bandit --ini "${LFBFL_subdir3}/bandit.ini"\
-    -f json -o "${LFBFL_subdir3}/temp/bandit_baseline.json"\
-    -r .
+  bandit --ini="${LFBFL_subdir3}/bandit.ini"\
+    --format=json\
+    --output="${LFBFL_subdir3}/temp/bandit_baseline.json"\
+    --recursive .
   if [[ -n "${LFBFL_bandit_venv}" ]]; then
     deactivate
   fi
@@ -562,7 +563,7 @@ common_build_and_checks(){
   printf "Running pylint\n"
   LFBFL_pylint_venv=""
   grep_variable "${LFBFL_data_file_name}" pylint_venv\
-    --result-variable-prefix="LFBFL_"\
+    --result-variable-prefix=LFBFL_\
     --replace-line-returns-by=""
   if [[ -n "${LFBFL_pylint_venv}" ]]; then
     maybe_deactivate
@@ -580,7 +581,7 @@ common_build_and_checks(){
   printf "Running ruff\n"
   LFBFL_ruff_venv=""
   grep_variable "${LFBFL_data_file_name}" ruff_venv\
-    --result-variable-prefix="LFBFL_"\
+    --result-variable-prefix=LFBFL_\
     --replace-line-returns-by=""
   if [[ -n "${LFBFL_ruff_venv}" ]]; then
     maybe_deactivate
@@ -625,7 +626,7 @@ common_build_and_checks(){
   printf -- "---JS---\n"
   LFBFL_npm_lint_directories=""
   grep_variable "${LFBFL_data_file_name}" npm_lint_directories\
-    --result-variable-prefix="LFBFL_"
+    --result-variable-prefix=LFBFL_
   if [[ -n "${LFBFL_npm_lint_directories}" ]]; then
     printf "Running ESLint\n"
     local LFBFL_JS_directory
@@ -657,8 +658,9 @@ common_build_and_checks(){
   printf "Analyzing strange characters: hover over in doubt\n"
   # shellcheck disable=SC1111
   LFBFL_usual_characters="\x00-\x7Fàâéèêëîïôûç©“”└─├│«»"
-  grep --exclude-dir .git --binary-files=without-match --color=always\
-    -nPr "[^${LFBFL_usual_characters}]" .
+  grep --binary-files=without-match --color=always --exclude-dir .git\
+    --line-number --perl-regexp --recursive --\
+    "[^${LFBFL_usual_characters}]" .
 
   [[ LFBFL_i_directory_changed -eq 0 ]] && popd_from_work_directory
 
@@ -684,7 +686,7 @@ common_build_and_checks(){
   local LFBFL_upgrade_vnu_jar_time_interval_in_seconds=""
   grep_variable "${LFBFL_data_file_name}"\
     upgrade_vnu_jar_time_interval_in_seconds\
-    --result-variable-prefix="LFBFL_"
+    --result-variable-prefix=LFBFL_
 
   if [[ "${LFBFL_upgrade_vnu_jar_time_interval_in_seconds}" == "wat" ]];
   then
@@ -694,10 +696,10 @@ common_build_and_checks(){
   declare -i LFBFL_i_vnu_jar_ts
   local LFBFL_vnu_jar_path=""
   grep_variable "${LFBFL_data_file_name}" vnu_jar_path\
-    --result-variable-prefix="LFBFL_"\
+    --result-variable-prefix=LFBFL_\
     --replace-line-returns-by=""
   if [[ -f "${LFBFL_vnu_jar_path}" ]]; then
-    LFBFL_i_vnu_jar_ts=$(stat -c %Y "${LFBFL_vnu_jar_path}")
+    LFBFL_i_vnu_jar_ts=$(stat --format %Y "${LFBFL_vnu_jar_path}")
     LFBFL_i_current_ts=$(date +%s)
     ((LFBFL_i_current_ts -= LFBFL_i_vnu_jar_ts))
     ((

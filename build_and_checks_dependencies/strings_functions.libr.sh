@@ -33,6 +33,8 @@ LFBFL_subdir="build_and_checks_dependencies"
 source "./${LFBFL_subdir}/get_common_text_glob_patterns.libr.sh"
 # shellcheck source=comparisons.libr.sh
 source "./${LFBFL_subdir}/comparisons.libr.sh"
+# shellcheck source=too_long_code_lines.libr.sh
+source "./${LFBFL_subdir}/too_long_code_lines.libr.sh"
 
 split_line_at(){
   # $1=line
@@ -1186,13 +1188,14 @@ split_last_line(){
     && trap 'enhanced_unset_shell_option pipefail' RETURN
 
   declare -g split_last_line_result="$1"
-  declare -ir LFBFL_i_max_length_plus=$(($3 + 1))
+  declare -ir LFBFL_i_overlength=$(($3 + 1))
   declare -ir LFBFL_i_length2=$(($3 - ${#4}))
-  declare -r LFBFL_regexp='.\{'"${LFBFL_i_max_length_plus}"'\}$'
+  # shellcheck disable=SC2248
+  get_overlength_regexp ${LFBFL_i_overlength}
 
   # Testing if some line is too long.
   printf "%s" "$1"\
-    | grep -q "${LFBFL_regexp}";
+    | grep -q "${get_overlength_regexp_result}";
   if [[ ${PIPESTATUS[1]} -eq 1 ]]; then
     return
   fi

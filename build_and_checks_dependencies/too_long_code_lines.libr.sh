@@ -32,6 +32,16 @@ source "./${LFBFL_subdir}/get_common_text_glob_patterns.libr.sh"
 # shellcheck source=lines_filters.libr.sh
 source "./${LFBFL_subdir}/lines_filters.libr.sh"
 
+get_overlength_regexp(){
+  declare -g get_overlength_regexp_result=".\{$1\}"
+  # declare -g get_overlength_regexp_result="^.\{$1\}"
+  # declare -g get_overlength_regexp_result=".\{$1\}\$"
+  # First one seems to be faster by a few percents when testing like this:
+  # time for ((i = 0; i < 1000; ++i)); do grep '.{70}' COPYING; done
+  # time for ((i = 0; i < 1000; ++i)); do grep '^.{70}' COPYING; done
+  # time for ((i = 0; i < 1000; ++i)); do grep '.{70}$' COPYING; done
+}
+
 too_long_code_lines(){
   # Options:
   #   --verbose
@@ -55,6 +65,10 @@ too_long_code_lines(){
     fi
   done
 
+  declare -ir LFBFL_i_overlength=$((LFBFL_i_max_line_length+1))
+  # shellcheck disable=SC2248
+  get_overlength_regexp ${LFBFL_i_overlength}
+
   enhanced_set_shell_option pipefail\
     && trap 'enhanced_unset_shell_option pipefail' RETURN
 
@@ -65,7 +79,6 @@ too_long_code_lines(){
   local LFBFL_line
   local LFBFL_extension
   local LFBFL_base_name
-  declare -ir LFBFL_i_overlength=$((LFBFL_i_max_line_length+1))
   local LFBFL_s_long_lines
   declare -a LFBFL_arr_long_lines
   for LFBFL_pattern in "${COMMON_TEXT_FILES_GLOB_PATTERNS[@]}"; do
@@ -77,7 +90,7 @@ too_long_code_lines(){
       | relevant_find\
       | not_license_find\
       | xargs grep --line-number --with-filename\
-        '.\{'${LFBFL_i_overlength}'\}'
+        "${get_overlength_regexp_result}"
     )
     if [[ -z "${LFBFL_s_long_lines}" ]]; then
       [[ LFBFL_i_verbose -eq 1 ]]\

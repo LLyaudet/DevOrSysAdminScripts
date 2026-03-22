@@ -97,10 +97,12 @@ build_licenses_templates(){
 
   declare -ar LFBFL_line_comment_languages=(
     "sh"
+    "sql"
     "tex"
   )
   declare -ar LFBFL_line_comment_prefixes=(
     '# '
+    '-- '
     '% '
   )
   equal "${#LFBFL_line_comment_languages[@]}"\
@@ -282,6 +284,7 @@ build_licenses_templates(){
     ["c"]="c"
     ["php"]="c"
     ["py"]="py"
+    ["js"]="c"
   )
 
   local LFBFL_key
@@ -351,6 +354,7 @@ build_licenses_templates(){
 
   declare -Ar LFBFL_all_line_comment_languages=(
     ["sh"]="sh"
+    ["sql"]="sql"
     ["tex"]="tex"
   )
 

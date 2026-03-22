@@ -1010,20 +1010,19 @@ split_line_at_most(){
 
   # At the beginning, each position has score 0.
   LFBFL_positions["0"]="-1"
-  for ((LFBFL_i=1; LFBFL_i<=LFBFL_i_max; ++LFBFL_i)) do
+  for ((LFBFL_i = 1; LFBFL_i <= LFBFL_i_max; ++LFBFL_i)) do
     LFBFL_positions["${LFBFL_i}"]="0"
   done
-  LFBFL_j=$((LFBFL_i+1))
-  LFBFL_positions["${LFBFL_j}"]="-1"
+  LFBFL_positions["${LFBFL_i}"]="-1"
 
   # If we have a forbidden previous character,
   # we mark the forbidden positions with -1.
   if [[ -n "$5" ]]; then
-    for ((LFBFL_i=0; LFBFL_i<LFBFL_i_max; ++LFBFL_i)) do
-      LFBFL_j=$((LFBFL_i+1))
+    for ((LFBFL_i = 0; LFBFL_i < LFBFL_i_max;)) do
       LFBFL_current_char="${1:${LFBFL_i}:1}"
+      ((++LFBFL_i))
       if [[ "${LFBFL_current_char}" == "$5" ]]; then
-        LFBFL_positions["${LFBFL_j}"]="-1"
+        LFBFL_positions["${LFBFL_i}"]="-1"
       fi
     done
   fi

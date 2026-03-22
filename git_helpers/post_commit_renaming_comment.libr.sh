@@ -371,6 +371,7 @@ commit_a_file_renamed_comment(){
     local LFBFL_message="commit_a_file_renamed_comment()"
     LFBFL_message+=" post-commit hook, ${LFBFL_timestamp}."
     readonly LFBFL_message
-    git commit --message="${LFBFL_message}"
+    printf "Commit message:\n%s\n" "${LFBFL_message}"
+    git commit --no-verify --message="${LFBFL_message}"
   fi
 }

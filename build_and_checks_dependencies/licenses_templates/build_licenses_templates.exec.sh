@@ -50,6 +50,8 @@ build_licenses_templates(){
   enhanced_set_shell_option pipefail\
     && trap 'enhanced_unset_shell_option pipefail' RETURN
 
+  local LFBFL_s_format
+
   # Source
   local LFBFL_license_source_subdir
   LFBFL_license_source_subdir="./${LFBFL_subdir}/licenses_templates/"
@@ -310,6 +312,12 @@ build_licenses_templates(){
       | relevant_find
     )
     if [[ -z "${LFBFL_s_files_paths}" ]]; then
+      if [[ LFBFL_i_verbose -eq 1 ]]; then
+        LFBFL_s_format="build_licenses_templates: "
+        LFBFL_s_format+="No file found with extension .%s or .%s.tpl."
+        # shellcheck disable=SC2059
+        printf "${LFBFL_s_format}" "${LFBFL_key}" "${LFBFL_key}"
+      fi
       continue
     fi
     mapfile -t LFBFL_arr_files_paths <<< "${LFBFL_s_files_paths}"
@@ -373,6 +381,12 @@ build_licenses_templates(){
       | relevant_find
     )
     if [[ -z "${LFBFL_s_files_paths}" ]]; then
+      if [[ LFBFL_i_verbose -eq 1 ]]; then
+        LFBFL_s_format="build_licenses_templates: "
+        LFBFL_s_format+="No file found with extension .%s or .%s.tpl."
+        # shellcheck disable=SC2059
+        printf "${LFBFL_s_format}" "${LFBFL_key}" "${LFBFL_key}"
+      fi
       continue
     fi
     mapfile -t LFBFL_arr_files_paths <<< "${LFBFL_s_files_paths}"

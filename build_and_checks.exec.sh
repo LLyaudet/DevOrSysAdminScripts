@@ -70,9 +70,9 @@ build_and_checks(){
   declare -r\
     LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_common_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='78af7b695c90c55cb879e150f350262c0e2682adb8384'
-  LFBFL_correct_sha512+='a206ed54eb5e10a9300cfe00a0ead6fe81cb512f220a'
-  LFBFL_correct_sha512+='0621fa856f9e5d7db07de06ffe687dd83818bed'
+  LFBFL_correct_sha512='4d70e6ab24517898c857ae06a1a18f160ec725465bea3'
+  LFBFL_correct_sha512+='d336d0cc4821b76837062a9f89973753e8532ed4ee65'
+  LFBFL_correct_sha512+='feb6464c0abe4ab586d09642495094ba4d63f02'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_script}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
   chmod +x "./${LFBFL_file_path}"

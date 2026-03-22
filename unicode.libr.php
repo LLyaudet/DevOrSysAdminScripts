@@ -35,17 +35,17 @@ function decimal_code_point_to_UTF8(
   }
   $i_continuation_base_value = 128;
   // 110xxxxx 10xxxxxx
-  if($i_code_point_in_decimal_notation < 256 * (2**3)){
+  if($i_code_point_in_decimal_notation < 2048){  // 2**11
     $i_first_byte_base_value = 192;
     $i_last_byte_significant_bits = (
-      $i_code_point_in_decimal_notation % (2**6)
+      $i_code_point_in_decimal_notation % 64  // 2**6
     );
     $i_first_byte_significant_bits = intdiv(
       (
         $i_code_point_in_decimal_notation
         - $i_last_byte_significant_bits
       ),
-      2**6,
+      64,  // 2**6
     );
     $s_result = chr(
       $i_first_byte_base_value
@@ -58,7 +58,7 @@ function decimal_code_point_to_UTF8(
     return $s_result;
   }
   // 1110xxxx 10xxxxxx 10xxxxxx
-  if($i_code_point_in_decimal_notation < 256 * 256){
+  if($i_code_point_in_decimal_notation < 65536){  // 2**16
     $i_first_byte_base_value = 224;
     $arr_arr_data_per_byte_reverse = [
       ["i_bits" => 6, "i_base_value" => $i_continuation_base_value],
@@ -90,7 +90,7 @@ function decimal_code_point_to_UTF8(
     return $s_result;
   }
   // 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
-  if($i_code_point_in_decimal_notation < 256 * 256 * (2**5)){
+  if($i_code_point_in_decimal_notation < 2097152){  // 2**21
     $i_first_byte_base_value = 240;
     $arr_arr_data_per_byte_reverse = [
       ["i_bits" => 6, "i_base_value" => $i_continuation_base_value],

@@ -139,7 +139,7 @@ some_equal3(){
 max(){
   # Returns the maximum string among the arguments.
   # Renvoie la chaîne la plus grande parmi celles proposées.
-  # $1=$sort command with the flags you want to be applied.
+  # $1=sort_command with the flags you want to be applied.
   # $ max sort a b c
   # c
   if [[ $# -eq 0 ]]; then
@@ -155,7 +155,7 @@ max(){
 min(){
   # Returns the minimum string among the arguments.
   # Renvoie la chaîne la plus petite parmi celles proposées.
-  # $1=$sort command with the flags you want to be applied.
+  # $1=sort_command with the flags you want to be applied.
   # $ min sort a b c
   # a
   if [[ $# -eq 0 ]]; then
@@ -169,8 +169,8 @@ min(){
 }
 
 is_substring(){
-  # $1=$string
-  # $2=$substring
+  # $1=string
+  # $2=substring
   declare -r LFBFL_var_1=$(
     printf "%s" "$1"\
     | sed -e 's/\\/\\&/g' -e "s/'/\\\\&/g"
@@ -189,8 +189,8 @@ is_substring(){
 }
 
 is_subfile(){
-  # $1=$file_name
-  # $2=$sub_file_name
+  # $1=file_path
+  # $2=sub_file_path
   local LFBFL_var_1="\$a = file_get_contents('$1');"
   LFBFL_var_1+=" \$b = preg_quote(file_get_contents('$2'));"
   LFBFL_var_1+=" \$c = '/'.addcslashes(\$b, '/').'/';"

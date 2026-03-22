@@ -82,7 +82,6 @@ check_URLs(){
     fi
     mapfile -t LFBFL_arr_files_paths <<< "${LFBFL_s_files_paths}"
     for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do
-      [[ -f "${LFBFL_file_path}" ]] || continue
       LFBFL_base_file_name=$(basename "${LFBFL_file_path}")
       [[ "${LFBFL_base_file_name}" != "check_URLs.libr.sh" ]]\
         || continue

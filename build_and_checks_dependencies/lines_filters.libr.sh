@@ -92,8 +92,8 @@ ll_wc(){
 
 # I submitted a patch for wc :).
 # printf "https://domain/list-path/2024-05/msg00013.html" | \
-#   sed -e 's|domain|lists.gnu.org|' \
-#       -e 's|list-path|archive/html/bug-coreutils|'
+#   sed --expression='s|domain|lists.gnu.org|' \
+#       --expression='s|list-path|archive/html/bug-coreutils|'
 # I found another way to have a long URL fit on 70 characters.
 # If it is merged, the following would be better:
 # If --no-filenames option available,
@@ -253,9 +253,11 @@ grep_variable(){
         break
       fi
     done
+    # sed -Ez -e...
     LFBFL_variable_value=$(
-      grep -oP "${LFBFL_regexp}" "$1"\
-      | sed -Ez -e 's/\n/'"${LFBFL_s_replace}"'/Mg'
+      grep --only-matching --perl-regexp "${LFBFL_regexp}" "$1"\
+      | sed --null-data --regexp-extended\
+        --expression='s/\n/'"${LFBFL_s_replace}"'/Mg'
     )
     # We remove the trailing replace string,
     # since the intent is only to replace the intermediate \n.
@@ -263,7 +265,9 @@ grep_variable(){
     LFBFL_variable_value=${LFBFL_variable_value%"${LFBFL_s_replace}"}
     fi
   else
-    LFBFL_variable_value=$(grep -oP "${LFBFL_regexp}" "$1")
+    LFBFL_variable_value=$(
+      grep --only-matching --perl-regexp "${LFBFL_regexp}" "$1"
+    )
   fi
   local LFBFL_prefix=""
   for LFBFL_arg in "$@"; do
@@ -287,7 +291,7 @@ empty_lines(){
 }
 
 not_empty_lines(){
-  grep -v '^$'
+  grep --invert-match '^$'
 }
 
 space_starting_lines(){
@@ -295,17 +299,17 @@ space_starting_lines(){
 }
 
 not_space_starting_lines(){
-  grep -v '^ '
+  grep --invert-match '^ '
 }
 
 # Space starting or empty lines = spampty
 spampty_lines(){
-  grep -E '^( |$)'
+  grep --extended-regexp '^( |$)'
 }
 
 not_spampty_lines(){
   grep '^[^ ]'
-  # grep -v -E '^( |$)'
+  # grep --extended-regexp --invert-match '^( |$)'
 }
 
 all_space_lines(){
@@ -313,7 +317,7 @@ all_space_lines(){
 }
 
 not_all_space_lines(){
-  grep -v '^[ ]\+$'
+  grep --invert-match '^[ ]\+$'
 }
 
 # All space or empty lines = aspampty
@@ -323,7 +327,7 @@ aspampty_lines(){
 
 not_aspampty_lines(){
   grep '[^ ]'
-  # grep -v '^[ ]*$'
+  # grep --invert-match '^[ ]*$'
 }
 
 empty_lines_after_file_name(){
@@ -331,7 +335,7 @@ empty_lines_after_file_name(){
 }
 
 not_empty_lines_after_file_name(){
-  grep -v '^[^:]\+:$'
+  grep --invert-match '^[^:]\+:$'
 }
 
 space_starting_lines_after_file_name(){
@@ -339,11 +343,11 @@ space_starting_lines_after_file_name(){
 }
 
 not_space_starting_lines_after_file_name(){
-  grep -v '^[^:]\+: '
+  grep --invert-match '^[^:]\+: '
 }
 
 spampty_lines_after_file_name(){
-  grep -E '^[^:]+:( |$)'
+  grep --extended-regexp '^[^:]+:( |$)'
 }
 
 not_spampty_lines_after_file_name(){
@@ -353,7 +357,7 @@ not_spampty_lines_after_file_name(){
   # that the "positive" one is faster as usual when querying database.
   # But there is no index here ;) XD.
   grep '^[^:]\+:[^ ]'
-  # grep -v -E '^[^:]+:( |$)'
+  # grep --extended-regexp --invert-match '^[^:]+:( |$)'
 }
 
 all_space_lines_after_file_name(){
@@ -361,7 +365,7 @@ all_space_lines_after_file_name(){
 }
 
 not_all_space_lines_after_file_name(){
-  grep -v '^[^:]\+:[ ]\+$'
+  grep --invert-match '^[^:]\+:[ ]\+$'
 }
 
 aspampty_lines_after_file_name(){
@@ -369,23 +373,25 @@ aspampty_lines_after_file_name(){
 }
 
 not_aspampty_lines_after_file_name(){
-  grep -v '^[^:]\+:[ ]*$'
+  grep --invert-match '^[^:]\+:[ ]*$'
 }
 
 # If you need to test the previous 20 functions,
 # look at file spampty_data.txt in miscellaneous.
 # And give a try at something like:
 # cat -E <(cat miscellaneous/spampty_data.txt | empty_lines)
-# :). Nice command :).
+# -E = --show-ends :). Nice command :).
 
 not_JS_dependencies_find(){
-  grep -vE -e "(^|/)node_modules/"\
-           -e "(^|/)package-lock\.json$"
+  grep --extended-regexp --invert-match\
+    --regexp="(^|/)node_modules/"\
+    --regexp="(^|/)package-lock\.json$"
 }
 
 not_JS_dependencies_grep(){
-  grep -vE -e "^([^:]+/)?node_modules/"\
-           -e "^([^:]+/)?package-lock\.json:"
+  grep --extended-regexp --invert-match\
+    --regexp="^([^:]+/)?node_modules/"\
+    --regexp="^([^:]+/)?package-lock\.json:"
 }
 
 not_dependencies_find(){
@@ -397,15 +403,17 @@ not_dependencies_grep(){
 }
 
 not_python_cache_find(){
-  grep -vE -e "(^|/)__pycache__/"\
-           -e "(^|/)\.mypy_cache/"\
-           -e "(^|/)\.ruff_cache/"
+  grep --extended-regexp --invert-match\
+    --regexp="(^|/)__pycache__/"\
+    --regexp="(^|/)\.mypy_cache/"\
+    --regexp="(^|/)\.ruff_cache/"
 }
 
 not_python_cache_grep(){
-  grep -vE -e "^([^:]+/)?__pycache__/"\
-           -e "^([^:]+/)?\.mypy_cache/"\
-           -e "^([^:]+/)?\.ruff_cache/"
+  grep --extended-regexp --invert-match\
+    --regexp="^([^:]+/)?__pycache__/"\
+    --regexp="^([^:]+/)?\.mypy_cache/"\
+    --regexp="^([^:]+/)?\.ruff_cache/"
 }
 
 not_cache_find(){
@@ -417,29 +425,32 @@ not_cache_grep(){
 }
 
 not_git_find(){
-  grep -vE "(^|/)\.git/"
+  grep --extended-regexp --invert-match "(^|/)\.git/"
 }
 
 not_git_grep(){
-  grep -vE "^([^:]+/)?\.git/"
+  grep --extended-regexp --invert-match "^([^:]+/)?\.git/"
 }
 
 not_archive_find(){
-  grep -vE "(\.gz|\.rar|\.tar|\.tgz|\.whl)$"
+  grep --extended-regexp --invert-match "(\.gz|\.rar|\.tar|\.tgz|\.whl)$"
 }
 
 not_archive_grep(){
-  grep -vE "^[^:]*(\.gz|\.rar|\.tar|\.tgz|\.whl):"
+  grep --extended-regexp --invert-match\
+    --regexp="^[^:]*(\.gz|\.rar|\.tar|\.tgz|\.whl):"
 }
 
 not_license_find(){
-  grep -vE -e "(^|/)COPYING$"\
-           -e "(^|/)COPYING\.LESSER$"
+  grep --extended-regexp --invert-match\
+    --regexp="(^|/)COPYING$"\
+    --regexp="(^|/)COPYING\.LESSER$"
 }
 
 not_license_grep(){
-  grep -vE -e "^([^:]+/)?COPYING:"\
-           -e "^([^:]+/)?COPYING\.LESSER:"
+  grep --extended-regexp --invert-match\
+    --regexp="^([^:]+/)?COPYING:"\
+    --regexp="^([^:]+/)?COPYING\.LESSER:"
 }
 
 not_main_tex_find(){
@@ -448,7 +459,8 @@ not_main_tex_find(){
     repository_name\
     --result-variable-prefix="LFBFL_"\
     --replace-line-returns-by=""
-  grep -vE "(^|/)${LFBFL_repository_name}\.tex$"
+  grep --extended-regexp --invert-match\
+    --regexp="(^|/)${LFBFL_repository_name}\.tex$"
 }
 
 not_main_tex_grep(){
@@ -457,7 +469,8 @@ not_main_tex_grep(){
     repository_name\
     --result-variable-prefix="LFBFL_"\
     --replace-line-returns-by=""
-  grep -vE "^([^:]+/)?${LFBFL_repository_name}\.tex:"
+  grep --extended-regexp --invert-match\
+    --regexp="^([^:]+/)?${LFBFL_repository_name}\.tex:"
 }
 
 not_main_html_find(){
@@ -466,7 +479,8 @@ not_main_html_find(){
     repository_name\
     --result-variable-prefix="LFBFL_"\
     --replace-line-returns-by=""
-  grep -vE "(^|/)${LFBFL_repository_name}\.html$"
+  grep --extended-regexp --invert-match\
+    --regexp="(^|/)${LFBFL_repository_name}\.html$"
 }
 
 not_main_html_grep(){
@@ -475,15 +489,18 @@ not_main_html_grep(){
     repository_name\
     --result-variable-prefix="LFBFL_"\
     --replace-line-returns-by=""
-  grep -vE "^([^:]+/)?${LFBFL_repository_name}\.html:"
+  grep --extended-regexp --invert-match\
+    --regexp="^([^:]+/)?${LFBFL_repository_name}\.html:"
 }
 
 not_temp_file_find(){
-  grep -vE "(^|/)build_and_checks_variables/temp/"
+  grep --extended-regexp --invert-match\
+    --regexp="(^|/)build_and_checks_variables/temp/"
 }
 
 not_temp_file_grep(){
-  grep -vE "^([^:]+/)?build_and_checks_variables/temp/[^:]*:"
+  grep --extended-regexp --invert-match\
+    --regexp="^([^:]+/)?build_and_checks_variables/temp/[^:]*:"
 }
 
 relevant_find(){

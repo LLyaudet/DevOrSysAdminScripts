@@ -33,6 +33,7 @@ source "./${LFBFL_subdir}/get_common_text_glob_patterns.libr.sh"
 source "./${LFBFL_subdir}/lines_filters.libr.sh"
 
 grammar_and_spell_check(){
+  # $1=configuration_path build_and_checks_variables/repository_data.txt
   # Options:
   #   --verbose
   #   --work-directory=""

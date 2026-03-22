@@ -357,10 +357,10 @@ common_build_and_checks(){
     LFBFL_i_upgrade_venvs=1
   fi
   if [[ LFBFL_i_upgrade_venvs -eq 1 ]]; then
-    local LFBFL2_upgrade_venvs=""
+    local LFBFL_upgrade_venvs=""
     grep_variable "${LFBFL_data_file_name}" upgrade_venvs\
-      --result-variable-prefix="LFBFL2_"
-    if [[ "${LFBFL2_upgrade_venvs}" != "auto" ]]; then
+      --result-variable-prefix="LFBFL_"
+    if [[ "${LFBFL_upgrade_venvs}" != "auto" ]]; then
       read -r -n 1 -t 10\
         -p "Upgrade venvs and composer global? [Y/n]"\
         LFBFL_upgrade_venvs_answer

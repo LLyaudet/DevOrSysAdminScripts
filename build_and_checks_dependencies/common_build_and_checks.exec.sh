@@ -234,9 +234,9 @@ common_build_and_checks(){
   LFBFL_file_name="python_isort_complement.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='585809b2dd125cd45f4b3751fe7078f2b473fbec5af9c'
-  LFBFL_correct_sha512+='5d242b6dd827c680f22c913ddf9823c6d2225ffb0b29'
-  LFBFL_correct_sha512+='31865aa546aa5cc181f21224062bf04fc39c0f8'
+  LFBFL_correct_sha512='ce054c746bd12511084306c420f9cc6bd4509d951ae34'
+  LFBFL_correct_sha512+='4d1a84c95150c217d95923b8277da9052b3177927af6'
+  LFBFL_correct_sha512+='9e14032f511ef83bb11d8c4ed050efe69ca4fd3'
   wrapped_wget_sha512
 
   LFBFL_file_name="repository_data.libr.sh"

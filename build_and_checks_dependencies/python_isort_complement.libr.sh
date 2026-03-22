@@ -65,7 +65,6 @@ check_collections_abc_place(){
   mapfile -t LFBFL_arr_files_paths <<< "${LFBFL_s_files_paths}"
   readonly LFBFL_arr_files_paths
   for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do
-    [[ -f "${LFBFL_file_path}" ]] || continue
     sed -Ez 's/\n(\nfrom _collections_abc[^\n]*)/\1\n/Mg'\
       "${LFBFL_file_path}"\
       > "${LFBFL_file_path}${LFBFL_temp}"

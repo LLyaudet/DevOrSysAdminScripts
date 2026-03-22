@@ -33,6 +33,8 @@ source "./${LFBFL_subdir}/lines_filters.libr.sh"
 declare -gr LFBFL_SHELL_SCRIPT_BEGINNING="#!/usr/bin/env bash"
 
 check_one_shell_script_beginning(){
+  # $1=file_path
+  #
   # declare -r LFBFL_file_path=$(basename "$1")
   # if [[ "${LFBFL_file_path}" =~ license_file_header_.*\.sh ]]; then
   #   return 0

@@ -94,10 +94,10 @@ commit_a_file_renamed_comment(){
   if [[ LFBFL_i_verbose -eq 1 ]]; then
     LFBFL_s_format="LFBFL_i_log_directory_change: %s\n"
     LFBFL_s_format+="LFBFL_i_max_comment_line_length: %s\n"
-    # shellcheck disable=SC2059
+    # shellcheck disable=SC2059,SC2248
     printf "${LFBFL_s_format}"\
       "${LFBFL_i_log_directory_change}"\
-      "${LFBFL_i_max_comment_line_length}"
+      ${LFBFL_i_max_comment_line_length}
   fi
   #-------------------------------------------------------------------
 
@@ -122,16 +122,18 @@ commit_a_file_renamed_comment(){
   fi
   local LFBFL_split_score_command1
   declare -i LFBFL_i_split_score_command_properties1
-  get_split_score_simple 1 "${LFBFL_i_max_comment_line_length}" _
+  # shellcheck disable=SC2248
+  get_split_score_simple 1 ${LFBFL_i_max_comment_line_length} _
   LFBFL_split_score_command1="${get_split_score_result}"
-  LFBFL_i_split_score_command_properties1="${i_get_split_score_result2}"
+  LFBFL_i_split_score_command_properties1=${i_get_split_score_result2}
   readonly LFBFL_split_score_command1
   readonly LFBFL_i_split_score_command_properties1
   local LFBFL_split_score_command2
   declare -i LFBFL_i_split_score_command_properties2
-  get_split_score_simple 1 "${LFBFL_i_max_comment_line_length}" /
+  # shellcheck disable=SC2248
+  get_split_score_simple 1 ${LFBFL_i_max_comment_line_length} /
   LFBFL_split_score_command2="${get_split_score_result}"
-  LFBFL_i_split_score_command_properties2="${i_get_split_score_result2}"
+  LFBFL_i_split_score_command_properties2=${i_get_split_score_result2}
   readonly LFBFL_split_score_command2
   readonly LFBFL_i_split_score_command_properties2
   declare -i LFBFL_i_renaming_happened=0
@@ -255,34 +257,46 @@ commit_a_file_renamed_comment(){
     # -----
     LFBFL_old_file_name2="${LFBFL_comment_prefix2}"
     LFBFL_old_file_name2+="${LFBFL_old_file_name}"
+    # shellcheck disable=SC2248
     repeated_split_last_line "${LFBFL_old_file_name2}"\
-      "${LFBFL_comment_prefix2}" "${LFBFL_i_max_comment_line_length}"\
-      '"' "${LFBFL_split_score_command1}"\
-      "${LFBFL_i_split_score_command_properties1}"
+      "${LFBFL_comment_prefix2}"\
+      ${LFBFL_i_max_comment_line_length}\
+      '"'\
+      "${LFBFL_split_score_command1}"\
+      ${LFBFL_i_split_score_command_properties1}
     LFBFL_old_file_name2="${repeated_split_last_line_result}"
     # -----
     LFBFL_old_file_directory2="${LFBFL_comment_prefix2}"
     LFBFL_old_file_directory2+="${LFBFL_old_file_directory}"
+    # shellcheck disable=SC2248
     repeated_split_last_line "${LFBFL_old_file_directory2}"\
-      "${LFBFL_comment_prefix2}" "${LFBFL_i_max_comment_line_length}"\
-      '"' "${LFBFL_split_score_command2}"\
-      "${LFBFL_i_split_score_command_properties2}"
+      "${LFBFL_comment_prefix2}"\
+      ${LFBFL_i_max_comment_line_length}\
+      '"'\
+      "${LFBFL_split_score_command2}"\
+      ${LFBFL_i_split_score_command_properties2}
     LFBFL_old_file_directory2="${repeated_split_last_line_result}"
     # -----
     LFBFL_new_file_name2="${LFBFL_comment_prefix2}"
     LFBFL_new_file_name2+="${LFBFL_new_file_name}"
+    # shellcheck disable=SC2248
     repeated_split_last_line "${LFBFL_new_file_name2}"\
-      "${LFBFL_comment_prefix2}" "${LFBFL_i_max_comment_line_length}"\
-      '"' "${LFBFL_split_score_command1}"\
-      "${LFBFL_i_split_score_command_properties1}"
+      "${LFBFL_comment_prefix2}"\
+      ${LFBFL_i_max_comment_line_length}\
+      '"'\
+      "${LFBFL_split_score_command1}"\
+      ${LFBFL_i_split_score_command_properties1}
     LFBFL_new_file_name2="${repeated_split_last_line_result}"
     # -----
     LFBFL_new_file_directory2="${LFBFL_comment_prefix2}"
     LFBFL_new_file_directory2+="${LFBFL_new_file_directory}"
+    # shellcheck disable=SC2248
     repeated_split_last_line "${LFBFL_new_file_directory2}"\
-      "${LFBFL_comment_prefix2}" "${LFBFL_i_max_comment_line_length}"\
-      '"' "${LFBFL_split_score_command2}"\
-      "${LFBFL_i_split_score_command_properties2}"
+      "${LFBFL_comment_prefix2}"\
+      ${LFBFL_i_max_comment_line_length}\
+      '"'\
+      "${LFBFL_split_score_command2}"\
+      ${LFBFL_i_split_score_command_properties2}
     LFBFL_new_file_directory2="${repeated_split_last_line_result}"
     # Create new comments strings. -----------------------------------
     LFBFL_new_comment=""

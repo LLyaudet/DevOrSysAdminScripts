@@ -78,7 +78,6 @@ python_isort_complement(){
   # Options:
   #   --verbose
   #   --work-directory=""
-  # shellcheck disable=SC2034
   declare -i LFBFL_i_verbose=0
   get_verbose_option "$@"
   local LFBFL_work_directory=""
@@ -89,5 +88,8 @@ python_isort_complement(){
   pushd_to_work_directory --trap-popd
   can_continue_after_enhanced_pushd || return 1
 
-  check_collections_abc_place "$@"
+  declare -a LFBFL_common_options=("$@")
+  keep_options LFBFL_common_options --verbose
+
+  check_collections_abc_place "${LFBFL_common_options[@]}"
 }

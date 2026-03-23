@@ -76,8 +76,11 @@ all_self_code_lines(){
 
   enhanced_set_shell_option pipefail --trap-unset
 
+  declare -a LFBFL_common_options=("$@")
+  keep_options LFBFL_common_options --verbose
+
   # below and another lines, see SC2145 false positive
-  all_code_lines "$@" \
+  all_code_lines "${LFBFL_common_options[@]}" \
     | relevant_grep\
     | not_license_grep\
     | not_main_tex_grep\
@@ -88,15 +91,23 @@ all_self_code_lines(){
 all_self_empty_code_lines(){
   # Options:
   #   --verbose
+  #   --work-directory=""
   declare -i LFBFL_i_verbose=0
   get_verbose_option "$@"
+  local LFBFL_work_directory=""
+  get_work_directory_option "$@"
   declare -a LFBFL_return_traps_stack
   local LFBFL_previous_return_trap
   init_return_trap
+  pushd_to_work_directory --trap-popd
+  can_continue_after_enhanced_pushd || return 1
 
   enhanced_set_shell_option pipefail --trap-unset
 
-  all_self_code_lines "$@" \
+  declare -a LFBFL_common_options=("$@")
+  keep_options LFBFL_common_options --verbose
+
+  all_self_code_lines "${LFBFL_common_options[@]}" \
     | empty_lines_after_file_name
 }
 
@@ -104,26 +115,39 @@ all_self_empty_code_lines(){
 all_self_not_empty_code_lines(){
   # Options:
   #   --verbose
+  #   --work-directory=""
   declare -i LFBFL_i_verbose=0
   get_verbose_option "$@"
+  local LFBFL_work_directory=""
+  get_work_directory_option "$@"
   declare -a LFBFL_return_traps_stack
   local LFBFL_previous_return_trap
   init_return_trap
+  pushd_to_work_directory --trap-popd
+  can_continue_after_enhanced_pushd || return 1
 
   enhanced_set_shell_option pipefail --trap-unset
 
-  all_self_code_lines "$@" \
+  declare -a LFBFL_common_options=("$@")
+  keep_options LFBFL_common_options --verbose
+
+  all_self_code_lines "${LFBFL_common_options[@]}" \
     | not_empty_lines_after_file_name
 }
 
 code_lines_count_all(){
   # Options:
   #   --verbose
+  #   --work-directory=""
   declare -i LFBFL_i_verbose=0
   get_verbose_option "$@"
+  local LFBFL_work_directory=""
+  get_work_directory_option "$@"
   declare -a LFBFL_return_traps_stack
   local LFBFL_previous_return_trap
   init_return_trap
+  pushd_to_work_directory --trap-popd
+  can_continue_after_enhanced_pushd || return 1
 
   enhanced_set_shell_option pipefail --trap-unset
 
@@ -141,11 +165,16 @@ code_lines_count_all(){
 code_lines_count_empty(){
   # Options:
   #   --verbose
+  #   --work-directory=""
   declare -i LFBFL_i_verbose=0
   get_verbose_option "$@"
+  local LFBFL_work_directory=""
+  get_work_directory_option "$@"
   declare -a LFBFL_return_traps_stack
   local LFBFL_previous_return_trap
   init_return_trap
+  pushd_to_work_directory --trap-popd
+  can_continue_after_enhanced_pushd || return 1
 
   enhanced_set_shell_option pipefail --trap-unset
 
@@ -164,11 +193,16 @@ code_lines_count_empty(){
 code_lines_count_not_empty(){
   # Options:
   #   --verbose
+  #   --work-directory=""
   declare -i LFBFL_i_verbose=0
   get_verbose_option "$@"
+  local LFBFL_work_directory=""
+  get_work_directory_option "$@"
   declare -a LFBFL_return_traps_stack
   local LFBFL_previous_return_trap
   init_return_trap
+  pushd_to_work_directory --trap-popd
+  can_continue_after_enhanced_pushd || return 1
 
   enhanced_set_shell_option pipefail --trap-unset
 

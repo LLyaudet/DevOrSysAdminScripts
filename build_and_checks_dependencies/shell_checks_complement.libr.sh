@@ -97,7 +97,6 @@ shell_checks_complement(){
   # Options:
   #   --verbose
   #   --work-directory=""
-  # shellcheck disable=SC2034
   declare -i LFBFL_i_verbose=0
   get_verbose_option "$@"
   local LFBFL_work_directory=""
@@ -108,6 +107,9 @@ shell_checks_complement(){
   pushd_to_work_directory --trap-popd
   can_continue_after_enhanced_pushd || return 1
 
-  check_no_size_of_array_first_element "$@"
-  check_no_misplaced_then "$@"
+  declare -a LFBFL_common_options=("$@")
+  keep_options LFBFL_common_options --verbose
+
+  check_no_size_of_array_first_element "${LFBFL_common_options[@]}"
+  check_no_misplaced_then "${LFBFL_common_options[@]}"
 }

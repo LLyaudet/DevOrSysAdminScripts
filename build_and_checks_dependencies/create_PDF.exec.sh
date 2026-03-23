@@ -55,6 +55,9 @@ create_PDF(){
 
   enhanced_set_shell_option pipefail --trap-unset
 
+  declare -a LFBFL_common_options=("$@")
+  keep_options LFBFL_common_options --verbose
+
   local LFBFL_subdir2="build_and_checks_variables"
   local LFBFL_data_file_name="${LFBFL_subdir2}/repository_data.txt"
   local LFBFL_repository_name=""
@@ -114,9 +117,9 @@ create_PDF(){
     LFBFL_redirect="/dev/null"
   fi
   {
-    code_lines_count_all "$@"
-    code_lines_count_not_empty "$@"
-    code_lines_count_empty "$@"
+    code_lines_count_all "${LFBFL_common_options[@]}"
+    code_lines_count_not_empty "${LFBFL_common_options[@]}"
+    code_lines_count_empty "${LFBFL_common_options[@]}"
   } &> "${LFBFL_redirect}"
 
   local LFBFL_number_of_lines="${i_code_lines_count_all_result}"

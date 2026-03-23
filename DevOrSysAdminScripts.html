@@ -118,11 +118,11 @@ ol.level2 li:before{
 Some “small” useful scripts
 for enhancing development or system-administrators tasks
 </blockquote>
-<p>Current version: 2026-03-22</p>
-<p>Current number of commits: 709</p>
-<p>Current git SHA1: 8dcb518bda9bff54da3ecb6e32cfd90d69928caa</p>
+<p>Current version: 2026-03-23</p>
+<p>Current number of commits: 735</p>
+<p>Current git SHA1: 31f5ff427c42bf68a00d5f65572e37bd55f65a43</p>
 <p>
-Code lines: 11446 total lines, 10397 not empty lines, 1049 empty lines.
+Code lines: 11714 total lines, 10662 not empty lines, 1052 empty lines.
 </p>
 
 
@@ -130,205 +130,215 @@ Code lines: 11446 total lines, 10397 not empty lines, 1049 empty lines.
 
 <ol class="level1">
   <li><a href="#section1">Files Tree</a></li>
-  <li><a href="#section2">Listing of files</a><br>
+  <li><a href="#section2">Notes on licenses and dependencies</a></li>
+  <li><a href="#section3">Listing of files</a><br>
     <ol class="level2">
-      <li><a href="#subsection2.1">
+      <li><a href="#subsection3.1">
 build_and_checks_dependencies/build_and_checks.exec.sh.tpl
       </a></li>
-      <li><a href="#subsection2.2">
+      <li><a href="#subsection3.2">
+build_and_checks_dependencies/build_dependencies_notes.exec.php
+      </a></li>
+      <li><a href="#subsection3.3">
 build_and_checks_dependencies/build_md_from_printable_md.exec.sh
       </a></li>
-      <li><a href="#subsection2.3">
+      <li><a href="#subsection3.4">
 build_and_checks_dependencies/check_shell_scripts_beginnings.libr.sh
       </a></li>
-      <li><a href="#subsection2.4">
+      <li><a href="#subsection3.5">
 build_and_checks_dependencies/check_shell_scripts_indentation.libr.sh
       </a></li>
-      <li><a href="#subsection2.5">
+      <li><a href="#subsection3.6">
 build_and_checks_dependencies/check_URLs.libr.sh
       </a></li>
-      <li><a href="#subsection2.6">
+      <li><a href="#subsection3.7">
 build_and_checks_dependencies/common_build_and_checks.exec.sh
       </a></li>
-      <li><a href="#subsection2.7">
+      <li><a href="#subsection3.8">
 build_and_checks_dependencies/common_build_and_checks.exec.sh.tpl
       </a></li>
-      <li><a href="#subsection2.8">
+      <li><a href="#subsection3.9">
 build_and_checks_dependencies/common_options.libr.sh
       </a></li>
-      <li><a href="#subsection2.9">
+      <li><a href="#subsection3.10">
 build_and_checks_dependencies/comparisons.libr.sh
       </a></li>
-      <li><a href="#subsection2.10">
+      <li><a href="#subsection3.11">
 build_and_checks_dependencies/create_PDF.exec.sh
       </a></li>
-      <li><a href="#subsection2.11">
+      <li><a href="#subsection3.12">
 build_and_checks_dependencies/generate_from_template.libr.sh
       </a></li>
-      <li><a href="#subsection2.12">
+      <li><a href="#subsection3.13">
 build_and_checks_dependencies/get_common_text_glob_patterns.libr.sh
       </a></li>
-      <li><a href="#subsection2.13">
+      <li><a href="#subsection3.14">
 build_and_checks_dependencies/grammar_and_spelling_check.libr.sh
       </a></li>
-      <li><a href="#subsection2.14">
+      <li><a href="#subsection3.15">
 build_and_checks_dependencies/licenses_templates/<!--
 -->build_licenses_templates.exec.sh
       </a></li>
-      <li><a href="#subsection2.15">
+      <li><a href="#subsection3.16">
 build_and_checks_dependencies/licenses_templates/<!--
 -->license_file_header_AGPLv3+.tpl
       </a></li>
-      <li><a href="#subsection2.16">
+      <li><a href="#subsection3.17">
 build_and_checks_dependencies/licenses_templates/<!--
 -->license_file_header_GPLv3+.tpl
       </a></li>
-      <li><a href="#subsection2.17">
+      <li><a href="#subsection3.18">
 build_and_checks_dependencies/licenses_templates/<!--
 -->license_file_header_LGPLv3+.tpl
       </a></li>
-      <li><a href="#subsection2.18">
+      <li><a href="#subsection3.19">
 build_and_checks_dependencies/lines_counts.libr.sh
       </a></li>
-      <li><a href="#subsection2.19">
+      <li><a href="#subsection3.20">
 build_and_checks_dependencies/lines_filters.libr.sh
       </a></li>
-      <li><a href="#subsection2.20">
+      <li><a href="#subsection3.21">
 build_and_checks_dependencies/lines_maps.libr.sh
       </a></li>
-      <li><a href="#subsection2.21">
+      <li><a href="#subsection3.22">
 build_and_checks_dependencies/overwrite_if_not_equal.libr.sh
       </a></li>
-      <li><a href="#subsection2.22">
+      <li><a href="#subsection3.23">
 build_and_checks_dependencies/python_black_complement.libr.sh
       </a></li>
-      <li><a href="#subsection2.23">
+      <li><a href="#subsection3.24">
 build_and_checks_dependencies/python_isort_complement.libr.sh
       </a></li>
-      <li><a href="#subsection2.24">
+      <li><a href="#subsection3.25">
 build_and_checks_dependencies/repository_data.libr.sh
       </a></li>
-      <li><a href="#subsection2.25">
+      <li><a href="#subsection3.26">
 build_and_checks_dependencies/shell_checks_complement.libr.sh
       </a></li>
-      <li><a href="#subsection2.26">
+      <li><a href="#subsection3.27">
 build_and_checks_dependencies/split_score.exec.php
       </a></li>
-      <li><a href="#subsection2.27">
+      <li><a href="#subsection3.28">
 build_and_checks_dependencies/split_score.libr.php
       </a></li>
-      <li><a href="#subsection2.28">
+      <li><a href="#subsection3.29">
 build_and_checks_dependencies/strings_functions.libr.sh
       </a></li>
-      <li><a href="#subsection2.29">
+      <li><a href="#subsection3.30">
 build_and_checks_dependencies/too_long_code_lines.libr.sh
       </a></li>
-      <li><a href="#subsection2.30">
+      <li><a href="#subsection3.31">
 build_and_checks_dependencies/update_common_build_and_checks.exec.sh
       </a></li>
-      <li><a href="#subsection2.31">
+      <li><a href="#subsection3.32">
 build_and_checks_dependencies/update_or_check_files_names_listing.exec.sh
       </a></li>
-      <li><a href="#subsection2.32">
+      <li><a href="#subsection3.33">
 build_and_checks_variables/.gitignore
       </a></li>
-      <li><a href="#subsection2.33">
+      <li><a href="#subsection3.34">
 build_and_checks_variables/bandit.ini
       </a></li>
-      <li><a href="#subsection2.34">
+      <li><a href="#subsection3.35">
 build_and_checks_variables/bandit_baseline.json
       </a></li>
-      <li><a href="#subsection2.35">
+      <li><a href="#subsection3.36">
 build_and_checks_variables/black.toml
       </a></li>
-      <li><a href="#subsection2.36">
+      <li><a href="#subsection3.37">
+build_and_checks_variables/dependencies_data.json
+      </a></li>
+      <li><a href="#subsection3.38">
+build_and_checks_variables/dependencies_notes.txt
+      </a></li>
+      <li><a href="#subsection3.39">
 build_and_checks_variables/DevOrSysAdminScripts.html.tpl
       </a></li>
-      <li><a href="#subsection2.37">
+      <li><a href="#subsection3.40">
 build_and_checks_variables/DevOrSysAdminScripts.tex.tpl
       </a></li>
-      <li><a href="#subsection2.38">
+      <li><a href="#subsection3.41">
 build_and_checks_variables/files_listing.tex.tpl
       </a></li>
-      <li><a href="#subsection2.39">
+      <li><a href="#subsection3.42">
 build_and_checks_variables/files_names_listing.txt
       </a></li>
-      <li><a href="#subsection2.40">
+      <li><a href="#subsection3.43">
 build_and_checks_variables/licenses_notes.txt
       </a></li>
-      <li><a href="#subsection2.41">
+      <li><a href="#subsection3.44">
 build_and_checks_variables/phpmd_baseline.xml
       </a></li>
-      <li><a href="#subsection2.42">
+      <li><a href="#subsection3.45">
 build_and_checks_variables/pylintrc.toml
       </a></li>
-      <li><a href="#subsection2.43">
+      <li><a href="#subsection3.46">
 build_and_checks_variables/repository_data.txt
       </a></li>
-      <li><a href="#subsection2.44">
+      <li><a href="#subsection3.47">
 build_and_checks_variables/repository_data.txt.tpl
       </a></li>
-      <li><a href="#subsection2.45">
+      <li><a href="#subsection3.48">
 build_and_checks_variables/ruff.toml
       </a></li>
-      <li><a href="#subsection2.46">
+      <li><a href="#subsection3.49">
 build_and_checks_variables/shellcheck.ini
       </a></li>
-      <li><a href="#subsection2.47">
+      <li><a href="#subsection3.50">
 build_and_checks_variables/shellcheck_notes.txt
       </a></li>
-      <li><a href="#subsection2.48">
+      <li><a href="#subsection3.51">
 build_and_checks.exec.sh
       </a></li>
-      <li><a href="#subsection2.49">
+      <li><a href="#subsection3.52">
 COPYING
       </a></li>
-      <li><a href="#subsection2.50">
+      <li><a href="#subsection3.53">
 COPYING.LESSER
       </a></li>
-      <li><a href="#subsection2.51">
+      <li><a href="#subsection3.54">
 git_helpers/git_checks.libr.sh
       </a></li>
-      <li><a href="#subsection2.52">
+      <li><a href="#subsection3.55">
 git_helpers/post-commit
       </a></li>
-      <li><a href="#subsection2.53">
+      <li><a href="#subsection3.56">
 git_helpers/post_commit_renaming_comment.libr.sh
       </a></li>
-      <li><a href="#subsection2.54">
+      <li><a href="#subsection3.57">
 git_helpers/pre-commit
       </a></li>
-      <li><a href="#subsection2.55">
+      <li><a href="#subsection3.58">
 IMAP_transfert.py
       </a></li>
-      <li><a href="#subsection2.56">
+      <li><a href="#subsection3.59">
 LiensUtiles.txt
       </a></li>
-      <li><a href="#subsection2.57">
+      <li><a href="#subsection3.60">
 miscellaneous/funny.sh
       </a></li>
-      <li><a href="#subsection2.58">
+      <li><a href="#subsection3.61">
 miscellaneous/spampty_data.txt
       </a></li>
-      <li><a href="#subsection2.59">
+      <li><a href="#subsection3.62">
 miscellaneous/string_escaping.html
       </a></li>
-      <li><a href="#subsection2.60">
+      <li><a href="#subsection3.63">
 miscellaneous/string_escaping.xhtml
       </a></li>
-      <li><a href="#subsection2.61">
+      <li><a href="#subsection3.64">
 README.md.tpl
       </a></li>
-      <li><a href="#subsection2.62">
+      <li><a href="#subsection3.65">
 string_escaping.libr.php
       </a></li>
-      <li><a href="#subsection2.63">
+      <li><a href="#subsection3.66">
 unicode.libr.php
       </a></li>
-      <li><a href="#subsection2.64">
+      <li><a href="#subsection3.67">
 upgrade_build_and_checks.exec.sh
       </a></li>
-      <li><a href="#subsection2.65">
+      <li><a href="#subsection3.68">
 wget_sha512.libr.sh
       </a></li>
     </ol>
@@ -341,6 +351,7 @@ wget_sha512.libr.sh
 .
 ├── build_and_checks_dependencies
 │   ├── build_and_checks.exec.sh.tpl
+│   ├── build_dependencies_notes.exec.php
 │   ├── build_md_from_printable_md.exec.sh
 │   ├── check_shell_scripts_beginnings.libr.sh
 │   ├── check_shell_scripts_indentation.libr.sh
@@ -377,6 +388,8 @@ wget_sha512.libr.sh
 │   ├── bandit_baseline.json
 │   ├── bandit.ini
 │   ├── black.toml
+│   ├── dependencies_data.json
+│   ├── dependencies_notes.txt
 │   ├── DevOrSysAdminScripts.html.tpl
 │   ├── DevOrSysAdminScripts.tex
 │   ├── DevOrSysAdminScripts.tex.tpl
@@ -439,56 +452,59 @@ wget_sha512.libr.sh
 ├── upgrade_build_and_checks.exec.sh
 └── wget_sha512.libr.sh
 
-6 directories, 78 files
+6 directories, 81 files
 </pre>
 <pre class="verbatim">
-[ 12K Mar 22 22:07]  ./
-├── [4.0K Mar 22 22:07]  build_and_checks_dependencies/
+[ 12K Mar 23 18:03]  ./
+├── [4.0K Mar 23 18:03]  build_and_checks_dependencies/
 │   ├── [3.9K Mar 22 13:27]  build_and_checks.exec.sh.tpl*
-│   ├── [4.1K Mar 10 16:49]  build_md_from_printable_md.exec.sh*
-│   ├── [3.2K Mar 22 13:29]  check_shell_scripts_beginnings.libr.sh
-│   ├── [5.3K Mar 22 13:33]  check_shell_scripts_indentation.libr.sh
-│   ├── [3.6K Mar 22 13:42]  check_URLs.libr.sh
-│   ├── [ 29K Mar 22 20:57]  common_build_and_checks.exec.sh*
-│   ├── [ 25K Mar 22 15:36]  common_build_and_checks.exec.sh.tpl
-│   ├── [9.1K Mar 22 15:55]  common_options.libr.sh
+│   ├── [4.4K Mar 23 17:50]  build_dependencies_notes.exec.php*
+│   ├── [4.2K Mar 23 08:55]  build_md_from_printable_md.exec.sh*
+│   ├── [3.2K Mar 23 09:48]  check_shell_scripts_beginnings.libr.sh
+│   ├── [5.3K Mar 23 09:47]  check_shell_scripts_indentation.libr.sh
+│   ├── [3.6K Mar 23 10:11]  check_URLs.libr.sh
+│   ├── [ 30K Mar 23 18:00]  common_build_and_checks.exec.sh*
+│   ├── [ 25K Mar 23 17:30]  common_build_and_checks.exec.sh.tpl
+│   ├── [ 16K Mar 23 15:17]  common_options.libr.sh
 │   ├── [6.1K Mar 22 16:03]  comparisons.libr.sh
-│   ├── [ 19K Mar 22 17:14]  create_PDF.exec.sh*
+│   ├── [ 20K Mar 23 18:00]  create_PDF.exec.sh*
 │   ├── [3.7K Mar 22 16:36]  generate_from_template.libr.sh
 │   ├── [2.0K Mar  5 21:22]  get_common_text_glob_patterns.libr.sh
-│   ├── [3.3K Mar 22 15:50]  grammar_and_spelling_check.libr.sh
-│   ├── [4.0K Mar 22 17:05]  licenses_templates/
-│   │   ├── [ 14K Mar 22 17:05]  build_licenses_templates.exec.sh*
+│   ├── [3.3K Mar 23 10:18]  grammar_and_spelling_check.libr.sh
+│   ├── [4.0K Mar 23 10:24]  licenses_templates/
+│   │   ├── [ 14K Mar 23 10:24]  build_licenses_templates.exec.sh*
 │   │   ├── [ 728 Feb 28 20:38]  license_file_header_AGPLv3+.tpl
 │   │   ├── [ 707 Feb 28 20:38]  license_file_header_GPLv3+.tpl
 │   │   └── [ 728 Feb 28 20:38]  license_file_header_LGPLv3+.tpl
-│   ├── [4.8K Mar 22 17:28]  lines_counts.libr.sh
+│   ├── [6.2K Mar 23 15:40]  lines_counts.libr.sh
 │   ├── [ 14K Mar 22 18:05]  lines_filters.libr.sh
 │   ├── [2.7K Feb 19 16:16]  lines_maps.libr.sh
 │   ├── [2.7K Mar 22 18:33]  overwrite_if_not_equal.libr.sh
-│   ├── [2.3K Mar 10 16:30]  python_black_complement.libr.sh
-│   ├── [2.9K Mar 22 18:39]  python_isort_complement.libr.sh
-│   ├── [2.0K Mar 22 18:42]  repository_data.libr.sh
-│   ├── [3.2K Mar 18 14:35]  shell_checks_complement.libr.sh
+│   ├── [2.5K Mar 23 15:29]  python_black_complement.libr.sh
+│   ├── [3.0K Mar 23 15:30]  python_isort_complement.libr.sh
+│   ├── [2.1K Mar 23 10:14]  repository_data.libr.sh
+│   ├── [3.4K Mar 23 15:30]  shell_checks_complement.libr.sh
 │   ├── [1.6K Feb  3 17:57]  split_score.exec.php
 │   ├── [1.9K Mar 22 19:01]  split_score.libr.php
-│   ├── [ 48K Mar 22 20:41]  strings_functions.libr.sh
-│   ├── [4.5K Mar 22 20:48]  too_long_code_lines.libr.sh
-│   ├── [4.2K Mar 22 15:36]  update_common_build_and_checks.exec.sh*
-│   └── [6.1K Mar 22 20:57]  update_or_check_files_names_listing.exec.sh*
-├── [4.1K Mar 22 20:57]  build_and_checks.exec.sh*
-├── [4.0K Mar 22 22:08]  build_and_checks_variables/
+│   ├── [ 48K Mar 23 10:16]  strings_functions.libr.sh
+│   ├── [4.5K Mar 23 10:12]  too_long_code_lines.libr.sh
+│   ├── [4.2K Mar 23 17:15]  update_common_build_and_checks.exec.sh*
+│   └── [6.1K Mar 23 17:56]  update_or_check_files_names_listing.exec.sh*
+├── [4.1K Mar 23 18:00]  build_and_checks.exec.sh*
+├── [4.0K Mar 23 18:03]  build_and_checks_variables/
 │   ├── [  15 Jan  5 20:00]  bandit_baseline.json
 │   ├── [  25 Jan  5 18:49]  bandit.ini
 │   ├── [  30 Feb 28 20:30]  black.toml
-│   ├── [ 16K Mar 22 21:00]  DevOrSysAdminScripts.html.tpl
-│   ├── [ 34K Mar 22 21:30]  DevOrSysAdminScripts.tex
-│   ├── [8.9K Mar 17 14:38]  DevOrSysAdminScripts.tex.tpl
-│   ├── [ 15K Mar 22 17:15]  files_listing.tex.tpl
-│   ├── [5.2K Mar 22 15:35]  files_names_listing.txt
+│   ├── [4.6K Mar 23 16:44]  dependencies_data.json
+│   ├── [3.8K Mar 23 16:44]  dependencies_notes.txt
+│   ├── [5.7K Mar 23 17:43]  DevOrSysAdminScripts.html.tpl
+│   ├── [ 35K Mar 23 18:03]  DevOrSysAdminScripts.tex
+│   ├── [4.2K Mar 23 17:40]  DevOrSysAdminScripts.tex.tpl
+│   ├── [ 16K Mar 23 17:18]  files_listing.tex.tpl
+│   ├── [5.4K Mar 23 17:13]  files_names_listing.txt
 │   ├── [  24 Jan 15 22:26]  .gitignore
-│   ├── [5.2K Mar  8 16:52]  licenses_notes.txt
-│   ├── [1.2K Mar 18 16:43]  phpmd_baseline.xml
+│   ├── [1.4K Mar 23 16:11]  licenses_notes.txt
+│   ├── [2.2K Mar 23 17:31]  phpmd_baseline.xml
 │   ├── [ 678 Feb 24 22:38]  pylintrc.toml
 │   ├── [4.5K Mar 22 15:51]  repository_data.txt
 │   ├── [ 786 Mar 22 15:39]  repository_data.txt.tpl
@@ -497,12 +513,12 @@ wget_sha512.libr.sh
 │   └── [3.5K Mar  9 14:46]  shellcheck_notes.txt
 ├── [ 34K May  6  2024]  COPYING
 ├── [7.5K Dec 27 21:48]  COPYING.LESSER
-├── [443K Mar 22 21:30]  DevOrSysAdminScripts.html
-├── [386K Mar 22 21:30]  DevOrSysAdminScripts.pdf
-├── [4.0K Mar 22 21:25]  git_helpers/
+├── [451K Mar 23 18:03]  DevOrSysAdminScripts.html
+├── [396K Mar 23 18:03]  DevOrSysAdminScripts.pdf
+├── [4.0K Mar 23 10:34]  git_helpers/
 │   ├── [3.8K Mar 22 21:06]  git_checks.libr.sh
 │   ├── [2.1K Mar 22 21:09]  post-commit*
-│   ├── [ 15K Mar 22 21:25]  post_commit_renaming_comment.libr.sh
+│   ├── [ 15K Mar 23 10:34]  post_commit_renaming_comment.libr.sh
 │   └── [1.8K Mar 22 21:11]  pre-commit*
 ├── [8.3K Feb 28 20:31]  IMAP_transfert.py
 ├── [ 830 Dec 29 19:10]  LiensUtiles.txt
@@ -543,11 +559,11 @@ wget_sha512.libr.sh
 ├── [1.4K Mar 10 16:37]  upgrade_build_and_checks.exec.sh*
 └── [1.5K Mar 22 22:04]  wget_sha512.libr.sh
 
-6 directories, 78 files
+6 directories, 81 files
 </pre>
 
 
-<h2 id="section2">2 Listing of files</h2>
+<h2 id="section2">2 Notes on licenses and dependencies</h2>
 
 <p>
 This repository is dual licensed.
@@ -609,323 +625,455 @@ whilst GNU coreutils is GPLv3+ licensed.
 
 <p>
 Bash can be found at the following URLs:<br>
-<a href="https://www.gnu.org/software/bash/"><span
-  style="font-family:monospace"
->https://www.gnu.org/software/bash/</span></a>,<br>
-<a href="https://tiswww.case.edu/php/chet/bash/bashtop.html"><span
-  style="font-family:monospace"
->https://tiswww.case.edu/php/chet/bash/bashtop.html</span></a>,<br>
-<a href="https://savannah.gnu.org/projects/bash/"><span
-  style="font-family:monospace"
->https://savannah.gnu.org/projects/bash/</span></a>.
+<a
+href="https://www.gnu.org/software/bash/"
+><span style="font-family:monospace"
+>https://www.gnu.org/software/bash/</span
+></a>,<br>
+<a
+href="https://tiswww.case.edu/php/chet/bash/bashtop.html"
+><span style="font-family:monospace"
+>https://tiswww.case.edu/php/chet/bash/bashtop.html</span
+></a>,<br>
+<a
+href="https://savannah.gnu.org/projects/bash/"
+><span style="font-family:monospace"
+>https://savannah.gnu.org/projects/bash/</span
+></a>.
 </p>
 
 <p>
 GNU coreutils can be found at the following URLs:<br>
-<a href="https://www.gnu.org/software/coreutils/"><span
-  style="font-family:monospace"
->https://www.gnu.org/software/coreutils/</span></a>,<br>
-<a href="https://savannah.gnu.org/projects/coreutils/"><span
-  style="font-family:monospace"
->https://savannah.gnu.org/projects/coreutils/</span></a>.
+<a
+href="https://www.gnu.org/software/coreutils/"
+><span style="font-family:monospace"
+>https://www.gnu.org/software/coreutils/</span
+></a>,<br>
+<a
+href="https://savannah.gnu.org/projects/coreutils/"
+><span style="font-family:monospace"
+>https://savannah.gnu.org/projects/coreutils/</span
+></a>.
 </p>
 
 <p>
 uutils coreutils can be found at the following URLs:<br>
-<a href="https://uutils.github.io/coreutils/"><span
-  style="font-family:monospace"
->https://uutils.github.io/coreutils/</span></a>,<br>
-<a href="https://github.com/uutils/coreutils"><span
-  style="font-family:monospace"
->https://github.com/uutils/coreutils</span></a>.
+<a
+href="https://uutils.github.io/coreutils/"
+><span style="font-family:monospace"
+>https://uutils.github.io/coreutils/</span
+></a>,<br>
+<a
+href="https://github.com/uutils/coreutils"
+><span style="font-family:monospace"
+>https://github.com/uutils/coreutils</span
+></a>.
 </p>
 
 <p>
 diff (GNU diffutils) can be found at the following URLs:<br>
-<a href="https://www.gnu.org/software/diffutils/"><span
-  style="font-family:monospace"
->https://www.gnu.org/software/diffutils/</span></a>,<br>
-<a href="https://savannah.gnu.org/projects/diffutils/"><span
-  style="font-family:monospace"
->https://savannah.gnu.org/projects/diffutils/</span></a>.
+<a
+href="https://www.gnu.org/software/diffutils/"
+><span style="font-family:monospace"
+>https://www.gnu.org/software/diffutils/</span
+></a>,<br>
+<a
+href="https://savannah.gnu.org/projects/diffutils/"
+><span style="font-family:monospace"
+>https://savannah.gnu.org/projects/diffutils/</span
+></a>.
 </p>
 
 <p>
 find, xargs (GNU findutils) can be found at the following URLs:<br>
-<a href="https://www.gnu.org/software/findutils/"><span
-  style="font-family:monospace"
->https://www.gnu.org/software/findutils/</span></a>,<br>
-<a href="https://savannah.gnu.org/projects/findutils/"><span
-  style="font-family:monospace"
->https://savannah.gnu.org/projects/findutils/</span></a>.
+<a
+href="https://www.gnu.org/software/findutils/"
+><span style="font-family:monospace"
+>https://www.gnu.org/software/findutils/</span
+></a>,<br>
+<a
+href="https://savannah.gnu.org/projects/findutils/"
+><span style="font-family:monospace"
+>https://savannah.gnu.org/projects/findutils/</span
+></a>.
 </p>
 
 <p>
 grep (GNU grep) can be found at the following URLs:<br>
-<a href="https://www.gnu.org/software/grep/"><span
-  style="font-family:monospace"
->https://www.gnu.org/software/grep/</span></a>,<br>
-<a href="https://savannah.gnu.org/projects/grep/"><span
-  style="font-family:monospace"
->https://savannah.gnu.org/projects/grep/</span></a>.
+<a
+href="https://www.gnu.org/software/grep/"
+><span style="font-family:monospace"
+>https://www.gnu.org/software/grep/</span
+></a>,<br>
+<a
+href="https://savannah.gnu.org/projects/grep/"
+><span style="font-family:monospace"
+>https://savannah.gnu.org/projects/grep/</span
+></a>.
 </p>
 
 <p>
 sed (GNU sed) can be found at the following URLs:<br>
-<a href="https://www.gnu.org/software/sed/"><span
-  style="font-family:monospace"
->https://www.gnu.org/software/sed/</span></a>,<br>
-<a href="https://savannah.gnu.org/projects/sed/"><span
-  style="font-family:monospace"
->https://savannah.gnu.org/projects/sed/</span></a>.
+<a
+href="https://www.gnu.org/software/sed/"
+><span style="font-family:monospace"
+>https://www.gnu.org/software/sed/</span
+></a>,<br>
+<a
+href="https://savannah.gnu.org/projects/sed/"
+><span style="font-family:monospace"
+>https://savannah.gnu.org/projects/sed/</span
+></a>.
 </p>
 
 <p>
 ShellCheck can be found at the following URLs:<br>
-<a href="https://www.shellcheck.net/"><span
-  style="font-family:monospace"
->https://www.shellcheck.net/</span></a>,<br>
-<a href="https://github.com/koalaman/shellcheck"><span
-  style="font-family:monospace"
->https://github.com/koalaman/shellcheck</span></a>.
+<a
+href="https://www.shellcheck.net/"
+><span style="font-family:monospace"
+>https://www.shellcheck.net/</span
+></a>,<br>
+<a
+href="https://github.com/koalaman/shellcheck"
+><span style="font-family:monospace"
+>https://github.com/koalaman/shellcheck</span
+></a>.
 </p>
 
 <p>
 GNU Wget can be found at the following URLs:<br>
-<a href="https://www.gnu.org/software/wget/"><span
-  style="font-family:monospace"
->https://www.gnu.org/software/wget/</span></a>,<br>
-<a href="https://savannah.gnu.org/projects/wget/"><span
-  style="font-family:monospace"
->https://savannah.gnu.org/projects/wget/</span></a>.
+<a
+href="https://www.gnu.org/software/wget/"
+><span style="font-family:monospace"
+>https://www.gnu.org/software/wget/</span
+></a>,<br>
+<a
+href="https://savannah.gnu.org/projects/wget/"
+><span style="font-family:monospace"
+>https://savannah.gnu.org/projects/wget/</span
+></a>.
 </p>
 
 <p>
 more of util-linux can be found at the following URLs:<br>
-<a href="https://www.kernel.org/pub/linux/utils/util-linux/"><span
-  style="font-family:monospace"
->https://www.kernel.org/pub/linux/utils/util-linux/</span></a>,<br>
+<a
+href="https://www.kernel.org/pub/linux/utils/util-linux/"
+><span style="font-family:monospace"
+>https://www.kernel.org/pub/linux/utils/util-linux/</span
+></a>,<br>
 <a
 href="https://git.kernel.org/pub/scm/utils/util-linux/util-linux.git/"
-><span
-  style="font-family:monospace"
+><span style="font-family:monospace"
 >https://git.kernel.org/pub/scm/utils/util-linux/util-linux.git/</span
 ></a>,<br>
-<a href="https://github.com/util-linux/util-linux"><span
-  style="font-family:monospace"
->https://github.com/util-linux/util-linux</span></a> official?
+<a
+href="https://github.com/util-linux/util-linux"
+><span style="font-family:monospace"
+>https://github.com/util-linux/util-linux</span
+></a> official?.
 </p>
 
 <p>
 pandoc can be found at the following URLs:<br>
-<a href="https://pandoc.org/"><span
-  style="font-family:monospace"
->https://pandoc.org/</span></a>,<br>
-<a href="https://github.com/jgm/pandoc"><span
-  style="font-family:monospace"
->https://github.com/jgm/pandoc</span></a>.
+<a
+href="https://pandoc.org/"
+><span style="font-family:monospace"
+>https://pandoc.org/</span
+></a>,<br>
+<a
+href="https://github.com/jgm/pandoc"
+><span style="font-family:monospace"
+>https://github.com/jgm/pandoc</span
+></a>.
 </p>
 
 <p>
 pdftex/pdflatex can be found at the following URLs:<br>
-<a href="https://www.tug.org/applications/pdftex/"><span
-  style="font-family:monospace"
->https://www.tug.org/applications/pdftex/</span></a>,<br>
-<a href="https://tug.org/texlive/svn/"><span
-  style="font-family:monospace"
->https://tug.org/texlive/svn/</span></a>.
+<a
+href="https://www.tug.org/applications/pdftex/"
+><span style="font-family:monospace"
+>https://www.tug.org/applications/pdftex/</span
+></a>,<br>
+<a
+href="https://tug.org/texlive/svn/"
+><span style="font-family:monospace"
+>https://tug.org/texlive/svn/</span
+></a>.
 </p>
 
 <p>
 tree can be found at the following URLs:<br>
-<a href="https://oldmanprogrammer.net/source.php?dir=projects/tree"
+<a
+href="https://oldmanprogrammer.net/source.php?dir=projects/tree"
 ><span style="font-family:monospace"
->https://oldmanprogrammer.net/source.php?dir=projects/tree</span></a>,<br>
-<a href="https://gitlab.com/OldManProgrammer/unix-tree"><span
-  style="font-family:monospace"
->https://gitlab.com/OldManProgrammer/unix-tree</span></a>,<br>
-<a href="https://github.com/Old-Man-Programmer/tree"><span
-  style="font-family:monospace"
->https://github.com/Old-Man-Programmer/tree</span></a>.
+>https://oldmanprogrammer.net/source.php?dir=projects/tree</span
+></a>,<br>
+<a
+href="https://gitlab.com/OldManProgrammer/unix-tree"
+><span style="font-family:monospace"
+>https://gitlab.com/OldManProgrammer/unix-tree</span
+></a>,<br>
+<a
+href="https://github.com/Old-Man-Programmer/tree"
+><span style="font-family:monospace"
+>https://github.com/Old-Man-Programmer/tree</span
+></a>.
 </p>
 
 <p>
 git can be found at the following URLs:<br>
-<a href="https://git-scm.com/about"><span
-  style="font-family:monospace"
->https://git-scm.com/about</span></a>,<br>
-<a href="https://github.com/git/git"><span
-  style="font-family:monospace"
->https://github.com/git/git</span></a>.
+<a
+href="https://git-scm.com/about"
+><span style="font-family:monospace"
+>https://git-scm.com/about</span
+></a>,<br>
+<a
+href="https://github.com/git/git"
+><span style="font-family:monospace"
+>https://github.com/git/git</span
+></a>.
 </p>
 
 <p>
 pylint can be found at the following URLs:<br>
-<a href="https://www.pylint.org/"><span
-  style="font-family:monospace"
->https://www.pylint.org/</span></a>,<br>
-<a href="https://pylint.readthedocs.io/en/stable/"><span
-  style="font-family:monospace"
->https://pylint.readthedocs.io/en/stable/</span></a>,<br>
-<a href="https://github.com/pylint-dev/pylint"><span
-  style="font-family:monospace"
->https://github.com/pylint-dev/pylint</span></a>,<br>
-<a href="https://pypi.org/project/pylint/"><span
-  style="font-family:monospace"
->https://pypi.org/project/pylint/</span></a>.
+<a
+href="https://www.pylint.org/"
+><span style="font-family:monospace"
+>https://www.pylint.org/</span
+></a>,<br>
+<a
+href="https://pylint.readthedocs.io/en/stable/"
+><span style="font-family:monospace"
+>https://pylint.readthedocs.io/en/stable/</span
+></a>,<br>
+<a
+href="https://github.com/pylint-dev/pylint"
+><span style="font-family:monospace"
+>https://github.com/pylint-dev/pylint</span
+></a>,<br>
+<a
+href="https://pypi.org/project/pylint/"
+><span style="font-family:monospace"
+>https://pypi.org/project/pylint/</span
+></a>.
 </p>
 
 <p>
 notify-send can be found at the following URLs:<br>
-<a href="https://gitlab.gnome.org/GNOME/libnotify/"><span
-  style="font-family:monospace"
->https://gitlab.gnome.org/GNOME/libnotify/</span></a>,<br>
-<a href="https://gnome.pages.gitlab.gnome.org/libnotify/"><span
-  style="font-family:monospace"
->https://gnome.pages.gitlab.gnome.org/libnotify/</span></a>.
+<a
+href="https://gitlab.gnome.org/GNOME/libnotify/"
+><span style="font-family:monospace"
+>https://gitlab.gnome.org/GNOME/libnotify/</span
+></a>,<br>
+<a
+href="https://gnome.pages.gitlab.gnome.org/libnotify/"
+><span style="font-family:monospace"
+>https://gnome.pages.gitlab.gnome.org/libnotify/</span
+></a>.
 </p>
 
 <p>
 black can be found at the following URLs:<br>
-<a href="https://github.com/psf/black"><span
-  style="font-family:monospace"
->https://github.com/psf/black</span></a>,<br>
-<a href="https://black.readthedocs.io/en/stable/"><span
-  style="font-family:monospace"
->https://black.readthedocs.io/en/stable/</span></a>,<br>
-<a href="https://pypi.org/project/black/"><span
-  style="font-family:monospace"
->https://pypi.org/project/black/</span></a>.
+<a
+href="https://github.com/psf/black"
+><span style="font-family:monospace"
+>https://github.com/psf/black</span
+></a>,<br>
+<a
+href="https://black.readthedocs.io/en/stable/"
+><span style="font-family:monospace"
+>https://black.readthedocs.io/en/stable/</span
+></a>,<br>
+<a
+href="https://pypi.org/project/black/"
+><span style="font-family:monospace"
+>https://pypi.org/project/black/</span
+></a>.
 </p>
 
 <p>
 isort can be found at the following URLs:<br>
-<a href="https://pycqa.github.io/isort/"><span
-  style="font-family:monospace"
->https://pycqa.github.io/isort/</span></a>,<br>
-<a href="https://github.com/pycqa/isort/"><span
-  style="font-family:monospace"
->https://github.com/pycqa/isort/</span></a>,<br>
-<a href="https://pypi.org/project/isort/"><span
-  style="font-family:monospace"
->https://pypi.org/project/isort/</span></a>.
+<a
+href="https://pycqa.github.io/isort/"
+><span style="font-family:monospace"
+>https://pycqa.github.io/isort/</span
+></a>,<br>
+<a
+href="https://github.com/pycqa/isort/"
+><span style="font-family:monospace"
+>https://github.com/pycqa/isort/</span
+></a>,<br>
+<a
+href="https://pypi.org/project/isort/"
+><span style="font-family:monospace"
+>https://pypi.org/project/isort/</span
+></a>.
 </p>
 
 <p>
 mypy can be found at the following URLs:<br>
-<a href="https://mypy-lang.org/"><span
-  style="font-family:monospace"
->https://mypy-lang.org/</span></a>,<br>
-<a href="https://mypy.readthedocs.io/en/stable/"><span
-  style="font-family:monospace"
->https://mypy.readthedocs.io/en/stable/</span></a>,<br>
-<a href="https://github.com/python/mypy"><span
-  style="font-family:monospace"
->https://github.com/python/mypy</span></a>,<br>
-<a href="https://pypi.org/project/mypy/"><span
-  style="font-family:monospace"
->https://pypi.org/project/mypy/</span></a>.
+<a
+href="https://mypy-lang.org/"
+><span style="font-family:monospace"
+>https://mypy-lang.org/</span
+></a>,<br>
+<a
+href="https://mypy.readthedocs.io/en/stable/"
+><span style="font-family:monospace"
+>https://mypy.readthedocs.io/en/stable/</span
+></a>,<br>
+<a
+href="https://github.com/python/mypy"
+><span style="font-family:monospace"
+>https://github.com/python/mypy</span
+></a>,<br>
+<a
+href="https://pypi.org/project/mypy/"
+><span style="font-family:monospace"
+>https://pypi.org/project/mypy/</span
+></a>.
 </p>
 
 <p>
 pip can be found at the following URLs:<br>
-<a href="https://pip.pypa.io/en/stable/"><span
-  style="font-family:monospace"
->https://pip.pypa.io/en/stable/</span></a>,<br>
-<a href="https://github.com/pypa/pip"><span
-  style="font-family:monospace"
->https://github.com/pypa/pip</span></a>,<br>
-<a href="https://pypi.org/project/pip/"><span
-  style="font-family:monospace"
->https://pypi.org/project/pip/</span></a> (egg and chicken ;) ).
+<a
+href="https://pip.pypa.io/en/stable/"
+><span style="font-family:monospace"
+>https://pip.pypa.io/en/stable/</span
+></a>,<br>
+<a
+href="https://github.com/pypa/pip"
+><span style="font-family:monospace"
+>https://github.com/pypa/pip</span
+></a>,<br>
+<a
+href="https://pypi.org/project/pip/"
+><span style="font-family:monospace"
+>https://pypi.org/project/pip/</span
+></a> (egg and chicken ;) ).
 </p>
 
 <p>
 ruff can be found at the following URLs:<br>
-<a href="https://docs.astral.sh/ruff/"><span
-  style="font-family:monospace"
->https://docs.astral.sh/ruff/</span></a>,<br>
-<a href="https://github.com/astral-sh/ruff"><span
-  style="font-family:monospace"
->https://github.com/astral-sh/ruff</span></a>,<br>
-<a href="https://pypi.org/project/ruff/"><span
-  style="font-family:monospace"
->https://pypi.org/project/ruff/</span></a>.
+<a
+href="https://docs.astral.sh/ruff/"
+><span style="font-family:monospace"
+>https://docs.astral.sh/ruff/</span
+></a>,<br>
+<a
+href="https://github.com/astral-sh/ruff"
+><span style="font-family:monospace"
+>https://github.com/astral-sh/ruff</span
+></a>,<br>
+<a
+href="https://pypi.org/project/ruff/"
+><span style="font-family:monospace"
+>https://pypi.org/project/ruff/</span
+></a>.
 </p>
 
 <p>
 bandit can be found at the following URLs:<br>
-<a href="https://bandit.readthedocs.io/en/latest/"><span
-  style="font-family:monospace"
->https://bandit.readthedocs.io/en/latest/</span></a>,<br>
-<a href="https://github.com/PyCQA/bandit"><span
-  style="font-family:monospace"
->https://github.com/PyCQA/bandit</span></a>,<br>
-<a href="https://pypi.org/project/bandit/"><span
-  style="font-family:monospace"
->https://pypi.org/project/bandit/</span></a>.
+<a
+href="https://bandit.readthedocs.io/en/latest/"
+><span style="font-family:monospace"
+>https://bandit.readthedocs.io/en/latest/</span
+></a>,<br>
+<a
+href="https://github.com/PyCQA/bandit"
+><span style="font-family:monospace"
+>https://github.com/PyCQA/bandit</span
+></a>,<br>
+<a
+href="https://pypi.org/project/bandit/"
+><span style="font-family:monospace"
+>https://pypi.org/project/bandit/</span
+></a>.
 </p>
 
 <p>
 phpmd can be found at the following URLs:<br>
-<a href="https://phpmd.org/"><span
-  style="font-family:monospace"
->https://phpmd.org/</span></a>,<br>
-<a href="https://github.com/phpmd/phpmd"><span
-  style="font-family:monospace"
->https://github.com/phpmd/phpmd</span></a>,<br>
-<a href="https://packagist.org/packages/phpmd/phpmd"><span
-  style="font-family:monospace"
->https://packagist.org/packages/phpmd/phpmd</span></a>.
+<a
+href="https://phpmd.org/"
+><span style="font-family:monospace"
+>https://phpmd.org/</span
+></a>,<br>
+<a
+href="https://github.com/phpmd/phpmd"
+><span style="font-family:monospace"
+>https://github.com/phpmd/phpmd</span
+></a>,<br>
+<a
+href="https://packagist.org/packages/phpmd/phpmd"
+><span style="font-family:monospace"
+>https://packagist.org/packages/phpmd/phpmd</span
+></a>.
 </p>
 
 <p>
 php can be found at the following URLs:<br>
-<a href="https://www.php.net/"><span
-  style="font-family:monospace"
->https://www.php.net/</span></a>,<br>
-<a href="https://github.com/php/php-src"><span
-  style="font-family:monospace"
->https://github.com/php/php-src</span></a>.
+<a
+href="https://www.php.net/"
+><span style="font-family:monospace"
+>https://www.php.net/</span
+></a>,<br>
+<a
+href="https://github.com/php/php-src"
+><span style="font-family:monospace"
+>https://github.com/php/php-src</span
+></a>.
 </p>
 
 <p>
 tex can be found at the following URL:<br>
-<a href="https://ctan.org/tex-archive/systems/knuth/dist/tex"><span
-  style="font-family:monospace"
->https://ctan.org/tex-archive/systems/knuth/dist/tex</span></a>.
+<a
+href="https://ctan.org/tex-archive/systems/knuth/dist/tex"
+><span style="font-family:monospace"
+>https://ctan.org/tex-archive/systems/knuth/dist/tex</span
+></a>.
 </p>
 
 <p>
 pcregrep, pcre2grep can be found at the following URLs:<br>
-<a href="https://www.pcre.org/"><span
-  style="font-family:monospace"
->https://www.pcre.org/</span></a>,<br>
-<a href="https://pcre2project.github.io/pcre2/"><span
-  style="font-family:monospace"
->https://pcre2project.github.io/pcre2/</span></a>,<br>
-<a href="https://github.com/PCRE2Project/pcre1"><span
-  style="font-family:monospace"
->https://github.com/PCRE2Project/pcre1</span></a>,<br>
-<a href="https://github.com/PCRE2Project/pcre2"><span
-  style="font-family:monospace"
->https://github.com/PCRE2Project/pcre2</span></a>,<br>
+<a
+href="https://www.pcre.org/"
+><span style="font-family:monospace"
+>https://www.pcre.org/</span
+></a>,<br>
+<a
+href="https://pcre2project.github.io/pcre2/"
+><span style="font-family:monospace"
+>https://pcre2project.github.io/pcre2/</span
+></a>,<br>
+<a
+href="https://github.com/PCRE2Project/pcre1"
+><span style="font-family:monospace"
+>https://github.com/PCRE2Project/pcre1</span
+></a>,<br>
+<a
+href="https://github.com/PCRE2Project/pcre2"
+><span style="font-family:monospace"
+>https://github.com/PCRE2Project/pcre2</span
+></a>,<br>
 <a
 href="https://github.com/PCRE2Project/pcre2/blob/main/src/pcre2grep.c"
-><span
-  style="font-family:monospace"
+><span style="font-family:monospace"
 >https://github.com/PCRE2Project/pcre2/blob/main/src/pcre2grep.c</span
 ></a>.
 </p>
 
 <p>
 python3 can be found at the following URLs:<br>
-<a href="https://www.python.org/"><span
-  style="font-family:monospace"
->https://www.python.org/</span></a>,<br>
-<a href="https://docs.python.org/3/"><span
-  style="font-family:monospace"
->https://docs.python.org/3/</span></a>.
+<a
+href="https://www.python.org/"
+><span style="font-family:monospace"
+>https://www.python.org/</span
+></a>,<br>
+<a
+href="https://docs.python.org/3/"
+><span style="font-family:monospace"
+>https://docs.python.org/3/</span
+></a>.
 </p>
 
 <p>
@@ -933,7 +1081,10 @@ If you see something that I missed regarding my dependencies,
 please tell me/email me :).
 </p>
 
-<h3 id="subsection2.1">2.1
+
+<h2 id="section3">3 Listing of files</h2>
+
+<h3 id="subsection3.1">3.1
 build_and_checks_dependencies/build_and_checks.exec.sh.tpl
 </h3>
 <pre class="numbered_lines">
@@ -1050,7 +1201,171 @@ build_and_checks "$@"
 </pre>
 
 
-<h3 id="subsection2.2">2.2
+<h3 id="subsection3.2">3.2
+build_and_checks_dependencies/build_dependencies_notes.exec.php
+</h3>
+<pre class="numbered_lines">
+#!/usr/bin/php
+&lt;?php
+/*
+This file is part of DevOrSysAdminScripts library.
+
+DevOrSysAdminScripts is free software:
+you can redistribute it and/or modify it under the terms
+of the GNU Lesser General Public License
+as published by the Free Software Foundation,
+either version 3 of the License,
+or (at your option) any later version.
+
+DevOrSysAdminScripts is distributed in the hope
+that it will be useful,
+but WITHOUT ANY WARRANTY;
+without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+See the GNU Lesser General Public License for more details.
+
+You should have received a copy of
+the GNU Lesser General Public License
+along with DevOrSysAdminScripts.
+If not, see &lt;https://www.gnu.org/licenses/>.
+
+©Copyright 2023-2026 Laurent Frédéric Bernard François Lyaudet
+*/
+
+require_once('string_escaping.libr.php');
+
+
+function build_dependencies_notes(string $s_working_directory) : void {
+  $s_subdir1 = $s_working_directory.'/build_and_checks_variables';
+  $s_subdir2 = $s_subdir1.'/temp';
+  $s_data_file_path = $s_subdir1.'/dependencies_data.json';
+  $s_data = file_get_contents($s_data_file_path);
+  $arr_data = json_decode($s_data, true);
+  $s_result_content1 = '';
+  $s_result_content2 = '';
+  $s_result_content3 = '';
+
+  foreach($arr_data as $arr_dependency){
+    $s_URL_word = "URL";
+    if(count($arr_dependency["URLs"]) > 1){
+      $s_URL_word .= "s";
+    }
+
+    $s_result_content3 .= "&lt;p>\n";
+
+    $s_result_content1 .= (
+      $arr_dependency["dependency_name"]
+      ." can be found at the following "
+      .$s_URL_word
+      .":\n"
+    );
+    $s_result_content2 .= (
+      $arr_dependency["dependency_name"]
+      ." can be found at the following "
+      .$s_URL_word
+      .":\\newline\n"
+    );
+    $s_result_content3 .= (
+      $arr_dependency["dependency_name"]
+      ." can be found at the following "
+      .$s_URL_word
+      .":&lt;br>\n"
+    );
+
+    for(
+      $i = 0, $i_max = count($arr_dependency["URLs"]) - 1;
+      $i &lt;= $i_max;
+      ++$i
+    ){
+      $mixed_URL = $arr_dependency["URLs"][$i];
+      $s_comment = '';
+      $s_URL = '';
+      if(is_array($mixed_URL)){
+        $s_URL = $mixed_URL["URL"];
+        $s_comment = ' '.$mixed_URL["comment"];
+      }
+      else{
+        $s_URL = $mixed_URL;
+      }
+
+      $s_result_content1 .= $s_URL.$s_comment."\n";
+
+      if(strlen($s_URL) > 60){
+        $s_result_content2 .= (
+          "{\\small\n"
+          .'  \url{'.$s_URL."}\n"
+          .'}'
+        );
+      }
+      else{
+        $s_result_content2 .= '\url{'.$s_URL.'}';
+      }
+      if($i === $i_max){
+        $s_result_content2 .= $s_comment.".\n";
+      }
+      else{
+        $s_result_content2 .= $s_comment.",\\newline\n";
+      }
+
+      $s_result_content3 .= (
+        "&lt;a\n"
+        .'href="'.string_escaping\HTML\escape_attribute($s_URL)."\"\n"
+        .'>&lt;span style="font-family:monospace"'."\n"
+        .'>'.string_escaping\HTML\escape_text($s_URL)."&lt;/span\n"
+        .'>&lt;/a>'
+      );
+      if($i === $i_max){
+        $s_result_content3 .= $s_comment.".\n";
+      }
+      else{
+        $s_result_content3 .= $s_comment.",&lt;br>\n";
+      }
+    }
+
+    $s_result_content1 .= "\n";
+    $s_result_content2 .= "\n";
+    $s_result_content3 .= "&lt;/p>\n\n";
+  }
+
+  // Add a "footer".
+  $s_result_content1 .= (
+    "If you see something that I missed regarding my dependencies,\n"
+    ."please tell me/email me :).\n"
+  );
+  $s_result_content2 .= (
+    "If you see something that I missed regarding my dependencies,\n"
+    ."please tell me/email me :).\n"
+  );
+  $s_result_content3 .= (
+    "&lt;p>\n"
+    ."If you see something that I missed regarding my dependencies,\n"
+    ."please tell me/email me :).\n"
+    ."&lt;/p>\n"
+  );
+
+  // We overwrite results if needed.
+  $s_result_path1 = $s_subdir1.'/dependencies_notes.txt';
+  $s_existing_result_content1 = file_get_contents($s_result_path1);
+  if($s_result_content1 !== $s_existing_result_content1){
+    file_put_contents($s_result_path1, $s_result_content1);
+  }
+  $s_result_path2 = $s_subdir2.'/dependencies_notes.tex';
+  $s_existing_result_content2 = file_get_contents($s_result_path2);
+  if($s_result_content2 !== $s_existing_result_content2){
+    file_put_contents($s_result_path2, $s_result_content2);
+  }
+  $s_result_path3 = $s_subdir2.'/dependencies_notes.html';
+  $s_existing_result_content3 = file_get_contents($s_result_path3);
+  if($s_result_content3 !== $s_existing_result_content3){
+    file_put_contents($s_result_path3, $s_result_content3);
+  }
+}
+
+build_dependencies_notes($argv[1]);
+</pre>
+
+
+<h3 id="subsection3.3">3.3
 build_and_checks_dependencies/build_md_from_printable_md.exec.sh
 </h3>
 <pre class="numbered_lines">
@@ -1095,8 +1410,10 @@ build_md_from_printable_md(){
   get_verbose_option "$@"
   local LFBFL_work_directory=""
   get_work_directory_option "$@"
-  pushd_to_work_directory\
-    &amp;&amp; trap 'popd_from_work_directory' RETURN
+  declare -a LFBFL_return_traps_stack
+  local LFBFL_previous_return_trap
+  init_return_trap
+  pushd_to_work_directory --trap-popd
   can_continue_after_enhanced_pushd || return 1
 
   local LFBFL_base_name="README"
@@ -1175,7 +1492,7 @@ build_md_from_printable_md "$@"
 </pre>
 
 
-<h3 id="subsection2.3">2.3
+<h3 id="subsection3.4">3.4
 build_and_checks_dependencies/check_shell_scripts_beginnings.libr.sh
 </h3>
 <pre class="numbered_lines">
@@ -1241,8 +1558,10 @@ check_shell_scripts_beginnings(){
   get_verbose_option "$@"
   local LFBFL_work_directory=""
   get_work_directory_option "$@"
-  pushd_to_work_directory\
-    &amp;&amp; trap 'popd_from_work_directory' RETURN
+  declare -a LFBFL_return_traps_stack
+  local LFBFL_previous_return_trap
+  init_return_trap
+  pushd_to_work_directory --trap-popd
   can_continue_after_enhanced_pushd || return 1
 
   # shopt -s globstar
@@ -1273,7 +1592,7 @@ check_shell_scripts_beginnings(){
 </pre>
 
 
-<h3 id="subsection2.4">2.4
+<h3 id="subsection3.5">3.5
 build_and_checks_dependencies/check_shell_scripts_indentation.libr.sh
 </h3>
 <pre class="numbered_lines">
@@ -1406,8 +1725,10 @@ check_shell_scripts_indentation(){
   get_verbose_option "$@"
   local LFBFL_work_directory=""
   get_work_directory_option "$@"
-  pushd_to_work_directory\
-    &amp;&amp; trap 'popd_from_work_directory' RETURN
+  declare -a LFBFL_return_traps_stack
+  local LFBFL_previous_return_trap
+  init_return_trap
+  pushd_to_work_directory --trap-popd
   can_continue_after_enhanced_pushd || return 1
 
   # shopt -s globstar
@@ -1435,7 +1756,7 @@ check_shell_scripts_indentation(){
 </pre>
 
 
-<h3 id="subsection2.5">2.5
+<h3 id="subsection3.6">3.6
 build_and_checks_dependencies/check_URLs.libr.sh
 </h3>
 <pre class="numbered_lines">
@@ -1480,12 +1801,13 @@ check_URLs(){
   get_verbose_option "$@"
   local LFBFL_work_directory=""
   get_work_directory_option "$@"
-  pushd_to_work_directory\
-    &amp;&amp; trap 'popd_from_work_directory' RETURN
+  declare -a LFBFL_return_traps_stack
+  local LFBFL_previous_return_trap
+  init_return_trap
+  pushd_to_work_directory --trap-popd
   can_continue_after_enhanced_pushd || return 1
 
-  enhanced_set_shell_option pipefail\
-    &amp;&amp; trap 'enhanced_unset_shell_option pipefail' RETURN
+  enhanced_set_shell_option pipefail --trap-unset
 
   get_COMMON_TEXT_FILES_GLOB_PATTERNS
 
@@ -1543,7 +1865,7 @@ check_URLs(){
 </pre>
 
 
-<h3 id="subsection2.6">2.6
+<h3 id="subsection3.7">3.7
 build_and_checks_dependencies/common_build_and_checks.exec.sh
 </h3>
 <pre class="numbered_lines">
@@ -1623,42 +1945,51 @@ common_build_and_checks(){
   LFBFL_file_name="build_md_from_printable_md.exec.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='f94176cceb6fe386392c87e0c130611e4ac126323b6bc'
-  LFBFL_correct_sha512+='d5796ab82e9581f5749b7e4b0823f734085c8f6c22c7'
-  LFBFL_correct_sha512+='a7ed750718c040a3207a43d2321bf370ebc7287'
+  LFBFL_correct_sha512='565323e37ba608d97d46b20ec976f087ff52315c3ca24'
+  LFBFL_correct_sha512+='5d1d15c587f349f70443a1ac33e6e72008f22cfca5fa'
+  LFBFL_correct_sha512+='ff2a87d5113c8e9ed2a576b095c35c8995b0447'
+  wrapped_wget_sha512
+  chmod +x "./${LFBFL_file_path}"
+
+  LFBFL_file_name="build_dependencies_notes.exec.php"
+  LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
+  LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
+  LFBFL_correct_sha512='6b1bdeb49a81366dc3956dc70f381d1b0380e411f79f1'
+  LFBFL_correct_sha512+='5731da611f16469584469efdf056d3e02fc673864af7'
+  LFBFL_correct_sha512+='e288b4bb20edba77b8a74afe91209bbb63528a8'
   wrapped_wget_sha512
   chmod +x "./${LFBFL_file_path}"
 
   LFBFL_file_name="check_shell_scripts_beginnings.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='7059b655ab1b74ec6705a5fd1dd40dcba9b6e08a5dd08'
-  LFBFL_correct_sha512+='c46ebeb26346396bf50aa448689d435909d807b04c66'
-  LFBFL_correct_sha512+='dc1e25ab97151501542acdc021cd21f4cbe4652'
+  LFBFL_correct_sha512='e5d12684ceb7e143e381743a9eb18e8ecb77bf0a7b8c4'
+  LFBFL_correct_sha512+='820a511495ef0b6e9fb16db4bec64d7548df2513f6f1'
+  LFBFL_correct_sha512+='3e13d1494a174a28a23914833e0cceaff6d9e10'
   wrapped_wget_sha512
 
   LFBFL_file_name="check_shell_scripts_indentation.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='771fbca68276799177d7560ae6e8e6d9077281717cae9'
-  LFBFL_correct_sha512+='b94ccb4e5d324eecb3586e6230f91bad1a517a6077bb'
-  LFBFL_correct_sha512+='087ddb2fa4217c681b75f486b713f68c0c71858'
+  LFBFL_correct_sha512='261b9cd75cde6f837e7b958d565db5ca7318852cb30e7'
+  LFBFL_correct_sha512+='47ed6a63bbf0bed9673c2cf0f6cae277b371562cf896'
+  LFBFL_correct_sha512+='baeb52cc1a509c1464e3901206d96b750bfaf94'
   wrapped_wget_sha512
 
   LFBFL_file_name="check_URLs.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='4c686832dd5c99ce75b06037548389556b83a9218e646'
-  LFBFL_correct_sha512+='9ec3c8dfe5470ac04224219a2dd26440ef863d64e3cd'
-  LFBFL_correct_sha512+='0de1d78bcde8d7da9cbec0bead0f28ed374f94c'
+  LFBFL_correct_sha512='2027e3f9cdb847cc71b4b69149486779df666a1b18c30'
+  LFBFL_correct_sha512+='ab161b7c96ee2c48fed4ef78edb489d566d568fb7b1c'
+  LFBFL_correct_sha512+='8390a680a5212f5a04c9bd6dd05744374bbc5b3'
   wrapped_wget_sha512
 
   LFBFL_file_name="common_options.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='2dd5e9032f65f396fb7244134bb4b29bda2e7c13f9631'
-  LFBFL_correct_sha512+='29e9b4a82830c578a7decd13219750d13af651087b3e'
-  LFBFL_correct_sha512+='7646f42df1190450f48b9a703249adb12f3b0d3'
+  LFBFL_correct_sha512='58f125f10f9c10cd38f04cdeec997bb7dc376ba6f0c09'
+  LFBFL_correct_sha512+='dfc1d2c0927855d709fbf002c027e67370cc0f8864b7'
+  LFBFL_correct_sha512+='8b23ab7685fc192413cc657df46475e28b989e2'
   wrapped_wget_sha512
 
   LFBFL_file_name="comparisons.libr.sh"
@@ -1672,9 +2003,9 @@ common_build_and_checks(){
   LFBFL_file_name="create_PDF.exec.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='2455056c8b432a5f79769b390dd7bce9718d81f05726e'
-  LFBFL_correct_sha512+='db09c280768eebed013132f6566947fe5dd1541a7eab'
-  LFBFL_correct_sha512+='7d07f0c02c6f71dfb368c7469459ff35fa8e188'
+  LFBFL_correct_sha512='e8d57774edc7b98394b039dc7de2867deeece68775f7c'
+  LFBFL_correct_sha512+='82b5617efc9a3377772a6a1ff78957622ebef77b90d6'
+  LFBFL_correct_sha512+='7d93f449aebb875fba2ed5c4467b1387a4962ef'
   wrapped_wget_sha512
   chmod +x "./${LFBFL_file_path}"
 
@@ -1697,9 +2028,9 @@ common_build_and_checks(){
   LFBFL_file_name="grammar_and_spelling_check.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='dc013dd4df36be7359c3975ccc1beb35d841085c62521'
-  LFBFL_correct_sha512+='51f1c2c748408d68d9e8abda7c3cc338c82a6480d79a'
-  LFBFL_correct_sha512+='8dd9106dec030313b93b4fc59b953cc124d1ad8'
+  LFBFL_correct_sha512='48f0edc5841f59f92b8126240df13e651a887bb399640'
+  LFBFL_correct_sha512+='589fb4bdc56dfd9006e6908ad952f1ce037e6dd22293'
+  LFBFL_correct_sha512+='5667301e528a767d0ef00ad43d733990b1ae89f'
   wrapped_wget_sha512
 
   # /licenses_templates/ ---------------------------------------------
@@ -1709,9 +2040,9 @@ common_build_and_checks(){
   LFBFL_file_name="build_licenses_templates.exec.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL2}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir2}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='6db7e7c50995cf27cb4459915cfd971f55bdea4c34ff6'
-  LFBFL_correct_sha512+='ece891778219f45c682d50cbc8a772941637143799fe'
-  LFBFL_correct_sha512+='80e4db168754530920e660030b87790bad5614c'
+  LFBFL_correct_sha512='b521beeff9a3e45d7e188d0e1b7352689ac91a86b7355'
+  LFBFL_correct_sha512+='a802aabc56d88b57cd357738e8da89e7227aef52acf5'
+  LFBFL_correct_sha512+='50db4b2e67f189e8c64b9d1a2cc64eb1a7b8084'
   wrapped_wget_sha512
   chmod +x "./${LFBFL_file_path}"
 
@@ -1743,9 +2074,9 @@ common_build_and_checks(){
   LFBFL_file_name="lines_counts.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='a47e0dc052a77e993dbb03de73fc2e3c93022efcd6e44'
-  LFBFL_correct_sha512+='76bc8de529c25314b945779864ba27f80d91fd005a11'
-  LFBFL_correct_sha512+='da61fed51ca12450d03c81eb96c8350df3c9e31'
+  LFBFL_correct_sha512='ec36e818b0aab4e386e4b01e643b07ad6bb1ef2ec5ccc'
+  LFBFL_correct_sha512+='4cfa697bac206f9a65d3cd710994a18db7397597a403'
+  LFBFL_correct_sha512+='463ec1353bc951ec4d79f54ccee61261dd279d8'
   wrapped_wget_sha512
 
   LFBFL_file_name="lines_filters.libr.sh"
@@ -1775,33 +2106,33 @@ common_build_and_checks(){
   LFBFL_file_name="python_black_complement.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='47029d60e49b85f5b96808358206176688ee0b62c6ac3'
-  LFBFL_correct_sha512+='5df6948ffcd53b8bdb7198170b7ce659ba44a4045d3d'
-  LFBFL_correct_sha512+='47dfee53cdd8149df76b12ba302fb2cfa6ec395'
+  LFBFL_correct_sha512='abe0e5701ad6a56937b1a1e3687366e87e8cb2578a179'
+  LFBFL_correct_sha512+='8e15ce81e0aaafc208c1b325058287c331092765ef73'
+  LFBFL_correct_sha512+='2c584cadf33e3acbcc195f25b0b632a0ce229d3'
   wrapped_wget_sha512
 
   LFBFL_file_name="python_isort_complement.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='ce054c746bd12511084306c420f9cc6bd4509d951ae34'
-  LFBFL_correct_sha512+='4d1a84c95150c217d95923b8277da9052b3177927af6'
-  LFBFL_correct_sha512+='9e14032f511ef83bb11d8c4ed050efe69ca4fd3'
+  LFBFL_correct_sha512='70542f00cb59ed52d6576e6c066c5dc701ac90274ab68'
+  LFBFL_correct_sha512+='475086182b13b8cdf75f6b0263ac813e0010dd6cdb86'
+  LFBFL_correct_sha512+='9239899c2a6161f912bf1f789ad30965b8c1fe5'
   wrapped_wget_sha512
 
   LFBFL_file_name="repository_data.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='5c2fa649caee836b1ce43542318b6e9f41c1e3e0af956'
-  LFBFL_correct_sha512+='3c63b3efec8dd1617db3d413b8d8bdcebe07785ded32'
-  LFBFL_correct_sha512+='af552e8d531f1988b3cfb9ee02cfcae049f6021'
+  LFBFL_correct_sha512='e3e8b487c45bf3960c5eb739fd1d29229ca358bfecb23'
+  LFBFL_correct_sha512+='e585fa7abf65c9cdaa263e799e96a83a22c660323e31'
+  LFBFL_correct_sha512+='bf2cdbc2f857b43957ef9405d2b8bed95dac7c0'
   wrapped_wget_sha512
 
   LFBFL_file_name="shell_checks_complement.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='37fad2bd06ef116694ed44721ea5d0d234d2268258916'
-  LFBFL_correct_sha512+='3c4a285a096f116a8aa4098d1599eca7a3252778726c'
-  LFBFL_correct_sha512+='e176132abf07dd1b861fcd338cc72630ef74934'
+  LFBFL_correct_sha512='e70c9b931d1adb41be165c2d84e17dd9dbb23a3d6d48d'
+  LFBFL_correct_sha512+='1b609a9187e96a2faa831c78335e440edef26792b307'
+  LFBFL_correct_sha512+='346fb053c5c0dd1fac493e1db3657950fd6ae08'
   wrapped_wget_sha512
 
   LFBFL_file_name="split_score.exec.php"
@@ -1823,25 +2154,25 @@ common_build_and_checks(){
   LFBFL_file_name="strings_functions.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='17be17020eecc0facf3d786756f32f49da160c0dcab49'
-  LFBFL_correct_sha512+='611bd6dd6a961589a3023aeb7c1f72a514f0e4131569'
-  LFBFL_correct_sha512+='40a537ce60cf1c9327d3808a634976ba11bd120'
+  LFBFL_correct_sha512='1c5cb59a9ad306ca8cd49b398146dc6621de0e69cb510'
+  LFBFL_correct_sha512+='b9f41d4412d5b853f26eae7128410419be7dfb0d36cf'
+  LFBFL_correct_sha512+='1a6272f70f270e551406866b1e1fd209bdcce44'
   wrapped_wget_sha512
 
   LFBFL_file_name="too_long_code_lines.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='050a4831d1502b0333c928dbec99938dcb87d26cd8b90'
-  LFBFL_correct_sha512+='2e589d2d3dea27a2680037413455eac0cc46e1d4d2d1'
-  LFBFL_correct_sha512+='9cf0da927c8c9e91a0508e39197103a49898fe5'
+  LFBFL_correct_sha512='a235e533d7c34796ee1f70225bab0f1a79d19e8454189'
+  LFBFL_correct_sha512+='833872276a455629866ca50f3045eeeb8c7213ef3a45'
+  LFBFL_correct_sha512+='88749523191fd615f27afbcaf3096290d11589a'
   wrapped_wget_sha512
 
   LFBFL_file_name="update_or_check_files_names_listing.exec.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='cf9e2d5203c5509d83f69226bcbafe346aa41bbaf6ea0'
-  LFBFL_correct_sha512+='c16aba922fdae7764b71e8319ffccfc591d5b645fbb3'
-  LFBFL_correct_sha512+='8b15e1b47b6582185a0fec8ebd39e8e0c644c09'
+  LFBFL_correct_sha512='9d9100a8527ea9717aff99f483c81b7921fd079ace4f9'
+  LFBFL_correct_sha512+='ead5cecd3c89da90f43959297ff78184eadf55bff79e'
+  LFBFL_correct_sha512+='b716060befe5eff9f00cc3b2f4dc69522e8bf8f'
   wrapped_wget_sha512
   chmod +x "./${LFBFL_file_path}"
 
@@ -1887,8 +2218,14 @@ common_build_and_checks(){
   [[ i_enhanced_set_bash_option_extglob_result -eq 0 ]]\
     &amp;&amp; enhanced_unset_bash_option extglob
 
-  enhanced_set_shell_option pipefail\
-    &amp;&amp; trap 'enhanced_unset_shell_option pipefail' RETURN
+  declare -a LFBFL_return_traps_stack
+  local LFBFL_previous_return_trap
+  init_return_trap
+
+  enhanced_set_shell_option pipefail --trap-unset
+
+  declare -a LFBFL_some_common_options2=("${LFBFL_some_common_options[@]}")
+  keep_options LFBFL_some_common_options2 --verbose
 
   printf "Building license headers\n"
   "./${LFBFL_subdir2}/build_licenses_templates.exec.sh"\
@@ -1924,6 +2261,10 @@ common_build_and_checks(){
     done
   fi
 
+  printf "Building dependencies_notes\n"
+  php "./${LFBFL_subdir}/build_dependencies_notes.exec.php"\
+    "${LFBFL_work_directory}"
+
   declare -i LFBFL_i_directory_changed
   pushd_to_work_directory
   LFBFL_i_directory_changed=$?
@@ -1944,7 +2285,7 @@ common_build_and_checks(){
 
   local LFBFL_upgrade_venvs_time_interval_in_seconds=""
   get_upgrade_venvs_time_interval_in_seconds "${LFBFL_data_file_name}"\
-    "${LFBFL_some_common_options[@]}"
+    "${LFBFL_some_common_options2[@]}"
 
   if [[ -f "${LFBFL_upgrade_venvs_ts_file}" ]]; then
     LFBFL_i_upgrade_venvs_ts=$(
@@ -1986,7 +2327,7 @@ common_build_and_checks(){
     done
   fi
   printf "Running shell_checks_complement\n"
-  shell_checks_complement "${LFBFL_some_common_options[@]}"
+  shell_checks_complement "${LFBFL_some_common_options2[@]}"
 
   printf -- "---Python---\n"
 
@@ -1997,6 +2338,12 @@ common_build_and_checks(){
     fi
   }
 
+  source_without_return_trap(){
+    declare -i LFBFL_i_no_return_traps=1
+    # shellcheck disable=SC1090,SC1091
+    source "$1"
+  }
+
   printf "Running isort\n"
   local LFBFL_isort_venv=""
   grep_variable "${LFBFL_data_file_name}" isort_venv\
@@ -2004,8 +2351,7 @@ common_build_and_checks(){
     --replace-line-returns-by=""
   if [[ -n "${LFBFL_isort_venv}" ]]; then
     maybe_deactivate
-    # shellcheck disable=SC1090,SC1091
-    source "${LFBFL_isort_venv}/bin/activate"
+    source_without_return_trap "${LFBFL_isort_venv}/bin/activate"
   fi
   if [[ LFBFL_i_upgrade_venvs -eq 1 ]]; then
     pip install --upgrade isort
@@ -2015,7 +2361,7 @@ common_build_and_checks(){
     deactivate
   fi
   printf "Running python_isort_complement\n"
-  python_isort_complement "${LFBFL_some_common_options[@]}"
+  python_isort_complement "${LFBFL_some_common_options2[@]}"
 
   printf "Running black\n"
   # First, we update the configuration file with max_line_length.
@@ -2033,8 +2379,7 @@ common_build_and_checks(){
     --replace-line-returns-by=""
   if [[ -n "${LFBFL_black_venv}" ]]; then
     maybe_deactivate
-    # shellcheck disable=SC1090,SC1091
-    source "${LFBFL_black_venv}/bin/activate"
+    source_without_return_trap "${LFBFL_black_venv}/bin/activate"
   fi
   if [[ LFBFL_i_upgrade_venvs -eq 1 ]]; then
     pip install --upgrade black
@@ -2044,7 +2389,7 @@ common_build_and_checks(){
     deactivate
   fi
   printf "Running python_black_complement\n"
-  python_black_complement "${LFBFL_some_common_options[@]}"
+  python_black_complement "${LFBFL_some_common_options2[@]}"
 
   printf "Probing if mypy should be runned\n"
   local LFBFL_mypy_venv=""
@@ -2053,8 +2398,7 @@ common_build_and_checks(){
     --replace-line-returns-by=""
   if [[ -n "${LFBFL_mypy_venv}" ]]; then
     maybe_deactivate
-    # shellcheck disable=SC1090,SC1091
-    source "${LFBFL_mypy_venv}/bin/activate"
+    source_without_return_trap "${LFBFL_mypy_venv}/bin/activate"
   fi
   if [[ LFBFL_i_upgrade_venvs -eq 1 ]]; then
     pip install --upgrade mypy
@@ -2091,8 +2435,7 @@ common_build_and_checks(){
     --replace-line-returns-by=""
   if [[ -n "${LFBFL_bandit_venv}" ]]; then
     maybe_deactivate
-    # shellcheck disable=SC1090,SC1091
-    source "${LFBFL_bandit_venv}/bin/activate"
+    source_without_return_trap "${LFBFL_bandit_venv}/bin/activate"
   fi
   if [[ LFBFL_i_upgrade_venvs -eq 1 ]]; then
     pip install --upgrade bandit
@@ -2116,8 +2459,7 @@ common_build_and_checks(){
     --replace-line-returns-by=""
   if [[ -n "${LFBFL_pylint_venv}" ]]; then
     maybe_deactivate
-    # shellcheck disable=SC1090,SC1091
-    source "${LFBFL_pylint_venv}/bin/activate"
+    source_without_return_trap "${LFBFL_pylint_venv}/bin/activate"
   fi
   if [[ LFBFL_i_upgrade_venvs -eq 1 ]]; then
     pip install --upgrade pylint
@@ -2134,8 +2476,7 @@ common_build_and_checks(){
     --replace-line-returns-by=""
   if [[ -n "${LFBFL_ruff_venv}" ]]; then
     maybe_deactivate
-    # shellcheck disable=SC1090,SC1091
-    source "${LFBFL_ruff_venv}/bin/activate"
+    source_without_return_trap "${LFBFL_ruff_venv}/bin/activate"
   fi
   if [[ LFBFL_i_upgrade_venvs -eq 1 ]]; then
     pip install --upgrade ruff
@@ -2169,6 +2510,7 @@ common_build_and_checks(){
     --baseline-file="${LFBFL_temp_phpmd_baseline}"\
     . text "${LFBFL_phpmd_rulesets}"
   sed -i -e 's/" file="/"\n    file="/g' "${LFBFL_temp_phpmd_baseline}"
+  sed -i -E -e 's~(file=".*)/>~\1\n  />~g' "${LFBFL_temp_phpmd_baseline}"
   diff "${LFBFL_phpmd_baseline}" "${LFBFL_temp_phpmd_baseline}"
   printf -- "---PHP end---\n"
 
@@ -2189,19 +2531,19 @@ common_build_and_checks(){
 
   printf "Analyzing too long lines\n"
   # shellcheck disable=SC2248
-  too_long_code_lines "${LFBFL_some_common_options[@]}" \
+  too_long_code_lines "${LFBFL_some_common_options2[@]}" \
     --max-line-length=${LFBFL_i_max_line_length}
 
   printf "Analyzing shell scripts beginnings\n"
-  check_shell_scripts_beginnings "${LFBFL_some_common_options[@]}" \
+  check_shell_scripts_beginnings "${LFBFL_some_common_options2[@]}" \
     | relevant_grep
 
   printf "Analyzing shell scripts indentation\n"
-  check_shell_scripts_indentation "${LFBFL_some_common_options[@]}" \
+  check_shell_scripts_indentation "${LFBFL_some_common_options2[@]}" \
     | relevant_grep
 
   printf "Analyzing URLs\n"
-  check_URLs "${LFBFL_some_common_options[@]}" \
+  check_URLs "${LFBFL_some_common_options2[@]}" \
     | relevant_grep
 
   printf "Analyzing strange characters: hover over in doubt\n"
@@ -2213,7 +2555,7 @@ common_build_and_checks(){
 
   printf "Grammar and spelling check\n"
   grammar_and_spelling_check "${LFBFL_data_file_name}"\
-    "${LFBFL_some_common_options[@]}"
+    "${LFBFL_some_common_options2[@]}"
 
   [[ LFBFL_i_directory_changed -eq 0 ]] &amp;&amp; popd_from_work_directory
 
@@ -2224,8 +2566,7 @@ common_build_and_checks(){
   printf "Creating the PDF file of the listing of the source code\n"
   "./${LFBFL_subdir}/create_PDF.exec.sh" "${LFBFL_some_common_options[@]}"
 
-  pushd_to_work_directory\
-    &amp;&amp; trap 'popd_from_work_directory' RETURN
+  pushd_to_work_directory --trap-popd
   can_continue_after_enhanced_pushd || return 1
 
   if [[ -f "${LFBFL_subdir3}/post_build.sh" ]]; then
@@ -2296,7 +2637,7 @@ common_build_and_checks "$@"
 </pre>
 
 
-<h3 id="subsection2.7">2.7
+<h3 id="subsection3.8">3.8
 build_and_checks_dependencies/common_build_and_checks.exec.sh.tpl
 </h3>
 <pre class="numbered_lines">
@@ -2377,6 +2718,13 @@ common_build_and_checks(){
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   @sha512_build_md_from_printable_md.exec.sh@
+  wrapped_wget_sha512
+  chmod +x "./${LFBFL_file_path}"
+
+  LFBFL_file_name="build_dependencies_notes.exec.php"
+  LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
+  LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
+  @sha512_build_dependencies_notes.exec.php@
   wrapped_wget_sha512
   chmod +x "./${LFBFL_file_path}"
 
@@ -2586,8 +2934,14 @@ common_build_and_checks(){
   [[ i_enhanced_set_bash_option_extglob_result -eq 0 ]]\
     &amp;&amp; enhanced_unset_bash_option extglob
 
-  enhanced_set_shell_option pipefail\
-    &amp;&amp; trap 'enhanced_unset_shell_option pipefail' RETURN
+  declare -a LFBFL_return_traps_stack
+  local LFBFL_previous_return_trap
+  init_return_trap
+
+  enhanced_set_shell_option pipefail --trap-unset
+
+  declare -a LFBFL_some_common_options2=("${LFBFL_some_common_options[@]}")
+  keep_options LFBFL_some_common_options2 --verbose
 
   printf "Building license headers\n"
   "./${LFBFL_subdir2}/build_licenses_templates.exec.sh"\
@@ -2623,6 +2977,10 @@ common_build_and_checks(){
     done
   fi
 
+  printf "Building dependencies_notes\n"
+  php "./${LFBFL_subdir}/build_dependencies_notes.exec.php"\
+    "${LFBFL_work_directory}"
+
   declare -i LFBFL_i_directory_changed
   pushd_to_work_directory
   LFBFL_i_directory_changed=$?
@@ -2643,7 +3001,7 @@ common_build_and_checks(){
 
   local LFBFL_upgrade_venvs_time_interval_in_seconds=""
   get_upgrade_venvs_time_interval_in_seconds "${LFBFL_data_file_name}"\
-    "${LFBFL_some_common_options[@]}"
+    "${LFBFL_some_common_options2[@]}"
 
   if [[ -f "${LFBFL_upgrade_venvs_ts_file}" ]]; then
     LFBFL_i_upgrade_venvs_ts=$(
@@ -2685,7 +3043,7 @@ common_build_and_checks(){
     done
   fi
   printf "Running shell_checks_complement\n"
-  shell_checks_complement "${LFBFL_some_common_options[@]}"
+  shell_checks_complement "${LFBFL_some_common_options2[@]}"
 
   printf -- "---Python---\n"
 
@@ -2696,6 +3054,12 @@ common_build_and_checks(){
     fi
   }
 
+  source_without_return_trap(){
+    declare -i LFBFL_i_no_return_traps=1
+    # shellcheck disable=SC1090,SC1091
+    source "$1"
+  }
+
   printf "Running isort\n"
   local LFBFL_isort_venv=""
   grep_variable "${LFBFL_data_file_name}" isort_venv\
@@ -2703,8 +3067,7 @@ common_build_and_checks(){
     --replace-line-returns-by=""
   if [[ -n "${LFBFL_isort_venv}" ]]; then
     maybe_deactivate
-    # shellcheck disable=SC1090,SC1091
-    source "${LFBFL_isort_venv}/bin/activate"
+    source_without_return_trap "${LFBFL_isort_venv}/bin/activate"
   fi
   if [[ LFBFL_i_upgrade_venvs -eq 1 ]]; then
     pip install --upgrade isort
@@ -2714,7 +3077,7 @@ common_build_and_checks(){
     deactivate
   fi
   printf "Running python_isort_complement\n"
-  python_isort_complement "${LFBFL_some_common_options[@]}"
+  python_isort_complement "${LFBFL_some_common_options2[@]}"
 
   printf "Running black\n"
   # First, we update the configuration file with max_line_length.
@@ -2732,8 +3095,7 @@ common_build_and_checks(){
     --replace-line-returns-by=""
   if [[ -n "${LFBFL_black_venv}" ]]; then
     maybe_deactivate
-    # shellcheck disable=SC1090,SC1091
-    source "${LFBFL_black_venv}/bin/activate"
+    source_without_return_trap "${LFBFL_black_venv}/bin/activate"
   fi
   if [[ LFBFL_i_upgrade_venvs -eq 1 ]]; then
     pip install --upgrade black
@@ -2743,7 +3105,7 @@ common_build_and_checks(){
     deactivate
   fi
   printf "Running python_black_complement\n"
-  python_black_complement "${LFBFL_some_common_options[@]}"
+  python_black_complement "${LFBFL_some_common_options2[@]}"
 
   printf "Probing if mypy should be runned\n"
   local LFBFL_mypy_venv=""
@@ -2752,8 +3114,7 @@ common_build_and_checks(){
     --replace-line-returns-by=""
   if [[ -n "${LFBFL_mypy_venv}" ]]; then
     maybe_deactivate
-    # shellcheck disable=SC1090,SC1091
-    source "${LFBFL_mypy_venv}/bin/activate"
+    source_without_return_trap "${LFBFL_mypy_venv}/bin/activate"
   fi
   if [[ LFBFL_i_upgrade_venvs -eq 1 ]]; then
     pip install --upgrade mypy
@@ -2790,8 +3151,7 @@ common_build_and_checks(){
     --replace-line-returns-by=""
   if [[ -n "${LFBFL_bandit_venv}" ]]; then
     maybe_deactivate
-    # shellcheck disable=SC1090,SC1091
-    source "${LFBFL_bandit_venv}/bin/activate"
+    source_without_return_trap "${LFBFL_bandit_venv}/bin/activate"
   fi
   if [[ LFBFL_i_upgrade_venvs -eq 1 ]]; then
     pip install --upgrade bandit
@@ -2815,8 +3175,7 @@ common_build_and_checks(){
     --replace-line-returns-by=""
   if [[ -n "${LFBFL_pylint_venv}" ]]; then
     maybe_deactivate
-    # shellcheck disable=SC1090,SC1091
-    source "${LFBFL_pylint_venv}/bin/activate"
+    source_without_return_trap "${LFBFL_pylint_venv}/bin/activate"
   fi
   if [[ LFBFL_i_upgrade_venvs -eq 1 ]]; then
     pip install --upgrade pylint
@@ -2833,8 +3192,7 @@ common_build_and_checks(){
     --replace-line-returns-by=""
   if [[ -n "${LFBFL_ruff_venv}" ]]; then
     maybe_deactivate
-    # shellcheck disable=SC1090,SC1091
-    source "${LFBFL_ruff_venv}/bin/activate"
+    source_without_return_trap "${LFBFL_ruff_venv}/bin/activate"
   fi
   if [[ LFBFL_i_upgrade_venvs -eq 1 ]]; then
     pip install --upgrade ruff
@@ -2868,6 +3226,7 @@ common_build_and_checks(){
     --baseline-file="${LFBFL_temp_phpmd_baseline}"\
     . text "${LFBFL_phpmd_rulesets}"
   sed -i -e 's/" file="/"\n    file="/g' "${LFBFL_temp_phpmd_baseline}"
+  sed -i -E -e 's~(file=".*)/>~\1\n  />~g' "${LFBFL_temp_phpmd_baseline}"
   diff "${LFBFL_phpmd_baseline}" "${LFBFL_temp_phpmd_baseline}"
   printf -- "---PHP end---\n"
 
@@ -2888,19 +3247,19 @@ common_build_and_checks(){
 
   printf "Analyzing too long lines\n"
   # shellcheck disable=SC2248
-  too_long_code_lines "${LFBFL_some_common_options[@]}" \
+  too_long_code_lines "${LFBFL_some_common_options2[@]}" \
     --max-line-length=${LFBFL_i_max_line_length}
 
   printf "Analyzing shell scripts beginnings\n"
-  check_shell_scripts_beginnings "${LFBFL_some_common_options[@]}" \
+  check_shell_scripts_beginnings "${LFBFL_some_common_options2[@]}" \
     | relevant_grep
 
   printf "Analyzing shell scripts indentation\n"
-  check_shell_scripts_indentation "${LFBFL_some_common_options[@]}" \
+  check_shell_scripts_indentation "${LFBFL_some_common_options2[@]}" \
     | relevant_grep
 
   printf "Analyzing URLs\n"
-  check_URLs "${LFBFL_some_common_options[@]}" \
+  check_URLs "${LFBFL_some_common_options2[@]}" \
     | relevant_grep
 
   printf "Analyzing strange characters: hover over in doubt\n"
@@ -2912,7 +3271,7 @@ common_build_and_checks(){
 
   printf "Grammar and spelling check\n"
   grammar_and_spelling_check "${LFBFL_data_file_name}"\
-    "${LFBFL_some_common_options[@]}"
+    "${LFBFL_some_common_options2[@]}"
 
   [[ LFBFL_i_directory_changed -eq 0 ]] &amp;&amp; popd_from_work_directory
 
@@ -2923,8 +3282,7 @@ common_build_and_checks(){
   printf "Creating the PDF file of the listing of the source code\n"
   "./${LFBFL_subdir}/create_PDF.exec.sh" "${LFBFL_some_common_options[@]}"
 
-  pushd_to_work_directory\
-    &amp;&amp; trap 'popd_from_work_directory' RETURN
+  pushd_to_work_directory --trap-popd
   can_continue_after_enhanced_pushd || return 1
 
   if [[ -f "${LFBFL_subdir3}/post_build.sh" ]]; then
@@ -2995,7 +3353,7 @@ common_build_and_checks "$@"
 </pre>
 
 
-<h3 id="subsection2.8">2.8
+<h3 id="subsection3.9">3.9
 build_and_checks_dependencies/common_options.libr.sh
 </h3>
 <pre class="numbered_lines">
@@ -3038,6 +3396,81 @@ get_where_was_i(){
   # Comment out line above in case someone would use distinct
   # offsets in the same function.
 }
+
+# RETURN traps handling
+# Add the following lines at the start of a function.
+#   declare -a LFBFL_return_traps_stack
+#   local LFBFL_previous_return_trap
+#   init_return_trap
+
+init_return_trap(){
+  local LFBFL_previous_return_trap2
+  LFBFL_previous_return_trap2=$(trap -p RETURN)
+  if [[ LFBFL_i_verbose -eq 1 ]]; then
+    local LFBFL_where_was_i
+    get_where_was_i 2
+    printf "%s previous_return_trap is: %s.\n"\
+      "${LFBFL_where_was_i}"\
+      "${LFBFL_previous_return_trap2}"
+  fi
+  if [[ -z "${LFBFL_previous_return_trap2}" ]]; then
+    LFBFL_previous_return_trap2="trap - RETURN"
+  fi
+  declare -ir LFBFL_function_depth=$((${#FUNCNAME[@]} - 1))
+  LFBFL_previous_return_trap="${LFBFL_function_depth}:"
+  LFBFL_previous_return_trap+="${LFBFL_previous_return_trap2}"
+  trap 'execute_return_traps' RETURN
+}
+
+execute_return_traps(){
+  if [[ "${FUNCNAME[1]}" == "init_return_trap" ]]; then
+    return
+  fi
+  # -----------------------------------------------------------------------
+  # See https://lists.gnu.org/archive/html/help-bash/2026-03/msg00052.html
+  if [[ "${FUNCNAME[1]}" == "source" ]]; then
+    # Not Working
+    return
+  fi
+  if [[ ${LFBFL_i_no_return_traps:-0} -eq 1 ]]; then
+    return
+  fi
+  # -----------------------------------------------------------------------
+  local LFBFL_some_return_trap
+  local LFBFL_where_was_i
+  get_where_was_i 2
+  declare -ir LFBFL_function_depth=$((${#FUNCNAME[@]} - 1))
+  while [[ -n "${LFBFL_return_traps_stack}" ]]; do
+    LFBFL_some_return_trap="${LFBFL_return_traps_stack[-1]}"
+    if [[ "${LFBFL_some_return_trap}" != ${LFBFL_function_depth}:* ]]; then
+      # We only treat the top of the stack that should correspond to the
+      # current function.
+      break
+    fi
+    LFBFL_some_return_trap=${LFBFL_some_return_trap#*:}
+    if [[ LFBFL_i_verbose -eq 1 ]]; then
+      printf "%s executing some return trap: %s.\n"\
+        "${LFBFL_where_was_i}"\
+        "${LFBFL_some_return_trap}"
+    fi
+    eval "${LFBFL_some_return_trap}"
+    unset 'LFBFL_return_traps_stack[-1]'
+  done
+  if [[ "${LFBFL_previous_return_trap}" != ${LFBFL_function_depth}:* ]];
+  then
+    # We only set the previous return trap if such a trap was replaced
+    # by an init_return_trap.
+    return
+  fi
+  LFBFL_previous_return_trap=${LFBFL_previous_return_trap#*:}
+  if [[ LFBFL_i_verbose -eq 1 ]]; then
+    printf "%s setting back to previous_return_trap: %s.\n"\
+      "${LFBFL_where_was_i}"\
+      "${LFBFL_previous_return_trap}"
+  fi
+  eval "${LFBFL_previous_return_trap}"
+}
+
 
 is_top_dirstack_directory(){
   # This function should not be needed since when testing "${DIRSTACK[0]}"
@@ -3165,6 +3598,47 @@ get_verbose_option(){
 }
 
 
+get_some_option(){
+  # $1=variable_name
+  # $2=some_option_long_name
+  # $3=option_default_value
+  # $4=read_only 0 or 1 to make the variable readonly
+  # This command is to be called in another one with same arguments on top
+  # of the three previous.
+  local LFBFL_arg
+  for LFBFL_arg in "$@"; do
+    if [[ "${LFBFL_arg}" == "$2"=* ]]; then
+      printf -v "$1" "%s" "${LFBFL_arg#"$2"=}"
+      printf -v "$1" "%s" "${!1:-$3}"
+      break
+    fi
+  done
+  if [[ $4 -eq 1 ]]; then
+    readonly "$1"
+  fi
+}
+
+keep_options(){
+  # $1=variable_name of array of options
+  # Other arguments: the options to keep.
+  declare -a LFBFL_array_of_filtered_options
+  declare -n LFBFL_array_of_options=$1
+  local LFBFL_some_argument
+  local LFBFL_some_argument2
+  for LFBFL_some_argument in "${LFBFL_array_of_options[@]}"; do
+    for LFBFL_some_argument2 in "$@"; do
+      if [[
+        "${LFBFL_some_argument}" == "${LFBFL_some_argument2}"
+        || "${LFBFL_some_argument}" == "${LFBFL_some_argument2}"=*
+      ]]; then
+        LFBFL_array_of_filtered_options+=("${LFBFL_some_argument}")
+      fi
+    done
+  done
+  LFBFL_array_of_options=("${LFBFL_array_of_filtered_options[@]}")
+}
+
+
 # Main usage for the next functions relative to work_directory:
 # Add the five following lines at the start of a function.
 #   local LFBFL_work_directory=""
@@ -3172,34 +3646,63 @@ get_verbose_option(){
 #   pushd_to_work_directory\
 #     &amp;&amp; trap 'popd_from_work_directory' RETURN
 #   can_continue_after_enhanced_pushd || return 1
+# Or:
+#   local LFBFL_work_directory=""
+#   get_work_directory_option "$@"
+#   pushd_to_work_directory --trap-popd
+#   can_continue_after_enhanced_pushd || return 1
 
 get_work_directory_option(){
   # This command is to be called in another one with same arguments.
   # Options:
   #   --work-directory=""
-  local LFBFL_arg
-  for LFBFL_arg in "$@"; do
-    if [[ "${LFBFL_arg}" == --work-directory=* ]]; then
-      LFBFL_work_directory=${LFBFL_arg#--work-directory=}
-      LFBFL_work_directory=${LFBFL_work_directory:-.}
-      # LFBFL_work_directory=${LFBFL_work_directory/#~/${HOME}} line below
-      LFBFL_work_directory=$(realpath "${LFBFL_work_directory}")
-      break
-    fi
-  done
+  get_some_option LFBFL_work_directory --work-directory "." 0 "$@"
+  # LFBFL_work_directory=${LFBFL_work_directory/#~/${HOME}} line below
+  if [[ -n "${LFBFL_work_directory}" ]]; then
+    LFBFL_work_directory=$(realpath "${LFBFL_work_directory}")
+  fi
   readonly LFBFL_work_directory
 }
 
 pushd_to_work_directory(){
+  # Options:
+  #   --trap-popd
   enhanced_pushd "${LFBFL_work_directory}" 3 " --work-directory="
+  if [[ i_enhanced_pushd_result -eq 0 ]]; then
+    local LFBFL_arg
+    for LFBFL_arg in "$@"; do
+      if [[ "${LFBFL_arg}" == --trap-popd ]]; then
+        declare -ir LFBFL_function_depth=$((${#FUNCNAME[@]} - 1))
+        local LFBFL_some_return_trap
+        LFBFL_some_return_trap="${LFBFL_function_depth}:"
+        LFBFL_some_return_trap+="popd_from_work_directory 4"
+        readonly LFBFL_some_return_trap
+        LFBFL_return_traps_stack+=("${LFBFL_some_return_trap}")
+        break
+      fi
+    done
+  fi
+  # shellcheck disable=SC2248
+  return ${i_enhanced_pushd_result}
 }
 
 popd_from_work_directory(){
-  enhanced_popd "${LFBFL_work_directory}" 3
+  # $1=offset for where_was_i
+  enhanced_popd "${LFBFL_work_directory}" "${1:-3}"
 }
 
 work_directory_is_top_dirstack_directory(){
   is_top_dirstack_directory "${LFBFL_work_directory}"
+}
+
+
+get_offset_option(){
+  # This command is to be called in another one with same arguments on top
+  # of the default value.
+  # $1=option_default_value
+  # Options:
+  #   --offset=2
+  get_some_option LFBFL_i_offset --offset "$1" 1 "$@"
 }
 
 
@@ -3212,15 +3715,24 @@ work_directory_is_top_dirstack_directory(){
 #     enhanced_unset_shell_option pipefail\
 #       &amp;&amp; trap 'enhanced_set_shell_option pipefail' RETURN
 #   if you need to unset it in some function.
+#   or better if you use my RETURN traps handler:
+#     enhanced_set_shell_option pipefail --trap-unset
+#     enhanced_unset_shell_option pipefail --trap-set
 # - bash options usage, example with globstar:
 #     enhanced_set_bash_option globstar\
 #       &amp;&amp; trap 'enhanced_unset_bash_option globstar' RETURN
 #   or maybe:
 #     enhanced_unset_bash_option globstar\
 #       &amp;&amp; trap 'enhanced_set_bash_option globstar' RETURN
+#   or better if you use my RETURN traps handler:
+#     enhanced_set_bash_option globstar --trap-unset
+#     enhanced_unset_bash_option globstar --trap-set
 
 enhanced_set_shell_option(){
   # $1=optname some shell option for set
+  # Options:
+  #   --offset=2
+  #   --trap-unset
   declare -r LFBFL_result_name="i_enhanced_set_shell_option_$1_result"
   declare -gi "${LFBFL_result_name}"=0
   if [[ -o "$1" ]]; then
@@ -3229,17 +3741,35 @@ enhanced_set_shell_option(){
     return ${!LFBFL_result_name}
   fi
   set -o "$1"
+  declare -i LFBFL_i_offset=2
+  get_offset_option 2 "$@"
   if [[ LFBFL_i_verbose -eq 1 ]]; then
     local LFBFL_where_was_i
-    get_where_was_i 2
+    # shellcheck disable=SC2248
+    get_where_was_i ${LFBFL_i_offset}
     printf "%s %s shell option activated.\n" "${LFBFL_where_was_i}" "$1"
   fi
+  local LFBFL_arg
+  for LFBFL_arg in "$@"; do
+    if [[ "${LFBFL_arg}" == --trap-unset ]]; then
+      declare -ir LFBFL_function_depth=$((${#FUNCNAME[@]} - 1))
+      local LFBFL_some_return_trap
+      LFBFL_some_return_trap="${LFBFL_function_depth}:"
+      LFBFL_some_return_trap+="enhanced_unset_shell_option '$1' --offset=3"
+      readonly LFBFL_some_return_trap
+      LFBFL_return_traps_stack+=("${LFBFL_some_return_trap}")
+      break
+    fi
+  done
   # shellcheck disable=SC2086
   return ${!LFBFL_result_name}
 }
 
 enhanced_unset_shell_option(){
   # $1=optname some shell option for set
+  # Options:
+  #   --offset=2
+  #   --trap-set
   declare -r LFBFL_result_name="i_enhanced_unset_shell_option_$1_result"
   declare -gi "${LFBFL_result_name}"=0
   if [[ ! -o "$1" ]]; then
@@ -3248,17 +3778,35 @@ enhanced_unset_shell_option(){
     return ${!LFBFL_result_name}
   fi
   set +o "$1"
+  declare -i LFBFL_i_offset=2
+  get_offset_option 2 "$@"
   if [[ LFBFL_i_verbose -eq 1 ]]; then
     local LFBFL_where_was_i
-    get_where_was_i 2
+    # shellcheck disable=SC2248
+    get_where_was_i ${LFBFL_i_offset}
     printf "%s %s shell option unactivated.\n" "${LFBFL_where_was_i}" "$1"
   fi
+  local LFBFL_arg
+  for LFBFL_arg in "$@"; do
+    if [[ "${LFBFL_arg}" == --trap-set ]]; then
+      declare -ir LFBFL_function_depth=$((${#FUNCNAME[@]} - 1))
+      local LFBFL_some_return_trap
+      LFBFL_some_return_trap="${LFBFL_function_depth}:"
+      LFBFL_some_return_trap+="enhanced_set_shell_option '$1' --offset=3"
+      readonly LFBFL_some_return_trap
+      LFBFL_return_traps_stack+=("${LFBFL_some_return_trap}")
+      break
+    fi
+  done
   # shellcheck disable=SC2086
   return ${!LFBFL_result_name}
 }
 
 enhanced_set_bash_option(){
   # $1=optname some bash option for shopt
+  # Options:
+  #   --offset=2
+  #   --trap-unset
   declare -r LFBFL_result_name="i_enhanced_set_bash_option_$1_result"
   declare -gi "${LFBFL_result_name}"=0
   # declare -r LFBFL_regexp="^(.*:)?$1(:.*)?$" funny but brainfucked
@@ -3269,17 +3817,35 @@ enhanced_set_bash_option(){
     return ${!LFBFL_result_name}
   fi
   shopt -s "$1"
+  declare -i LFBFL_i_offset=2
+  get_offset_option 2 "$@"
   if [[ LFBFL_i_verbose -eq 1 ]]; then
     local LFBFL_where_was_i
-    get_where_was_i 2
+    # shellcheck disable=SC2248
+    get_where_was_i ${LFBFL_i_offset}
     printf "%s %s bash option activated.\n" "${LFBFL_where_was_i}" "$1"
   fi
+  local LFBFL_arg
+  for LFBFL_arg in "$@"; do
+    if [[ "${LFBFL_arg}" == --trap-unset ]]; then
+      declare -ir LFBFL_function_depth=$((${#FUNCNAME[@]} - 1))
+      local LFBFL_some_return_trap
+      LFBFL_some_return_trap="${LFBFL_function_depth}:"
+      LFBFL_some_return_trap+="enhanced_unset_bash_option '$1' --offset=3"
+      readonly LFBFL_some_return_trap
+      LFBFL_return_traps_stack+=("${LFBFL_some_return_trap}")
+      break
+    fi
+  done
   # shellcheck disable=SC2086
   return ${!LFBFL_result_name}
 }
 
 enhanced_unset_bash_option(){
   # $1=optname some bash option for shopt
+  # Options:
+  #   --offset=2
+  #   --trap-set
   declare -r LFBFL_result_name="i_enhanced_unset_bash_option_$1_result"
   declare -gi "${LFBFL_result_name}"=0
   if ! shopt -q "$1"; then
@@ -3288,18 +3854,33 @@ enhanced_unset_bash_option(){
     return ${!LFBFL_result_name}
   fi
   shopt -u "$1"
+  declare -i LFBFL_i_offset=2
+  get_offset_option 2 "$@"
   if [[ LFBFL_i_verbose -eq 1 ]]; then
     local LFBFL_where_was_i
-    get_where_was_i 2
+    # shellcheck disable=SC2248
+    get_where_was_i ${LFBFL_i_offset}
     printf "%s %s bash option unactivated.\n" "${LFBFL_where_was_i}" "$1"
   fi
+  local LFBFL_arg
+  for LFBFL_arg in "$@"; do
+    if [[ "${LFBFL_arg}" == --trap-set ]]; then
+      declare -ir LFBFL_function_depth=$((${#FUNCNAME[@]} - 1))
+      local LFBFL_some_return_trap
+      LFBFL_some_return_trap="${LFBFL_function_depth}:"
+      LFBFL_some_return_trap+="enhanced_set_bash_option '$1' --offset=3"
+      readonly LFBFL_some_return_trap
+      LFBFL_return_traps_stack+=("${LFBFL_some_return_trap}")
+      break
+    fi
+  done
   # shellcheck disable=SC2086
   return ${!LFBFL_result_name}
 }
 </pre>
 
 
-<h3 id="subsection2.9">2.9
+<h3 id="subsection3.10">3.10
 build_and_checks_dependencies/comparisons.libr.sh
 </h3>
 <pre class="numbered_lines">
@@ -3510,7 +4091,7 @@ alias max_from_int_sort="max 'sort --numeric-sort'"
 </pre>
 
 
-<h3 id="subsection2.10">2.10
+<h3 id="subsection3.11">3.11
 build_and_checks_dependencies/create_PDF.exec.sh
 </h3>
 <pre class="numbered_lines">
@@ -3563,12 +4144,16 @@ create_PDF(){
   get_verbose_option "$@"
   local LFBFL_work_directory=""
   get_work_directory_option "$@"
-  pushd_to_work_directory\
-    &amp;&amp; trap 'popd_from_work_directory' RETURN
+  declare -a LFBFL_return_traps_stack
+  local LFBFL_previous_return_trap
+  init_return_trap
+  pushd_to_work_directory --trap-popd
   can_continue_after_enhanced_pushd || return 1
 
-  enhanced_set_shell_option pipefail\
-    &amp;&amp; trap 'enhanced_unset_shell_option pipefail' RETURN
+  enhanced_set_shell_option pipefail --trap-unset
+
+  declare -a LFBFL_common_options=("$@")
+  keep_options LFBFL_common_options --verbose
 
   local LFBFL_subdir2="build_and_checks_variables"
   local LFBFL_data_file_name="${LFBFL_subdir2}/repository_data.txt"
@@ -3629,9 +4214,9 @@ create_PDF(){
     LFBFL_redirect="/dev/null"
   fi
   {
-    code_lines_count_all "$@"
-    code_lines_count_not_empty "$@"
-    code_lines_count_empty "$@"
+    code_lines_count_all "${LFBFL_common_options[@]}"
+    code_lines_count_not_empty "${LFBFL_common_options[@]}"
+    code_lines_count_empty "${LFBFL_common_options[@]}"
   } &amp;> "${LFBFL_redirect}"
 
   local LFBFL_number_of_lines="${i_code_lines_count_all_result}"
@@ -3784,7 +4369,7 @@ create_PDF(){
       LFBFL_new_lines=${repeated_split_last_line_result}
     fi
     {
-      LFBFL_s_format="&lt;h3 id=\"subsection2.%s\">2.%s\n%s\n&lt;/h3>\n"
+      LFBFL_s_format="&lt;h3 id=\"subsection3.%s\">3.%s\n%s\n&lt;/h3>\n"
       LFBFL_s_format+="&lt;pre class=\"numbered_lines\">\n"
       # shellcheck disable=SC2059
       printf "${LFBFL_s_format}"\
@@ -3795,7 +4380,7 @@ create_PDF(){
         &lt; "${LFBFL_file_path}"
       printf "&lt;/pre>\n\n\n"
     } >> "${LFBFL_temp_files_listing2}"
-    LFBFL_s_format="      &lt;li>&lt;a href=\"#subsection2.%s\">\n%s\n"
+    LFBFL_s_format="      &lt;li>&lt;a href=\"#subsection3.%s\">\n%s\n"
     LFBFL_s_format+="      &lt;/a>&lt;/li>\n"
     # shellcheck disable=SC2059
     printf "${LFBFL_s_format}" "${LFBFL_i}" "${LFBFL_new_lines}"\
@@ -3970,13 +4555,18 @@ create_PDF(){
       "${LFBFL_tex_path_start}.5"
 
     insert_file_at_token "${LFBFL_tex_path_start}.5"\
+      @dependencies_notes@\
+      "./${LFBFL_temp_path}/dependencies_notes.tex"\
+      "${LFBFL_tex_path_start}.6"
+
+    insert_file_at_token "${LFBFL_tex_path_start}.6"\
       @files_listing_VerbatimInput@\
       "./${LFBFL_subdir2}/files_listing.tex.tpl"\
-      "${LFBFL_tex_path_start}.6"
+      "${LFBFL_tex_path_start}.7"
 
     overwrite_if_not_equal\
       "./${LFBFL_subdir2}/${LFBFL_repository_name}.tex"\
-      "${LFBFL_tex_path_start}.6" 1
+      "${LFBFL_tex_path_start}.7" 1
   fi
 
   # HTML filling:
@@ -4018,12 +4608,17 @@ create_PDF(){
       "${LFBFL_html_path_start}.6"
 
     insert_file_at_token "${LFBFL_html_path_start}.6"\
-      @files_listing_HTMLPreInput@\
-      "${LFBFL_temp_path}/files_listing.html.tpl"\
+      @dependencies_notes@\
+      "./${LFBFL_temp_path}/dependencies_notes.html"\
       "${LFBFL_html_path_start}.7"
 
+    insert_file_at_token "${LFBFL_html_path_start}.7"\
+      @files_listing_HTMLPreInput@\
+      "${LFBFL_temp_path}/files_listing.html.tpl"\
+      "${LFBFL_html_path_start}.8"
+
     overwrite_if_not_equal "./${LFBFL_repository_name}.html"\
-      "${LFBFL_html_path_start}.7" 1
+      "${LFBFL_html_path_start}.8" 1
     LFBFL_i_HTML_updated=$?
   fi
 
@@ -4072,7 +4667,7 @@ create_PDF "$@"
 </pre>
 
 
-<h3 id="subsection2.11">2.11
+<h3 id="subsection3.12">3.12
 build_and_checks_dependencies/generate_from_template.libr.sh
 </h3>
 <pre class="numbered_lines">
@@ -4198,7 +4793,7 @@ insert_file_at_token(){
 </pre>
 
 
-<h3 id="subsection2.12">2.12
+<h3 id="subsection3.13">3.13
 build_and_checks_dependencies/get_common_text_glob_patterns.libr.sh
 </h3>
 <pre class="numbered_lines">
@@ -4301,7 +4896,7 @@ get_COMMON_TEXT_FILES_GLOB_PATTERNS(){
 </pre>
 
 
-<h3 id="subsection2.13">2.13
+<h3 id="subsection3.14">3.14
 build_and_checks_dependencies/grammar_and_spelling_check.libr.sh
 </h3>
 <pre class="numbered_lines">
@@ -4352,12 +4947,13 @@ grammar_and_spelling_check(){
   get_verbose_option "$@"
   local LFBFL_work_directory=""
   get_work_directory_option "$@"
-  pushd_to_work_directory\
-    &amp;&amp; trap 'popd_from_work_directory' RETURN
+  declare -a LFBFL_return_traps_stack
+  local LFBFL_previous_return_trap
+  init_return_trap
+  pushd_to_work_directory --trap-popd
   can_continue_after_enhanced_pushd || return 1
 
-  enhanced_set_shell_option pipefail\
-    &amp;&amp; trap 'enhanced_unset_shell_option pipefail' RETURN
+  enhanced_set_shell_option pipefail --trap-unset
 
   get_COMMON_TEXT_FILES_GLOB_PATTERNS
   local LFBFL_grammar_and_spelling_checker_command=""
@@ -4404,7 +5000,7 @@ grammar_and_spelling_check(){
 </pre>
 
 
-<h3 id="subsection2.14">2.14
+<h3 id="subsection3.15">3.15
 build_and_checks_dependencies/licenses_templates/<!--
 -->build_licenses_templates.exec.sh
 </h3>
@@ -4457,9 +5053,11 @@ build_licenses_templates(){
   get_verbose_option "$@"
   local LFBFL_work_directory=""
   get_work_directory_option "$@"
+  declare -a LFBFL_return_traps_stack
+  local LFBFL_previous_return_trap
+  init_return_trap
 
-  enhanced_set_shell_option pipefail\
-    &amp;&amp; trap 'enhanced_unset_shell_option pipefail' RETURN
+  enhanced_set_shell_option pipefail --trap-unset
 
   local LFBFL_s_format
 
@@ -4616,8 +5214,7 @@ build_licenses_templates(){
 
   # Now that base license templates generated languages license
   # templates in working directory, we can go there.
-  pushd_to_work_directory\
-    &amp;&amp; trap 'popd_from_work_directory' RETURN
+  pushd_to_work_directory --trap-popd
   can_continue_after_enhanced_pushd || return 1
 
   local LFBFL_data_file_name="build_and_checks_variables/"
@@ -4726,7 +5323,7 @@ build_licenses_templates(){
     if [[ -z "${LFBFL_s_files_paths}" ]]; then
       if [[ LFBFL_i_verbose -eq 1 ]]; then
         LFBFL_s_format="build_licenses_templates: "
-        LFBFL_s_format+="No file found with extension .%s or .%s.tpl."
+        LFBFL_s_format+="No file found with extension .%s or .%s.tpl.\n"
         # shellcheck disable=SC2059
         printf "${LFBFL_s_format}" "${LFBFL_key}" "${LFBFL_key}"
       fi
@@ -4765,9 +5362,9 @@ build_licenses_templates(){
     declare -ir LFBFL_i_result=$?
     if [[ LFBFL_i_verbose -eq 1 ]]; then
       if [[ LFBFL_i_result -eq 1 ]]; then
-        printf "License template %s updated." "$1"
+        printf "License template %s updated.\n" "$1"
       elif [[ LFBFL_i_result -eq 2 ]]; then
-        printf "License template %s created." "$1"
+        printf "License template %s created.\n" "$1"
       fi
     fi
   }
@@ -4796,7 +5393,7 @@ build_licenses_templates(){
     if [[ -z "${LFBFL_s_files_paths}" ]]; then
       if [[ LFBFL_i_verbose -eq 1 ]]; then
         LFBFL_s_format="build_licenses_templates: "
-        LFBFL_s_format+="No file found with extension .%s or .%s.tpl."
+        LFBFL_s_format+="No file found with extension .%s or .%s.tpl.\n"
         # shellcheck disable=SC2059
         printf "${LFBFL_s_format}" "${LFBFL_key}" "${LFBFL_key}"
       fi
@@ -4824,7 +5421,7 @@ build_licenses_templates "$@"
 </pre>
 
 
-<h3 id="subsection2.15">2.15
+<h3 id="subsection3.16">3.16
 build_and_checks_dependencies/licenses_templates/<!--
 -->license_file_header_AGPLv3+.tpl
 </h3>
@@ -4854,7 +5451,7 @@ If not, see &lt;https://www.gnu.org/licenses/>.
 </pre>
 
 
-<h3 id="subsection2.16">2.16
+<h3 id="subsection3.17">3.17
 build_and_checks_dependencies/licenses_templates/<!--
 -->license_file_header_GPLv3+.tpl
 </h3>
@@ -4884,7 +5481,7 @@ If not, see &lt;https://www.gnu.org/licenses/>.
 </pre>
 
 
-<h3 id="subsection2.17">2.17
+<h3 id="subsection3.18">3.18
 build_and_checks_dependencies/licenses_templates/<!--
 -->license_file_header_LGPLv3+.tpl
 </h3>
@@ -4914,7 +5511,7 @@ If not, see &lt;https://www.gnu.org/licenses/>.
 </pre>
 
 
-<h3 id="subsection2.18">2.18
+<h3 id="subsection3.19">3.19
 build_and_checks_dependencies/lines_counts.libr.sh
 </h3>
 <pre class="numbered_lines">
@@ -4960,12 +5557,13 @@ all_code_lines(){
   get_verbose_option "$@"
   local LFBFL_work_directory=""
   get_work_directory_option "$@"
-  pushd_to_work_directory\
-    &amp;&amp; trap 'popd_from_work_directory' RETURN
+  declare -a LFBFL_return_traps_stack
+  local LFBFL_previous_return_trap
+  init_return_trap
+  pushd_to_work_directory --trap-popd
   can_continue_after_enhanced_pushd || return 1
 
-  enhanced_set_shell_option pipefail\
-    &amp;&amp; trap 'enhanced_unset_shell_option pipefail' RETURN
+  enhanced_set_shell_option pipefail --trap-unset
 
   get_COMMON_TEXT_FILES_GLOB_PATTERNS
   local LFBFL_pattern
@@ -4987,15 +5585,19 @@ all_self_code_lines(){
   get_verbose_option "$@"
   local LFBFL_work_directory=""
   get_work_directory_option "$@"
-  pushd_to_work_directory\
-    &amp;&amp; trap 'popd_from_work_directory' RETURN
+  declare -a LFBFL_return_traps_stack
+  local LFBFL_previous_return_trap
+  init_return_trap
+  pushd_to_work_directory --trap-popd
   can_continue_after_enhanced_pushd || return 1
 
-  enhanced_set_shell_option pipefail\
-    &amp;&amp; trap 'enhanced_unset_shell_option pipefail' RETURN
+  enhanced_set_shell_option pipefail --trap-unset
+
+  declare -a LFBFL_common_options=("$@")
+  keep_options LFBFL_common_options --verbose
 
   # below and another lines, see SC2145 false positive
-  all_code_lines "$@" \
+  all_code_lines "${LFBFL_common_options[@]}" \
     | relevant_grep\
     | not_license_grep\
     | not_main_tex_grep\
@@ -5006,13 +5608,23 @@ all_self_code_lines(){
 all_self_empty_code_lines(){
   # Options:
   #   --verbose
+  #   --work-directory=""
   declare -i LFBFL_i_verbose=0
   get_verbose_option "$@"
+  local LFBFL_work_directory=""
+  get_work_directory_option "$@"
+  declare -a LFBFL_return_traps_stack
+  local LFBFL_previous_return_trap
+  init_return_trap
+  pushd_to_work_directory --trap-popd
+  can_continue_after_enhanced_pushd || return 1
 
-  enhanced_set_shell_option pipefail\
-    &amp;&amp; trap 'enhanced_unset_shell_option pipefail' RETURN
+  enhanced_set_shell_option pipefail --trap-unset
 
-  all_self_code_lines "$@" \
+  declare -a LFBFL_common_options=("$@")
+  keep_options LFBFL_common_options --verbose
+
+  all_self_code_lines "${LFBFL_common_options[@]}" \
     | empty_lines_after_file_name
 }
 
@@ -5020,24 +5632,41 @@ all_self_empty_code_lines(){
 all_self_not_empty_code_lines(){
   # Options:
   #   --verbose
+  #   --work-directory=""
   declare -i LFBFL_i_verbose=0
   get_verbose_option "$@"
+  local LFBFL_work_directory=""
+  get_work_directory_option "$@"
+  declare -a LFBFL_return_traps_stack
+  local LFBFL_previous_return_trap
+  init_return_trap
+  pushd_to_work_directory --trap-popd
+  can_continue_after_enhanced_pushd || return 1
 
-  enhanced_set_shell_option pipefail\
-    &amp;&amp; trap 'enhanced_unset_shell_option pipefail' RETURN
+  enhanced_set_shell_option pipefail --trap-unset
 
-  all_self_code_lines "$@" \
+  declare -a LFBFL_common_options=("$@")
+  keep_options LFBFL_common_options --verbose
+
+  all_self_code_lines "${LFBFL_common_options[@]}" \
     | not_empty_lines_after_file_name
 }
 
 code_lines_count_all(){
   # Options:
   #   --verbose
+  #   --work-directory=""
   declare -i LFBFL_i_verbose=0
   get_verbose_option "$@"
+  local LFBFL_work_directory=""
+  get_work_directory_option "$@"
+  declare -a LFBFL_return_traps_stack
+  local LFBFL_previous_return_trap
+  init_return_trap
+  pushd_to_work_directory --trap-popd
+  can_continue_after_enhanced_pushd || return 1
 
-  enhanced_set_shell_option pipefail\
-    &amp;&amp; trap 'enhanced_unset_shell_option pipefail' RETURN
+  enhanced_set_shell_option pipefail --trap-unset
 
   declare -gi i_code_lines_count_all_result
   i_code_lines_count_all_result=$(
@@ -5053,11 +5682,18 @@ code_lines_count_all(){
 code_lines_count_empty(){
   # Options:
   #   --verbose
+  #   --work-directory=""
   declare -i LFBFL_i_verbose=0
   get_verbose_option "$@"
+  local LFBFL_work_directory=""
+  get_work_directory_option "$@"
+  declare -a LFBFL_return_traps_stack
+  local LFBFL_previous_return_trap
+  init_return_trap
+  pushd_to_work_directory --trap-popd
+  can_continue_after_enhanced_pushd || return 1
 
-  enhanced_set_shell_option pipefail\
-    &amp;&amp; trap 'enhanced_unset_shell_option pipefail' RETURN
+  enhanced_set_shell_option pipefail --trap-unset
 
   declare -gi i_code_lines_count_empty_result
   # shellcheck disable=SC2119
@@ -5074,11 +5710,18 @@ code_lines_count_empty(){
 code_lines_count_not_empty(){
   # Options:
   #   --verbose
+  #   --work-directory=""
   declare -i LFBFL_i_verbose=0
   get_verbose_option "$@"
+  local LFBFL_work_directory=""
+  get_work_directory_option "$@"
+  declare -a LFBFL_return_traps_stack
+  local LFBFL_previous_return_trap
+  init_return_trap
+  pushd_to_work_directory --trap-popd
+  can_continue_after_enhanced_pushd || return 1
 
-  enhanced_set_shell_option pipefail\
-    &amp;&amp; trap 'enhanced_unset_shell_option pipefail' RETURN
+  enhanced_set_shell_option pipefail --trap-unset
 
   declare -gi i_code_lines_count_not_empty_result
   # shellcheck disable=SC2119
@@ -5094,7 +5737,7 @@ code_lines_count_not_empty(){
 </pre>
 
 
-<h3 id="subsection2.19">2.19
+<h3 id="subsection3.20">3.20
 build_and_checks_dependencies/lines_filters.libr.sh
 </h3>
 <pre class="numbered_lines">
@@ -5625,7 +6268,7 @@ relevant_grep(){
 </pre>
 
 
-<h3 id="subsection2.20">2.20
+<h3 id="subsection3.21">3.21
 build_and_checks_dependencies/lines_maps.libr.sh
 </h3>
 <pre class="numbered_lines">
@@ -5712,7 +6355,7 @@ replace_non_ascii_spaces(){
 </pre>
 
 
-<h3 id="subsection2.21">2.21
+<h3 id="subsection3.22">3.22
 build_and_checks_dependencies/overwrite_if_not_equal.libr.sh
 </h3>
 <pre class="numbered_lines">
@@ -5810,7 +6453,7 @@ overwrite_if_not_equal(){
 </pre>
 
 
-<h3 id="subsection2.22">2.22
+<h3 id="subsection3.23">3.23
 build_and_checks_dependencies/python_black_complement.libr.sh
 </h3>
 <pre class="numbered_lines">
@@ -5857,12 +6500,13 @@ check_no_empty_line_after_python_function_docstring(){
   get_verbose_option "$@"
   local LFBFL_work_directory=""
   get_work_directory_option "$@"
-  pushd_to_work_directory\
-    &amp;&amp; trap 'popd_from_work_directory' RETURN
+  declare -a LFBFL_return_traps_stack
+  local LFBFL_previous_return_trap
+  init_return_trap
+  pushd_to_work_directory --trap-popd
   can_continue_after_enhanced_pushd || return 1
 
-  enhanced_set_bash_option globstar\
-    &amp;&amp; trap 'enhanced_unset_bash_option globstar' RETURN
+  enhanced_set_bash_option globstar --trap-unset
 
   [[ LFBFL_i_verbose -eq 1 ]]\
     &amp;&amp; printf "Checking empty lines after Python function docstrings\n"
@@ -5875,21 +6519,26 @@ python_black_complement(){
   # Options:
   #   --verbose
   #   --work-directory=""
-  # shellcheck disable=SC2034
   declare -i LFBFL_i_verbose=0
   get_verbose_option "$@"
   local LFBFL_work_directory=""
   get_work_directory_option "$@"
-  pushd_to_work_directory\
-    &amp;&amp; trap 'popd_from_work_directory' RETURN
+  declare -a LFBFL_return_traps_stack
+  local LFBFL_previous_return_trap
+  init_return_trap
+  pushd_to_work_directory --trap-popd
   can_continue_after_enhanced_pushd || return 1
 
-  check_no_empty_line_after_python_function_docstring "$@"
+  declare -a LFBFL_common_options=("$@")
+  keep_options LFBFL_common_options --verbose
+
+  check_no_empty_line_after_python_function_docstring\
+    "${LFBFL_common_options[@]}"
 }
 </pre>
 
 
-<h3 id="subsection2.23">2.23
+<h3 id="subsection3.24">3.24
 build_and_checks_dependencies/python_isort_complement.libr.sh
 </h3>
 <pre class="numbered_lines">
@@ -5935,15 +6584,16 @@ check_collections_abc_place(){
   get_verbose_option "$@"
   local LFBFL_work_directory=""
   get_work_directory_option "$@"
-  pushd_to_work_directory\
-    &amp;&amp; trap 'popd_from_work_directory' RETURN
+  declare -a LFBFL_return_traps_stack
+  local LFBFL_previous_return_trap
+  init_return_trap
+  pushd_to_work_directory --trap-popd
   can_continue_after_enhanced_pushd || return 1
 
   [[ LFBFL_i_verbose -eq 1 ]]\
     &amp;&amp; printf "Checking import of _collections_abc is at the right place\n"
 
-  enhanced_set_shell_option pipefail\
-    &amp;&amp; trap 'enhanced_unset_shell_option pipefail' RETURN
+  enhanced_set_shell_option pipefail --trap-unset
 
   declare -r LFBFL_temp=".check_collections_abc_place.temp"
   local LFBFL_file_path
@@ -5972,21 +6622,25 @@ python_isort_complement(){
   # Options:
   #   --verbose
   #   --work-directory=""
-  # shellcheck disable=SC2034
   declare -i LFBFL_i_verbose=0
   get_verbose_option "$@"
   local LFBFL_work_directory=""
   get_work_directory_option "$@"
-  pushd_to_work_directory\
-    &amp;&amp; trap 'popd_from_work_directory' RETURN
+  declare -a LFBFL_return_traps_stack
+  local LFBFL_previous_return_trap
+  init_return_trap
+  pushd_to_work_directory --trap-popd
   can_continue_after_enhanced_pushd || return 1
 
-  check_collections_abc_place "$@"
+  declare -a LFBFL_common_options=("$@")
+  keep_options LFBFL_common_options --verbose
+
+  check_collections_abc_place "${LFBFL_common_options[@]}"
 }
 </pre>
 
 
-<h3 id="subsection2.24">2.24
+<h3 id="subsection3.25">3.25
 build_and_checks_dependencies/repository_data.libr.sh
 </h3>
 <pre class="numbered_lines">
@@ -6029,9 +6683,11 @@ get_upgrade_venvs_time_interval_in_seconds(){
   #   --verbose
   declare -i LFBFL_i_verbose=0
   get_verbose_option "$@"
+  declare -a LFBFL_return_traps_stack
+  local LFBFL_previous_return_trap
+  init_return_trap
 
-  enhanced_set_bash_option extglob\
-    &amp;&amp; trap 'enhanced_unset_bash_option extglob' RETURN
+  enhanced_set_bash_option extglob --trap-unset
 
   grep_variable "$1"\
     upgrade_venvs_time_interval_in_seconds\
@@ -6055,7 +6711,7 @@ get_upgrade_venvs_time_interval_in_seconds(){
 </pre>
 
 
-<h3 id="subsection2.25">2.25
+<h3 id="subsection3.26">3.26
 build_and_checks_dependencies/shell_checks_complement.libr.sh
 </h3>
 <pre class="numbered_lines">
@@ -6096,12 +6752,13 @@ check_no_size_of_array_first_element(){
   get_verbose_option "$@"
   local LFBFL_work_directory=""
   get_work_directory_option "$@"
-  pushd_to_work_directory\
-    &amp;&amp; trap 'popd_from_work_directory' RETURN
+  declare -a LFBFL_return_traps_stack
+  local LFBFL_previous_return_trap
+  init_return_trap
+  pushd_to_work_directory --trap-popd
   can_continue_after_enhanced_pushd || return 1
 
-  enhanced_set_bash_option globstar\
-    &amp;&amp; trap 'enhanced_unset_bash_option globstar' RETURN
+  enhanced_set_bash_option globstar --trap-unset
 
   local LFBFL_s="Checking that shell scripts do not"
   LFBFL_s+=" contain wrong array size expansion."
@@ -6120,8 +6777,10 @@ check_no_misplaced_then(){
   get_verbose_option "$@"
   local LFBFL_work_directory=""
   get_work_directory_option "$@"
-  pushd_to_work_directory\
-    &amp;&amp; trap 'popd_from_work_directory' RETURN
+  declare -a LFBFL_return_traps_stack
+  local LFBFL_previous_return_trap
+  init_return_trap
+  pushd_to_work_directory --trap-popd
   can_continue_after_enhanced_pushd || return 1
 
   local LFBFL_arg
@@ -6136,8 +6795,7 @@ check_no_misplaced_then(){
   declare -i LFBFL_i_max_previous_line_length
   LFBFL_i_max_previous_line_length=$((LFBFL_i_max_line_length - 5))
 
-  enhanced_set_bash_option globstar\
-    &amp;&amp; trap 'enhanced_unset_bash_option globstar' RETURN
+  enhanced_set_bash_option globstar --trap-unset
 
   [[ LFBFL_i_verbose -eq 1 ]]\
     &amp;&amp; printf\
@@ -6156,22 +6814,26 @@ shell_checks_complement(){
   # Options:
   #   --verbose
   #   --work-directory=""
-  # shellcheck disable=SC2034
   declare -i LFBFL_i_verbose=0
   get_verbose_option "$@"
   local LFBFL_work_directory=""
   get_work_directory_option "$@"
-  pushd_to_work_directory\
-    &amp;&amp; trap 'popd_from_work_directory' RETURN
+  declare -a LFBFL_return_traps_stack
+  local LFBFL_previous_return_trap
+  init_return_trap
+  pushd_to_work_directory --trap-popd
   can_continue_after_enhanced_pushd || return 1
 
-  check_no_size_of_array_first_element "$@"
-  check_no_misplaced_then "$@"
+  declare -a LFBFL_common_options=("$@")
+  keep_options LFBFL_common_options --verbose
+
+  check_no_size_of_array_first_element "${LFBFL_common_options[@]}"
+  check_no_misplaced_then "${LFBFL_common_options[@]}"
 }
 </pre>
 
 
-<h3 id="subsection2.26">2.26
+<h3 id="subsection3.27">3.27
 build_and_checks_dependencies/split_score.exec.php
 </h3>
 <pre class="numbered_lines">
@@ -6232,7 +6894,7 @@ echo(
 </pre>
 
 
-<h3 id="subsection2.27">2.27
+<h3 id="subsection3.28">3.28
 build_and_checks_dependencies/split_score.libr.php
 </h3>
 <pre class="numbered_lines">
@@ -6303,7 +6965,7 @@ function generate_split_score(
 </pre>
 
 
-<h3 id="subsection2.28">2.28
+<h3 id="subsection3.29">3.29
 build_and_checks_dependencies/strings_functions.libr.sh
 </h3>
 <pre class="numbered_lines">
@@ -7472,6 +8134,8 @@ split_last_line(){
   # $5=split_score_command
   # $6=split_score_command_properties
   # $7=forbidden_previous_character ('\' usually)
+  # Options:
+  #   --verbose
   # In general, a prefix/suffix can be a required line prefix/suffix
   # for all final lines like a comment prefix,
   # or it can be a continuation line prefix/suffix applied only
@@ -7493,8 +8157,13 @@ split_last_line(){
   # The given max_length is the goal.
   # This function adapts the effective max position for the split by
   # taking into account the length of the suffix.
-  enhanced_set_shell_option pipefail\
-    &amp;&amp; trap 'enhanced_unset_shell_option pipefail' RETURN
+  declare -i LFBFL_i_verbose=0
+  get_verbose_option "$@"
+  declare -a LFBFL_return_traps_stack
+  local LFBFL_previous_return_trap
+  init_return_trap
+
+  enhanced_set_shell_option pipefail --trap-unset
 
   declare -g split_last_line_result="$1"
   declare -ir LFBFL_i_overlength=$(($3 + 1))
@@ -7573,7 +8242,7 @@ repeated_split_last_line(){
 </pre>
 
 
-<h3 id="subsection2.29">2.29
+<h3 id="subsection3.30">3.30
 build_and_checks_dependencies/too_long_code_lines.libr.sh
 </h3>
 <pre class="numbered_lines">
@@ -7630,8 +8299,10 @@ too_long_code_lines(){
   get_verbose_option "$@"
   local LFBFL_work_directory=""
   get_work_directory_option "$@"
-  pushd_to_work_directory\
-    &amp;&amp; trap 'popd_from_work_directory' RETURN
+  declare -a LFBFL_return_traps_stack
+  local LFBFL_previous_return_trap
+  init_return_trap
+  pushd_to_work_directory --trap-popd
   can_continue_after_enhanced_pushd || return 1
 
   local LFBFL_arg
@@ -7648,8 +8319,7 @@ too_long_code_lines(){
   # shellcheck disable=SC2248
   get_overlength_regexp ${LFBFL_i_overlength}
 
-  enhanced_set_shell_option pipefail\
-    &amp;&amp; trap 'enhanced_unset_shell_option pipefail' RETURN
+  enhanced_set_shell_option pipefail --trap-unset
 
   get_COMMON_TEXT_FILES_GLOB_PATTERNS
   local LFBFL_pattern
@@ -7710,7 +8380,7 @@ too_long_code_lines(){
 </pre>
 
 
-<h3 id="subsection2.30">2.30
+<h3 id="subsection3.31">3.31
 build_and_checks_dependencies/update_common_build_and_checks.exec.sh
 </h3>
 <pre class="numbered_lines">
@@ -7762,6 +8432,7 @@ update_common_build_and_checks(){
 
   declare -ar LFBFL_files_names=(
     "build_md_from_printable_md.exec.sh"
+    "build_dependencies_notes.exec.php"
     "check_shell_scripts_beginnings.libr.sh"
     "check_shell_scripts_indentation.libr.sh"
     "check_URLs.libr.sh"
@@ -7840,7 +8511,7 @@ update_common_build_and_checks "$@"
 </pre>
 
 
-<h3 id="subsection2.31">2.31
+<h3 id="subsection3.32">3.32
 build_and_checks_dependencies/update_or_check_files_names_listing.exec.sh
 </h3>
 <pre class="numbered_lines">
@@ -7893,8 +8564,10 @@ update_or_check_files_names_listing(){
   get_verbose_option "$@"
   local LFBFL_work_directory=""
   get_work_directory_option "$@"
-  pushd_to_work_directory\
-    &amp;&amp; trap 'popd_from_work_directory' RETURN
+  declare -a LFBFL_return_traps_stack
+  local LFBFL_previous_return_trap
+  init_return_trap
+  pushd_to_work_directory --trap-popd
   can_continue_after_enhanced_pushd || return 1
 
   declare -i LFBFL_i_write=0
@@ -7909,8 +8582,7 @@ update_or_check_files_names_listing(){
   fi
   readonly LFBFL_i_append
 
-  enhanced_set_shell_option pipefail\
-    &amp;&amp; trap 'enhanced_unset_shell_option pipefail' RETURN
+  enhanced_set_shell_option pipefail --trap-unset
 
   LFBFL_subdir2="build_and_checks_variables"
   local LFBFL_listing="./${LFBFL_subdir2}/files_names_listing.txt"
@@ -7951,7 +8623,8 @@ update_or_check_files_names_listing(){
   declare -a LFBFL_arr_files_paths
   if [[ -n "${LFBFL_s_files_paths}" ]]; then
     if [[ LFBFL_i_verbose -eq 1 ]]; then
-      printf "update_or_check_files_names_listing: Some files to process."
+      printf\
+        "update_or_check_files_names_listing: Some files to process.\n"
     fi
     mapfile -t LFBFL_arr_files_paths &lt;&lt;&lt; "${LFBFL_s_files_paths}"
   fi
@@ -8034,7 +8707,7 @@ update_or_check_files_names_listing "$@"
 </pre>
 
 
-<h3 id="subsection2.32">2.32
+<h3 id="subsection3.33">3.33
 build_and_checks_variables/.gitignore
 </h3>
 <pre class="numbered_lines">
@@ -8044,7 +8717,7 @@ upgrade_venvs_ts
 </pre>
 
 
-<h3 id="subsection2.33">2.33
+<h3 id="subsection3.34">3.34
 build_and_checks_variables/bandit.ini
 </h3>
 <pre class="numbered_lines">
@@ -8053,7 +8726,7 @@ build_and_checks_variables/bandit.ini
 </pre>
 
 
-<h3 id="subsection2.34">2.34
+<h3 id="subsection3.35">3.35
 build_and_checks_variables/bandit_baseline.json
 </h3>
 <pre class="numbered_lines">
@@ -8061,7 +8734,7 @@ build_and_checks_variables/bandit_baseline.json
 </pre>
 
 
-<h3 id="subsection2.35">2.35
+<h3 id="subsection3.36">3.36
 build_and_checks_variables/black.toml
 </h3>
 <pre class="numbered_lines">
@@ -8070,7 +8743,277 @@ line-length = 75
 </pre>
 
 
-<h3 id="subsection2.36">2.36
+<h3 id="subsection3.37">3.37
+build_and_checks_variables/dependencies_data.json
+</h3>
+<pre class="numbered_lines">
+[
+  { "dependency_name": "Bash", "URLs": [
+      "https://www.gnu.org/software/bash/",
+      "https://tiswww.case.edu/php/chet/bash/bashtop.html",
+      "https://savannah.gnu.org/projects/bash/"
+  ] },
+  { "dependency_name": "GNU coreutils", "URLs": [
+      "https://www.gnu.org/software/coreutils/",
+      "https://savannah.gnu.org/projects/coreutils/"
+  ] },
+  { "dependency_name": "uutils coreutils", "URLs": [
+      "https://uutils.github.io/coreutils/",
+      "https://github.com/uutils/coreutils"
+  ] },
+  { "dependency_name": "diff (GNU diffutils)", "URLs": [
+      "https://www.gnu.org/software/diffutils/",
+      "https://savannah.gnu.org/projects/diffutils/"
+  ] },
+  { "dependency_name": "find, xargs (GNU findutils)", "URLs": [
+      "https://www.gnu.org/software/findutils/",
+      "https://savannah.gnu.org/projects/findutils/"
+  ] },
+  { "dependency_name": "grep (GNU grep)", "URLs": [
+      "https://www.gnu.org/software/grep/",
+      "https://savannah.gnu.org/projects/grep/"
+  ] },
+  { "dependency_name": "sed (GNU sed)", "URLs": [
+      "https://www.gnu.org/software/sed/",
+      "https://savannah.gnu.org/projects/sed/"
+  ] },
+  { "dependency_name": "ShellCheck", "URLs": [
+      "https://www.shellcheck.net/",
+      "https://github.com/koalaman/shellcheck"
+  ] },
+  { "dependency_name": "GNU Wget", "URLs": [
+      "https://www.gnu.org/software/wget/",
+      "https://savannah.gnu.org/projects/wget/"
+  ] },
+  { "dependency_name": "more of util-linux", "URLs": [
+      "https://www.kernel.org/pub/linux/utils/util-linux/",
+      "https://git.kernel.org/pub/scm/utils/util-linux/util-linux.git/",
+      {
+        "URL": "https://github.com/util-linux/util-linux",
+        "comment": "official?"
+      }
+  ] },
+  { "dependency_name": "pandoc", "URLs": [
+      "https://pandoc.org/",
+      "https://github.com/jgm/pandoc"
+  ] },
+  { "dependency_name": "pdftex/pdflatex", "URLs": [
+      "https://www.tug.org/applications/pdftex/",
+      "https://tug.org/texlive/svn/"
+  ] },
+  { "dependency_name": "tree", "URLs": [
+      "https://oldmanprogrammer.net/source.php?dir=projects/tree",
+      "https://gitlab.com/OldManProgrammer/unix-tree",
+      "https://github.com/Old-Man-Programmer/tree"
+  ] },
+  { "dependency_name": "git", "URLs": [
+      "https://git-scm.com/about",
+      "https://github.com/git/git"
+  ] },
+  { "dependency_name": "pylint", "URLs": [
+      "https://www.pylint.org/",
+      "https://pylint.readthedocs.io/en/stable/",
+      "https://github.com/pylint-dev/pylint",
+      "https://pypi.org/project/pylint/"
+  ] },
+  { "dependency_name": "notify-send", "URLs": [
+      "https://gitlab.gnome.org/GNOME/libnotify/",
+      "https://gnome.pages.gitlab.gnome.org/libnotify/"
+  ] },
+  { "dependency_name": "black", "URLs": [
+      "https://github.com/psf/black",
+      "https://black.readthedocs.io/en/stable/",
+      "https://pypi.org/project/black/"
+  ] },
+  { "dependency_name": "isort", "URLs": [
+      "https://pycqa.github.io/isort/",
+      "https://github.com/pycqa/isort/",
+      "https://pypi.org/project/isort/"
+  ] },
+  { "dependency_name": "mypy", "URLs": [
+      "https://mypy-lang.org/",
+      "https://mypy.readthedocs.io/en/stable/",
+      "https://github.com/python/mypy",
+      "https://pypi.org/project/mypy/"
+  ] },
+  { "dependency_name": "pip", "URLs": [
+      "https://pip.pypa.io/en/stable/",
+      "https://github.com/pypa/pip",
+      {
+        "URL": "https://pypi.org/project/pip/",
+        "comment": "(egg and chicken ;) )"
+      }
+  ] },
+  { "dependency_name": "ruff", "URLs": [
+      "https://docs.astral.sh/ruff/",
+      "https://github.com/astral-sh/ruff",
+      "https://pypi.org/project/ruff/"
+  ] },
+  { "dependency_name": "bandit", "URLs": [
+      "https://bandit.readthedocs.io/en/latest/",
+      "https://github.com/PyCQA/bandit",
+      "https://pypi.org/project/bandit/"
+  ] },
+  { "dependency_name": "phpmd", "URLs": [
+      "https://phpmd.org/",
+      "https://github.com/phpmd/phpmd",
+      "https://packagist.org/packages/phpmd/phpmd"
+  ] },
+  { "dependency_name": "php", "URLs": [
+      "https://www.php.net/",
+      "https://github.com/php/php-src"
+  ] },
+  { "dependency_name": "tex", "URLs": [
+      "https://ctan.org/tex-archive/systems/knuth/dist/tex"
+  ] },
+  { "dependency_name": "pcregrep, pcre2grep", "URLs": [
+      "https://www.pcre.org/",
+      "https://pcre2project.github.io/pcre2/",
+      "https://github.com/PCRE2Project/pcre1",
+      "https://github.com/PCRE2Project/pcre2",
+      "https://github.com/PCRE2Project/pcre2/blob/main/src/pcre2grep.c"
+  ] },
+  { "dependency_name": "python3", "URLs": [
+      "https://www.python.org/",
+      "https://docs.python.org/3/"
+  ] }
+]
+</pre>
+
+
+<h3 id="subsection3.38">3.38
+build_and_checks_variables/dependencies_notes.txt
+</h3>
+<pre class="numbered_lines">
+Bash can be found at the following URLs:
+https://www.gnu.org/software/bash/
+https://tiswww.case.edu/php/chet/bash/bashtop.html
+https://savannah.gnu.org/projects/bash/
+
+GNU coreutils can be found at the following URLs:
+https://www.gnu.org/software/coreutils/
+https://savannah.gnu.org/projects/coreutils/
+
+uutils coreutils can be found at the following URLs:
+https://uutils.github.io/coreutils/
+https://github.com/uutils/coreutils
+
+diff (GNU diffutils) can be found at the following URLs:
+https://www.gnu.org/software/diffutils/
+https://savannah.gnu.org/projects/diffutils/
+
+find, xargs (GNU findutils) can be found at the following URLs:
+https://www.gnu.org/software/findutils/
+https://savannah.gnu.org/projects/findutils/
+
+grep (GNU grep) can be found at the following URLs:
+https://www.gnu.org/software/grep/
+https://savannah.gnu.org/projects/grep/
+
+sed (GNU sed) can be found at the following URLs:
+https://www.gnu.org/software/sed/
+https://savannah.gnu.org/projects/sed/
+
+ShellCheck can be found at the following URLs:
+https://www.shellcheck.net/
+https://github.com/koalaman/shellcheck
+
+GNU Wget can be found at the following URLs:
+https://www.gnu.org/software/wget/
+https://savannah.gnu.org/projects/wget/
+
+more of util-linux can be found at the following URLs:
+https://www.kernel.org/pub/linux/utils/util-linux/
+https://git.kernel.org/pub/scm/utils/util-linux/util-linux.git/
+https://github.com/util-linux/util-linux official?
+
+pandoc can be found at the following URLs:
+https://pandoc.org/
+https://github.com/jgm/pandoc
+
+pdftex/pdflatex can be found at the following URLs:
+https://www.tug.org/applications/pdftex/
+https://tug.org/texlive/svn/
+
+tree can be found at the following URLs:
+https://oldmanprogrammer.net/source.php?dir=projects/tree
+https://gitlab.com/OldManProgrammer/unix-tree
+https://github.com/Old-Man-Programmer/tree
+
+git can be found at the following URLs:
+https://git-scm.com/about
+https://github.com/git/git
+
+pylint can be found at the following URLs:
+https://www.pylint.org/
+https://pylint.readthedocs.io/en/stable/
+https://github.com/pylint-dev/pylint
+https://pypi.org/project/pylint/
+
+notify-send can be found at the following URLs:
+https://gitlab.gnome.org/GNOME/libnotify/
+https://gnome.pages.gitlab.gnome.org/libnotify/
+
+black can be found at the following URLs:
+https://github.com/psf/black
+https://black.readthedocs.io/en/stable/
+https://pypi.org/project/black/
+
+isort can be found at the following URLs:
+https://pycqa.github.io/isort/
+https://github.com/pycqa/isort/
+https://pypi.org/project/isort/
+
+mypy can be found at the following URLs:
+https://mypy-lang.org/
+https://mypy.readthedocs.io/en/stable/
+https://github.com/python/mypy
+https://pypi.org/project/mypy/
+
+pip can be found at the following URLs:
+https://pip.pypa.io/en/stable/
+https://github.com/pypa/pip
+https://pypi.org/project/pip/ (egg and chicken ;) )
+
+ruff can be found at the following URLs:
+https://docs.astral.sh/ruff/
+https://github.com/astral-sh/ruff
+https://pypi.org/project/ruff/
+
+bandit can be found at the following URLs:
+https://bandit.readthedocs.io/en/latest/
+https://github.com/PyCQA/bandit
+https://pypi.org/project/bandit/
+
+phpmd can be found at the following URLs:
+https://phpmd.org/
+https://github.com/phpmd/phpmd
+https://packagist.org/packages/phpmd/phpmd
+
+php can be found at the following URLs:
+https://www.php.net/
+https://github.com/php/php-src
+
+tex can be found at the following URL:
+https://ctan.org/tex-archive/systems/knuth/dist/tex
+
+pcregrep, pcre2grep can be found at the following URLs:
+https://www.pcre.org/
+https://pcre2project.github.io/pcre2/
+https://github.com/PCRE2Project/pcre1
+https://github.com/PCRE2Project/pcre2
+https://github.com/PCRE2Project/pcre2/blob/main/src/pcre2grep.c
+
+python3 can be found at the following URLs:
+https://www.python.org/
+https://docs.python.org/3/
+
+If you see something that I missed regarding my dependencies,
+please tell me/email me :).
+</pre>
+
+
+<h3 id="subsection3.39">3.39
 build_and_checks_variables/DevOrSysAdminScripts.html.tpl
 </h3>
 <pre class="numbered_lines">
@@ -8205,7 +9148,8 @@ Code lines: @number_of_lines@
 
 &lt;ol class="level1">
   &lt;li>&lt;a href="#section1">Files Tree&lt;/a>&lt;/li>
-  &lt;li>&lt;a href="#section2">Listing of files&lt;/a>&lt;br>
+  &lt;li>&lt;a href="#section2">Notes on licenses and dependencies&lt;/a>&lt;/li>
+  &lt;li>&lt;a href="#section3">Listing of files&lt;/a>&lt;br>
     &lt;ol class="level2">
       @files_lis@
     &lt;/ol>
@@ -8222,7 +9166,7 @@ Code lines: @number_of_lines@
 &lt;/pre>
 
 
-&lt;h2 id="section2">2 Listing of files&lt;/h2>
+&lt;h2 id="section2">2 Notes on licenses and dependencies&lt;/h2>
 
 &lt;p>
 This repository is dual licensed.
@@ -8282,331 +9226,10 @@ for example, uutils coreutils is MIT licensed,
 whilst GNU coreutils is GPLv3+ licensed.
 &lt;/p>
 
-&lt;p>
-Bash can be found at the following URLs:&lt;br>
-&lt;a href="https://www.gnu.org/software/bash/">&lt;span
-  style="font-family:monospace"
->https://www.gnu.org/software/bash/&lt;/span>&lt;/a>,&lt;br>
-&lt;a href="https://tiswww.case.edu/php/chet/bash/bashtop.html">&lt;span
-  style="font-family:monospace"
->https://tiswww.case.edu/php/chet/bash/bashtop.html&lt;/span>&lt;/a>,&lt;br>
-&lt;a href="https://savannah.gnu.org/projects/bash/">&lt;span
-  style="font-family:monospace"
->https://savannah.gnu.org/projects/bash/&lt;/span>&lt;/a>.
-&lt;/p>
+@dependencies_notes@
 
-&lt;p>
-GNU coreutils can be found at the following URLs:&lt;br>
-&lt;a href="https://www.gnu.org/software/coreutils/">&lt;span
-  style="font-family:monospace"
->https://www.gnu.org/software/coreutils/&lt;/span>&lt;/a>,&lt;br>
-&lt;a href="https://savannah.gnu.org/projects/coreutils/">&lt;span
-  style="font-family:monospace"
->https://savannah.gnu.org/projects/coreutils/&lt;/span>&lt;/a>.
-&lt;/p>
 
-&lt;p>
-uutils coreutils can be found at the following URLs:&lt;br>
-&lt;a href="https://uutils.github.io/coreutils/">&lt;span
-  style="font-family:monospace"
->https://uutils.github.io/coreutils/&lt;/span>&lt;/a>,&lt;br>
-&lt;a href="https://github.com/uutils/coreutils">&lt;span
-  style="font-family:monospace"
->https://github.com/uutils/coreutils&lt;/span>&lt;/a>.
-&lt;/p>
-
-&lt;p>
-diff (GNU diffutils) can be found at the following URLs:&lt;br>
-&lt;a href="https://www.gnu.org/software/diffutils/">&lt;span
-  style="font-family:monospace"
->https://www.gnu.org/software/diffutils/&lt;/span>&lt;/a>,&lt;br>
-&lt;a href="https://savannah.gnu.org/projects/diffutils/">&lt;span
-  style="font-family:monospace"
->https://savannah.gnu.org/projects/diffutils/&lt;/span>&lt;/a>.
-&lt;/p>
-
-&lt;p>
-find, xargs (GNU findutils) can be found at the following URLs:&lt;br>
-&lt;a href="https://www.gnu.org/software/findutils/">&lt;span
-  style="font-family:monospace"
->https://www.gnu.org/software/findutils/&lt;/span>&lt;/a>,&lt;br>
-&lt;a href="https://savannah.gnu.org/projects/findutils/">&lt;span
-  style="font-family:monospace"
->https://savannah.gnu.org/projects/findutils/&lt;/span>&lt;/a>.
-&lt;/p>
-
-&lt;p>
-grep (GNU grep) can be found at the following URLs:&lt;br>
-&lt;a href="https://www.gnu.org/software/grep/">&lt;span
-  style="font-family:monospace"
->https://www.gnu.org/software/grep/&lt;/span>&lt;/a>,&lt;br>
-&lt;a href="https://savannah.gnu.org/projects/grep/">&lt;span
-  style="font-family:monospace"
->https://savannah.gnu.org/projects/grep/&lt;/span>&lt;/a>.
-&lt;/p>
-
-&lt;p>
-sed (GNU sed) can be found at the following URLs:&lt;br>
-&lt;a href="https://www.gnu.org/software/sed/">&lt;span
-  style="font-family:monospace"
->https://www.gnu.org/software/sed/&lt;/span>&lt;/a>,&lt;br>
-&lt;a href="https://savannah.gnu.org/projects/sed/">&lt;span
-  style="font-family:monospace"
->https://savannah.gnu.org/projects/sed/&lt;/span>&lt;/a>.
-&lt;/p>
-
-&lt;p>
-ShellCheck can be found at the following URLs:&lt;br>
-&lt;a href="https://www.shellcheck.net/">&lt;span
-  style="font-family:monospace"
->https://www.shellcheck.net/&lt;/span>&lt;/a>,&lt;br>
-&lt;a href="https://github.com/koalaman/shellcheck">&lt;span
-  style="font-family:monospace"
->https://github.com/koalaman/shellcheck&lt;/span>&lt;/a>.
-&lt;/p>
-
-&lt;p>
-GNU Wget can be found at the following URLs:&lt;br>
-&lt;a href="https://www.gnu.org/software/wget/">&lt;span
-  style="font-family:monospace"
->https://www.gnu.org/software/wget/&lt;/span>&lt;/a>,&lt;br>
-&lt;a href="https://savannah.gnu.org/projects/wget/">&lt;span
-  style="font-family:monospace"
->https://savannah.gnu.org/projects/wget/&lt;/span>&lt;/a>.
-&lt;/p>
-
-&lt;p>
-more of util-linux can be found at the following URLs:&lt;br>
-&lt;a href="https://www.kernel.org/pub/linux/utils/util-linux/">&lt;span
-  style="font-family:monospace"
->https://www.kernel.org/pub/linux/utils/util-linux/&lt;/span>&lt;/a>,&lt;br>
-&lt;a
-href="https://git.kernel.org/pub/scm/utils/util-linux/util-linux.git/"
->&lt;span
-  style="font-family:monospace"
->https://git.kernel.org/pub/scm/utils/util-linux/util-linux.git/&lt;/span
->&lt;/a>,&lt;br>
-&lt;a href="https://github.com/util-linux/util-linux">&lt;span
-  style="font-family:monospace"
->https://github.com/util-linux/util-linux&lt;/span>&lt;/a> official?
-&lt;/p>
-
-&lt;p>
-pandoc can be found at the following URLs:&lt;br>
-&lt;a href="https://pandoc.org/">&lt;span
-  style="font-family:monospace"
->https://pandoc.org/&lt;/span>&lt;/a>,&lt;br>
-&lt;a href="https://github.com/jgm/pandoc">&lt;span
-  style="font-family:monospace"
->https://github.com/jgm/pandoc&lt;/span>&lt;/a>.
-&lt;/p>
-
-&lt;p>
-pdftex/pdflatex can be found at the following URLs:&lt;br>
-&lt;a href="https://www.tug.org/applications/pdftex/">&lt;span
-  style="font-family:monospace"
->https://www.tug.org/applications/pdftex/&lt;/span>&lt;/a>,&lt;br>
-&lt;a href="https://tug.org/texlive/svn/">&lt;span
-  style="font-family:monospace"
->https://tug.org/texlive/svn/&lt;/span>&lt;/a>.
-&lt;/p>
-
-&lt;p>
-tree can be found at the following URLs:&lt;br>
-&lt;a href="https://oldmanprogrammer.net/source.php?dir=projects/tree"
->&lt;span style="font-family:monospace"
->https://oldmanprogrammer.net/source.php?dir=projects/tree&lt;/span>&lt;/a>,&lt;br>
-&lt;a href="https://gitlab.com/OldManProgrammer/unix-tree">&lt;span
-  style="font-family:monospace"
->https://gitlab.com/OldManProgrammer/unix-tree&lt;/span>&lt;/a>,&lt;br>
-&lt;a href="https://github.com/Old-Man-Programmer/tree">&lt;span
-  style="font-family:monospace"
->https://github.com/Old-Man-Programmer/tree&lt;/span>&lt;/a>.
-&lt;/p>
-
-&lt;p>
-git can be found at the following URLs:&lt;br>
-&lt;a href="https://git-scm.com/about">&lt;span
-  style="font-family:monospace"
->https://git-scm.com/about&lt;/span>&lt;/a>,&lt;br>
-&lt;a href="https://github.com/git/git">&lt;span
-  style="font-family:monospace"
->https://github.com/git/git&lt;/span>&lt;/a>.
-&lt;/p>
-
-&lt;p>
-pylint can be found at the following URLs:&lt;br>
-&lt;a href="https://www.pylint.org/">&lt;span
-  style="font-family:monospace"
->https://www.pylint.org/&lt;/span>&lt;/a>,&lt;br>
-&lt;a href="https://pylint.readthedocs.io/en/stable/">&lt;span
-  style="font-family:monospace"
->https://pylint.readthedocs.io/en/stable/&lt;/span>&lt;/a>,&lt;br>
-&lt;a href="https://github.com/pylint-dev/pylint">&lt;span
-  style="font-family:monospace"
->https://github.com/pylint-dev/pylint&lt;/span>&lt;/a>,&lt;br>
-&lt;a href="https://pypi.org/project/pylint/">&lt;span
-  style="font-family:monospace"
->https://pypi.org/project/pylint/&lt;/span>&lt;/a>.
-&lt;/p>
-
-&lt;p>
-notify-send can be found at the following URLs:&lt;br>
-&lt;a href="https://gitlab.gnome.org/GNOME/libnotify/">&lt;span
-  style="font-family:monospace"
->https://gitlab.gnome.org/GNOME/libnotify/&lt;/span>&lt;/a>,&lt;br>
-&lt;a href="https://gnome.pages.gitlab.gnome.org/libnotify/">&lt;span
-  style="font-family:monospace"
->https://gnome.pages.gitlab.gnome.org/libnotify/&lt;/span>&lt;/a>.
-&lt;/p>
-
-&lt;p>
-black can be found at the following URLs:&lt;br>
-&lt;a href="https://github.com/psf/black">&lt;span
-  style="font-family:monospace"
->https://github.com/psf/black&lt;/span>&lt;/a>,&lt;br>
-&lt;a href="https://black.readthedocs.io/en/stable/">&lt;span
-  style="font-family:monospace"
->https://black.readthedocs.io/en/stable/&lt;/span>&lt;/a>,&lt;br>
-&lt;a href="https://pypi.org/project/black/">&lt;span
-  style="font-family:monospace"
->https://pypi.org/project/black/&lt;/span>&lt;/a>.
-&lt;/p>
-
-&lt;p>
-isort can be found at the following URLs:&lt;br>
-&lt;a href="https://pycqa.github.io/isort/">&lt;span
-  style="font-family:monospace"
->https://pycqa.github.io/isort/&lt;/span>&lt;/a>,&lt;br>
-&lt;a href="https://github.com/pycqa/isort/">&lt;span
-  style="font-family:monospace"
->https://github.com/pycqa/isort/&lt;/span>&lt;/a>,&lt;br>
-&lt;a href="https://pypi.org/project/isort/">&lt;span
-  style="font-family:monospace"
->https://pypi.org/project/isort/&lt;/span>&lt;/a>.
-&lt;/p>
-
-&lt;p>
-mypy can be found at the following URLs:&lt;br>
-&lt;a href="https://mypy-lang.org/">&lt;span
-  style="font-family:monospace"
->https://mypy-lang.org/&lt;/span>&lt;/a>,&lt;br>
-&lt;a href="https://mypy.readthedocs.io/en/stable/">&lt;span
-  style="font-family:monospace"
->https://mypy.readthedocs.io/en/stable/&lt;/span>&lt;/a>,&lt;br>
-&lt;a href="https://github.com/python/mypy">&lt;span
-  style="font-family:monospace"
->https://github.com/python/mypy&lt;/span>&lt;/a>,&lt;br>
-&lt;a href="https://pypi.org/project/mypy/">&lt;span
-  style="font-family:monospace"
->https://pypi.org/project/mypy/&lt;/span>&lt;/a>.
-&lt;/p>
-
-&lt;p>
-pip can be found at the following URLs:&lt;br>
-&lt;a href="https://pip.pypa.io/en/stable/">&lt;span
-  style="font-family:monospace"
->https://pip.pypa.io/en/stable/&lt;/span>&lt;/a>,&lt;br>
-&lt;a href="https://github.com/pypa/pip">&lt;span
-  style="font-family:monospace"
->https://github.com/pypa/pip&lt;/span>&lt;/a>,&lt;br>
-&lt;a href="https://pypi.org/project/pip/">&lt;span
-  style="font-family:monospace"
->https://pypi.org/project/pip/&lt;/span>&lt;/a> (egg and chicken ;) ).
-&lt;/p>
-
-&lt;p>
-ruff can be found at the following URLs:&lt;br>
-&lt;a href="https://docs.astral.sh/ruff/">&lt;span
-  style="font-family:monospace"
->https://docs.astral.sh/ruff/&lt;/span>&lt;/a>,&lt;br>
-&lt;a href="https://github.com/astral-sh/ruff">&lt;span
-  style="font-family:monospace"
->https://github.com/astral-sh/ruff&lt;/span>&lt;/a>,&lt;br>
-&lt;a href="https://pypi.org/project/ruff/">&lt;span
-  style="font-family:monospace"
->https://pypi.org/project/ruff/&lt;/span>&lt;/a>.
-&lt;/p>
-
-&lt;p>
-bandit can be found at the following URLs:&lt;br>
-&lt;a href="https://bandit.readthedocs.io/en/latest/">&lt;span
-  style="font-family:monospace"
->https://bandit.readthedocs.io/en/latest/&lt;/span>&lt;/a>,&lt;br>
-&lt;a href="https://github.com/PyCQA/bandit">&lt;span
-  style="font-family:monospace"
->https://github.com/PyCQA/bandit&lt;/span>&lt;/a>,&lt;br>
-&lt;a href="https://pypi.org/project/bandit/">&lt;span
-  style="font-family:monospace"
->https://pypi.org/project/bandit/&lt;/span>&lt;/a>.
-&lt;/p>
-
-&lt;p>
-phpmd can be found at the following URLs:&lt;br>
-&lt;a href="https://phpmd.org/">&lt;span
-  style="font-family:monospace"
->https://phpmd.org/&lt;/span>&lt;/a>,&lt;br>
-&lt;a href="https://github.com/phpmd/phpmd">&lt;span
-  style="font-family:monospace"
->https://github.com/phpmd/phpmd&lt;/span>&lt;/a>,&lt;br>
-&lt;a href="https://packagist.org/packages/phpmd/phpmd">&lt;span
-  style="font-family:monospace"
->https://packagist.org/packages/phpmd/phpmd&lt;/span>&lt;/a>.
-&lt;/p>
-
-&lt;p>
-php can be found at the following URLs:&lt;br>
-&lt;a href="https://www.php.net/">&lt;span
-  style="font-family:monospace"
->https://www.php.net/&lt;/span>&lt;/a>,&lt;br>
-&lt;a href="https://github.com/php/php-src">&lt;span
-  style="font-family:monospace"
->https://github.com/php/php-src&lt;/span>&lt;/a>.
-&lt;/p>
-
-&lt;p>
-tex can be found at the following URL:&lt;br>
-&lt;a href="https://ctan.org/tex-archive/systems/knuth/dist/tex">&lt;span
-  style="font-family:monospace"
->https://ctan.org/tex-archive/systems/knuth/dist/tex&lt;/span>&lt;/a>.
-&lt;/p>
-
-&lt;p>
-pcregrep, pcre2grep can be found at the following URLs:&lt;br>
-&lt;a href="https://www.pcre.org/">&lt;span
-  style="font-family:monospace"
->https://www.pcre.org/&lt;/span>&lt;/a>,&lt;br>
-&lt;a href="https://pcre2project.github.io/pcre2/">&lt;span
-  style="font-family:monospace"
->https://pcre2project.github.io/pcre2/&lt;/span>&lt;/a>,&lt;br>
-&lt;a href="https://github.com/PCRE2Project/pcre1">&lt;span
-  style="font-family:monospace"
->https://github.com/PCRE2Project/pcre1&lt;/span>&lt;/a>,&lt;br>
-&lt;a href="https://github.com/PCRE2Project/pcre2">&lt;span
-  style="font-family:monospace"
->https://github.com/PCRE2Project/pcre2&lt;/span>&lt;/a>,&lt;br>
-&lt;a
-href="https://github.com/PCRE2Project/pcre2/blob/main/src/pcre2grep.c"
->&lt;span
-  style="font-family:monospace"
->https://github.com/PCRE2Project/pcre2/blob/main/src/pcre2grep.c&lt;/span
->&lt;/a>.
-&lt;/p>
-
-&lt;p>
-python3 can be found at the following URLs:&lt;br>
-&lt;a href="https://www.python.org/">&lt;span
-  style="font-family:monospace"
->https://www.python.org/&lt;/span>&lt;/a>,&lt;br>
-&lt;a href="https://docs.python.org/3/">&lt;span
-  style="font-family:monospace"
->https://docs.python.org/3/&lt;/span>&lt;/a>.
-&lt;/p>
-
-&lt;p>
-If you see something that I missed regarding my dependencies,
-please tell me/email me :).
-&lt;/p>
+&lt;h2 id="section3">3 Listing of files&lt;/h2>
 
 @files_listing_HTMLPreInput@
 
@@ -8635,7 +9258,7 @@ pres.forEach(
 </pre>
 
 
-<h3 id="subsection2.37">2.37
+<h3 id="subsection3.40">3.40
 build_and_checks_variables/DevOrSysAdminScripts.tex.tpl
 </h3>
 <pre class="numbered_lines">
@@ -8736,8 +9359,8 @@ Code lines: @number_of_lines@
 @current_tree@
 \end{verbatim}
 
-\section{Listing of files}
-\label{section:listing}
+\section{Notes on licenses and dependencies}
+\label{section:notes_on}
 
 This repository is dual licensed.
 All the Bash scripts source code is covered by GPLv3+.
@@ -8782,136 +9405,10 @@ and can have different implementations under another license;
 for example, uutils coreutils is MIT licensed,
 whilst GNU coreutils is GPLv3+ licensed.
 
-Bash can be found at the following URLs:\newline
-\url{https://www.gnu.org/software/bash/},\newline
-\url{https://tiswww.case.edu/php/chet/bash/bashtop.html},\newline
-\url{https://savannah.gnu.org/projects/bash/}.
+@dependencies_notes@
 
-GNU coreutils can be found at the following URLs:\newline
-\url{https://www.gnu.org/software/coreutils/},\newline
-\url{https://savannah.gnu.org/projects/coreutils/}.
-
-uutils coreutils can be found at the following URLs:\newline
-\url{https://uutils.github.io/coreutils/},\newline
-\url{https://github.com/uutils/coreutils}.
-
-diff (GNU diffutils) can be found at the following URLs:\newline
-\url{https://www.gnu.org/software/diffutils/},\newline
-\url{https://savannah.gnu.org/projects/diffutils/}.
-
-find, xargs (GNU findutils) can be found at the following URLs:\newline
-\url{https://www.gnu.org/software/findutils/},\newline
-\url{https://savannah.gnu.org/projects/findutils/}.
-
-grep (GNU grep) can be found at the following URLs:\newline
-\url{https://www.gnu.org/software/grep/},\newline
-\url{https://savannah.gnu.org/projects/grep/}.
-
-sed (GNU sed) can be found at the following URLs:\newline
-\url{https://www.gnu.org/software/sed/},\newline
-\url{https://savannah.gnu.org/projects/sed/}.
-
-ShellCheck can be found at the following URLs:\newline
-\url{https://www.shellcheck.net/},\newline
-\url{https://github.com/koalaman/shellcheck}.
-
-GNU Wget can be found at the following URLs:\newline
-\url{https://www.gnu.org/software/wget/},\newline
-\url{https://savannah.gnu.org/projects/wget/}.
-
-more of util-linux can be found at the following URLs:\newline
-\url{https://www.kernel.org/pub/linux/utils/util-linux/},\newline
-{\small
-  \url{https://git.kernel.org/pub/scm/utils/util-linux/util-linux.git/}
-},
-\newline
-\url{https://github.com/util-linux/util-linux} official?
-
-pandoc can be found at the following URLs:\newline
-\url{https://pandoc.org/},\newline
-\url{https://github.com/jgm/pandoc}.
-
-pdftex/pdflatex can be found at the following URLs:\newline
-\url{https://www.tug.org/applications/pdftex/},\newline
-\url{https://tug.org/texlive/svn/}.
-
-tree can be found at the following URLs:\newline
-\url{https://oldmanprogrammer.net/source.php?dir=projects/tree},\newline
-\url{https://gitlab.com/OldManProgrammer/unix-tree},\newline
-\url{https://github.com/Old-Man-Programmer/tree}.
-
-git can be found at the following URLs:\newline
-\url{https://git-scm.com/about},\newline
-\url{https://github.com/git/git}.
-
-pylint can be found at the following URLs:\newline
-\url{https://www.pylint.org/},\newline
-\url{https://pylint.readthedocs.io/en/stable/},\newline
-\url{https://github.com/pylint-dev/pylint},\newline
-\url{https://pypi.org/project/pylint/}.
-
-notify-send can be found at the following URLs:\newline
-\url{https://gitlab.gnome.org/GNOME/libnotify/},\newline
-\url{https://gnome.pages.gitlab.gnome.org/libnotify/}.
-
-black can be found at the following URLs:\newline
-\url{https://github.com/psf/black},\newline
-\url{https://black.readthedocs.io/en/stable/},\newline
-\url{https://pypi.org/project/black/}.
-
-isort can be found at the following URLs:\newline
-\url{https://pycqa.github.io/isort/},\newline
-\url{https://github.com/pycqa/isort/},\newline
-\url{https://pypi.org/project/isort/}.
-
-mypy can be found at the following URLs:\newline
-\url{https://mypy-lang.org/},\newline
-\url{https://mypy.readthedocs.io/en/stable/},\newline
-\url{https://github.com/python/mypy},\newline
-\url{https://pypi.org/project/mypy/}.
-
-pip can be found at the following URLs:\newline
-\url{https://pip.pypa.io/en/stable/},\newline
-\url{https://github.com/pypa/pip},\newline
-\url{https://pypi.org/project/pip/} (egg and chicken ;) ).
-
-ruff can be found at the following URLs:\newline
-\url{https://docs.astral.sh/ruff/},\newline
-\url{https://github.com/astral-sh/ruff},\newline
-\url{https://pypi.org/project/ruff/}.
-
-bandit can be found at the following URLs:\newline
-\url{https://bandit.readthedocs.io/en/latest/},\newline
-\url{https://github.com/PyCQA/bandit},\newline
-\url{https://pypi.org/project/bandit/}.
-
-phpmd can be found at the following URLs:\newline
-\url{https://phpmd.org/},\newline
-\url{https://github.com/phpmd/phpmd},\newline
-\url{https://packagist.org/packages/phpmd/phpmd}.
-
-php can be found at the following URLs:\newline
-\url{https://www.php.net/},\newline
-\url{https://github.com/php/php-src}.
-
-tex can be found at the following URL:\newline
-\url{https://ctan.org/tex-archive/systems/knuth/dist/tex}.
-
-pcregrep, pcre2grep can be found at the following URLs:\newline
-\url{https://www.pcre.org/},\newline
-\url{https://pcre2project.github.io/pcre2/},\newline
-\url{https://github.com/PCRE2Project/pcre1},\newline
-\url{https://github.com/PCRE2Project/pcre2},\newline
-{\small
-  \url{https://github.com/PCRE2Project/pcre2/blob/main/src/pcre2grep.c}
-}.
-
-python3 can be found at the following URLs:\newline
-\url{https://www.python.org/},\newline
-\url{https://docs.python.org/3/}.
-
-If you see something that I missed regarding my dependencies,
-please tell me/email me :).
+\section{Listing of files}
+\label{section:listing}
 
 @files_listing_VerbatimInput@
 
@@ -8921,7 +9418,7 @@ please tell me/email me :).
 </pre>
 
 
-<h3 id="subsection2.38">2.38
+<h3 id="subsection3.41">3.41
 build_and_checks_variables/files_listing.tex.tpl
 </h3>
 <pre class="numbered_lines">
@@ -8956,6 +9453,18 @@ build_and_checks_variables/files_listing.tex.tpl
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
 build_and_checks_dependencies/build_and_checks.exec.sh.tpl
+}
+
+
+\subsection{
+  build\_and\_checks\_dependencies/build\_dependencies\_notes.exec.php
+}
+\label{
+  build_and_checks_dependencies:build_dependencies_notesexecphp
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+build_and_checks_dependencies/build_dependencies_notes.exec.php
 }
 
 
@@ -9385,6 +9894,30 @@ build_and_checks_variables/black.toml
 
 
 \subsection{
+  build\_and\_checks\_variables/dependencies\_data.json
+}
+\label{
+  build_and_checks_variables:dependencies_datajson
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+build_and_checks_variables/dependencies_data.json
+}
+
+
+\subsection{
+  build\_and\_checks\_variables/dependencies\_notes.txt
+}
+\label{
+  build_and_checks_variables:dependencies_notestxt
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+build_and_checks_variables/dependencies_notes.txt
+}
+
+
+\subsection{
   build\_and\_checks\_variables/DevOrSysAdminScripts.html.tpl
 }
 \label{
@@ -9747,7 +10280,7 @@ wget_sha512.libr.sh
 </pre>
 
 
-<h3 id="subsection2.39">2.39
+<h3 id="subsection3.42">3.42
 build_and_checks_variables/files_names_listing.txt
 </h3>
 <pre class="numbered_lines">
@@ -9782,6 +10315,7 @@ build_and_checks_variables/files_names_listing.txt
 // Blasé20240518_2.txt
 // Blasé20240518_3.txt
 build_and_checks_dependencies/build_and_checks.exec.sh.tpl
+build_and_checks_dependencies/build_dependencies_notes.exec.php
 build_and_checks_dependencies/build_md_from_printable_md.exec.sh
 build_and_checks_dependencies/check_shell_scripts_beginnings.libr.sh
 build_and_checks_dependencies/check_shell_scripts_indentation.libr.sh
@@ -9822,6 +10356,8 @@ build_and_checks_variables/.gitignore
 build_and_checks_variables/bandit.ini
 build_and_checks_variables/bandit_baseline.json
 build_and_checks_variables/black.toml
+build_and_checks_variables/dependencies_data.json
+build_and_checks_variables/dependencies_notes.txt
 build_and_checks_variables/DevOrSysAdminScripts.html.tpl
 // build_and_checks_variables/DevOrSysAdminScripts.tex
 build_and_checks_variables/DevOrSysAdminScripts.tex.tpl
@@ -9888,7 +10424,7 @@ wget_sha512.libr.sh
 </pre>
 
 
-<h3 id="subsection2.40">2.40
+<h3 id="subsection3.43">3.43
 build_and_checks_variables/licenses_notes.txt
 </h3>
 <pre class="numbered_lines">
@@ -9921,175 +10457,81 @@ but PCRE2 has BSD-3-Clause WITH PCRE2-exception,
 - python3 is licensed under PSF License Version 2 and the Zero-Clause BSD
 license.
 
-
 Remark: Some commands listed under GPLv3+ are POSIX
 and can have different implementations under another license;
 for example, uutils coreutils is MIT licensed,
 whilst GNU coreutils is GPLv3+ licensed.
-
-Bash can be found at the following URLs:
-https://www.gnu.org/software/bash/
-https://tiswww.case.edu/php/chet/bash/bashtop.html
-https://savannah.gnu.org/projects/bash/
-
-GNU coreutils can be found at the following URLs:
-https://www.gnu.org/software/coreutils/
-https://savannah.gnu.org/projects/coreutils/
-
-uutils coreutils can be found at the following URLs:
-https://uutils.github.io/coreutils/
-https://github.com/uutils/coreutils
-
-diff (GNU diffutils) can be found at the following URLs:
-https://www.gnu.org/software/diffutils/
-https://savannah.gnu.org/projects/diffutils/
-
-find, xargs (GNU findutils) can be found at the following URLs:
-https://www.gnu.org/software/findutils/
-https://savannah.gnu.org/projects/findutils/
-
-grep (GNU grep) can be found at the following URLs:
-https://www.gnu.org/software/grep/
-https://savannah.gnu.org/projects/grep/
-
-sed (GNU sed) can be found at the following URLs:
-https://www.gnu.org/software/sed/
-https://savannah.gnu.org/projects/sed/
-
-ShellCheck can be found at the following URLs:
-https://www.shellcheck.net/
-https://github.com/koalaman/shellcheck
-
-GNU Wget can be found at the following URLs:
-https://www.gnu.org/software/wget/
-https://savannah.gnu.org/projects/wget/
-
-more of util-linux can be found at the following URLs:
-https://www.kernel.org/pub/linux/utils/util-linux/
-https://git.kernel.org/pub/scm/utils/util-linux/util-linux.git/
-https://github.com/util-linux/util-linux official?
-
-pandoc can be found at the following URLs:
-https://pandoc.org/
-https://github.com/jgm/pandoc
-
-pdftex/pdflatex can be found at the following URLs:
-https://www.tug.org/applications/pdftex/
-https://tug.org/texlive/svn/
-
-tree can be found at the following URLs:
-https://oldmanprogrammer.net/source.php?dir=projects/tree
-https://gitlab.com/OldManProgrammer/unix-tree
-https://github.com/Old-Man-Programmer/tree
-
-git can be found at the following URLs:
-https://git-scm.com/about
-https://github.com/git/git
-
-pylint can be found at the following URLs:
-https://www.pylint.org/
-https://pylint.readthedocs.io/en/stable/
-https://github.com/pylint-dev/pylint
-https://pypi.org/project/pylint/
-
-notify-send can be found at the following URLs:
-https://gitlab.gnome.org/GNOME/libnotify/
-https://gnome.pages.gitlab.gnome.org/libnotify/
-
-black can be found at the following URLs:
-https://github.com/psf/black
-https://black.readthedocs.io/en/stable/
-https://pypi.org/project/black/
-
-isort can be found at the following URLs:
-https://pycqa.github.io/isort/
-https://github.com/pycqa/isort/
-https://pypi.org/project/isort/
-
-mypy can be found at the following URLs:
-https://mypy-lang.org/
-https://mypy.readthedocs.io/en/stable/
-https://github.com/python/mypy
-https://pypi.org/project/mypy/
-
-pip can be found at the following URLs:
-https://pip.pypa.io/en/stable/
-https://github.com/pypa/pip
-https://pypi.org/project/pip/ (egg and chicken ;) )
-
-ruff can be found at the following URLs:
-https://docs.astral.sh/ruff/
-https://github.com/astral-sh/ruff
-https://pypi.org/project/ruff/
-
-bandit can be found at the following URLs:
-https://bandit.readthedocs.io/en/latest/
-https://github.com/PyCQA/bandit
-https://pypi.org/project/bandit/
-
-phpmd can be found at the following URLs:
-https://phpmd.org/
-https://github.com/phpmd/phpmd
-https://packagist.org/packages/phpmd/phpmd
-
-php can be found at the following URLs:
-https://www.php.net/
-https://github.com/php/php-src
-
-tex can be found at the following URL:
-https://ctan.org/tex-archive/systems/knuth/dist/tex
-
-pcregrep, pcre2grep can be found at the following URLs:
-https://www.pcre.org/
-https://pcre2project.github.io/pcre2/
-https://github.com/PCRE2Project/pcre1
-https://github.com/PCRE2Project/pcre2
-https://github.com/PCRE2Project/pcre2/blob/main/src/pcre2grep.c
-
-python3 can be found at the following URLs:
-https://www.python.org/
-https://docs.python.org/3/
-
-If you see something that I missed regarding my dependencies,
-please tell me/email me :).
 </pre>
 
 
-<h3 id="subsection2.41">2.41
+<h3 id="subsection3.44">3.44
 build_and_checks_variables/phpmd_baseline.xml
 </h3>
 <pre class="numbered_lines">
 &lt;?xml version="1.0"?>
 &lt;phpmd-baseline>
-  &lt;violation rule="PHPMD\Rule\Controversial\CamelCaseParameterName"
-    file="build_and_checks_dependencies/split_score.libr.php"/>
-  &lt;violation rule="PHPMD\Rule\Naming\LongVariable"
-    file="build_and_checks_dependencies/split_score.libr.php"/>
-  &lt;violation rule="PHPMD\Rule\Controversial\CamelCaseVariableName"
-    file="build_and_checks_dependencies/split_score.libr.php"/>
-  &lt;violation rule="PHPMD\Rule\Controversial\CamelCaseParameterName"
-    file="string_escaping.libr.php"/>
-  &lt;violation rule="PHPMD\Rule\Controversial\CamelCaseVariableName"
-    file="string_escaping.libr.php"/>
-  &lt;violation rule="PHPMD\Rule\Design\LongMethod"
-    file="unicode.libr.php"/>
-  &lt;violation rule="PHPMD\Rule\Controversial\CamelCaseParameterName"
-    file="unicode.libr.php"/>
-  &lt;violation rule="PHPMD\Rule\Naming\LongVariable"
-    file="unicode.libr.php"/>
-  &lt;violation rule="PHPMD\Rule\Controversial\CamelCaseVariableName"
-    file="unicode.libr.php"/>
-  &lt;violation rule="PHPMD\Rule\CleanCode\MissingImport"
-    file="unicode.libr.php"/>
   &lt;violation rule="PHPMD\Rule\CyclomaticComplexity"
-    file="unicode.libr.php"/>
+    file="build_and_checks_dependencies/build_dependencies_notes.exec.php"
+  />
   &lt;violation rule="PHPMD\Rule\Design\NpathComplexity"
-    file="unicode.libr.php"/>
+    file="build_and_checks_dependencies/build_dependencies_notes.exec.php"
+  />
+  &lt;violation rule="PHPMD\Rule\Design\LongMethod"
+    file="build_and_checks_dependencies/build_dependencies_notes.exec.php"
+  />
+  &lt;violation rule="PHPMD\Rule\Controversial\CamelCaseParameterName"
+    file="build_and_checks_dependencies/build_dependencies_notes.exec.php"
+  />
+  &lt;violation rule="PHPMD\Rule\Controversial\CamelCaseVariableName"
+    file="build_and_checks_dependencies/build_dependencies_notes.exec.php"
+  />
+  &lt;violation rule="PHPMD\Rule\CleanCode\ElseExpression"
+    file="build_and_checks_dependencies/build_dependencies_notes.exec.php"
+  />
+  &lt;violation rule="PHPMD\Rule\Naming\LongVariable"
+    file="build_and_checks_dependencies/build_dependencies_notes.exec.php"
+  />
+  &lt;violation rule="PHPMD\Rule\Controversial\CamelCaseParameterName"
+    file="build_and_checks_dependencies/split_score.libr.php"
+  />
+  &lt;violation rule="PHPMD\Rule\Naming\LongVariable"
+    file="build_and_checks_dependencies/split_score.libr.php"
+  />
+  &lt;violation rule="PHPMD\Rule\Controversial\CamelCaseVariableName"
+    file="build_and_checks_dependencies/split_score.libr.php"
+  />
+  &lt;violation rule="PHPMD\Rule\Controversial\CamelCaseParameterName"
+    file="string_escaping.libr.php"
+  />
+  &lt;violation rule="PHPMD\Rule\Controversial\CamelCaseVariableName"
+    file="string_escaping.libr.php"
+  />
+  &lt;violation rule="PHPMD\Rule\Design\LongMethod"
+    file="unicode.libr.php"
+  />
+  &lt;violation rule="PHPMD\Rule\Controversial\CamelCaseParameterName"
+    file="unicode.libr.php"
+  />
+  &lt;violation rule="PHPMD\Rule\Naming\LongVariable"
+    file="unicode.libr.php"
+  />
+  &lt;violation rule="PHPMD\Rule\Controversial\CamelCaseVariableName"
+    file="unicode.libr.php"
+  />
+  &lt;violation rule="PHPMD\Rule\CleanCode\MissingImport"
+    file="unicode.libr.php"
+  />
+  &lt;violation rule="PHPMD\Rule\CyclomaticComplexity"
+    file="unicode.libr.php"
+  />
+  &lt;violation rule="PHPMD\Rule\Design\NpathComplexity"
+    file="unicode.libr.php"
+  />
 &lt;/phpmd-baseline>
 </pre>
 
 
-<h3 id="subsection2.42">2.42
+<h3 id="subsection3.45">3.45
 build_and_checks_variables/pylintrc.toml
 </h3>
 <pre class="numbered_lines">
@@ -10119,7 +10561,7 @@ output-format = "colorized"
 </pre>
 
 
-<h3 id="subsection2.43">2.43
+<h3 id="subsection3.46">3.46
 build_and_checks_variables/repository_data.txt
 </h3>
 <pre class="numbered_lines">
@@ -10266,7 +10708,7 @@ use_vnu_for_xhtml=false
 </pre>
 
 
-<h3 id="subsection2.44">2.44
+<h3 id="subsection3.47">3.47
 build_and_checks_variables/repository_data.txt.tpl
 </h3>
 <pre class="numbered_lines">
@@ -10323,7 +10765,7 @@ npm_lint_directories=
 </pre>
 
 
-<h3 id="subsection2.45">2.45
+<h3 id="subsection3.48">3.48
 build_and_checks_variables/ruff.toml
 </h3>
 <pre class="numbered_lines">
@@ -10371,7 +10813,7 @@ ignore = [
 </pre>
 
 
-<h3 id="subsection2.46">2.46
+<h3 id="subsection3.49">3.49
 build_and_checks_variables/shellcheck.ini
 </h3>
 <pre class="numbered_lines">
@@ -10386,7 +10828,7 @@ source-path="./git_helpers"
 </pre>
 
 
-<h3 id="subsection2.47">2.47
+<h3 id="subsection3.50">3.50
 build_and_checks_variables/shellcheck_notes.txt
 </h3>
 <pre class="numbered_lines">
@@ -10460,7 +10902,7 @@ grep -r "shellcheck disable" . | grep -v -e '.git' -e "=SC1090$"\
 </pre>
 
 
-<h3 id="subsection2.48">2.48
+<h3 id="subsection3.51">3.51
 build_and_checks.exec.sh
 </h3>
 <pre class="numbered_lines">
@@ -10536,9 +10978,9 @@ build_and_checks(){
   declare -r\
     LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_common_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='acc1c595482962fa4775ce58b40b2366ef99e2d694034'
-  LFBFL_correct_sha512+='1d1e7ba6429b357e4437887d701da68794f725913a7e'
-  LFBFL_correct_sha512+='17cac90c51b9e13d8d424af08ec19090df58b27'
+  LFBFL_correct_sha512='72bd314bc8f71fd79a201681a1aa7c46bf691452f5019'
+  LFBFL_correct_sha512+='d5671d70f0cc29c28402fe84976785a2363b2eb9277a'
+  LFBFL_correct_sha512+='783414b079a503a71304ed6ca0f0b0fbd6f52a5'
   wget_sha512 "${LFBFL_file_path}" "${LFBFL_script}"\
     "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
   chmod +x "./${LFBFL_file_path}"
@@ -10580,7 +11022,7 @@ build_and_checks "$@"
 </pre>
 
 
-<h3 id="subsection2.49">2.49
+<h3 id="subsection3.52">3.52
 COPYING
 </h3>
 <pre class="numbered_lines">
@@ -11261,7 +11703,7 @@ Public License instead of this License.  But first, please read
 </pre>
 
 
-<h3 id="subsection2.50">2.50
+<h3 id="subsection3.53">3.53
 COPYING.LESSER
 </h3>
 <pre class="numbered_lines">
@@ -11433,7 +11875,7 @@ Library.
 </pre>
 
 
-<h3 id="subsection2.51">2.51
+<h3 id="subsection3.54">3.54
 git_helpers/git_checks.libr.sh
 </h3>
 <pre class="numbered_lines">
@@ -11559,7 +12001,7 @@ check_black_code_formatting(){
 </pre>
 
 
-<h3 id="subsection2.52">2.52
+<h3 id="subsection3.55">3.55
 git_helpers/post-commit
 </h3>
 <pre class="numbered_lines">
@@ -11631,7 +12073,7 @@ exit 0
 </pre>
 
 
-<h3 id="subsection2.53">2.53
+<h3 id="subsection3.56">3.56
 git_helpers/post_commit_renaming_comment.libr.sh
 </h3>
 <pre class="numbered_lines">
@@ -11707,8 +12149,6 @@ commit_a_file_renamed_comment(){
   #   --max-comment-line-length
   declare -i LFBFL_i_verbose=0
   get_verbose_option "$@"
-  local LFBFL_work_directory=""
-  get_work_directory_option "$@"
   local LFBFL_arg
   local LFBFL_s_format
 
@@ -12029,7 +12469,7 @@ commit_a_file_renamed_comment(){
 </pre>
 
 
-<h3 id="subsection2.54">2.54
+<h3 id="subsection3.57">3.57
 git_helpers/pre-commit
 </h3>
 <pre class="numbered_lines">
@@ -12099,7 +12539,7 @@ exit ${LFBFL_i_git_hook_error}
 </pre>
 
 
-<h3 id="subsection2.55">2.55
+<h3 id="subsection3.58">3.58
 IMAP_transfert.py
 </h3>
 <pre class="numbered_lines">
@@ -12381,7 +12821,7 @@ if __name__ == "__main__":
 </pre>
 
 
-<h3 id="subsection2.56">2.56
+<h3 id="subsection3.59">3.59
 LiensUtiles.txt
 </h3>
 <pre class="numbered_lines">
@@ -12403,7 +12843,7 @@ calling-gpld-programs-from-a-shell-script
 </pre>
 
 
-<h3 id="subsection2.57">2.57
+<h3 id="subsection3.60">3.60
 miscellaneous/funny.sh
 </h3>
 <pre class="numbered_lines">
@@ -12453,7 +12893,7 @@ protected_funny(){
 </pre>
 
 
-<h3 id="subsection2.58">2.58
+<h3 id="subsection3.61">3.61
 miscellaneous/spampty_data.txt
 </h3>
 <pre class="numbered_lines">
@@ -12470,7 +12910,7 @@ normal_again.txt: a
 </pre>
 
 
-<h3 id="subsection2.59">2.59
+<h3 id="subsection3.62">3.62
 miscellaneous/string_escaping.html
 </h3>
 <pre class="numbered_lines">
@@ -12508,7 +12948,7 @@ alert(b);
 </pre>
 
 
-<h3 id="subsection2.60">2.60
+<h3 id="subsection3.63">3.63
 miscellaneous/string_escaping.xhtml
 </h3>
 <pre class="numbered_lines">
@@ -12546,7 +12986,7 @@ alert(b);
 </pre>
 
 
-<h3 id="subsection2.61">2.61
+<h3 id="subsection3.64">3.64
 README.md.tpl
 </h3>
 <pre class="numbered_lines">
@@ -12663,7 +13103,7 @@ badge/v2.json
 </pre>
 
 
-<h3 id="subsection2.62">2.62
+<h3 id="subsection3.65">3.65
 string_escaping.libr.php
 </h3>
 <pre class="numbered_lines">
@@ -12842,7 +13282,7 @@ var_dump(string_escaping\JS\escape_for_string_definition_inside_XHTML(
 </pre>
 
 
-<h3 id="subsection2.63">2.63
+<h3 id="subsection3.66">3.66
 unicode.libr.php
 </h3>
 <pre class="numbered_lines">
@@ -13240,7 +13680,7 @@ foreach($arr as $s_hexa){
 </pre>
 
 
-<h3 id="subsection2.64">2.64
+<h3 id="subsection3.67">3.67
 upgrade_build_and_checks.exec.sh
 </h3>
 <pre class="numbered_lines">
@@ -13293,7 +13733,7 @@ upgrade_build_and_checks "$@"
 </pre>
 
 
-<h3 id="subsection2.65">2.65
+<h3 id="subsection3.68">3.68
 wget_sha512.libr.sh
 </h3>
 <pre class="numbered_lines">

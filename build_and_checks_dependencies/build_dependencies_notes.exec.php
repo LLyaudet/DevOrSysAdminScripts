@@ -132,7 +132,7 @@ function build_dependencies_notes(string $s_working_directory) : void {
   $s_result_content3 .= (
     "<p>\n"
     ."If you see something that I missed regarding my dependencies,\n"
-    .".please tell me/email me :).\n"
+    ."please tell me/email me :).\n"
     ."</p>\n"
   );
 

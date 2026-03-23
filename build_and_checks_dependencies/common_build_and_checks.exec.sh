@@ -299,9 +299,9 @@ common_build_and_checks(){
   LFBFL_file_name="update_or_check_files_names_listing.exec.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='d83b18611786efd09174ddaacdf7575555aa0be5b8a85'
-  LFBFL_correct_sha512+='05619391e27f9dfc3a358fbec9ff1b3d5914a278f863'
-  LFBFL_correct_sha512+='34bd44ff46d045a81d25994a463e8395959a2a4'
+  LFBFL_correct_sha512='9d9100a8527ea9717aff99f483c81b7921fd079ace4f9'
+  LFBFL_correct_sha512+='ead5cecd3c89da90f43959297ff78184eadf55bff79e'
+  LFBFL_correct_sha512+='b716060befe5eff9f00cc3b2f4dc69522e8bf8f'
   wrapped_wget_sha512
   chmod +x "./${LFBFL_file_path}"
 

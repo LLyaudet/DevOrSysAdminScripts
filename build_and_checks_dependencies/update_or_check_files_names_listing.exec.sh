@@ -106,7 +106,8 @@ update_or_check_files_names_listing(){
   declare -a LFBFL_arr_files_paths
   if [[ -n "${LFBFL_s_files_paths}" ]]; then
     if [[ LFBFL_i_verbose -eq 1 ]]; then
-      printf "update_or_check_files_names_listing: Some files to process."
+      printf\
+        "update_or_check_files_names_listing: Some files to process.\n"
     fi
     mapfile -t LFBFL_arr_files_paths <<< "${LFBFL_s_files_paths}"
   fi

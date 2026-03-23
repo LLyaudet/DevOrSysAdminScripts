@@ -284,6 +284,10 @@ common_build_and_checks(){
   [[ i_enhanced_set_bash_option_extglob_result -eq 0 ]]\
     && enhanced_unset_bash_option extglob
 
+  declare -a LFBFL_return_traps_stack
+  local LFBFL_previous_return_trap
+  init_return_trap
+
   enhanced_set_shell_option pipefail\
     && trap 'enhanced_unset_shell_option pipefail' RETURN
 
@@ -621,8 +625,7 @@ common_build_and_checks(){
   printf "Creating the PDF file of the listing of the source code\n"
   "./${LFBFL_subdir}/create_PDF.exec.sh" "${LFBFL_some_common_options[@]}"
 
-  pushd_to_work_directory\
-    && trap 'popd_from_work_directory' RETURN
+  pushd_to_work_directory --trap-popd
   can_continue_after_enhanced_pushd || return 1
 
   if [[ -f "${LFBFL_subdir3}/post_build.sh" ]]; then

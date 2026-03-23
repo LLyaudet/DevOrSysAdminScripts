@@ -46,6 +46,9 @@ build_licenses_templates(){
   get_verbose_option "$@"
   local LFBFL_work_directory=""
   get_work_directory_option "$@"
+  declare -a LFBFL_return_traps_stack
+  local LFBFL_previous_return_trap
+  init_return_trap
 
   enhanced_set_shell_option pipefail\
     && trap 'enhanced_unset_shell_option pipefail' RETURN
@@ -205,8 +208,7 @@ build_licenses_templates(){
 
   # Now that base license templates generated languages license
   # templates in working directory, we can go there.
-  pushd_to_work_directory\
-    && trap 'popd_from_work_directory' RETURN
+  pushd_to_work_directory --trap-popd
   can_continue_after_enhanced_pushd || return 1
 
   local LFBFL_data_file_name="build_and_checks_variables/"

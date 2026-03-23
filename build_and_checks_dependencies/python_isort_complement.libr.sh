@@ -40,8 +40,7 @@ check_collections_abc_place(){
   get_verbose_option "$@"
   local LFBFL_work_directory=""
   get_work_directory_option "$@"
-  pushd_to_work_directory\
-    && trap 'popd_from_work_directory' RETURN
+  pushd_to_work_directory --trap-popd
   can_continue_after_enhanced_pushd || return 1
 
   [[ LFBFL_i_verbose -eq 1 ]]\
@@ -82,8 +81,10 @@ python_isort_complement(){
   get_verbose_option "$@"
   local LFBFL_work_directory=""
   get_work_directory_option "$@"
-  pushd_to_work_directory\
-    && trap 'popd_from_work_directory' RETURN
+  declare -a LFBFL_return_traps_stack
+  local LFBFL_previous_return_trap
+  init_return_trap
+  pushd_to_work_directory --trap-popd
   can_continue_after_enhanced_pushd || return 1
 
   check_collections_abc_place "$@"

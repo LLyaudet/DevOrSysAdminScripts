@@ -25,6 +25,10 @@
 # to "upgrade_build_and_checks.exec.sh".
 
 upgrade_build_and_checks(){
+  # Options:
+  #   --check-download (=keep to keep the downloaded files)
+  #   --fixed-point-build
+  #   --verbose
   local LFBFL_verbose=""
   if [[ "$*" == *--verbose* ]]; then
     printf "%s %s\n" "$0" "$*"
@@ -35,12 +39,21 @@ upgrade_build_and_checks(){
     LFBFL_fixed_point_build="--fixed-point-build"
   fi
   readonly LFBFL_verbose
+  local LFBFL_check_download=""
+  if [[ "$*" == *--check-download=keep* ]]; then
+    LFBFL_check_download="--check-download=keep"
+  elif [[ "$*" == *--check-download* ]]; then
+    LFBFL_check_download="--check-download"
+  fi
+  readonly LFBFL_check_download
   (\
     cd build_and_checks_dependencies/\
     && ./update_common_build_and_checks.exec.sh "${LFBFL_verbose}"\
   )
-  ./build_and_checks.exec.sh "." "${LFBFL_verbose}"\
-    "${LFBFL_fixed_point_build}"
+  ./build_and_checks.exec.sh "."\
+    "${LFBFL_verbose}"\
+    "${LFBFL_fixed_point_build}"\
+    "${LFBFL_check_download}"
 }
 
 upgrade_build_and_checks "$@"

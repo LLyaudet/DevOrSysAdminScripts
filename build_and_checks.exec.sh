@@ -31,6 +31,7 @@
 build_and_checks(){
   # $1=work_directory
   # Options:
+  #   --check-download (=keep to keep the downloaded files)
   #   --verbose
   local LFBFL_work_directory="."
   if [[ -n "$1" ]]; then
@@ -44,6 +45,14 @@ build_and_checks(){
     LFBFL_verbose="--verbose"
   fi
   readonly LFBFL_verbose
+
+  local LFBFL_check_download=""
+  if [[ "$*" == *--check-download=keep* ]]; then
+    LFBFL_check_download="--check-download=keep"
+  elif [[ "$*" == *--check-download* ]]; then
+    LFBFL_check_download="--check-download"
+  fi
+  readonly LFBFL_check_download
 
   source ./wget_sha512.libr.sh
 
@@ -70,15 +79,20 @@ build_and_checks(){
   declare -r\
     LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_common_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='72bd314bc8f71fd79a201681a1aa7c46bf691452f5019'
-  LFBFL_correct_sha512+='d5671d70f0cc29c28402fe84976785a2363b2eb9277a'
-  LFBFL_correct_sha512+='783414b079a503a71304ed6ca0f0b0fbd6f52a5'
-  wget_sha512 "${LFBFL_file_path}" "${LFBFL_script}"\
-    "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
+  LFBFL_correct_sha512='564e218ef5f29ad289994c46a22e18a6d42eecc2044b3'
+  LFBFL_correct_sha512+='74862ef748d19ea637e750da705b41f7a8c86f483b9d'
+  LFBFL_correct_sha512+='13886ca36dd073732c863150cc85eb3851d77ba'
+  wget_sha512 "${LFBFL_file_path}"\
+    "${LFBFL_script}"\
+    "${LFBFL_correct_sha512}"\
+    "${LFBFL_verbose}"\
+    "${LFBFL_check_download}"
   chmod +x "./${LFBFL_file_path}"
 
   "${LFBFL_file_path}" "${LFBFL_work_directory}"\
-    "${LFBFL_dependencies_URL}" "${LFBFL_verbose}"
+    "${LFBFL_dependencies_URL}"\
+    "${LFBFL_verbose}"\
+    "${LFBFL_check_download}"
 }
 
 if [[ "$*" == *--fixed-point-build* ]]; then

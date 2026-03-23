@@ -33,7 +33,9 @@
 common_build_and_checks(){
   # $1 LFBFL_work_directory
   # $2 LFBFL_dependencies_URL
-  # $3 optional --verbose
+  # Options:
+  #   --check-download (=keep to keep the downloaded files)
+  #   --verbose
   local LFBFL_work_directory="${1:-.}"
   LFBFL_work_directory=$(realpath "${LFBFL_work_directory}")
   local LFBFL_work_directory_option="--work-directory="
@@ -48,6 +50,14 @@ common_build_and_checks(){
   fi
   readonly LFBFL_verbose
   readonly LFBFL_i_verbose
+  local LFBFL_check_download=""
+  if [[ "$*" == *--check-download=keep* ]]; then
+    LFBFL_check_download="--check-download=keep"
+  elif [[ "$*" == *--check-download* ]]; then
+    LFBFL_check_download="--check-download"
+  fi
+  readonly LFBFL_check_download
+
   declare -ar LFBFL_some_common_options=(
     "${LFBFL_verbose}"
     # "$--work-directory={LFBFL_work_directory}" doesn't work
@@ -68,7 +78,8 @@ common_build_and_checks(){
     wget_sha512 "${LFBFL_file_path}"\
       "${LFBFL_script_download_URL}"\
       "${LFBFL_correct_sha512}"\
-      "${LFBFL_verbose}"
+      "${LFBFL_verbose}"\
+      "${LFBFL_check_download}"
   }
 
   LFBFL_file_name="build_md_from_printable_md.exec.sh"

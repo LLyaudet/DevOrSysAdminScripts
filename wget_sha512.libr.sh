@@ -29,7 +29,7 @@ wget_sha512(){
   # $2=download_URL
   # $3=correct_sha512
   # Options:
-  #   --check-download = keep to keep the downloaded file
+  #   --check-download (=keep to keep the downloaded file)
   #   --verbose
   local LFBFL_verbose=""
   if [[ "$*" == *--verbose* ]]; then

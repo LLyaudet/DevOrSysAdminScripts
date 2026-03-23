@@ -31,6 +31,7 @@
 build_and_checks(){
   # $1=work_directory
   # Options:
+  #   --check-download (=keep to keep the downloaded files)
   #   --verbose
   local LFBFL_work_directory="."
   if [[ -n "$1" ]]; then
@@ -44,6 +45,14 @@ build_and_checks(){
     LFBFL_verbose="--verbose"
   fi
   readonly LFBFL_verbose
+
+  local LFBFL_check_download=""
+  if [[ "$*" == *--check-download=keep* ]]; then
+    LFBFL_check_download="--check-download=keep"
+  elif [[ "$*" == *--check-download* ]]; then
+    LFBFL_check_download="--check-download"
+  fi
+  readonly LFBFL_check_download
 
   source ./wget_sha512.libr.sh
 
@@ -70,12 +79,17 @@ build_and_checks(){
   declare -r\
     LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_common_file_name}"
   @sha512_common_build_and_checks.exec.sh@
-  wget_sha512 "${LFBFL_file_path}" "${LFBFL_script}"\
-    "${LFBFL_correct_sha512}" "${LFBFL_verbose}"
+  wget_sha512 "${LFBFL_file_path}"\
+    "${LFBFL_script}"\
+    "${LFBFL_correct_sha512}"\
+    "${LFBFL_verbose}"\
+    "${LFBFL_check_download}"
   chmod +x "./${LFBFL_file_path}"
 
   "${LFBFL_file_path}" "${LFBFL_work_directory}"\
-    "${LFBFL_dependencies_URL}" "${LFBFL_verbose}"
+    "${LFBFL_dependencies_URL}"\
+    "${LFBFL_verbose}"\
+    "${LFBFL_check_download}"
 }
 
 if [[ "$*" == *--fixed-point-build* ]]; then

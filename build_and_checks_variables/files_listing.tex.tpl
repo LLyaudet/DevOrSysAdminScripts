@@ -33,6 +33,18 @@ build_and_checks_dependencies/build_and_checks.exec.sh.tpl
 
 
 \subsection{
+  build\_and\_checks\_dependencies/build\_dependencies\_notes.exec.php
+}
+\label{
+  build_and_checks_dependencies:build_dependencies_notesexecphp
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+build_and_checks_dependencies/build_dependencies_notes.exec.php
+}
+
+
+\subsection{
   build\_and\_checks\_dependencies/build\_md\_from\_printable\_md.exec.sh
 }
 \label{
@@ -454,6 +466,30 @@ build_and_checks_variables/bandit_baseline.json
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
 build_and_checks_variables/black.toml
+}
+
+
+\subsection{
+  build\_and\_checks\_variables/dependencies\_data.json
+}
+\label{
+  build_and_checks_variables:dependencies_datajson
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+build_and_checks_variables/dependencies_data.json
+}
+
+
+\subsection{
+  build\_and\_checks\_variables/dependencies\_notes.txt
+}
+\label{
+  build_and_checks_variables:dependencies_notestxt
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+build_and_checks_variables/dependencies_notes.txt
 }
 
 

@@ -38,6 +38,72 @@ get_where_was_i(){
   # offsets in the same function.
 }
 
+# RETURN traps handling
+# Add the following lines at the start of a function.
+#   declare -a LFBFL_return_traps_stack
+#   local LFBFL_previous_return_trap
+#   init_return_trap
+
+init_return_trap(){
+  local LFBFL_previous_return_trap2
+  LFBFL_previous_return_trap2=$(trap -p RETURN)
+  if [[ LFBFL_i_verbose -eq 1 ]]; then
+    local LFBFL_where_was_i
+    get_where_was_i 2
+    printf "%s previous_return_trap is: %s.\n"\
+      "${LFBFL_where_was_i}"\
+      "${LFBFL_previous_return_trap2}"
+  fi
+  if [[ -z "${LFBFL_previous_return_trap2}" ]]; then
+    LFBFL_previous_return_trap2="trap '' RETURN"
+  fi
+  declare -ir LFBFL_function_depth=$((${#FUNCNAME[@]} - 1))
+  LFBFL_previous_return_trap="${LFBFL_function_depth}:"
+  LFBFL_previous_return_trap+="${LFBFL_previous_return_trap2}"
+  trap 'execute_return_traps' RETURN
+}
+
+execute_return_traps(){
+  if [[ "${FUNCNAME[1]}" == "init_return_trap" ]]; then
+    return
+  fi
+  local LFBFL_some_return_trap
+  local LFBFL_where_was_i
+  get_where_was_i 2
+  declare -ir LFBFL_function_depth=$((${#FUNCNAME[@]} - 1))
+  while [[ -n "${LFBFL_return_traps_stack}" ]]; do
+    LFBFL_some_return_trap="${LFBFL_return_traps_stack[-1]}"
+    if [[ ! "${LFBFL_some_return_trap}" == ${LFBFL_function_depth}:* ]];
+    then
+      # We only treat the top of the stack that should correspond to the
+      # current function.
+      break
+    fi
+    LFBFL_some_return_trap=${LFBFL_some_return_trap#*:}
+    if [[ LFBFL_i_verbose -eq 1 ]]; then
+      printf "%s executing some return trap: %s.\n"\
+        "${LFBFL_where_was_i}"\
+        "${LFBFL_some_return_trap}"
+    fi
+    eval "${LFBFL_some_return_trap}"
+    unset 'LFBFL_return_traps_stack[-1]'
+  done
+  if [[ ! "${LFBFL_previous_return_trap}" == ${LFBFL_function_depth}:* ]];
+  then
+    # We only set the previous return trap if such a trap was replaced
+    # by an init_return_trap.
+    return
+  fi
+  LFBFL_previous_return_trap=${LFBFL_previous_return_trap#*:}
+  if [[ LFBFL_i_verbose -eq 1 ]]; then
+    printf "%s setting back to previous_return_trap: %s.\n"\
+      "${LFBFL_where_was_i}"\
+      "${LFBFL_previous_return_trap}"
+  fi
+  eval "${LFBFL_previous_return_trap}"
+}
+
+
 is_top_dirstack_directory(){
   # This function should not be needed since when testing "${DIRSTACK[0]}"
   # is already a realpath. But I keep it, in case it is needed.
@@ -171,6 +237,11 @@ get_verbose_option(){
 #   pushd_to_work_directory\
 #     && trap 'popd_from_work_directory' RETURN
 #   can_continue_after_enhanced_pushd || return 1
+# Or:
+#   local LFBFL_work_directory=""
+#   get_work_directory_option "$@"
+#   pushd_to_work_directory --trap-popd
+#   can_continue_after_enhanced_pushd || return 1
 
 get_work_directory_option(){
   # This command is to be called in another one with same arguments.
@@ -190,11 +261,28 @@ get_work_directory_option(){
 }
 
 pushd_to_work_directory(){
+  # Options:
+  #   --trap-popd
   enhanced_pushd "${LFBFL_work_directory}" 3 " --work-directory="
+  if [[ i_enhanced_pushd_result -eq 0 ]]; then
+    local LFBFL_arg
+    for LFBFL_arg in "$@"; do
+      if [[ "${LFBFL_arg}" == --trap-popd ]]; then
+        declare -ir LFBFL_function_depth=$((${#FUNCNAME[@]} - 1))
+        local LFBFL_some_return_trap
+        LFBFL_some_return_trap="${LFBFL_function_depth}:"
+        LFBFL_some_return_trap+="popd_from_work_directory 4"
+        readonly LFBFL_some_return_trap
+        LFBFL_return_traps_stack+="${LFBFL_some_return_trap}"
+        break
+      fi
+    done
+  fi
 }
 
 popd_from_work_directory(){
-  enhanced_popd "${LFBFL_work_directory}" 3
+  # $1=offset for where_was_i
+  enhanced_popd "${LFBFL_work_directory}" "${1:-3}"
 }
 
 work_directory_is_top_dirstack_directory(){

@@ -259,6 +259,26 @@ get_some_option(){
   fi
 }
 
+keep_options(){
+  # $1=variable_name of array of options
+  # Other arguments: the options to keep.
+  declare -a LFBFL_array_of_filtered_options
+  declare -n LFBFL_array_of_options=$1
+  local LFBFL_some_argument
+  local LFBFL_some_argument2
+  for LFBFL_some_argument in "${LFBFL_array_of_options[@]}"; do
+    for LFBFL_some_argument2 in "$@"; do
+      if [[
+        "${LFBFL_some_argument}" == "${LFBFL_some_argument2}"
+        || "${LFBFL_some_argument}" == "${LFBFL_some_argument2}"=*
+      ]]; then
+        LFBFL_array_of_filtered_options+=("${LFBFL_some_argument}")
+      fi
+    done
+  done
+  LFBFL_array_of_options=("${LFBFL_array_of_filtered_options[@]}")
+}
+
 
 # Main usage for the next functions relative to work_directory:
 # Add the five following lines at the start of a function.

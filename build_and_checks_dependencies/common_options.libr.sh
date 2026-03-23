@@ -296,7 +296,7 @@ pushd_to_work_directory(){
         LFBFL_some_return_trap="${LFBFL_function_depth}:"
         LFBFL_some_return_trap+="popd_from_work_directory 4"
         readonly LFBFL_some_return_trap
-        LFBFL_return_traps_stack+="${LFBFL_some_return_trap}"
+        LFBFL_return_traps_stack+=("${LFBFL_some_return_trap}")
         break
       fi
     done
@@ -376,7 +376,7 @@ enhanced_set_shell_option(){
       LFBFL_some_return_trap="${LFBFL_function_depth}:"
       LFBFL_some_return_trap+="enhanced_unset_shell_option '$1' --offset=3"
       readonly LFBFL_some_return_trap
-      LFBFL_return_traps_stack+="${LFBFL_some_return_trap}"
+      LFBFL_return_traps_stack+=("${LFBFL_some_return_trap}")
       break
     fi
   done
@@ -413,7 +413,7 @@ enhanced_unset_shell_option(){
       LFBFL_some_return_trap="${LFBFL_function_depth}:"
       LFBFL_some_return_trap+="enhanced_set_shell_option '$1' --offset=3"
       readonly LFBFL_some_return_trap
-      LFBFL_return_traps_stack+="${LFBFL_some_return_trap}"
+      LFBFL_return_traps_stack+=("${LFBFL_some_return_trap}")
       break
     fi
   done
@@ -452,7 +452,7 @@ enhanced_set_bash_option(){
       LFBFL_some_return_trap="${LFBFL_function_depth}:"
       LFBFL_some_return_trap+="enhanced_unset_bash_option '$1' --offset=3"
       readonly LFBFL_some_return_trap
-      LFBFL_return_traps_stack+="${LFBFL_some_return_trap}"
+      LFBFL_return_traps_stack+=("${LFBFL_some_return_trap}")
       break
     fi
   done
@@ -489,7 +489,7 @@ enhanced_unset_bash_option(){
       LFBFL_some_return_trap="${LFBFL_function_depth}:"
       LFBFL_some_return_trap+="enhanced_set_bash_option '$1' --offset=3"
       readonly LFBFL_some_return_trap
-      LFBFL_return_traps_stack+="${LFBFL_some_return_trap}"
+      LFBFL_return_traps_stack+=("${LFBFL_some_return_trap}")
       break
     fi
   done

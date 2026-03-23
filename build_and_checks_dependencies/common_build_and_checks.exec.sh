@@ -107,9 +107,9 @@ common_build_and_checks(){
   LFBFL_file_name="common_options.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='061f6f9f735758bd075af3d773a1bc1282b60150caf8e'
-  LFBFL_correct_sha512+='b1ff7e86d02f77115e0c8d35df996d65b31c6a756c79'
-  LFBFL_correct_sha512+='8b098a7331ee25c9cc76e70000a50d1347a615a'
+  LFBFL_correct_sha512='9781bf0391e0ca43e7d0d58fc0f6cb8163d49783a2c3d'
+  LFBFL_correct_sha512+='3261d6e0745fc76f6e6cb4a453e721779a1221cc71ce'
+  LFBFL_correct_sha512+='57a94a0860cc6c3f03ffa00e7c634cacfde38d2'
   wrapped_wget_sha512
 
   LFBFL_file_name="comparisons.libr.sh"

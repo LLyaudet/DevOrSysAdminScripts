@@ -55,7 +55,7 @@ init_return_trap(){
       "${LFBFL_previous_return_trap2}"
   fi
   if [[ -z "${LFBFL_previous_return_trap2}" ]]; then
-    LFBFL_previous_return_trap2="trap '' RETURN"
+    LFBFL_previous_return_trap2="trap - RETURN"
   fi
   declare -ir LFBFL_function_depth=$((${#FUNCNAME[@]} - 1))
   LFBFL_previous_return_trap="${LFBFL_function_depth}:"

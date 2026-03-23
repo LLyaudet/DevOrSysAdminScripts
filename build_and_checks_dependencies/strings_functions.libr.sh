@@ -1163,6 +1163,8 @@ split_last_line(){
   # $5=split_score_command
   # $6=split_score_command_properties
   # $7=forbidden_previous_character ('\' usually)
+  # Options:
+  #   --verbose
   # In general, a prefix/suffix can be a required line prefix/suffix
   # for all final lines like a comment prefix,
   # or it can be a continuation line prefix/suffix applied only
@@ -1184,8 +1186,13 @@ split_last_line(){
   # The given max_length is the goal.
   # This function adapts the effective max position for the split by
   # taking into account the length of the suffix.
-  enhanced_set_shell_option pipefail\
-    && trap 'enhanced_unset_shell_option pipefail' RETURN
+  declare -i LFBFL_i_verbose=0
+  get_verbose_option "$@"
+  declare -a LFBFL_return_traps_stack
+  local LFBFL_previous_return_trap
+  init_return_trap
+
+  enhanced_set_shell_option pipefail --trap-unset
 
   declare -g split_last_line_result="$1"
   declare -ir LFBFL_i_overlength=$(($3 + 1))

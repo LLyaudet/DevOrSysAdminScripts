@@ -71,8 +71,7 @@ too_long_code_lines(){
   # shellcheck disable=SC2248
   get_overlength_regexp ${LFBFL_i_overlength}
 
-  enhanced_set_shell_option pipefail\
-    && trap 'enhanced_unset_shell_option pipefail' RETURN
+  enhanced_set_shell_option pipefail --trap-unset
 
   get_COMMON_TEXT_FILES_GLOB_PATTERNS
   local LFBFL_pattern

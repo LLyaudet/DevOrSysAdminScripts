@@ -41,8 +41,7 @@ check_no_size_of_array_first_element(){
   pushd_to_work_directory --trap-popd
   can_continue_after_enhanced_pushd || return 1
 
-  enhanced_set_bash_option globstar\
-    && trap 'enhanced_unset_bash_option globstar' RETURN
+  enhanced_set_bash_option globstar --trap-unset
 
   local LFBFL_s="Checking that shell scripts do not"
   LFBFL_s+=" contain wrong array size expansion."
@@ -79,8 +78,7 @@ check_no_misplaced_then(){
   declare -i LFBFL_i_max_previous_line_length
   LFBFL_i_max_previous_line_length=$((LFBFL_i_max_line_length - 5))
 
-  enhanced_set_bash_option globstar\
-    && trap 'enhanced_unset_bash_option globstar' RETURN
+  enhanced_set_bash_option globstar --trap-unset
 
   [[ LFBFL_i_verbose -eq 1 ]]\
     && printf\

@@ -47,8 +47,7 @@ check_no_empty_line_after_python_function_docstring(){
   pushd_to_work_directory --trap-popd
   can_continue_after_enhanced_pushd || return 1
 
-  enhanced_set_bash_option globstar\
-    && trap 'enhanced_unset_bash_option globstar' RETURN
+  enhanced_set_bash_option globstar --trap-unset
 
   [[ LFBFL_i_verbose -eq 1 ]]\
     && printf "Checking empty lines after Python function docstrings\n"

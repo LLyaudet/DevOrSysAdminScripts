@@ -46,8 +46,7 @@ all_code_lines(){
   pushd_to_work_directory --trap-popd
   can_continue_after_enhanced_pushd || return 1
 
-  enhanced_set_shell_option pipefail\
-    && trap 'enhanced_unset_shell_option pipefail' RETURN
+  enhanced_set_shell_option pipefail --trap-unset
 
   get_COMMON_TEXT_FILES_GLOB_PATTERNS
   local LFBFL_pattern
@@ -75,8 +74,7 @@ all_self_code_lines(){
   pushd_to_work_directory --trap-popd
   can_continue_after_enhanced_pushd || return 1
 
-  enhanced_set_shell_option pipefail\
-    && trap 'enhanced_unset_shell_option pipefail' RETURN
+  enhanced_set_shell_option pipefail --trap-unset
 
   # below and another lines, see SC2145 false positive
   all_code_lines "$@" \
@@ -92,9 +90,11 @@ all_self_empty_code_lines(){
   #   --verbose
   declare -i LFBFL_i_verbose=0
   get_verbose_option "$@"
+  declare -a LFBFL_return_traps_stack
+  local LFBFL_previous_return_trap
+  init_return_trap
 
-  enhanced_set_shell_option pipefail\
-    && trap 'enhanced_unset_shell_option pipefail' RETURN
+  enhanced_set_shell_option pipefail --trap-unset
 
   all_self_code_lines "$@" \
     | empty_lines_after_file_name
@@ -106,9 +106,11 @@ all_self_not_empty_code_lines(){
   #   --verbose
   declare -i LFBFL_i_verbose=0
   get_verbose_option "$@"
+  declare -a LFBFL_return_traps_stack
+  local LFBFL_previous_return_trap
+  init_return_trap
 
-  enhanced_set_shell_option pipefail\
-    && trap 'enhanced_unset_shell_option pipefail' RETURN
+  enhanced_set_shell_option pipefail --trap-unset
 
   all_self_code_lines "$@" \
     | not_empty_lines_after_file_name
@@ -119,9 +121,11 @@ code_lines_count_all(){
   #   --verbose
   declare -i LFBFL_i_verbose=0
   get_verbose_option "$@"
+  declare -a LFBFL_return_traps_stack
+  local LFBFL_previous_return_trap
+  init_return_trap
 
-  enhanced_set_shell_option pipefail\
-    && trap 'enhanced_unset_shell_option pipefail' RETURN
+  enhanced_set_shell_option pipefail --trap-unset
 
   declare -gi i_code_lines_count_all_result
   i_code_lines_count_all_result=$(
@@ -139,9 +143,11 @@ code_lines_count_empty(){
   #   --verbose
   declare -i LFBFL_i_verbose=0
   get_verbose_option "$@"
+  declare -a LFBFL_return_traps_stack
+  local LFBFL_previous_return_trap
+  init_return_trap
 
-  enhanced_set_shell_option pipefail\
-    && trap 'enhanced_unset_shell_option pipefail' RETURN
+  enhanced_set_shell_option pipefail --trap-unset
 
   declare -gi i_code_lines_count_empty_result
   # shellcheck disable=SC2119
@@ -160,9 +166,11 @@ code_lines_count_not_empty(){
   #   --verbose
   declare -i LFBFL_i_verbose=0
   get_verbose_option "$@"
+  declare -a LFBFL_return_traps_stack
+  local LFBFL_previous_return_trap
+  init_return_trap
 
-  enhanced_set_shell_option pipefail\
-    && trap 'enhanced_unset_shell_option pipefail' RETURN
+  enhanced_set_shell_option pipefail --trap-unset
 
   declare -gi i_code_lines_count_not_empty_result
   # shellcheck disable=SC2119

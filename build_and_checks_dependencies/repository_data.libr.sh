@@ -37,9 +37,11 @@ get_upgrade_venvs_time_interval_in_seconds(){
   #   --verbose
   declare -i LFBFL_i_verbose=0
   get_verbose_option "$@"
+  declare -a LFBFL_return_traps_stack
+  local LFBFL_previous_return_trap
+  init_return_trap
 
-  enhanced_set_bash_option extglob\
-    && trap 'enhanced_unset_bash_option extglob' RETURN
+  enhanced_set_bash_option extglob --trap-unset
 
   grep_variable "$1"\
     upgrade_venvs_time_interval_in_seconds\

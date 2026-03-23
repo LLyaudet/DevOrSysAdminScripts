@@ -50,8 +50,7 @@ build_licenses_templates(){
   local LFBFL_previous_return_trap
   init_return_trap
 
-  enhanced_set_shell_option pipefail\
-    && trap 'enhanced_unset_shell_option pipefail' RETURN
+  enhanced_set_shell_option pipefail --trap-unset
 
   local LFBFL_s_format
 

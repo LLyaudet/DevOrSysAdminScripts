@@ -51,8 +51,7 @@ grammar_and_spelling_check(){
   pushd_to_work_directory --trap-popd
   can_continue_after_enhanced_pushd || return 1
 
-  enhanced_set_shell_option pipefail\
-    && trap 'enhanced_unset_shell_option pipefail' RETURN
+  enhanced_set_shell_option pipefail --trap-unset
 
   get_COMMON_TEXT_FILES_GLOB_PATTERNS
   local LFBFL_grammar_and_spelling_checker_command=""

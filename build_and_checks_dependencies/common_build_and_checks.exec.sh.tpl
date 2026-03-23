@@ -288,8 +288,7 @@ common_build_and_checks(){
   local LFBFL_previous_return_trap
   init_return_trap
 
-  enhanced_set_shell_option pipefail\
-    && trap 'enhanced_unset_shell_option pipefail' RETURN
+  enhanced_set_shell_option pipefail --trap-unset
 
   printf "Building license headers\n"
   "./${LFBFL_subdir2}/build_licenses_templates.exec.sh"\

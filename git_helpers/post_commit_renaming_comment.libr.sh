@@ -70,8 +70,6 @@ commit_a_file_renamed_comment(){
   #   --max-comment-line-length
   declare -i LFBFL_i_verbose=0
   get_verbose_option "$@"
-  local LFBFL_work_directory=""
-  get_work_directory_option "$@"
   local LFBFL_arg
   local LFBFL_s_format
 

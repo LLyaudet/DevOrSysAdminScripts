@@ -107,9 +107,9 @@ common_build_and_checks(){
   LFBFL_file_name="common_options.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='0f1e684e7f37b61e907569b376660386daa064041f32a'
-  LFBFL_correct_sha512+='5ec53520cad3ae9c62d62b1381072a7e183732a65f92'
-  LFBFL_correct_sha512+='02e825217ce3eb280bf6cd86593b73d967d034f'
+  LFBFL_correct_sha512='50079da0e51baf5786000f76b8f3976d087f9c46ade97'
+  LFBFL_correct_sha512+='ac0001c8cebc4d4baec8d8259a27711a88b6a27a06e7'
+  LFBFL_correct_sha512+='e4bcc1de368cb59b81f58aa09eb316ce0abf4d9'
   wrapped_wget_sha512
 
   LFBFL_file_name="comparisons.libr.sh"
@@ -451,6 +451,12 @@ common_build_and_checks(){
     fi
   }
 
+  source_without_return_trap(){
+    declare -i LFBFL_i_no_return_traps=1
+    # shellcheck disable=SC1090,SC1091
+    source "$1"
+  }
+
   printf "Running isort\n"
   local LFBFL_isort_venv=""
   grep_variable "${LFBFL_data_file_name}" isort_venv\
@@ -458,8 +464,7 @@ common_build_and_checks(){
     --replace-line-returns-by=""
   if [[ -n "${LFBFL_isort_venv}" ]]; then
     maybe_deactivate
-    # shellcheck disable=SC1090,SC1091
-    source "${LFBFL_isort_venv}/bin/activate"
+    source_without_return_trap "${LFBFL_isort_venv}/bin/activate"
   fi
   if [[ LFBFL_i_upgrade_venvs -eq 1 ]]; then
     pip install --upgrade isort
@@ -487,8 +492,7 @@ common_build_and_checks(){
     --replace-line-returns-by=""
   if [[ -n "${LFBFL_black_venv}" ]]; then
     maybe_deactivate
-    # shellcheck disable=SC1090,SC1091
-    source "${LFBFL_black_venv}/bin/activate"
+    source_without_return_trap "${LFBFL_black_venv}/bin/activate"
   fi
   if [[ LFBFL_i_upgrade_venvs -eq 1 ]]; then
     pip install --upgrade black
@@ -507,8 +511,7 @@ common_build_and_checks(){
     --replace-line-returns-by=""
   if [[ -n "${LFBFL_mypy_venv}" ]]; then
     maybe_deactivate
-    # shellcheck disable=SC1090,SC1091
-    source "${LFBFL_mypy_venv}/bin/activate"
+    source_without_return_trap "${LFBFL_mypy_venv}/bin/activate"
   fi
   if [[ LFBFL_i_upgrade_venvs -eq 1 ]]; then
     pip install --upgrade mypy
@@ -545,8 +548,7 @@ common_build_and_checks(){
     --replace-line-returns-by=""
   if [[ -n "${LFBFL_bandit_venv}" ]]; then
     maybe_deactivate
-    # shellcheck disable=SC1090,SC1091
-    source "${LFBFL_bandit_venv}/bin/activate"
+    source_without_return_trap "${LFBFL_bandit_venv}/bin/activate"
   fi
   if [[ LFBFL_i_upgrade_venvs -eq 1 ]]; then
     pip install --upgrade bandit
@@ -570,8 +572,7 @@ common_build_and_checks(){
     --replace-line-returns-by=""
   if [[ -n "${LFBFL_pylint_venv}" ]]; then
     maybe_deactivate
-    # shellcheck disable=SC1090,SC1091
-    source "${LFBFL_pylint_venv}/bin/activate"
+    source_without_return_trap "${LFBFL_pylint_venv}/bin/activate"
   fi
   if [[ LFBFL_i_upgrade_venvs -eq 1 ]]; then
     pip install --upgrade pylint
@@ -588,8 +589,7 @@ common_build_and_checks(){
     --replace-line-returns-by=""
   if [[ -n "${LFBFL_ruff_venv}" ]]; then
     maybe_deactivate
-    # shellcheck disable=SC1090,SC1091
-    source "${LFBFL_ruff_venv}/bin/activate"
+    source_without_return_trap "${LFBFL_ruff_venv}/bin/activate"
   fi
   if [[ LFBFL_i_upgrade_venvs -eq 1 ]]; then
     pip install --upgrade ruff

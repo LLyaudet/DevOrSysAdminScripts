@@ -67,6 +67,16 @@ execute_return_traps(){
   if [[ "${FUNCNAME[1]}" == "init_return_trap" ]]; then
     return
   fi
+  # -----------------------------------------------------------------------
+  # See https://lists.gnu.org/archive/html/help-bash/2026-03/msg00052.html
+  if [[ "${FUNCNAME[1]}" == "source" ]]; then
+    # Not Working
+    return
+  fi
+  if [[ ${LFBFL_i_no_return_traps:-0} -eq 1 ]]; then
+    return
+  fi
+  # -----------------------------------------------------------------------
   local LFBFL_some_return_trap
   local LFBFL_where_was_i
   get_where_was_i 2

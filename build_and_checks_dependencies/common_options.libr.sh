@@ -229,6 +229,27 @@ get_verbose_option(){
 }
 
 
+get_some_option(){
+  # $1=variable_name
+  # $2=some_option_long_name
+  # $3=option_default_value
+  # $4=read_only 0 or 1 to make the variable readonly
+  # This command is to be called in another one with same arguments on top
+  # of the three previous.
+  local LFBFL_arg
+  for LFBFL_arg in "$@"; do
+    if [[ "${LFBFL_arg}" == "$2"=* ]]; then
+      printf -v "$1" "%s" "${LFBFL_arg#"$2"=}"
+      printf -v "$1" "%s" "${!1:-$3}"
+      break
+    fi
+  done
+  if [[ $4 -eq 1 ]]; then
+    readonly "$1"
+  fi
+}
+
+
 # Main usage for the next functions relative to work_directory:
 # Add the five following lines at the start of a function.
 #   local LFBFL_work_directory=""
@@ -246,16 +267,9 @@ get_work_directory_option(){
   # This command is to be called in another one with same arguments.
   # Options:
   #   --work-directory=""
-  local LFBFL_arg
-  for LFBFL_arg in "$@"; do
-    if [[ "${LFBFL_arg}" == --work-directory=* ]]; then
-      LFBFL_work_directory=${LFBFL_arg#--work-directory=}
-      LFBFL_work_directory=${LFBFL_work_directory:-.}
-      # LFBFL_work_directory=${LFBFL_work_directory/#~/${HOME}} line below
-      LFBFL_work_directory=$(realpath "${LFBFL_work_directory}")
-      break
-    fi
-  done
+  get_some_option LFBFL_work_directory --work-directory "." 0 "$@"
+  # LFBFL_work_directory=${LFBFL_work_directory/#~/${HOME}} line below
+  LFBFL_work_directory=$(realpath "${LFBFL_work_directory}")
   readonly LFBFL_work_directory
 }
 
@@ -289,6 +303,16 @@ work_directory_is_top_dirstack_directory(){
 }
 
 
+get_offset_option(){
+  # This command is to be called in another one with same arguments on top
+  # of the default value.
+  # $1=option_default_value
+  # Options:
+  #   --offset=2
+  get_some_option LFBFL_i_offset --offset "$1" 1 "$@"
+}
+
+
 # Functions relative to shell and bash options
 # (See SHELLOPTS and BASHOPTS, set and shopt):
 # - shell options usage, example with pipefail:
@@ -314,6 +338,7 @@ work_directory_is_top_dirstack_directory(){
 enhanced_set_shell_option(){
   # $1=optname some shell option for set
   # Options:
+  #   --offset=2
   #   --trap-unset
   declare -r LFBFL_result_name="i_enhanced_set_shell_option_$1_result"
   declare -gi "${LFBFL_result_name}"=0
@@ -323,9 +348,12 @@ enhanced_set_shell_option(){
     return ${!LFBFL_result_name}
   fi
   set -o "$1"
+  declare -i LFBFL_i_offset=2
+  get_offset_option 2
   if [[ LFBFL_i_verbose -eq 1 ]]; then
     local LFBFL_where_was_i
-    get_where_was_i 2
+    # shellcheck disable=SC2248
+    get_where_was_i ${LFBFL_i_offset}
     printf "%s %s shell option activated.\n" "${LFBFL_where_was_i}" "$1"
   fi
   local LFBFL_arg
@@ -334,7 +362,7 @@ enhanced_set_shell_option(){
       declare -ir LFBFL_function_depth=$((${#FUNCNAME[@]} - 1))
       local LFBFL_some_return_trap
       LFBFL_some_return_trap="${LFBFL_function_depth}:"
-      LFBFL_some_return_trap+="enhanced_unset_shell_option '$1'"
+      LFBFL_some_return_trap+="enhanced_unset_shell_option '$1' --offset=3"
       readonly LFBFL_some_return_trap
       LFBFL_return_traps_stack+="${LFBFL_some_return_trap}"
       break
@@ -347,6 +375,7 @@ enhanced_set_shell_option(){
 enhanced_unset_shell_option(){
   # $1=optname some shell option for set
   # Options:
+  #   --offset=2
   #   --trap-set
   declare -r LFBFL_result_name="i_enhanced_unset_shell_option_$1_result"
   declare -gi "${LFBFL_result_name}"=0
@@ -356,9 +385,12 @@ enhanced_unset_shell_option(){
     return ${!LFBFL_result_name}
   fi
   set +o "$1"
+  declare -i LFBFL_i_offset=2
+  get_offset_option 2
   if [[ LFBFL_i_verbose -eq 1 ]]; then
     local LFBFL_where_was_i
-    get_where_was_i 2
+    # shellcheck disable=SC2248
+    get_where_was_i ${LFBFL_i_offset}
     printf "%s %s shell option unactivated.\n" "${LFBFL_where_was_i}" "$1"
   fi
   local LFBFL_arg
@@ -367,7 +399,7 @@ enhanced_unset_shell_option(){
       declare -ir LFBFL_function_depth=$((${#FUNCNAME[@]} - 1))
       local LFBFL_some_return_trap
       LFBFL_some_return_trap="${LFBFL_function_depth}:"
-      LFBFL_some_return_trap+="enhanced_set_shell_option '$1'"
+      LFBFL_some_return_trap+="enhanced_set_shell_option '$1' --offset=3"
       readonly LFBFL_some_return_trap
       LFBFL_return_traps_stack+="${LFBFL_some_return_trap}"
       break
@@ -380,6 +412,7 @@ enhanced_unset_shell_option(){
 enhanced_set_bash_option(){
   # $1=optname some bash option for shopt
   # Options:
+  #   --offset=2
   #   --trap-unset
   declare -r LFBFL_result_name="i_enhanced_set_bash_option_$1_result"
   declare -gi "${LFBFL_result_name}"=0
@@ -391,9 +424,12 @@ enhanced_set_bash_option(){
     return ${!LFBFL_result_name}
   fi
   shopt -s "$1"
+  declare -i LFBFL_i_offset=2
+  get_offset_option 2
   if [[ LFBFL_i_verbose -eq 1 ]]; then
     local LFBFL_where_was_i
-    get_where_was_i 2
+    # shellcheck disable=SC2248
+    get_where_was_i ${LFBFL_i_offset}
     printf "%s %s bash option activated.\n" "${LFBFL_where_was_i}" "$1"
   fi
   local LFBFL_arg
@@ -402,7 +438,7 @@ enhanced_set_bash_option(){
       declare -ir LFBFL_function_depth=$((${#FUNCNAME[@]} - 1))
       local LFBFL_some_return_trap
       LFBFL_some_return_trap="${LFBFL_function_depth}:"
-      LFBFL_some_return_trap+="enhanced_unset_bash_option '$1'"
+      LFBFL_some_return_trap+="enhanced_unset_bash_option '$1' --offset=3"
       readonly LFBFL_some_return_trap
       LFBFL_return_traps_stack+="${LFBFL_some_return_trap}"
       break
@@ -415,6 +451,7 @@ enhanced_set_bash_option(){
 enhanced_unset_bash_option(){
   # $1=optname some bash option for shopt
   # Options:
+  #   --offset=2
   #   --trap-set
   declare -r LFBFL_result_name="i_enhanced_unset_bash_option_$1_result"
   declare -gi "${LFBFL_result_name}"=0
@@ -424,9 +461,12 @@ enhanced_unset_bash_option(){
     return ${!LFBFL_result_name}
   fi
   shopt -u "$1"
+  declare -i LFBFL_i_offset=2
+  get_offset_option 2
   if [[ LFBFL_i_verbose -eq 1 ]]; then
     local LFBFL_where_was_i
-    get_where_was_i 2
+    # shellcheck disable=SC2248
+    get_where_was_i ${LFBFL_i_offset}
     printf "%s %s bash option unactivated.\n" "${LFBFL_where_was_i}" "$1"
   fi
   local LFBFL_arg
@@ -435,7 +475,7 @@ enhanced_unset_bash_option(){
       declare -ir LFBFL_function_depth=$((${#FUNCNAME[@]} - 1))
       local LFBFL_some_return_trap
       LFBFL_some_return_trap="${LFBFL_function_depth}:"
-      LFBFL_some_return_trap+="enhanced_set_bash_option '$1'"
+      LFBFL_some_return_trap+="enhanced_set_bash_option '$1' --offset=3"
       readonly LFBFL_some_return_trap
       LFBFL_return_traps_stack+="${LFBFL_some_return_trap}"
       break

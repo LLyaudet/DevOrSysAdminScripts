@@ -339,7 +339,7 @@ enhanced_set_shell_option(){
       LFBFL_return_traps_stack+="${LFBFL_some_return_trap}"
       break
     fi
-  fi
+  done
   # shellcheck disable=SC2086
   return ${!LFBFL_result_name}
 }
@@ -372,7 +372,7 @@ enhanced_unset_shell_option(){
       LFBFL_return_traps_stack+="${LFBFL_some_return_trap}"
       break
     fi
-  fi
+  done
   # shellcheck disable=SC2086
   return ${!LFBFL_result_name}
 }
@@ -407,7 +407,7 @@ enhanced_set_bash_option(){
       LFBFL_return_traps_stack+="${LFBFL_some_return_trap}"
       break
     fi
-  fi
+  done
   # shellcheck disable=SC2086
   return ${!LFBFL_result_name}
 }
@@ -440,7 +440,7 @@ enhanced_unset_bash_option(){
       LFBFL_return_traps_stack+="${LFBFL_some_return_trap}"
       break
     fi
-  fi
+  done
   # shellcheck disable=SC2086
   return ${!LFBFL_result_name}
 }

@@ -30,11 +30,11 @@
   ] },
   { "dependency_name": "ShellCheck", "URLs": [
       "https://www.shellcheck.net/",
-      "https://savannah.gnu.org/projects/wget/"
+      "https://github.com/koalaman/shellcheck"
   ] },
   { "dependency_name": "GNU Wget", "URLs": [
       "https://www.gnu.org/software/wget/",
-      "https://github.com/koalaman/shellcheck"
+      "https://savannah.gnu.org/projects/wget/"
   ] },
   { "dependency_name": "more of util-linux", "URLs": [
       "https://www.kernel.org/pub/linux/utils/util-linux/",

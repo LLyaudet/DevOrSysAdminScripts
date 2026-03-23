@@ -349,7 +349,7 @@ enhanced_set_shell_option(){
   fi
   set -o "$1"
   declare -i LFBFL_i_offset=2
-  get_offset_option 2
+  get_offset_option 2 "$@"
   if [[ LFBFL_i_verbose -eq 1 ]]; then
     local LFBFL_where_was_i
     # shellcheck disable=SC2248
@@ -386,7 +386,7 @@ enhanced_unset_shell_option(){
   fi
   set +o "$1"
   declare -i LFBFL_i_offset=2
-  get_offset_option 2
+  get_offset_option 2 "$@"
   if [[ LFBFL_i_verbose -eq 1 ]]; then
     local LFBFL_where_was_i
     # shellcheck disable=SC2248
@@ -425,7 +425,7 @@ enhanced_set_bash_option(){
   fi
   shopt -s "$1"
   declare -i LFBFL_i_offset=2
-  get_offset_option 2
+  get_offset_option 2 "$@"
   if [[ LFBFL_i_verbose -eq 1 ]]; then
     local LFBFL_where_was_i
     # shellcheck disable=SC2248
@@ -462,7 +462,7 @@ enhanced_unset_bash_option(){
   fi
   shopt -u "$1"
   declare -i LFBFL_i_offset=2
-  get_offset_option 2
+  get_offset_option 2 "$@"
   if [[ LFBFL_i_verbose -eq 1 ]]; then
     local LFBFL_where_was_i
     # shellcheck disable=SC2248

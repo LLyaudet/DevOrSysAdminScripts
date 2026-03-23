@@ -73,8 +73,7 @@ execute_return_traps(){
   declare -ir LFBFL_function_depth=$((${#FUNCNAME[@]} - 1))
   while [[ -n "${LFBFL_return_traps_stack}" ]]; do
     LFBFL_some_return_trap="${LFBFL_return_traps_stack[-1]}"
-    if [[ ! "${LFBFL_some_return_trap}" == ${LFBFL_function_depth}:* ]];
-    then
+    if [[ "${LFBFL_some_return_trap}" != ${LFBFL_function_depth}:* ]]; then
       # We only treat the top of the stack that should correspond to the
       # current function.
       break
@@ -88,7 +87,7 @@ execute_return_traps(){
     eval "${LFBFL_some_return_trap}"
     unset 'LFBFL_return_traps_stack[-1]'
   done
-  if [[ ! "${LFBFL_previous_return_trap}" == ${LFBFL_function_depth}:* ]];
+  if [[ "${LFBFL_previous_return_trap}" != ${LFBFL_function_depth}:* ]];
   then
     # We only set the previous return trap if such a trap was replaced
     # by an init_return_trap.
@@ -299,15 +298,23 @@ work_directory_is_top_dirstack_directory(){
 #     enhanced_unset_shell_option pipefail\
 #       && trap 'enhanced_set_shell_option pipefail' RETURN
 #   if you need to unset it in some function.
+#   or better if you use my RETURN traps handler:
+#     enhanced_set_shell_option pipefail --trap-unset
+#     enhanced_unset_shell_option pipefail --trap-set
 # - bash options usage, example with globstar:
 #     enhanced_set_bash_option globstar\
 #       && trap 'enhanced_unset_bash_option globstar' RETURN
 #   or maybe:
 #     enhanced_unset_bash_option globstar\
 #       && trap 'enhanced_set_bash_option globstar' RETURN
+#   or better if you use my RETURN traps handler:
+#     enhanced_set_bash_option globstar --trap-unset
+#     enhanced_unset_bash_option globstar --trap-set
 
 enhanced_set_shell_option(){
   # $1=optname some shell option for set
+  # Options:
+  #   --trap-unset
   declare -r LFBFL_result_name="i_enhanced_set_shell_option_$1_result"
   declare -gi "${LFBFL_result_name}"=0
   if [[ -o "$1" ]]; then
@@ -321,12 +328,26 @@ enhanced_set_shell_option(){
     get_where_was_i 2
     printf "%s %s shell option activated.\n" "${LFBFL_where_was_i}" "$1"
   fi
+  local LFBFL_arg
+  for LFBFL_arg in "$@"; do
+    if [[ "${LFBFL_arg}" == --trap-unset ]]; then
+      declare -ir LFBFL_function_depth=$((${#FUNCNAME[@]} - 1))
+      local LFBFL_some_return_trap
+      LFBFL_some_return_trap="${LFBFL_function_depth}:"
+      LFBFL_some_return_trap+="enhanced_unset_shell_option '$1'"
+      readonly LFBFL_some_return_trap
+      LFBFL_return_traps_stack+="${LFBFL_some_return_trap}"
+      break
+    fi
+  fi
   # shellcheck disable=SC2086
   return ${!LFBFL_result_name}
 }
 
 enhanced_unset_shell_option(){
   # $1=optname some shell option for set
+  # Options:
+  #   --trap-set
   declare -r LFBFL_result_name="i_enhanced_unset_shell_option_$1_result"
   declare -gi "${LFBFL_result_name}"=0
   if [[ ! -o "$1" ]]; then
@@ -340,12 +361,26 @@ enhanced_unset_shell_option(){
     get_where_was_i 2
     printf "%s %s shell option unactivated.\n" "${LFBFL_where_was_i}" "$1"
   fi
+  local LFBFL_arg
+  for LFBFL_arg in "$@"; do
+    if [[ "${LFBFL_arg}" == --trap-set ]]; then
+      declare -ir LFBFL_function_depth=$((${#FUNCNAME[@]} - 1))
+      local LFBFL_some_return_trap
+      LFBFL_some_return_trap="${LFBFL_function_depth}:"
+      LFBFL_some_return_trap+="enhanced_set_shell_option '$1'"
+      readonly LFBFL_some_return_trap
+      LFBFL_return_traps_stack+="${LFBFL_some_return_trap}"
+      break
+    fi
+  fi
   # shellcheck disable=SC2086
   return ${!LFBFL_result_name}
 }
 
 enhanced_set_bash_option(){
   # $1=optname some bash option for shopt
+  # Options:
+  #   --trap-unset
   declare -r LFBFL_result_name="i_enhanced_set_bash_option_$1_result"
   declare -gi "${LFBFL_result_name}"=0
   # declare -r LFBFL_regexp="^(.*:)?$1(:.*)?$" funny but brainfucked
@@ -361,12 +396,26 @@ enhanced_set_bash_option(){
     get_where_was_i 2
     printf "%s %s bash option activated.\n" "${LFBFL_where_was_i}" "$1"
   fi
+  local LFBFL_arg
+  for LFBFL_arg in "$@"; do
+    if [[ "${LFBFL_arg}" == --trap-unset ]]; then
+      declare -ir LFBFL_function_depth=$((${#FUNCNAME[@]} - 1))
+      local LFBFL_some_return_trap
+      LFBFL_some_return_trap="${LFBFL_function_depth}:"
+      LFBFL_some_return_trap+="enhanced_unset_bash_option '$1'"
+      readonly LFBFL_some_return_trap
+      LFBFL_return_traps_stack+="${LFBFL_some_return_trap}"
+      break
+    fi
+  fi
   # shellcheck disable=SC2086
   return ${!LFBFL_result_name}
 }
 
 enhanced_unset_bash_option(){
   # $1=optname some bash option for shopt
+  # Options:
+  #   --trap-set
   declare -r LFBFL_result_name="i_enhanced_unset_bash_option_$1_result"
   declare -gi "${LFBFL_result_name}"=0
   if ! shopt -q "$1"; then
@@ -379,6 +428,18 @@ enhanced_unset_bash_option(){
     local LFBFL_where_was_i
     get_where_was_i 2
     printf "%s %s bash option unactivated.\n" "${LFBFL_where_was_i}" "$1"
+  fi
+  local LFBFL_arg
+  for LFBFL_arg in "$@"; do
+    if [[ "${LFBFL_arg}" == --trap-set ]]; then
+      declare -ir LFBFL_function_depth=$((${#FUNCNAME[@]} - 1))
+      local LFBFL_some_return_trap
+      LFBFL_some_return_trap="${LFBFL_function_depth}:"
+      LFBFL_some_return_trap+="enhanced_set_bash_option '$1'"
+      readonly LFBFL_some_return_trap
+      LFBFL_return_traps_stack+="${LFBFL_some_return_trap}"
+      break
+    fi
   fi
   # shellcheck disable=SC2086
   return ${!LFBFL_result_name}

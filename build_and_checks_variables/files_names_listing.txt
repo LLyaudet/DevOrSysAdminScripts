@@ -69,6 +69,8 @@ build_and_checks_variables/.gitignore
 build_and_checks_variables/bandit.ini
 build_and_checks_variables/bandit_baseline.json
 build_and_checks_variables/black.toml
+build_and_checks_variables/dependencies_data.json
+build_and_checks_variables/dependencies_notes.txt
 build_and_checks_variables/DevOrSysAdminScripts.html.tpl
 // build_and_checks_variables/DevOrSysAdminScripts.tex
 build_and_checks_variables/DevOrSysAdminScripts.tex.tpl

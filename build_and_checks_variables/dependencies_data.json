@@ -1,0 +1,131 @@
+[
+  { "dependency_name": "Bash", "URLs": [
+      "https://www.gnu.org/software/bash/",
+      "https://tiswww.case.edu/php/chet/bash/bashtop.html",
+      "https://savannah.gnu.org/projects/bash/"
+  ] },
+  { "dependency_name": "GNU coreutils", "URLs": [
+      "https://www.gnu.org/software/coreutils/",
+      "https://savannah.gnu.org/projects/coreutils/"
+  ] },
+  { "dependency_name": "uutils coreutils", "URLs": [
+      "https://uutils.github.io/coreutils/",
+      "https://github.com/uutils/coreutils"
+  ] },
+  { "dependency_name": "diff (GNU diffutils)", "URLs": [
+      "https://www.gnu.org/software/diffutils/",
+      "https://savannah.gnu.org/projects/diffutils/"
+  ] },
+  { "dependency_name": "find, xargs (GNU findutils)", "URLs": [
+      "https://www.gnu.org/software/findutils/",
+      "https://savannah.gnu.org/projects/findutils/"
+  ] },
+  { "dependency_name": "grep (GNU grep)", "URLs": [
+      "https://www.gnu.org/software/grep/",
+      "https://savannah.gnu.org/projects/grep/"
+  ] },
+  { "dependency_name": "sed (GNU sed)", "URLs": [
+      "https://www.gnu.org/software/sed/",
+      "https://savannah.gnu.org/projects/sed/"
+  ] },
+  { "dependency_name": "ShellCheck", "URLs": [
+      "https://www.shellcheck.net/",
+      "https://savannah.gnu.org/projects/wget/"
+  ] },
+  { "dependency_name": "GNU Wget", "URLs": [
+      "https://www.gnu.org/software/wget/",
+      "https://github.com/koalaman/shellcheck"
+  ] },
+  { "dependency_name": "more of util-linux", "URLs": [
+      "https://www.kernel.org/pub/linux/utils/util-linux/",
+      "https://git.kernel.org/pub/scm/utils/util-linux/util-linux.git/",
+      {
+        "URL": "https://github.com/util-linux/util-linux",
+        "comment": "official?"
+      }
+  ] },
+  { "dependency_name": "pandoc", "URLs": [
+      "https://pandoc.org/",
+      "https://github.com/jgm/pandoc"
+  ] },
+  { "dependency_name": "pdftex/pdflatex", "URLs": [
+      "https://www.tug.org/applications/pdftex/",
+      "https://tug.org/texlive/svn/"
+  ] },
+  { "dependency_name": "tree", "URLs": [
+      "https://oldmanprogrammer.net/source.php?dir=projects/tree",
+      "https://gitlab.com/OldManProgrammer/unix-tree",
+      "https://github.com/Old-Man-Programmer/tree"
+  ] },
+  { "dependency_name": "git", "URLs": [
+      "https://git-scm.com/about",
+      "https://github.com/git/git"
+  ] },
+  { "dependency_name": "pylint", "URLs": [
+      "https://www.pylint.org/",
+      "https://pylint.readthedocs.io/en/stable/",
+      "https://github.com/pylint-dev/pylint",
+      "https://pypi.org/project/pylint/"
+  ] },
+  { "dependency_name": "notify-send", "URLs": [
+      "https://gitlab.gnome.org/GNOME/libnotify/",
+      "https://gnome.pages.gitlab.gnome.org/libnotify/"
+  ] },
+  { "dependency_name": "black", "URLs": [
+      "https://github.com/psf/black",
+      "https://black.readthedocs.io/en/stable/",
+      "https://pypi.org/project/black/"
+  ] },
+  { "dependency_name": "isort", "URLs": [
+      "https://pycqa.github.io/isort/",
+      "https://github.com/pycqa/isort/",
+      "https://pypi.org/project/isort/"
+  ] },
+  { "dependency_name": "mypy", "URLs": [
+      "https://mypy-lang.org/",
+      "https://mypy.readthedocs.io/en/stable/",
+      "https://github.com/python/mypy",
+      "https://pypi.org/project/mypy/"
+  ] },
+  { "dependency_name": "pip", "URLs": [
+      "https://pip.pypa.io/en/stable/",
+      "https://github.com/pypa/pip",
+      {
+        "URL": "https://pypi.org/project/pip/",
+        "comment": "(egg and chicken ;) )"
+      }
+  ] },
+  { "dependency_name": "ruff", "URLs": [
+      "https://docs.astral.sh/ruff/",
+      "https://github.com/astral-sh/ruff",
+      "https://pypi.org/project/ruff/"
+  ] },
+  { "dependency_name": "bandit", "URLs": [
+      "https://bandit.readthedocs.io/en/latest/",
+      "https://github.com/PyCQA/bandit",
+      "https://pypi.org/project/bandit/"
+  ] },
+  { "dependency_name": "phpmd", "URLs": [
+      "https://phpmd.org/",
+      "https://github.com/phpmd/phpmd",
+      "https://packagist.org/packages/phpmd/phpmd"
+  ] },
+  { "dependency_name": "php", "URLs": [
+      "https://www.php.net/",
+      "https://github.com/php/php-src"
+  ] },
+  { "dependency_name": "tex", "URLs": [
+      "https://ctan.org/tex-archive/systems/knuth/dist/tex"
+  ] },
+  { "dependency_name": "pcregrep, pcre2grep", "URLs": [
+      "https://www.pcre.org/",
+      "https://pcre2project.github.io/pcre2/",
+      "https://github.com/PCRE2Project/pcre1",
+      "https://github.com/PCRE2Project/pcre2",
+      "https://github.com/PCRE2Project/pcre2/blob/main/src/pcre2grep.c"
+  ] },
+  { "dependency_name": "python3", "URLs": [
+      "https://www.python.org/",
+      "https://docs.python.org/3/"
+  ] }
+]

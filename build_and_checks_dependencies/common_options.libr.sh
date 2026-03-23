@@ -299,7 +299,9 @@ get_work_directory_option(){
   #   --work-directory=""
   get_some_option LFBFL_work_directory --work-directory "." 0 "$@"
   # LFBFL_work_directory=${LFBFL_work_directory/#~/${HOME}} line below
-  LFBFL_work_directory=$(realpath "${LFBFL_work_directory}")
+  if [[ -n "${LFBFL_work_directory}" ]]; then
+    LFBFL_work_directory=$(realpath "${LFBFL_work_directory}")
+  fi
   readonly LFBFL_work_directory
 }
 

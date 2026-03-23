@@ -272,7 +272,7 @@ create_PDF(){
       LFBFL_new_lines=${repeated_split_last_line_result}
     fi
     {
-      LFBFL_s_format="<h3 id=\"subsection2.%s\">2.%s\n%s\n</h3>\n"
+      LFBFL_s_format="<h3 id=\"subsection3.%s\">3.%s\n%s\n</h3>\n"
       LFBFL_s_format+="<pre class=\"numbered_lines\">\n"
       # shellcheck disable=SC2059
       printf "${LFBFL_s_format}"\
@@ -283,7 +283,7 @@ create_PDF(){
         < "${LFBFL_file_path}"
       printf "</pre>\n\n\n"
     } >> "${LFBFL_temp_files_listing2}"
-    LFBFL_s_format="      <li><a href=\"#subsection2.%s\">\n%s\n"
+    LFBFL_s_format="      <li><a href=\"#subsection3.%s\">\n%s\n"
     LFBFL_s_format+="      </a></li>\n"
     # shellcheck disable=SC2059
     printf "${LFBFL_s_format}" "${LFBFL_i}" "${LFBFL_new_lines}"\
@@ -458,13 +458,19 @@ create_PDF(){
       "${LFBFL_tex_path_start}.5"
 
     insert_file_at_token "${LFBFL_tex_path_start}.5"\
+      @dependencies_notes@\
+      "./${LFBFL_temp_path}/dependencies_notes.tex"\
+      "${LFBFL_tex_path_start}.6"
+      
+
+    insert_file_at_token "${LFBFL_tex_path_start}.6"\
       @files_listing_VerbatimInput@\
       "./${LFBFL_subdir2}/files_listing.tex.tpl"\
-      "${LFBFL_tex_path_start}.6"
+      "${LFBFL_tex_path_start}.7"
 
     overwrite_if_not_equal\
       "./${LFBFL_subdir2}/${LFBFL_repository_name}.tex"\
-      "${LFBFL_tex_path_start}.6" 1
+      "${LFBFL_tex_path_start}.7" 1
   fi
 
   # HTML filling:
@@ -506,12 +512,17 @@ create_PDF(){
       "${LFBFL_html_path_start}.6"
 
     insert_file_at_token "${LFBFL_html_path_start}.6"\
-      @files_listing_HTMLPreInput@\
-      "${LFBFL_temp_path}/files_listing.html.tpl"\
+      @dependencies_notes@\
+      "./${LFBFL_temp_path}/dependencies_notes.html"\
       "${LFBFL_html_path_start}.7"
 
+    insert_file_at_token "${LFBFL_html_path_start}.7"\
+      @files_listing_HTMLPreInput@\
+      "${LFBFL_temp_path}/files_listing.html.tpl"\
+      "${LFBFL_html_path_start}.8"
+
     overwrite_if_not_equal "./${LFBFL_repository_name}.html"\
-      "${LFBFL_html_path_start}.7" 1
+      "${LFBFL_html_path_start}.8" 1
     LFBFL_i_HTML_updated=$?
   fi
 

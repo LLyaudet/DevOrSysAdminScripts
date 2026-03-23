@@ -107,9 +107,9 @@ common_build_and_checks(){
   LFBFL_file_name="common_options.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='9781bf0391e0ca43e7d0d58fc0f6cb8163d49783a2c3d'
-  LFBFL_correct_sha512+='3261d6e0745fc76f6e6cb4a453e721779a1221cc71ce'
-  LFBFL_correct_sha512+='57a94a0860cc6c3f03ffa00e7c634cacfde38d2'
+  LFBFL_correct_sha512='58f125f10f9c10cd38f04cdeec997bb7dc376ba6f0c09'
+  LFBFL_correct_sha512+='dfc1d2c0927855d709fbf002c027e67370cc0f8864b7'
+  LFBFL_correct_sha512+='8b23ab7685fc192413cc657df46475e28b989e2'
   wrapped_wget_sha512
 
   LFBFL_file_name="comparisons.libr.sh"
@@ -344,6 +344,9 @@ common_build_and_checks(){
 
   enhanced_set_shell_option pipefail --trap-unset
 
+  declare -a LFBFL_some_common_options2=("${LFBFL_some_common_options[@]}")
+  keep_options LFBFL_some_common_options2 --verbose
+
   printf "Building license headers\n"
   "./${LFBFL_subdir2}/build_licenses_templates.exec.sh"\
     "${LFBFL_some_common_options[@]}"
@@ -398,7 +401,7 @@ common_build_and_checks(){
 
   local LFBFL_upgrade_venvs_time_interval_in_seconds=""
   get_upgrade_venvs_time_interval_in_seconds "${LFBFL_data_file_name}"\
-    "${LFBFL_some_common_options[@]}"
+    "${LFBFL_some_common_options2[@]}"
 
   if [[ -f "${LFBFL_upgrade_venvs_ts_file}" ]]; then
     LFBFL_i_upgrade_venvs_ts=$(
@@ -440,7 +443,7 @@ common_build_and_checks(){
     done
   fi
   printf "Running shell_checks_complement\n"
-  shell_checks_complement "${LFBFL_some_common_options[@]}"
+  shell_checks_complement "${LFBFL_some_common_options2[@]}"
 
   printf -- "---Python---\n"
 
@@ -474,7 +477,7 @@ common_build_and_checks(){
     deactivate
   fi
   printf "Running python_isort_complement\n"
-  python_isort_complement "${LFBFL_some_common_options[@]}"
+  python_isort_complement "${LFBFL_some_common_options2[@]}"
 
   printf "Running black\n"
   # First, we update the configuration file with max_line_length.
@@ -502,7 +505,7 @@ common_build_and_checks(){
     deactivate
   fi
   printf "Running python_black_complement\n"
-  python_black_complement "${LFBFL_some_common_options[@]}"
+  python_black_complement "${LFBFL_some_common_options2[@]}"
 
   printf "Probing if mypy should be runned\n"
   local LFBFL_mypy_venv=""
@@ -643,19 +646,19 @@ common_build_and_checks(){
 
   printf "Analyzing too long lines\n"
   # shellcheck disable=SC2248
-  too_long_code_lines "${LFBFL_some_common_options[@]}" \
+  too_long_code_lines "${LFBFL_some_common_options2[@]}" \
     --max-line-length=${LFBFL_i_max_line_length}
 
   printf "Analyzing shell scripts beginnings\n"
-  check_shell_scripts_beginnings "${LFBFL_some_common_options[@]}" \
+  check_shell_scripts_beginnings "${LFBFL_some_common_options2[@]}" \
     | relevant_grep
 
   printf "Analyzing shell scripts indentation\n"
-  check_shell_scripts_indentation "${LFBFL_some_common_options[@]}" \
+  check_shell_scripts_indentation "${LFBFL_some_common_options2[@]}" \
     | relevant_grep
 
   printf "Analyzing URLs\n"
-  check_URLs "${LFBFL_some_common_options[@]}" \
+  check_URLs "${LFBFL_some_common_options2[@]}" \
     | relevant_grep
 
   printf "Analyzing strange characters: hover over in doubt\n"
@@ -667,7 +670,7 @@ common_build_and_checks(){
 
   printf "Grammar and spelling check\n"
   grammar_and_spelling_check "${LFBFL_data_file_name}"\
-    "${LFBFL_some_common_options[@]}"
+    "${LFBFL_some_common_options2[@]}"
 
   [[ LFBFL_i_directory_changed -eq 0 ]] && popd_from_work_directory
 

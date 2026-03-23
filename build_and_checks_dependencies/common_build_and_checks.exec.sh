@@ -80,6 +80,15 @@ common_build_and_checks(){
   wrapped_wget_sha512
   chmod +x "./${LFBFL_file_path}"
 
+  LFBFL_file_name="build_dependencies_notes.exec.php"
+  LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
+  LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
+  LFBFL_correct_sha512='1b801e85738b361f86d1c0acc32f42ba3f2eaccc1aad4'
+  LFBFL_correct_sha512+='f965d219258de094635be0d042b2857f8c9cdd9a17f7'
+  LFBFL_correct_sha512+='ded94f15df17b48d4dc3cb28e481ed26f87c589'
+  wrapped_wget_sha512
+  chmod +x "./${LFBFL_file_path}"
+
   LFBFL_file_name="check_shell_scripts_beginnings.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
@@ -380,6 +389,10 @@ common_build_and_checks(){
         "${LFBFL_verbose}"
     done
   fi
+
+  printf "Building dependencies_notes\n"
+  php "./${LFBFL_subdir}/build_dependencies_notes.exec.php"\
+    "${LFBFL_work_directory}"
 
   declare -i LFBFL_i_directory_changed
   pushd_to_work_directory

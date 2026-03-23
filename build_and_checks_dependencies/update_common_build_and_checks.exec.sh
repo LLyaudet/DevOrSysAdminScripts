@@ -46,6 +46,7 @@ update_common_build_and_checks(){
 
   declare -ar LFBFL_files_names=(
     "build_md_from_printable_md.exec.sh"
+    "build_dependencies_notes.exec.php"
     "check_shell_scripts_beginnings.libr.sh"
     "check_shell_scripts_indentation.libr.sh"
     "check_URLs.libr.sh"

@@ -301,6 +301,8 @@ pushd_to_work_directory(){
       fi
     done
   fi
+  # shellcheck disable=SC2248
+  return ${i_enhanced_pushd_result}
 }
 
 popd_from_work_directory(){

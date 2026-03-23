@@ -315,7 +315,7 @@ build_licenses_templates(){
     if [[ -z "${LFBFL_s_files_paths}" ]]; then
       if [[ LFBFL_i_verbose -eq 1 ]]; then
         LFBFL_s_format="build_licenses_templates: "
-        LFBFL_s_format+="No file found with extension .%s or .%s.tpl."
+        LFBFL_s_format+="No file found with extension .%s or .%s.tpl.\n"
         # shellcheck disable=SC2059
         printf "${LFBFL_s_format}" "${LFBFL_key}" "${LFBFL_key}"
       fi
@@ -354,9 +354,9 @@ build_licenses_templates(){
     declare -ir LFBFL_i_result=$?
     if [[ LFBFL_i_verbose -eq 1 ]]; then
       if [[ LFBFL_i_result -eq 1 ]]; then
-        printf "License template %s updated." "$1"
+        printf "License template %s updated.\n" "$1"
       elif [[ LFBFL_i_result -eq 2 ]]; then
-        printf "License template %s created." "$1"
+        printf "License template %s created.\n" "$1"
       fi
     fi
   }
@@ -385,7 +385,7 @@ build_licenses_templates(){
     if [[ -z "${LFBFL_s_files_paths}" ]]; then
       if [[ LFBFL_i_verbose -eq 1 ]]; then
         LFBFL_s_format="build_licenses_templates: "
-        LFBFL_s_format+="No file found with extension .%s or .%s.tpl."
+        LFBFL_s_format+="No file found with extension .%s or .%s.tpl.\n"
         # shellcheck disable=SC2059
         printf "${LFBFL_s_format}" "${LFBFL_key}" "${LFBFL_key}"
       fi

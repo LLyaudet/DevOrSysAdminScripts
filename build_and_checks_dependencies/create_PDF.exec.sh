@@ -461,7 +461,6 @@ create_PDF(){
       @dependencies_notes@\
       "./${LFBFL_temp_path}/dependencies_notes.tex"\
       "${LFBFL_tex_path_start}.6"
-      
 
     insert_file_at_token "${LFBFL_tex_path_start}.6"\
       @files_listing_VerbatimInput@\

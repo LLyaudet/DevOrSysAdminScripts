@@ -166,15 +166,10 @@ create_PDF(){
   fi
   readonly LFBFL_arr_files_paths
 
-  local LFBFL_license=""
-  grep_variable "${LFBFL_data_file_name}" license\
-    --result-variable-prefix="LFBFL_"
-
   local LFBFL_temp_files_listing="${LFBFL_temp_path}/"
   LFBFL_temp_files_listing+="files_listing.tex.sub.temp"
   readonly LFBFL_temp_files_listing
-  cp "${LFBFL_temp_path}/license_file_header_${LFBFL_license}.tex"\
-    "${LFBFL_temp_files_listing}"
+  : > "${LFBFL_temp_files_listing}"
   local LFBFL_temp_files_listing2="${LFBFL_temp_path}/"
   LFBFL_temp_files_listing2+="files_listing.html.sub.temp"
   readonly LFBFL_temp_files_listing2

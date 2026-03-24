@@ -118,11 +118,11 @@ ol.level2 li:before{
 Some “small” useful scripts
 for enhancing development or system-administrators tasks
 </blockquote>
-<p>Current version: 2026-03-23</p>
-<p>Current number of commits: 738</p>
-<p>Current git SHA1: cb6085438ce753d9d9d7a33385a9df343aaa2cd2</p>
+<p>Current version: 2026-03-24</p>
+<p>Current number of commits: 740</p>
+<p>Current git SHA1: ae9851aedc6ad532d98c4cfc22c0884a9d4aa66f</p>
 <p>
-Code lines: 11806 total lines, 10749 not empty lines, 1057 empty lines.
+Code lines: 11036 total lines, 10186 not empty lines, 850 empty lines.
 </p>
 
 
@@ -258,87 +258,84 @@ build_and_checks_variables/DevOrSysAdminScripts.html.tpl
 build_and_checks_variables/DevOrSysAdminScripts.tex.tpl
       </a></li>
       <li><a href="#subsection3.41">
-build_and_checks_variables/files_listing.tex.tpl
-      </a></li>
-      <li><a href="#subsection3.42">
 build_and_checks_variables/files_names_listing.txt
       </a></li>
-      <li><a href="#subsection3.43">
+      <li><a href="#subsection3.42">
 build_and_checks_variables/licenses_notes.txt
       </a></li>
-      <li><a href="#subsection3.44">
+      <li><a href="#subsection3.43">
 build_and_checks_variables/phpmd_baseline.xml
       </a></li>
-      <li><a href="#subsection3.45">
+      <li><a href="#subsection3.44">
 build_and_checks_variables/pylintrc.toml
       </a></li>
-      <li><a href="#subsection3.46">
+      <li><a href="#subsection3.45">
 build_and_checks_variables/repository_data.txt
       </a></li>
-      <li><a href="#subsection3.47">
+      <li><a href="#subsection3.46">
 build_and_checks_variables/repository_data.txt.tpl
       </a></li>
-      <li><a href="#subsection3.48">
+      <li><a href="#subsection3.47">
 build_and_checks_variables/ruff.toml
       </a></li>
-      <li><a href="#subsection3.49">
+      <li><a href="#subsection3.48">
 build_and_checks_variables/shellcheck.ini
       </a></li>
-      <li><a href="#subsection3.50">
+      <li><a href="#subsection3.49">
 build_and_checks_variables/shellcheck_notes.txt
       </a></li>
-      <li><a href="#subsection3.51">
+      <li><a href="#subsection3.50">
 build_and_checks.exec.sh
       </a></li>
-      <li><a href="#subsection3.52">
+      <li><a href="#subsection3.51">
 COPYING
       </a></li>
-      <li><a href="#subsection3.53">
+      <li><a href="#subsection3.52">
 COPYING.LESSER
       </a></li>
-      <li><a href="#subsection3.54">
+      <li><a href="#subsection3.53">
 git_helpers/git_checks.libr.sh
       </a></li>
-      <li><a href="#subsection3.55">
+      <li><a href="#subsection3.54">
 git_helpers/post-commit
       </a></li>
-      <li><a href="#subsection3.56">
+      <li><a href="#subsection3.55">
 git_helpers/post_commit_renaming_comment.libr.sh
       </a></li>
-      <li><a href="#subsection3.57">
+      <li><a href="#subsection3.56">
 git_helpers/pre-commit
       </a></li>
-      <li><a href="#subsection3.58">
+      <li><a href="#subsection3.57">
 IMAP_transfert.py
       </a></li>
-      <li><a href="#subsection3.59">
+      <li><a href="#subsection3.58">
 LiensUtiles.txt
       </a></li>
-      <li><a href="#subsection3.60">
+      <li><a href="#subsection3.59">
 miscellaneous/funny.sh
       </a></li>
-      <li><a href="#subsection3.61">
+      <li><a href="#subsection3.60">
 miscellaneous/spampty_data.txt
       </a></li>
-      <li><a href="#subsection3.62">
+      <li><a href="#subsection3.61">
 miscellaneous/string_escaping.html
       </a></li>
-      <li><a href="#subsection3.63">
+      <li><a href="#subsection3.62">
 miscellaneous/string_escaping.xhtml
       </a></li>
-      <li><a href="#subsection3.64">
+      <li><a href="#subsection3.63">
 README.md.tpl
       </a></li>
-      <li><a href="#subsection3.65">
+      <li><a href="#subsection3.64">
 string_escaping.libr.php
       </a></li>
-      <li><a href="#subsection3.66">
+      <li><a href="#subsection3.65">
 unicode.libr.php
       </a></li>
-      <li><a href="#subsection3.67">
+      <li><a href="#subsection3.66">
 upgrade_build_and_checks.exec.sh
       </a></li>
-      <li><a href="#subsection3.68">
+      <li><a href="#subsection3.67">
 wget_sha512.libr.sh
       </a></li>
     </ol>
@@ -393,7 +390,6 @@ wget_sha512.libr.sh
 │   ├── DevOrSysAdminScripts.html.tpl
 │   ├── DevOrSysAdminScripts.tex
 │   ├── DevOrSysAdminScripts.tex.tpl
-│   ├── files_listing.tex.tpl
 │   ├── files_names_listing.txt
 │   ├── .gitignore
 │   ├── licenses_notes.txt
@@ -452,22 +448,22 @@ wget_sha512.libr.sh
 ├── upgrade_build_and_checks.exec.sh
 └── wget_sha512.libr.sh
 
-6 directories, 81 files
+6 directories, 80 files
 </pre>
 <pre class="verbatim">
-[ 12K Mar 23 18:48]  ./
-├── [4.0K Mar 23 18:48]  build_and_checks_dependencies/
-│   ├── [4.3K Mar 23 18:46]  build_and_checks.exec.sh.tpl*
-│   ├── [4.4K Mar 23 17:50]  build_dependencies_notes.exec.php*
+[ 12K Mar 24 20:38]  ./
+├── [4.0K Mar 24 20:38]  build_and_checks_dependencies/
+│   ├── [4.3K Mar 24 19:32]  build_and_checks.exec.sh.tpl*
+│   ├── [6.3K Mar 24 20:34]  build_dependencies_notes.exec.php*
 │   ├── [4.2K Mar 23 08:55]  build_md_from_printable_md.exec.sh*
 │   ├── [3.2K Mar 23 09:48]  check_shell_scripts_beginnings.libr.sh
 │   ├── [5.3K Mar 23 09:47]  check_shell_scripts_indentation.libr.sh
 │   ├── [3.6K Mar 23 10:11]  check_URLs.libr.sh
-│   ├── [ 30K Mar 23 18:46]  common_build_and_checks.exec.sh*
+│   ├── [ 30K Mar 24 20:38]  common_build_and_checks.exec.sh*
 │   ├── [ 26K Mar 23 18:46]  common_build_and_checks.exec.sh.tpl
 │   ├── [ 16K Mar 23 15:17]  common_options.libr.sh
 │   ├── [6.1K Mar 22 16:03]  comparisons.libr.sh
-│   ├── [ 20K Mar 23 18:00]  create_PDF.exec.sh*
+│   ├── [ 21K Mar 24 20:37]  create_PDF.exec.sh*
 │   ├── [3.7K Mar 22 16:36]  generate_from_template.libr.sh
 │   ├── [2.0K Mar  5 21:22]  get_common_text_glob_patterns.libr.sh
 │   ├── [3.3K Mar 23 10:18]  grammar_and_spelling_check.libr.sh
@@ -487,34 +483,33 @@ wget_sha512.libr.sh
 │   ├── [1.6K Feb  3 17:57]  split_score.exec.php
 │   ├── [1.9K Mar 22 19:01]  split_score.libr.php
 │   ├── [ 48K Mar 23 10:16]  strings_functions.libr.sh
-│   ├── [4.5K Mar 23 10:12]  too_long_code_lines.libr.sh
+│   ├── [4.5K Mar 24 20:26]  too_long_code_lines.libr.sh
 │   ├── [4.2K Mar 23 17:15]  update_common_build_and_checks.exec.sh*
 │   └── [6.1K Mar 23 17:56]  update_or_check_files_names_listing.exec.sh*
-├── [4.5K Mar 23 18:46]  build_and_checks.exec.sh*
-├── [4.0K Mar 23 18:48]  build_and_checks_variables/
+├── [4.5K Mar 24 20:38]  build_and_checks.exec.sh*
+├── [4.0K Mar 24 20:38]  build_and_checks_variables/
 │   ├── [  15 Jan  5 20:00]  bandit_baseline.json
 │   ├── [  25 Jan  5 18:49]  bandit.ini
 │   ├── [  30 Feb 28 20:30]  black.toml
 │   ├── [4.6K Mar 23 16:44]  dependencies_data.json
 │   ├── [3.8K Mar 23 16:44]  dependencies_notes.txt
 │   ├── [5.7K Mar 23 17:43]  DevOrSysAdminScripts.html.tpl
-│   ├── [ 35K Mar 23 18:47]  DevOrSysAdminScripts.tex
+│   ├── [ 34K Mar 24 20:35]  DevOrSysAdminScripts.tex
 │   ├── [4.2K Mar 23 17:40]  DevOrSysAdminScripts.tex.tpl
-│   ├── [ 16K Mar 23 17:18]  files_listing.tex.tpl
-│   ├── [5.4K Mar 23 17:13]  files_names_listing.txt
-│   ├── [  24 Jan 15 22:26]  .gitignore
+│   ├── [5.3K Mar 24 19:44]  files_names_listing.txt
+│   ├── [  23 Mar 24 19:33]  .gitignore
 │   ├── [1.4K Mar 23 16:11]  licenses_notes.txt
 │   ├── [2.2K Mar 23 17:31]  phpmd_baseline.xml
 │   ├── [ 678 Feb 24 22:38]  pylintrc.toml
 │   ├── [4.5K Mar 22 15:51]  repository_data.txt
 │   ├── [ 786 Mar 22 15:39]  repository_data.txt.tpl
 │   ├── [1.4K Feb 24 23:25]  ruff.toml
-│   ├── [ 167 Feb 19 18:39]  shellcheck.ini
+│   ├── [ 166 Mar 24 19:33]  shellcheck.ini
 │   └── [3.5K Mar  9 14:46]  shellcheck_notes.txt
 ├── [ 34K May  6  2024]  COPYING
 ├── [7.5K Dec 27 21:48]  COPYING.LESSER
-├── [454K Mar 23 18:47]  DevOrSysAdminScripts.html
-├── [398K Mar 23 18:47]  DevOrSysAdminScripts.pdf
+├── [441K Mar 24 20:35]  DevOrSysAdminScripts.html
+├── [387K Mar 24 20:35]  DevOrSysAdminScripts.pdf
 ├── [4.0K Mar 23 10:34]  git_helpers/
 │   ├── [3.8K Mar 22 21:06]  git_checks.libr.sh
 │   ├── [2.1K Mar 22 21:09]  post-commit*
@@ -555,11 +550,11 @@ wget_sha512.libr.sh
 ├── [4.3K Mar 22 21:29]  README.md
 ├── [4.3K Mar 22 21:29]  README.md.tpl
 ├── [3.2K Mar 22 21:36]  string_escaping.libr.php
-├── [ 13K Mar 22 21:59]  unicode.libr.php
+├── [ 13K Mar 24 19:32]  unicode.libr.php
 ├── [1.8K Mar 23 18:45]  upgrade_build_and_checks.exec.sh*
 └── [2.5K Mar 23 18:45]  wget_sha512.libr.sh
 
-6 directories, 81 files
+6 directories, 80 files
 </pre>
 
 
@@ -1151,8 +1146,8 @@ build_and_checks(){
   LFBFL_variables_directory="${LFBFL_work_directory}/"
   LFBFL_variables_directory+="build_and_checks_variables"
   mkdir -p "${LFBFL_variables_directory}/temp"
-  if ! [[ -f "${LFBFL_variables_directory}/.gitignore" ]]; then
-    printf "temp/\n\n"\
+  if [[ ! -f "${LFBFL_variables_directory}/.gitignore" ]]; then
+    printf "temp/\nupgrade_venvs_ts\n"\
       > "${LFBFL_variables_directory}/.gitignore"
   fi
 
@@ -1359,20 +1354,70 @@ function build_dependencies_notes(string $s_working_directory) : void {
 
   // We overwrite results if needed.
   $s_result_path1 = $s_subdir1.'/dependencies_notes.txt';
-  $s_existing_result_content1 = file_get_contents($s_result_path1);
+  $s_existing_result_content1 = '';
+  if(file_exists($s_result_path1)){
+    $s_existing_result_content1 = file_get_contents($s_result_path1);
+  }
   if($s_result_content1 !== $s_existing_result_content1){
     file_put_contents($s_result_path1, $s_result_content1);
   }
-  $s_result_path2 = $s_subdir2.'/dependencies_notes.tex';
-  $s_existing_result_content2 = file_get_contents($s_result_path2);
+  /*
+  Example of generated content of dependencies_notes.txt:
+  -------------------------------------------------------------------------
+  more of util-linux can be found at the following URLs:
+  https://www.kernel.org/pub/linux/utils/util-linux/
+  https://git.kernel.org/pub/scm/utils/util-linux/util-linux.git/
+  https://github.com/util-linux/util-linux official?
+  -------------------------------------------------------------------------
+  */
+  $s_result_path2 = $s_subdir2.'/dependencies_notes.tex.sub';
+  $s_existing_result_content2 = '';
+  if(file_exists($s_result_path2)){
+    $s_existing_result_content2 = file_get_contents($s_result_path2);
+  }
   if($s_result_content2 !== $s_existing_result_content2){
     file_put_contents($s_result_path2, $s_result_content2);
   }
-  $s_result_path3 = $s_subdir2.'/dependencies_notes.html';
-  $s_existing_result_content3 = file_get_contents($s_result_path3);
+  /*
+  Example of generated content of dependencies_notes.tex.sub:
+  -------------------------------------------------------------------------
+  more of util-linux can be found at the following URLs:\newline
+  \url{https://www.kernel.org/pub/linux/utils/util-linux/},\newline
+  {\small
+    \url{https://git.kernel.org/pub/scm/utils/util-linux/util-linux.git/}
+  },\newline
+  \url{https://github.com/util-linux/util-linux} official?.
+  -------------------------------------------------------------------------
+  */
+  $s_result_path3 = $s_subdir2.'/dependencies_notes.html.sub';
+  $s_existing_result_content3 = '';
+  if(file_exists($s_result_path3)){
+    $s_existing_result_content3 = file_get_contents($s_result_path3);
+  }
   if($s_result_content3 !== $s_existing_result_content3){
     file_put_contents($s_result_path3, $s_result_content3);
   }
+  /*
+  Example of generated content of dependencies_notes.html.sub:
+  &lt;p>
+  more of util-linux can be found at the following URLs:&lt;br>
+  &lt;a
+  href="https://www.kernel.org/pub/linux/utils/util-linux/"
+  >&lt;span style="font-family:monospace"
+  >https://www.kernel.org/pub/linux/utils/util-linux/&lt;/span
+  >&lt;/a>,&lt;br>
+  &lt;a
+  href="https://git.kernel.org/pub/scm/utils/util-linux/util-linux.git/"
+  >&lt;span style="font-family:monospace"
+  >https://git.kernel.org/pub/scm/utils/util-linux/util-linux.git/&lt;/span
+  >&lt;/a>,&lt;br>
+  &lt;a
+  href="https://github.com/util-linux/util-linux"
+  >&lt;span style="font-family:monospace"
+  >https://github.com/util-linux/util-linux&lt;/span
+  >&lt;/a> official?.
+  &lt;/p>
+  */
 }
 
 build_dependencies_notes($argv[1]);
@@ -1979,9 +2024,9 @@ common_build_and_checks(){
   LFBFL_file_name="build_dependencies_notes.exec.php"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='6b1bdeb49a81366dc3956dc70f381d1b0380e411f79f1'
-  LFBFL_correct_sha512+='5731da611f16469584469efdf056d3e02fc673864af7'
-  LFBFL_correct_sha512+='e288b4bb20edba77b8a74afe91209bbb63528a8'
+  LFBFL_correct_sha512='2e8a54f8627a6f5a4e966043b91fd116209452ecf7aa6'
+  LFBFL_correct_sha512+='c09e144881fb2bf063f455c3563813aebd57b33a1ee7'
+  LFBFL_correct_sha512+='b85e9157a5bf6293831e391f607e8d887453896'
   wrapped_wget_sha512
   chmod +x "./${LFBFL_file_path}"
 
@@ -2028,9 +2073,9 @@ common_build_and_checks(){
   LFBFL_file_name="create_PDF.exec.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='e8d57774edc7b98394b039dc7de2867deeece68775f7c'
-  LFBFL_correct_sha512+='82b5617efc9a3377772a6a1ff78957622ebef77b90d6'
-  LFBFL_correct_sha512+='7d93f449aebb875fba2ed5c4467b1387a4962ef'
+  LFBFL_correct_sha512='1a9fcbf1e06d33bc92d065e0c0697de3ca332489b7b55'
+  LFBFL_correct_sha512+='b01b3758755298e1d718f7029b54c409ee1d1eba7be3'
+  LFBFL_correct_sha512+='b57d06fec08f25ce207fbb36793624f347d1cac'
   wrapped_wget_sha512
   chmod +x "./${LFBFL_file_path}"
 
@@ -2187,9 +2232,9 @@ common_build_and_checks(){
   LFBFL_file_name="too_long_code_lines.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='a235e533d7c34796ee1f70225bab0f1a79d19e8454189'
-  LFBFL_correct_sha512+='833872276a455629866ca50f3045eeeb8c7213ef3a45'
-  LFBFL_correct_sha512+='88749523191fd615f27afbcaf3096290d11589a'
+  LFBFL_correct_sha512='3835c4b66734f5e27313d9de7e7e94ca7d04e15d7e2e3'
+  LFBFL_correct_sha512+='981a83b9c96b8ad023cae15035ea268de4a3262451be'
+  LFBFL_correct_sha512+='90a660c425e1e0a5325f3e8a5fcfb341f172ba4'
   wrapped_wget_sha512
 
   LFBFL_file_name="update_or_check_files_names_listing.exec.sh"
@@ -4263,7 +4308,7 @@ create_PDF(){
   LFBFL_number_of_lines+=" empty lines."
   readonly LFBFL_number_of_lines
 
-  declare -r LFBFL_temp_path="./${LFBFL_subdir2}/temp"
+  declare -r LFBFL_temp_path="${LFBFL_subdir2}/temp"
 
   # see https://gitlab.com/OldManProgrammer/unix-tree/-/issues
   # ?show=eyJpaWQiOiI0MyIsImZ1bGxfcGF0aCI6Ik9sZE1hblByb2dyYW1t
@@ -4289,7 +4334,7 @@ create_PDF(){
   local LFBFL_s_files_paths
   # Remove line returns that are here to keep lines short.
   LFBFL_s_files_paths=$(
-    sed -Ez 's/(.)\\\n/\1/Mg' "./${LFBFL_subdir2}/files_names_listing.txt"\
+    sed -Ez 's/(.)\\\n/\1/Mg' "${LFBFL_subdir2}/files_names_listing.txt"\
     | grep -v '^//'
   )
   readonly LFBFL_s_files_paths
@@ -4304,17 +4349,17 @@ create_PDF(){
     --result-variable-prefix="LFBFL_"
 
   local LFBFL_temp_files_listing="${LFBFL_temp_path}/"
-  LFBFL_temp_files_listing+="files_listing.tex.tpl.temp"
+  LFBFL_temp_files_listing+="files_listing.tex.sub.temp"
   readonly LFBFL_temp_files_listing
   cp "${LFBFL_temp_path}/license_file_header_${LFBFL_license}.tex"\
     "${LFBFL_temp_files_listing}"
   local LFBFL_temp_files_listing2="${LFBFL_temp_path}/"
-  LFBFL_temp_files_listing2+="files_listing.html.tpl.temp"
+  LFBFL_temp_files_listing2+="files_listing.html.sub.temp"
   readonly LFBFL_temp_files_listing2
   : > "${LFBFL_temp_files_listing2}"
   # HTML &lt;li> elements, hence "lis".
   local LFBFL_temp_files_lis
-  LFBFL_temp_files_lis="${LFBFL_temp_path}/files_lis.html.tpl"
+  LFBFL_temp_files_lis="${LFBFL_temp_path}/files_lis.html.sub.temp"
   readonly LFBFL_temp_files_lis
   : > "${LFBFL_temp_files_lis}"
   # shellcheck disable=SC2248
@@ -4422,12 +4467,51 @@ create_PDF(){
     printf "${LFBFL_s_format}" "${LFBFL_i}" "${LFBFL_new_lines}"\
       >> "${LFBFL_temp_files_lis}"
   done
-  overwrite_if_not_equal "./${LFBFL_subdir2}/files_listing.tex.tpl"\
+  overwrite_if_not_equal "${LFBFL_temp_path}/files_listing.tex.sub"\
     "${LFBFL_temp_files_listing}"
+  # Example of generated content of files_listing.tex.sub:
+  # -----------------------------------------------------------------------
+  # \subsection{
+  #   build\_and\_checks\_dependencies/licenses\_templates/%
+  # build\_licenses\_templates.exec.sh
+  # }
+  # \label{
+  #   build_and_checks_dependencies:licenses_templates:%
+  # build_licenses_templatesexecsh
+  # }
+  #
+  # \VerbatimInput[numbers=left,xleftmargin=-5mm]{
+  # build_and_checks_dependencies/licenses_templates/%
+  # build_licenses_templates.exec.sh
+  # }
+  # -----------------------------------------------------------------------
   sed -i -e "s|\\n&lt;/pre>|&lt;/pre>|g" "${LFBFL_temp_files_listing2}"
-  overwrite_if_not_equal\
-    "${LFBFL_temp_path}/files_listing.html.tpl"\
+  overwrite_if_not_equal "${LFBFL_temp_path}/files_listing.html.sub"\
     "${LFBFL_temp_files_listing2}"
+  # Example of generated content of files_listing.html.sub:
+  # -----------------------------------------------------------------------
+  # &lt;h3 id="subsection3.15">3.15
+  # build_and_checks_dependencies/licenses_templates/&lt;!--
+  # -->build_licenses_templates.exec.sh
+  # &lt;/h3>
+  # ...
+  # &lt;h3 id="subsection3.33">3.33
+  # build_and_checks_variables/.gitignore
+  # &lt;/h3>
+  # &lt;pre class="numbered_lines">
+  # temp/
+  # upgrade_venvs_ts
+  # &lt;/pre>
+  # -----------------------------------------------------------------------
+  overwrite_if_not_equal "${LFBFL_temp_path}/files_lis.html.sub"\
+    "${LFBFL_temp_files_lis}"
+  # Example of generated content of files_lis.html.sub:
+  # -----------------------------------------------------------------------
+  #       &lt;li>&lt;a href="#subsection3.15">
+  # build_and_checks_dependencies/licenses_templates/&lt;!--
+  # -->build_licenses_templates.exec.sh
+  #       &lt;/a>&lt;/li>
+  # -----------------------------------------------------------------------
 
   # We verify if some lines are beyond max_line_length characters
   # in current_tree_light.txt and current_tree.txt.
@@ -4518,27 +4602,24 @@ create_PDF(){
   declare -r LFBFL_html_path_start=\
 "${LFBFL_temp_path}/${LFBFL_repository_name}.html"
 
-  if [[ -f "./${LFBFL_subdir2}/${LFBFL_repository_name}.tex.tpl" ]];
-  then
+  if [[ -f "${LFBFL_subdir2}/${LFBFL_repository_name}.tex.tpl" ]]; then
     # If there is a template, we init the process from it.
-    cp "./${LFBFL_subdir2}/${LFBFL_repository_name}.tex.tpl"\
+    cp "${LFBFL_subdir2}/${LFBFL_repository_name}.tex.tpl"\
       "${LFBFL_tex_path_start}.1"
-  elif [[ -f "./${LFBFL_subdir2}/${LFBFL_repository_name}.tex" ]];
-  then
+  elif [[ -f "${LFBFL_subdir2}/${LFBFL_repository_name}.tex" ]]; then
     # Otherwise if there is a tex file, we init the process from it.
-    cp "./${LFBFL_subdir2}/${LFBFL_repository_name}.tex"\
+    cp "${LFBFL_subdir2}/${LFBFL_repository_name}.tex"\
       "${LFBFL_tex_path_start}.1"
   else
     printf "Neither .tex.tpl, nor .tex in ./%s/\n" "${LFBFL_subdir2}"
   fi
 
   # Same logic with repository HTML file.
-  if [[ -f "./${LFBFL_subdir2}/${LFBFL_repository_name}.html.tpl" ]];
-  then
-    cp "./${LFBFL_subdir2}/${LFBFL_repository_name}.html.tpl"\
+  if [[ -f "${LFBFL_subdir2}/${LFBFL_repository_name}.html.tpl" ]]; then
+    cp "${LFBFL_subdir2}/${LFBFL_repository_name}.html.tpl"\
       "${LFBFL_html_path_start}.1"
-  elif [[ -f "./${LFBFL_repository_name}.html" ]]; then
-    cp "./${LFBFL_repository_name}.html" "${LFBFL_html_path_start}.1"
+  elif [[ -f "${LFBFL_repository_name}.html" ]]; then
+    cp "${LFBFL_repository_name}.html" "${LFBFL_html_path_start}.1"
   else
     printf "Neither .html.tpl in ./%s/, nor .html in ./\n"\
       "${LFBFL_subdir2}"
@@ -4571,7 +4652,8 @@ create_PDF(){
            -e "s|@number_of_lines@|${LFBFL_number_of_lines}|g"\
       "${LFBFL_tex_path_start}.1"
 
-    insert_file_at_token "${LFBFL_tex_path_start}.1" @abstract@\
+    insert_file_at_token "${LFBFL_tex_path_start}.1"\
+      @abstract@\
       "${LFBFL_temp_path}/abstract_temp"\
       "${LFBFL_tex_path_start}.2"
 
@@ -4592,16 +4674,16 @@ create_PDF(){
 
     insert_file_at_token "${LFBFL_tex_path_start}.5"\
       @dependencies_notes@\
-      "./${LFBFL_temp_path}/dependencies_notes.tex"\
+      "${LFBFL_temp_path}/dependencies_notes.tex.sub"\
       "${LFBFL_tex_path_start}.6"
 
     insert_file_at_token "${LFBFL_tex_path_start}.6"\
       @files_listing_VerbatimInput@\
-      "./${LFBFL_subdir2}/files_listing.tex.tpl"\
+      "${LFBFL_temp_path}/files_listing.tex.sub"\
       "${LFBFL_tex_path_start}.7"
 
     overwrite_if_not_equal\
-      "./${LFBFL_subdir2}/${LFBFL_repository_name}.tex"\
+      "${LFBFL_subdir2}/${LFBFL_repository_name}.tex"\
       "${LFBFL_tex_path_start}.7" 1
   fi
 
@@ -4620,7 +4702,8 @@ create_PDF(){
            -e "s|@number_of_lines@|${LFBFL_number_of_lines}|g"\
       "${LFBFL_html_path_start}.1"
 
-    insert_file_at_token "${LFBFL_html_path_start}.1" @abstract@\
+    insert_file_at_token "${LFBFL_html_path_start}.1"\
+      @abstract@\
       "${LFBFL_temp_path}/abstract_temp"\
       "${LFBFL_html_path_start}.2"
 
@@ -4630,7 +4713,8 @@ create_PDF(){
       "${LFBFL_html_path_start}.3"
 
     insert_file_at_token "${LFBFL_html_path_start}.3"\
-      @files_lis@ "${LFBFL_temp_files_lis}"\
+      @files_lis@\
+      "${LFBFL_temp_path}/files_lis.html.sub"\
       "${LFBFL_html_path_start}.4"
 
     insert_file_at_token "${LFBFL_html_path_start}.4"\
@@ -4645,15 +4729,15 @@ create_PDF(){
 
     insert_file_at_token "${LFBFL_html_path_start}.6"\
       @dependencies_notes@\
-      "./${LFBFL_temp_path}/dependencies_notes.html"\
+      "${LFBFL_temp_path}/dependencies_notes.html.sub"\
       "${LFBFL_html_path_start}.7"
 
     insert_file_at_token "${LFBFL_html_path_start}.7"\
       @files_listing_HTMLPreInput@\
-      "${LFBFL_temp_path}/files_listing.html.tpl"\
+      "${LFBFL_temp_path}/files_listing.html.sub"\
       "${LFBFL_html_path_start}.8"
 
-    overwrite_if_not_equal "./${LFBFL_repository_name}.html"\
+    overwrite_if_not_equal "${LFBFL_repository_name}.html"\
       "${LFBFL_html_path_start}.8" 1
     LFBFL_i_HTML_updated=$?
   fi
@@ -4678,7 +4762,7 @@ create_PDF(){
 
   local LFBFL_command
   LFBFL_command="${LFBFL_latex_command}"
-  LFBFL_command+=" './${LFBFL_subdir2}/${LFBFL_repository_name}.tex'"
+  LFBFL_command+=" '${LFBFL_subdir2}/${LFBFL_repository_name}.tex'"
   if [[ LFBFL_i_verbose -eq 0 ]]; then
     LFBFL_command+=" > /dev/null"
   fi
@@ -8398,7 +8482,7 @@ too_long_code_lines(){
           continue
         fi
         if grep --quiet --fixed-strings -- "${LFBFL_line}"\
-          "./build_and_checks_variables/temp/files_listing.html.tpl"
+          "./build_and_checks_variables/temp/files_listing.html.sub"
         then
           continue
         fi
@@ -8749,7 +8833,6 @@ build_and_checks_variables/.gitignore
 <pre class="numbered_lines">
 temp/
 upgrade_venvs_ts
-
 </pre>
 
 
@@ -9455,868 +9538,6 @@ whilst GNU coreutils is GPLv3+ licensed.
 
 
 <h3 id="subsection3.41">3.41
-build_and_checks_variables/files_listing.tex.tpl
-</h3>
-<pre class="numbered_lines">
-% This file is part of DevOrSysAdminScripts library.
-%
-% DevOrSysAdminScripts is free software:
-% you can redistribute it and/or modify it under the terms
-% of the GNU General Public License
-% as published by the Free Software Foundation,
-% either version 3 of the License,
-% or (at your option) any later version.
-%
-% DevOrSysAdminScripts is distributed in the hope
-% that it will be useful,
-% but WITHOUT ANY WARRANTY;
-% without even the implied warranty of
-% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-% See the GNU General Public License for more details.
-%
-% You should have received a copy of
-% the GNU General Public License
-% along with DevOrSysAdminScripts.
-% If not, see &lt;https://www.gnu.org/licenses/>.
-%
-% ©Copyright 2023-2026 Laurent Frédéric Bernard François Lyaudet
-\subsection{
-  build\_and\_checks\_dependencies/build\_and\_checks.exec.sh.tpl
-}
-\label{
-  build_and_checks_dependencies:build_and_checksexecshtpl
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/build_and_checks.exec.sh.tpl
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/build\_dependencies\_notes.exec.php
-}
-\label{
-  build_and_checks_dependencies:build_dependencies_notesexecphp
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/build_dependencies_notes.exec.php
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/build\_md\_from\_printable\_md.exec.sh
-}
-\label{
-  build_and_checks_dependencies:build_md_from_printable_mdexecsh
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/build_md_from_printable_md.exec.sh
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/%
-check\_shell\_scripts\_beginnings.libr.sh
-}
-\label{
-  build_and_checks_dependencies:check_shell_scripts_beginningslibrsh
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/check_shell_scripts_beginnings.libr.sh
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/%
-check\_shell\_scripts\_indentation.libr.sh
-}
-\label{
-  build_and_checks_dependencies:check_shell_scripts_indentationlibrsh
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/check_shell_scripts_indentation.libr.sh
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/check\_URLs.libr.sh
-}
-\label{
-  build_and_checks_dependencies:check_URLslibrsh
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/check_URLs.libr.sh
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/common\_build\_and\_checks.exec.sh
-}
-\label{
-  build_and_checks_dependencies:common_build_and_checksexecsh
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/common_build_and_checks.exec.sh
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/common\_build\_and\_checks.exec.sh.tpl
-}
-\label{
-  build_and_checks_dependencies:common_build_and_checksexecshtpl
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/common_build_and_checks.exec.sh.tpl
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/common\_options.libr.sh
-}
-\label{
-  build_and_checks_dependencies:common_optionslibrsh
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/common_options.libr.sh
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/comparisons.libr.sh
-}
-\label{
-  build_and_checks_dependencies:comparisonslibrsh
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/comparisons.libr.sh
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/create\_PDF.exec.sh
-}
-\label{
-  build_and_checks_dependencies:create_PDFexecsh
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/create_PDF.exec.sh
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/generate\_from\_template.libr.sh
-}
-\label{
-  build_and_checks_dependencies:generate_from_templatelibrsh
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/generate_from_template.libr.sh
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/%
-get\_common\_text\_glob\_patterns.libr.sh
-}
-\label{
-  build_and_checks_dependencies:get_common_text_glob_patternslibrsh
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/get_common_text_glob_patterns.libr.sh
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/grammar\_and\_spelling\_check.libr.sh
-}
-\label{
-  build_and_checks_dependencies:grammar_and_spelling_checklibrsh
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/grammar_and_spelling_check.libr.sh
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/licenses\_templates/%
-build\_licenses\_templates.exec.sh
-}
-\label{
-  build_and_checks_dependencies:licenses_templates:%
-build_licenses_templatesexecsh
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/licenses_templates/%
-build_licenses_templates.exec.sh
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/licenses\_templates/%
-license\_file\_header\_AGPLv3+.tpl
-}
-\label{
-  build_and_checks_dependencies:licenses_templates:%
-license_file_header_AGPLv3+tpl
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/licenses_templates/%
-license_file_header_AGPLv3+.tpl
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/licenses\_templates/%
-license\_file\_header\_GPLv3+.tpl
-}
-\label{
-  build_and_checks_dependencies:licenses_templates:%
-license_file_header_GPLv3+tpl
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/licenses_templates/%
-license_file_header_GPLv3+.tpl
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/licenses\_templates/%
-license\_file\_header\_LGPLv3+.tpl
-}
-\label{
-  build_and_checks_dependencies:licenses_templates:%
-license_file_header_LGPLv3+tpl
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/licenses_templates/%
-license_file_header_LGPLv3+.tpl
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/lines\_counts.libr.sh
-}
-\label{
-  build_and_checks_dependencies:lines_countslibrsh
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/lines_counts.libr.sh
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/lines\_filters.libr.sh
-}
-\label{
-  build_and_checks_dependencies:lines_filterslibrsh
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/lines_filters.libr.sh
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/lines\_maps.libr.sh
-}
-\label{
-  build_and_checks_dependencies:lines_mapslibrsh
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/lines_maps.libr.sh
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/overwrite\_if\_not\_equal.libr.sh
-}
-\label{
-  build_and_checks_dependencies:overwrite_if_not_equallibrsh
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/overwrite_if_not_equal.libr.sh
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/python\_black\_complement.libr.sh
-}
-\label{
-  build_and_checks_dependencies:python_black_complementlibrsh
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/python_black_complement.libr.sh
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/python\_isort\_complement.libr.sh
-}
-\label{
-  build_and_checks_dependencies:python_isort_complementlibrsh
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/python_isort_complement.libr.sh
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/repository\_data.libr.sh
-}
-\label{
-  build_and_checks_dependencies:repository_datalibrsh
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/repository_data.libr.sh
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/shell\_checks\_complement.libr.sh
-}
-\label{
-  build_and_checks_dependencies:shell_checks_complementlibrsh
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/shell_checks_complement.libr.sh
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/split\_score.exec.php
-}
-\label{
-  build_and_checks_dependencies:split_scoreexecphp
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/split_score.exec.php
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/split\_score.libr.php
-}
-\label{
-  build_and_checks_dependencies:split_scorelibrphp
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/split_score.libr.php
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/strings\_functions.libr.sh
-}
-\label{
-  build_and_checks_dependencies:strings_functionslibrsh
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/strings_functions.libr.sh
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/too\_long\_code\_lines.libr.sh
-}
-\label{
-  build_and_checks_dependencies:too_long_code_lineslibrsh
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/too_long_code_lines.libr.sh
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/%
-update\_common\_build\_and\_checks.exec.sh
-}
-\label{
-  build_and_checks_dependencies:update_common_build_and_checksexecsh
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/update_common_build_and_checks.exec.sh
-}
-
-
-\subsection{
-  build\_and\_checks\_dependencies/%
-update\_or\_check\_files\_names\_listing.exec.sh
-}
-\label{
-  build_and_checks_dependencies:update_or_check_files_names_listingexecsh
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_dependencies/update_or_check_files_names_listing.exec.sh
-}
-
-
-\subsection{
-  build\_and\_checks\_variables/.gitignore
-}
-\label{
-  build_and_checks_variables:gitignore
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_variables/.gitignore
-}
-
-
-\subsection{
-  build\_and\_checks\_variables/bandit.ini
-}
-\label{
-  build_and_checks_variables:banditini
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_variables/bandit.ini
-}
-
-
-\subsection{
-  build\_and\_checks\_variables/bandit\_baseline.json
-}
-\label{
-  build_and_checks_variables:bandit_baselinejson
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_variables/bandit_baseline.json
-}
-
-
-\subsection{
-  build\_and\_checks\_variables/black.toml
-}
-\label{
-  build_and_checks_variables:blacktoml
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_variables/black.toml
-}
-
-
-\subsection{
-  build\_and\_checks\_variables/dependencies\_data.json
-}
-\label{
-  build_and_checks_variables:dependencies_datajson
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_variables/dependencies_data.json
-}
-
-
-\subsection{
-  build\_and\_checks\_variables/dependencies\_notes.txt
-}
-\label{
-  build_and_checks_variables:dependencies_notestxt
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_variables/dependencies_notes.txt
-}
-
-
-\subsection{
-  build\_and\_checks\_variables/DevOrSysAdminScripts.html.tpl
-}
-\label{
-  build_and_checks_variables:DevOrSysAdminScriptshtmltpl
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_variables/DevOrSysAdminScripts.html.tpl
-}
-
-
-\subsection{
-  build\_and\_checks\_variables/DevOrSysAdminScripts.tex.tpl
-}
-\label{
-  build_and_checks_variables:DevOrSysAdminScriptstextpl
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_variables/DevOrSysAdminScripts.tex.tpl
-}
-
-
-\subsection{
-  build\_and\_checks\_variables/files\_listing.tex.tpl
-}
-\label{
-  build_and_checks_variables:files_listingtextpl
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_variables/files_listing.tex.tpl
-}
-
-
-\subsection{
-  build\_and\_checks\_variables/files\_names\_listing.txt
-}
-\label{
-  build_and_checks_variables:files_names_listingtxt
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_variables/files_names_listing.txt
-}
-
-
-\subsection{
-  build\_and\_checks\_variables/licenses\_notes.txt
-}
-\label{
-  build_and_checks_variables:licenses_notestxt
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_variables/licenses_notes.txt
-}
-
-
-\subsection{
-  build\_and\_checks\_variables/phpmd\_baseline.xml
-}
-\label{
-  build_and_checks_variables:phpmd_baselinexml
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_variables/phpmd_baseline.xml
-}
-
-
-\subsection{
-  build\_and\_checks\_variables/pylintrc.toml
-}
-\label{
-  build_and_checks_variables:pylintrctoml
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_variables/pylintrc.toml
-}
-
-
-\subsection{
-  build\_and\_checks\_variables/repository\_data.txt
-}
-\label{
-  build_and_checks_variables:repository_datatxt
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_variables/repository_data.txt
-}
-
-
-\subsection{
-  build\_and\_checks\_variables/repository\_data.txt.tpl
-}
-\label{
-  build_and_checks_variables:repository_datatxttpl
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_variables/repository_data.txt.tpl
-}
-
-
-\subsection{
-  build\_and\_checks\_variables/ruff.toml
-}
-\label{
-  build_and_checks_variables:rufftoml
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_variables/ruff.toml
-}
-
-
-\subsection{
-  build\_and\_checks\_variables/shellcheck.ini
-}
-\label{
-  build_and_checks_variables:shellcheckini
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_variables/shellcheck.ini
-}
-
-
-\subsection{
-  build\_and\_checks\_variables/shellcheck\_notes.txt
-}
-\label{
-  build_and_checks_variables:shellcheck_notestxt
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_variables/shellcheck_notes.txt
-}
-
-
-\subsection{
-  build\_and\_checks.exec.sh
-}
-\label{
-  build_and_checksexecsh
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks.exec.sh
-}
-
-
-\subsection{
-  COPYING
-}
-\label{
-  COPYING
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-COPYING
-}
-
-
-\subsection{
-  COPYING.LESSER
-}
-\label{
-  COPYINGLESSER
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-COPYING.LESSER
-}
-
-
-\subsection{
-  git\_helpers/git\_checks.libr.sh
-}
-\label{
-  git_helpers:git_checkslibrsh
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-git_helpers/git_checks.libr.sh
-}
-
-
-\subsection{
-  git\_helpers/post-commit
-}
-\label{
-  git_helpers:post-commit
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-git_helpers/post-commit
-}
-
-
-\subsection{
-  git\_helpers/post\_commit\_renaming\_comment.libr.sh
-}
-\label{
-  git_helpers:post_commit_renaming_commentlibrsh
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-git_helpers/post_commit_renaming_comment.libr.sh
-}
-
-
-\subsection{
-  git\_helpers/pre-commit
-}
-\label{
-  git_helpers:pre-commit
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-git_helpers/pre-commit
-}
-
-
-\subsection{
-  IMAP\_transfert.py
-}
-\label{
-  IMAP_transfertpy
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-IMAP_transfert.py
-}
-
-
-\subsection{
-  LiensUtiles.txt
-}
-\label{
-  LiensUtilestxt
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-LiensUtiles.txt
-}
-
-
-\subsection{
-  miscellaneous/funny.sh
-}
-\label{
-  miscellaneous:funnysh
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-miscellaneous/funny.sh
-}
-
-
-\subsection{
-  miscellaneous/spampty\_data.txt
-}
-\label{
-  miscellaneous:spampty_datatxt
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-miscellaneous/spampty_data.txt
-}
-
-
-\subsection{
-  miscellaneous/string\_escaping.html
-}
-\label{
-  miscellaneous:string_escapinghtml
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-miscellaneous/string_escaping.html
-}
-
-
-\subsection{
-  miscellaneous/string\_escaping.xhtml
-}
-\label{
-  miscellaneous:string_escapingxhtml
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-miscellaneous/string_escaping.xhtml
-}
-
-
-\subsection{
-  README.md.tpl
-}
-\label{
-  READMEmdtpl
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-README.md.tpl
-}
-
-
-\subsection{
-  string\_escaping.libr.php
-}
-\label{
-  string_escapinglibrphp
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-string_escaping.libr.php
-}
-
-
-\subsection{
-  unicode.libr.php
-}
-\label{
-  unicodelibrphp
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-unicode.libr.php
-}
-
-
-\subsection{
-  upgrade\_build\_and\_checks.exec.sh
-}
-\label{
-  upgrade_build_and_checksexecsh
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-upgrade_build_and_checks.exec.sh
-}
-
-
-\subsection{
-  wget\_sha512.libr.sh
-}
-\label{
-  wget_sha512librsh
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-wget_sha512.libr.sh
-}
-
-
-</pre>
-
-
-<h3 id="subsection3.42">3.42
 build_and_checks_variables/files_names_listing.txt
 </h3>
 <pre class="numbered_lines">
@@ -10397,7 +9618,6 @@ build_and_checks_variables/dependencies_notes.txt
 build_and_checks_variables/DevOrSysAdminScripts.html.tpl
 // build_and_checks_variables/DevOrSysAdminScripts.tex
 build_and_checks_variables/DevOrSysAdminScripts.tex.tpl
-build_and_checks_variables/files_listing.tex.tpl
 build_and_checks_variables/files_names_listing.txt
 build_and_checks_variables/licenses_notes.txt
 build_and_checks_variables/phpmd_baseline.xml
@@ -10460,7 +9680,7 @@ wget_sha512.libr.sh
 </pre>
 
 
-<h3 id="subsection3.43">3.43
+<h3 id="subsection3.42">3.42
 build_and_checks_variables/licenses_notes.txt
 </h3>
 <pre class="numbered_lines">
@@ -10500,7 +9720,7 @@ whilst GNU coreutils is GPLv3+ licensed.
 </pre>
 
 
-<h3 id="subsection3.44">3.44
+<h3 id="subsection3.43">3.43
 build_and_checks_variables/phpmd_baseline.xml
 </h3>
 <pre class="numbered_lines">
@@ -10567,7 +9787,7 @@ build_and_checks_variables/phpmd_baseline.xml
 </pre>
 
 
-<h3 id="subsection3.45">3.45
+<h3 id="subsection3.44">3.44
 build_and_checks_variables/pylintrc.toml
 </h3>
 <pre class="numbered_lines">
@@ -10597,7 +9817,7 @@ output-format = "colorized"
 </pre>
 
 
-<h3 id="subsection3.46">3.46
+<h3 id="subsection3.45">3.45
 build_and_checks_variables/repository_data.txt
 </h3>
 <pre class="numbered_lines">
@@ -10744,7 +9964,7 @@ use_vnu_for_xhtml=false
 </pre>
 
 
-<h3 id="subsection3.47">3.47
+<h3 id="subsection3.46">3.46
 build_and_checks_variables/repository_data.txt.tpl
 </h3>
 <pre class="numbered_lines">
@@ -10801,7 +10021,7 @@ npm_lint_directories=
 </pre>
 
 
-<h3 id="subsection3.48">3.48
+<h3 id="subsection3.47">3.47
 build_and_checks_variables/ruff.toml
 </h3>
 <pre class="numbered_lines">
@@ -10849,7 +10069,7 @@ ignore = [
 </pre>
 
 
-<h3 id="subsection3.49">3.49
+<h3 id="subsection3.48">3.48
 build_and_checks_variables/shellcheck.ini
 </h3>
 <pre class="numbered_lines">
@@ -10860,11 +10080,10 @@ source-path="."
 source-path="SCRIPTDIR"
 source-path="./build_and_checks_dependencies"
 source-path="./git_helpers"
-
 </pre>
 
 
-<h3 id="subsection3.50">3.50
+<h3 id="subsection3.49">3.49
 build_and_checks_variables/shellcheck_notes.txt
 </h3>
 <pre class="numbered_lines">
@@ -10938,7 +10157,7 @@ grep -r "shellcheck disable" . | grep -v -e '.git' -e "=SC1090$"\
 </pre>
 
 
-<h3 id="subsection3.51">3.51
+<h3 id="subsection3.50">3.50
 build_and_checks.exec.sh
 </h3>
 <pre class="numbered_lines">
@@ -11005,8 +10224,8 @@ build_and_checks(){
   LFBFL_variables_directory="${LFBFL_work_directory}/"
   LFBFL_variables_directory+="build_and_checks_variables"
   mkdir -p "${LFBFL_variables_directory}/temp"
-  if ! [[ -f "${LFBFL_variables_directory}/.gitignore" ]]; then
-    printf "temp/\n\n"\
+  if [[ ! -f "${LFBFL_variables_directory}/.gitignore" ]]; then
+    printf "temp/\nupgrade_venvs_ts\n"\
       > "${LFBFL_variables_directory}/.gitignore"
   fi
 
@@ -11023,9 +10242,9 @@ build_and_checks(){
   declare -r\
     LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_common_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='564e218ef5f29ad289994c46a22e18a6d42eecc2044b3'
-  LFBFL_correct_sha512+='74862ef748d19ea637e750da705b41f7a8c86f483b9d'
-  LFBFL_correct_sha512+='13886ca36dd073732c863150cc85eb3851d77ba'
+  LFBFL_correct_sha512='fb0dbd73d38e81588f1ab19d7f6624bcc0a18b2fae6e7'
+  LFBFL_correct_sha512+='536191f506b76fc84e25f0e794cdcb40cacd2d0ee8ca'
+  LFBFL_correct_sha512+='2ac16e671f039f8013afc3700e03dd9714a293a'
   wget_sha512 "${LFBFL_file_path}"\
     "${LFBFL_script}"\
     "${LFBFL_correct_sha512}"\
@@ -11072,7 +10291,7 @@ build_and_checks "$@"
 </pre>
 
 
-<h3 id="subsection3.52">3.52
+<h3 id="subsection3.51">3.51
 COPYING
 </h3>
 <pre class="numbered_lines">
@@ -11753,7 +10972,7 @@ Public License instead of this License.  But first, please read
 </pre>
 
 
-<h3 id="subsection3.53">3.53
+<h3 id="subsection3.52">3.52
 COPYING.LESSER
 </h3>
 <pre class="numbered_lines">
@@ -11925,7 +11144,7 @@ Library.
 </pre>
 
 
-<h3 id="subsection3.54">3.54
+<h3 id="subsection3.53">3.53
 git_helpers/git_checks.libr.sh
 </h3>
 <pre class="numbered_lines">
@@ -12051,7 +11270,7 @@ check_black_code_formatting(){
 </pre>
 
 
-<h3 id="subsection3.55">3.55
+<h3 id="subsection3.54">3.54
 git_helpers/post-commit
 </h3>
 <pre class="numbered_lines">
@@ -12123,7 +11342,7 @@ exit 0
 </pre>
 
 
-<h3 id="subsection3.56">3.56
+<h3 id="subsection3.55">3.55
 git_helpers/post_commit_renaming_comment.libr.sh
 </h3>
 <pre class="numbered_lines">
@@ -12519,7 +11738,7 @@ commit_a_file_renamed_comment(){
 </pre>
 
 
-<h3 id="subsection3.57">3.57
+<h3 id="subsection3.56">3.56
 git_helpers/pre-commit
 </h3>
 <pre class="numbered_lines">
@@ -12589,7 +11808,7 @@ exit ${LFBFL_i_git_hook_error}
 </pre>
 
 
-<h3 id="subsection3.58">3.58
+<h3 id="subsection3.57">3.57
 IMAP_transfert.py
 </h3>
 <pre class="numbered_lines">
@@ -12871,7 +12090,7 @@ if __name__ == "__main__":
 </pre>
 
 
-<h3 id="subsection3.59">3.59
+<h3 id="subsection3.58">3.58
 LiensUtiles.txt
 </h3>
 <pre class="numbered_lines">
@@ -12893,7 +12112,7 @@ calling-gpld-programs-from-a-shell-script
 </pre>
 
 
-<h3 id="subsection3.60">3.60
+<h3 id="subsection3.59">3.59
 miscellaneous/funny.sh
 </h3>
 <pre class="numbered_lines">
@@ -12943,7 +12162,7 @@ protected_funny(){
 </pre>
 
 
-<h3 id="subsection3.61">3.61
+<h3 id="subsection3.60">3.60
 miscellaneous/spampty_data.txt
 </h3>
 <pre class="numbered_lines">
@@ -12960,7 +12179,7 @@ normal_again.txt: a
 </pre>
 
 
-<h3 id="subsection3.62">3.62
+<h3 id="subsection3.61">3.61
 miscellaneous/string_escaping.html
 </h3>
 <pre class="numbered_lines">
@@ -12998,7 +12217,7 @@ alert(b);
 </pre>
 
 
-<h3 id="subsection3.63">3.63
+<h3 id="subsection3.62">3.62
 miscellaneous/string_escaping.xhtml
 </h3>
 <pre class="numbered_lines">
@@ -13036,7 +12255,7 @@ alert(b);
 </pre>
 
 
-<h3 id="subsection3.64">3.64
+<h3 id="subsection3.63">3.63
 README.md.tpl
 </h3>
 <pre class="numbered_lines">
@@ -13153,7 +12372,7 @@ badge/v2.json
 </pre>
 
 
-<h3 id="subsection3.65">3.65
+<h3 id="subsection3.64">3.64
 string_escaping.libr.php
 </h3>
 <pre class="numbered_lines">
@@ -13332,7 +12551,7 @@ var_dump(string_escaping\JS\escape_for_string_definition_inside_XHTML(
 </pre>
 
 
-<h3 id="subsection3.66">3.66
+<h3 id="subsection3.65">3.65
 unicode.libr.php
 </h3>
 <pre class="numbered_lines">
@@ -13726,11 +12945,10 @@ foreach($arr as $s_hexa){
   echo($s3."\n");
 }
 //*/
-
 </pre>
 
 
-<h3 id="subsection3.67">3.67
+<h3 id="subsection3.66">3.66
 upgrade_build_and_checks.exec.sh
 </h3>
 <pre class="numbered_lines">
@@ -13796,7 +13014,7 @@ upgrade_build_and_checks "$@"
 </pre>
 
 
-<h3 id="subsection3.68">3.68
+<h3 id="subsection3.67">3.67
 wget_sha512.libr.sh
 </h3>
 <pre class="numbered_lines">

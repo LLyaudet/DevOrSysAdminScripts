@@ -74,13 +74,13 @@ Some “small” useful scripts
 for enhancing development or system-administrators tasks
 \end{abstract}
 
-Current version: 2026-03-23
+Current version: 2026-03-24
 
-Current number of commits: 738
+Current number of commits: 740
 
-Current git SHA1: cb6085438ce753d9d9d7a33385a9df343aaa2cd2
+Current git SHA1: ae9851aedc6ad532d98c4cfc22c0884a9d4aa66f
 
-Code lines: 11806 total lines, 10749 not empty lines, 1057 empty lines.
+Code lines: 11036 total lines, 10186 not empty lines, 850 empty lines.
 
 \tableofcontents
 \newpage
@@ -134,7 +134,6 @@ Code lines: 11806 total lines, 10749 not empty lines, 1057 empty lines.
 │   ├── DevOrSysAdminScripts.html.tpl
 │   ├── DevOrSysAdminScripts.tex
 │   ├── DevOrSysAdminScripts.tex.tpl
-│   ├── files_listing.tex.tpl
 │   ├── files_names_listing.txt
 │   ├── .gitignore
 │   ├── licenses_notes.txt
@@ -193,23 +192,23 @@ Code lines: 11806 total lines, 10749 not empty lines, 1057 empty lines.
 ├── upgrade_build_and_checks.exec.sh
 └── wget_sha512.libr.sh
 
-6 directories, 81 files
+6 directories, 80 files
 \end{verbatim}
 
 \begin{verbatim}
-[ 12K Mar 23 18:48]  ./
-├── [4.0K Mar 23 18:48]  build_and_checks_dependencies/
-│   ├── [4.3K Mar 23 18:46]  build_and_checks.exec.sh.tpl*
-│   ├── [4.4K Mar 23 17:50]  build_dependencies_notes.exec.php*
+[ 12K Mar 24 20:38]  ./
+├── [4.0K Mar 24 20:38]  build_and_checks_dependencies/
+│   ├── [4.3K Mar 24 19:32]  build_and_checks.exec.sh.tpl*
+│   ├── [6.3K Mar 24 20:34]  build_dependencies_notes.exec.php*
 │   ├── [4.2K Mar 23 08:55]  build_md_from_printable_md.exec.sh*
 │   ├── [3.2K Mar 23 09:48]  check_shell_scripts_beginnings.libr.sh
 │   ├── [5.3K Mar 23 09:47]  check_shell_scripts_indentation.libr.sh
 │   ├── [3.6K Mar 23 10:11]  check_URLs.libr.sh
-│   ├── [ 30K Mar 23 18:46]  common_build_and_checks.exec.sh*
+│   ├── [ 30K Mar 24 20:38]  common_build_and_checks.exec.sh*
 │   ├── [ 26K Mar 23 18:46]  common_build_and_checks.exec.sh.tpl
 │   ├── [ 16K Mar 23 15:17]  common_options.libr.sh
 │   ├── [6.1K Mar 22 16:03]  comparisons.libr.sh
-│   ├── [ 20K Mar 23 18:00]  create_PDF.exec.sh*
+│   ├── [ 21K Mar 24 20:37]  create_PDF.exec.sh*
 │   ├── [3.7K Mar 22 16:36]  generate_from_template.libr.sh
 │   ├── [2.0K Mar  5 21:22]  get_common_text_glob_patterns.libr.sh
 │   ├── [3.3K Mar 23 10:18]  grammar_and_spelling_check.libr.sh
@@ -229,34 +228,33 @@ Code lines: 11806 total lines, 10749 not empty lines, 1057 empty lines.
 │   ├── [1.6K Feb  3 17:57]  split_score.exec.php
 │   ├── [1.9K Mar 22 19:01]  split_score.libr.php
 │   ├── [ 48K Mar 23 10:16]  strings_functions.libr.sh
-│   ├── [4.5K Mar 23 10:12]  too_long_code_lines.libr.sh
+│   ├── [4.5K Mar 24 20:26]  too_long_code_lines.libr.sh
 │   ├── [4.2K Mar 23 17:15]  update_common_build_and_checks.exec.sh*
 │   └── [6.1K Mar 23 17:56]  update_or_check_files_names_listing.exec.sh*
-├── [4.5K Mar 23 18:46]  build_and_checks.exec.sh*
-├── [4.0K Mar 23 18:48]  build_and_checks_variables/
+├── [4.5K Mar 24 20:38]  build_and_checks.exec.sh*
+├── [4.0K Mar 24 20:38]  build_and_checks_variables/
 │   ├── [  15 Jan  5 20:00]  bandit_baseline.json
 │   ├── [  25 Jan  5 18:49]  bandit.ini
 │   ├── [  30 Feb 28 20:30]  black.toml
 │   ├── [4.6K Mar 23 16:44]  dependencies_data.json
 │   ├── [3.8K Mar 23 16:44]  dependencies_notes.txt
 │   ├── [5.7K Mar 23 17:43]  DevOrSysAdminScripts.html.tpl
-│   ├── [ 35K Mar 23 18:47]  DevOrSysAdminScripts.tex
+│   ├── [ 34K Mar 24 20:35]  DevOrSysAdminScripts.tex
 │   ├── [4.2K Mar 23 17:40]  DevOrSysAdminScripts.tex.tpl
-│   ├── [ 16K Mar 23 17:18]  files_listing.tex.tpl
-│   ├── [5.4K Mar 23 17:13]  files_names_listing.txt
-│   ├── [  24 Jan 15 22:26]  .gitignore
+│   ├── [5.3K Mar 24 19:44]  files_names_listing.txt
+│   ├── [  23 Mar 24 19:33]  .gitignore
 │   ├── [1.4K Mar 23 16:11]  licenses_notes.txt
 │   ├── [2.2K Mar 23 17:31]  phpmd_baseline.xml
 │   ├── [ 678 Feb 24 22:38]  pylintrc.toml
 │   ├── [4.5K Mar 22 15:51]  repository_data.txt
 │   ├── [ 786 Mar 22 15:39]  repository_data.txt.tpl
 │   ├── [1.4K Feb 24 23:25]  ruff.toml
-│   ├── [ 167 Feb 19 18:39]  shellcheck.ini
+│   ├── [ 166 Mar 24 19:33]  shellcheck.ini
 │   └── [3.5K Mar  9 14:46]  shellcheck_notes.txt
 ├── [ 34K May  6  2024]  COPYING
 ├── [7.5K Dec 27 21:48]  COPYING.LESSER
-├── [454K Mar 23 18:47]  DevOrSysAdminScripts.html
-├── [398K Mar 23 18:47]  DevOrSysAdminScripts.pdf
+├── [441K Mar 24 20:35]  DevOrSysAdminScripts.html
+├── [387K Mar 24 20:35]  DevOrSysAdminScripts.pdf
 ├── [4.0K Mar 23 10:34]  git_helpers/
 │   ├── [3.8K Mar 22 21:06]  git_checks.libr.sh
 │   ├── [2.1K Mar 22 21:09]  post-commit*
@@ -297,11 +295,11 @@ Code lines: 11806 total lines, 10749 not empty lines, 1057 empty lines.
 ├── [4.3K Mar 22 21:29]  README.md
 ├── [4.3K Mar 22 21:29]  README.md.tpl
 ├── [3.2K Mar 22 21:36]  string_escaping.libr.php
-├── [ 13K Mar 22 21:59]  unicode.libr.php
+├── [ 13K Mar 24 19:32]  unicode.libr.php
 ├── [1.8K Mar 23 18:45]  upgrade_build_and_checks.exec.sh*
 └── [2.5K Mar 23 18:45]  wget_sha512.libr.sh
 
-6 directories, 81 files
+6 directories, 80 files
 \end{verbatim}
 
 \section{Notes on licenses and dependencies}
@@ -999,18 +997,6 @@ build_and_checks_variables/DevOrSysAdminScripts.html.tpl
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
 build_and_checks_variables/DevOrSysAdminScripts.tex.tpl
-}
-
-
-\subsection{
-  build\_and\_checks\_variables/files\_listing.tex.tpl
-}
-\label{
-  build_and_checks_variables:files_listingtextpl
-}
-
-\VerbatimInput[numbers=left,xleftmargin=-5mm]{
-build_and_checks_variables/files_listing.tex.tpl
 }
 
 

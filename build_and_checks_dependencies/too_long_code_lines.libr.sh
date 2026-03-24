@@ -114,7 +114,7 @@ too_long_code_lines(){
           continue
         fi
         if grep --quiet --fixed-strings -- "${LFBFL_line}"\
-          "./build_and_checks_variables/temp/files_listing.html.tpl"
+          "./build_and_checks_variables/temp/files_listing.html.sub"
         then
           continue
         fi

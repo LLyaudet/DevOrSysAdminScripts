@@ -75,7 +75,6 @@ build_and_checks_variables/dependencies_notes.txt
 build_and_checks_variables/DevOrSysAdminScripts.html.tpl
 // build_and_checks_variables/DevOrSysAdminScripts.tex
 build_and_checks_variables/DevOrSysAdminScripts.tex.tpl
-build_and_checks_variables/files_listing.tex.tpl
 build_and_checks_variables/files_names_listing.txt
 build_and_checks_variables/licenses_notes.txt
 build_and_checks_variables/phpmd_baseline.xml

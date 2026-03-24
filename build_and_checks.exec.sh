@@ -61,8 +61,8 @@ build_and_checks(){
   LFBFL_variables_directory="${LFBFL_work_directory}/"
   LFBFL_variables_directory+="build_and_checks_variables"
   mkdir -p "${LFBFL_variables_directory}/temp"
-  if ! [[ -f "${LFBFL_variables_directory}/.gitignore" ]]; then
-    printf "temp/\n\n"\
+  if [[ ! -f "${LFBFL_variables_directory}/.gitignore" ]]; then
+    printf "temp/\nupgrade_venvs_ts\n"\
       > "${LFBFL_variables_directory}/.gitignore"
   fi
 

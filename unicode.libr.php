@@ -388,4 +388,3 @@ foreach($arr as $s_hexa){
   echo($s3."\n");
 }
 //*/
-

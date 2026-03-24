@@ -58,7 +58,7 @@ common_build_and_checks(){
   fi
   readonly LFBFL_check_download
 
-  declare -ar LFBFL_some_common_options=(
+  declare -a LFBFL_some_common_options=(
     "${LFBFL_verbose}"
     # "$--work-directory={LFBFL_work_directory}" doesn't work
     "${LFBFL_work_directory_option}"
@@ -160,9 +160,9 @@ common_build_and_checks(){
   LFBFL_file_name="get_common_text_glob_patterns.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='fc041abf937df4c7cb1241c73e776e8bd07a5525bc9a9'
-  LFBFL_correct_sha512+='29c83d597ddd6aa88a6e61a99d22ca88c11561f1cdbc'
-  LFBFL_correct_sha512+='0fbf5df4794a2384f33e7e7dd5b65a53ab46f4a'
+  LFBFL_correct_sha512='d38b894f63ac0db1eab4447a765b723642e12e3443aee'
+  LFBFL_correct_sha512+='01bd08e44bd2971bf11d3f0b98d2932bcaaeab4f30b7'
+  LFBFL_correct_sha512+='9f7da666e02a0fb1dada8a348ad866a104e4d53'
   wrapped_wget_sha512
 
   LFBFL_file_name="grammar_and_spelling_check.libr.sh"
@@ -270,9 +270,9 @@ common_build_and_checks(){
   LFBFL_file_name="shell_checks_complement.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='e70c9b931d1adb41be165c2d84e17dd9dbb23a3d6d48d'
-  LFBFL_correct_sha512+='1b609a9187e96a2faa831c78335e440edef26792b307'
-  LFBFL_correct_sha512+='346fb053c5c0dd1fac493e1db3657950fd6ae08'
+  LFBFL_correct_sha512='d97b516d32c4c7d450796f5ec9dcaf383c19180a5e2ec'
+  LFBFL_correct_sha512+='62061b402f5d41315549687ba6299b6c13b7d43ff27d'
+  LFBFL_correct_sha512+='6a48ea21e2fba7bf4e8c54c1edcbafc47e798d0'
   wrapped_wget_sha512
 
   LFBFL_file_name="split_score.exec.php"
@@ -415,6 +415,13 @@ common_build_and_checks(){
   declare -i LFBFL_i_max_line_length
   grep_variable "${LFBFL_data_file_name}" max_line_length\
     --result-variable-prefix=LFBFL_i_
+
+  LFBFL_some_common_options+=(
+    "--max-line-length=${LFBFL_i_max_line_length}"
+  )
+  LFBFL_some_common_options2+=(
+    "--max-line-length=${LFBFL_i_max_line_length}"
+  )
 
   declare -i LFBFL_i_upgrade_venvs=0
   local LFBFL_upgrade_venvs_ts_file="${LFBFL_subdir3}/upgrade_venvs_ts"
@@ -671,8 +678,7 @@ common_build_and_checks(){
 
   printf "Analyzing too long lines\n"
   # shellcheck disable=SC2248
-  too_long_code_lines "${LFBFL_some_common_options2[@]}" \
-    --max-line-length=${LFBFL_i_max_line_length}
+  too_long_code_lines "${LFBFL_some_common_options2[@]}"
 
   printf "Analyzing shell scripts beginnings\n"
   check_shell_scripts_beginnings "${LFBFL_some_common_options2[@]}" \

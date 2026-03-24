@@ -58,7 +58,7 @@ common_build_and_checks(){
   fi
   readonly LFBFL_check_download
 
-  declare -ar LFBFL_some_common_options=(
+  declare -a LFBFL_some_common_options=(
     "${LFBFL_verbose}"
     # "$--work-directory={LFBFL_work_directory}" doesn't work
     "${LFBFL_work_directory_option}"
@@ -360,6 +360,13 @@ common_build_and_checks(){
   grep_variable "${LFBFL_data_file_name}" max_line_length\
     --result-variable-prefix=LFBFL_i_
 
+  LFBFL_some_common_options+=(
+    "--max-line-length=${LFBFL_i_max_line_length}"
+  )
+  LFBFL_some_common_options2+=(
+    "--max-line-length=${LFBFL_i_max_line_length}"
+  )
+
   declare -i LFBFL_i_upgrade_venvs=0
   local LFBFL_upgrade_venvs_ts_file="${LFBFL_subdir3}/upgrade_venvs_ts"
   readonly LFBFL_upgrade_venvs_ts_file
@@ -615,8 +622,7 @@ common_build_and_checks(){
 
   printf "Analyzing too long lines\n"
   # shellcheck disable=SC2248
-  too_long_code_lines "${LFBFL_some_common_options2[@]}" \
-    --max-line-length=${LFBFL_i_max_line_length}
+  too_long_code_lines "${LFBFL_some_common_options2[@]}"
 
   printf "Analyzing shell scripts beginnings\n"
   check_shell_scripts_beginnings "${LFBFL_some_common_options2[@]}" \

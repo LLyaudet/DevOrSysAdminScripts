@@ -93,6 +93,28 @@ check_no_misplaced_then(){
   pcre2grep -M -- "${LFBFL_regexp}" **/*.sh
 }
 
+check_no_negation_before_bash_test(){
+  # Options:
+  #   --verbose
+  #   --work-directory=""
+  declare -i LFBFL_i_verbose=0
+  get_verbose_option "$@"
+  local LFBFL_work_directory=""
+  get_work_directory_option "$@"
+  declare -a LFBFL_return_traps_stack
+  local LFBFL_previous_return_trap
+  init_return_trap
+  pushd_to_work_directory --trap-popd
+  can_continue_after_enhanced_pushd || return 1
+
+  enhanced_set_bash_option globstar --trap-unset
+
+  [[ LFBFL_i_verbose -eq 1 ]]\
+    && printf "Checking that shell scripts do not contain ! before [[.\n"
+
+  pcre2grep -M -- $'!\s*\[\[' **/*.sh
+}
+
 shell_checks_complement(){
   # Options:
   #   --verbose
@@ -112,4 +134,5 @@ shell_checks_complement(){
 
   check_no_size_of_array_first_element "${LFBFL_common_options[@]}"
   check_no_misplaced_then "${LFBFL_common_options[@]}"
+  check_no_negation_before_bash_test "${LFBFL_common_options[@]}"
 }

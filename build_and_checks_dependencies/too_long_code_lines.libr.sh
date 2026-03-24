@@ -120,7 +120,7 @@ too_long_code_lines(){
         fi
         printf "%s\n" "${LFBFL_long_line}"
       elif [[ "${LFBFL_extension}" == "md" ]]; then
-        if ! [[ -f "${LFBFL_base_name}.md.tpl" ]]; then
+        if [[ ! -f "${LFBFL_base_name}.md.tpl" ]]; then
           printf "%s\n" "${LFBFL_long_line}"
         fi
       else

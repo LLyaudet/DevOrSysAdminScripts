@@ -138,20 +138,70 @@ function build_dependencies_notes(string $s_working_directory) : void {
 
   // We overwrite results if needed.
   $s_result_path1 = $s_subdir1.'/dependencies_notes.txt';
-  $s_existing_result_content1 = file_get_contents($s_result_path1);
+  $s_existing_result_content1 = '';
+  if(file_exists($s_result_path1)){
+    $s_existing_result_content1 = file_get_contents($s_result_path1);
+  }
   if($s_result_content1 !== $s_existing_result_content1){
     file_put_contents($s_result_path1, $s_result_content1);
   }
-  $s_result_path2 = $s_subdir2.'/dependencies_notes.tex';
-  $s_existing_result_content2 = file_get_contents($s_result_path2);
+  /*
+  Example of generated content of dependencies_notes.txt:
+  -------------------------------------------------------------------------
+  more of util-linux can be found at the following URLs:
+  https://www.kernel.org/pub/linux/utils/util-linux/
+  https://git.kernel.org/pub/scm/utils/util-linux/util-linux.git/
+  https://github.com/util-linux/util-linux official?
+  -------------------------------------------------------------------------
+  */
+  $s_result_path2 = $s_subdir2.'/dependencies_notes.tex.sub';
+  $s_existing_result_content2 = '';
+  if(file_exists($s_result_path2)){
+    $s_existing_result_content2 = file_get_contents($s_result_path2);
+  }
   if($s_result_content2 !== $s_existing_result_content2){
     file_put_contents($s_result_path2, $s_result_content2);
   }
-  $s_result_path3 = $s_subdir2.'/dependencies_notes.html';
-  $s_existing_result_content3 = file_get_contents($s_result_path3);
+  /*
+  Example of generated content of dependencies_notes.tex.sub:
+  -------------------------------------------------------------------------
+  more of util-linux can be found at the following URLs:\newline
+  \url{https://www.kernel.org/pub/linux/utils/util-linux/},\newline
+  {\small
+    \url{https://git.kernel.org/pub/scm/utils/util-linux/util-linux.git/}
+  },\newline
+  \url{https://github.com/util-linux/util-linux} official?.
+  -------------------------------------------------------------------------
+  */
+  $s_result_path3 = $s_subdir2.'/dependencies_notes.html.sub';
+  $s_existing_result_content3 = '';
+  if(file_exists($s_result_path3)){
+    $s_existing_result_content3 = file_get_contents($s_result_path3);
+  }
   if($s_result_content3 !== $s_existing_result_content3){
     file_put_contents($s_result_path3, $s_result_content3);
   }
+  /*
+  Example of generated content of dependencies_notes.html.sub:
+  <p>
+  more of util-linux can be found at the following URLs:<br>
+  <a
+  href="https://www.kernel.org/pub/linux/utils/util-linux/"
+  ><span style="font-family:monospace"
+  >https://www.kernel.org/pub/linux/utils/util-linux/</span
+  ></a>,<br>
+  <a
+  href="https://git.kernel.org/pub/scm/utils/util-linux/util-linux.git/"
+  ><span style="font-family:monospace"
+  >https://git.kernel.org/pub/scm/utils/util-linux/util-linux.git/</span
+  ></a>,<br>
+  <a
+  href="https://github.com/util-linux/util-linux"
+  ><span style="font-family:monospace"
+  >https://github.com/util-linux/util-linux</span
+  ></a> official?.
+  </p>
+  */
 }
 
 build_dependencies_notes($argv[1]);

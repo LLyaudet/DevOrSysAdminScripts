@@ -89,7 +89,7 @@ check_no_misplaced_then(){
   LFBFL_regexp+="(?<=\]\];)"
   LFBFL_regexp+="(?<!^\s{0,${LFBFL_i_max_previous_line_length}}\]\];)"
   LFBFL_regexp+="\n\s*then"
-
+  # pcre2grep -M -- '^[^\n]{1,70}(?<=\]\];)(?<!^\s{0,70}\]\];)\n\s*then'
   pcre2grep -M -- "${LFBFL_regexp}" **/*.sh
 }
 
@@ -108,7 +108,7 @@ shell_checks_complement(){
   can_continue_after_enhanced_pushd || return 1
 
   declare -a LFBFL_common_options=("$@")
-  keep_options LFBFL_common_options --verbose
+  keep_options LFBFL_common_options --verbose --max-line-length
 
   check_no_size_of_array_first_element "${LFBFL_common_options[@]}"
   check_no_misplaced_then "${LFBFL_common_options[@]}"

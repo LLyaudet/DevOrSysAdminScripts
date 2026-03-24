@@ -130,7 +130,7 @@ create_PDF(){
   LFBFL_number_of_lines+=" empty lines."
   readonly LFBFL_number_of_lines
 
-  declare -r LFBFL_temp_path="./${LFBFL_subdir2}/temp"
+  declare -r LFBFL_temp_path="${LFBFL_subdir2}/temp"
 
   # see https://gitlab.com/OldManProgrammer/unix-tree/-/issues
   # ?show=eyJpaWQiOiI0MyIsImZ1bGxfcGF0aCI6Ik9sZE1hblByb2dyYW1t
@@ -156,7 +156,7 @@ create_PDF(){
   local LFBFL_s_files_paths
   # Remove line returns that are here to keep lines short.
   LFBFL_s_files_paths=$(
-    sed -Ez 's/(.)\\\n/\1/Mg' "./${LFBFL_subdir2}/files_names_listing.txt"\
+    sed -Ez 's/(.)\\\n/\1/Mg' "${LFBFL_subdir2}/files_names_listing.txt"\
     | grep -v '^//'
   )
   readonly LFBFL_s_files_paths
@@ -171,17 +171,17 @@ create_PDF(){
     --result-variable-prefix="LFBFL_"
 
   local LFBFL_temp_files_listing="${LFBFL_temp_path}/"
-  LFBFL_temp_files_listing+="files_listing.tex.tpl.temp"
+  LFBFL_temp_files_listing+="files_listing.tex.sub.temp"
   readonly LFBFL_temp_files_listing
   cp "${LFBFL_temp_path}/license_file_header_${LFBFL_license}.tex"\
     "${LFBFL_temp_files_listing}"
   local LFBFL_temp_files_listing2="${LFBFL_temp_path}/"
-  LFBFL_temp_files_listing2+="files_listing.html.tpl.temp"
+  LFBFL_temp_files_listing2+="files_listing.html.sub.temp"
   readonly LFBFL_temp_files_listing2
   : > "${LFBFL_temp_files_listing2}"
   # HTML <li> elements, hence "lis".
   local LFBFL_temp_files_lis
-  LFBFL_temp_files_lis="${LFBFL_temp_path}/files_lis.html.tpl"
+  LFBFL_temp_files_lis="${LFBFL_temp_path}/files_lis.html.sub.temp"
   readonly LFBFL_temp_files_lis
   : > "${LFBFL_temp_files_lis}"
   # shellcheck disable=SC2248
@@ -289,12 +289,51 @@ create_PDF(){
     printf "${LFBFL_s_format}" "${LFBFL_i}" "${LFBFL_new_lines}"\
       >> "${LFBFL_temp_files_lis}"
   done
-  overwrite_if_not_equal "./${LFBFL_subdir2}/files_listing.tex.tpl"\
+  overwrite_if_not_equal "${LFBFL_temp_path}/files_listing.tex.sub"\
     "${LFBFL_temp_files_listing}"
+  # Example of generated content of files_listing.tex.sub:
+  # -----------------------------------------------------------------------
+  # \subsection{
+  #   build\_and\_checks\_dependencies/licenses\_templates/%
+  # build\_licenses\_templates.exec.sh
+  # }
+  # \label{
+  #   build_and_checks_dependencies:licenses_templates:%
+  # build_licenses_templatesexecsh
+  # }
+  #
+  # \VerbatimInput[numbers=left,xleftmargin=-5mm]{
+  # build_and_checks_dependencies/licenses_templates/%
+  # build_licenses_templates.exec.sh
+  # }
+  # -----------------------------------------------------------------------
   sed -i -e "s|\\n</pre>|</pre>|g" "${LFBFL_temp_files_listing2}"
-  overwrite_if_not_equal\
-    "${LFBFL_temp_path}/files_listing.html.tpl"\
+  overwrite_if_not_equal "${LFBFL_temp_path}/files_listing.html.sub"\
     "${LFBFL_temp_files_listing2}"
+  # Example of generated content of files_listing.html.sub:
+  # -----------------------------------------------------------------------
+  # <h3 id="subsection3.15">3.15
+  # build_and_checks_dependencies/licenses_templates/<!--
+  # -->build_licenses_templates.exec.sh
+  # </h3>
+  # ...
+  # <h3 id="subsection3.33">3.33
+  # build_and_checks_variables/.gitignore
+  # </h3>
+  # <pre class="numbered_lines">
+  # temp/
+  # upgrade_venvs_ts
+  # </pre>
+  # -----------------------------------------------------------------------
+  overwrite_if_not_equal "${LFBFL_temp_path}/files_lis.html.sub"\
+    "${LFBFL_temp_files_lis}"
+  # Example of generated content of files_lis.html.sub:
+  # -----------------------------------------------------------------------
+  #       <li><a href="#subsection3.15">
+  # build_and_checks_dependencies/licenses_templates/<!--
+  # -->build_licenses_templates.exec.sh
+  #       </a></li>
+  # -----------------------------------------------------------------------
 
   # We verify if some lines are beyond max_line_length characters
   # in current_tree_light.txt and current_tree.txt.
@@ -385,27 +424,24 @@ create_PDF(){
   declare -r LFBFL_html_path_start=\
 "${LFBFL_temp_path}/${LFBFL_repository_name}.html"
 
-  if [[ -f "./${LFBFL_subdir2}/${LFBFL_repository_name}.tex.tpl" ]];
-  then
+  if [[ -f "${LFBFL_subdir2}/${LFBFL_repository_name}.tex.tpl" ]]; then
     # If there is a template, we init the process from it.
-    cp "./${LFBFL_subdir2}/${LFBFL_repository_name}.tex.tpl"\
+    cp "${LFBFL_subdir2}/${LFBFL_repository_name}.tex.tpl"\
       "${LFBFL_tex_path_start}.1"
-  elif [[ -f "./${LFBFL_subdir2}/${LFBFL_repository_name}.tex" ]];
-  then
+  elif [[ -f "${LFBFL_subdir2}/${LFBFL_repository_name}.tex" ]]; then
     # Otherwise if there is a tex file, we init the process from it.
-    cp "./${LFBFL_subdir2}/${LFBFL_repository_name}.tex"\
+    cp "${LFBFL_subdir2}/${LFBFL_repository_name}.tex"\
       "${LFBFL_tex_path_start}.1"
   else
     printf "Neither .tex.tpl, nor .tex in ./%s/\n" "${LFBFL_subdir2}"
   fi
 
   # Same logic with repository HTML file.
-  if [[ -f "./${LFBFL_subdir2}/${LFBFL_repository_name}.html.tpl" ]];
-  then
-    cp "./${LFBFL_subdir2}/${LFBFL_repository_name}.html.tpl"\
+  if [[ -f "${LFBFL_subdir2}/${LFBFL_repository_name}.html.tpl" ]]; then
+    cp "${LFBFL_subdir2}/${LFBFL_repository_name}.html.tpl"\
       "${LFBFL_html_path_start}.1"
-  elif [[ -f "./${LFBFL_repository_name}.html" ]]; then
-    cp "./${LFBFL_repository_name}.html" "${LFBFL_html_path_start}.1"
+  elif [[ -f "${LFBFL_repository_name}.html" ]]; then
+    cp "${LFBFL_repository_name}.html" "${LFBFL_html_path_start}.1"
   else
     printf "Neither .html.tpl in ./%s/, nor .html in ./\n"\
       "${LFBFL_subdir2}"
@@ -438,7 +474,8 @@ create_PDF(){
            -e "s|@number_of_lines@|${LFBFL_number_of_lines}|g"\
       "${LFBFL_tex_path_start}.1"
 
-    insert_file_at_token "${LFBFL_tex_path_start}.1" @abstract@\
+    insert_file_at_token "${LFBFL_tex_path_start}.1"\
+      @abstract@\
       "${LFBFL_temp_path}/abstract_temp"\
       "${LFBFL_tex_path_start}.2"
 
@@ -459,16 +496,16 @@ create_PDF(){
 
     insert_file_at_token "${LFBFL_tex_path_start}.5"\
       @dependencies_notes@\
-      "./${LFBFL_temp_path}/dependencies_notes.tex"\
+      "${LFBFL_temp_path}/dependencies_notes.tex.sub"\
       "${LFBFL_tex_path_start}.6"
 
     insert_file_at_token "${LFBFL_tex_path_start}.6"\
       @files_listing_VerbatimInput@\
-      "./${LFBFL_subdir2}/files_listing.tex.tpl"\
+      "${LFBFL_temp_path}/files_listing.tex.sub"\
       "${LFBFL_tex_path_start}.7"
 
     overwrite_if_not_equal\
-      "./${LFBFL_subdir2}/${LFBFL_repository_name}.tex"\
+      "${LFBFL_subdir2}/${LFBFL_repository_name}.tex"\
       "${LFBFL_tex_path_start}.7" 1
   fi
 
@@ -487,7 +524,8 @@ create_PDF(){
            -e "s|@number_of_lines@|${LFBFL_number_of_lines}|g"\
       "${LFBFL_html_path_start}.1"
 
-    insert_file_at_token "${LFBFL_html_path_start}.1" @abstract@\
+    insert_file_at_token "${LFBFL_html_path_start}.1"\
+      @abstract@\
       "${LFBFL_temp_path}/abstract_temp"\
       "${LFBFL_html_path_start}.2"
 
@@ -497,7 +535,8 @@ create_PDF(){
       "${LFBFL_html_path_start}.3"
 
     insert_file_at_token "${LFBFL_html_path_start}.3"\
-      @files_lis@ "${LFBFL_temp_files_lis}"\
+      @files_lis@\
+      "${LFBFL_temp_path}/files_lis.html.sub"\
       "${LFBFL_html_path_start}.4"
 
     insert_file_at_token "${LFBFL_html_path_start}.4"\
@@ -512,15 +551,15 @@ create_PDF(){
 
     insert_file_at_token "${LFBFL_html_path_start}.6"\
       @dependencies_notes@\
-      "./${LFBFL_temp_path}/dependencies_notes.html"\
+      "${LFBFL_temp_path}/dependencies_notes.html.sub"\
       "${LFBFL_html_path_start}.7"
 
     insert_file_at_token "${LFBFL_html_path_start}.7"\
       @files_listing_HTMLPreInput@\
-      "${LFBFL_temp_path}/files_listing.html.tpl"\
+      "${LFBFL_temp_path}/files_listing.html.sub"\
       "${LFBFL_html_path_start}.8"
 
-    overwrite_if_not_equal "./${LFBFL_repository_name}.html"\
+    overwrite_if_not_equal "${LFBFL_repository_name}.html"\
       "${LFBFL_html_path_start}.8" 1
     LFBFL_i_HTML_updated=$?
   fi
@@ -545,7 +584,7 @@ create_PDF(){
 
   local LFBFL_command
   LFBFL_command="${LFBFL_latex_command}"
-  LFBFL_command+=" './${LFBFL_subdir2}/${LFBFL_repository_name}.tex'"
+  LFBFL_command+=" '${LFBFL_subdir2}/${LFBFL_repository_name}.tex'"
   if [[ LFBFL_i_verbose -eq 0 ]]; then
     LFBFL_command+=" > /dev/null"
   fi

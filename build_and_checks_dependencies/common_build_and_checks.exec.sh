@@ -94,9 +94,9 @@ common_build_and_checks(){
   LFBFL_file_name="build_dependencies_notes.exec.php"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='6b1bdeb49a81366dc3956dc70f381d1b0380e411f79f1'
-  LFBFL_correct_sha512+='5731da611f16469584469efdf056d3e02fc673864af7'
-  LFBFL_correct_sha512+='e288b4bb20edba77b8a74afe91209bbb63528a8'
+  LFBFL_correct_sha512='2e8a54f8627a6f5a4e966043b91fd116209452ecf7aa6'
+  LFBFL_correct_sha512+='c09e144881fb2bf063f455c3563813aebd57b33a1ee7'
+  LFBFL_correct_sha512+='b85e9157a5bf6293831e391f607e8d887453896'
   wrapped_wget_sha512
   chmod +x "./${LFBFL_file_path}"
 
@@ -143,9 +143,9 @@ common_build_and_checks(){
   LFBFL_file_name="create_PDF.exec.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='e8d57774edc7b98394b039dc7de2867deeece68775f7c'
-  LFBFL_correct_sha512+='82b5617efc9a3377772a6a1ff78957622ebef77b90d6'
-  LFBFL_correct_sha512+='7d93f449aebb875fba2ed5c4467b1387a4962ef'
+  LFBFL_correct_sha512='1a9fcbf1e06d33bc92d065e0c0697de3ca332489b7b55'
+  LFBFL_correct_sha512+='b01b3758755298e1d718f7029b54c409ee1d1eba7be3'
+  LFBFL_correct_sha512+='b57d06fec08f25ce207fbb36793624f347d1cac'
   wrapped_wget_sha512
   chmod +x "./${LFBFL_file_path}"
 
@@ -302,9 +302,9 @@ common_build_and_checks(){
   LFBFL_file_name="too_long_code_lines.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='a235e533d7c34796ee1f70225bab0f1a79d19e8454189'
-  LFBFL_correct_sha512+='833872276a455629866ca50f3045eeeb8c7213ef3a45'
-  LFBFL_correct_sha512+='88749523191fd615f27afbcaf3096290d11589a'
+  LFBFL_correct_sha512='3835c4b66734f5e27313d9de7e7e94ca7d04e15d7e2e3'
+  LFBFL_correct_sha512+='981a83b9c96b8ad023cae15035ea268de4a3262451be'
+  LFBFL_correct_sha512+='90a660c425e1e0a5325f3e8a5fcfb341f172ba4'
   wrapped_wget_sha512
 
   LFBFL_file_name="update_or_check_files_names_listing.exec.sh"

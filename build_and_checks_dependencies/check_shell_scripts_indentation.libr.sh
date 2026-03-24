@@ -69,8 +69,7 @@ check_one_shell_script_indentation(){
     # Note how it's funny that this loop always work because we check
     # shell scripts beginning in another script and thus we always
     # have a line before.
-    if [[ "${LFBFL_previous_line}" == "workeduntilsomeasshole" ]];
-    then
+    if [[ "${LFBFL_previous_line}" == "workeduntilsomeasshole" ]]; then
       LFBFL_previous_line="${LFBFL_some_line}"
       continue
     fi

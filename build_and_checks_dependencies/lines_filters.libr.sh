@@ -167,8 +167,7 @@ grep_fixed_string_with_anchor(){
       LFBFL_i_enforce_line_ends=1
       continue
     fi
-    if [[ "${LFBFL_arg}" == "-q" || "${LFBFL_arg}" == "--quiet" ]];
-    then
+    if [[ "${LFBFL_arg}" == "-q" || "${LFBFL_arg}" == "--quiet" ]]; then
       LFBFL_i_quiet=1
       LFBFL_grep_options+=("${LFBFL_arg}")
       continue

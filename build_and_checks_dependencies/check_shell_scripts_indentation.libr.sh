@@ -48,9 +48,11 @@ check_one_shell_script_indentation(){
   local LFBFL_substring1
   local LFBFL_substring2
   declare -r LFBFL_pattern='^ *-e '
+
   # This grep would have been enough without some sed commands.
   declare -r LFBFL_s_lines=$(
-    grep -EHn -B 1 '^(  )* ([^ ]|$)' "$1"
+    grep --before-context=1 --extended-regexp --line-number\
+      --regexp='^(  )* ([^ ]|$)' --with-filename "$1"
   )
   if [[ -z "${LFBFL_s_lines}" ]]; then
     return

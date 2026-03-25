@@ -155,6 +155,42 @@ namespace string_escaping\JS {
   }
 }
 
+
+
+
+namespace string_escaping\TeX {
+  function escape_text(string $s_string) : string {
+    // https://tex.stackexchange.com/a/34586/270015
+    return str_replace(
+      array(
+        '\\',
+        '&',
+        '%',
+        '$',
+        '#',
+        '_',
+        '{',
+        '}',
+        '~',
+        '^',
+      ),
+      array(
+        '\\textbackslash',
+        '\\&',
+        '\\%',
+        '\\$',
+        '\\#',
+        '\\_',
+        '\\{',
+        '\\}',
+        '\\textasciitilde',
+        '\\textasciicircum',
+      ),
+      $s_string,
+    );
+  }
+}
+
 /*
 $ php
 <?php

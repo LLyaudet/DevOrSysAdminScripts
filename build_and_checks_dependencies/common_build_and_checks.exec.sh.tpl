@@ -579,6 +579,18 @@ common_build_and_checks(){
   printf -- "---Python end---\n"
 
   printf -- "---PHP---\n"
+  printf "Running PHP native linter\n"
+  LFBFL_s_files_paths=$(
+    find . -type f -name "*.php"\
+    | relevant_find
+  )
+  if [[ -n "${LFBFL_s_files_paths}" ]]; then
+    mapfile -t LFBFL_arr_files_paths <<< "${LFBFL_s_files_paths}"
+    for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do
+      php --syntax-check "${LFBFL_file_path}"
+    done
+  fi
+
   printf "Running PHPMD\n"
   if [[ LFBFL_i_upgrade_venvs -eq 1 ]]; then
     composer global require phpmd/phpmd

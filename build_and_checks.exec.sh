@@ -57,37 +57,38 @@ build_and_checks(){
   source ./wget_sha512.libr.sh
 
   LFBFL_subdir="build_and_checks_dependencies"
-  mkdir -p "${LFBFL_subdir}/licenses_templates"
+  mkdir --parents "${LFBFL_subdir}/licenses_templates"
+  local LFBFL_variables_directory
   LFBFL_variables_directory="${LFBFL_work_directory}/"
   LFBFL_variables_directory+="build_and_checks_variables"
-  mkdir -p "${LFBFL_variables_directory}/temp"
+  readonly LFBFL_variables_directory
+  mkdir --parents "${LFBFL_variables_directory}/temp"
   if [[ ! -f "${LFBFL_variables_directory}/.gitignore" ]]; then
     printf "temp/\nupgrade_venvs_ts\n"\
       > "${LFBFL_variables_directory}/.gitignore"
   fi
 
-  # LFBFL_dependencies_raw_content_download_URL
   local LFBFL_dependencies_URL
   LFBFL_dependencies_URL="https://raw.githubusercontent.com/LLyaudet/"
   LFBFL_dependencies_URL+="DevOrSysAdminScripts/main/${LFBFL_subdir}"
   readonly LFBFL_dependencies_URL
 
   declare -r LFBFL_common_file_name="common_build_and_checks.exec.sh"
-  # LFBFL_script_download_URL
-  declare -r\
-    LFBFL_script="${LFBFL_dependencies_URL}/${LFBFL_common_file_name}"
-  declare -r\
-    LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_common_file_name}"
+  local LFBFL_script_download_URL
+  LFBFL_script_download_URL="${LFBFL_dependencies_URL}/"
+  LFBFL_script_download_URL+="${LFBFL_common_file_name}"
+  readonly LFBFL_script_download_URL
+  declare -r LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_common_file_name}"
   local LFBFL_correct_sha512
   LFBFL_correct_sha512='f447250aed9a0c7023be07aa047ccff6ca73379505deb'
   LFBFL_correct_sha512+='696b6b6cdeefcd06410abd4fd3e5aab5568aa03ea10c'
   LFBFL_correct_sha512+='a0b9f5525a08c2c8422eba9ae169fc66693b994'
   wget_sha512 "${LFBFL_file_path}"\
-    "${LFBFL_script}"\
+    "${LFBFL_script_download_URL}"\
     "${LFBFL_correct_sha512}"\
     "${LFBFL_verbose}"\
     "${LFBFL_check_download}"
-  chmod +x "./${LFBFL_file_path}"
+  chmod +x "${LFBFL_file_path}"
 
   "${LFBFL_file_path}" "${LFBFL_work_directory}"\
     "${LFBFL_dependencies_URL}"\

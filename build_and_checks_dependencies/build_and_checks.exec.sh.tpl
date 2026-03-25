@@ -57,34 +57,35 @@ build_and_checks(){
   source ./wget_sha512.libr.sh
 
   LFBFL_subdir="build_and_checks_dependencies"
-  mkdir -p "${LFBFL_subdir}/licenses_templates"
+  mkdir --parents "${LFBFL_subdir}/licenses_templates"
+  local LFBFL_variables_directory
   LFBFL_variables_directory="${LFBFL_work_directory}/"
   LFBFL_variables_directory+="build_and_checks_variables"
-  mkdir -p "${LFBFL_variables_directory}/temp"
+  readonly LFBFL_variables_directory
+  mkdir --parents "${LFBFL_variables_directory}/temp"
   if [[ ! -f "${LFBFL_variables_directory}/.gitignore" ]]; then
     printf "temp/\nupgrade_venvs_ts\n"\
       > "${LFBFL_variables_directory}/.gitignore"
   fi
 
-  # LFBFL_dependencies_raw_content_download_URL
   local LFBFL_dependencies_URL
   LFBFL_dependencies_URL="https://raw.githubusercontent.com/LLyaudet/"
   LFBFL_dependencies_URL+="DevOrSysAdminScripts/main/${LFBFL_subdir}"
   readonly LFBFL_dependencies_URL
 
   declare -r LFBFL_common_file_name="common_build_and_checks.exec.sh"
-  # LFBFL_script_download_URL
-  declare -r\
-    LFBFL_script="${LFBFL_dependencies_URL}/${LFBFL_common_file_name}"
-  declare -r\
-    LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_common_file_name}"
+  local LFBFL_script_download_URL
+  LFBFL_script_download_URL="${LFBFL_dependencies_URL}/"
+  LFBFL_script_download_URL+="${LFBFL_common_file_name}"
+  readonly LFBFL_script_download_URL
+  declare -r LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_common_file_name}"
   @sha512_common_build_and_checks.exec.sh@
   wget_sha512 "${LFBFL_file_path}"\
-    "${LFBFL_script}"\
+    "${LFBFL_script_download_URL}"\
     "${LFBFL_correct_sha512}"\
     "${LFBFL_verbose}"\
     "${LFBFL_check_download}"
-  chmod +x "./${LFBFL_file_path}"
+  chmod +x "${LFBFL_file_path}"
 
   "${LFBFL_file_path}" "${LFBFL_work_directory}"\
     "${LFBFL_dependencies_URL}"\

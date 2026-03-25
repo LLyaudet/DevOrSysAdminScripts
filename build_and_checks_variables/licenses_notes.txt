@@ -19,7 +19,7 @@ black, isort, mypy, pip, ruff;
 - The following dependencies are Apache-2.0 licensed:
 bandit;
 - The following dependencies are BSD-3-Clause licensed:
-phpmd;
+phpcs, phpmd;
 - php is licensed under PHP License v3.01;
 - tex is licensed under Knuth license;
 - pcregrep, pcre2grep has a custom license from Cambridge University,

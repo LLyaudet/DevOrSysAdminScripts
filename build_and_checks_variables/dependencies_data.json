@@ -105,6 +105,10 @@
       "https://github.com/PyCQA/bandit",
       "https://pypi.org/project/bandit/"
   ] },
+  { "dependency_name": "phpcs (PHP_CodeSniffer)", "URLs": [
+      "https://github.com/PHPCSStandards/PHP_CodeSniffer",
+      "https://packagist.org/packages/squizlabs/php_codesniffer"
+  ] },
   { "dependency_name": "phpmd", "URLs": [
       "https://phpmd.org/",
       "https://github.com/phpmd/phpmd",

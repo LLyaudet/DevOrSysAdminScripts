@@ -1,6 +1,7 @@
 #!/usr/bin/php
 <?php
-/*
+
+/**
 This file is part of DevOrSysAdminScripts library.
 
 DevOrSysAdminScripts is free software:
@@ -33,9 +34,18 @@ This file was renamed from
 This file was renamed from
 "call_split_score_after_before_or_before_after.php" to
 "call_split_score_after_before_or_before_after.exec.php".
+
+@category Library
+@package DevOrSysAdminScripts
+@author Laurent Lyaudet <laurent.lyaudet@gmail.com>
+@copyright 2023-2026 Laurent Frédéric Bernard François Lyaudet
+@license https://www.gnu.org/licenses/lgpl-3.0.html LGPLv3+
 */
 
-require_once('./build_and_checks_dependencies/split_score.libr.php');
+declare(strict_types=1);
+declare(encoding='UTF-8');
+
+require_once './build_and_checks_dependencies/split_score.libr.php';
 
 /*
 php -r\
@@ -45,10 +55,15 @@ $' echo(generate_split_score'\
 $'(true, 70, [\'/\'])(\'/\', 60, true));'
 */
 
-// The first cast "(int) generate_split_score" is to avoid false
+// phpcs:disable Generic.WhiteSpace.ArbitraryParenthesesSpacing
+// The first cast "(int) $func..." is to avoid false
 // positive errors on possible XSS if output is unescaped.
 echo(
   (int) generate_split_score(
-    (bool) $argv[1], (int) $argv[2], explode(',', $argv[3]),
+    (bool) $argv[1],
+    (int) $argv[2],
+    explode(',', $argv[3]),
   )($argv[4], (int) $argv[5], (bool) $argv[6])
 );
+// phpcs:enable Generic.WhiteSpace.ArbitraryParenthesesSpacing
+?>

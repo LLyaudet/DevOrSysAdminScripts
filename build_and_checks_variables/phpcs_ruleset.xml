@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<ruleset name="LFBFLCustomStandard" namespace="LFBFL\CS\CustomStandard">
+  <description>A custom coding standard</description>
+  <config name="tab_width" value="2"/>
+
+  <file>../build_and_checks_dependencies/split_score.exec.php</file>
+
+  <arg name="extensions" value="php" />
+  <arg name="report" value="summary"/>
+  <arg name="colors"/>
+  <arg value="sp"/>
+
+  <rule ref="Generic">
+    <exclude name="Generic.Commenting.DocComment.TagValueIndent"/>
+    <!-- Back to my habits at Teliae with always a closing tag. -->
+    <!-- <exclude name="Generic.PHP.ClosingPHPTag.NotFound"/> -->
+    <!--
+    Not standard in Unix/Linux world to keep files not ending with \n.
+    This is always an option of the code editors.
+    Since PHP doesn't output the final \n after ?>, it is ok.
+    -->
+    <exclude name="Generic.Files.EndFileNoNewline.Found"/>
+    <exclude name="Generic.WhiteSpace.DisallowSpaceIndent.SpacesUsed"/>
+  </rule>
+  <rule ref="PEAR">
+    <exclude name="PEAR.Commenting.FileComment.MissingVersion"/>
+    <exclude name="PEAR.Commenting.FileComment.MissingLinkTag"/>
+  </rule>
+  <rule ref="PSR1">
+  </rule>
+  <rule ref="PSR2">
+  </rule>
+  <rule ref="PSR12">
+    <!--
+    3 false positives, see:
+    https://github.com/PHPCSStandards/PHP_CodeSniffer/issues/1402
+    -->
+    <exclude
+      name="PSR12.Files.DeclareStatement.SpaceFoundAfterDirectiveValue"
+    />
+    <exclude
+      name="PSR12.Files.DeclareStatement.SpaceFoundBeforeDirectiveValue"
+    />
+    <exclude
+      name="PSR12.Files.DeclareStatement.SpaceFoundBeforeSemicolon"
+    />
+  </rule>
+  <rule ref="Squiz">
+    <exclude name="Squiz.Commenting.BlockComment.FirstLineIndent"/>
+    <exclude name="Squiz.Commenting.BlockComment.LineIndent"/>
+    <exclude name="Squiz.Commenting.BlockComment.NoCapital"/>
+    <exclude name="Squiz.Commenting.DocCommentAlignment.SpaceBeforeStar"/>
+    <exclude name="Squiz.Commenting.FileComment.CopyrightTagOrder"/>
+    <exclude name="Squiz.Commenting.FileComment.IncorrectAuthor"/>
+    <exclude name="Squiz.Commenting.FileComment.IncorrectCopyright"/>
+    <exclude name="Squiz.Commenting.FileComment.MissingSubpackageTag"/>
+    <exclude name="Squiz.Commenting.FileComment.PackageTagOrder"/>
+    <exclude name="Squiz.Commenting.FileComment.SpacingAfterOpen"/>
+    <exclude name="Squiz.Commenting.FileComment.SubpackageTagOrder"/>
+    <exclude
+      name="Squiz.NamingConventions.ValidVariableName.NotCamelCaps"
+    />
+    <exclude name="Squiz.PHP.CommentedOutCode"/>
+    <exclude name="Squiz.Strings.EchoedStrings.HasBracket"/>
+  </rule>
+  <rule ref="Zend">
+    <!-- Back to my habits at Teliae with always a closing tag. -->
+    <exclude name="Zend.Files.ClosingTag.NotAllowed"/>
+    <exclude
+      name="Zend.NamingConventions.ValidVariableName.NotCamelCaps"
+    />
+  </rule>
+
+ <rule ref="Generic.Files.LineLength">
+  <properties>
+   <property name="lineLimit" value="75"/>
+   <property name="absoluteLineLimit" value="75"/>
+  </properties>
+ </rule>
+
+  <rule ref="PEAR.Functions.FunctionCallSignature">
+    <properties>
+      <property name="indent" value="2"/>
+    </properties>
+  </rule>
+  <rule ref="PSR2.Methods.FunctionCallSignature">
+    <properties>
+      <property name="indent" value="2"/>
+    </properties>
+  </rule>
+</ruleset>

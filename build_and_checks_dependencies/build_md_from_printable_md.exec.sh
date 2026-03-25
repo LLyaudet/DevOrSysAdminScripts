@@ -90,9 +90,9 @@ build_md_from_printable_md(){
     return 1
   fi
 
-  pandoc --from markdown --to html --standalone\
+  pandoc --from=markdown --to=html --standalone\
     --shift-heading-level-by=-1 "${LFBFL_base_name}.md"\
-    -o "${LFBFL_base_name}.html.temp"
+    --output="${LFBFL_base_name}.html.temp"
   # Correcting pandoc HTML "by hand".
   # https://github.com/jgm/pandoc/issues/10957
   # With the most open-minded answer found on Internet ;) XD.

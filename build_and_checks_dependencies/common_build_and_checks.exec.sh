@@ -85,9 +85,9 @@ common_build_and_checks(){
   LFBFL_file_name="build_md_from_printable_md.exec.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='565323e37ba608d97d46b20ec976f087ff52315c3ca24'
-  LFBFL_correct_sha512+='5d1d15c587f349f70443a1ac33e6e72008f22cfca5fa'
-  LFBFL_correct_sha512+='ff2a87d5113c8e9ed2a576b095c35c8995b0447'
+  LFBFL_correct_sha512='ceae57a25ad40c149a7a020ddbf5e85941f4212e2ffd0'
+  LFBFL_correct_sha512+='1f2b00b14c895aeb628cca53565b0afacb8f1e24dbbc'
+  LFBFL_correct_sha512+='39b270cdc0c61e4cfe42bafd0d9b6bec4215405'
   wrapped_wget_sha512
   chmod +x "./${LFBFL_file_path}"
 

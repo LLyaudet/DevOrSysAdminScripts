@@ -278,9 +278,9 @@ common_build_and_checks(){
   LFBFL_file_name="split_score.exec.php"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='2f7ff107a43716109b1acbd7d89870d05577af00a981a'
-  LFBFL_correct_sha512+='05f162a054c96387fb99544f8225c333b1212f74326c'
-  LFBFL_correct_sha512+='f9ec6196e796f6257dfbba9347ac8c57b4f09db'
+  LFBFL_correct_sha512='d3b0bf8f399532003487e7a8e6159dc68687e5b59dafc'
+  LFBFL_correct_sha512+='8589444ea3db3a20b934546091ca61b7298b1b5d1659'
+  LFBFL_correct_sha512+='b5148c1c86ec0d55644aea84245a696950638b9'
   wrapped_wget_sha512
 
   LFBFL_file_name="split_score.libr.php"
@@ -646,6 +646,13 @@ common_build_and_checks(){
       php --syntax-check "${LFBFL_file_path}"
     done
   fi
+
+  printf "Running PHP_CodeSniffer\n"
+  if [[ LFBFL_i_upgrade_venvs -eq 1 ]]; then
+    composer global require squizlabs/php_codesniffer
+  fi
+  phpcs --report=code\
+    --standard=build_and_checks_variables/phpcs_ruleset.xml
 
   printf "Running PHPMD\n"
   if [[ LFBFL_i_upgrade_venvs -eq 1 ]]; then

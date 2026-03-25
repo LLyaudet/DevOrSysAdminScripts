@@ -591,6 +591,13 @@ common_build_and_checks(){
     done
   fi
 
+  printf "Running PHP_CodeSniffer\n"
+  if [[ LFBFL_i_upgrade_venvs -eq 1 ]]; then
+    composer global require squizlabs/php_codesniffer
+  fi
+  phpcs --report=code\
+    --standard=build_and_checks_variables/phpcs_ruleset.xml
+
   printf "Running PHPMD\n"
   if [[ LFBFL_i_upgrade_venvs -eq 1 ]]; then
     composer global require phpmd/phpmd

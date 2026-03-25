@@ -46,15 +46,14 @@ function build_dependencies_notes(string $s_working_directory) : void {
 
     $s_result_content3 .= "<p>\n";
 
-    $s_sentence = (
-      $arr_dependency["dependency_name"]
-      ." can be found at the following "
-      .$s_URL_word
-      .":"
-    );
-    $s_result_content1 .= $s_sentence."\n";
-    $s_result_content2 .= $s_sentence."\\newline\n";
-    $s_result_content3 .= $s_sentence."<br>\n";
+    $s_dependency1 = $arr_dependency["dependency_name"];
+    $s_dependency2 = string_escaping\TeX\escape_text($s_dependency1);
+    $s_dependency3 = string_escaping\HTML\escape_text($s_dependency1);
+
+    $s_sentence_end = " can be found at the following ".$s_URL_word.":";
+    $s_result_content1 .= $s_dependency1.$s_sentence_end."\n";
+    $s_result_content2 .= $s_dependency2.$s_sentence_end."\\newline\n";
+    $s_result_content3 .= $s_dependency3.$s_sentence_end."<br>\n";
 
     for(
       $i = 0, $i_max = count($arr_dependency["URLs"]) - 1;
@@ -84,11 +83,12 @@ function build_dependencies_notes(string $s_working_directory) : void {
       else{
         $s_result_content2 .= '\url{'.$s_URL.'}';
       }
+      $s_result_content2 .= string_escaping\TeX\escape_text($s_comment);
       if($i === $i_max){
-        $s_result_content2 .= $s_comment.".\n";
+        $s_result_content2 .= ".\n";
       }
       else{
-        $s_result_content2 .= $s_comment.",\\newline\n";
+        $s_result_content2 .= ",\\newline\n";
       }
 
       $s_result_content3 .= (
@@ -98,11 +98,12 @@ function build_dependencies_notes(string $s_working_directory) : void {
         .'>'.string_escaping\HTML\escape_text($s_URL)."</span\n"
         .'></a>'
       );
+      $s_result_content3 .= string_escaping\HTML\escape_text($s_comment);
       if($i === $i_max){
-        $s_result_content3 .= $s_comment.".\n";
+        $s_result_content3 .= ".\n";
       }
       else{
-        $s_result_content3 .= $s_comment.",<br>\n";
+        $s_result_content3 .= ",<br>\n";
       }
     }
 

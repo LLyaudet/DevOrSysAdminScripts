@@ -94,9 +94,9 @@ common_build_and_checks(){
   LFBFL_file_name="build_dependencies_notes.exec.php"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='e865dec2cc4f54f1cfb39eba70e391d55ba0e0775d56e'
-  LFBFL_correct_sha512+='7cbad4a416dfadd58de806dcb717fca46af5972f61ab'
-  LFBFL_correct_sha512+='cad61a6a6034e75b771bd04030e0a40b393ab26'
+  LFBFL_correct_sha512='5225ce0e13e7705181a34c5a6e90a3f2793fda6d42ab6'
+  LFBFL_correct_sha512+='69e32337be9136abf78ddf767b31d683133e357b3677'
+  LFBFL_correct_sha512+='37734abcc96700fb3938184b19a4acb549ddfc1'
   wrapped_wget_sha512
   chmod +x "./${LFBFL_file_path}"
 

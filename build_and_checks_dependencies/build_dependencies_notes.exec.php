@@ -46,24 +46,15 @@ function build_dependencies_notes(string $s_working_directory) : void {
 
     $s_result_content3 .= "<p>\n";
 
-    $s_result_content1 .= (
+    $s_sentence = (
       $arr_dependency["dependency_name"]
       ." can be found at the following "
       .$s_URL_word
-      .":\n"
+      .":"
     );
-    $s_result_content2 .= (
-      $arr_dependency["dependency_name"]
-      ." can be found at the following "
-      .$s_URL_word
-      .":\\newline\n"
-    );
-    $s_result_content3 .= (
-      $arr_dependency["dependency_name"]
-      ." can be found at the following "
-      .$s_URL_word
-      .":<br>\n"
-    );
+    $s_result_content1 .= $s_sentence."\n";
+    $s_result_content2 .= $s_sentence."\\newline\n";
+    $s_result_content3 .= $s_sentence."<br>\n";
 
     for(
       $i = 0, $i_max = count($arr_dependency["URLs"]) - 1;
@@ -121,20 +112,13 @@ function build_dependencies_notes(string $s_working_directory) : void {
   }
 
   // Add a "footer".
-  $s_result_content1 .= (
+  $s_closing_sentence = (
     "If you see something that I missed regarding my dependencies,\n"
     ."please tell me/email me :).\n"
   );
-  $s_result_content2 .= (
-    "If you see something that I missed regarding my dependencies,\n"
-    ."please tell me/email me :).\n"
-  );
-  $s_result_content3 .= (
-    "<p>\n"
-    ."If you see something that I missed regarding my dependencies,\n"
-    ."please tell me/email me :).\n"
-    ."</p>\n"
-  );
+  $s_result_content1 .= $s_closing_sentence;
+  $s_result_content2 .= $s_closing_sentence;
+  $s_result_content3 .= "<p>\n".$s_closing_sentence."</p>\n";
 
   // We overwrite results if needed.
   $s_result_path1 = $s_subdir1.'/dependencies_notes.txt';

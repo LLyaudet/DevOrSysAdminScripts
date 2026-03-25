@@ -39,15 +39,15 @@ check_one_shell_script_beginning(){
   # if [[ "${LFBFL_file_path}" =~ license_file_header_.*\.sh ]]; then
   #   return 0
   # fi
-  # diff <(head -n 1 "$1") <(printf '#!/usr/bin/env bash')
+  # diff <(head --lines=1 "$1") <(printf '#!/usr/bin/env bash')
   # ------------------------------------------------------------------
   # is of course slower than
   # ------------------------------------------------------------------
-  # diff <(head -n 1 "$1") <(printf '#!/usr/bin/env bash')
+  # diff <(head --lines=1 "$1") <(printf '#!/usr/bin/env bash')
   # ------------------------------------------------------------------
   # is of course slower than
   # ------------------------------------------------------------------
-  declare -r LFBFL_head=$(head -n 1 "$1")
+  declare -r LFBFL_head=$(head --lines=1 "$1")
   [[ "${LFBFL_head}" == "${LFBFL_SHELL_SCRIPT_BEGINNING}" ]]\
     || printf "%s:File has wrong shell script beginning.\n" "$1"
 }
@@ -85,7 +85,7 @@ check_shell_scripts_beginnings(){
     [[ LFBFL_i_verbose -eq 1 ]]\
       && printf "%s:Checking shell script beginning.\n"\
           "${LFBFL_file_path}"
-    LFBFL_head=$(head -n 1 "${LFBFL_file_path}")
+    LFBFL_head=$(head --lines=1 "${LFBFL_file_path}")
     [[ "${LFBFL_head}" == "${LFBFL_SHELL_SCRIPT_BEGINNING}" ]]\
       || printf "%s:File has wrong shell script beginning.\n"\
           "${LFBFL_file_path}"

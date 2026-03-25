@@ -103,9 +103,9 @@ common_build_and_checks(){
   LFBFL_file_name="check_shell_scripts_beginnings.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='e5d12684ceb7e143e381743a9eb18e8ecb77bf0a7b8c4'
-  LFBFL_correct_sha512+='820a511495ef0b6e9fb16db4bec64d7548df2513f6f1'
-  LFBFL_correct_sha512+='3e13d1494a174a28a23914833e0cceaff6d9e10'
+  LFBFL_correct_sha512='6a57c0f30a0f6f15e9375384bb0ff214bdcbc3377c238'
+  LFBFL_correct_sha512+='e33febdb3a905d96358c7392b7b66c71aad022435527'
+  LFBFL_correct_sha512+='00bf10f30dfeb0db9fc84d06eba7343c1e06184'
   wrapped_wget_sha512
 
   LFBFL_file_name="check_shell_scripts_indentation.libr.sh"

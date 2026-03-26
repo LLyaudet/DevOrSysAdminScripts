@@ -12,7 +12,8 @@
 
   <!--
   I added all the standards, then excluded all the rules that gave me
-  false positives.
+  false positives or that seemed unappropriate when looking at the
+  documentation.
   Some are bugs, some are conflicting with my own coding style.
   You may delete an exclude and see what pops up to maybe understand
   my choices.
@@ -28,7 +29,8 @@
     Since PHP doesn't output the final \n after ?>, it is ok.
     -->
     <exclude name="Generic.Files.EndFileNoNewline.Found"/>
-    <exclude name="Generic.Formatting.SpaceAfterNot.Incorrect"/>
+    <exclude name="Generic.Files.ExecutableFile.Executable"/>
+    <exclude name="Generic.Formatting.MultipleStatementAlignment"/>
     <exclude
      name="Generic.Functions.OpeningFunctionBraceBsdAllman.BraceOnSameLine"
     />
@@ -69,8 +71,16 @@
     <exclude
       name="PEAR.ControlStructures.MultiLineCondition.StartWithBoolean"
     />
+    <!--
+    Don't laugh when looking at the false positives of the two exclude
+    below ;) XD.
+    They don't check for multiline function declarations apparently.
+    -->
     <exclude
       name="PEAR.Functions.FunctionDeclaration.NewlineBeforeOpenBrace"
+    />
+    <exclude
+      name="PEAR.Functions.FunctionDeclaration.BraceOnSameLine"
     />
     <exclude
       name="PEAR.NamingConventions.ValidFunctionName.FunctionNoCapital"
@@ -117,17 +127,26 @@ name="PSR2.ControlStructures.ControlStructureSpacing.SpacingAfterOpenBrace"
     <exclude
       name="PSR12.Functions.ReturnTypeDeclaration.SpaceBeforeColon"
     />
+    <!-- I agree except for string concatenation. -->
+    <exclude name="PSR12.Operators.OperatorSpacing.NoSpaceBefore"/>
+    <exclude name="PSR12.Operators.OperatorSpacing.NoSpaceAfter"/>
   </rule>
   <rule ref="Squiz">
     <exclude name="Squiz.Commenting.BlockComment.FirstLineIndent"/>
     <exclude name="Squiz.Commenting.BlockComment.LineIndent"/>
     <exclude name="Squiz.Commenting.BlockComment.NoCapital"/>
+    <exclude name="Squiz.Commenting.LongConditionClosingComment.Invalid"/>
+    <exclude
+      name="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseBrace"
+    />
     <exclude
  name="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseParenthesis"
     />
     <exclude
       name="Squiz.ControlStructures.ControlSignature.SpaceAfterKeyword"
     />
+    <exclude name="Squiz.Commenting.BlockComment.NoEmptyLineAfter"/>
+    <exclude name="Squiz.Commenting.BlockComment.NoEmptyLineBefore"/>
     <exclude name="Squiz.Commenting.DocCommentAlignment.SpaceBeforeStar"/>
     <exclude name="Squiz.Commenting.FileComment.CopyrightTagOrder"/>
     <exclude name="Squiz.Commenting.FileComment.IncorrectAuthor"/>
@@ -144,6 +163,9 @@ name="PSR2.ControlStructures.ControlStructureSpacing.SpacingAfterOpenBrace"
     <exclude name="Squiz.Formatting.OperatorBracket.MissingBrackets"/>
     <exclude name="Squiz.Functions.GlobalFunction.Found"/>
     <exclude
+      name="Squiz.Functions.MultiLineFunctionDeclaration.BraceOnSameLine"
+    />
+    <exclude
  name="Squiz.Functions.MultiLineFunctionDeclaration.NewlineBeforeOpenBrace"
     />
     <exclude
@@ -153,12 +175,12 @@ name="PSR2.ControlStructures.ControlStructureSpacing.SpacingAfterOpenBrace"
       name="Squiz.NamingConventions.ValidVariableName.NotCamelCaps"
     />
     <exclude name="Squiz.Operators.ComparisonOperatorUsage.NotAllowed"/>
+    <exclude name="Squiz.Operators.ComparisonOperatorUsage.ImplicitTrue"/>
     <exclude name="Squiz.PHP.CommentedOutCode"/>
     <exclude name="Squiz.Strings.EchoedStrings.HasBracket"/>
     <exclude
       name="Squiz.WhiteSpace.FunctionClosingBraceSpace.SpacingBeforeClose"
     />
-    <exclude name="Squiz.WhiteSpace.FunctionSpacing.Before"/>
   </rule>
   <rule ref="Zend">
     <!-- Back to my habits at Teliae with always a closing tag. -->
@@ -168,10 +190,42 @@ name="PSR2.ControlStructures.ControlStructureSpacing.SpacingAfterOpenBrace"
     />
   </rule>
 
+  <rule ref="Generic.Arrays.ArrayIndent">
+    <properties>
+      <property name="indent" value="2" />
+    </properties>
+  </rule>
   <rule ref="Generic.Files.LineLength">
     <properties>
       <property name="lineLimit" value="75"/>
       <property name="absoluteLineLimit" value="75"/>
+    </properties>
+  </rule>
+  <rule ref="Generic.Formatting.SpaceAfterNot">
+    <properties>
+      <property name="spacing" value="0" />
+    </properties>
+  </rule>
+  <rule ref="Generic.Functions.OpeningFunctionBraceKernighanRitchie">
+    <properties>
+      <property name="checkFunctions" value="true"/>
+      <property name="checkClosures" value="true"/>
+    </properties>
+  </rule>
+  <rule ref="Generic.Metrics.CyclomaticComplexity">
+    <properties>
+      <property name="complexity" value="20" />
+      <property name="absoluteComplexity" value="40" />
+    </properties>
+  </rule>
+  <rule ref="Generic.Strings.UnnecessaryStringConcat">
+    <properties>
+      <property name="allowMultiline" value="true" />
+    </properties>
+  </rule>
+  <rule ref="Generic.WhiteSpace.ArbitraryParenthesesSpacing">
+    <properties>
+      <property name="ignoreNewlines" value="true" />
     </properties>
   </rule>
   <rule ref="Generic.WhiteSpace.ScopeIndent">
@@ -219,6 +273,18 @@ name="PSR2.ControlStructures.ControlStructureSpacing.SpacingAfterOpenBrace"
   <rule ref="Squiz.Functions.MultiLineFunctionDeclaration">
     <properties>
       <property name="indent" value="2"/>
+    </properties>
+  </rule>
+  <rule ref="Squiz.Strings.ConcatenationSpacing">
+    <properties>
+      <property name="ignoreNewlines" value="true" />
+    </properties>
+  </rule>
+  <rule ref="Squiz.WhiteSpace.FunctionSpacing">
+    <properties>
+      <property name="spacing" value="3" />
+      <property name="spacingBeforeFirst" value="0" />
+      <property name="spacingAfterLast" value="0" />
     </properties>
   </rule>
 </ruleset>

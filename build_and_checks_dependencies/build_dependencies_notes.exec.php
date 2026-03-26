@@ -1,6 +1,7 @@
 #!/usr/bin/php
 <?php
-/*
+
+/**
 This file is part of DevOrSysAdminScripts library.
 
 DevOrSysAdminScripts is free software:
@@ -23,11 +24,31 @@ along with DevOrSysAdminScripts.
 If not, see <https://www.gnu.org/licenses/>.
 
 ©Copyright 2023-2026 Laurent Frédéric Bernard François Lyaudet
+
+@category Library
+@package DevOrSysAdminScripts
+@author Laurent Lyaudet <laurent.lyaudet@gmail.com>
+@copyright 2023-2026 Laurent Frédéric Bernard François Lyaudet
+@license https://www.gnu.org/licenses/lgpl-3.0.html LGPLv3+
 */
 
-require_once('string_escaping.libr.php');
+declare(strict_types=1);
+declare(encoding='UTF-8');
+
+require_once 'string_escaping.libr.php';
 
 
+
+/**
+This function looks at the dependencies data found in a working directory,
+and generate three files: a txt file, a TeX file (.sub),
+and an HTML file (.sub) with the data in a nicer format.
+
+@param string $s_working_directory The directory where the work must be
+                                   done.
+
+@return void
+*/
 function build_dependencies_notes(string $s_working_directory) : void {
   $s_subdir1 = $s_working_directory.'/build_and_checks_variables';
   $s_subdir2 = $s_subdir1.'/temp';
@@ -39,33 +60,33 @@ function build_dependencies_notes(string $s_working_directory) : void {
   $s_result_content3 = '';
 
   foreach($arr_data as $arr_dependency){
-    $s_URL_word = "URL";
-    if(count($arr_dependency["URLs"]) > 1){
-      $s_URL_word .= "s";
+    $s_URL_word = 'URL';
+    if(count($arr_dependency['URLs']) > 1){
+      $s_URL_word .= 's';
     }
 
     $s_result_content3 .= "<p>\n";
 
-    $s_dependency1 = $arr_dependency["dependency_name"];
+    $s_dependency1 = $arr_dependency['dependency_name'];
     $s_dependency2 = string_escaping\TeX\escape_text($s_dependency1);
     $s_dependency3 = string_escaping\HTML\escape_text($s_dependency1);
 
-    $s_sentence_end = " can be found at the following ".$s_URL_word.":";
+    $s_sentence_end = ' can be found at the following '.$s_URL_word.':';
     $s_result_content1 .= $s_dependency1.$s_sentence_end."\n";
     $s_result_content2 .= $s_dependency2.$s_sentence_end."\\newline\n";
     $s_result_content3 .= $s_dependency3.$s_sentence_end."<br>\n";
 
     for(
-      $i = 0, $i_max = count($arr_dependency["URLs"]) - 1;
+      $i = 0, $i_max = count($arr_dependency['URLs']) - 1;
       $i <= $i_max;
       ++$i
     ){
-      $mixed_URL = $arr_dependency["URLs"][$i];
+      $mixed_URL = $arr_dependency['URLs'][$i];
       $s_comment = '';
       $s_URL = '';
       if(is_array($mixed_URL)){
-        $s_URL = $mixed_URL["URL"];
-        $s_comment = ' '.$mixed_URL["comment"];
+        $s_URL = $mixed_URL['URL'];
+        $s_comment = ' '.$mixed_URL['comment'];
       }
       else{
         $s_URL = $mixed_URL;
@@ -94,7 +115,7 @@ function build_dependencies_notes(string $s_working_directory) : void {
       $s_result_content3 .= (
         "<a\n"
         .'href="'.string_escaping\HTML\escape_attribute($s_URL)."\"\n"
-        .'><span style="font-family:monospace"'."\n"
+        ."><span style=\"font-family:monospace\"\n"
         .'>'.string_escaping\HTML\escape_text($s_URL)."</span\n"
         .'></a>'
       );
@@ -105,12 +126,12 @@ function build_dependencies_notes(string $s_working_directory) : void {
       else{
         $s_result_content3 .= ",<br>\n";
       }
-    }
+    }//end for urls
 
     $s_result_content1 .= "\n";
     $s_result_content2 .= "\n";
     $s_result_content3 .= "</p>\n\n";
-  }
+  }//end foreach($arr_data as $arr_dependency)
 
   // Add a "footer".
   $s_closing_sentence = (
@@ -187,6 +208,9 @@ function build_dependencies_notes(string $s_working_directory) : void {
   ></a> official?.
   </p>
   */
-}
+}//end build_dependencies_notes()
+
+
 
 build_dependencies_notes($argv[1]);
+?>

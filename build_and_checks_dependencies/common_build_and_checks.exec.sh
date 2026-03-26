@@ -713,10 +713,11 @@ common_build_and_checks(){
 
   printf "Analyzing strange characters: hover over in doubt\n"
   # shellcheck disable=SC1111
-  LFBFL_usual_characters="\x00-\x7Fàâéèêëîïôûç©“”└─├│«»…✖"
+  LFBFL_usual_characters="\x00-\x7Fàâéèêëîïôûç©“”└─├│«»…"
   grep --binary-files=without-match --color=always --exclude-dir .git\
     --line-number --perl-regexp --recursive --\
-    "[^${LFBFL_usual_characters}]" .
+    "[^${LFBFL_usual_characters}]" .\
+    | relevant_grep
 
   printf "Grammar and spelling check\n"
   grammar_and_spelling_check "${LFBFL_data_file_name}"\

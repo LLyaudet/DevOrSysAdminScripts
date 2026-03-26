@@ -1,25 +1,25 @@
 <?xml version="1.0"?>
 <phpmd-baseline>
   <violation rule="PHPMD\Rule\CyclomaticComplexity"
-    file="build_and_checks_dependencies/build_dependencies_notes.exec.php"
+    file="build_and_checks_dependencies/build_dependencies_notes.libr.php"
   />
   <violation rule="PHPMD\Rule\Design\NpathComplexity"
-    file="build_and_checks_dependencies/build_dependencies_notes.exec.php"
+    file="build_and_checks_dependencies/build_dependencies_notes.libr.php"
   />
   <violation rule="PHPMD\Rule\Design\LongMethod"
-    file="build_and_checks_dependencies/build_dependencies_notes.exec.php"
+    file="build_and_checks_dependencies/build_dependencies_notes.libr.php"
   />
   <violation rule="PHPMD\Rule\Controversial\CamelCaseParameterName"
-    file="build_and_checks_dependencies/build_dependencies_notes.exec.php"
+    file="build_and_checks_dependencies/build_dependencies_notes.libr.php"
   />
   <violation rule="PHPMD\Rule\Controversial\CamelCaseVariableName"
-    file="build_and_checks_dependencies/build_dependencies_notes.exec.php"
+    file="build_and_checks_dependencies/build_dependencies_notes.libr.php"
   />
   <violation rule="PHPMD\Rule\CleanCode\ElseExpression"
-    file="build_and_checks_dependencies/build_dependencies_notes.exec.php"
+    file="build_and_checks_dependencies/build_dependencies_notes.libr.php"
   />
   <violation rule="PHPMD\Rule\Naming\LongVariable"
-    file="build_and_checks_dependencies/build_dependencies_notes.exec.php"
+    file="build_and_checks_dependencies/build_dependencies_notes.libr.php"
   />
   <violation rule="PHPMD\Rule\Controversial\CamelCaseParameterName"
     file="build_and_checks_dependencies/split_score.libr.php"

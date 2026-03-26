@@ -24,6 +24,10 @@ along with DevOrSysAdminScripts.
 If not, see <https://www.gnu.org/licenses/>.
 
 ©Copyright 2023-2026 Laurent Frédéric Bernard François Lyaudet
+2026-03-26T11:59+01:00: This file was renamed from
+"build_dependencies_notes.exec.php"
+to
+"build_dependencies_notes.libr.php".
 
 @category Library
 @package DevOrSysAdminScripts

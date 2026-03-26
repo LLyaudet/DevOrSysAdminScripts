@@ -45,8 +45,9 @@ update_common_build_and_checks(){
     "./${LFBFL_common_file_name}.temp"
 
   declare -ar LFBFL_files_names=(
-    "build_md_from_printable_md.exec.sh"
     "build_dependencies_notes.exec.php"
+    "build_dependencies_notes.libr.php"
+    "build_md_from_printable_md.exec.sh"
     "check_shell_scripts_beginnings.libr.sh"
     "check_shell_scripts_indentation.libr.sh"
     "check_URLs.libr.sh"
@@ -63,7 +64,6 @@ update_common_build_and_checks(){
     "lines_counts.libr.sh"
     "lines_filters.libr.sh"
     "lines_maps.libr.sh"
-    "update_or_check_files_names_listing.exec.sh"
     "overwrite_if_not_equal.libr.sh"
     "python_black_complement.libr.sh"
     "python_isort_complement.libr.sh"
@@ -73,6 +73,7 @@ update_common_build_and_checks(){
     "split_score.libr.php"
     "strings_functions.libr.sh"
     "too_long_code_lines.libr.sh"
+    "update_or_check_files_names_listing.exec.sh"
   )
 
   local LFBFL_file_name

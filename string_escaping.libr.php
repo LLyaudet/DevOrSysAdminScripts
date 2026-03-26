@@ -72,7 +72,7 @@ namespace string_escaping\HTML {
   When you want that the string appears as is in an HTML tag attribute
   that starts and ends with double quotes: my_attribute="something".
   Example: a title attribute.
-  /!\ in double quotes /!\, my_attribute='something' is not supported.
+  /!\ in double quotes /!\ my_attribute='something' is not supported.
 
   @param string $s_string The string you want to escape.
 
@@ -149,7 +149,7 @@ namespace string_escaping\XHTML {
   When you want that the string appears as is in an XHTML tag attribute
   that starts and ends with double quotes: my_attribute="something".
   Example: a title attribute.
-  /!\ in double quotes /!\, my_attribute='something' is not supported.
+  /!\ in double quotes /!\ my_attribute='something' is not supported.
 
   @param string $s_string The string you want to escape.
 
@@ -176,7 +176,7 @@ namespace string_escaping\XHTML {
 
 
   /**
-  When you want that the string appears verbatim inside HTML <pre> tags.
+  When you want that the string appears verbatim inside XHTML <pre> tags.
 
   @param string $s_string The string you want to escape.
 

@@ -22,6 +22,8 @@
   <rule ref="Generic">
     <!-- You have to allow long or short or both syntaxes. -->
     <exclude name="Generic.Arrays.DisallowShortArraySyntax"/>
+    <exclude name="Generic.Commenting.DocComment.ParamGroup"/>
+    <exclude name="Generic.Commenting.DocComment.TagsNotGrouped"/>
     <exclude name="Generic.Commenting.DocComment.TagValueIndent"/>
     <!-- Back to my habits at Teliae with always a closing tag. -->
     <!-- <exclude name="Generic.PHP.ClosingPHPTag.NotFound"/> -->
@@ -60,8 +62,16 @@
     cases. Alignment has always been a trap with short lines.
     Since phpDocumentor handles the parameter comments parts correctly,
     it is enough for me.
+    Worse is the handling of "nested doc block comment" for the Closure
+    returned by generate_split_score().
+    Our solution makes at least the source code readable.
+    Maybe one day the dev tools will handle it correctly.
     -->
+    <exclude name="PEAR.Commenting.FunctionComment.DuplicateReturn"/>
+    <exclude name="PEAR.Commenting.FunctionComment.ExtraParamComment"/>
     <exclude name="PEAR.Commenting.FunctionComment.MissingParamComment"/>
+    <exclude name="PEAR.Commenting.FunctionComment.SpacingAfterParamName"/>
+    <exclude name="PEAR.Commenting.FunctionComment.SpacingAfterParamType"/>
     <exclude name="PEAR.ControlStructures.ControlSignature.Found"/>
     <exclude name="PEAR.ControlStructures.MultiLineCondition.Alignment"/>
     <exclude
@@ -157,6 +167,8 @@ name="PSR2.ControlStructures.ControlStructureSpacing.SpacingAfterOpenBrace"
     <exclude name="Squiz.Commenting.FileComment.PackageTagOrder"/>
     <exclude name="Squiz.Commenting.FileComment.SpacingAfterOpen"/>
     <exclude name="Squiz.Commenting.FileComment.SubpackageTagOrder"/>
+    <exclude name="Squiz.Commenting.FunctionComment.DuplicateReturn"/>
+    <exclude name="Squiz.Commenting.FunctionComment.ExtraParamComment"/>
     <!-- asks for boolean instead of bool which is incorrect -->
     <exclude
       name="Squiz.Commenting.FunctionComment.IncorrectParamVarName"
@@ -164,6 +176,13 @@ name="PSR2.ControlStructures.ControlStructureSpacing.SpacingAfterOpenBrace"
     <!-- asks for boolean instead of bool which is incorrect -->
     <exclude name="Squiz.Commenting.FunctionComment.InvalidReturn"/>
     <exclude name="Squiz.Commenting.FunctionComment.MissingParamComment"/>
+    <exclude name="Squiz.Commenting.FunctionComment.ParamCommentFullStop"/>
+    <exclude
+      name="Squiz.Commenting.FunctionComment.SpacingAfterParamName"
+    />
+    <exclude
+      name="Squiz.Commenting.FunctionComment.SpacingAfterParamType"
+    />
     <!-- Problem for doc block comment before namespace -->
     <exclude name="Squiz.Commenting.InlineComment.DocBlock"/>
     <exclude name="Squiz.Commenting.InlineComment.NotCapital"/>

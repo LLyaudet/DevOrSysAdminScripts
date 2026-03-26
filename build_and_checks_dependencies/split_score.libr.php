@@ -48,15 +48,23 @@ be used to compute the split score given the current string
 (hopefully matching a delimiter), the current cut/split position,
 and if that split position is after or before the current string.
 
-@param bool  $b_larger_after
-             Score is larger when splitting after,
-             previous name of this parameter was $b_after_before.
-@param int   $i_max_length
-             The maximum length allowed (goal length).
-@param array $a_delimiter_strings_domain
-             An array of "delimiters".
+@param bool          $b_larger_after
+                     Score is larger when splitting after,
+                     previous name of this parameter was $b_after_before.
+@param int           $i_max_length
+                     The maximum length allowed (goal length).
+@param array<string> $a_delimiter_strings_domain
+                     An array of "delimiters".
 
-@return Closure The "split_score" closure to use repeatedly afterward.
+@return \Closure {
+  The "split_score" closure to use repeatedly afterward.
+
+  @param string $s_delimiter_string The string tested to be a delimiter.
+  @param int    $i_cut_position     The offset of the cut in the string.
+  @param bool   $b_is_cut_after     Is the offset taken after the string?
+
+  @return int The split score.
+}
 */
 function generate_split_score(
   bool $b_larger_after,

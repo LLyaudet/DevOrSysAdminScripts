@@ -401,6 +401,16 @@ not_dependencies_grep(){
   not_JS_dependencies_grep
 }
 
+not_php_cache_find(){
+  grep --extended-regexp --invert-match\
+    --regexp="(^|/)\.phpdoc/cache/"
+}
+
+not_php_cache_grep(){
+  grep --extended-regexp --invert-match\
+    --regexp="^([^:]+/)?\.phpdoc/cache/"
+}
+
 not_python_cache_find(){
   grep --extended-regexp --invert-match\
     --regexp="(^|/)__pycache__/"\
@@ -416,11 +426,13 @@ not_python_cache_grep(){
 }
 
 not_cache_find(){
-  not_python_cache_find
+  not_php_cache_find\
+    | not_python_cache_find
 }
 
 not_cache_grep(){
-  not_python_cache_grep
+  not_php_cache_grep\
+    | not_python_cache_grep
 }
 
 not_git_find(){
@@ -502,6 +514,16 @@ not_temp_file_grep(){
     --regexp="^([^:]+/)?build_and_checks_variables/temp/[^:]*:"
 }
 
+not_unchecked_builds_find(){
+  grep --extended-regexp --invert-match\
+    --regexp="(^|/)\.phpdoc/build/"
+}
+
+not_unchecked_builds_grep(){
+  grep --extended-regexp --invert-match\
+    --regexp="^([^:]+/)?\.phpdoc/build/"
+}
+
 relevant_find(){
   enhanced_set_shell_option pipefail\
     && trap 'enhanced_unset_shell_option pipefail' RETURN
@@ -509,7 +531,8 @@ relevant_find(){
     | not_cache_find\
     | not_git_find\
     | not_archive_find\
-    | not_temp_file_find
+    | not_temp_file_find\
+    | not_unchecked_builds_find
 }
 
 relevant_grep(){
@@ -519,5 +542,6 @@ relevant_grep(){
     | not_cache_grep\
     | not_git_grep\
     | not_archive_grep\
-    | not_temp_file_grep
+    | not_temp_file_grep\
+    | not_unchecked_builds_grep
 }

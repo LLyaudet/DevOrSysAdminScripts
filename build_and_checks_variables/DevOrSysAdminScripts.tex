@@ -74,13 +74,13 @@ Some “small” useful scripts
 for enhancing development or system-administrators tasks
 \end{abstract}
 
-Current version: 2026-03-24
+Current version: 2026-03-26
 
-Current number of commits: 750
+Current number of commits: 775
 
-Current git SHA1: 985d7a6321172df238c3c824ee57383af02c5498
+Current git SHA1: ba694ba4d8128a0384f8e49a652d4a19a61d4e59
 
-Code lines: 11064 total lines, 10210 not empty lines, 854 empty lines.
+Code lines: 11796 total lines, 10841 not empty lines, 955 empty lines.
 
 \tableofcontents
 \newpage
@@ -93,6 +93,7 @@ Code lines: 11064 total lines, 10210 not empty lines, 854 empty lines.
 ├── build_and_checks_dependencies
 │   ├── build_and_checks.exec.sh.tpl
 │   ├── build_dependencies_notes.exec.php
+│   ├── build_dependencies_notes.libr.php
 │   ├── build_md_from_printable_md.exec.sh
 │   ├── check_shell_scripts_beginnings.libr.sh
 │   ├── check_shell_scripts_indentation.libr.sh
@@ -137,6 +138,7 @@ Code lines: 11064 total lines, 10210 not empty lines, 854 empty lines.
 │   ├── files_names_listing.txt
 │   ├── .gitignore
 │   ├── licenses_notes.txt
+│   ├── phpcs_ruleset.xml
 │   ├── phpmd_baseline.xml
 │   ├── pylintrc.toml
 │   ├── repository_data.txt
@@ -153,6 +155,7 @@ Code lines: 11064 total lines, 10210 not empty lines, 854 empty lines.
 │   ├── post-commit
 │   ├── post_commit_renaming_comment.libr.sh
 │   └── pre-commit
+├── .gitignore
 ├── IMAP_transfert.py
 ├── LiensUtiles.txt
 ├── miscellaneous
@@ -192,59 +195,61 @@ Code lines: 11064 total lines, 10210 not empty lines, 854 empty lines.
 ├── upgrade_build_and_checks.exec.sh
 └── wget_sha512.libr.sh
 
-6 directories, 80 files
+6 directories, 83 files
 \end{verbatim}
 
 \begin{verbatim}
-[ 12K Mar 24 21:58]  ./
-├── [4.0K Mar 24 21:58]  build_and_checks_dependencies/
-│   ├── [4.3K Mar 24 19:32]  build_and_checks.exec.sh.tpl*
-│   ├── [6.3K Mar 24 20:34]  build_dependencies_notes.exec.php*
-│   ├── [4.2K Mar 23 08:55]  build_md_from_printable_md.exec.sh*
-│   ├── [3.2K Mar 23 09:48]  check_shell_scripts_beginnings.libr.sh
-│   ├── [5.3K Mar 24 21:24]  check_shell_scripts_indentation.libr.sh
+[ 12K Mar 26 22:09]  ./
+├── [4.0K Mar 26 22:08]  build_and_checks_dependencies/
+│   ├── [4.4K Mar 25 14:39]  build_and_checks.exec.sh.tpl*
+│   ├── [1.2K Mar 26 12:30]  build_dependencies_notes.exec.php*
+│   ├── [6.9K Mar 26 12:37]  build_dependencies_notes.libr.php
+│   ├── [4.2K Mar 25 14:54]  build_md_from_printable_md.exec.sh*
+│   ├── [3.3K Mar 25 15:01]  check_shell_scripts_beginnings.libr.sh
+│   ├── [5.4K Mar 25 15:35]  check_shell_scripts_indentation.libr.sh
 │   ├── [3.6K Mar 23 10:11]  check_URLs.libr.sh
-│   ├── [ 30K Mar 24 21:58]  common_build_and_checks.exec.sh*
-│   ├── [ 26K Mar 24 21:16]  common_build_and_checks.exec.sh.tpl
+│   ├── [ 31K Mar 26 17:41]  common_build_and_checks.exec.sh*
+│   ├── [ 26K Mar 26 17:41]  common_build_and_checks.exec.sh.tpl
 │   ├── [ 16K Mar 23 15:17]  common_options.libr.sh
 │   ├── [6.1K Mar 22 16:03]  comparisons.libr.sh
 │   ├── [ 21K Mar 24 21:57]  create_PDF.exec.sh*
 │   ├── [3.7K Mar 22 16:36]  generate_from_template.libr.sh
 │   ├── [2.0K Mar 24 20:52]  get_common_text_glob_patterns.libr.sh
 │   ├── [3.3K Mar 23 10:18]  grammar_and_spelling_check.libr.sh
-│   ├── [4.0K Mar 23 18:40]  licenses_templates/
-│   │   ├── [ 14K Mar 23 10:24]  build_licenses_templates.exec.sh*
+│   ├── [4.0K Mar 26 12:19]  licenses_templates/
+│   │   ├── [ 14K Mar 26 12:19]  build_licenses_templates.exec.sh*
 │   │   ├── [ 728 Feb 28 20:38]  license_file_header_AGPLv3+.tpl
 │   │   ├── [ 707 Feb 28 20:38]  license_file_header_GPLv3+.tpl
 │   │   └── [ 728 Feb 28 20:38]  license_file_header_LGPLv3+.tpl
 │   ├── [6.2K Mar 23 15:40]  lines_counts.libr.sh
-│   ├── [ 14K Mar 24 21:24]  lines_filters.libr.sh
+│   ├── [ 15K Mar 26 11:10]  lines_filters.libr.sh
 │   ├── [2.7K Feb 19 16:16]  lines_maps.libr.sh
 │   ├── [2.7K Mar 22 18:33]  overwrite_if_not_equal.libr.sh
 │   ├── [2.5K Mar 23 15:29]  python_black_complement.libr.sh
 │   ├── [3.0K Mar 23 15:30]  python_isort_complement.libr.sh
 │   ├── [2.1K Mar 23 10:14]  repository_data.libr.sh
 │   ├── [4.2K Mar 24 21:29]  shell_checks_complement.libr.sh
-│   ├── [1.6K Feb  3 17:57]  split_score.exec.php
-│   ├── [1.9K Mar 22 19:01]  split_score.libr.php
+│   ├── [2.0K Mar 26 12:37]  split_score.exec.php
+│   ├── [2.9K Mar 26 12:37]  split_score.libr.php
 │   ├── [ 48K Mar 23 10:16]  strings_functions.libr.sh
 │   ├── [4.5K Mar 24 21:31]  too_long_code_lines.libr.sh
 │   ├── [4.2K Mar 23 17:15]  update_common_build_and_checks.exec.sh*
 │   └── [6.1K Mar 23 17:56]  update_or_check_files_names_listing.exec.sh*
-├── [4.5K Mar 24 21:58]  build_and_checks.exec.sh*
-├── [4.0K Mar 24 21:58]  build_and_checks_variables/
+├── [4.6K Mar 26 17:41]  build_and_checks.exec.sh*
+├── [4.0K Mar 26 22:09]  build_and_checks_variables/
 │   ├── [  15 Jan  5 20:00]  bandit_baseline.json
 │   ├── [  25 Jan  5 18:49]  bandit.ini
 │   ├── [  30 Feb 28 20:30]  black.toml
-│   ├── [4.6K Mar 23 16:44]  dependencies_data.json
-│   ├── [3.8K Mar 23 16:44]  dependencies_notes.txt
-│   ├── [5.7K Mar 23 17:43]  DevOrSysAdminScripts.html.tpl
-│   ├── [ 34K Mar 24 21:31]  DevOrSysAdminScripts.tex
-│   ├── [4.2K Mar 23 17:40]  DevOrSysAdminScripts.tex.tpl
-│   ├── [5.3K Mar 24 19:44]  files_names_listing.txt
+│   ├── [4.7K Mar 25 19:05]  dependencies_data.json
+│   ├── [4.0K Mar 25 19:05]  dependencies_notes.txt
+│   ├── [5.7K Mar 25 19:01]  DevOrSysAdminScripts.html.tpl
+│   ├── [ 34K Mar 26 22:07]  DevOrSysAdminScripts.tex
+│   ├── [4.2K Mar 25 19:01]  DevOrSysAdminScripts.tex.tpl
+│   ├── [5.5K Mar 26 22:08]  files_names_listing.txt
 │   ├── [  23 Mar 24 19:33]  .gitignore
-│   ├── [1.4K Mar 23 16:11]  licenses_notes.txt
-│   ├── [2.2K Mar 23 17:31]  phpmd_baseline.xml
+│   ├── [1.4K Mar 25 19:00]  licenses_notes.txt
+│   ├── [ 12K Mar 26 22:04]  phpcs_ruleset.xml
+│   ├── [2.2K Mar 26 12:12]  phpmd_baseline.xml
 │   ├── [ 678 Feb 24 22:38]  pylintrc.toml
 │   ├── [4.5K Mar 22 15:51]  repository_data.txt
 │   ├── [ 786 Mar 22 15:39]  repository_data.txt.tpl
@@ -253,13 +258,14 @@ Code lines: 11064 total lines, 10210 not empty lines, 854 empty lines.
 │   └── [3.5K Mar  9 14:46]  shellcheck_notes.txt
 ├── [ 34K May  6  2024]  COPYING
 ├── [7.5K Dec 27 21:48]  COPYING.LESSER
-├── [442K Mar 24 21:31]  DevOrSysAdminScripts.html
-├── [387K Mar 24 21:31]  DevOrSysAdminScripts.pdf
+├── [461K Mar 26 22:07]  DevOrSysAdminScripts.html
+├── [401K Mar 26 22:07]  DevOrSysAdminScripts.pdf
 ├── [4.0K Mar 24 21:26]  git_helpers/
 │   ├── [3.8K Mar 22 21:06]  git_checks.libr.sh
 │   ├── [2.1K Mar 22 21:09]  post-commit*
 │   ├── [ 15K Mar 24 21:26]  post_commit_renaming_comment.libr.sh
 │   └── [1.8K Mar 22 21:11]  pre-commit*
+├── [   8 Mar 26 10:37]  .gitignore
 ├── [8.3K Feb 28 20:31]  IMAP_transfert.py
 ├── [ 830 Dec 29 19:10]  LiensUtiles.txt
 ├── [4.0K Mar 18 17:27]  miscellaneous/
@@ -294,12 +300,12 @@ Code lines: 11064 total lines, 10210 not empty lines, 854 empty lines.
 ├── [8.1K Mar 22 21:29]  README.html
 ├── [4.3K Mar 22 21:29]  README.md
 ├── [4.3K Mar 22 21:29]  README.md.tpl
-├── [3.2K Mar 22 21:36]  string_escaping.libr.php
-├── [ 13K Mar 24 19:32]  unicode.libr.php
+├── [7.0K Mar 26 20:09]  string_escaping.libr.php
+├── [ 16K Mar 26 20:11]  unicode.libr.php
 ├── [1.8K Mar 23 18:45]  upgrade_build_and_checks.exec.sh*
 └── [2.5K Mar 23 18:45]  wget_sha512.libr.sh
 
-6 directories, 80 files
+6 directories, 83 files
 \end{verbatim}
 
 \section{Notes on licenses and dependencies}
@@ -334,7 +340,7 @@ black, isort, mypy, pip, ruff;
 \item The following dependencies are Apache-2.0 licensed:\newline
 bandit;
 \item The following dependencies are BSD-3-Clause licensed:\newline
-phpmd;
+phpcs, phpmd;
 \item php is licensed under PHP License v3.01;
 \item tex is licensed under Knuth license;
 \item pcregrep, pcre2grep has a custom license from Cambridge
@@ -450,6 +456,10 @@ bandit can be found at the following URLs:\newline
 \url{https://github.com/PyCQA/bandit},\newline
 \url{https://pypi.org/project/bandit/}.
 
+phpcs (PHP\_CodeSniffer) can be found at the following URLs:\newline
+\url{https://github.com/PHPCSStandards/PHP_CodeSniffer},\newline
+\url{https://packagist.org/packages/squizlabs/php_codesniffer}.
+
 phpmd can be found at the following URLs:\newline
 \url{https://phpmd.org/},\newline
 \url{https://github.com/phpmd/phpmd},\newline
@@ -502,6 +512,18 @@ build_and_checks_dependencies/build_and_checks.exec.sh.tpl
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
 build_and_checks_dependencies/build_dependencies_notes.exec.php
+}
+
+
+\subsection{
+  build\_and\_checks\_dependencies/build\_dependencies\_notes.libr.php
+}
+\label{
+  build_and_checks_dependencies:build_dependencies_noteslibrphp
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+build_and_checks_dependencies/build_dependencies_notes.libr.php
 }
 
 
@@ -999,6 +1021,18 @@ build_and_checks_variables/files_names_listing.txt
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
 build_and_checks_variables/licenses_notes.txt
+}
+
+
+\subsection{
+  build\_and\_checks\_variables/phpcs\_ruleset.xml
+}
+\label{
+  build_and_checks_variables:phpcs_rulesetxml
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+build_and_checks_variables/phpcs_ruleset.xml
 }
 
 

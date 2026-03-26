@@ -30,6 +30,7 @@
 // Blasé20240518_3.txt
 build_and_checks_dependencies/build_and_checks.exec.sh.tpl
 build_and_checks_dependencies/build_dependencies_notes.exec.php
+build_and_checks_dependencies/build_dependencies_notes.libr.php
 build_and_checks_dependencies/build_md_from_printable_md.exec.sh
 build_and_checks_dependencies/check_shell_scripts_beginnings.libr.sh
 build_and_checks_dependencies/check_shell_scripts_indentation.libr.sh

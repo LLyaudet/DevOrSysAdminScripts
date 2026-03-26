@@ -410,8 +410,16 @@ common_build_and_checks(){
   fi
 
   printf "Building dependencies_notes\n"
+  # https://github.com/php/php-src/issues/21538
+  local LFBFL_annoying_warning
+  LFBFL_annoying_warning="PHP Warning:  declare(encoding=...) ignored"
+  LFBFL_annoying_warning=" because Zend multibyte feature is turned off"
+  LFBFL_annoying_warning=" by settings in"
+  readonly LFBFL_annoying_warning
   php "./${LFBFL_subdir}/build_dependencies_notes.exec.php"\
-    "${LFBFL_work_directory}"
+    "${LFBFL_work_directory}"\
+    2>&1\
+    | grep -v "${LFBFL_annoying_warning}"
 
   declare -i LFBFL_i_directory_changed
   pushd_to_work_directory

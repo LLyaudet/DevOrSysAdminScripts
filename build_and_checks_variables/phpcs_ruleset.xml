@@ -160,6 +160,8 @@ name="PSR2.ControlStructures.ControlStructureSpacing.SpacingAfterOpenBrace"
     <exclude name="Squiz.Commenting.FileComment.SpacingAfterOpen"/>
     <exclude name="Squiz.Commenting.FileComment.SubpackageTagOrder"/>
     <exclude name="Squiz.Commenting.FunctionComment.MissingParamComment"/>
+    <exclude name="Squiz.Commenting.InlineComment.NotCapital"/>
+    <exclude name="Squiz.Commenting.InlineComment.InvalidEndChar"/>
     <exclude name="Squiz.Formatting.OperatorBracket.MissingBrackets"/>
     <exclude name="Squiz.Functions.GlobalFunction.Found"/>
     <exclude

@@ -1,4 +1,3 @@
-#!/usr/bin/php
 <?php
 
 /**
@@ -39,7 +38,7 @@ to
 declare(strict_types=1);
 declare(encoding='UTF-8');
 
-require_once 'string_escaping.libr.php';
+// require_once 'string_escaping.libr.php';
 
 
 
@@ -213,8 +212,4 @@ function build_dependencies_notes(string $s_working_directory) : void {
   </p>
   */
 }//end build_dependencies_notes()
-
-
-
-build_dependencies_notes($argv[1]);
 ?>

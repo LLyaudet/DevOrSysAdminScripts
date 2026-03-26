@@ -622,6 +622,10 @@ common_build_and_checks(){
   sed -i -e 's/" file="/"\n    file="/g' "${LFBFL_temp_phpmd_baseline}"
   sed -i -E -e 's~(file=".*)/>~\1\n  />~g' "${LFBFL_temp_phpmd_baseline}"
   diff "${LFBFL_phpmd_baseline}" "${LFBFL_temp_phpmd_baseline}"
+
+  printf "Running phpDocumentor\n"
+  # shellcheck disable=SC2312
+  docker run --rm -v "$(pwd):/data" phpdoc/phpdoc
   printf -- "---PHP end---\n"
 
   printf -- "---JS---\n"

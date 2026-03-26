@@ -286,9 +286,9 @@ common_build_and_checks(){
   LFBFL_file_name="split_score.libr.php"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='b03772ed40ca7a90e85c52bc34715662ee94968d41801'
-  LFBFL_correct_sha512+='97ef5d88e10a868d68f67ed19846b522f1df9ec83d51'
-  LFBFL_correct_sha512+='951bf285269750de35c8316602009d1a3a75859'
+  LFBFL_correct_sha512='47b667d83125fa17babd46201ae8a8b7f7abeef123276'
+  LFBFL_correct_sha512+='40e7ed87faeacac997455207c4ab4df2734649676960'
+  LFBFL_correct_sha512+='1efcadaf35338ba2bec2410e01065ff7ed871f7'
   wrapped_wget_sha512
 
   LFBFL_file_name="strings_functions.libr.sh"
@@ -678,6 +678,10 @@ common_build_and_checks(){
   sed -i -e 's/" file="/"\n    file="/g' "${LFBFL_temp_phpmd_baseline}"
   sed -i -E -e 's~(file=".*)/>~\1\n  />~g' "${LFBFL_temp_phpmd_baseline}"
   diff "${LFBFL_phpmd_baseline}" "${LFBFL_temp_phpmd_baseline}"
+
+  printf "Running phpDocumentor\n"
+  # shellcheck disable=SC2312
+  docker run --rm -v "$(pwd):/data" phpdoc/phpdoc
   printf -- "---PHP end---\n"
 
   printf -- "---JS---\n"

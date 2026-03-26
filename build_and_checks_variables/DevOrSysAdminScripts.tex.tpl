@@ -123,7 +123,7 @@ git, pylint;
 \item The following dependencies are LGPLv2.1+ licensed:\newline
 notify-send;
 \item The following dependencies are MIT licensed:\newline
-black, isort, mypy, pip, ruff;
+black, isort, mypy, phpdoc, pip, ruff;
 \item The following dependencies are Apache-2.0 licensed:\newline
 bandit;
 \item The following dependencies are BSD-3-Clause licensed:\newline

@@ -83,6 +83,11 @@ https://mypy.readthedocs.io/en/stable/
 https://github.com/python/mypy
 https://pypi.org/project/mypy/
 
+phpdoc (phpDocumentor) can be found at the following URLs:
+https://phpdoc.org/
+https://docs.phpdoc.org/
+https://github.com/phpdocumentor/phpdocumentor
+
 pip can be found at the following URLs:
 https://pip.pypa.io/en/stable/
 https://github.com/pypa/pip

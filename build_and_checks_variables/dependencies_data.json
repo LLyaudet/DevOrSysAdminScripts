@@ -87,6 +87,11 @@
       "https://github.com/python/mypy",
       "https://pypi.org/project/mypy/"
   ] },
+  { "dependency_name": "phpdoc (phpDocumentor)", "URLs": [
+      "https://phpdoc.org/",
+      "https://docs.phpdoc.org/",
+      "https://github.com/phpdocumentor/phpdocumentor"
+  ] },
   { "dependency_name": "pip", "URLs": [
       "https://pip.pypa.io/en/stable/",
       "https://github.com/pypa/pip",

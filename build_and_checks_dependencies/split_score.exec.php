@@ -35,7 +35,7 @@ This file was renamed from
 "call_split_score_after_before_or_before_after.php" to
 "call_split_score_after_before_or_before_after.exec.php".
 
-@category Library
+@category Executable
 @package DevOrSysAdminScripts
 @author Laurent Lyaudet <laurent.lyaudet@gmail.com>
 @copyright 2023-2026 Laurent Frédéric Bernard François Lyaudet

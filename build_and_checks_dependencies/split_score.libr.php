@@ -1,5 +1,6 @@
 <?php
-/*
+
+/**
 This file is part of DevOrSysAdminScripts library.
 
 DevOrSysAdminScripts is free software:
@@ -28,22 +29,54 @@ to
 "split_score.libr.php".
 This file was renamed from "split_line_at_most.php" to
 "split_line_at_most.libr.php".
+
+@category Library
+@package DevOrSysAdminScripts
+@author Laurent Lyaudet <laurent.lyaudet@gmail.com>
+@copyright 2023-2026 Laurent Frédéric Bernard François Lyaudet
+@license https://www.gnu.org/licenses/lgpl-3.0.html LGPLv3+
 */
 
+declare(strict_types=1);
+declare(encoding='UTF-8');
+
+
+
+/**
+Given the 3 following arguments, this function returns a closure that can
+be used to compute the split score given the current string
+(hopefully matching a delimiter), the current cut/split position,
+and if that split position is after or before the current string.
+
+@param bool  $b_larger_after
+             Score is larger when splitting after,
+             previous name of this parameter was $b_after_before.
+@param int   $i_max_length
+             The maximum length allowed (goal length).
+@param array $a_delimiter_strings_domain
+             An array of "delimiters".
+
+@return Closure The "split_score" closure to use repeatedly afterward.
+*/
 function generate_split_score(
-  bool $b_after_before,
+  bool $b_larger_after,
   int $i_max_length,
   array $a_delimiter_strings_domain,
 ) : Closure {
-  return function(
+  return function (
     string $s_delimiter_string,
     int $i_cut_position,
     bool $b_is_cut_after,
-  ) use ($b_after_before, $i_max_length, $a_delimiter_strings_domain)
-  : int {
+  ) use (
+    $b_larger_after,
+    $i_max_length,
+    $a_delimiter_strings_domain,
+  ) : int {
     if(
       !in_array(
-        $s_delimiter_string, $a_delimiter_strings_domain, true
+        $s_delimiter_string,
+        $a_delimiter_strings_domain,
+        true,
       )
     ){
       // I do not handle regexps for the moment.
@@ -52,13 +85,14 @@ function generate_split_score(
       // at most 70 characters.
       return 0;
     }
-    if($b_is_cut_after === $b_after_before){
-      // When $b_after_before,
+    if($b_is_cut_after === $b_larger_after){
+      // When $b_larger_after,
       // always way better to cut after '/' than before it.
-      // When !$b_after_before (aka before_after),
+      // When !$b_larger_after (aka larger_before),
       // always way better to cut before '/' than after it.
       return 1 + $i_max_length + $i_cut_position;
     }
     return 1 + $i_cut_position;
   };
-}
+}//end generate_split_score()
+?>

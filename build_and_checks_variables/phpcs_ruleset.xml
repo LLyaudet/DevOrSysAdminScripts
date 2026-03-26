@@ -3,12 +3,20 @@
   <description>A custom coding standard</description>
   <config name="tab_width" value="2"/>
 
-  <file>../build_and_checks_dependencies/split_score.exec.php</file>
+  <file>../build_and_checks_dependencies/</file>
 
-  <arg name="extensions" value="php" />
+  <arg name="extensions" value="php"/>
   <arg name="report" value="summary"/>
   <arg name="colors"/>
   <arg value="sp"/>
+
+  <!--
+  I added all the standards, then excluded all the rules that gave me
+  false positives.
+  Some are bugs, some are conflicting with my own coding style.
+  You may delete an exclude and see what pops up to maybe understand
+  my choices.
+  -->
 
   <rule ref="Generic">
     <exclude name="Generic.Commenting.DocComment.TagValueIndent"/>
@@ -20,17 +28,71 @@
     Since PHP doesn't output the final \n after ?>, it is ok.
     -->
     <exclude name="Generic.Files.EndFileNoNewline.Found"/>
+    <exclude name="Generic.Formatting.SpaceAfterNot.Incorrect"/>
+    <exclude
+     name="Generic.Functions.OpeningFunctionBraceBsdAllman.BraceOnSameLine"
+    />
+    <exclude
+      name="Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps"
+    />
+    <!-- Applies only to true, false and null. -->
+    <exclude name="Generic.PHP.LowerCaseConstant.Found"/>
+    <exclude name="Generic.PHP.UpperCaseConstant.Found"/>
+    <!-- const_bidule_HTML_truc would be better. Everything is prefix. -->
     <exclude name="Generic.WhiteSpace.DisallowSpaceIndent.SpacesUsed"/>
   </rule>
   <rule ref="PEAR">
     <exclude name="PEAR.Commenting.FileComment.MissingVersion"/>
     <exclude name="PEAR.Commenting.FileComment.MissingLinkTag"/>
+    <!--
+    Look at the comment before generate_split_score.
+    PEAR and Squiz require to align the parameter names parts in the same
+    comment, and also the parameter comments parts in the same comment,
+    but with a long parameter name like $a_delimiter_strings_domain
+    and a line length limit at 75 characters, parameter comments parts
+    have only 24 characters left per line, which is ridiculous.
+    Our choice to put the parameter comments parts starting on another line
+    with same "indent" as parameter names parts is way better in those
+    cases. Alignment has always been a trap with short lines.
+    Since phpDocumentor handles the parameter comments parts correctly,
+    it is enough for me.
+    -->
+    <exclude name="PEAR.Commenting.FunctionComment.MissingParamComment"/>
+    <exclude name="PEAR.ControlStructures.ControlSignature.Found"/>
+    <exclude name="PEAR.ControlStructures.MultiLineCondition.Alignment"/>
+    <exclude
+      name="PEAR.ControlStructures.MultiLineCondition.SpaceBeforeOpenBrace"
+    />
+    <exclude
+     name="PEAR.ControlStructures.MultiLineCondition.SpacingAfterOpenBrace"
+    />
+    <exclude
+      name="PEAR.ControlStructures.MultiLineCondition.StartWithBoolean"
+    />
+    <exclude
+      name="PEAR.Functions.FunctionDeclaration.NewlineBeforeOpenBrace"
+    />
+    <exclude
+      name="PEAR.NamingConventions.ValidFunctionName.FunctionNoCapital"
+    />
+    <exclude
+      name="PEAR.NamingConventions.ValidFunctionName.FunctionNameInvalid"
+    />
   </rule>
   <rule ref="PSR1">
   </rule>
   <rule ref="PSR2">
+    <!-- Back to my habits at Teliae with always a closing tag. -->
+    <exclude name="PSR2.Files.ClosingTag.NotAllowed"/>
+    <exclude
+name="PSR2.ControlStructures.ControlStructureSpacing.SpacingAfterOpenBrace"
+    />
   </rule>
   <rule ref="PSR12">
+    <exclude
+ name="PSR12.ControlStructures.ControlStructureSpacing.FirstExpressionLine"
+    />
+    <exclude name="PSR12.Files.FileHeader.SpacingAfterDeclareBlock"/>
     <!--
     3 false positives, see:
     https://github.com/PHPCSStandards/PHP_CodeSniffer/issues/1402
@@ -44,24 +106,59 @@
     <exclude
       name="PSR12.Files.DeclareStatement.SpaceFoundBeforeSemicolon"
     />
+    <!-- and even a fourth and fifth false positives -->
+    <exclude
+      name="PSR12.Files.DeclareStatement.CloseBracketNotAligned"
+    />
+    <exclude
+      name="PSR12.Files.DeclareStatement.ExtraSpaceFoundAfterBracket"
+    />
+    <exclude name="PSR12.Classes.ClosingBrace.StatementAfter"/>
+    <exclude
+      name="PSR12.Functions.ReturnTypeDeclaration.SpaceBeforeColon"
+    />
   </rule>
   <rule ref="Squiz">
     <exclude name="Squiz.Commenting.BlockComment.FirstLineIndent"/>
     <exclude name="Squiz.Commenting.BlockComment.LineIndent"/>
     <exclude name="Squiz.Commenting.BlockComment.NoCapital"/>
+    <exclude
+ name="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseParenthesis"
+    />
+    <exclude
+      name="Squiz.ControlStructures.ControlSignature.SpaceAfterKeyword"
+    />
     <exclude name="Squiz.Commenting.DocCommentAlignment.SpaceBeforeStar"/>
     <exclude name="Squiz.Commenting.FileComment.CopyrightTagOrder"/>
     <exclude name="Squiz.Commenting.FileComment.IncorrectAuthor"/>
     <exclude name="Squiz.Commenting.FileComment.IncorrectCopyright"/>
+    <!-- asks for boolean instead of bool which is incorrect -->
+    <exclude
+      name="Squiz.Commenting.FunctionComment.IncorrectParamVarName"
+    />
     <exclude name="Squiz.Commenting.FileComment.MissingSubpackageTag"/>
     <exclude name="Squiz.Commenting.FileComment.PackageTagOrder"/>
     <exclude name="Squiz.Commenting.FileComment.SpacingAfterOpen"/>
     <exclude name="Squiz.Commenting.FileComment.SubpackageTagOrder"/>
+    <exclude name="Squiz.Commenting.FunctionComment.MissingParamComment"/>
+    <exclude name="Squiz.Formatting.OperatorBracket.MissingBrackets"/>
+    <exclude name="Squiz.Functions.GlobalFunction.Found"/>
+    <exclude
+ name="Squiz.Functions.MultiLineFunctionDeclaration.NewlineBeforeOpenBrace"
+    />
+    <exclude
+      name="Squiz.NamingConventions.ValidFunctionName.NotCamelCaps"
+    />
     <exclude
       name="Squiz.NamingConventions.ValidVariableName.NotCamelCaps"
     />
+    <exclude name="Squiz.Operators.ComparisonOperatorUsage.NotAllowed"/>
     <exclude name="Squiz.PHP.CommentedOutCode"/>
     <exclude name="Squiz.Strings.EchoedStrings.HasBracket"/>
+    <exclude
+      name="Squiz.WhiteSpace.FunctionClosingBraceSpace.SpacingBeforeClose"
+    />
+    <exclude name="Squiz.WhiteSpace.FunctionSpacing.Before"/>
   </rule>
   <rule ref="Zend">
     <!-- Back to my habits at Teliae with always a closing tag. -->
@@ -71,19 +168,55 @@
     />
   </rule>
 
- <rule ref="Generic.Files.LineLength">
-  <properties>
-   <property name="lineLimit" value="75"/>
-   <property name="absoluteLineLimit" value="75"/>
-  </properties>
- </rule>
+  <rule ref="Generic.Files.LineLength">
+    <properties>
+      <property name="lineLimit" value="75"/>
+      <property name="absoluteLineLimit" value="75"/>
+    </properties>
+  </rule>
+  <rule ref="Generic.WhiteSpace.ScopeIndent">
+    <properties>
+      <property name="ignoreIndentationTokens" type="array">
+        <element value="T_COMMENT"/>
+        <element value="T_DOC_COMMENT_OPEN_TAG"/>
+      </property>
+      <property name="indent" value="2"/>
+    </properties>
+  </rule>
 
   <rule ref="PEAR.Functions.FunctionCallSignature">
     <properties>
       <property name="indent" value="2"/>
     </properties>
   </rule>
+  <rule ref="PEAR.Functions.FunctionDeclaration">
+    <properties>
+      <property name="indent" value="2"/>
+    </properties>
+  </rule>
+  <rule ref="PEAR.WhiteSpace.ScopeIndent">
+    <properties>
+      <property name="ignoreIndentationTokens" type="array">
+        <element value="T_COMMENT"/>
+        <element value="T_DOC_COMMENT_OPEN_TAG"/>
+      </property>
+      <property name="indent" value="2"/>
+    </properties>
+  </rule>
+
   <rule ref="PSR2.Methods.FunctionCallSignature">
+    <properties>
+      <property name="indent" value="2"/>
+    </properties>
+  </rule>
+
+  <rule ref="PSR12.ControlStructures.ControlStructureSpacing">
+    <properties>
+      <property name="indent" value="2"/>
+    </properties>
+  </rule>
+
+  <rule ref="Squiz.Functions.MultiLineFunctionDeclaration">
     <properties>
       <property name="indent" value="2"/>
     </properties>

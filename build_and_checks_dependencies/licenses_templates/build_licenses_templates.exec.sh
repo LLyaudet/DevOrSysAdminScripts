@@ -206,7 +206,7 @@ build_licenses_templates(){
   # ------------------------------------------------------------------
 
   # Now that base license templates generated languages license
-  # templates in working directory, we can go there.
+  # templates in work directory, we can go there.
   pushd_to_work_directory --trap-popd
   can_continue_after_enhanced_pushd || return 1
 

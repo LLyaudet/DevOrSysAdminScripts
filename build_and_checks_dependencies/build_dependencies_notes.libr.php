@@ -43,17 +43,16 @@ declare(encoding='UTF-8');
 
 
 /**
-This function looks at the dependencies data found in a working directory,
+This function looks at the dependencies data found in a work directory,
 and generate three files: a txt file, a TeX file (.sub),
 and an HTML file (.sub) with the data in a nicer format.
 
-@param string $s_working_directory The directory where the work must be
-                                   done.
+@param string $s_work_directory The directory where the work must be done.
 
 @return void
 */
-function build_dependencies_notes(string $s_working_directory) : void {
-  $s_subdir1 = $s_working_directory.'/build_and_checks_variables';
+function build_dependencies_notes(string $s_work_directory) : void {
+  $s_subdir1 = $s_work_directory.'/build_and_checks_variables';
   $s_subdir2 = $s_subdir1.'/temp';
   $s_data_file_path = $s_subdir1.'/dependencies_data.json';
   $s_data = file_get_contents($s_data_file_path);

@@ -20,6 +20,8 @@
   -->
 
   <rule ref="Generic">
+    <!-- You have to allow long or short or both syntaxes. -->
+    <exclude name="Generic.Arrays.DisallowShortArraySyntax"/>
     <exclude name="Generic.Commenting.DocComment.TagValueIndent"/>
     <!-- Back to my habits at Teliae with always a closing tag. -->
     <!-- <exclude name="Generic.PHP.ClosingPHPTag.NotFound"/> -->
@@ -127,15 +129,49 @@ name="PSR2.ControlStructures.ControlStructureSpacing.SpacingAfterOpenBrace"
     <exclude
       name="PSR12.Functions.ReturnTypeDeclaration.SpaceBeforeColon"
     />
+    <exclude name="PSR2.Namespaces.NamespaceDeclaration.BlankLineAfter"/>
+    <exclude name="PSR2.Namespaces.UseDeclaration.SpaceAfterLastUse"/>
     <!-- I agree except for string concatenation. -->
     <exclude name="PSR12.Operators.OperatorSpacing.NoSpaceBefore"/>
     <exclude name="PSR12.Operators.OperatorSpacing.NoSpaceAfter"/>
   </rule>
   <rule ref="Squiz">
+    <exclude name="Squiz.Arrays.ArrayDeclaration.SingleLineNotAllowed"/>
+    <!--
+    It doesn't know the //*/ trick...
+    https://github.com/PHPCSStandards/PHP_CodeSniffer/issues/1403
+    -->
+    <exclude name="Squiz.Commenting.BlockComment.CloserSameLine"/>
     <exclude name="Squiz.Commenting.BlockComment.FirstLineIndent"/>
     <exclude name="Squiz.Commenting.BlockComment.LineIndent"/>
     <exclude name="Squiz.Commenting.BlockComment.NoCapital"/>
+    <exclude name="Squiz.Commenting.BlockComment.NoEmptyLineAfter"/>
+    <exclude name="Squiz.Commenting.BlockComment.NoEmptyLineBefore"/>
+    <!-- Problem for doc block comment before namespace -->
+    <exclude name="Squiz.Commenting.BlockComment.WrongStart"/>
+    <exclude name="Squiz.Commenting.DocCommentAlignment.SpaceBeforeStar"/>
+    <exclude name="Squiz.Commenting.FileComment.CopyrightTagOrder"/>
+    <exclude name="Squiz.Commenting.FileComment.IncorrectAuthor"/>
+    <exclude name="Squiz.Commenting.FileComment.IncorrectCopyright"/>
+    <exclude name="Squiz.Commenting.FileComment.MissingSubpackageTag"/>
+    <exclude name="Squiz.Commenting.FileComment.PackageTagOrder"/>
+    <exclude name="Squiz.Commenting.FileComment.SpacingAfterOpen"/>
+    <exclude name="Squiz.Commenting.FileComment.SubpackageTagOrder"/>
+    <!-- asks for boolean instead of bool which is incorrect -->
+    <exclude
+      name="Squiz.Commenting.FunctionComment.IncorrectParamVarName"
+    />
+    <!-- asks for boolean instead of bool which is incorrect -->
+    <exclude name="Squiz.Commenting.FunctionComment.InvalidReturn"/>
+    <exclude name="Squiz.Commenting.FunctionComment.MissingParamComment"/>
+    <!-- Problem for doc block comment before namespace -->
+    <exclude name="Squiz.Commenting.InlineComment.DocBlock"/>
+    <exclude name="Squiz.Commenting.InlineComment.NotCapital"/>
+    <!-- It doesn't know the //*/ trick... -->
+    <exclude name="Squiz.Commenting.InlineComment.NoSpaceBefore"/>
+    <exclude name="Squiz.Commenting.InlineComment.InvalidEndChar"/>
     <exclude name="Squiz.Commenting.LongConditionClosingComment.Invalid"/>
+    <exclude name="Squiz.Commenting.PostStatementComment.Found"/>
     <exclude
       name="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseBrace"
     />
@@ -145,23 +181,6 @@ name="PSR2.ControlStructures.ControlStructureSpacing.SpacingAfterOpenBrace"
     <exclude
       name="Squiz.ControlStructures.ControlSignature.SpaceAfterKeyword"
     />
-    <exclude name="Squiz.Commenting.BlockComment.NoEmptyLineAfter"/>
-    <exclude name="Squiz.Commenting.BlockComment.NoEmptyLineBefore"/>
-    <exclude name="Squiz.Commenting.DocCommentAlignment.SpaceBeforeStar"/>
-    <exclude name="Squiz.Commenting.FileComment.CopyrightTagOrder"/>
-    <exclude name="Squiz.Commenting.FileComment.IncorrectAuthor"/>
-    <exclude name="Squiz.Commenting.FileComment.IncorrectCopyright"/>
-    <!-- asks for boolean instead of bool which is incorrect -->
-    <exclude
-      name="Squiz.Commenting.FunctionComment.IncorrectParamVarName"
-    />
-    <exclude name="Squiz.Commenting.FileComment.MissingSubpackageTag"/>
-    <exclude name="Squiz.Commenting.FileComment.PackageTagOrder"/>
-    <exclude name="Squiz.Commenting.FileComment.SpacingAfterOpen"/>
-    <exclude name="Squiz.Commenting.FileComment.SubpackageTagOrder"/>
-    <exclude name="Squiz.Commenting.FunctionComment.MissingParamComment"/>
-    <exclude name="Squiz.Commenting.InlineComment.NotCapital"/>
-    <exclude name="Squiz.Commenting.InlineComment.InvalidEndChar"/>
     <exclude name="Squiz.Formatting.OperatorBracket.MissingBrackets"/>
     <exclude name="Squiz.Functions.GlobalFunction.Found"/>
     <exclude
@@ -180,6 +199,9 @@ name="PSR2.ControlStructures.ControlStructureSpacing.SpacingAfterOpenBrace"
     <exclude name="Squiz.Operators.ComparisonOperatorUsage.ImplicitTrue"/>
     <exclude name="Squiz.PHP.CommentedOutCode"/>
     <exclude name="Squiz.Strings.EchoedStrings.HasBracket"/>
+    <exclude name="Squiz.WhiteSpace.OperatorSpacing.NoSpaceBefore"/>
+    <exclude name="Squiz.WhiteSpace.OperatorSpacing.NoSpaceAfter"/>
+    <exclude name="Squiz.WhiteSpace.OperatorSpacing.SpacingBefore"/>
     <exclude
       name="Squiz.WhiteSpace.FunctionClosingBraceSpace.SpacingBeforeClose"
     />

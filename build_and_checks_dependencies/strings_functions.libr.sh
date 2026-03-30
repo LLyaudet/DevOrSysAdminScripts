@@ -852,7 +852,9 @@ split_score_properties_logical_closure(){
 }
 
 split_score_simple(){
-  # $1=after_before
+  # $1=larger_after (The name was "after_before" previously,
+  #                  the meaning was not modified.
+  #                  Remark not repeated below.)
   # $2=delimiters_strings_domain concatenated characters/delimiters
   # $3=delimiter_string a single character
   # $4=is_cut_after
@@ -869,7 +871,7 @@ split_score_simple(){
 }
 
 get_split_score_simple(){
-  # $1=after_before
+  # $1=larger_after
   # $2=max_length
   # $3=delimiters_strings_domain
   declare -g get_split_score_result="split_score_simple $1 '$3'"
@@ -904,7 +906,7 @@ get_split_score_exec(){
 }
 
 split_score(){
-  # $1=after_before
+  # $1=larger_after
   # $2=max_length
   # $3=delimiters_strings_domain concatenated characters/delimiters
   # $4=delimiter_string a single character
@@ -920,7 +922,7 @@ split_score(){
 # hence we need this shellcheck disable.
 # shellcheck disable=SC2034
 get_split_score(){
-  # $1=after_before
+  # $1=larger_after
   # $1=max_length
   # $2=delimiters_strings_domain
   declare -g get_split_score_result="split_score $1 $2 '$3'"

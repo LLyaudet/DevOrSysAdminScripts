@@ -80,9 +80,9 @@ build_and_checks(){
   readonly LFBFL_script_download_URL
   declare -r LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_common_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='f3acc75e517bc07edfd10014c17d6b6491f29f70ef32c'
-  LFBFL_correct_sha512+='fbc6495107e64f5f2d7443ba7118bba7fdd04b711880'
-  LFBFL_correct_sha512+='0c3c262127e8af217a7caa126b4bd0f37bc5a3f'
+  LFBFL_correct_sha512='cee3c852a286272ab858e94001dd9a3ccfe6c465841d1'
+  LFBFL_correct_sha512+='20ef734fa490658616fb719c89b3f88a1ad312e15fe4'
+  LFBFL_correct_sha512+='b89e9a5057091c94bf90473ec8012d95307f449'
   wget_sha512 "${LFBFL_file_path}"\
     "${LFBFL_script_download_URL}"\
     "${LFBFL_correct_sha512}"\

@@ -47,6 +47,7 @@ get_where_was_i(){
 init_return_trap(){
   local LFBFL_previous_return_trap2
   LFBFL_previous_return_trap2=$(trap -p RETURN)
+  # shellcheck disable=SC2154,SC2309
   if [[ LFBFL_i_verbose -eq 1 ]]; then
     local LFBFL_where_was_i
     get_where_was_i 2
@@ -89,6 +90,7 @@ execute_return_traps(){
       break
     fi
     LFBFL_some_return_trap=${LFBFL_some_return_trap#*:}
+    # shellcheck disable=SC2154,SC2309
     if [[ LFBFL_i_verbose -eq 1 ]]; then
       printf "%s executing some return trap: %s.\n"\
         "${LFBFL_where_was_i}"\
@@ -104,6 +106,7 @@ execute_return_traps(){
     return
   fi
   LFBFL_previous_return_trap=${LFBFL_previous_return_trap#*:}
+  # shellcheck disable=SC2154,SC2309
   if [[ LFBFL_i_verbose -eq 1 ]]; then
     printf "%s setting back to previous_return_trap: %s.\n"\
       "${LFBFL_where_was_i}"\
@@ -114,8 +117,8 @@ execute_return_traps(){
 
 
 is_top_dirstack_directory(){
-  # This function should not be needed since when testing "${DIRSTACK[0]}"
-  # is already a realpath. But I keep it, in case it is needed.
+  # Altough "${DIRSTACK[0]}" may seem to be already a realpath,
+  # possible use of symbolic links makes this function necessary.
   # https://lists.gnu.org/archive/html/help-bash/2026-03/msg00005.html
   # $1=to_directory needs to be "realpathed" already
   if [[ -z "$1" ]]; then
@@ -134,6 +137,7 @@ enhanced_pushd(){
   # $2=offset_for_where_was_i
   # $3=error_message_intermediate_complement
   # returns an error code whenever no pushd happened
+  # shellcheck disable=SC2154,SC2309
   [[ LFBFL_i_verbose -eq 1 ]]\
     && printf "enhanced_pushd requested: %s\n" "$1"
   declare -gi i_enhanced_pushd_result=0
@@ -142,12 +146,14 @@ enhanced_pushd(){
     # shellcheck disable=SC2248
     return ${i_enhanced_pushd_result}
   fi
+  # shellcheck disable=SC2154,SC2309
   [[ LFBFL_i_verbose -eq 1 ]] && printf "enhanced_pushd validated1\n"
   is_top_dirstack_directory "$1" && {
     i_enhanced_pushd_result=111
     # shellcheck disable=SC2248
     return ${i_enhanced_pushd_result}
   }
+  # shellcheck disable=SC2154,SC2309
   [[ LFBFL_i_verbose -eq 1 ]] && printf "enhanced_pushd validated2\n"
 
   pushd "$1" || {
@@ -158,6 +164,7 @@ enhanced_pushd(){
     # shellcheck disable=SC2248
     return ${i_enhanced_pushd_result}
   }
+  # shellcheck disable=SC2154,SC2309
   [[ LFBFL_i_verbose -eq 1 ]] && printf "enhanced_pushd executed\n"
   # shellcheck disable=SC2248
   return ${i_enhanced_pushd_result}
@@ -168,6 +175,7 @@ enhanced_popd(){
   # See usages below if you want to reuse it.
   # $1=to_directory
   # $2=offset_for_where_was_i
+  # shellcheck disable=SC2154,SC2309
   [[ LFBFL_i_verbose -eq 1 ]]\
     && printf "enhanced_popd requested: %s\n" "$1"
   if [[ -z "$1" ]]; then
@@ -184,6 +192,7 @@ enhanced_popd(){
     # shellcheck disable=SC2248
     return ${LFBFL_i_popd_result}
   }
+  # shellcheck disable=SC2154,SC2309
   [[ LFBFL_i_verbose -eq 1 ]] && printf "enhanced_popd executed\n"
   return 0
 }
@@ -220,22 +229,44 @@ get_verbose_options_array(){
   )
 }
 
+get_some_flag(){
+  # $1=variable_name
+  # $2=some_flag_long_name
+  # $3=read_only 0 or 1 to make the variable readonly
+  # This command is to be called in another one with same arguments on top
+  # of the three previous.
+  # This test:
+  # if [[ "$*" == *--verbose* ]]; then
+  # is faster than below.
+  # But it is not bug free in a calling function,
+  # and even incompatible with the current function where
+  # the flag_long_name is a mandatory argument.
+  printf -v "$1" "%s" "0"
+  declare -i LFBFL_i
+  local LFBFL_arg
+  for ((LFBFL_i = 4; LFBFL_i <= $#; ++LFBFL_i)); do
+    LFBFL_arg="${!LFBFL_i}"
+    if [[ "${LFBFL_arg}" == "$2" ]]; then
+      printf -v "$1" "%s" "1"
+      break
+    fi
+  done
+  if [[ $3 -eq 1 ]]; then
+    readonly "$1"
+  fi
+}
+
 get_verbose_option(){
   # This command is to be called in another one with same arguments.
   # Options:
   #   --verbose
-  # This test is faster than:
-  #   for LFBFL_arg in "$@"; do
-  #     if [[ "${LFBFL_arg}" == "--verbose" ]]; then
-  # But it is not bug free.
-  if [[ "$*" == *--verbose* ]]; then
+  get_some_flag LFBFL_i_verbose --verbose 1 "$@"
+  # shellcheck disable=SC2154,SC2309
+  if [[ LFBFL_i_verbose -eq 1 ]]; then
     local LFBFL_where_was_i
     get_where_was_i 2
     printf "%s %s\n" "${LFBFL_where_was_i}" "$*"
-    LFBFL_i_verbose=1
   fi
-  # shellcheck disable=SC2034
-  readonly LFBFL_i_verbose
 }
 
 
@@ -245,15 +276,15 @@ get_some_option(){
   # $3=option_default_value
   # $4=read_only 0 or 1 to make the variable readonly
   # This command is to be called in another one with same arguments on top
-  # of the three previous.
+  # of the four previous.
   local LFBFL_arg
   for LFBFL_arg in "$@"; do
     if [[ "${LFBFL_arg}" == "$2"=* ]]; then
       printf -v "$1" "%s" "${LFBFL_arg#"$2"=}"
-      printf -v "$1" "%s" "${!1:-$3}"
       break
     fi
   done
+  printf -v "$1" "%s" "${!1:-$3}"
   if [[ $4 -eq 1 ]]; then
     readonly "$1"
   fi
@@ -298,10 +329,7 @@ get_work_directory_option(){
   # Options:
   #   --work-directory=""
   get_some_option LFBFL_work_directory --work-directory "." 0 "$@"
-  # LFBFL_work_directory=${LFBFL_work_directory/#~/${HOME}} line below
-  if [[ -n "${LFBFL_work_directory}" ]]; then
-    LFBFL_work_directory=$(realpath "${LFBFL_work_directory}")
-  fi
+  LFBFL_work_directory=$(realpath "${LFBFL_work_directory}")
   readonly LFBFL_work_directory
 }
 
@@ -310,18 +338,16 @@ pushd_to_work_directory(){
   #   --trap-popd
   enhanced_pushd "${LFBFL_work_directory}" 3 " --work-directory="
   if [[ i_enhanced_pushd_result -eq 0 ]]; then
-    local LFBFL_arg
-    for LFBFL_arg in "$@"; do
-      if [[ "${LFBFL_arg}" == --trap-popd ]]; then
-        declare -ir LFBFL_function_depth=$((${#FUNCNAME[@]} - 1))
-        local LFBFL_some_return_trap
-        LFBFL_some_return_trap="${LFBFL_function_depth}:"
-        LFBFL_some_return_trap+="popd_from_work_directory 4"
-        readonly LFBFL_some_return_trap
-        LFBFL_return_traps_stack+=("${LFBFL_some_return_trap}")
-        break
-      fi
-    done
+    declare -i LFBFL_i_trap_popd
+    get_some_flag LFBFL_i_trap_popd --trap-popd 1 "$@"
+    if [[ LFBFL_i_trap_popd -eq 1 ]]; then
+      declare -ir LFBFL_function_depth=$((${#FUNCNAME[@]} - 1))
+      local LFBFL_some_return_trap
+      LFBFL_some_return_trap="${LFBFL_function_depth}:"
+      LFBFL_some_return_trap+="popd_from_work_directory 4"
+      readonly LFBFL_some_return_trap
+      LFBFL_return_traps_stack+=("${LFBFL_some_return_trap}")
+    fi
   fi
   # shellcheck disable=SC2248
   return ${i_enhanced_pushd_result}
@@ -384,24 +410,23 @@ enhanced_set_shell_option(){
   set -o "$1"
   declare -i LFBFL_i_offset=2
   get_offset_option 2 "$@"
+  # shellcheck disable=SC2154,SC2309
   if [[ LFBFL_i_verbose -eq 1 ]]; then
     local LFBFL_where_was_i
     # shellcheck disable=SC2248
     get_where_was_i ${LFBFL_i_offset}
     printf "%s %s shell option activated.\n" "${LFBFL_where_was_i}" "$1"
   fi
-  local LFBFL_arg
-  for LFBFL_arg in "$@"; do
-    if [[ "${LFBFL_arg}" == --trap-unset ]]; then
-      declare -ir LFBFL_function_depth=$((${#FUNCNAME[@]} - 1))
-      local LFBFL_some_return_trap
-      LFBFL_some_return_trap="${LFBFL_function_depth}:"
-      LFBFL_some_return_trap+="enhanced_unset_shell_option '$1' --offset=3"
-      readonly LFBFL_some_return_trap
-      LFBFL_return_traps_stack+=("${LFBFL_some_return_trap}")
-      break
-    fi
-  done
+  declare -i LFBFL_i_trap_unset
+  get_some_flag LFBFL_i_trap_unset --trap-unset 1 "$@"
+  if [[ LFBFL_i_trap_unset -eq 1 ]]; then
+    declare -ir LFBFL_function_depth=$((${#FUNCNAME[@]} - 1))
+    local LFBFL_some_return_trap
+    LFBFL_some_return_trap="${LFBFL_function_depth}:"
+    LFBFL_some_return_trap+="enhanced_unset_shell_option '$1' --offset=3"
+    readonly LFBFL_some_return_trap
+    LFBFL_return_traps_stack+=("${LFBFL_some_return_trap}")
+  fi
   # shellcheck disable=SC2086
   return ${!LFBFL_result_name}
 }
@@ -421,24 +446,23 @@ enhanced_unset_shell_option(){
   set +o "$1"
   declare -i LFBFL_i_offset=2
   get_offset_option 2 "$@"
+  # shellcheck disable=SC2154,SC2309
   if [[ LFBFL_i_verbose -eq 1 ]]; then
     local LFBFL_where_was_i
     # shellcheck disable=SC2248
     get_where_was_i ${LFBFL_i_offset}
     printf "%s %s shell option unactivated.\n" "${LFBFL_where_was_i}" "$1"
   fi
-  local LFBFL_arg
-  for LFBFL_arg in "$@"; do
-    if [[ "${LFBFL_arg}" == --trap-set ]]; then
-      declare -ir LFBFL_function_depth=$((${#FUNCNAME[@]} - 1))
-      local LFBFL_some_return_trap
-      LFBFL_some_return_trap="${LFBFL_function_depth}:"
-      LFBFL_some_return_trap+="enhanced_set_shell_option '$1' --offset=3"
-      readonly LFBFL_some_return_trap
-      LFBFL_return_traps_stack+=("${LFBFL_some_return_trap}")
-      break
-    fi
-  done
+  declare -i LFBFL_i_trap_set
+  get_some_flag LFBFL_i_trap_set --trap-set 1 "$@"
+  if [[ LFBFL_i_trap_set -eq 1 ]]; then
+    declare -ir LFBFL_function_depth=$((${#FUNCNAME[@]} - 1))
+    local LFBFL_some_return_trap
+    LFBFL_some_return_trap="${LFBFL_function_depth}:"
+    LFBFL_some_return_trap+="enhanced_set_shell_option '$1' --offset=3"
+    readonly LFBFL_some_return_trap
+    LFBFL_return_traps_stack+=("${LFBFL_some_return_trap}")
+  fi
   # shellcheck disable=SC2086
   return ${!LFBFL_result_name}
 }
@@ -460,24 +484,23 @@ enhanced_set_bash_option(){
   shopt -s "$1"
   declare -i LFBFL_i_offset=2
   get_offset_option 2 "$@"
+  # shellcheck disable=SC2154,SC2309
   if [[ LFBFL_i_verbose -eq 1 ]]; then
     local LFBFL_where_was_i
     # shellcheck disable=SC2248
     get_where_was_i ${LFBFL_i_offset}
     printf "%s %s bash option activated.\n" "${LFBFL_where_was_i}" "$1"
   fi
-  local LFBFL_arg
-  for LFBFL_arg in "$@"; do
-    if [[ "${LFBFL_arg}" == --trap-unset ]]; then
-      declare -ir LFBFL_function_depth=$((${#FUNCNAME[@]} - 1))
-      local LFBFL_some_return_trap
-      LFBFL_some_return_trap="${LFBFL_function_depth}:"
-      LFBFL_some_return_trap+="enhanced_unset_bash_option '$1' --offset=3"
-      readonly LFBFL_some_return_trap
-      LFBFL_return_traps_stack+=("${LFBFL_some_return_trap}")
-      break
-    fi
-  done
+  declare -i LFBFL_i_trap_unset
+  get_some_flag LFBFL_i_trap_unset --trap-unset 1 "$@"
+  if [[ LFBFL_i_trap_unset -eq 1 ]]; then
+    declare -ir LFBFL_function_depth=$((${#FUNCNAME[@]} - 1))
+    local LFBFL_some_return_trap
+    LFBFL_some_return_trap="${LFBFL_function_depth}:"
+    LFBFL_some_return_trap+="enhanced_unset_bash_option '$1' --offset=3"
+    readonly LFBFL_some_return_trap
+    LFBFL_return_traps_stack+=("${LFBFL_some_return_trap}")
+  fi
   # shellcheck disable=SC2086
   return ${!LFBFL_result_name}
 }
@@ -497,24 +520,23 @@ enhanced_unset_bash_option(){
   shopt -u "$1"
   declare -i LFBFL_i_offset=2
   get_offset_option 2 "$@"
+  # shellcheck disable=SC2154,SC2309
   if [[ LFBFL_i_verbose -eq 1 ]]; then
     local LFBFL_where_was_i
     # shellcheck disable=SC2248
     get_where_was_i ${LFBFL_i_offset}
     printf "%s %s bash option unactivated.\n" "${LFBFL_where_was_i}" "$1"
   fi
-  local LFBFL_arg
-  for LFBFL_arg in "$@"; do
-    if [[ "${LFBFL_arg}" == --trap-set ]]; then
-      declare -ir LFBFL_function_depth=$((${#FUNCNAME[@]} - 1))
-      local LFBFL_some_return_trap
-      LFBFL_some_return_trap="${LFBFL_function_depth}:"
-      LFBFL_some_return_trap+="enhanced_set_bash_option '$1' --offset=3"
-      readonly LFBFL_some_return_trap
-      LFBFL_return_traps_stack+=("${LFBFL_some_return_trap}")
-      break
-    fi
-  done
+  declare -i LFBFL_i_trap_set
+  get_some_flag LFBFL_i_trap_set --trap-set 1 "$@"
+  if [[ LFBFL_i_trap_set -eq 1 ]]; then
+    declare -ir LFBFL_function_depth=$((${#FUNCNAME[@]} - 1))
+    local LFBFL_some_return_trap
+    LFBFL_some_return_trap="${LFBFL_function_depth}:"
+    LFBFL_some_return_trap+="enhanced_set_bash_option '$1' --offset=3"
+    readonly LFBFL_some_return_trap
+    LFBFL_return_traps_stack+=("${LFBFL_some_return_trap}")
+  fi
   # shellcheck disable=SC2086
   return ${!LFBFL_result_name}
 }

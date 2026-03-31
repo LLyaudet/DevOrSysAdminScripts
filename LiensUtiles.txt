@@ -13,3 +13,10 @@ https://github.com/koalaman/shellcheck/issues/2005
 https://opensource.stackexchange.com/questions/6271/\
 calling-gpld-programs-from-a-shell-script
 ----------------------------------------------------------------------
+https://pubs.opengroup.org/onlinepubs/9699919799/
+When looking `man sed` GNU sed says to use POSIX -E instead of
+-r or --regexp-extended for portability.
+But the link above says that still now only -e, -f, -n are POSIX options
+for sed.
+For this reason we replaced all short option names by long option names
+when possible, even for sed.

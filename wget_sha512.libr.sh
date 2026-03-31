@@ -47,7 +47,7 @@ wget_sha512(){
   declare -i LFBFL_i_error=0
 
   if [[ ! -f "$1" ]]; then
-    wget ${LFBFL_verbose:+"${LFBFL_verbose}"} -O "$1" "$2"
+    wget ${LFBFL_verbose:+"${LFBFL_verbose}"} --output-document="$1" "$2"
   fi
   declare -r LFBFL_present_sha512=$(
     sha512sum "$1"\
@@ -59,7 +59,9 @@ wget_sha512(){
     LFBFL_i_error=1
   fi
   if [[ -n "${LFBFL_check_download}" ]]; then
-    wget ${LFBFL_verbose:+"${LFBFL_verbose}"} -O "$1.wget_sha512.temp" "$2"
+    wget ${LFBFL_verbose:+"${LFBFL_verbose}"}\
+      --output-document="$1.wget_sha512.temp"\
+      "$2"
     declare -r LFBFL_present_sha512_2=$(
       sha512sum "$1.wget_sha512.temp"\
       | cut --fields=1 --delimiter=' '

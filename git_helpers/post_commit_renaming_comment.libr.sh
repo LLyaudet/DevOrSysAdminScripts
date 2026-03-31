@@ -103,8 +103,8 @@ commit_a_file_renamed_comment(){
     && trap 'enhanced_unset_shell_option pipefail' RETURN
 
   declare -r LFBFL_renaming_lines=$(
-    git log -p -1\
-    | grep '^diff --git' -A 1
+    git log --max-count=1 --patch\
+    | grep --after-context=1 '^diff --git'
   )
   if [[ LFBFL_i_verbose -eq 1 ]]; then
     printf "LFBFL_renaming_lines: %s\n" "${LFBFL_renaming_lines}"
@@ -180,7 +180,7 @@ commit_a_file_renamed_comment(){
     # Extract old file name from diff line. --------------------------
     LFBFL_old_file_path=$(
       printf "%s" "${LFBFL_diff_line}"\
-      | cut -d ' ' -f 3
+      | cut --delimiter=' ' --fields=3
     )
     # It starts by "a/".
     LFBFL_old_file_path=".${LFBFL_old_file_path:1}"
@@ -189,7 +189,7 @@ commit_a_file_renamed_comment(){
     # Extract new file name from diff line. --------------------------
     LFBFL_new_file_path=$(
       printf "%s" "${LFBFL_diff_line}"\
-      | cut -d ' ' -f 4
+      | cut --delimiter=' ' --fields=4
     )
     # It starts by "b/".
     LFBFL_new_file_path=".${LFBFL_new_file_path:1}"
@@ -331,9 +331,9 @@ commit_a_file_renamed_comment(){
     fi
     # Find line with ©Copyright. -------------------------------------
     LFBFL_i_copyright_line_number=$(
-      grep -n '©Copyright' "${LFBFL_new_file_path}"\
+      grep --line-number '©Copyright' "${LFBFL_new_file_path}"\
       | head --lines=1\
-      | cut -d ':' -f 1
+      | cut --delimiter=':' --fields=1
     )
     if [[ LFBFL_i_verbose -eq 1 ]]; then
       printf "LFBFL_i_copyright_line_number: %s\n"\
@@ -349,7 +349,7 @@ commit_a_file_renamed_comment(){
     fi
     # Get total number of lines. -------------------------------------
     LFBFL_i_line_count=$(
-      wc -l\
+      wc --lines\
       < "${LFBFL_new_file_path}"
     )
     if [[ LFBFL_i_verbose -eq 1 ]]; then

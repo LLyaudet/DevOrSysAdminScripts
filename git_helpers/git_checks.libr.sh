@@ -80,7 +80,7 @@ check_no_abusive_trailing_comma(){
   LFBFL_send_body_1+=" au lieu d'une autre valeur dans une variable."
   readonly LFBFL_send_body_1
   declare -i LFBFL_i_error=0
-  git diff --cached -r\
+  git diff --cached\
     > /tmp/DOSAS_django_git_check2.temp
   if grep ' = .*,\s*$' /tmp/DOSAS_django_git_check2.temp;
   then

@@ -36,6 +36,8 @@ check_collections_abc_place(){
   # Options:
   #   --verbose
   #   --work-directory=""
+  # This function should be useless in a few months:
+  # https://github.com/PyCQA/isort/issues/2250
   declare -i LFBFL_i_verbose=0
   get_verbose_option "$@"
   local LFBFL_work_directory=""
@@ -66,7 +68,8 @@ check_collections_abc_place(){
   mapfile -t LFBFL_arr_files_paths <<< "${LFBFL_s_files_paths}"
   readonly LFBFL_arr_files_paths
   for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do
-    sed -Ez 's/\n(\nfrom _collections_abc[^\n]*)/\1\n/Mg'\
+    sed --regexp-extended --null-data\
+      's/\n(\nfrom _collections_abc[^\n]*)/\1\n/Mg'\
       "${LFBFL_file_path}"\
       > "${LFBFL_file_path}${LFBFL_temp}"
     overwrite_if_not_equal "${LFBFL_file_path}"\

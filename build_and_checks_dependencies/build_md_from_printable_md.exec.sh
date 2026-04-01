@@ -63,10 +63,11 @@ build_md_from_printable_md(){
   # Another downside is that more than one pass is needed.
 
   if [[ -f "${LFBFL_base_name}.md.tpl" ]]; then
-    sed -Ez -e "${LFBFL_sed_expression}"\
-            -e "${LFBFL_sed_expression}"\
-            -e "${LFBFL_sed_expression}"\
-            -e "${LFBFL_sed_expression}"\
+    sed --regexp-extended --null-data\
+      --expression="${LFBFL_sed_expression}"\
+      --expression="${LFBFL_sed_expression}"\
+      --expression="${LFBFL_sed_expression}"\
+      --expression="${LFBFL_sed_expression}"\
       "${LFBFL_base_name}.md.tpl"\
       > "${LFBFL_base_name}.md.temp"
     overwrite_if_not_equal "${LFBFL_base_name}.md"\
@@ -96,12 +97,14 @@ build_md_from_printable_md(){
   local LFBFL_prewrap="s~(code \{(\n|[^}])*)(    \})"
   LFBFL_prewrap+="~\1      white-space: pre-wrap;\n\3~M"
   readonly LFBFL_prewrap
-  sed -i -E -e 's~(  <meta .*) />~\1>~g'\
-            -e 's~<html .*>~<html lang="en">~'\
-            -e '/    code\{white-space: pre-wrap;\}/d'\
+  sed --in-place --regexp-extended\
+    --expression='s~(  <meta .*) />~\1>~g'\
+    --expression='s~<html .*>~<html lang="en">~'\
+    --expression='/    code\{white-space: pre-wrap;\}/d'\
     "${LFBFL_base_name}.html.temp"
-  sed -i -Ez -e 's~(<img(\n|[^a-z0-9])(\n|[^>])*) />~\1>~Mg'\
-             -e "${LFBFL_prewrap}"\
+  sed --in-place --regexp-extended --null-data\
+    --expression='s~(<img(\n|[^a-z0-9])(\n|[^>])*) />~\1>~Mg'\
+    --expression="${LFBFL_prewrap}"\
     "${LFBFL_base_name}.html.temp"
   overwrite_if_not_equal "${LFBFL_base_name}.html"\
     "${LFBFL_base_name}.html.temp"

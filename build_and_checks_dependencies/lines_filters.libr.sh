@@ -249,7 +249,7 @@ grep_variable(){
   # printf "%s\n" "${LFBFL_regexp}"
   local LFBFL_variable_value
   local LFBFL_s_replace
-  get_some_option LFBFL_s_replace --replace-line-returns-by $'\n' 1
+  get_some_option LFBFL_s_replace --replace-line-returns-by $'\n' 1 "$@"
   if [[ "${LFBFL_s_replace}" != $'\n' ]]; then
     # sed -Ez -e...
     LFBFL_variable_value=$(

@@ -52,7 +52,7 @@ check_one_shell_script_indentation(){
   # This grep would have been enough without some sed commands.
   declare -r LFBFL_s_lines=$(
     grep --before-context=1 --extended-regexp --line-number\
-      --regexp='^(  )* ([^ ]|$)' --with-filename "$1"
+      --regexp='^(  )* ([^ ]|$)' --with-filename -- "$1"
   )
   if [[ -z "${LFBFL_s_lines}" ]]; then
     return
@@ -105,18 +105,18 @@ check_one_shell_script_indentation(){
       LFBFL_substring1=${LFBFL_line_end:${LFBFL_i_offset}:3}
       LFBFL_substring2=${LFBFL_previous_line_end:${LFBFL_i_offset}:3}
       if [[ "${LFBFL_substring1}" != "${LFBFL_substring2}" ]]; then
-        printf "%s\n" "${LFBFL_some_line}"
+        printf -- "%s\n" "${LFBFL_some_line}"
         LFBFL_i_file_with_error=1
       fi
     else
-      printf "%s\n" "${LFBFL_some_line}"
+      printf -- "%s\n" "${LFBFL_some_line}"
       LFBFL_i_file_with_error=1
     fi
     LFBFL_previous_line="${LFBFL_some_line}"
   done
 
   if [[ LFBFL_i_file_with_error -eq 1 ]]; then
-    printf "%s:File has some lines with odd number of spaces.\n" "$1"
+    printf -- "%s:File has some lines with odd number of spaces.\n" "$1"
   fi
 }
 
@@ -151,7 +151,7 @@ check_shell_scripts_indentation(){
   readonly LFBFL_arr_files_paths
   for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do
     [[ LFBFL_i_verbose -eq 1 ]]\
-      && printf "%s:Checking shell script indentation.\n"\
+      && printf -- "%s:Checking shell script indentation.\n"\
           "${LFBFL_file_path}"
     check_one_shell_script_indentation "${LFBFL_file_path}"
   done

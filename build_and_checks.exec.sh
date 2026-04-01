@@ -62,7 +62,7 @@ build_and_checks(){
   LFBFL_variables_directory="${LFBFL_work_directory}/"
   LFBFL_variables_directory+="build_and_checks_variables"
   readonly LFBFL_variables_directory
-  mkdir --parents "${LFBFL_variables_directory}/temp"
+  mkdir --parents -- "${LFBFL_variables_directory}/temp"
   if [[ ! -f "${LFBFL_variables_directory}/.gitignore" ]]; then
     printf "temp/\nupgrade_venvs_ts\n"\
       > "${LFBFL_variables_directory}/.gitignore"
@@ -114,9 +114,9 @@ if [[ "$*" == *--fixed-point-build* ]]; then
   # Touching the 3 following files first let us iterate
   # upgrade_build_and_checks 2 times instead of 3 to reach
   # a fixed point.
-  touch "${LFBFL_variables_directory}/${LFBFL_repository_name}.tex"
-  touch "${LFBFL_work_directory}/${LFBFL_repository_name}.pdf"
-  touch "${LFBFL_work_directory}/${LFBFL_repository_name}.html"
+  touch -- "${LFBFL_variables_directory}/${LFBFL_repository_name}.tex"
+  touch -- "${LFBFL_work_directory}/${LFBFL_repository_name}.pdf"
+  touch -- "${LFBFL_work_directory}/${LFBFL_repository_name}.html"
   # The two iterations of build_and_checks needs to complete
   # during the same minute to have a fixed point.
   build_and_checks "$@"

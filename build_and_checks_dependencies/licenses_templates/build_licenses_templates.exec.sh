@@ -128,7 +128,7 @@ build_licenses_templates(){
   local LFBFL_license_prefix
   local LFBFL_license_prefix2
   local LFBFL_extension
-  local LFBFL_license_file_name
+  local LFBFL_license_file_path
   local LFBFL_enter_string
   local LFBFL_exit_string
   local LFBFL_temp2
@@ -148,22 +148,22 @@ build_licenses_templates(){
       ++LFBFL_i
     )); do
       LFBFL_extension=${LFBFL_block_comment_languages[LFBFL_i]}
-      LFBFL_license_file_name="${LFBFL_license_prefix2}"
-      LFBFL_license_file_name+=".${LFBFL_extension}"
+      LFBFL_license_file_path="${LFBFL_license_prefix2}"
+      LFBFL_license_file_path+=".${LFBFL_extension}"
       LFBFL_enter_string=${LFBFL_block_comment_enters[LFBFL_i]}
       LFBFL_exit_string=${LFBFL_block_comment_exits[LFBFL_i]}
       generate_from_template_with_block_comments\
         "${LFBFL_license_prefix}.tpl"\
-        "${LFBFL_license_file_name}.tpl"\
+        "${LFBFL_license_file_path}.tpl"\
         "${LFBFL_enter_string}" "${LFBFL_exit_string}"
       LFBFL_i_generate_from_template_result=$?
       if [[ LFBFL_i_verbose -eq 1 ]]; then
         if [[ LFBFL_i_generate_from_template_result -eq 1 ]]; then
           printf "License template %s.tpl updated.\n"\
-            "${LFBFL_license_file_name}"
+            "${LFBFL_license_file_path}"
         elif [[ LFBFL_i_generate_from_template_result -eq 2 ]]; then
           printf "License template %s.tpl created.\n"\
-            "${LFBFL_license_file_name}"
+            "${LFBFL_license_file_path}"
         fi
       fi
     done
@@ -174,10 +174,10 @@ build_licenses_templates(){
       ++LFBFL_i
     )); do
       LFBFL_extension=${LFBFL_line_comment_languages[LFBFL_i]}
-      LFBFL_license_file_name="${LFBFL_license_prefix2}"
-      LFBFL_license_file_name+=".${LFBFL_extension}"
+      LFBFL_license_file_path="${LFBFL_license_prefix2}"
+      LFBFL_license_file_path+=".${LFBFL_extension}"
       LFBFL_prefix_string=${LFBFL_line_comment_prefixes[LFBFL_i]}
-      LFBFL_intermediate_file_name="${LFBFL_license_file_name}.tpl"
+      LFBFL_intermediate_file_name="${LFBFL_license_file_path}.tpl"
       LFBFL_intermediate_file_name+="${LFBFL_temp2}"
       LFBFL_file_prefix=""
       if [[ "${LFBFL_extension}" == "sh" ]]; then
@@ -187,7 +187,7 @@ build_licenses_templates(){
       # empty lines after comment prefix is added to the line.
       generate_from_template_with_line_comments\
         "${LFBFL_license_prefix}.tpl"\
-        "${LFBFL_license_file_name}.tpl"\
+        "${LFBFL_license_file_path}.tpl"\
         "${LFBFL_prefix_string}"\
         "sed -Ei -e 's/\s*$//g' '${LFBFL_intermediate_file_name}'"\
         "${LFBFL_file_prefix}"
@@ -195,10 +195,10 @@ build_licenses_templates(){
       if [[ LFBFL_i_verbose -eq 1 ]]; then
         if [[ LFBFL_i_generate_from_template_result -eq 1 ]]; then
           printf "License template %s.tpl updated.\n"\
-            "${LFBFL_license_file_name}"
+            "${LFBFL_license_file_path}"
         elif [[ LFBFL_i_generate_from_template_result -eq 2 ]]; then
           printf "License template %s.tpl created.\n"\
-            "${LFBFL_license_file_name}"
+            "${LFBFL_license_file_path}"
         fi
       fi
     done
@@ -292,7 +292,7 @@ build_licenses_templates(){
 
   local LFBFL_key
   local LFBFL_dest
-  local LFBFL_license_file_name2
+  local LFBFL_license_file_path2
   declare -i LFBFL_i_not_subfile
   declare -i LFBFL_i_not_subfile2
   local LFBFL_file_path
@@ -300,12 +300,12 @@ build_licenses_templates(){
   declare -a LFBFL_arr_files_paths
   for LFBFL_key in "${!LFBFL_all_block_comment_languages[@]}"; do
     LFBFL_dest=${LFBFL_all_block_comment_languages[${LFBFL_key}]}
-    LFBFL_license_file_name="${LFBFL_license_prefix2}.${LFBFL_dest}"
-    prepare_filled_license_file_block "${LFBFL_license_file_name}"
+    LFBFL_license_file_path="${LFBFL_license_prefix2}.${LFBFL_dest}"
+    prepare_filled_license_file_block "${LFBFL_license_file_path}"
     if [[ -n "${LFBFL_license2}" ]]; then
-      LFBFL_license_file_name2="${LFBFL_license_prefix3}"
-      LFBFL_license_file_name2+=".${LFBFL_dest}"
-      prepare_filled_license_file_block "${LFBFL_license_file_name2}"
+      LFBFL_license_file_path2="${LFBFL_license_prefix3}"
+      LFBFL_license_file_path2+=".${LFBFL_dest}"
+      prepare_filled_license_file_block "${LFBFL_license_file_path2}"
     fi
 
     LFBFL_s_files_paths=$(
@@ -325,12 +325,12 @@ build_licenses_templates(){
     mapfile -t LFBFL_arr_files_paths <<< "${LFBFL_s_files_paths}"
     for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do
       is_subfile "${LFBFL_file_path}"\
-        "${LFBFL_license_file_name}.temp"
+        "${LFBFL_license_file_path}.temp"
       LFBFL_i_not_subfile=$?
       LFBFL_i_not_subfile2=1
       if [[ -n "${LFBFL_license2}" ]]; then
         is_subfile "${LFBFL_file_path}"\
-          "${LFBFL_license_file_name2}.temp"
+          "${LFBFL_license_file_path2}.temp"
         LFBFL_i_not_subfile2=$?
       fi
       if [[ LFBFL_i_not_subfile -ge 1 && LFBFL_i_not_subfile2 -ge 1 ]];
@@ -339,14 +339,14 @@ build_licenses_templates(){
           "${LFBFL_file_path}"
       fi
     done
-    rm "${LFBFL_license_file_name}.temp"
+    rm "${LFBFL_license_file_path}.temp"
     if [[ -n "${LFBFL_license2}" ]]; then
-      rm "${LFBFL_license_file_name2}.temp"
+      rm "${LFBFL_license_file_path2}.temp"
     fi
   done
 
   prepare_filled_license_file_line(){
-    # $1=LFBFL_license_file_name
+    # $1=LFBFL_license_file_path
     sed --expression="s/@repository_name@/${LFBFL_repository_name}/g"\
         --expression="s/@copyright_string@/${LFBFL_copyright_string}/g"\
         "$1.tpl"\
@@ -370,12 +370,12 @@ build_licenses_templates(){
 
   for LFBFL_key in "${!LFBFL_all_line_comment_languages[@]}"; do
     LFBFL_dest=${LFBFL_all_line_comment_languages[${LFBFL_key}]}
-    LFBFL_license_file_name="${LFBFL_license_prefix2}.${LFBFL_dest}"
-    prepare_filled_license_file_line "${LFBFL_license_file_name}"
+    LFBFL_license_file_path="${LFBFL_license_prefix2}.${LFBFL_dest}"
+    prepare_filled_license_file_line "${LFBFL_license_file_path}"
     if [[ -n "${LFBFL_license2}" ]]; then
-      LFBFL_license_file_name2="${LFBFL_license_prefix3}"
-      LFBFL_license_file_name2+=".${LFBFL_dest}"
-      prepare_filled_license_file_line "${LFBFL_license_file_name2}"
+      LFBFL_license_file_path2="${LFBFL_license_prefix3}"
+      LFBFL_license_file_path2+=".${LFBFL_dest}"
+      prepare_filled_license_file_line "${LFBFL_license_file_path2}"
     fi
 
     LFBFL_s_files_paths=$(
@@ -394,11 +394,11 @@ build_licenses_templates(){
     fi
     mapfile -t LFBFL_arr_files_paths <<< "${LFBFL_s_files_paths}"
     for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do
-      is_subfile "${LFBFL_file_path}" "${LFBFL_license_file_name}"
+      is_subfile "${LFBFL_file_path}" "${LFBFL_license_file_path}"
       LFBFL_i_not_subfile=$?
       LFBFL_i_not_subfile2=1
       if [[ -n "${LFBFL_license2}" ]]; then
-        is_subfile "${LFBFL_file_path}" "${LFBFL_license_file_name2}"
+        is_subfile "${LFBFL_file_path}" "${LFBFL_license_file_path2}"
         LFBFL_i_not_subfile2=$?
       fi
       if [[ LFBFL_i_not_subfile -ge 1 && LFBFL_i_not_subfile2 -ge 1 ]];

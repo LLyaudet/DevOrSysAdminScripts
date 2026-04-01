@@ -35,19 +35,19 @@ declare -gr LFBFL_SHELL_SCRIPT_BEGINNING="#!/usr/bin/env bash"
 check_one_shell_script_beginning(){
   # $1=file_path
   #
-  # declare -r LFBFL_file_path=$(basename "$1")
+  # declare -r LFBFL_file_path=$(basename -- "$1")
   # if [[ "${LFBFL_file_path}" =~ license_file_header_.*\.sh ]]; then
   #   return 0
   # fi
-  # diff <(head --lines=1 "$1") <(printf '#!/usr/bin/env bash')
+  # diff <(head --lines=1 -- "$1") <(printf '#!/usr/bin/env bash')
   # ------------------------------------------------------------------
   # is of course slower than
   # ------------------------------------------------------------------
-  # diff <(head --lines=1 "$1") <(printf '#!/usr/bin/env bash')
+  # diff <(head --lines=1 -- "$1") <(printf '#!/usr/bin/env bash')
   # ------------------------------------------------------------------
   # is of course slower than
   # ------------------------------------------------------------------
-  declare -r LFBFL_head=$(head --lines=1 "$1")
+  declare -r LFBFL_head=$(head --lines=1 -- "$1")
   [[ "${LFBFL_head}" == "${LFBFL_SHELL_SCRIPT_BEGINNING}" ]]\
     || printf "%s:File has wrong shell script beginning.\n" "$1"
 }
@@ -83,11 +83,11 @@ check_shell_scripts_beginnings(){
   mapfile -t LFBFL_arr_files_paths <<< "${LFBFL_s_files_paths}"
   for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do
     [[ LFBFL_i_verbose -eq 1 ]]\
-      && printf "%s:Checking shell script beginning.\n"\
+      && printf -- "%s:Checking shell script beginning.\n"\
           "${LFBFL_file_path}"
-    LFBFL_head=$(head --lines=1 "${LFBFL_file_path}")
+    LFBFL_head=$(head --lines=1 -- "${LFBFL_file_path}")
     [[ "${LFBFL_head}" == "${LFBFL_SHELL_SCRIPT_BEGINNING}" ]]\
-      || printf "%s:File has wrong shell script beginning.\n"\
+      || printf -- "%s:File has wrong shell script beginning.\n"\
           "${LFBFL_file_path}"
   done
 }

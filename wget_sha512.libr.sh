@@ -29,7 +29,7 @@ wget_sha512(){
   # $2=download_URL
   # $3=correct_sha512
   # Options:
-  #   --check-download (=keep to keep the downloaded file)
+  #   --check-download=y|keep (=keep to keep the downloaded file)
   #   --verbose
   local LFBFL_verbose=""
   if [[ "$*" == *--verbose* ]]; then
@@ -39,9 +39,9 @@ wget_sha512(){
   readonly LFBFL_verbose
   local LFBFL_check_download=""
   if [[ "$*" == *--check-download=keep* ]]; then
-    LFBFL_check_download="--check-download=keep"
-  elif [[ "$*" == *--check-download* ]]; then
-    LFBFL_check_download="--check-download"
+    LFBFL_check_download="keep"
+  elif [[ "$*" == *--check-download=y* ]]; then
+    LFBFL_check_download="y"
   fi
   readonly LFBFL_check_download
   declare -i LFBFL_i_error=0
@@ -66,7 +66,7 @@ wget_sha512(){
       sha512sum "$1.wget_sha512.temp"\
       | cut --fields=1 --delimiter=' '
     )
-    if [[ "${LFBFL_check_download}" != "--check-download=keep" ]]; then
+    if [[ "${LFBFL_check_download}" != "keep" ]]; then
       rm "$1.wget_sha512.temp"
     fi
     if [[ "${LFBFL_present_sha512_2}" != "$3" ]]; then

@@ -34,7 +34,7 @@ common_build_and_checks(){
   # $1 LFBFL_work_directory
   # $2 LFBFL_dependencies_URL
   # Options:
-  #   --check-download (=keep to keep the downloaded files)
+  #   --check-download=y|keep (=keep to keep the downloaded files)
   #   --verbose
   local LFBFL_work_directory="${1:-.}"
   LFBFL_work_directory=$(realpath "${LFBFL_work_directory}")
@@ -53,8 +53,8 @@ common_build_and_checks(){
   local LFBFL_check_download=""
   if [[ "$*" == *--check-download=keep* ]]; then
     LFBFL_check_download="--check-download=keep"
-  elif [[ "$*" == *--check-download* ]]; then
-    LFBFL_check_download="--check-download"
+  elif [[ "$*" == *--check-download=y* ]]; then
+    LFBFL_check_download="--check-download=y"
   fi
   readonly LFBFL_check_download
 
@@ -230,9 +230,9 @@ common_build_and_checks(){
   LFBFL_file_name="lines_filters.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='f48e427c5454cd967173f3396cc7af9c16af34241c074'
-  LFBFL_correct_sha512+='e00bc957189c6a2a581b81f60ea86439d0a699a8ea03'
-  LFBFL_correct_sha512+='a3587585da7870780d449196d490797efe00b11'
+  LFBFL_correct_sha512='aea76b906011953af7f815f77dfe7e35bcadaba3a05d0'
+  LFBFL_correct_sha512+='247dd728246ed46d2592e006aa5f0bde057acb1dcb5a'
+  LFBFL_correct_sha512+='8527fcedbc370361eec8681c19d0dac4cce1aa8'
   wrapped_wget_sha512
 
   LFBFL_file_name="lines_maps.libr.sh"

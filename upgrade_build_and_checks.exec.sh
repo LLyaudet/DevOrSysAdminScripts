@@ -26,7 +26,7 @@
 
 upgrade_build_and_checks(){
   # Options:
-  #   --check-download (=keep to keep the downloaded files)
+  #   --check-download=y|keep (=keep to keep the downloaded files)
   #   --fixed-point-build
   #   --verbose
   local LFBFL_verbose=""
@@ -42,8 +42,8 @@ upgrade_build_and_checks(){
   local LFBFL_check_download=""
   if [[ "$*" == *--check-download=keep* ]]; then
     LFBFL_check_download="--check-download=keep"
-  elif [[ "$*" == *--check-download* ]]; then
-    LFBFL_check_download="--check-download"
+  elif [[ "$*" == *--check-download=y* ]]; then
+    LFBFL_check_download="--check-download=y"
   fi
   readonly LFBFL_check_download
   (\

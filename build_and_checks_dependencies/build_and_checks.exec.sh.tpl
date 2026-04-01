@@ -31,7 +31,7 @@
 build_and_checks(){
   # $1=work_directory
   # Options:
-  #   --check-download (=keep to keep the downloaded files)
+  #   --check-download=y|keep (=keep to keep the downloaded files)
   #   --verbose
   local LFBFL_work_directory="."
   if [[ -n "$1" ]]; then
@@ -49,8 +49,8 @@ build_and_checks(){
   local LFBFL_check_download=""
   if [[ "$*" == *--check-download=keep* ]]; then
     LFBFL_check_download="--check-download=keep"
-  elif [[ "$*" == *--check-download* ]]; then
-    LFBFL_check_download="--check-download"
+  elif [[ "$*" == *--check-download=y* ]]; then
+    LFBFL_check_download="--check-download=y"
   fi
   readonly LFBFL_check_download
 

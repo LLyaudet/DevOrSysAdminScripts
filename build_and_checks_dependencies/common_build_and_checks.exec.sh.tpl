@@ -34,7 +34,7 @@ common_build_and_checks(){
   # $1 LFBFL_work_directory
   # $2 LFBFL_dependencies_URL
   # Options:
-  #   --check-download (=keep to keep the downloaded files)
+  #   --check-download=y|keep (=keep to keep the downloaded files)
   #   --verbose
   local LFBFL_work_directory="${1:-.}"
   LFBFL_work_directory=$(realpath "${LFBFL_work_directory}")
@@ -53,8 +53,8 @@ common_build_and_checks(){
   local LFBFL_check_download=""
   if [[ "$*" == *--check-download=keep* ]]; then
     LFBFL_check_download="--check-download=keep"
-  elif [[ "$*" == *--check-download* ]]; then
-    LFBFL_check_download="--check-download"
+  elif [[ "$*" == *--check-download=y* ]]; then
+    LFBFL_check_download="--check-download=y"
   fi
   readonly LFBFL_check_download
 

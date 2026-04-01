@@ -66,15 +66,8 @@ check_no_misplaced_then(){
   pushd_to_work_directory --trap-popd
   can_continue_after_enhanced_pushd || return 1
 
-  local LFBFL_arg
-  declare -i LFBFL_i_max_line_length=70
-  for LFBFL_arg in "$@"; do
-    if [[ "${LFBFL_arg}" == --max-line-length=* ]]; then
-      LFBFL_arg=${LFBFL_arg#--max-line-length=}
-      LFBFL_i_max_line_length=$((LFBFL_arg))
-      break
-    fi
-  done
+  declare -i LFBFL_i_max_line_length
+  get_some_option LFBFL_i_max_line_length --max-line-length 70 1 "$@"
   declare -i LFBFL_i_max_previous_line_length
   LFBFL_i_max_previous_line_length=$((LFBFL_i_max_line_length - 5))
 

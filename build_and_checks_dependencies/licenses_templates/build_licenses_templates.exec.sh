@@ -159,10 +159,10 @@ build_licenses_templates(){
       LFBFL_i_generate_from_template_result=$?
       if [[ LFBFL_i_verbose -eq 1 ]]; then
         if [[ LFBFL_i_generate_from_template_result -eq 1 ]]; then
-          printf "License template %s.tpl updated.\n"\
+          printf -- "License template %s.tpl updated.\n"\
             "${LFBFL_license_file_path}"
         elif [[ LFBFL_i_generate_from_template_result -eq 2 ]]; then
-          printf "License template %s.tpl created.\n"\
+          printf -- "License template %s.tpl created.\n"\
             "${LFBFL_license_file_path}"
         fi
       fi
@@ -194,10 +194,10 @@ build_licenses_templates(){
       LFBFL_i_generate_from_template_result=$?
       if [[ LFBFL_i_verbose -eq 1 ]]; then
         if [[ LFBFL_i_generate_from_template_result -eq 1 ]]; then
-          printf "License template %s.tpl updated.\n"\
+          printf -- "License template %s.tpl updated.\n"\
             "${LFBFL_license_file_path}"
         elif [[ LFBFL_i_generate_from_template_result -eq 2 ]]; then
-          printf "License template %s.tpl created.\n"\
+          printf -- "License template %s.tpl created.\n"\
             "${LFBFL_license_file_path}"
         fi
       fi
@@ -259,18 +259,18 @@ build_licenses_templates(){
     # $1=license_file_path
     sed --expression="s/@repository_name@/${LFBFL_repository_name}/g"\
         --expression="s/@copyright_string@/${LFBFL_copyright_string}/g"\
-        "$1.tpl"\
+        -- "$1.tpl"\
       > "$1.temp"
     overwrite_if_not_equal "$1" "$1.temp"
     declare -ir LFBFL_i_result=$?
     if [[ LFBFL_i_verbose -eq 1 ]]; then
       if [[ LFBFL_i_result -eq 1 ]]; then
-        printf "License template %s updated.\n" "$1"
+        printf -- "License template %s updated.\n" "$1"
       elif [[ LFBFL_i_result -eq 2 ]]; then
-        printf "License template %s created.\n" "$1"
+        printf -- "License template %s created.\n" "$1"
       fi
     fi
-    head --lines=-1 "$1"\
+    head --lines=-1 -- "$1"\
       | tail --lines=+2\
       > "$1.temp"
     # Strange world: tail --lines=-1 was working
@@ -318,7 +318,7 @@ build_licenses_templates(){
         LFBFL_s_format="build_licenses_templates: "
         LFBFL_s_format+="No file found with extension .%s or .%s.tpl.\n"
         # shellcheck disable=SC2059
-        printf "${LFBFL_s_format}" "${LFBFL_key}" "${LFBFL_key}"
+        printf -- "${LFBFL_s_format}" "${LFBFL_key}" "${LFBFL_key}"
       fi
       continue
     fi
@@ -335,13 +335,13 @@ build_licenses_templates(){
       fi
       if [[ LFBFL_i_not_subfile -ge 1 && LFBFL_i_not_subfile2 -ge 1 ]];
       then
-        printf "File %s has no/wrong license header?\n"\
+        printf -- "File %s has no/wrong license header?\n"\
           "${LFBFL_file_path}"
       fi
     done
-    rm "${LFBFL_license_file_path}.temp"
+    rm -- "${LFBFL_license_file_path}.temp"
     if [[ -n "${LFBFL_license2}" ]]; then
-      rm "${LFBFL_license_file_path2}.temp"
+      rm -- "${LFBFL_license_file_path2}.temp"
     fi
   done
 
@@ -349,15 +349,15 @@ build_licenses_templates(){
     # $1=LFBFL_license_file_path
     sed --expression="s/@repository_name@/${LFBFL_repository_name}/g"\
         --expression="s/@copyright_string@/${LFBFL_copyright_string}/g"\
-        "$1.tpl"\
+        -- "$1.tpl"\
       > "$1.temp"
     overwrite_if_not_equal "$1" "$1.temp"
     declare -ir LFBFL_i_result=$?
     if [[ LFBFL_i_verbose -eq 1 ]]; then
       if [[ LFBFL_i_result -eq 1 ]]; then
-        printf "License template %s updated.\n" "$1"
+        printf -- "License template %s updated.\n" "$1"
       elif [[ LFBFL_i_result -eq 2 ]]; then
-        printf "License template %s created.\n" "$1"
+        printf -- "License template %s created.\n" "$1"
       fi
     fi
   }
@@ -388,7 +388,7 @@ build_licenses_templates(){
         LFBFL_s_format="build_licenses_templates: "
         LFBFL_s_format+="No file found with extension .%s or .%s.tpl.\n"
         # shellcheck disable=SC2059
-        printf "${LFBFL_s_format}" "${LFBFL_key}" "${LFBFL_key}"
+        printf -- "${LFBFL_s_format}" "${LFBFL_key}" "${LFBFL_key}"
       fi
       continue
     fi
@@ -403,7 +403,7 @@ build_licenses_templates(){
       fi
       if [[ LFBFL_i_not_subfile -ge 1 && LFBFL_i_not_subfile2 -ge 1 ]];
       then
-        printf "File %s has no/wrong license header?\n"\
+        printf -- "File %s has no/wrong license header?\n"\
           "${LFBFL_file_path}"
       fi
     done

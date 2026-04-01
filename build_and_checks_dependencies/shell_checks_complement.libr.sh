@@ -90,7 +90,7 @@ check_no_misplaced_then(){
   LFBFL_regexp+="(?<!^\s{0,${LFBFL_i_max_previous_line_length}}\]\];)"
   LFBFL_regexp+="\n\s*then"
   # pcre2grep -M -- '^[^\n]{1,70}(?<=\]\];)(?<!^\s{0,70}\]\];)\n\s*then'
-  pcre2grep -M -- "${LFBFL_regexp}" **/*.sh
+  pcre2grep --multiline -- "${LFBFL_regexp}" **/*.sh
 }
 
 check_no_negation_before_bash_test(){
@@ -112,7 +112,7 @@ check_no_negation_before_bash_test(){
   [[ LFBFL_i_verbose -eq 1 ]]\
     && printf "Checking that shell scripts do not contain ! before [[.\n"
 
-  pcre2grep -M -- $'!\s*\[\[' **/*.sh
+  pcre2grep --multiline -- $'!\s*\[\[' **/*.sh
 }
 
 shell_checks_complement(){

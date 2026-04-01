@@ -70,9 +70,6 @@ commit_a_file_renamed_comment(){
   #   --max-comment-line-length
   declare -i LFBFL_i_verbose=0
   get_verbose_option "$@"
-  local LFBFL_arg
-  local LFBFL_s_format
-
   declare -i LFBFL_i_log_directory_change
   get_some_flag LFBFL_i_log_directory_change --log-directory-change 1
   declare -i LFBFL_i_max_comment_line_length
@@ -86,6 +83,7 @@ commit_a_file_renamed_comment(){
       "${LFBFL_i_log_directory_change}"\
       ${LFBFL_i_max_comment_line_length}
   fi
+  local LFBFL_s_format
   #-------------------------------------------------------------------
 
   enhanced_set_shell_option pipefail\

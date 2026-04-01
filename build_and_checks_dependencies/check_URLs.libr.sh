@@ -65,8 +65,8 @@ check_URLs(){
       printf "check_URLs: Iterating on pattern: %s.\n" "${LFBFL_pattern}"
     fi
     find . -type f -name "${LFBFL_pattern}" -printf '%P\n'\
-      | xargs grep --with-filename 'http:'\
-      | grep --invert-match "| xargs grep --with-filename 'htt"\
+      | xargs grep --with-filename -- 'http:'\
+      | grep --invert-match "| xargs grep --with-filename -- 'htt"\
       | grep --invert-match --perl-regexp\
         "['\"]http(:[^'\"]*)['\"].*['\"]https\\1['\"]"\
       | grep --invert-match 'http://www.w3.org/1999/xhtml'\
@@ -86,7 +86,7 @@ check_URLs(){
     fi
     mapfile -t LFBFL_arr_files_paths <<< "${LFBFL_s_files_paths}"
     for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do
-      LFBFL_base_file_name=$(basename "${LFBFL_file_path}")
+      LFBFL_base_file_name=$(basename -- "${LFBFL_file_path}")
       [[ "${LFBFL_base_file_name}" != "check_URLs.libr.sh" ]]\
         || continue
       if [[ LFBFL_i_verbose -eq 1 ]]; then

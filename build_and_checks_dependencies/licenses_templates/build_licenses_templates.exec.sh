@@ -133,7 +133,7 @@ build_licenses_templates(){
   local LFBFL_exit_string
   local LFBFL_temp2
   local LFBFL_prefix_string
-  local LFBFL_intermediate_file_name
+  local LFBFL_intermediate_file_path
   local LFBFL_file_prefix
   declare -i LFBFL_i_generate_from_template_result
   declare -i LFBFL_i
@@ -177,8 +177,8 @@ build_licenses_templates(){
       LFBFL_license_file_path="${LFBFL_license_prefix2}"
       LFBFL_license_file_path+=".${LFBFL_extension}"
       LFBFL_prefix_string=${LFBFL_line_comment_prefixes[LFBFL_i]}
-      LFBFL_intermediate_file_name="${LFBFL_license_file_path}.tpl"
-      LFBFL_intermediate_file_name+="${LFBFL_temp2}"
+      LFBFL_intermediate_file_path="${LFBFL_license_file_path}.tpl"
+      LFBFL_intermediate_file_path+="${LFBFL_temp2}"
       LFBFL_file_prefix=""
       if [[ "${LFBFL_extension}" == "sh" ]]; then
         LFBFL_file_prefix="${LFBFL_SHELL_SCRIPT_BEGINNING}"
@@ -189,7 +189,7 @@ build_licenses_templates(){
         "${LFBFL_license_prefix}.tpl"\
         "${LFBFL_license_file_path}.tpl"\
         "${LFBFL_prefix_string}"\
-        "sed -Ei -e 's/\s*$//g' '${LFBFL_intermediate_file_name}'"\
+        "sed -Ei -e 's/\s*$//g' '${LFBFL_intermediate_file_path}'"\
         "${LFBFL_file_prefix}"
       LFBFL_i_generate_from_template_result=$?
       if [[ LFBFL_i_verbose -eq 1 ]]; then
@@ -210,21 +210,21 @@ build_licenses_templates(){
   pushd_to_work_directory --trap-popd
   can_continue_after_enhanced_pushd || return 1
 
-  local LFBFL_data_file_name="build_and_checks_variables/"
-  LFBFL_data_file_name+="repository_data.txt"
-  readonly LFBFL_data_file_name
+  local LFBFL_data_file_path="build_and_checks_variables/"
+  LFBFL_data_file_path+="repository_data.txt"
+  readonly LFBFL_data_file_path
   local LFBFL_repository_name=""
-  grep_variable "${LFBFL_data_file_name}" repository_name\
+  grep_variable "${LFBFL_data_file_path}" repository_name\
     --result-variable-prefix="LFBFL_"\
     --replace-line-returns-by=""
   local LFBFL_license=""
-  grep_variable "${LFBFL_data_file_name}" license\
+  grep_variable "${LFBFL_data_file_path}" license\
     --result-variable-prefix="LFBFL_"
   local LFBFL_license2=""
-  grep_variable "${LFBFL_data_file_name}" license2\
+  grep_variable "${LFBFL_data_file_path}" license2\
     --result-variable-prefix="LFBFL_"
   local LFBFL_author_full_name=""
-  grep_variable "${LFBFL_data_file_name}" author_full_name\
+  grep_variable "${LFBFL_data_file_path}" author_full_name\
     --result-variable-prefix="LFBFL_"\
     --replace-line-returns-by=" "
 
@@ -256,7 +256,7 @@ build_licenses_templates(){
   readonly LFBFL_copyright_string
 
   prepare_filled_license_file_block(){
-    # $1=license_file_name
+    # $1=license_file_path
     sed --expression="s/@repository_name@/${LFBFL_repository_name}/g"\
         --expression="s/@copyright_string@/${LFBFL_copyright_string}/g"\
         "$1.tpl"\

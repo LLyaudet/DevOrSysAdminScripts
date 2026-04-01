@@ -51,7 +51,7 @@ check_no_empty_line_after_python_function_docstring(){
 
   [[ LFBFL_i_verbose -eq 1 ]]\
     && printf "Checking empty lines after Python function docstrings\n"
-  pcre2grep -M --\
+  pcre2grep --multiline --\
     $'def ([^"]|"(?!""))*"""([^"]|"(?!""))*"""\n\n(?!\s*def)'\
     **/*.py
 }

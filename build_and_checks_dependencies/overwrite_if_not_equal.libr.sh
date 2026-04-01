@@ -37,7 +37,7 @@ overwrite_if_not_equal(){
   #        2 target did not already exist
   if [[ ! -f "$1" ]]; then
     if [[ -n "$3" ]]; then
-      cp -p "$2" "$1"
+      cp --preserve=mode,ownership,timestamps "$2" "$1"
     else
       mv "$2" "$1"
     fi
@@ -83,7 +83,7 @@ overwrite_if_not_equal(){
     return 0
   fi
   if [[ -n "$3" ]]; then
-    cp -p "$2" "$1"
+    cp --preserve=mode,ownership,timestamps "$2" "$1"
   else
     mv "$2" "$1"
   fi

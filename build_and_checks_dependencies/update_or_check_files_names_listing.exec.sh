@@ -81,7 +81,7 @@ update_or_check_files_names_listing(){
     : > "${LFBFL_listing}"
   fi
   # Remove line returns that are here to keep lines short.
-  sed -Ez 's/(.)\\\n/\1/Mg' "${LFBFL_listing}"\
+  sed --regexp-extended --null-data 's/(.)\\\n/\1/Mg' "${LFBFL_listing}"\
     > "${LFBFL_listing}.temp"
   # shopt -s dotglob was needed at some point but I don't see why now.
   # shellcheck disable=SC2248
@@ -121,7 +121,7 @@ update_or_check_files_names_listing(){
     #     "update_or_check_files_names_listing: Maybe ignored file: %s\n"\
     #     "${LFBFL_file_path}"
     # fi
-    git check-ignore -q "${LFBFL_file_path}" && continue
+    git check-ignore --quiet "${LFBFL_file_path}" && continue
     LFBFL_base_file_name=$(basename "${LFBFL_file_path}")
     [[ "${LFBFL_base_file_name}" != files_names_listing.txt* ]]\
       || continue

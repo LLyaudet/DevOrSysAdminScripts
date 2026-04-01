@@ -243,10 +243,10 @@ get_some_flag(){
   # the flag_long_name is a mandatory argument.
   printf -v "$1" "%s" "0"
   declare -i LFBFL_i
-  local LFBFL_arg
+  local LFBFL_argument
   for ((LFBFL_i = 4; LFBFL_i <= $#; ++LFBFL_i)); do
-    LFBFL_arg="${!LFBFL_i}"
-    if [[ "${LFBFL_arg}" == "$2" ]]; then
+    LFBFL_argument="${!LFBFL_i}"
+    if [[ "${LFBFL_argument}" == "$2" ]]; then
       printf -v "$1" "%s" "1"
       break
     fi
@@ -277,10 +277,10 @@ get_some_option(){
   # $4=read_only 0 or 1 to make the variable readonly
   # This command is to be called in another one with same arguments on top
   # of the four previous.
-  local LFBFL_arg
-  for LFBFL_arg in "$@"; do
-    if [[ "${LFBFL_arg}" == "$2"=* ]]; then
-      printf -v "$1" "%s" "${LFBFL_arg#"$2"=}"
+  local LFBFL_argument
+  for LFBFL_argument in "$@"; do
+    if [[ "${LFBFL_argument}" == "$2"=* ]]; then
+      printf -v "$1" "%s" "${LFBFL_argument#"$2"=}"
       break
     fi
   done

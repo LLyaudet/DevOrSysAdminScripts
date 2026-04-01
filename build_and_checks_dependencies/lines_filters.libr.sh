@@ -151,28 +151,33 @@ grep_fixed_string_with_anchor(){
   declare -i LFBFL_i_enforce_line_starts=0
   declare -i LFBFL_i_enforce_line_ends=0
   declare -i LFBFL_i_quiet=0
-  local LFBFL_arg
-  for LFBFL_arg in "$@"; do
+  local LFBFL_argument
+  for LFBFL_argument in "$@"; do
     ((++LFBFL_i))
     if [[ LFBFL_i -lt 3 ]]; then
       continue
     fi
-    if [[ "${LFBFL_arg}" == "--enforce-line-starts-with-fixed-string" ]];
-    then
+    if [[
+      "${LFBFL_argument}" == "--enforce-line-starts-with-fixed-string"
+    ]]; then
       LFBFL_i_enforce_line_starts=1
       continue
     fi
-    if [[ "${LFBFL_arg}" == "--enforce-line-ends-with-fixed-string" ]];
-    then
+    if [[
+      "${LFBFL_argument}" == "--enforce-line-ends-with-fixed-string"
+    ]]; then
       LFBFL_i_enforce_line_ends=1
       continue
     fi
-    if [[ "${LFBFL_arg}" == "-q" || "${LFBFL_arg}" == "--quiet" ]]; then
+    if [[
+      "${LFBFL_argument}" == "-q"
+      || "${LFBFL_argument}" == "--quiet"
+    ]]; then
       LFBFL_i_quiet=1
-      LFBFL_grep_options+=("${LFBFL_arg}")
+      LFBFL_grep_options+=("${LFBFL_argument}")
       continue
     fi
-    LFBFL_grep_options2+=("${LFBFL_arg}")
+    LFBFL_grep_options2+=("${LFBFL_argument}")
   done
 
   if [[
@@ -241,17 +246,11 @@ grep_variable(){
   #   --replace-line-returns-by=""
   #   --result-variable-prefix="LFBFL_" for example
   declare -r LFBFL_regexp="(?<=^$2=).*$"
-  local LFBFL_arg
   # printf "%s\n" "${LFBFL_regexp}"
   local LFBFL_variable_value
-  if [[ "$*" == *--replace-line-returns-by=* ]]; then
-    local LFBFL_s_replace=""
-    for LFBFL_arg in "$@"; do
-      if [[ "${LFBFL_arg}" == --replace-line-returns-by=* ]]; then
-        LFBFL_s_replace=${LFBFL_arg#--replace-line-returns-by=}
-        break
-      fi
-    done
+  local LFBFL_s_replace
+  get_some_option LFBFL_s_replace --replace-line-returns-by $'\n' 1
+  if [[ "${LFBFL_s_replace}" != $'\n' ]]; then
     # sed -Ez -e...
     LFBFL_variable_value=$(
       grep --only-matching --perl-regexp "${LFBFL_regexp}" "$1"\
@@ -269,12 +268,7 @@ grep_variable(){
     )
   fi
   local LFBFL_prefix=""
-  for LFBFL_arg in "$@"; do
-    if [[ "${LFBFL_arg}" == --result-variable-prefix=* ]]; then
-      LFBFL_prefix=${LFBFL_arg#--result-variable-prefix=}
-      break
-    fi
-  done
+  get_some_option LFBFL_prefix --result-variable-prefix '' 1 "$@"
   declare -r LFBFL_variable_name="${LFBFL_prefix}$2"
   # printf "%s : %s\n " "${LFBFL_variable_name}" "${LFBFL_variable_value}"
   # The declare line may be dropped by a local or declare

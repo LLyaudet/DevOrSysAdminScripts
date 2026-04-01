@@ -65,11 +65,13 @@ check_URLs(){
       printf "check_URLs: Iterating on pattern: %s.\n" "${LFBFL_pattern}"
     fi
     find . -type f -name "${LFBFL_pattern}" -printf '%P\n'\
-      | xargs grep -H 'http:'\
-      | grep -v "| xargs grep -H 'htt"\
-      | grep -vP "['\"]http(:[^'\"]*)['\"].*['\"]https\\1['\"]"\
-      | grep -v 'http://www.w3.org/1999/xhtml'\
-      | grep -v 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'
+      | xargs grep --with-filename 'http:'\
+      | grep --invert-match "| xargs grep --with-filename 'htt"\
+      | grep --invert-match --perl-regexp\
+        "['\"]http(:[^'\"]*)['\"].*['\"]https\\1['\"]"\
+      | grep --invert-match 'http://www.w3.org/1999/xhtml'\
+      | grep --invert-match\
+        'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'
     # Second grep after xargs grep just above will remove false positives
     # from substitutions that fit on one line.
 
@@ -92,8 +94,9 @@ check_URLs(){
       fi
       for LFBFL_substitution in "${!LFBFL_substitutions[@]}"; do
         LFBFL_substitution2=${LFBFL_substitutions[${LFBFL_substitution}]}
-        if grep -q "${LFBFL_substitution}" "${LFBFL_file_path}"; then
-          sed -i "s|${LFBFL_substitution}|${LFBFL_substitution2}|g"\
+        if grep --quiet "${LFBFL_substitution}" "${LFBFL_file_path}"; then
+          sed --in-place\
+            "s|${LFBFL_substitution}|${LFBFL_substitution2}|g"\
             "${LFBFL_file_path}"
         fi
       done

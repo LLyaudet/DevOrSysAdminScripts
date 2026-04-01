@@ -45,18 +45,11 @@ build_md_from_printable_md(){
   pushd_to_work_directory --trap-popd
   can_continue_after_enhanced_pushd || return 1
 
-  local LFBFL_base_name="README"
-  local LFBFL_arg
-  for LFBFL_arg in "$@"; do
-    if [[ "${LFBFL_arg}" == --base-name=* ]]; then
-      LFBFL_base_name=${LFBFL_arg#--base-name=}
-      if [[ LFBFL_i_verbose -eq 1 ]]; then
-        printf "Searching md file: %s.\n" "${LFBFL_base_name}"
-      fi
-      break
-    fi
-  done
-  readonly LFBFL_base_name
+  local LFBFL_base_name
+  get_some_option LFBFL_base_name --base-name README 1 "$@"
+  if [[ LFBFL_i_verbose -eq 1 && "${LFBFL_base_name}" != "README" ]]; then
+    printf "Searching md file: %s.\n" "${LFBFL_base_name}"
+  fi
 
   # Remove line returns here to keep lines short.
   local LFBFL_sed_expression

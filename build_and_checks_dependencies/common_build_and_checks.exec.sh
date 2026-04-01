@@ -102,9 +102,9 @@ common_build_and_checks(){
   LFBFL_file_name="build_md_from_printable_md.exec.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='ceae57a25ad40c149a7a020ddbf5e85941f4212e2ffd0'
-  LFBFL_correct_sha512+='1f2b00b14c895aeb628cca53565b0afacb8f1e24dbbc'
-  LFBFL_correct_sha512+='39b270cdc0c61e4cfe42bafd0d9b6bec4215405'
+  LFBFL_correct_sha512='1daf2d9ccdda7822ea9612888e792564ae50804613872'
+  LFBFL_correct_sha512+='918de7096c7c085f31eb28d3b63bad9a4d2e6ff0f7bc'
+  LFBFL_correct_sha512+='66672cd2cbeb13532c37225662684c47da11ef3'
   wrapped_wget_sha512
   chmod +x "./${LFBFL_file_path}"
 
@@ -127,9 +127,9 @@ common_build_and_checks(){
   LFBFL_file_name="check_URLs.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='2027e3f9cdb847cc71b4b69149486779df666a1b18c30'
-  LFBFL_correct_sha512+='ab161b7c96ee2c48fed4ef78edb489d566d568fb7b1c'
-  LFBFL_correct_sha512+='8390a680a5212f5a04c9bd6dd05744374bbc5b3'
+  LFBFL_correct_sha512='a52c222d5209ca937b3f6ec7d627b1b05ce972da4f5e4'
+  LFBFL_correct_sha512+='885da64f158421c74263e56305cf4ad82f238dfbb119'
+  LFBFL_correct_sha512+='191f20583404ee741fddb4f7ba1012a1e9db485'
   wrapped_wget_sha512
 
   LFBFL_file_name="common_options.libr.sh"
@@ -143,26 +143,26 @@ common_build_and_checks(){
   LFBFL_file_name="comparisons.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='eb2bfabf11d219a4f7a105c95ea5fc2b1f6ddd668fad7'
-  LFBFL_correct_sha512+='344963c62d574eb3ecb93b35aad8b5ee4c2558792478'
-  LFBFL_correct_sha512+='f7ef9da058fba1cfe2195b61c87e1ed8686f200'
+  LFBFL_correct_sha512='2a9a9a71027ef585c6e37c42fc52da4595581427a97f2'
+  LFBFL_correct_sha512+='3a3970657875e0497952c1f29012f994986ad1270c0b'
+  LFBFL_correct_sha512+='3525640ffee5f9d938895138746e875781bbcc6'
   wrapped_wget_sha512
 
   LFBFL_file_name="create_PDF.exec.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='e57d7603f18596a0e259dcf25f6f922cbdbad9ae34b8d'
-  LFBFL_correct_sha512+='63a3085179fcc8eb1236658a7dc81bbb72122f5e8091'
-  LFBFL_correct_sha512+='253dc270f72337ef638d83cb2490cfb187da5c1'
+  LFBFL_correct_sha512='310609a022db92bf8f3b70510d9f403241297fa9291bb'
+  LFBFL_correct_sha512+='58ac844734aa49f05c086ce29d5833113799e956c59c'
+  LFBFL_correct_sha512+='f71fd6c6149f4df384d0c5f5ab7771a1e171b9f'
   wrapped_wget_sha512
   chmod +x "./${LFBFL_file_path}"
 
   LFBFL_file_name="generate_from_template.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='6369d2f6f28986d56398b2a9533fddbd14251fd8c8853'
-  LFBFL_correct_sha512+='203f3d8561065b2109abc8c328f0045b4dfb47895690'
-  LFBFL_correct_sha512+='a275d560ac684aed15e41307c1531c2e88a3643'
+  LFBFL_correct_sha512='f08b0cd1e772b42e6d08e4d95342377d44bdc9f3bf1f3'
+  LFBFL_correct_sha512+='31dbc14dcf83c69204af92f2badd360178e282fb4ad6'
+  LFBFL_correct_sha512+='56f2e7da4f048244d75ae35843d169c143518df'
   wrapped_wget_sha512
 
   LFBFL_file_name="get_common_text_glob_patterns.libr.sh"
@@ -188,9 +188,9 @@ common_build_and_checks(){
   LFBFL_file_name="build_licenses_templates.exec.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL2}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir2}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='7af3968a0e765d5da1d15a14b3e40ba622e07ba6fa758'
-  LFBFL_correct_sha512+='7d3ee875e67c59da8a84d6b302affdbc8407fce7fbbc'
-  LFBFL_correct_sha512+='d65c52eb2965c4f1cf021f42de671f1a0739536'
+  LFBFL_correct_sha512='d9be7baf3bc2776e1c47a299c0b3c9e3d5c6881a66e03'
+  LFBFL_correct_sha512+='54d38c2bedc641c5649271a9428efb0c4c4d5f07da2c'
+  LFBFL_correct_sha512+='b0068a64ae8133ab7476f6787c1ef73901956a9'
   wrapped_wget_sha512
   chmod +x "./${LFBFL_file_path}"
 
@@ -238,33 +238,33 @@ common_build_and_checks(){
   LFBFL_file_name="lines_maps.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='25c3e5082951260295b5f0e87ba1f2c978efdea1e8926'
-  LFBFL_correct_sha512+='072ce4d2062dc2a47bb92b9098f081e553eeae5d9154'
-  LFBFL_correct_sha512+='fdc50c9d88ae5365b776a23eb6e026b884a8374'
+  LFBFL_correct_sha512='45df460ebb31fd5f2f2a62a70f03d6ab9fd3bfd8d6e6f'
+  LFBFL_correct_sha512+='e45650e339f5b6bad5557a8c8d3a830d8539ba5442df'
+  LFBFL_correct_sha512+='68945da69270219159ceea45b14b395793fc025'
   wrapped_wget_sha512
 
   LFBFL_file_name="overwrite_if_not_equal.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='2e2e9c804ec8e1879fc96df595f30994a0685934483ce'
-  LFBFL_correct_sha512+='c9deed4c2fb98f79d4a393e13b6511b3b740ce9f073a'
-  LFBFL_correct_sha512+='e7ed124f08a60b35c896d60dd710223d2592d16'
+  LFBFL_correct_sha512='41940da16dbb6de6d8e75c985b0ba98ad11d14a9ecc8c'
+  LFBFL_correct_sha512+='d4fad65617999acda20e20a0d3637411431956fba095'
+  LFBFL_correct_sha512+='353db4f6e7f88a367c64a14a6eaa74856dcc8fa'
   wrapped_wget_sha512
 
   LFBFL_file_name="python_black_complement.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='abe0e5701ad6a56937b1a1e3687366e87e8cb2578a179'
-  LFBFL_correct_sha512+='8e15ce81e0aaafc208c1b325058287c331092765ef73'
-  LFBFL_correct_sha512+='2c584cadf33e3acbcc195f25b0b632a0ce229d3'
+  LFBFL_correct_sha512='60d40634f255ce3e0e80e4899b451fdfa4b1fcc5f1c10'
+  LFBFL_correct_sha512+='18b86edb31c86f212f8176b8d666323d600d35a86c04'
+  LFBFL_correct_sha512+='1f8e4259486484605a22c509d5de673c8688499'
   wrapped_wget_sha512
 
   LFBFL_file_name="python_isort_complement.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='70542f00cb59ed52d6576e6c066c5dc701ac90274ab68'
-  LFBFL_correct_sha512+='475086182b13b8cdf75f6b0263ac813e0010dd6cdb86'
-  LFBFL_correct_sha512+='9239899c2a6161f912bf1f789ad30965b8c1fe5'
+  LFBFL_correct_sha512='cab113c5165bcccb0f9e9acbba47312dedb7123d3bc75'
+  LFBFL_correct_sha512+='4c8abc5dcf5719babd24515a23e2bf0bcdaf90e82323'
+  LFBFL_correct_sha512+='2b81759e0bad0076b048a6031a761ce8e35cd0d'
   wrapped_wget_sha512
 
   LFBFL_file_name="repository_data.libr.sh"
@@ -278,9 +278,9 @@ common_build_and_checks(){
   LFBFL_file_name="shell_checks_complement.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='c41e25b9d06078f524ce429d92f9fb436f0e40acca954'
-  LFBFL_correct_sha512+='0d0b534b5bc2941f6c81bffca7ad2faaa02bf75e4ba2'
-  LFBFL_correct_sha512+='031bffea4e6254056474c09f18824ce6e4090cf'
+  LFBFL_correct_sha512='657277b59ba0363e6e8228750ea40a6e361c2bb54c389'
+  LFBFL_correct_sha512+='b499cf3dbba265b0112b18261193e7f3358a568b299d'
+  LFBFL_correct_sha512+='9ddc378c5ff870b58a5d7770798b1db1dcceab8'
   wrapped_wget_sha512
 
   LFBFL_file_name="split_score.exec.php"
@@ -302,9 +302,9 @@ common_build_and_checks(){
   LFBFL_file_name="strings_functions.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='f1d57711878d6fa73a0329e81403f409610ba7a68b23c'
-  LFBFL_correct_sha512+='97fe44db03c9ab470fca200c5bf17f9d1f057786af1a'
-  LFBFL_correct_sha512+='1a4214793ee22e6d65cc57c368013a560e70b47'
+  LFBFL_correct_sha512='7c27737f1bc598c7a1bab424941ed45951570a9623494'
+  LFBFL_correct_sha512+='b61ca123aa30bcce835ddb6759d4f5fc82e8fc26e27c'
+  LFBFL_correct_sha512+='ea13c160dfc047984cd4ff584cf762754edecb5'
   wrapped_wget_sha512
 
   LFBFL_file_name="too_long_code_lines.libr.sh"
@@ -318,9 +318,9 @@ common_build_and_checks(){
   LFBFL_file_name="update_or_check_files_names_listing.exec.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='9d9100a8527ea9717aff99f483c81b7921fd079ace4f9'
-  LFBFL_correct_sha512+='ead5cecd3c89da90f43959297ff78184eadf55bff79e'
-  LFBFL_correct_sha512+='b716060befe5eff9f00cc3b2f4dc69522e8bf8f'
+  LFBFL_correct_sha512='d5106ac24ca9a6d30043d247cd63a8e88d1e79344ff6f'
+  LFBFL_correct_sha512+='382d1214831187f7d8fab1d8fc9bd3e02751193259eb'
+  LFBFL_correct_sha512+='dea10ed264f2d756ab8d6ee14e5911c536da6d9'
   wrapped_wget_sha512
   chmod +x "./${LFBFL_file_path}"
 
@@ -419,7 +419,7 @@ common_build_and_checks(){
   php "./${LFBFL_subdir}/build_dependencies_notes.exec.php"\
     "${LFBFL_work_directory}"\
     2>&1\
-    | grep -v "${LFBFL_annoying_warning}"
+    | grep --invert-match "${LFBFL_annoying_warning}"
 
   declare -i LFBFL_i_directory_changed
   pushd_to_work_directory
@@ -530,7 +530,7 @@ common_build_and_checks(){
   # First, we update the configuration file with max_line_length.
   local LFBFL_update_max_length="s/^line-length = [0-9]*$"
   LFBFL_update_max_length+="/line-length = ${LFBFL_i_max_line_length}/"
-  sed -E -e "${LFBFL_update_max_length}"\
+  sed --regexp-extended --expression="${LFBFL_update_max_length}"\
     "${LFBFL_subdir3}/black.toml"\
     > "${LFBFL_subdir3}/black.toml.temp"
   overwrite_if_not_equal "${LFBFL_subdir3}/black.toml"\
@@ -691,13 +691,16 @@ common_build_and_checks(){
   phpmd --color --generate-baseline\
     --baseline-file="${LFBFL_temp_phpmd_baseline}"\
     . text "${LFBFL_phpmd_rulesets}"
-  sed -i -e 's/" file="/"\n    file="/g' "${LFBFL_temp_phpmd_baseline}"
-  sed -i -E -e 's~(file=".*)/>~\1\n  />~g' "${LFBFL_temp_phpmd_baseline}"
+  sed --in-place --expression='s/" file="/"\n    file="/g'\
+    "${LFBFL_temp_phpmd_baseline}"
+  sed --in-place --regexp-extended\
+    --expression='s~(file=".*)/>~\1\n  />~g'\
+    "${LFBFL_temp_phpmd_baseline}"
   diff "${LFBFL_phpmd_baseline}" "${LFBFL_temp_phpmd_baseline}"
 
   printf "Running phpDocumentor\n"
   # shellcheck disable=SC2312
-  docker run --rm -v "$(pwd):/data" phpdoc/phpdoc
+  docker run --rm --volume "$(pwd):/data" phpdoc/phpdoc
   printf -- "---PHP end---\n"
 
   printf -- "---JS---\n"

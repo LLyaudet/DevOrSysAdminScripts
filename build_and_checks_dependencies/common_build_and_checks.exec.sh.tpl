@@ -361,7 +361,7 @@ common_build_and_checks(){
   php "./${LFBFL_subdir}/build_dependencies_notes.exec.php"\
     "${LFBFL_work_directory}"\
     2>&1\
-    | grep -v "${LFBFL_annoying_warning}"
+    | grep --invert-match "${LFBFL_annoying_warning}"
 
   declare -i LFBFL_i_directory_changed
   pushd_to_work_directory
@@ -472,7 +472,7 @@ common_build_and_checks(){
   # First, we update the configuration file with max_line_length.
   local LFBFL_update_max_length="s/^line-length = [0-9]*$"
   LFBFL_update_max_length+="/line-length = ${LFBFL_i_max_line_length}/"
-  sed -E -e "${LFBFL_update_max_length}"\
+  sed --regexp-extended --expression="${LFBFL_update_max_length}"\
     "${LFBFL_subdir3}/black.toml"\
     > "${LFBFL_subdir3}/black.toml.temp"
   overwrite_if_not_equal "${LFBFL_subdir3}/black.toml"\
@@ -633,13 +633,16 @@ common_build_and_checks(){
   phpmd --color --generate-baseline\
     --baseline-file="${LFBFL_temp_phpmd_baseline}"\
     . text "${LFBFL_phpmd_rulesets}"
-  sed -i -e 's/" file="/"\n    file="/g' "${LFBFL_temp_phpmd_baseline}"
-  sed -i -E -e 's~(file=".*)/>~\1\n  />~g' "${LFBFL_temp_phpmd_baseline}"
+  sed --in-place --expression='s/" file="/"\n    file="/g'\
+    "${LFBFL_temp_phpmd_baseline}"
+  sed --in-place --regexp-extended\
+    --expression='s~(file=".*)/>~\1\n  />~g'\
+    "${LFBFL_temp_phpmd_baseline}"
   diff "${LFBFL_phpmd_baseline}" "${LFBFL_temp_phpmd_baseline}"
 
   printf "Running phpDocumentor\n"
   # shellcheck disable=SC2312
-  docker run --rm -v "$(pwd):/data" phpdoc/phpdoc
+  docker run --rm --volume "$(pwd):/data" phpdoc/phpdoc
   printf -- "---PHP end---\n"
 
   printf -- "---JS---\n"

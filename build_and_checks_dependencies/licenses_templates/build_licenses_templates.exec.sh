@@ -240,15 +240,15 @@ build_licenses_templates(){
   declare -ir LFBFL_i_first_year=$(
     git log\
     | grep 'Date:'\
-    | tail -1\
-    | cut -f 8 -d ' '
+    | tail --lines=1\
+    | cut --delimiter=' ' --fields=8
   )
   # Last year according to current state of git repository.
   declare -ir LFBFL_i_last_year=$(
     git log\
     | grep 'Date:'\
-    | head -1\
-    | cut -f 8 -d ' '
+    | head --lines=1\
+    | cut --delimiter=' ' --fields=8
   )
   local LFBFL_copyright_string
   LFBFL_copyright_string="${LFBFL_i_first_year}-${LFBFL_i_last_year}"
@@ -257,8 +257,8 @@ build_licenses_templates(){
 
   prepare_filled_license_file_block(){
     # $1=license_file_name
-    sed -e "s/@repository_name@/${LFBFL_repository_name}/g"\
-        -e "s/@copyright_string@/${LFBFL_copyright_string}/g"\
+    sed --expression="s/@repository_name@/${LFBFL_repository_name}/g"\
+        --expression="s/@copyright_string@/${LFBFL_copyright_string}/g"\
         "$1.tpl"\
       > "$1.temp"
     overwrite_if_not_equal "$1" "$1.temp"
@@ -347,8 +347,8 @@ build_licenses_templates(){
 
   prepare_filled_license_file_line(){
     # $1=LFBFL_license_file_name
-    sed -e "s/@repository_name@/${LFBFL_repository_name}/g"\
-        -e "s/@copyright_string@/${LFBFL_copyright_string}/g"\
+    sed --expression="s/@repository_name@/${LFBFL_repository_name}/g"\
+        --expression="s/@copyright_string@/${LFBFL_copyright_string}/g"\
         "$1.tpl"\
       > "$1.temp"
     overwrite_if_not_equal "$1" "$1.temp"

@@ -67,7 +67,7 @@ check_no_misplaced_then(){
   can_continue_after_enhanced_pushd || return 1
 
   declare -i LFBFL_i_max_line_length
-  get_some_option LFBFL_i_max_line_length --max-line-length 70 1 "$@"
+  get_max_line_length_option "$@"
   declare -i LFBFL_i_max_previous_line_length
   LFBFL_i_max_previous_line_length=$((LFBFL_i_max_line_length - 5))
 

@@ -58,7 +58,7 @@ too_long_code_lines(){
   can_continue_after_enhanced_pushd || return 1
 
   declare -i LFBFL_i_max_line_length
-  get_some_option LFBFL_i_max_line_length --max-line-length 70 1 "$@"
+  get_max_line_length_option "$@"
 
   declare -ir LFBFL_i_overlength=$((LFBFL_i_max_line_length+1))
   # shellcheck disable=SC2248

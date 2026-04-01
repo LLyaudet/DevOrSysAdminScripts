@@ -372,6 +372,15 @@ get_offset_option(){
   get_some_option LFBFL_i_offset --offset "$1" 1 "$@"
 }
 
+get_max_line_length_option(){
+  # This command is to be called in another one with same arguments.
+  # Its most useful feature is that it factorizes the default maximum line
+  # length of 70 characters.
+  # Options:
+  #   --max-line-length
+  get_some_option LFBFL_i_max_line_length --max-line-length 70 1 "$@"
+}
+
 
 # Functions relative to shell and bash options
 # (See SHELLOPTS and BASHOPTS, set and shopt):

@@ -53,17 +53,10 @@ update_or_check_files_names_listing(){
   pushd_to_work_directory --trap-popd
   can_continue_after_enhanced_pushd || return 1
 
-  declare -i LFBFL_i_write=0
-  if [[ "$*" == *--write* ]]; then
-    LFBFL_i_write=1
-  fi
-  readonly LFBFL_i_write
-
-  declare -i LFBFL_i_append=0
-  if [[ "$*" == *--append* ]]; then
-    LFBFL_i_append=1
-  fi
-  readonly LFBFL_i_append
+  declare -i LFBFL_i_write
+  get_some_flag LFBFL_i_write --write 1 "$@"
+  declare -i LFBFL_i_append
+  get_some_flag LFBFL_i_append --append 1 "$@"
 
   enhanced_set_shell_option pipefail --trap-unset
 

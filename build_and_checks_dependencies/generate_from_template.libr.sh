@@ -59,7 +59,7 @@ generate_from_template_with_line_comments(){
     printf "%s\n" "$5"\
       > "${LFBFL_temp}"
   fi
-  sed -e "s/^/$3/g" "$1"\
+  sed --expression="s/^/$3/g" "$1"\
     >> "${LFBFL_temp}"
   if [[ -n "$4" ]]; then
     eval "$4"
@@ -79,7 +79,7 @@ split_file_in_two(){
     grep_fixed_string_with_anchor "$1" "$2"\
       --enforce-line-ends-with-fixed-string --fixed-strings --line-number\
     | head --lines=1\
-    | cut -f 1 -d ':'
+    | cut --delimiter=':' --fields=1
   )
   declare -ir LFBFL_i_line_count=$(ll_wc -l -n "$1")
   declare -ir LFBFL_i_lines_after=$((

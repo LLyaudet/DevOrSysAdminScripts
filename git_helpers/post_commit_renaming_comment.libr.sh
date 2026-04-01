@@ -73,22 +73,11 @@ commit_a_file_renamed_comment(){
   local LFBFL_arg
   local LFBFL_s_format
 
-  declare -i LFBFL_i_log_directory_change=0
-  if [[ "$*" == *--log-directory-change* ]]; then
-    LFBFL_i_log_directory_change=1
-  fi
-  readonly LFBFL_i_log_directory_change
-
-  declare -i LFBFL_i_max_comment_line_length=70
-  for LFBFL_arg in "$@"; do
-    if [[ "${LFBFL_arg}" == --max-comment-line-length=* ]]; then
-      LFBFL_arg=${LFBFL_arg#--max-comment-line-length=}
-      LFBFL_i_max_comment_line_length=$((LFBFL_arg))
-      break
-    fi
-  done
-  readonly LFBFL_i_max_comment_line_length
-
+  declare -i LFBFL_i_log_directory_change
+  get_some_flag LFBFL_i_log_directory_change --log-directory-change 1
+  declare -i LFBFL_i_max_comment_line_length
+  get_some_option LFBFL_i_max_comment_line_length\
+    --max-comment-line-length 70 1
   if [[ LFBFL_i_verbose -eq 1 ]]; then
     LFBFL_s_format="LFBFL_i_log_directory_change: %s\n"
     LFBFL_s_format+="LFBFL_i_max_comment_line_length: %s\n"

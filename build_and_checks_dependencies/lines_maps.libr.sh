@@ -35,46 +35,47 @@
 #   '2068', '2069', '206A', '206B', '206C', '206D', '206E', '206F',
 # ]
 replace_non_ascii_spaces(){
-  sed -e 's/\xc2\xa0/ /g'\
-      -e 's/\xe2\x80\x80/ /g'\
-      -e 's/\xe2\x80\x81/ /g'\
-      -e 's/\xe2\x80\x82/ /g'\
-      -e 's/\xe2\x80\x83/ /g'\
-      -e 's/\xe2\x80\x84/ /g'\
-      -e 's/\xe2\x80\x85/ /g'\
-      -e 's/\xe2\x80\x86/ /g'\
-      -e 's/\xe2\x80\x87/ /g'\
-      -e 's/\xe2\x80\x88/ /g'\
-      -e 's/\xe2\x80\x89/ /g'\
-      -e 's/\xe2\x80\x8a/ /g'\
-      -e 's/\xe2\x80\x8b/ /g'\
-      -e 's/\xe2\x80\x8c/ /g'\
-      -e 's/\xe2\x80\x8d/ /g'\
-      -e 's/\xe2\x80\x8e/ /g'\
-      -e 's/\xe2\x80\x8f/ /g'\
-      -e 's/\xe2\x80\xa8/ /g'\
-      -e 's/\xe2\x80\xa9/ /g'\
-      -e 's/\xe2\x80\xaa/ /g'\
-      -e 's/\xe2\x80\xab/ /g'\
-      -e 's/\xe2\x80\xac/ /g'\
-      -e 's/\xe2\x80\xad/ /g'\
-      -e 's/\xe2\x80\xae/ /g'\
-      -e 's/\xe2\x80\xaf/ /g'\
-      -e 's/\xe2\x81\x9f/ /g'\
-      -e 's/\xe2\x81\xa0/ /g'\
-      -e 's/\xe2\x81\xa1/ /g'\
-      -e 's/\xe2\x81\xa2/ /g'\
-      -e 's/\xe2\x81\xa3/ /g'\
-      -e 's/\xe2\x81\xa4/ /g'\
-      -e 's/\xe2\x81\xa5/ /g'\
-      -e 's/\xe2\x81\xa6/ /g'\
-      -e 's/\xe2\x81\xa7/ /g'\
-      -e 's/\xe2\x81\xa8/ /g'\
-      -e 's/\xe2\x81\xa9/ /g'\
-      -e 's/\xe2\x81\xaa/ /g'\
-      -e 's/\xe2\x81\xab/ /g'\
-      -e 's/\xe2\x81\xac/ /g'\
-      -e 's/\xe2\x81\xad/ /g'\
-      -e 's/\xe2\x81\xae/ /g'\
-      -e 's/\xe2\x81\xaf/ /g'
+  sed\
+    --expression='s/\xc2\xa0/ /g'\
+    --expression='s/\xe2\x80\x80/ /g'\
+    --expression='s/\xe2\x80\x81/ /g'\
+    --expression='s/\xe2\x80\x82/ /g'\
+    --expression='s/\xe2\x80\x83/ /g'\
+    --expression='s/\xe2\x80\x84/ /g'\
+    --expression='s/\xe2\x80\x85/ /g'\
+    --expression='s/\xe2\x80\x86/ /g'\
+    --expression='s/\xe2\x80\x87/ /g'\
+    --expression='s/\xe2\x80\x88/ /g'\
+    --expression='s/\xe2\x80\x89/ /g'\
+    --expression='s/\xe2\x80\x8a/ /g'\
+    --expression='s/\xe2\x80\x8b/ /g'\
+    --expression='s/\xe2\x80\x8c/ /g'\
+    --expression='s/\xe2\x80\x8d/ /g'\
+    --expression='s/\xe2\x80\x8e/ /g'\
+    --expression='s/\xe2\x80\x8f/ /g'\
+    --expression='s/\xe2\x80\xa8/ /g'\
+    --expression='s/\xe2\x80\xa9/ /g'\
+    --expression='s/\xe2\x80\xaa/ /g'\
+    --expression='s/\xe2\x80\xab/ /g'\
+    --expression='s/\xe2\x80\xac/ /g'\
+    --expression='s/\xe2\x80\xad/ /g'\
+    --expression='s/\xe2\x80\xae/ /g'\
+    --expression='s/\xe2\x80\xaf/ /g'\
+    --expression='s/\xe2\x81\x9f/ /g'\
+    --expression='s/\xe2\x81\xa0/ /g'\
+    --expression='s/\xe2\x81\xa1/ /g'\
+    --expression='s/\xe2\x81\xa2/ /g'\
+    --expression='s/\xe2\x81\xa3/ /g'\
+    --expression='s/\xe2\x81\xa4/ /g'\
+    --expression='s/\xe2\x81\xa5/ /g'\
+    --expression='s/\xe2\x81\xa6/ /g'\
+    --expression='s/\xe2\x81\xa7/ /g'\
+    --expression='s/\xe2\x81\xa8/ /g'\
+    --expression='s/\xe2\x81\xa9/ /g'\
+    --expression='s/\xe2\x81\xaa/ /g'\
+    --expression='s/\xe2\x81\xab/ /g'\
+    --expression='s/\xe2\x81\xac/ /g'\
+    --expression='s/\xe2\x81\xad/ /g'\
+    --expression='s/\xe2\x81\xae/ /g'\
+    --expression='s/\xe2\x81\xaf/ /g'
 }

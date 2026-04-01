@@ -109,7 +109,7 @@ create_PDF(){
   declare -ir LFBFL_i_number_of_commits=$(
     git shortlog\
     | space_starting_lines\
-    | wc -l
+    | wc --lines
   )
 
   local LFBFL_redirect="/dev/stdout"
@@ -156,8 +156,9 @@ create_PDF(){
   local LFBFL_s_files_paths
   # Remove line returns that are here to keep lines short.
   LFBFL_s_files_paths=$(
-    sed -Ez 's/(.)\\\n/\1/Mg' "${LFBFL_subdir2}/files_names_listing.txt"\
-    | grep -v '^//'
+    sed --regexp-extended --null-data\
+      's/(.)\\\n/\1/Mg' "${LFBFL_subdir2}/files_names_listing.txt"\
+    | grep --invert-match '^//'
   )
   readonly LFBFL_s_files_paths
   declare -a LFBFL_arr_files_paths
@@ -207,7 +208,7 @@ create_PDF(){
     LFBFL_cleaned_path1="${LFBFL_file_path//_/\\_}"
     LFBFL_cleaned_path2=$(
       printf "%s" "${LFBFL_file_path}"\
-      | sed -e 's/\//:/g' -e 's/\.//g'
+      | sed --expression='s/\//:/g;s/\.//g'
     )
     LFBFL_new_lines="  ${LFBFL_cleaned_path1}"
     if [[ ${#LFBFL_new_lines} -gt LFBFL_i_max_line_length ]]; then
@@ -274,7 +275,7 @@ create_PDF(){
         "${LFBFL_i}"\
         "${LFBFL_i}"\
         "${LFBFL_new_lines}"
-      sed -e 's/&/\&amp;/g' -e 's/</\&lt;/g'\
+      sed --expression='s/&/\&amp;/g;s/</\&lt;/g'\
         < "${LFBFL_file_path}"
       printf "</pre>\n\n\n"
     } >> "${LFBFL_temp_files_listing2}"
@@ -302,7 +303,8 @@ create_PDF(){
   # build_licenses_templates.exec.sh
   # }
   # -----------------------------------------------------------------------
-  sed -i -e "s|\\n</pre>|</pre>|g" "${LFBFL_temp_files_listing2}"
+  sed --in-place --expression="s|\\n</pre>|</pre>|g"\
+    "${LFBFL_temp_files_listing2}"
   overwrite_if_not_equal "${LFBFL_temp_path}/files_listing.html.sub"\
     "${LFBFL_temp_files_listing2}"
   # Example of generated content of files_listing.html.sub:
@@ -361,7 +363,7 @@ create_PDF(){
       # printf "LFBFL_line: %s\n" "${LFBFL_line}"
       LFBFL_prefix=$(
         printf "%s" "${LFBFL_line}"\
-        | sed -E -e 's/(.*)──[^─]+$/\1/g'
+        | sed --regexp-extended --expression='s/(.*)──[^─]+$/\1/g'
       )
       # printf "LFBFL_prefix: %s\n" "${LFBFL_prefix}"
       LFBFL_i_prefix_last_position=$((${#LFBFL_prefix}-1))
@@ -369,7 +371,7 @@ create_PDF(){
       # printf "LFBFL_char: %s\n" "${LFBFL_char}"
       LFBFL_prefix=$(
         printf "%s" "${LFBFL_prefix}"\
-        | sed -E -e 's/[^ ]+$//g'
+        | sed --regexp-extended --expression='s/[^ ]+$//g'
       )
       if [[ "${LFBFL_char}" == "└" ]]; then
         LFBFL_prefix+="  "
@@ -379,14 +381,14 @@ create_PDF(){
       # printf "LFBFL_prefix: %s\n" "${LFBFL_prefix}"
       LFBFL_file_name=$(
         printf "%s" "${LFBFL_line}"\
-        | sed -E 's|.* ([^ ]+)$|\1|g'
+        | sed --regexp-extended --expression='s|.* ([^ ]+)$|\1|g'
       )
       # printf "LFBFL_file_name: %s\n" "${LFBFL_file_name}"
       LFBFL_i_keep_length=$((${#LFBFL_line} - ${#LFBFL_file_name}))
       LFBFL_line_start=${LFBFL_line:0:${LFBFL_i_keep_length}}
       LFBFL_line_start=$(
         printf "%s" "${LFBFL_line_start}"\
-        | sed -e 's/ *$//g'
+        | sed --expression='s/ *$//g'
       )
       # printf "LFBFL_line_start: %s\n" "${LFBFL_line_start}"
       LFBFL_new_lines="${LFBFL_prefix}${LFBFL_file_name}"
@@ -408,7 +410,7 @@ create_PDF(){
         ""\
         --quiet
     done
-    rm -f "${LFBFL_tree_path}.some_line.temp"
+    rm --force "${LFBFL_tree_path}.some_line.temp"
   done
 
   overwrite_if_not_equal "${LFBFL_temp_path}/current_tree.txt"\
@@ -444,12 +446,12 @@ create_PDF(){
 
   # shellcheck disable=SC2001
   printf "%s\n" "${LFBFL_abstract}"\
-    | sed -e 's/\\n/\n/g'\
+    | sed --expression='s/\\n/\n/g'\
     > "${LFBFL_temp_path}/abstract_temp"
 
   # shellcheck disable=SC2001
   printf "%s\n" "${LFBFL_acknowledgments}"\
-    | sed -e 's/\\n/\n/g'\
+    | sed --expression='s/\\n/\n/g'\
     > "${LFBFL_temp_path}/acknowledgments_temp"
 
   # But the filling still occurs, in case the dev want to refill
@@ -457,16 +459,17 @@ create_PDF(){
   # using some computed results.
   # Tex filling:
   if [[ -f "${LFBFL_tex_path_start}.1" ]]; then
-    sed -i -e "s|@repository_name@|${LFBFL_repository_name}|g"\
-           -e "s|@repository_web_url@|${LFBFL_repository_web_url}|g"\
-           -e "s|@repository_git_url@|${LFBFL_repository_git_url}|g"\
-           -e "s|@author_email@|${LFBFL_author_email}|g"\
-           -e "s|@author_full_name@|${LFBFL_author_full_name}|g"\
-           -e "s|@author_website@|${LFBFL_author_website}|g"\
-           -e "s|@current_date@|${LFBFL_current_date}|g"\
-           -e "s|@current_git_SHA1@|${LFBFL_current_git_SHA1}|g"\
-           -e "s|@number_of_commits@|${LFBFL_i_number_of_commits}|g"\
-           -e "s|@number_of_lines@|${LFBFL_number_of_lines}|g"\
+    sed --in-place\
+      --expression="s|@repository_name@|${LFBFL_repository_name}|g"\
+      --expression="s|@repository_web_url@|${LFBFL_repository_web_url}|g"\
+      --expression="s|@repository_git_url@|${LFBFL_repository_git_url}|g"\
+      --expression="s|@author_email@|${LFBFL_author_email}|g"\
+      --expression="s|@author_full_name@|${LFBFL_author_full_name}|g"\
+      --expression="s|@author_website@|${LFBFL_author_website}|g"\
+      --expression="s|@current_date@|${LFBFL_current_date}|g"\
+      --expression="s|@current_git_SHA1@|${LFBFL_current_git_SHA1}|g"\
+      --expression="s|@number_of_commits@|${LFBFL_i_number_of_commits}|g"\
+      --expression="s|@number_of_lines@|${LFBFL_number_of_lines}|g"\
       "${LFBFL_tex_path_start}.1"
 
     insert_file_at_token "${LFBFL_tex_path_start}.1"\
@@ -507,16 +510,17 @@ create_PDF(){
   # HTML filling:
   declare -i LFBFL_i_HTML_updated=0
   if [[ -f "${LFBFL_html_path_start}.1" ]]; then
-    sed -i -e "s|@repository_name@|${LFBFL_repository_name}|g"\
-           -e "s|@repository_web_url@|${LFBFL_repository_web_url}|g"\
-           -e "s|@repository_git_url@|${LFBFL_repository_git_url}|g"\
-           -e "s|@author_email@|${LFBFL_author_email}|g"\
-           -e "s|@author_full_name@|${LFBFL_author_full_name}|g"\
-           -e "s|@author_website@|${LFBFL_author_website}|g"\
-           -e "s|@current_date@|${LFBFL_current_date}|g"\
-           -e "s|@current_git_SHA1@|${LFBFL_current_git_SHA1}|g"\
-           -e "s|@number_of_commits@|${LFBFL_i_number_of_commits}|g"\
-           -e "s|@number_of_lines@|${LFBFL_number_of_lines}|g"\
+    sed --in-place\
+      --expression="s|@repository_name@|${LFBFL_repository_name}|g"\
+      --expression="s|@repository_web_url@|${LFBFL_repository_web_url}|g"\
+      --expression="s|@repository_git_url@|${LFBFL_repository_git_url}|g"\
+      --expression="s|@author_email@|${LFBFL_author_email}|g"\
+      --expression="s|@author_full_name@|${LFBFL_author_full_name}|g"\
+      --expression="s|@author_website@|${LFBFL_author_website}|g"\
+      --expression="s|@current_date@|${LFBFL_current_date}|g"\
+      --expression="s|@current_git_SHA1@|${LFBFL_current_git_SHA1}|g"\
+      --expression="s|@number_of_commits@|${LFBFL_i_number_of_commits}|g"\
+      --expression="s|@number_of_lines@|${LFBFL_number_of_lines}|g"\
       "${LFBFL_html_path_start}.1"
 
     insert_file_at_token "${LFBFL_html_path_start}.1"\

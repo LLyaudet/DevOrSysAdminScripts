@@ -1211,7 +1211,7 @@ split_last_line(){
 
   declare -r LFBFL_start=$(
     printf "%s" "$1"\
-    | head --lines=1
+    | head --lines=-1
   )
   # printf "start: %s\n" "${LFBFL_start}"
   declare -r LFBFL_last_line=$(

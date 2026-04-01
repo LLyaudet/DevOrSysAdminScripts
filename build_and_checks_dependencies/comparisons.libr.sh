@@ -119,7 +119,7 @@ all_distinct3(){
   declare -r LFBFL_s_duplicated_arguments=$(
     printf "%s\n" "$@" \
     | sort\
-    | uniq -d
+    | uniq --repeated
   )
   [[ -n "${LFBFL_s_duplicated_arguments}" ]]
 }
@@ -148,8 +148,8 @@ max(){
   enhanced_set_shell_option pipefail\
     && trap 'enhanced_unset_shell_option pipefail' RETURN
   printf "%s\n" "${@:2}" \
-    | eval "$1 -r"\
-    | head -1
+    | eval "$1 --reverse"\
+    | head --lines=1
 }
 
 min(){
@@ -165,7 +165,7 @@ min(){
     && trap 'enhanced_unset_shell_option pipefail' RETURN
   printf "%s\n" "${@:2}" \
     | eval "$1"\
-    | head -1
+    | head --lines=1
 }
 
 is_substring(){
@@ -173,18 +173,18 @@ is_substring(){
   # $2=substring
   declare -r LFBFL_var_1=$(
     printf "%s" "$1"\
-    | sed -e 's/\\/\\&/g' -e "s/'/\\\\&/g"
+    | sed --expression='s/\\/\\&/g' --expression="s/'/\\\\&/g"
   )
   declare -r LFBFL_var_2=$(
     printf "%s" "$2"\
-    | sed -e 's/\\/\\&/g' -e "s/'/\\\\&/g"
+    | sed --expression='s/\\/\\&/g' --expression="s/'/\\\\&/g"
   )
   local LFBFL_var_3="\$a = '${LFBFL_var_1}';"
   LFBFL_var_3+=" \$b = preg_quote('${LFBFL_var_2}');"
   LFBFL_var_3+=" \$c = '/'.addcslashes(\$b, '/').'/';"
   LFBFL_var_3+=" die(1 - preg_match(\$c, \$a));"
   readonly LFBFL_var_3
-  php -r "${LFBFL_var_3}"
+  php --run="${LFBFL_var_3}"
   return $?
 }
 
@@ -196,7 +196,7 @@ is_subfile(){
   LFBFL_var_1+=" \$c = '/'.addcslashes(\$b, '/').'/';"
   LFBFL_var_1+=" die(1 - preg_match(\$c, \$a));"
   readonly LFBFL_var_1
-  php -r "${LFBFL_var_1}"
+  php --run="${LFBFL_var_1}"
   return $?
 }
 

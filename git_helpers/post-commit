@@ -34,7 +34,8 @@ LFBFL_some_directory="../DevOrSysAdminScripts"
 declare -i LFBFL_i_pushd_result3
 pushd "${LFBFL_some_directory}" || {
   LFBFL_i_pushd_result3=$?
-  printf "post-commit no such directory\n"
+  printf "post-commit pushd %s no such directory\n"\
+    "${LFBFL_some_directory}"
   # shellcheck disable=SC2248
   exit ${LFBFL_i_pushd_result3}
 }

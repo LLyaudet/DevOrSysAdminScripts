@@ -1204,14 +1204,14 @@ split_last_line(){
 
   # Testing if some line is too long.
   printf "%s" "$1"\
-    | grep -q "${get_overlength_regexp_result}";
+    | grep --quiet "${get_overlength_regexp_result}"
   if [[ ${PIPESTATUS[1]} -eq 1 ]]; then
     return
   fi
 
   declare -r LFBFL_start=$(
     printf "%s" "$1"\
-    | head --lines=-1
+    | head --lines=1
   )
   # printf "start: %s\n" "${LFBFL_start}"
   declare -r LFBFL_last_line=$(

@@ -37,14 +37,14 @@ common_build_and_checks(){
   #   --check-download=y|keep (=keep to keep the downloaded files)
   #   --verbose
   local LFBFL_work_directory="${1:-.}"
-  LFBFL_work_directory=$(realpath "${LFBFL_work_directory}")
+  LFBFL_work_directory=$(realpath -- "${LFBFL_work_directory}")
   local LFBFL_work_directory_option="--work-directory="
   LFBFL_work_directory_option+="${LFBFL_work_directory}"
   declare -r LFBFL_dependencies_URL="$2"
   local LFBFL_verbose=""
   declare -i LFBFL_i_verbose=0
   if [[ "$*" == *--verbose* ]]; then
-    printf "%s %s\n" "$0" "$*"
+    printf -- "%s %s\n" "$0" "$*"
     LFBFL_verbose="--verbose"
     LFBFL_i_verbose=1
   fi
@@ -111,25 +111,25 @@ common_build_and_checks(){
   LFBFL_file_name="check_shell_scripts_beginnings.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='6a57c0f30a0f6f15e9375384bb0ff214bdcbc3377c238'
-  LFBFL_correct_sha512+='e33febdb3a905d96358c7392b7b66c71aad022435527'
-  LFBFL_correct_sha512+='00bf10f30dfeb0db9fc84d06eba7343c1e06184'
+  LFBFL_correct_sha512='b44f28fc0bde88ea9876ba0f7fd18002624e3437d5def'
+  LFBFL_correct_sha512+='e96d3c98ac8a33aeda2837f7c166bbb6da6593fca989'
+  LFBFL_correct_sha512+='baee7e8759b758234b23b0855e48793e1134adb'
   wrapped_wget_sha512
 
   LFBFL_file_name="check_shell_scripts_indentation.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='86bccfa7181772622db577cbfe0d2be7c4ea8a8c3550e'
-  LFBFL_correct_sha512+='5edcd21b20628dd5f5539c287a2af9b7a27933a7c812'
-  LFBFL_correct_sha512+='3a26c057bbd54175b89917336830529eb3831bd'
+  LFBFL_correct_sha512='366fd5322d549cd9019dc6988436a0f7ea04c3264c662'
+  LFBFL_correct_sha512+='9f13782ec5daff983c533aef50885383855a80b134e0'
+  LFBFL_correct_sha512+='8604f0bf1e40f4ec6dc27040032b524ae073c30'
   wrapped_wget_sha512
 
   LFBFL_file_name="check_URLs.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='a52c222d5209ca937b3f6ec7d627b1b05ce972da4f5e4'
-  LFBFL_correct_sha512+='885da64f158421c74263e56305cf4ad82f238dfbb119'
-  LFBFL_correct_sha512+='191f20583404ee741fddb4f7ba1012a1e9db485'
+  LFBFL_correct_sha512='c37dfc6c091cf90988f857c6b7bdea0328835b4e3784a'
+  LFBFL_correct_sha512+='aaad50b1509c3fae9975935c4be1708667a04b82e7dd'
+  LFBFL_correct_sha512+='ebfa37aac4995e7198606011a61374631f672c5'
   wrapped_wget_sha512
 
   LFBFL_file_name="common_options.libr.sh"
@@ -188,9 +188,9 @@ common_build_and_checks(){
   LFBFL_file_name="build_licenses_templates.exec.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL2}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir2}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='d9be7baf3bc2776e1c47a299c0b3c9e3d5c6881a66e03'
-  LFBFL_correct_sha512+='54d38c2bedc641c5649271a9428efb0c4c4d5f07da2c'
-  LFBFL_correct_sha512+='b0068a64ae8133ab7476f6787c1ef73901956a9'
+  LFBFL_correct_sha512='e1295d0fb03b5433b17e833d63e7347c9ce50e4647c6e'
+  LFBFL_correct_sha512+='ccf068582c3ebc0555acb32af2d76f8f56211b43f2e0'
+  LFBFL_correct_sha512+='047f391b50a9dcabff914cedc13f2cd0ebb6ae2'
   wrapped_wget_sha512
   chmod +x "./${LFBFL_file_path}"
 
@@ -398,9 +398,9 @@ common_build_and_checks(){
     mapfile -t LFBFL_arr_files_paths <<< "${LFBFL_s_files_paths}"
     for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do
       [[ "${LFBFL_file_path}" == "${LFBFL_readme}" ]] && continue
-      printf "Found template %s.\n" "${LFBFL_file_path}"
-      LFBFL_some_directory=$(dirname "${LFBFL_file_path}")
-      LFBFL_file_name=$(basename "${LFBFL_file_path}")
+      printf -- "Found template %s.\n" "${LFBFL_file_path}"
+      LFBFL_some_directory=$(dirname -- "${LFBFL_file_path}")
+      LFBFL_file_name=$(basename -- "${LFBFL_file_path}")
       LFBFL_file_name=${LFBFL_file_name%.md.tpl}
       "./${LFBFL_subdir}/build_md_from_printable_md.exec.sh"\
         --work-directory="${LFBFL_some_directory}"\
@@ -416,8 +416,8 @@ common_build_and_checks(){
   LFBFL_annoying_warning=" because Zend multibyte feature is turned off"
   LFBFL_annoying_warning=" by settings in"
   readonly LFBFL_annoying_warning
-  php "./${LFBFL_subdir}/build_dependencies_notes.exec.php"\
-    "${LFBFL_work_directory}"\
+  php -f="./${LFBFL_subdir}/build_dependencies_notes.exec.php"\
+    -- "${LFBFL_work_directory}"\
     2>&1\
     | grep --invert-match "${LFBFL_annoying_warning}"
 
@@ -426,10 +426,10 @@ common_build_and_checks(){
   LFBFL_i_directory_changed=$?
   can_continue_after_enhanced_pushd || return 1
 
-  local LFBFL_data_file_name="${LFBFL_subdir3}/repository_data.txt"
+  local LFBFL_data_file_path="${LFBFL_subdir3}/repository_data.txt"
 
   declare -i LFBFL_i_max_line_length
-  grep_variable "${LFBFL_data_file_name}" max_line_length\
+  grep_variable "${LFBFL_data_file_path}" max_line_length\
     --result-variable-prefix=LFBFL_i_
 
   LFBFL_some_common_options+=(
@@ -447,12 +447,12 @@ common_build_and_checks(){
   local LFBFL_upgrade_venvs_answer
 
   local LFBFL_upgrade_venvs_time_interval_in_seconds=""
-  get_upgrade_venvs_time_interval_in_seconds "${LFBFL_data_file_name}"\
+  get_upgrade_venvs_time_interval_in_seconds "${LFBFL_data_file_path}"\
     "${LFBFL_some_common_options2[@]}"
 
   if [[ -f "${LFBFL_upgrade_venvs_ts_file}" ]]; then
     LFBFL_i_upgrade_venvs_ts=$(
-      stat --format %Y "${LFBFL_upgrade_venvs_ts_file}"
+      stat --format %Y -- "${LFBFL_upgrade_venvs_ts_file}"
     )
     LFBFL_i_current_ts=$(date +%s)
     ((LFBFL_i_current_ts -= LFBFL_i_upgrade_venvs_ts))
@@ -465,7 +465,7 @@ common_build_and_checks(){
   fi
   if [[ LFBFL_i_upgrade_venvs -eq 1 ]]; then
     local LFBFL_upgrade_venvs=""
-    grep_variable "${LFBFL_data_file_name}" upgrade_venvs\
+    grep_variable "${LFBFL_data_file_path}" upgrade_venvs\
       --result-variable-prefix=LFBFL_
     if [[ "${LFBFL_upgrade_venvs}" != "auto" ]]; then
       read -r -n 1 -t 10\
@@ -486,7 +486,7 @@ common_build_and_checks(){
     mapfile -t LFBFL_arr_files_paths <<< "${LFBFL_s_files_paths}"
     for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do
       shellcheck --rcfile="${LFBFL_subdir3}/shellcheck.ini"\
-        "${LFBFL_file_path}"
+        -- "${LFBFL_file_path}"
     done
   fi
   printf "Running shell_checks_complement\n"
@@ -504,12 +504,12 @@ common_build_and_checks(){
   source_without_return_trap(){
     declare -i LFBFL_i_no_return_traps=1
     # shellcheck disable=SC1090,SC1091
-    source "$1"
+    source -- "$1"
   }
 
   printf "Running isort\n"
   local LFBFL_isort_venv=""
-  grep_variable "${LFBFL_data_file_name}" isort_venv\
+  grep_variable "${LFBFL_data_file_path}" isort_venv\
     --result-variable-prefix=LFBFL_\
     --replace-line-returns-by=""
   if [[ -n "${LFBFL_isort_venv}" ]]; then
@@ -537,7 +537,7 @@ common_build_and_checks(){
     "${LFBFL_subdir3}/black.toml.temp"
 
   local LFBFL_black_venv=""
-  grep_variable "${LFBFL_data_file_name}" black_venv\
+  grep_variable "${LFBFL_data_file_path}" black_venv\
     --result-variable-prefix=LFBFL_\
     --replace-line-returns-by=""
   if [[ -n "${LFBFL_black_venv}" ]]; then
@@ -556,7 +556,7 @@ common_build_and_checks(){
 
   printf "Probing if mypy should be runned\n"
   local LFBFL_mypy_venv=""
-  grep_variable "${LFBFL_data_file_name}" mypy_venv\
+  grep_variable "${LFBFL_data_file_path}" mypy_venv\
     --result-variable-prefix=LFBFL_\
     --replace-line-returns-by=""
   if [[ -n "${LFBFL_mypy_venv}" ]]; then
@@ -575,10 +575,10 @@ common_build_and_checks(){
   if [[ -n "${LFBFL_s_files_paths}" ]]; then
     mapfile -t LFBFL_arr_files_paths <<< "${LFBFL_s_files_paths}"
     for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do
-      if grep --quiet "Typing :: Typed" "${LFBFL_file_path}"; then
+      if grep --quiet "Typing :: Typed" -- "${LFBFL_file_path}"; then
         printf "Running mypy\n"
-        LFBFL_directory_path=$(dirname "${LFBFL_file_path}")
-        mypy "${LFBFL_directory_path}"
+        LFBFL_directory_path=$(dirname -- "${LFBFL_file_path}")
+        mypy -- "${LFBFL_directory_path}"
       fi
       LFBFL_i_no_toml=0
     done
@@ -593,7 +593,7 @@ common_build_and_checks(){
 
   printf "Running bandit\n"
   LFBFL_bandit_venv=""
-  grep_variable "${LFBFL_data_file_name}" bandit_venv\
+  grep_variable "${LFBFL_data_file_path}" bandit_venv\
     --result-variable-prefix=LFBFL_\
     --replace-line-returns-by=""
   if [[ -n "${LFBFL_bandit_venv}" ]]; then
@@ -617,7 +617,7 @@ common_build_and_checks(){
 
   printf "Running pylint\n"
   LFBFL_pylint_venv=""
-  grep_variable "${LFBFL_data_file_name}" pylint_venv\
+  grep_variable "${LFBFL_data_file_path}" pylint_venv\
     --result-variable-prefix=LFBFL_\
     --replace-line-returns-by=""
   if [[ -n "${LFBFL_pylint_venv}" ]]; then
@@ -634,7 +634,7 @@ common_build_and_checks(){
 
   printf "Running ruff\n"
   LFBFL_ruff_venv=""
-  grep_variable "${LFBFL_data_file_name}" ruff_venv\
+  grep_variable "${LFBFL_data_file_path}" ruff_venv\
     --result-variable-prefix=LFBFL_\
     --replace-line-returns-by=""
   if [[ -n "${LFBFL_ruff_venv}" ]]; then
@@ -659,7 +659,7 @@ common_build_and_checks(){
   if [[ -n "${LFBFL_s_files_paths}" ]]; then
     mapfile -t LFBFL_arr_files_paths <<< "${LFBFL_s_files_paths}"
     for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do
-      php --syntax-check "${LFBFL_file_path}"
+      php --syntax-check -f="${LFBFL_file_path}"
     done
   fi
 
@@ -700,12 +700,12 @@ common_build_and_checks(){
 
   printf "Running phpDocumentor\n"
   # shellcheck disable=SC2312
-  docker run --rm --volume "$(pwd):/data" phpdoc/phpdoc
+  docker run --rm --volume="$(pwd):/data" phpdoc/phpdoc
   printf -- "---PHP end---\n"
 
   printf -- "---JS---\n"
   LFBFL_npm_lint_directories=""
-  grep_variable "${LFBFL_data_file_name}" npm_lint_directories\
+  grep_variable "${LFBFL_data_file_path}" npm_lint_directories\
     --result-variable-prefix=LFBFL_
   if [[ -n "${LFBFL_npm_lint_directories}" ]]; then
     printf "Running ESLint\n"
@@ -713,7 +713,7 @@ common_build_and_checks(){
     declare -a LFBFL_arr_paths
     mapfile -t LFBFL_arr_paths <<< "${LFBFL_npm_lint_directories}"
     for LFBFL_JS_directory in "${LFBFL_arr_paths[@]}"; do
-      (cd "${LFBFL_JS_directory}" && npm run lint)
+      (cd -- "${LFBFL_JS_directory}" && npm run lint)
     done
   fi
   printf -- "---JS end---\n"
@@ -743,7 +743,7 @@ common_build_and_checks(){
     | relevant_grep
 
   printf "Grammar and spelling check\n"
-  grammar_and_spelling_check "${LFBFL_data_file_name}"\
+  grammar_and_spelling_check "${LFBFL_data_file_path}"\
     "${LFBFL_some_common_options2[@]}"
 
   [[ LFBFL_i_directory_changed -eq 0 ]] && popd_from_work_directory
@@ -767,7 +767,7 @@ common_build_and_checks(){
   # we can check there are no mistakes.
   printf "Running Nu W3C HTML CSS and SVG validator\n"
   local LFBFL_upgrade_vnu_jar_time_interval_in_seconds=""
-  grep_variable "${LFBFL_data_file_name}"\
+  grep_variable "${LFBFL_data_file_path}"\
     upgrade_vnu_jar_time_interval_in_seconds\
     --result-variable-prefix=LFBFL_
 
@@ -778,11 +778,11 @@ common_build_and_checks(){
 
   declare -i LFBFL_i_vnu_jar_ts
   local LFBFL_vnu_jar_path=""
-  grep_variable "${LFBFL_data_file_name}" vnu_jar_path\
+  grep_variable "${LFBFL_data_file_path}" vnu_jar_path\
     --result-variable-prefix=LFBFL_\
     --replace-line-returns-by=""
   if [[ -f "${LFBFL_vnu_jar_path}" ]]; then
-    LFBFL_i_vnu_jar_ts=$(stat --format %Y "${LFBFL_vnu_jar_path}")
+    LFBFL_i_vnu_jar_ts=$(stat --format %Y -- "${LFBFL_vnu_jar_path}")
     LFBFL_i_current_ts=$(date +%s)
     ((LFBFL_i_current_ts -= LFBFL_i_vnu_jar_ts))
     ((
@@ -795,7 +795,7 @@ common_build_and_checks(){
     fi
     # vnu has false positives for xhtml
     local LFBFL_use_vnu_for_xhtml=""
-    grep_variable "${LFBFL_data_file_name}" use_vnu_for_xhtml\
+    grep_variable "${LFBFL_data_file_path}" use_vnu_for_xhtml\
       --result-variable-prefix=LFBFL_
     local LFBFL_find_regexp
     if [[ "${LFBFL_use_vnu_for_xhtml}" == "true" ]]; then
@@ -812,13 +812,13 @@ common_build_and_checks(){
       mapfile -t LFBFL_files_for_Nu2 <<< "${LFBFL_files_for_Nu}"
       readonly LFBFL_files_for_Nu2
       java -Xss128M -jar "${LFBFL_vnu_jar_path}" --exit-zero-always\
-        --verbose "${LFBFL_files_for_Nu2[@]}"
+        --verbose -- "${LFBFL_files_for_Nu2[@]}"
     fi
   fi
   # ------------------------------------------------------------------
 
   if [[ LFBFL_i_upgrade_venvs -eq 1 ]]; then
-    touch "${LFBFL_upgrade_venvs_ts_file}"
+    touch -- "${LFBFL_upgrade_venvs_ts_file}"
   fi
 }
 

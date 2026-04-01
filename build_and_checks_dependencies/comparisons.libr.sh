@@ -35,14 +35,14 @@ equal(){
   # l'idée d'un principe de première différence ternaire.
   declare -i LFBFL_i_first=1
   local LFBFL_current
-  local LFBFL_arg
-  for LFBFL_arg in "$@"; do
+  local LFBFL_argument
+  for LFBFL_argument in "$@"; do
     if [[ LFBFL_i_first -eq 1 ]]; then
-      LFBFL_current="${LFBFL_arg}"
+      LFBFL_current="${LFBFL_argument}"
       LFBFL_i_first=0
       continue
     fi
-    if [[ "${LFBFL_current}" != "${LFBFL_arg}" ]]; then
+    if [[ "${LFBFL_current}" != "${LFBFL_argument}" ]]; then
       return 0
     fi
   done

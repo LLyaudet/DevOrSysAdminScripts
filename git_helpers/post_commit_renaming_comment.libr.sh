@@ -37,9 +37,11 @@ LFBFL_this_file_path=$(realpath "${BASH_SOURCE[0]}")
 LFBFL_this_file_directory=$(dirname "${LFBFL_this_file_path}")
 LFBFL_some_directory="${LFBFL_this_file_directory}/../"
 declare -i LFBFL_i_pushd_result2
-pushd "${LFBFL_some_directory}" || {
+pushd -- "${LFBFL_some_directory}" || {
   LFBFL_i_pushd_result2=$?
-  printf "post_commit_renaming_comment.libr.sh no such directory\n"
+  printf --\
+    "post_commit_renaming_comment.libr.sh pushd %s no such directory\n"\
+    "${LFBFL_some_directory}"
   # shellcheck disable=SC2248
   exit ${LFBFL_i_pushd_result2}
 }

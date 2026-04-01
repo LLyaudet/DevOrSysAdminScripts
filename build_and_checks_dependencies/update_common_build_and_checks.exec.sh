@@ -83,7 +83,7 @@ update_common_build_and_checks(){
   for LFBFL_file_name in "${LFBFL_files_names[@]}"; do
     LFBFL_file_sha512=$(
       sha512sum "./${LFBFL_file_name}"\
-      | cut -f1 -d' '
+      | cut --delimiter=' ' --fields=1
     )
     LFBFL_file_sha512_all="LFBFL_correct_sha512="
     LFBFL_file_sha512_all+="'${LFBFL_file_sha512:0:45}'\n"
@@ -92,7 +92,7 @@ update_common_build_and_checks(){
     LFBFL_file_sha512_all+="  LFBFL_correct_sha512\+="
     LFBFL_file_sha512_all+="'${LFBFL_file_sha512:89}'"
     LFBFL_base_file_name=$(basename "${LFBFL_file_name}")
-    sed -i\
+    sed --in-place\
       "s|@sha512_${LFBFL_base_file_name}@|${LFBFL_file_sha512_all}|g"\
       "./${LFBFL_common_file_name}.temp"
   done
@@ -105,7 +105,7 @@ update_common_build_and_checks(){
 
   LFBFL_file_sha512=$(
     sha512sum "./${LFBFL_common_file_name}"\
-    | cut -f1 -d' '
+    | cut --delimiter=' ' --fields=1
   )
   LFBFL_file_sha512_all="local LFBFL_correct_sha512\n"
   LFBFL_file_sha512_all+="  LFBFL_correct_sha512="
@@ -114,7 +114,7 @@ update_common_build_and_checks(){
   LFBFL_file_sha512_all+="'${LFBFL_file_sha512:45:44}'\n"
   LFBFL_file_sha512_all+="  LFBFL_correct_sha512\+="
   LFBFL_file_sha512_all+="'${LFBFL_file_sha512:89}'"
-  sed -i\
+  sed --in-place\
     "s|@sha512_${LFBFL_common_file_name}@|${LFBFL_file_sha512_all}|g"\
     "../${LFBFL_main_file_name}.temp"
 

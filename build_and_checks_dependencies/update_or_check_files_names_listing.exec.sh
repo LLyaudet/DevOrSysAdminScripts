@@ -61,20 +61,19 @@ update_or_check_files_names_listing(){
   enhanced_set_shell_option pipefail --trap-unset
 
   LFBFL_subdir2="build_and_checks_variables"
-  local LFBFL_listing="./${LFBFL_subdir2}/files_names_listing.txt"
-  readonly LFBFL_listing
-  local LFBFL_data_file_name="./${LFBFL_subdir2}/repository_data.txt"
-  readonly LFBFL_data_file_name
+  declare -r LFBFL_listing="./${LFBFL_subdir2}/files_names_listing.txt"
+  declare -r LFBFL_data_file_path="./${LFBFL_subdir2}/repository_data.txt"
 
   declare -i LFBFL_i_max_line_length
-  grep_variable "${LFBFL_data_file_name}" max_line_length\
+  grep_variable "${LFBFL_data_file_path}" max_line_length\
     --result-variable-prefix="LFBFL_i_"
 
   if [[ LFBFL_i_write -eq 1 ]]; then
     : > "${LFBFL_listing}"
   fi
   # Remove line returns that are here to keep lines short.
-  sed --regexp-extended --null-data 's/(.)\\\n/\1/Mg' "${LFBFL_listing}"\
+  sed --regexp-extended --null-data --expression='s/(.)\\\n/\1/Mg'\
+    -- "${LFBFL_listing}"\
     > "${LFBFL_listing}.temp"
   # shopt -s dotglob was needed at some point but I don't see why now.
   # shellcheck disable=SC2248
@@ -110,12 +109,12 @@ update_or_check_files_names_listing(){
   local LFBFL_base_file_name
   for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do
     # if [[ LFBFL_i_verbose -eq 1 ]]; then
-    #   printf\
+    #   printf --\
     #     "update_or_check_files_names_listing: Maybe ignored file: %s\n"\
     #     "${LFBFL_file_path}"
     # fi
-    git check-ignore --quiet "${LFBFL_file_path}" && continue
-    LFBFL_base_file_name=$(basename "${LFBFL_file_path}")
+    git check-ignore --quiet -- "${LFBFL_file_path}" && continue
+    LFBFL_base_file_name=$(basename -- "${LFBFL_file_path}")
     [[ "${LFBFL_base_file_name}" != files_names_listing.txt* ]]\
       || continue
     if [[ "${LFBFL_base_file_name}" == *.md ]]; then
@@ -124,7 +123,8 @@ update_or_check_files_names_listing(){
       fi
     fi
     if [[ LFBFL_i_verbose -eq 1 ]]; then
-      printf "update_or_check_files_names_listing: Non-ignored file: %s\n"\
+      printf --\
+        "update_or_check_files_names_listing: Non-ignored file: %s\n"\
         "${LFBFL_file_path}"
     fi
     # shellcheck disable=SC2248
@@ -138,7 +138,7 @@ update_or_check_files_names_listing(){
       "${LFBFL_final_suffix}"
     if [[ LFBFL_i_write -eq 1 ]]; then
       # shellcheck disable=SC2001
-      printf "%s\n" "${repeated_split_last_line_result}"\
+      printf -- "%s\n" "${repeated_split_last_line_result}"\
         >> "${LFBFL_listing}"
       continue
     fi
@@ -147,18 +147,18 @@ update_or_check_files_names_listing(){
     then
       :
     else
-      printf "The file %s is not listed in %s.\n"\
+      printf -- "The file %s is not listed in %s.\n"\
         "${LFBFL_file_path}"\
         "${LFBFL_listing}"
       if [[ LFBFL_i_append -eq 1 ]]; then
         # shellcheck disable=SC2001
-        printf "%s\n" "${repeated_split_last_line_result}"\
+        printf -- "%s\n" "${repeated_split_last_line_result}"\
           >> "${LFBFL_listing}"
       fi
     fi
   done
 
-  LFBFL_s_files_paths=$(cat "${LFBFL_listing}.temp")
+  LFBFL_s_files_paths=$(cat -- "${LFBFL_listing}.temp")
   if [[ -n "${LFBFL_s_files_paths}" ]]; then
     mapfile -t LFBFL_arr_files_paths <<< "${LFBFL_s_files_paths}"
   fi
@@ -166,16 +166,16 @@ update_or_check_files_names_listing(){
   for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do
     [[ "${LFBFL_file_path}" != '//'* ]] || continue
     if [[ ! -f "${LFBFL_file_path}" ]]; then
-      printf "The non-file %s is listed in %s.\n"\
+      printf -- "The non-file %s is listed in %s.\n"\
         "${LFBFL_file_path}"\
         "${LFBFL_listing}"
     fi
   done
 
-  rm "${LFBFL_listing}.temp"
+  rm -- "${LFBFL_listing}.temp"
 
   if [[ LFBFL_i_verbose -eq 1 ]]; then
-    cat "${LFBFL_listing}"
+    cat -- "${LFBFL_listing}"
   fi
 }
 

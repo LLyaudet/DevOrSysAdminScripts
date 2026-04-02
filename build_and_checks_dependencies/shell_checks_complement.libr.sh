@@ -48,7 +48,7 @@ check_no_size_of_array_first_element(){
   # shellcheck disable=SC2059
   [[ LFBFL_i_verbose -eq 1 ]] && printf "${LFBFL_s}"
 
-  pcre2grep -M -- $'\$\{#.*(\b|_)arr_(?!.*\[@\])' **/*.sh
+  pcre2grep --multiline -- $'\$\{#(|.*_)arr_(?!.*\[@\])' **/*.sh
 }
 
 check_no_misplaced_then(){

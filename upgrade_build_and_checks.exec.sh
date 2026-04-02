@@ -26,6 +26,7 @@
 
 upgrade_build_and_checks(){
   # Options:
+  #   --add-test-files
   #   --check-download=y|keep (=keep to keep the downloaded files)
   #   --fixed-point-build
   #   --verbose
@@ -47,14 +48,107 @@ upgrade_build_and_checks(){
     LFBFL_check_download="--check-download=y"
   fi
   readonly LFBFL_check_download
+  declare -i LFBFL_add_test_files=0
+  if [[ "$*" == *--add-test-files* ]]; then
+    LFBFL_add_test_files=1
+  fi
+  readonly LFBFL_add_test_files
   (\
     cd build_and_checks_dependencies/\
     && ./update_common_build_and_checks.exec.sh "${LFBFL_verbose}"\
   )
+  if [[ LFBFL_add_test_files -eq 1 ]]; then
+    mkdir --parents -- --a/
+    {
+      printf "function my_function(:;){\n\n}\n"
+      # shellcheck disable=SC2016
+      printf '$my_variable = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+      printf 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";\n'
+    } > --a.php
+    cp -- --a.php --a/
+    {
+      printf "def my_function(:;):\n\n\n"
+      printf 'my_variable = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+      printf 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";\n'
+    } > --a.py
+    cat -- --a.py
+    cp -- --a.py --a/
+    {
+      printf "from typing import Iterable\n"
+      printf "from _collections_abc import dict_items\n"
+      printf "\n"
+      printf "from python_none_objects import NoneIterable\n"
+      printf "\n"
+      printf "def my_function(my_argument : int) -> None:\n"
+      printf "  print(my_argument)\n"
+      printf "\n"
+      printf "my_function(\"abcd\")\n"
+      printf "\n"
+      printf "def my_function2(my_argument : int) -> None:\n"
+      printf "    \"\"\"Some comment.\"\"\"\n"
+      printf "    print(my_argument)\n"
+      printf "\n"
+      printf "def my_function3(my_argument : int) -> None:\n"
+      printf "    \"\"\"Some comment.\"\"\"\n"
+      printf "\n"
+      printf "    print(my_argument)\n"
+      printf "\n"
+      printf "def my_function4(my_argument : int):\n"
+      printf "    \"\"\"Some comment.\"\"\"\n"
+      printf "    def my_sub_function():\n"
+      printf "        print(my_argument)\n"
+      printf "    return my_sub_function\n"
+      printf "\n"
+      printf "def my_function5(my_argument : int):\n"
+      printf "    \"\"\"Some comment.\"\"\"\n"
+      printf "\n"
+      printf "    def my_sub_function():\n"
+      printf "        print(my_argument)\n"
+      printf "    return my_sub_function\n"
+      printf "\n"
+    } > --a2.py
+    cat -- --a2.py
+    cp -- --a2.py --a/
+    {
+      # Error 0 is missing shell header.
+      printf "my_function(){\n"
+      printf "   # Error 1: Indentation is not correct.\n"
+      printf "  sed -e 's/a/b/g' \\\\\n"
+      printf "      -e 's/a/b/g' \"\$1\" # Indentation is correct.\n"
+      printf "  my_variable=\"%%s\\n\"\n"
+      # shellcheck disable=SC2016
+      printf '  printf "${my_variable}"  # Error 2: shellcheck warning\n'
+      local LFBFL_ttp="ttp"
+      local LFBFL_URL="h${LFBFL_ttp}://example.com"
+      printf '  printf "%s" # Error 3: http -> https\n' "${LFBFL_URL}"
+      # shellcheck disable=SC2016
+      printf '  printf "${#some_'
+      printf 'arr_1}" # Error 4\n'
+      # shellcheck disable=SC2016
+      printf '  printf "${#'
+      printf 'arr_1}"  # Error 5\n'
+      printf '  if !'
+      # shellcheck disable=SC2016
+      printf ' [[ $1 -eq 1 ]]; # Error 6\n'
+      printf '  then  # Error 7\n'
+      printf '    my_variable="a"\n'
+      printf '  fi\n'
+      printf '  my_variable="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+      printf 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"  # Error 8 line too long.\n'
+      printf '}\n'
+    } > --a.sh
+    cp -- --a.sh --a/
+  fi
   ./build_and_checks.exec.sh "."\
     "${LFBFL_verbose}"\
     "${LFBFL_fixed_point_build}"\
     "${LFBFL_check_download}"
+  if [[ LFBFL_add_test_files -eq 1 ]]; then
+    cat -- --a.py
+    cat -- --a2.py
+    rm --force --recursive -- --a/
+    rm --force -- --a.php --a.py --a2.py --a.sh
+  fi
 }
 
 upgrade_build_and_checks "$@"

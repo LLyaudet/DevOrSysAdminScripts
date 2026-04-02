@@ -37,9 +37,9 @@ overwrite_if_not_equal(){
   #        2 target did not already exist
   if [[ ! -f "$1" ]]; then
     if [[ -n "$3" ]]; then
-      cp --preserve=mode,ownership,timestamps "$2" "$1"
+      cp --preserve=mode,ownership,timestamps -- "$2" "$1"
     else
-      mv "$2" "$1"
+      mv -- "$2" "$1"
     fi
     return 2
   fi
@@ -47,45 +47,45 @@ overwrite_if_not_equal(){
   if [[ -n "$4" ]]; then
     # Not setting pipefail since the result would still be incorrect.
     # shellcheck disable=SC2312
-    diff "$1" "$2"\
+    diff -- "$1" "$2"\
       | grep --extended-regexp "^(>|<)"\
       | grep --invert-match "/$"
     LFBFL_i_is_equal=${PIPESTATUS[2]}
     if [[ LFBFL_i_is_equal -eq 1 ]]; then
-      grep --only-matching "[^ ]*/$" "$1"\
+      grep --only-matching --regexp="[^ ]*/$" -- "$1"\
         > "overwrite_if_not_equal.file1.temp"
-      grep --only-matching "[^ ]*/$" "$2"\
+      grep --only-matching --regexp="[^ ]*/$" -- "$2"\
         > "overwrite_if_not_equal.file2.temp"
       if [[ -n "$5" ]]; then
-        diff "overwrite_if_not_equal.file1.temp"\
-          "overwrite_if_not_equal.file2.temp"\
+        diff overwrite_if_not_equal.file1.temp\
+          overwrite_if_not_equal.file2.temp\
           > /dev/null
       else
-        diff "overwrite_if_not_equal.file1.temp"\
-          "overwrite_if_not_equal.file2.temp"
+        diff overwrite_if_not_equal.file1.temp\
+          overwrite_if_not_equal.file2.temp
       fi
       LFBFL_i_is_equal=1-$?
-      rm "overwrite_if_not_equal.file1.temp"\
-        "overwrite_if_not_equal.file2.temp"
+      rm overwrite_if_not_equal.file1.temp\
+        overwrite_if_not_equal.file2.temp
     fi
   else
     if [[ -n "$5" ]]; then
-      diff --brief "$1" "$2" > /dev/null
+      diff --brief -- "$1" "$2" > /dev/null
     else
-      diff --brief "$1" "$2"
+      diff --brief -- "$1" "$2"
     fi
     LFBFL_i_is_equal=1-$?
   fi
   if [[ LFBFL_i_is_equal -eq 1 ]]; then
     if [[ -z "$3" ]]; then
-      rm "$2"
+      rm --"$2"
     fi
     return 0
   fi
   if [[ -n "$3" ]]; then
-    cp --preserve=mode,ownership,timestamps "$2" "$1"
+    cp --preserve=mode,ownership,timestamps -- "$2" "$1"
   else
-    mv "$2" "$1"
+    mv -- "$2" "$1"
   fi
   return 1
 }

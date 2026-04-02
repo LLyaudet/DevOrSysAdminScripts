@@ -135,7 +135,7 @@ upgrade_build_and_checks(){
       printf '  fi\n'
       printf "\n"
       # shellcheck disable=SC2016
-      printf '  if[[ $1 -eq 1 ]];\n'
+      printf '  if [[ $1 -eq 1 ]];\n'
       printf '  then  # Error 8 : another case of misplaced then\n'
       printf '    my_variable="a"\n'
       printf '  fi\n'

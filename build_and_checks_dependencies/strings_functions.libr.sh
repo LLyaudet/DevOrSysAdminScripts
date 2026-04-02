@@ -41,8 +41,8 @@ split_line_at(){
   # $2=position : number of characters in split_line_at_result_beginning
   declare -g split_line_at_result_beginning="${1:0:$2}"
   declare -g split_line_at_result_end="${1:$2}"
-  # printf "%s\n" "$split_line_at_result_beginning"
-  # printf "%s\n" "$split_line_at_result_end"
+  # printf -- "%s\n" "$split_line_at_result_beginning"
+  # printf -- "%s\n" "$split_line_at_result_end"
 }
 
 #--------------------------------------------------------------------------
@@ -915,7 +915,7 @@ split_score(){
   get_split_score_exec
   declare -r LFBFL_command="${SPLIT_SCORE_EXEC} $1 $2 '$3' '$4' $5 $6"
   declare -gi i_split_score_result
-  i_split_score_result=$(eval "${LFBFL_command}")
+  i_split_score_result=$(eval -- "${LFBFL_command}")
 }
 
 # This function is currently not called,
@@ -1038,7 +1038,7 @@ split_line_at_most(){
   && (($4 & SSP_POSITION_NOT_DECREASING_AFTER)); then
     for ((LFBFL_i = LFBFL_i_max; LFBFL_i >= 0; --LFBFL_i)) do
       LFBFL_current_char="${1:${LFBFL_i}:1}"
-      eval "$3 '${LFBFL_current_char}' 1"
+      eval -- "$3 '${LFBFL_current_char}' 1"
       # needs j=i+1 printf "%s|%s\n" "${i_split_score_result}" "${LFBFL_j}"
       if [[ i_split_score_result -ge 1 ]]; then
         LFBFL_j=$((LFBFL_i + 1))
@@ -1052,7 +1052,7 @@ split_line_at_most(){
           break
         fi
       fi
-      eval "$3 '${LFBFL_current_char}' 0"
+      eval -- "$3 '${LFBFL_current_char}' 0"
       # printf "%s|%s\n" "${i_split_score_result}" "${LFBFL_i}"
       if [[ i_split_score_result -ge 1 ]]; then
         # printf "%s|%s\n" "${i_split_score_result}" "${LFBFL_i}"
@@ -1076,7 +1076,7 @@ split_line_at_most(){
       # And since the algorithm is to take the largest position with
       # maximum score, there is a possibility that we'll break on a found
       # score before but for splitting on a score after.
-      eval "$3 '${LFBFL_current_char}' 1"
+      eval -- "$3 '${LFBFL_current_char}' 1"
       # needs j=i+1 printf "%s|%s\n" "${i_split_score_result}" "${LFBFL_j}"
       if [[ i_split_score_result -ge 1 ]]; then
         LFBFL_j=$((LFBFL_i + 1))
@@ -1089,7 +1089,7 @@ split_line_at_most(){
           )
         fi
       fi
-      eval "$3 '${LFBFL_current_char}' 0"
+      eval -- "$3 '${LFBFL_current_char}' 0"
       # printf "%s|%s\n" "${i_split_score_result}" "${LFBFL_i}"
       if [[ i_split_score_result -ge 1 ]]; then
         # printf "%s|%s\n" "${i_split_score_result}" "${LFBFL_i}"
@@ -1106,7 +1106,7 @@ split_line_at_most(){
   else
     for ((LFBFL_i = 0; LFBFL_i <= LFBFL_i_max;)) do
       LFBFL_current_char="${1:${LFBFL_i}:1}"
-      eval "$3 '${LFBFL_current_char}' ${LFBFL_i} 0"
+      eval -- "$3 '${LFBFL_current_char}' ${LFBFL_i} 0"
       # printf "%s|%s\n" "${i_split_score_result}" "${LFBFL_i}"
       if [[ i_split_score_result -ge 1 ]]; then
         # printf "%s|%s\n" "${i_split_score_result}" "${LFBFL_i}"
@@ -1119,7 +1119,7 @@ split_line_at_most(){
         fi
       fi
       ((++LFBFL_i))
-      eval "$3 '${LFBFL_current_char}' ${LFBFL_i} 1"
+      eval -- "$3 '${LFBFL_current_char}' ${LFBFL_i} 1"
       # printf "%s|%s\n" "${i_split_score_result}" "${LFBFL_i}"
       if [[ i_split_score_result -ge 1 ]]; then
         # printf "%s|%s\n" "${i_split_score_result}" "${LFBFL_i}"
@@ -1203,19 +1203,19 @@ split_last_line(){
   get_overlength_regexp ${LFBFL_i_overlength}
 
   # Testing if some line is too long.
-  printf "%s" "$1"\
+  printf -- "%s" "$1"\
     | grep --quiet "${get_overlength_regexp_result}"
   if [[ ${PIPESTATUS[1]} -eq 1 ]]; then
     return
   fi
 
   declare -r LFBFL_start=$(
-    printf "%s" "$1"\
+    printf -- "%s" "$1"\
     | head --lines=-1
   )
   # printf "start: %s\n" "${LFBFL_start}"
   declare -r LFBFL_last_line=$(
-    printf "%s" "$1"\
+    printf -- "%s" "$1"\
     | tail --lines=1
   )
   # printf "last_line: %s\n" "${LFBFL_last_line}"

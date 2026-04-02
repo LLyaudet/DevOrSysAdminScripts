@@ -60,19 +60,12 @@ upgrade_build_and_checks(){
   if [[ LFBFL_add_test_files -eq 1 ]]; then
     mkdir --parents -- --a/
     {
-      printf "function my_function(:;){\n\n}\n"
+      printf "<?php\nfunction my_function(:;){\n\n}\n"
       # shellcheck disable=SC2016
       printf '$my_variable = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
       printf 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";\n'
     } > --a.php
     cp -- --a.php --a/
-    {
-      printf "def my_function(:;):\n\n\n"
-      printf 'my_variable = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
-      printf 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";\n'
-    } > --a.py
-    cat -- --a.py
-    cp -- --a.py --a/
     {
       printf "from typing import Iterable\n"
       printf "from _collections_abc import dict_items\n"
@@ -106,6 +99,13 @@ upgrade_build_and_checks(){
       printf "        print(my_argument)\n"
       printf "    return my_sub_function\n"
       printf "\n"
+    } > --a.py
+    cat -- --a.py
+    cp -- --a.py --a/
+    {
+      printf "def my_function(:;):\n\n\n"
+      printf 'my_variable = "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+      printf 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";\n'
     } > --a2.py
     cat -- --a2.py
     cp -- --a2.py --a/

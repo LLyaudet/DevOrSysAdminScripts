@@ -48,7 +48,7 @@ get_upgrade_venvs_time_interval_in_seconds(){
     --result-variable-prefix="LFBFL_"
 
   [[ LFBFL_i_verbose -eq 1 ]]\
-    && printf "You say \"%s\".\n"\
+    && printf -- "You say \"%s\".\n"\
         "${LFBFL_upgrade_venvs_time_interval_in_seconds}"
 
   case ${LFBFL_upgrade_venvs_time_interval_in_seconds} in
@@ -59,6 +59,6 @@ get_upgrade_venvs_time_interval_in_seconds(){
   esac
 
   [[ LFBFL_i_verbose -eq 1 ]]\
-    && printf "I say \"%s\".\n"\
+    && printf -- "I say \"%s\".\n"\
         "${LFBFL_upgrade_venvs_time_interval_in_seconds}"
 }

@@ -58,8 +58,8 @@ all_distinct(){
   declare -ir LFBFL_ij_max=$#
   declare -i LFBFL_i
   declare -i LFBFL_j
-  for ((LFBFL_i=1; LFBFL_i<LFBFL_ij_max; ++LFBFL_i)); do
-    for ((LFBFL_j = LFBFL_i + 1; LFBFL_j<=LFBFL_ij_max; ++LFBFL_j)); do
+  for ((LFBFL_i = 1; LFBFL_i < LFBFL_ij_max; ++LFBFL_i)); do
+    for ((LFBFL_j = LFBFL_i + 1; LFBFL_j <= LFBFL_ij_max; ++LFBFL_j)); do
       [[ "${!LFBFL_i}" == "${!LFBFL_j}" ]] && return 0
     done
   done
@@ -82,7 +82,7 @@ all_distinct2(){
   declare -i LFBFL_i
   declare -ir LFBFL_i_max=${#LFBFL_arr_sorted_arguments[@]}
   LFBFL_previous_element=${LFBFL_arr_sorted_arguments[0]}
-  for ((LFBFL_i=1; LFBFL_i<LFBFL_i_max; ++LFBFL_i)); do
+  for ((LFBFL_i = 1; LFBFL_i < LFBFL_i_max; ++LFBFL_i)); do
     LFBFL_element="${LFBFL_arr_sorted_arguments[${LFBFL_i}]}"
     if [[ "${LFBFL_previous_element}" == "${LFBFL_element}" ]]; then
       return 0

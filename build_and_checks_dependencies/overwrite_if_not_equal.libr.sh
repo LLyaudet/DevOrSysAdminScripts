@@ -78,7 +78,7 @@ overwrite_if_not_equal(){
   fi
   if [[ LFBFL_i_is_equal -eq 1 ]]; then
     if [[ -z "$3" ]]; then
-      rm --"$2"
+      rm -- "$2"
     fi
     return 0
   fi

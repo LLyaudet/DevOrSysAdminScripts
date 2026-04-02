@@ -69,8 +69,8 @@ check_collections_abc_place(){
   readonly LFBFL_arr_files_paths
   for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do
     sed --regexp-extended --null-data\
-      's/\n(\nfrom _collections_abc[^\n]*)/\1\n/Mg'\
-      "${LFBFL_file_path}"\
+      --expression='s/\n(\nfrom _collections_abc[^\n]*)/\1\n/Mg'\
+      -- "${LFBFL_file_path}"\
       > "${LFBFL_file_path}${LFBFL_temp}"
     overwrite_if_not_equal "${LFBFL_file_path}"\
       "${LFBFL_file_path}${LFBFL_temp}"

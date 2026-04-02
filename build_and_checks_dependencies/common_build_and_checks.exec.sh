@@ -278,9 +278,9 @@ common_build_and_checks(){
   LFBFL_file_name="shell_checks_complement.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='bba38e23068ae466d27bf1547865f4c00a4d8b06a4c4f'
-  LFBFL_correct_sha512+='d9b60c6e1df57f07c0fc777bd4ae713be49970bb17c9'
-  LFBFL_correct_sha512+='a11e1d6449b5503f96dc52cf1b78816e3aa8039'
+  LFBFL_correct_sha512='7da795615505504037acbf355efc0a74bb5ce6ca6fbd3'
+  LFBFL_correct_sha512+='68d69efabb07d2da95707357b0330bb94aebcafd7b40'
+  LFBFL_correct_sha512+='b179739406b63a9a142872d6513be0e40e796cf'
   wrapped_wget_sha512
 
   LFBFL_file_name="split_score.exec.php"
@@ -477,6 +477,26 @@ common_build_and_checks(){
     fi
   fi
 
+  printf "Analyzing too long lines\n"
+  # shellcheck disable=SC2248
+  too_long_code_lines "${LFBFL_some_common_options2[@]}"
+
+  printf "Analyzing URLs\n"
+  check_URLs "${LFBFL_some_common_options2[@]}" \
+    | relevant_grep
+
+  printf "Analyzing strange characters: hover over in doubt\n"
+  # shellcheck disable=SC1111
+  LFBFL_usual_characters="\x00-\x7Fàâéèêëîïôûç©“”└─├│«»…"
+  grep --binary-files=without-match --color=always --exclude-dir .git\
+    --line-number --perl-regexp --recursive --\
+    "[^${LFBFL_usual_characters}]" .\
+    | relevant_grep
+
+  printf "Grammar and spelling check\n"
+  grammar_and_spelling_check "${LFBFL_data_file_path}"\
+    "${LFBFL_some_common_options2[@]}"
+
   printf "Running shellcheck\n"
   LFBFL_s_files_paths=$(
     find . -type f -name "*.sh"\
@@ -491,6 +511,14 @@ common_build_and_checks(){
   fi
   printf "Running shell_checks_complement\n"
   shell_checks_complement "${LFBFL_some_common_options2[@]}"
+
+  printf "Analyzing shell scripts beginnings\n"
+  check_shell_scripts_beginnings "${LFBFL_some_common_options2[@]}" \
+    | relevant_grep
+
+  printf "Analyzing shell scripts indentation\n"
+  check_shell_scripts_indentation "${LFBFL_some_common_options2[@]}" \
+    | relevant_grep
 
   printf -- "---Python---\n"
 
@@ -717,34 +745,6 @@ common_build_and_checks(){
     done
   fi
   printf -- "---JS end---\n"
-
-  printf "Analyzing too long lines\n"
-  # shellcheck disable=SC2248
-  too_long_code_lines "${LFBFL_some_common_options2[@]}"
-
-  printf "Analyzing shell scripts beginnings\n"
-  check_shell_scripts_beginnings "${LFBFL_some_common_options2[@]}" \
-    | relevant_grep
-
-  printf "Analyzing shell scripts indentation\n"
-  check_shell_scripts_indentation "${LFBFL_some_common_options2[@]}" \
-    | relevant_grep
-
-  printf "Analyzing URLs\n"
-  check_URLs "${LFBFL_some_common_options2[@]}" \
-    | relevant_grep
-
-  printf "Analyzing strange characters: hover over in doubt\n"
-  # shellcheck disable=SC1111
-  LFBFL_usual_characters="\x00-\x7Fàâéèêëîïôûç©“”└─├│«»…"
-  grep --binary-files=without-match --color=always --exclude-dir .git\
-    --line-number --perl-regexp --recursive --\
-    "[^${LFBFL_usual_characters}]" .\
-    | relevant_grep
-
-  printf "Grammar and spelling check\n"
-  grammar_and_spelling_check "${LFBFL_data_file_path}"\
-    "${LFBFL_some_common_options2[@]}"
 
   [[ LFBFL_i_directory_changed -eq 0 ]] && popd_from_work_directory
 

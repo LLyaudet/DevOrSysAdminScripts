@@ -130,11 +130,17 @@ upgrade_build_and_checks(){
       printf '  if !'
       # shellcheck disable=SC2016
       printf ' [[ $1 -eq 1 ]]; # Error 6\n'
-      printf '  then  # Error 7\n'
+      printf '  then  # Error 7 : misplaced then\n'
+      printf '    my_variable="a"\n'
+      printf '  fi\n'
+      printf "\n"
+      # shellcheck disable=SC2016
+      printf '  if[[ $1 -eq 1 ]];\n'
+      printf '  then  # Error 8 : another case of misplaced then\n'
       printf '    my_variable="a"\n'
       printf '  fi\n'
       printf '  my_variable="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
-      printf 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"  # Error 8 line too long.\n'
+      printf 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"  # Error 9 line too long.\n'
       printf '}\n'
     } > --a.sh
     cp -- --a.sh --a/

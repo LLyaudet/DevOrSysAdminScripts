@@ -82,7 +82,7 @@ ll_wc(){
     # with --files0-from handling.
     # wc does not display file_name when stream...
     # hence cat of last arg "${!#}"
-    cat "${!#}"\
+    cat -- "${!#}"\
       | wc "${ll_wc_var_args[@]}"
   else
     # printf "normal\n"
@@ -127,11 +127,11 @@ in_place_grep(){
   # Almost as fast (on large files) and correct in all cases :).
   # Thanks Paul Eggert for the suggestion :).
   # https://debbugs.gnu.org/cgi/bugreport.cgi?bug=80547
-  if cmp --silent "${LFBFL_temp}" "${!#}"; then
-    rm "${LFBFL_temp}"
+  if cmp --silent -- "${LFBFL_temp}" "${!#}"; then
+    rm -- "${LFBFL_temp}"
     return
   fi
-  mv "${LFBFL_temp}" "${!#}"
+  mv -- "${LFBFL_temp}" "${!#}"
 }
 
 grep_fixed_string_with_anchor(){
@@ -143,8 +143,8 @@ grep_fixed_string_with_anchor(){
   #   Apart from $1 and $2 and the options above,
   #   all other arguments are considered grep_options like --quiet
   #   for example.
-  #   But note that --fixed-strings will be added below, you don't need to
-  #   supply it.
+  #   But note that --fixed-strings will be added below,
+  #   you don't need to supply it.
   declare -a LFBFL_grep_options=()
   declare -a LFBFL_grep_options2=()
   declare -i LFBFL_i=0
@@ -209,7 +209,7 @@ grep_fixed_string_with_anchor(){
       if [[ LFBFL_i_quiet -eq 1 ]]; then
         break
       else
-        printf "%s\n" "${LFBFL_some_line}"
+        printf -- "%s\n" "${LFBFL_some_line}"
       fi
       continue
     fi
@@ -230,7 +230,7 @@ grep_fixed_string_with_anchor(){
       if [[ LFBFL_i_quiet -eq 1 ]]; then
         break
       else
-        printf "%s\n" "${LFBFL_some_line}"
+        printf -- "%s\n" "${LFBFL_some_line}"
       fi
     fi
   done
@@ -253,7 +253,7 @@ grep_variable(){
   if [[ "${LFBFL_s_replace}" != $'\n' ]]; then
     # sed -Ez -e...
     LFBFL_variable_value=$(
-      grep --only-matching --perl-regexp "${LFBFL_regexp}" "$1"\
+      grep --only-matching --perl-regexp -- "${LFBFL_regexp}" "$1"\
       | sed --null-data --regexp-extended\
         --expression='s/\n/'"${LFBFL_s_replace}"'/Mg'
     )
@@ -264,7 +264,7 @@ grep_variable(){
     fi
   else
     LFBFL_variable_value=$(
-      grep --only-matching --perl-regexp "${LFBFL_regexp}" "$1"
+      grep --only-matching --perl-regexp -- "${LFBFL_regexp}" "$1"
     )
   fi
   local LFBFL_prefix=""

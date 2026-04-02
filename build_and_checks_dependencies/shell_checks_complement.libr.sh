@@ -44,9 +44,9 @@ check_no_size_of_array_first_element(){
   enhanced_set_bash_option globstar --trap-unset
 
   local LFBFL_s="Checking that shell scripts do not"
-  LFBFL_s+=" contain wrong array size expansion."
-  [[ LFBFL_i_verbose -eq 1 ]]\
-    && printf "%s\n" "${LFBFL_s}"
+  LFBFL_s+=" contain wrong array size expansion.\n"
+  # shellcheck disable=SC2059
+  [[ LFBFL_i_verbose -eq 1 ]] && printf "${LFBFL_s}"
 
   pcre2grep -M -- $'\$\{#.*(\b|_)arr_(?!.*\[@\])' **/*.sh
 }

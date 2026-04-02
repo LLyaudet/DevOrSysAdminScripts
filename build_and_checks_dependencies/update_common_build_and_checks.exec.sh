@@ -29,7 +29,7 @@ source "overwrite_if_not_equal.libr.sh"
 update_common_build_and_checks(){
   declare -i LFBFL_i_verbose=0
   if [[ "$*" == *--verbose* ]]; then
-    printf "%s %s\n" "$0" "$*"
+    printf -- "%s %s\n" "$0" "$*"
     LFBFL_i_verbose=1
   fi
   readonly LFBFL_i_verbose
@@ -41,7 +41,7 @@ update_common_build_and_checks(){
   fi
 
   declare -r LFBFL_common_file_name="common_build_and_checks.exec.sh"
-  cp "./${LFBFL_common_file_name}.tpl"\
+  cp -- "./${LFBFL_common_file_name}.tpl"\
     "./${LFBFL_common_file_name}.temp"
 
   declare -ar LFBFL_files_names=(
@@ -91,7 +91,7 @@ update_common_build_and_checks(){
     LFBFL_file_sha512_all+="'${LFBFL_file_sha512:45:44}'\n"
     LFBFL_file_sha512_all+="  LFBFL_correct_sha512\+="
     LFBFL_file_sha512_all+="'${LFBFL_file_sha512:89}'"
-    LFBFL_base_file_name=$(basename "${LFBFL_file_name}")
+    LFBFL_base_file_name=$(basename -- "${LFBFL_file_name}")
     sed --in-place\
       "s|@sha512_${LFBFL_base_file_name}@|${LFBFL_file_sha512_all}|g"\
       "./${LFBFL_common_file_name}.temp"

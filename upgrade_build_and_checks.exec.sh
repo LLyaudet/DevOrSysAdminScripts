@@ -34,11 +34,12 @@ upgrade_build_and_checks(){
     printf -- "%s %s\n" "$0" "$*"
     LFBFL_verbose="--verbose"
   fi
+  readonly LFBFL_verbose
   local LFBFL_fixed_point_build=""
   if [[ "$*" == *--fixed-point-build* ]]; then
     LFBFL_fixed_point_build="--fixed-point-build"
   fi
-  readonly LFBFL_verbose
+  readonly LFBFL_fixed_point_build
   local LFBFL_check_download=""
   if [[ "$*" == *--check-download=keep* ]]; then
     LFBFL_check_download="--check-download=keep"

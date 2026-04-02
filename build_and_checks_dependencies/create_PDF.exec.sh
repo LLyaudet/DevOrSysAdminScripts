@@ -59,47 +59,47 @@ create_PDF(){
   keep_options LFBFL_common_options --verbose
 
   local LFBFL_subdir2="build_and_checks_variables"
-  local LFBFL_data_file_name="${LFBFL_subdir2}/repository_data.txt"
+  local LFBFL_data_file_path="${LFBFL_subdir2}/repository_data.txt"
   local LFBFL_repository_name=""
-  grep_variable "${LFBFL_data_file_name}" repository_name\
+  grep_variable "${LFBFL_data_file_path}" repository_name\
     --result-variable-prefix="LFBFL_"\
     --replace-line-returns-by=""
 
   local LFBFL_repository_web_url=""
-  grep_variable "${LFBFL_data_file_name}" repository_web_url\
+  grep_variable "${LFBFL_data_file_path}" repository_web_url\
     --result-variable-prefix="LFBFL_"\
     --replace-line-returns-by=""
 
   local LFBFL_repository_git_url=""
-  grep_variable "${LFBFL_data_file_name}" repository_git_url\
+  grep_variable "${LFBFL_data_file_path}" repository_git_url\
     --result-variable-prefix="LFBFL_"\
     --replace-line-returns-by=""
 
   local LFBFL_abstract=""
-  grep_variable "${LFBFL_data_file_name}" abstract\
+  grep_variable "${LFBFL_data_file_path}" abstract\
     --result-variable-prefix="LFBFL_"
 
   local LFBFL_acknowledgments=""
-  grep_variable "${LFBFL_data_file_name}" acknowledgments\
+  grep_variable "${LFBFL_data_file_path}" acknowledgments\
     --result-variable-prefix="LFBFL_"
 
   local LFBFL_author_email=""
-  grep_variable "${LFBFL_data_file_name}" author_email\
+  grep_variable "${LFBFL_data_file_path}" author_email\
     --result-variable-prefix="LFBFL_"\
     --replace-line-returns-by=""
 
   local LFBFL_author_full_name=""
-  grep_variable "${LFBFL_data_file_name}" author_full_name\
+  grep_variable "${LFBFL_data_file_path}" author_full_name\
     --result-variable-prefix="LFBFL_"\
     --replace-line-returns-by=" "
 
   local LFBFL_author_website=""
-  grep_variable "${LFBFL_data_file_name}" author_website\
+  grep_variable "${LFBFL_data_file_path}" author_website\
     --result-variable-prefix="LFBFL_"\
     --replace-line-returns-by=""
 
   declare -i LFBFL_i_max_line_length
-  grep_variable "${LFBFL_data_file_name}" max_line_length\
+  grep_variable "${LFBFL_data_file_path}" max_line_length\
     --result-variable-prefix="LFBFL_i_"
 
   declare -r LFBFL_current_date=$(date -I"date")
@@ -571,7 +571,7 @@ create_PDF(){
   fi
 
   local LFBFL_latex_command=""
-  grep_variable "${LFBFL_data_file_name}" latex_command\
+  grep_variable "${LFBFL_data_file_path}" latex_command\
     --result-variable-prefix="LFBFL_"\
     --replace-line-returns-by=""
 

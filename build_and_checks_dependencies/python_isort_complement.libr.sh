@@ -43,7 +43,6 @@ check_collections_abc_place(){
   local LFBFL_work_directory=""
   get_work_directory_option "$@"
   declare -a LFBFL_return_traps_stack
-  local LFBFL_previous_return_trap
   init_return_trap
   pushd_to_work_directory --trap-popd
   can_continue_after_enhanced_pushd || return 1
@@ -86,7 +85,6 @@ python_isort_complement(){
   local LFBFL_work_directory=""
   get_work_directory_option "$@"
   declare -a LFBFL_return_traps_stack
-  local LFBFL_previous_return_trap
   init_return_trap
   pushd_to_work_directory --trap-popd
   can_continue_after_enhanced_pushd || return 1

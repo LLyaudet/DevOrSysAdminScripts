@@ -309,7 +309,6 @@ common_build_and_checks(){
     && enhanced_unset_bash_option extglob
 
   declare -a LFBFL_return_traps_stack
-  local LFBFL_previous_return_trap
   init_return_trap
 
   enhanced_set_shell_option pipefail --trap-unset

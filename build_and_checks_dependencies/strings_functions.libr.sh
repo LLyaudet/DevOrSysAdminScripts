@@ -1191,7 +1191,6 @@ split_last_line(){
   declare -i LFBFL_i_verbose=0
   get_verbose_option "$@"
   declare -a LFBFL_return_traps_stack
-  local LFBFL_previous_return_trap
   init_return_trap
 
   enhanced_set_shell_option pipefail --trap-unset

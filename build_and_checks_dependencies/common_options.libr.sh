@@ -41,26 +41,29 @@ get_where_was_i(){
 # RETURN traps handling
 # Add the following lines at the start of a function.
 #   declare -a LFBFL_return_traps_stack
-#   local LFBFL_previous_return_trap
 #   init_return_trap
 
 init_return_trap(){
+  local LFBFL_previous_return_trap
   local LFBFL_previous_return_trap2
-  LFBFL_previous_return_trap2=$(trap -p RETURN)
+  LFBFL_previous_return_trap=$(trap -p RETURN)
   # shellcheck disable=SC2154,SC2309
   if [[ LFBFL_i_verbose -eq 1 ]]; then
     local LFBFL_where_was_i
     get_where_was_i 2
     printf "%s previous_return_trap is: %s.\n"\
       "${LFBFL_where_was_i}"\
-      "${LFBFL_previous_return_trap2}"
+      "${LFBFL_previous_return_trap}"
   fi
-  if [[ -z "${LFBFL_previous_return_trap2}" ]]; then
-    LFBFL_previous_return_trap2="trap - RETURN"
+  if [[ -z "${LFBFL_previous_return_trap}" ]]; then
+    LFBFL_previous_return_trap="trap - RETURN"
   fi
+  readonly LFBFL_previous_return_trap
   declare -ir LFBFL_function_depth=$((${#FUNCNAME[@]} - 1))
-  LFBFL_previous_return_trap="${LFBFL_function_depth}:"
-  LFBFL_previous_return_trap+="${LFBFL_previous_return_trap2}"
+  LFBFL_previous_return_trap2="${LFBFL_function_depth}:"
+  LFBFL_previous_return_trap2+="${LFBFL_previous_return_trap}"
+  readonly LFBFL_previous_return_trap2
+  LFBFL_return_traps_stack+=("${LFBFL_previous_return_trap2}")
   trap 'execute_return_traps' RETURN
 }
 
@@ -82,7 +85,7 @@ execute_return_traps(){
   local LFBFL_where_was_i
   get_where_was_i 2
   declare -ir LFBFL_function_depth=$((${#FUNCNAME[@]} - 1))
-  while [[ -n "${LFBFL_return_traps_stack}" ]]; do
+  while [[ ${#LFBFL_return_traps_stack[@]} -gt 0 ]]; do
     LFBFL_some_return_trap="${LFBFL_return_traps_stack[-1]}"
     if [[ "${LFBFL_some_return_trap}" != ${LFBFL_function_depth}:* ]]; then
       # We only treat the top of the stack that should correspond to the
@@ -92,27 +95,19 @@ execute_return_traps(){
     LFBFL_some_return_trap=${LFBFL_some_return_trap#*:}
     # shellcheck disable=SC2154,SC2309
     if [[ LFBFL_i_verbose -eq 1 ]]; then
-      printf "%s executing some return trap: %s.\n"\
-        "${LFBFL_where_was_i}"\
-        "${LFBFL_some_return_trap}"
+      if [[ ${#LFBFL_return_traps_stack[@]} -gt 1 ]]; then
+        printf "%s executing some return trap: %s.\n"\
+          "${LFBFL_where_was_i}"\
+          "${LFBFL_some_return_trap}"
+      else
+        printf "%s setting back to previous_return_trap: %s.\n"\
+          "${LFBFL_where_was_i}"\
+          "${LFBFL_some_return_trap}"
+      fi
     fi
     eval -- "${LFBFL_some_return_trap}"
     unset 'LFBFL_return_traps_stack[-1]'
   done
-  if [[ "${LFBFL_previous_return_trap}" != ${LFBFL_function_depth}:* ]];
-  then
-    # We only set the previous return trap if such a trap was replaced
-    # by an init_return_trap.
-    return
-  fi
-  LFBFL_previous_return_trap=${LFBFL_previous_return_trap#*:}
-  # shellcheck disable=SC2154,SC2309
-  if [[ LFBFL_i_verbose -eq 1 ]]; then
-    printf "%s setting back to previous_return_trap: %s.\n"\
-      "${LFBFL_where_was_i}"\
-      "${LFBFL_previous_return_trap}"
-  fi
-  eval -- "${LFBFL_previous_return_trap}"
 }
 
 

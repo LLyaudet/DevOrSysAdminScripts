@@ -36,7 +36,6 @@ check_no_size_of_array_first_element(){
   local LFBFL_work_directory=""
   get_work_directory_option "$@"
   declare -a LFBFL_return_traps_stack
-  local LFBFL_previous_return_trap
   init_return_trap
   pushd_to_work_directory --trap-popd
   can_continue_after_enhanced_pushd || return 1
@@ -61,7 +60,6 @@ check_no_misplaced_then(){
   local LFBFL_work_directory=""
   get_work_directory_option "$@"
   declare -a LFBFL_return_traps_stack
-  local LFBFL_previous_return_trap
   init_return_trap
   pushd_to_work_directory --trap-popd
   can_continue_after_enhanced_pushd || return 1
@@ -98,7 +96,6 @@ check_no_negation_before_bash_test(){
   local LFBFL_work_directory=""
   get_work_directory_option "$@"
   declare -a LFBFL_return_traps_stack
-  local LFBFL_previous_return_trap
   init_return_trap
   pushd_to_work_directory --trap-popd
   can_continue_after_enhanced_pushd || return 1
@@ -120,7 +117,6 @@ shell_checks_complement(){
   local LFBFL_work_directory=""
   get_work_directory_option "$@"
   declare -a LFBFL_return_traps_stack
-  local LFBFL_previous_return_trap
   init_return_trap
   pushd_to_work_directory --trap-popd
   can_continue_after_enhanced_pushd || return 1

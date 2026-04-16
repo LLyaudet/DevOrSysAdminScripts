@@ -42,7 +42,6 @@ check_no_empty_line_after_python_function_docstring(){
   local LFBFL_work_directory=""
   get_work_directory_option "$@"
   declare -a LFBFL_return_traps_stack
-  local LFBFL_previous_return_trap
   init_return_trap
   pushd_to_work_directory --trap-popd
   can_continue_after_enhanced_pushd || return 1
@@ -65,7 +64,6 @@ python_black_complement(){
   local LFBFL_work_directory=""
   get_work_directory_option "$@"
   declare -a LFBFL_return_traps_stack
-  local LFBFL_previous_return_trap
   init_return_trap
   pushd_to_work_directory --trap-popd
   can_continue_after_enhanced_pushd || return 1

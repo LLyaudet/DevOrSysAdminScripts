@@ -47,7 +47,6 @@ build_licenses_templates(){
   local LFBFL_work_directory=""
   get_work_directory_option "$@"
   declare -a LFBFL_return_traps_stack
-  local LFBFL_previous_return_trap
   init_return_trap
 
   enhanced_set_shell_option pipefail --trap-unset

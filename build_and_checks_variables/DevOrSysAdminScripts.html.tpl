@@ -128,7 +128,7 @@ Code lines: @number_of_lines@
 <h2>Contents</h2>
 
 <ol class="level1">
-  <li><a href="#section1">Files Tree</a></li>
+  <li><a href="#section1">Files trees</a></li>
   <li><a href="#section2">Notes on licenses and dependencies</a></li>
   <li><a href="#section3">Listing of files</a><br>
     <ol class="level2">
@@ -138,7 +138,7 @@ Code lines: @number_of_lines@
 </ol>
 
 
-<h2 id="section1">1 Files tree</h2>
+<h2 id="section1">1 Files trees</h2>
 <pre class="verbatim">
 @current_tree_light@
 </pre>

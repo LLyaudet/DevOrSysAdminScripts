@@ -84,8 +84,8 @@ Code lines: @number_of_lines@
 \tableofcontents
 \newpage
 
-\section{Files tree}
-\label{section:tree}
+\section{Files trees}
+\label{section:trees}
 
 \begin{verbatim}
 @current_tree_light@

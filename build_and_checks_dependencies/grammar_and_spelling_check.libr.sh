@@ -66,7 +66,7 @@ grammar_and_spelling_check(){
     return
   fi
   if [[ LFBFL_i_verbose -eq 1 ]]; then
-    printf -- "grammar_and_spelling_check: Command found: %s.\n"\
+    printf "grammar_and_spelling_check: Command found: %s.\n"\
       "${LFBFL_command}"
   fi
   local LFBFL_file_path
@@ -76,7 +76,7 @@ grammar_and_spelling_check(){
   local LFBFL_eval_string
   for LFBFL_pattern in "${COMMON_TEXT_FILES_GLOB_PATTERNS[@]}"; do
     if [[ LFBFL_i_verbose -eq 1 ]]; then
-      printf -- "grammar_and_spelling_check: Iterating on pattern: %s.\n"\
+      printf "grammar_and_spelling_check: Iterating on pattern: %s.\n"\
         "${LFBFL_pattern}"
     fi
     LFBFL_s_files_paths=$(

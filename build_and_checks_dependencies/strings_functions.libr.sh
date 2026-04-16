@@ -41,8 +41,8 @@ split_line_at(){
   # $2=position : number of characters in split_line_at_result_beginning
   declare -g split_line_at_result_beginning="${1:0:$2}"
   declare -g split_line_at_result_end="${1:$2}"
-  # printf -- "%s\n" "$split_line_at_result_beginning"
-  # printf -- "%s\n" "$split_line_at_result_end"
+  # printf "%s\n" "$split_line_at_result_beginning"
+  # printf "%s\n" "$split_line_at_result_end"
 }
 
 #--------------------------------------------------------------------------
@@ -1203,19 +1203,19 @@ split_last_line(){
   get_overlength_regexp ${LFBFL_i_overlength}
 
   # Testing if some line is too long.
-  printf -- "%s" "$1"\
+  printf "%s" "$1"\
     | grep --quiet "${get_overlength_regexp_result}"
   if [[ ${PIPESTATUS[1]} -eq 1 ]]; then
     return
   fi
 
   declare -r LFBFL_start=$(
-    printf -- "%s" "$1"\
+    printf "%s" "$1"\
     | head --lines=-1
   )
   # printf "start: %s\n" "${LFBFL_start}"
   declare -r LFBFL_last_line=$(
-    printf -- "%s" "$1"\
+    printf "%s" "$1"\
     | tail --lines=1
   )
   # printf "last_line: %s\n" "${LFBFL_last_line}"

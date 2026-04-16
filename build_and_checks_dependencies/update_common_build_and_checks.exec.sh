@@ -29,7 +29,7 @@ source "overwrite_if_not_equal.libr.sh"
 update_common_build_and_checks(){
   declare -i LFBFL_i_verbose=0
   if [[ "$*" == *--verbose* ]]; then
-    printf -- "%s %s\n" "$0" "$*"
+    printf "%s %s\n" "$0" "$*"
     LFBFL_i_verbose=1
   fi
   readonly LFBFL_i_verbose

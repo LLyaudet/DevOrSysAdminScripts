@@ -99,7 +99,7 @@ check_black_code_formatting(){
     git diff --cached --name-only\
     | grep '\.py'
   )
-  printf -- "%s\n" "${LFBFL_s_files_paths}"
+  printf "%s\n" "${LFBFL_s_files_paths}"
   declare -a LFBFL_arr_files_paths
   mapfile -t LFBFL_arr_files_paths <<< "${LFBFL_s_files_paths}"
   readonly LFBFL_arr_files_paths

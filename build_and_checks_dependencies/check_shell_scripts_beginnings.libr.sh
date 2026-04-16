@@ -83,11 +83,11 @@ check_shell_scripts_beginnings(){
   mapfile -t LFBFL_arr_files_paths <<< "${LFBFL_s_files_paths}"
   for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do
     [[ LFBFL_i_verbose -eq 1 ]]\
-      && printf -- "%s:Checking shell script beginning.\n"\
+      && printf "%s:Checking shell script beginning.\n"\
           "${LFBFL_file_path}"
     LFBFL_head=$(head --lines=1 -- "${LFBFL_file_path}")
     [[ "${LFBFL_head}" == "${LFBFL_SHELL_SCRIPT_BEGINNING}" ]]\
-      || printf -- "%s:File has wrong shell script beginning.\n"\
+      || printf "%s:File has wrong shell script beginning.\n"\
           "${LFBFL_file_path}"
   done
 }

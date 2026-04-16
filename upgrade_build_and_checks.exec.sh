@@ -32,7 +32,7 @@ upgrade_build_and_checks(){
   #   --verbose
   local LFBFL_verbose=""
   if [[ "$*" == *--verbose* ]]; then
-    printf -- "%s %s\n" "$0" "$*"
+    printf "%s %s\n" "$0" "$*"
     LFBFL_verbose="--verbose"
   fi
   readonly LFBFL_verbose

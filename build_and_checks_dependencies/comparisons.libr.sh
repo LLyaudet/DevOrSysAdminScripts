@@ -74,7 +74,7 @@ all_distinct2(){
     return 1
   fi
   declare -r LFBFL_s_sorted_arguments=$(
-    printf -- "%s\n" "$@" \
+    printf "%s\n" "$@" \
     | sort
   )
   declare -a LFBFL_arr_sorted_arguments
@@ -117,7 +117,7 @@ all_distinct3(){
     return 1
   fi
   declare -r LFBFL_s_duplicated_arguments=$(
-    printf -- "%s\n" "$@" \
+    printf "%s\n" "$@" \
     | sort\
     | uniq --repeated
   )
@@ -147,7 +147,7 @@ max(){
   fi
   enhanced_set_shell_option pipefail\
     && trap 'enhanced_unset_shell_option pipefail' RETURN
-  printf -- "%s\n" "${@:2}" \
+  printf "%s\n" "${@:2}" \
     | eval -- "$1 --reverse"\
     | head --lines=1
 }
@@ -163,7 +163,7 @@ min(){
   fi
   enhanced_set_shell_option pipefail\
     && trap 'enhanced_unset_shell_option pipefail' RETURN
-  printf -- "%s\n" "${@:2}" \
+  printf "%s\n" "${@:2}" \
     | eval -- "$1"\
     | head --lines=1
 }
@@ -172,11 +172,11 @@ is_substring(){
   # $1=string
   # $2=substring
   declare -r LFBFL_var_1=$(
-    printf -- "%s" "$1"\
+    printf "%s" "$1"\
     | sed --expression='s/\\/\\&/g' --expression="s/'/\\\\&/g"
   )
   declare -r LFBFL_var_2=$(
-    printf -- "%s" "$2"\
+    printf "%s" "$2"\
     | sed --expression='s/\\/\\&/g' --expression="s/'/\\\\&/g"
   )
   local LFBFL_var_3="\$a = '${LFBFL_var_1}';"

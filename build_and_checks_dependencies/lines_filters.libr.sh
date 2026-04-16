@@ -209,7 +209,7 @@ grep_fixed_string_with_anchor(){
       if [[ LFBFL_i_quiet -eq 1 ]]; then
         break
       else
-        printf -- "%s\n" "${LFBFL_some_line}"
+        printf "%s\n" "${LFBFL_some_line}"
       fi
       continue
     fi
@@ -230,7 +230,7 @@ grep_fixed_string_with_anchor(){
       if [[ LFBFL_i_quiet -eq 1 ]]; then
         break
       else
-        printf -- "%s\n" "${LFBFL_some_line}"
+        printf "%s\n" "${LFBFL_some_line}"
       fi
     fi
   done

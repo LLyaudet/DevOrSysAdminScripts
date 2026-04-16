@@ -159,10 +159,10 @@ build_licenses_templates(){
       LFBFL_i_generate_from_template_result=$?
       if [[ LFBFL_i_verbose -eq 1 ]]; then
         if [[ LFBFL_i_generate_from_template_result -eq 1 ]]; then
-          printf -- "License template %s.tpl updated.\n"\
+          printf "License template %s.tpl updated.\n"\
             "${LFBFL_license_file_path}"
         elif [[ LFBFL_i_generate_from_template_result -eq 2 ]]; then
-          printf -- "License template %s.tpl created.\n"\
+          printf "License template %s.tpl created.\n"\
             "${LFBFL_license_file_path}"
         fi
       fi
@@ -194,10 +194,10 @@ build_licenses_templates(){
       LFBFL_i_generate_from_template_result=$?
       if [[ LFBFL_i_verbose -eq 1 ]]; then
         if [[ LFBFL_i_generate_from_template_result -eq 1 ]]; then
-          printf -- "License template %s.tpl updated.\n"\
+          printf "License template %s.tpl updated.\n"\
             "${LFBFL_license_file_path}"
         elif [[ LFBFL_i_generate_from_template_result -eq 2 ]]; then
-          printf -- "License template %s.tpl created.\n"\
+          printf "License template %s.tpl created.\n"\
             "${LFBFL_license_file_path}"
         fi
       fi
@@ -265,9 +265,9 @@ build_licenses_templates(){
     declare -ir LFBFL_i_result=$?
     if [[ LFBFL_i_verbose -eq 1 ]]; then
       if [[ LFBFL_i_result -eq 1 ]]; then
-        printf -- "License template %s updated.\n" "$1"
+        printf "License template %s updated.\n" "$1"
       elif [[ LFBFL_i_result -eq 2 ]]; then
-        printf -- "License template %s created.\n" "$1"
+        printf "License template %s created.\n" "$1"
       fi
     fi
     head --lines=-1 -- "$1"\
@@ -318,7 +318,7 @@ build_licenses_templates(){
         LFBFL_s_format="build_licenses_templates: "
         LFBFL_s_format+="No file found with extension .%s or .%s.tpl.\n"
         # shellcheck disable=SC2059
-        printf -- "${LFBFL_s_format}" "${LFBFL_key}" "${LFBFL_key}"
+        printf "${LFBFL_s_format}" "${LFBFL_key}" "${LFBFL_key}"
       fi
       continue
     fi
@@ -335,7 +335,7 @@ build_licenses_templates(){
       fi
       if [[ LFBFL_i_not_subfile -ge 1 && LFBFL_i_not_subfile2 -ge 1 ]];
       then
-        printf -- "File %s has no/wrong license header?\n"\
+        printf "File %s has no/wrong license header?\n"\
           "${LFBFL_file_path}"
       fi
     done
@@ -355,9 +355,9 @@ build_licenses_templates(){
     declare -ir LFBFL_i_result=$?
     if [[ LFBFL_i_verbose -eq 1 ]]; then
       if [[ LFBFL_i_result -eq 1 ]]; then
-        printf -- "License template %s updated.\n" "$1"
+        printf "License template %s updated.\n" "$1"
       elif [[ LFBFL_i_result -eq 2 ]]; then
-        printf -- "License template %s created.\n" "$1"
+        printf "License template %s created.\n" "$1"
       fi
     fi
   }
@@ -388,7 +388,7 @@ build_licenses_templates(){
         LFBFL_s_format="build_licenses_templates: "
         LFBFL_s_format+="No file found with extension .%s or .%s.tpl.\n"
         # shellcheck disable=SC2059
-        printf -- "${LFBFL_s_format}" "${LFBFL_key}" "${LFBFL_key}"
+        printf "${LFBFL_s_format}" "${LFBFL_key}" "${LFBFL_key}"
       fi
       continue
     fi
@@ -403,7 +403,7 @@ build_licenses_templates(){
       fi
       if [[ LFBFL_i_not_subfile -ge 1 && LFBFL_i_not_subfile2 -ge 1 ]];
       then
-        printf -- "File %s has no/wrong license header?\n"\
+        printf "File %s has no/wrong license header?\n"\
           "${LFBFL_file_path}"
       fi
     done

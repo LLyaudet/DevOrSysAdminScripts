@@ -33,7 +33,7 @@ wget_sha512(){
   #   --verbose
   local LFBFL_verbose=""
   if [[ "$*" == *--verbose* ]]; then
-    printf -- "%s wget_sha512 %s\n" "$0" "$*"
+    printf "%s wget_sha512 %s\n" "$0" "$*"
     LFBFL_verbose="--verbose"
   fi
   readonly LFBFL_verbose
@@ -55,8 +55,7 @@ wget_sha512(){
     | cut --fields=1 --delimiter=' '
   )
   if [[ "${LFBFL_present_sha512}" != "$3" ]]; then
-    printf --\
-      "%s does not have correct sha512:\n - wanted %s\n - found %s\n"\
+    printf "%s does not have correct sha512:\n - wanted %s\n - found %s\n"\
       "$1" "$3" "${LFBFL_present_sha512}"
     LFBFL_i_error=1
   fi
@@ -72,7 +71,7 @@ wget_sha512(){
       rm -- "$1.wget_sha512.temp"
     fi
     if [[ "${LFBFL_present_sha512_2}" != "$3" ]]; then
-      printf --\
+      printf\
         "%s does not have correct sha512:\n - wanted %s\n - found %s\n"\
         "Online version of $1" "$3" "${LFBFL_present_sha512_2}"
       LFBFL_i_error=1

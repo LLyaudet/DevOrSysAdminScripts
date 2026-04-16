@@ -109,7 +109,7 @@ update_or_check_files_names_listing(){
   local LFBFL_base_file_name
   for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do
     # if [[ LFBFL_i_verbose -eq 1 ]]; then
-    #   printf --\
+    #   printf\
     #     "update_or_check_files_names_listing: Maybe ignored file: %s\n"\
     #     "${LFBFL_file_path}"
     # fi
@@ -123,8 +123,7 @@ update_or_check_files_names_listing(){
       fi
     fi
     if [[ LFBFL_i_verbose -eq 1 ]]; then
-      printf --\
-        "update_or_check_files_names_listing: Non-ignored file: %s\n"\
+      printf "update_or_check_files_names_listing: Non-ignored file: %s\n"\
         "${LFBFL_file_path}"
     fi
     # shellcheck disable=SC2248
@@ -138,7 +137,7 @@ update_or_check_files_names_listing(){
       "${LFBFL_final_suffix}"
     if [[ LFBFL_i_write -eq 1 ]]; then
       # shellcheck disable=SC2001
-      printf -- "%s\n" "${repeated_split_last_line_result}"\
+      printf "%s\n" "${repeated_split_last_line_result}"\
         >> "${LFBFL_listing}"
       continue
     fi
@@ -147,12 +146,12 @@ update_or_check_files_names_listing(){
     then
       :
     else
-      printf -- "The file %s is not listed in %s.\n"\
+      printf "The file %s is not listed in %s.\n"\
         "${LFBFL_file_path}"\
         "${LFBFL_listing}"
       if [[ LFBFL_i_append -eq 1 ]]; then
         # shellcheck disable=SC2001
-        printf -- "%s\n" "${repeated_split_last_line_result}"\
+        printf "%s\n" "${repeated_split_last_line_result}"\
           >> "${LFBFL_listing}"
       fi
     fi
@@ -166,7 +165,7 @@ update_or_check_files_names_listing(){
   for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do
     [[ "${LFBFL_file_path}" != '//'* ]] || continue
     if [[ ! -f "${LFBFL_file_path}" ]]; then
-      printf -- "The non-file %s is listed in %s.\n"\
+      printf "The non-file %s is listed in %s.\n"\
         "${LFBFL_file_path}"\
         "${LFBFL_listing}"
     fi

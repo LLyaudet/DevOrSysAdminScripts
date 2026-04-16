@@ -77,7 +77,7 @@ too_long_code_lines(){
   declare -a LFBFL_arr_long_lines
   for LFBFL_pattern in "${COMMON_TEXT_FILES_GLOB_PATTERNS[@]}"; do
     if [[ LFBFL_i_verbose -eq 1 ]]; then
-      printf -- "too_long_code_lines: Iterating on pattern: %s.\n"\
+      printf "too_long_code_lines: Iterating on pattern: %s.\n"\
         "${LFBFL_pattern}"
     fi
     # shellcheck disable=SC2248
@@ -111,13 +111,13 @@ too_long_code_lines(){
         then
           continue
         fi
-        printf -- "%s\n" "${LFBFL_long_line}"
+        printf "%s\n" "${LFBFL_long_line}"
       elif [[ "${LFBFL_extension}" == "md" ]]; then
         if [[ ! -f "${LFBFL_base_name}.md.tpl" ]]; then
-          printf -- "%s\n" "${LFBFL_long_line}"
+          printf "%s\n" "${LFBFL_long_line}"
         fi
       else
-        printf -- "%s\n" "${LFBFL_long_line}"
+        printf "%s\n" "${LFBFL_long_line}"
       fi
     done
   done

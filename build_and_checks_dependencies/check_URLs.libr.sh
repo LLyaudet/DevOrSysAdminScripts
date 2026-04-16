@@ -90,8 +90,7 @@ check_URLs(){
       [[ "${LFBFL_base_file_name}" != "check_URLs.libr.sh" ]]\
         || continue
       if [[ LFBFL_i_verbose -eq 1 ]]; then
-        printf -- "check_URLs: Handling the file: %s.\n"\
-          "${LFBFL_file_path}"
+        printf "check_URLs: Handling the file: %s.\n" "${LFBFL_file_path}"
       fi
       for LFBFL_substitution in "${!LFBFL_substitutions[@]}"; do
         LFBFL_substitution2=${LFBFL_substitutions[${LFBFL_substitution}]}

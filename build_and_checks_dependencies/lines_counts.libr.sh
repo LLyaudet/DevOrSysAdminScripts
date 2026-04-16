@@ -52,7 +52,7 @@ all_code_lines(){
   local LFBFL_pattern
   for LFBFL_pattern in "${COMMON_TEXT_FILES_GLOB_PATTERNS[@]}"; do
     if [[ LFBFL_i_verbose -eq 1 ]]; then
-      printf -- "all_code_lines: Iterating on pattern: %s.\n"\
+      printf "all_code_lines: Iterating on pattern: %s.\n"\
         "${LFBFL_pattern}"
     fi
     find . -type f -name "${LFBFL_pattern}" -printf '%P\n'\

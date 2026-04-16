@@ -44,7 +44,7 @@ common_build_and_checks(){
   local LFBFL_verbose=""
   declare -i LFBFL_i_verbose=0
   if [[ "$*" == *--verbose* ]]; then
-    printf -- "%s %s\n" "$0" "$*"
+    printf "%s %s\n" "$0" "$*"
     LFBFL_verbose="--verbose"
     LFBFL_i_verbose=1
   fi
@@ -340,7 +340,7 @@ common_build_and_checks(){
     mapfile -t LFBFL_arr_files_paths <<< "${LFBFL_s_files_paths}"
     for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do
       [[ "${LFBFL_file_path}" == "${LFBFL_readme}" ]] && continue
-      printf -- "Found template %s.\n" "${LFBFL_file_path}"
+      printf "Found template %s.\n" "${LFBFL_file_path}"
       LFBFL_some_directory=$(dirname -- "${LFBFL_file_path}")
       LFBFL_file_name=$(basename -- "${LFBFL_file_path}")
       LFBFL_file_name=${LFBFL_file_name%.md.tpl}

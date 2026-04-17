@@ -57,6 +57,18 @@ function build_dependencies_notes(string $s_work_directory) : void {
   $s_data_file_path = $s_subdir1.'/dependencies_data.json';
   $s_data = file_get_contents($s_data_file_path);
   $arr_data = json_decode($s_data, true);
+  $s_data_file_path2 = $s_subdir1.'/repository_data.txt';
+  $s_data2 = file_get_contents($s_data_file_path2);
+  $i_max_line_length = 70;
+  foreach(explode("\n", $s_data2) as $s_line){
+    if(str_starts_with($s_line, 'max_line_length=')){
+      $i_max_line_length = (
+        (int) substr($s_line, strlen('max_line_length='))
+      );
+      break;
+    }
+  }
+
   $s_result_content1 = '';
   $s_result_content2 = '';
   $s_result_content3 = '';
@@ -88,25 +100,60 @@ function build_dependencies_notes(string $s_work_directory) : void {
       $s_URL = '';
       if(is_array($mixed_URL)){
         $s_URL = $mixed_URL['URL'];
-        $s_comment = ' '.$mixed_URL['comment'];
+        $s_comment = $mixed_URL['comment'];
       }
       else{
         $s_URL = $mixed_URL;
       }
+      $i_URL_length = strlen($s_URL);
+      $i_comment_length = strlen($s_comment);
 
-      $s_result_content1 .= $s_URL.$s_comment."\n";
+      $s_result_content1 .= $s_URL;
+      $i_previous_line_length = $i_URL_length;
+      if($i_comment_length > 0){
+        if(
+          $i_previous_line_length + $i_comment_length + 1
+          > $i_max_line_length
+        ){
+          $s_result_content1 .= "\n";
+        }
+        else{
+          $s_result_content1 .= ' ';
+        }
+        $s_result_content1 .= $s_comment;
+      }
+      $s_result_content1 .= "\n";
 
-      if(strlen($s_URL) > 60){
+      if($i_URL_length > 60){
         $s_result_content2 .= (
           "{\\small\n"
           .'  \url{'.$s_URL."}\n"
           .'}'
         );
+        $i_previous_line_length = 1;
       }
       else{
         $s_result_content2 .= '\url{'.$s_URL.'}';
+        $i_previous_line_length = $i_URL_length + 6;
       }
-      $s_result_content2 .= string_escaping\TeX\escape_text($s_comment);
+      if($i === $i_max){
+        ++$i_previous_line_length;
+      }
+      else{
+        $i_previous_line_length += 9;
+      }
+      if($i_comment_length > 0){
+        if(
+          $i_previous_line_length + $i_comment_length + 1
+          > $i_max_line_length
+        ){
+          $s_result_content2 .= "\n";
+        }
+        else{
+          $s_result_content2 .= ' ';
+        }
+        $s_result_content2 .= string_escaping\TeX\escape_text($s_comment);
+      }
       if($i === $i_max){
         $s_result_content2 .= ".\n";
       }
@@ -121,7 +168,11 @@ function build_dependencies_notes(string $s_work_directory) : void {
         .'>'.string_escaping\HTML\escape_text($s_URL)."</span\n"
         .'></a>'
       );
-      $s_result_content3 .= string_escaping\HTML\escape_text($s_comment);
+      if($s_comment !== ''){
+        $s_result_content3 .= (
+          ' '.string_escaping\HTML\escape_text($s_comment)
+        );
+      }
       if($i === $i_max){
         $s_result_content3 .= ".\n";
       }

@@ -669,7 +669,7 @@ common_build_and_checks(){
   printf -- "---PHP end---\n"
 
   printf -- "---JS---\n"
-  LFBFL_npm_lint_directories=""
+  local LFBFL_npm_lint_directories=""
   grep_variable "${LFBFL_data_file_path}" npm_lint_directories\
     --result-variable-prefix=LFBFL_
   if [[ -n "${LFBFL_npm_lint_directories}" ]]; then

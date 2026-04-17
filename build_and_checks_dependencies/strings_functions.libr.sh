@@ -1196,10 +1196,8 @@ split_last_line(){
   enhanced_set_shell_option pipefail --trap-unset
 
   declare -g split_last_line_result="$1"
-  declare -ir LFBFL_i_overlength=$(($3 + 1))
   declare -ir LFBFL_i_length2=$(($3 - ${#4}))
-  # shellcheck disable=SC2248
-  get_overlength_regexp ${LFBFL_i_overlength}
+  get_overlength_regexp "$3"
 
   # Testing if some line is too long.
   printf "%s" "$1"\

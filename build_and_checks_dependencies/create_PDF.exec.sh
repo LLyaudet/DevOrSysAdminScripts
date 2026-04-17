@@ -332,6 +332,9 @@ create_PDF(){
   #       </a></li>
   # -----------------------------------------------------------------------
 
+  # shellcheck disable=SC2248
+  get_overlength_regexp ${LFBFL_i_max_line_length}
+
   # We verify if some lines are beyond max_line_length characters
   # in current_tree_light.txt and current_tree.txt.
   declare -ar LFBFL_trees=(
@@ -345,7 +348,6 @@ create_PDF(){
   declare -i LFBFL_i_prefix_last_position
   local LFBFL_char
   local LFBFL_line_start
-  declare -ir LFBFL_i_overlength=$((LFBFL_i_max_line_length+1))
   local LFBFL_file_name
   local LFBFL_s_lines
   declare -a LFBFL_arr_lines
@@ -354,7 +356,8 @@ create_PDF(){
     LFBFL_tree_path="${LFBFL_temp_path}/${LFBFL_tree}"
     # shellcheck disable=SC2248
     LFBFL_s_lines=$(
-      grep -- '.\{'${LFBFL_i_overlength}'\}' "${LFBFL_tree_path}"
+      grep --regexp="${get_overlength_regexp_result}" --\
+        "${LFBFL_tree_path}"
     )
     if [[ -z "${LFBFL_s_lines}" ]]; then
       continue

@@ -148,9 +148,9 @@ common_build_and_checks(){
   LFBFL_file_name="create_PDF.exec.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='8200ea786018592edaf825a49abfc3bbe1727f01a41f6'
-  LFBFL_correct_sha512+='2d1a6fce06b26c4fe38eae357adff75e7db349dd0b2e'
-  LFBFL_correct_sha512+='336f3d904c78e987d86278f79631928a5ce64ea'
+  LFBFL_correct_sha512='2353804f89d6ac7f6d64e5b725ac05d9f5aefae961fbb'
+  LFBFL_correct_sha512+='aec9ee66e01651225fa5afd5c73da8fce6e807324dbb'
+  LFBFL_correct_sha512+='3ff5dc1bedf1cc18605ce1e46734da337991111'
   wrapped_wget_sha512
   chmod +x "./${LFBFL_file_path}"
 
@@ -299,17 +299,17 @@ common_build_and_checks(){
   LFBFL_file_name="strings_functions.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='7284775b28e67d9db3f9cedf01414ba5fa1374aba8b56'
-  LFBFL_correct_sha512+='b9b662b61765697567d91d7373f3051e7410a173f204'
-  LFBFL_correct_sha512+='59ae04a1fa479ea9bb878060d12244693996233'
+  LFBFL_correct_sha512='e7d4d5cb8f1b2e20f736e6973133a59ff70b6705d8895'
+  LFBFL_correct_sha512+='64d05bf2498d2ea49f2b5674bfced63fdb446e8540bf'
+  LFBFL_correct_sha512+='fc9cd5a6eb2df036f45f1691d6a3dd1c5512952'
   wrapped_wget_sha512
 
   LFBFL_file_name="too_long_code_lines.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='b91821c48458347aaad5eec9af568ed0f5c6afece67bf'
-  LFBFL_correct_sha512+='70046b3d2c9f88e8539dd0f8a59aa64fd7e12ccf62c7'
-  LFBFL_correct_sha512+='43d2a2a782675324d37276842fbb454e5f020a9'
+  LFBFL_correct_sha512='ca49414202ff1bbd7a607d4404e7f92494fe45e150d95'
+  LFBFL_correct_sha512+='d9ad0aded752c8ca8e3f8c4509823cd462fb481a09f5'
+  LFBFL_correct_sha512+='fe6c90be9d8af7e4411afa84429bb87b7ea6c41'
   wrapped_wget_sha512
 
   LFBFL_file_name="update_or_check_files_names_listing.exec.sh"

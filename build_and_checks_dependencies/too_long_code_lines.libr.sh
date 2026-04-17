@@ -33,9 +33,19 @@ source "./${LFBFL_subdir}/get_common_text_glob_patterns.libr.sh"
 source "./${LFBFL_subdir}/lines_filters.libr.sh"
 
 get_overlength_regexp(){
-  declare -g get_overlength_regexp_result=".\{$1\}"
-  # declare -g get_overlength_regexp_result="^.\{$1\}"
-  # declare -g get_overlength_regexp_result=".\{$1\}\$"
+  # $1=length
+  # Option:
+  #   --length-is-overlength
+  declare -i LFBFL_i_overlength=$1
+  declare -i LFBFL_i_length_is_overlength
+  get_some_flag LFBFL_i_length_is_overlength --length-is-overlength 1 "$@"
+  if [[ LFBFL_i_length_is_overlength -eq 0 ]]; then
+    ((++LFBFL_i_overlength))
+  fi
+  readonly LFBFL_i_overlength
+  declare -g get_overlength_regexp_result=".\{${LFBFL_i_overlength}\}"
+  # declare -g get_overlength_regexp_result="^.\{${LFBFL_i_overlength}\}"
+  # declare -g get_overlength_regexp_result=".\{${LFBFL_i_overlength}\}\$"
   # First one seems to be faster by a few percents when testing like this:
   # time for ((i = 0; i < 1000; ++i)); do grep '.{70}' COPYING; done
   # time for ((i = 0; i < 1000; ++i)); do grep '^.{70}' COPYING; done
@@ -59,9 +69,8 @@ too_long_code_lines(){
   declare -i LFBFL_i_max_line_length
   get_max_line_length_option "$@"
 
-  declare -ir LFBFL_i_overlength=$((LFBFL_i_max_line_length+1))
   # shellcheck disable=SC2248
-  get_overlength_regexp ${LFBFL_i_overlength}
+  get_overlength_regexp ${LFBFL_i_max_line_length}
 
   enhanced_set_shell_option pipefail --trap-unset
 

@@ -67,7 +67,7 @@ check_URLs(){
       | xargs grep --with-filename -- 'http:'\
       | grep --invert-match "| xargs grep --with-filename -- 'htt"\
       | grep --invert-match --perl-regexp\
-        "['\"]http(:[^'\"]*)['\"].*['\"]https\\1['\"]"\
+        "(['\"])http(:[^'\"]*)\\1.*(['\"])https\\2\\3"\
       | grep --invert-match 'http://www.w3.org/1999/xhtml'\
       | grep --invert-match\
         'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'

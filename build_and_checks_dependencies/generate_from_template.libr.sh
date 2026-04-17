@@ -74,10 +74,11 @@ split_file_in_two(){
   # $3=path_of_part1_of_file
   # $4=path_of_part2_of_file
   # We cannot add --line-regexp with --fixed-strings because of the
-  # possible indentation in file.
+  # possible indentation in file,
+  # instead we use grep_fixed_string_with_anchor.
   declare -ir LFBFL_i_line_number=$(
     grep_fixed_string_with_anchor "$1" "$2"\
-      --enforce-line-ends-with-fixed-string --fixed-strings --line-number\
+      --enforce-line-ends-with-fixed-string --line-number\
     | head --lines=1\
     | cut --delimiter=':' --fields=1
   )

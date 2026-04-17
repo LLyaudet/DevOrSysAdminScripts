@@ -157,9 +157,9 @@ common_build_and_checks(){
   LFBFL_file_name="generate_from_template.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='2a14fde1756a2a55f357a94f696aa4dc78f5f3f7be484'
-  LFBFL_correct_sha512+='9c83b76b8b97a31770b20d1ab46ac9e5b0afeb7b63fc'
-  LFBFL_correct_sha512+='72aa1fbbbad15ac3e1c41b11244f59a2a2143d0'
+  LFBFL_correct_sha512='3fd0e4b25217207a156e15a269ca31e29265476038f88'
+  LFBFL_correct_sha512+='1ffba59ec4e2258334b47fded3ff7de7782175e157bc'
+  LFBFL_correct_sha512+='d70bfc09f334d1957c4ebc7a7cdcb2ae101ec69'
   wrapped_wget_sha512
 
   LFBFL_file_name="get_common_text_glob_patterns.libr.sh"

@@ -113,7 +113,7 @@ def IMAP_transfert(
     # I haven't tested any version with an empty to_new_folder...
 
     if verbose:
-        print("Connecting to from account.")
+        print('Connecting to "from account".')
     from_account = imaplib.IMAP4_SSL(host=from_host, port=from_port)
     from_account.login(from_login, from_password)
 
@@ -124,18 +124,18 @@ def IMAP_transfert(
 
     if to_new_folder != "":
         if verbose:
-            print("Creating new folder in to account.")
+            print('Creating new folder in "to account".')
         to_account.create(to_new_folder)
 
     if verbose:
-        print("Fetching all emails ids in from account.")
+        print('Fetching all emails ids in "from account".')
     from_account.select()
     result, ids = from_account.uid("search", "all")
     if verbose:
         print(f'from_account.uid("search") result:{result} ids:{ids}')
     ids = ids[0].decode().split()
     if verbose:
-        print("Fetching and transfering each email in from account.")
+        print('Fetching and transfering each email in "from account".')
     for my_id in ids:
         result, raw_message = from_account.uid(
             "fetch",

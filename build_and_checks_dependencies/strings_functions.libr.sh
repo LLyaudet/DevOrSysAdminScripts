@@ -1037,37 +1037,39 @@ split_line_at_most(){
 
   declare -r LFBFL_sort_command="sort --numeric-sort"
 
+  update_position_score(){
+    # $1=position
+    # Returns 0 if updated, 1 otherwise
+    # printf "%s|%s\n" "${i_split_score_result}" "$1"
+    if [[ i_split_score_result -ge 1 ]]; then
+      # printf "valid result"
+      if [[ ${LFBFL_positions["$1"]} != "-1" ]]; then
+        LFBFL_positions["$1"]=$(
+          max "${LFBFL_sort_command}"\
+            "${LFBFL_positions["$1"]}"\
+            "${i_split_score_result}"
+        )
+        return 0
+      fi
+    fi
+    return 1
+  }
+
   if (($4 & SSP_DELIMITER_UNIFORM))\
   && (($4 & SSP_LARGER_AFTER))\
   && (($4 & SSP_POSITION_NOT_DECREASING_AFTER)); then
     for ((LFBFL_i = LFBFL_i_max; LFBFL_i >= 0; --LFBFL_i)) do
       LFBFL_current_char="${1:${LFBFL_i}:1}"
       eval -- "$3 '${LFBFL_current_char}' 1"
-      # needs j=i+1 printf "%s|%s\n" "${i_split_score_result}" "${LFBFL_j}"
-      if [[ i_split_score_result -ge 1 ]]; then
-        LFBFL_j=$((LFBFL_i + 1))
-        # printf "%s|%s\n" "${i_split_score_result}" "${LFBFL_j}"
-        if [[ ${LFBFL_positions["${LFBFL_j}"]} != "-1" ]]; then
-          LFBFL_positions["${LFBFL_j}"]=$(
-            max "${LFBFL_sort_command}"\
-              "${LFBFL_positions["${LFBFL_j}"]}"\
-              "${i_split_score_result}"
-          )
-          break
-        fi
+      LFBFL_j=$((LFBFL_i + 1))
+      # shellcheck disable=SC2248
+      if update_position_score ${LFBFL_j}
+      then
+        break
       fi
       eval -- "$3 '${LFBFL_current_char}' 0"
-      # printf "%s|%s\n" "${i_split_score_result}" "${LFBFL_i}"
-      if [[ i_split_score_result -ge 1 ]]; then
-        # printf "%s|%s\n" "${i_split_score_result}" "${LFBFL_i}"
-        if [[ ${LFBFL_positions["${LFBFL_i}"]} != "-1" ]]; then
-          LFBFL_positions["${LFBFL_i}"]=$(
-            max "${LFBFL_sort_command}"\
-              "${LFBFL_positions["${LFBFL_i}"]}"\
-              "${i_split_score_result}"
-          )
-        fi
-      fi
+      # shellcheck disable=SC2248
+      update_position_score ${LFBFL_i}
     done
   elif (($4 & SSP_DELIMITER_UNIFORM))\
   && (($4 & SSP_LARGER_BEFORE))\
@@ -1081,60 +1083,25 @@ split_line_at_most(){
       # maximum score, there is a possibility that we'll break on a found
       # score before but for splitting on a score after.
       eval -- "$3 '${LFBFL_current_char}' 1"
-      # needs j=i+1 printf "%s|%s\n" "${i_split_score_result}" "${LFBFL_j}"
-      if [[ i_split_score_result -ge 1 ]]; then
-        LFBFL_j=$((LFBFL_i + 1))
-        # printf "%s|%s\n" "${i_split_score_result}" "${LFBFL_j}"
-        if [[ ${LFBFL_positions["${LFBFL_j}"]} != "-1" ]]; then
-          LFBFL_positions["${LFBFL_j}"]=$(
-            max "${LFBFL_sort_command}"\
-              "${LFBFL_positions["${LFBFL_j}"]}"\
-              "${i_split_score_result}"
-          )
-        fi
-      fi
+      # shellcheck disable=SC2248
+      update_position_score ${LFBFL_j}
       eval -- "$3 '${LFBFL_current_char}' 0"
-      # printf "%s|%s\n" "${i_split_score_result}" "${LFBFL_i}"
-      if [[ i_split_score_result -ge 1 ]]; then
-        # printf "%s|%s\n" "${i_split_score_result}" "${LFBFL_i}"
-        if [[ ${LFBFL_positions["${LFBFL_i}"]} != "-1" ]]; then
-          LFBFL_positions["${LFBFL_i}"]=$(
-            max "${LFBFL_sort_command}"\
-              "${LFBFL_positions["${LFBFL_i}"]}"\
-              "${i_split_score_result}"
-          )
-          break
-        fi
+      # shellcheck disable=SC2248
+      if update_position_score ${LFBFL_i}
+      then
+        break
       fi
     done
   else
     for ((LFBFL_i = 0; LFBFL_i <= LFBFL_i_max;)) do
       LFBFL_current_char="${1:${LFBFL_i}:1}"
       eval -- "$3 '${LFBFL_current_char}' ${LFBFL_i} 0"
-      # printf "%s|%s\n" "${i_split_score_result}" "${LFBFL_i}"
-      if [[ i_split_score_result -ge 1 ]]; then
-        # printf "%s|%s\n" "${i_split_score_result}" "${LFBFL_i}"
-        if [[ ${LFBFL_positions["${LFBFL_i}"]} != "-1" ]]; then
-          LFBFL_positions["${LFBFL_i}"]=$(
-            max "${LFBFL_sort_command}"\
-              "${LFBFL_positions["${LFBFL_i}"]}"\
-              "${i_split_score_result}"
-          )
-        fi
-      fi
+      # shellcheck disable=SC2248
+      update_position_score ${LFBFL_i}
       ((++LFBFL_i))
       eval -- "$3 '${LFBFL_current_char}' ${LFBFL_i} 1"
-      # printf "%s|%s\n" "${i_split_score_result}" "${LFBFL_i}"
-      if [[ i_split_score_result -ge 1 ]]; then
-        # printf "%s|%s\n" "${i_split_score_result}" "${LFBFL_i}"
-        if [[ ${LFBFL_positions["${LFBFL_i}"]} != "-1" ]]; then
-          LFBFL_positions["${LFBFL_i}"]=$(
-            max "${LFBFL_sort_command}"\
-              "${LFBFL_positions["${LFBFL_i}"]}"\
-              "${i_split_score_result}"
-          )
-        fi
-      fi
+      # shellcheck disable=SC2248
+      update_position_score ${LFBFL_i}
     done
   fi
   declare -ir LFBFL_i_max_score=$(

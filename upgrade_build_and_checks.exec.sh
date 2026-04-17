@@ -123,20 +123,20 @@ upgrade_build_and_checks(){
       printf '  printf "%s" # Error 3: http -> https\n' "${LFBFL_URL}"
       # shellcheck disable=SC2016
       printf '  printf "${#some_'
-      printf 'arr_1}" # Error 4\n'
+      printf 'arr_1}" # Error 4: no_size_of_array_first_element\n'
       # shellcheck disable=SC2016
       printf '  printf "${#'
-      printf 'arr_1}"  # Error 5\n'
+      printf 'arr_1}"  # Error 5: no_size_of_array_first_element\n'
       printf '  if !'
       # shellcheck disable=SC2016
-      printf ' [[ $1 -eq 1 ]]; # Error 6\n'
-      printf '  then  # Error 7 : misplaced then\n'
+      printf ' [[ $1 -eq 1 ]]; # Error 6: no_negation_before_bash_test\n'
+      printf '  then  # Error 7: misplaced then\n'
       printf '    my_variable="a"\n'
       printf '  fi\n'
       printf "\n"
       # shellcheck disable=SC2016
       printf '  if [[ $1 -eq 1 ]];\n'
-      printf '  then  # Error 8 : another case of misplaced then\n'
+      printf '  then  # Error 8: another case of misplaced then\n'
       printf '    my_variable="a"\n'
       printf '  fi\n'
       printf '  my_variable="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'

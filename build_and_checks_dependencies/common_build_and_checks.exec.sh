@@ -38,8 +38,6 @@ common_build_and_checks(){
   #   --verbose
   local LFBFL_work_directory="${1:-.}"
   LFBFL_work_directory=$(realpath -- "${LFBFL_work_directory}")
-  local LFBFL_work_directory_option="--work-directory="
-  LFBFL_work_directory_option+="${LFBFL_work_directory}"
   declare -r LFBFL_dependencies_URL="$2"
   local LFBFL_verbose=""
   declare -i LFBFL_i_verbose=0
@@ -60,8 +58,7 @@ common_build_and_checks(){
 
   declare -a LFBFL_some_common_options=(
     "${LFBFL_verbose}"
-    # "$--work-directory={LFBFL_work_directory}" doesn't work
-    "${LFBFL_work_directory_option}"
+    "--work-directory=${LFBFL_work_directory}"
   )
 
   source ./wget_sha512.libr.sh

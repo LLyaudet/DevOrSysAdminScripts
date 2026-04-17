@@ -140,11 +140,9 @@ update_or_check_files_names_listing(){
         >> "${LFBFL_listing}"
       continue
     fi
-    if grep_fixed_string_with_anchor "${LFBFL_listing}.temp"\
+    if ! grep_fixed_string_with_anchor "${LFBFL_listing}.temp"\
         "${LFBFL_file_path}" --quiet --enforce-line-ends-with-fixed-string;
     then
-      :
-    else
       printf "The file %s is not listed in %s.\n"\
         "${LFBFL_file_path}"\
         "${LFBFL_listing}"

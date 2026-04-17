@@ -104,8 +104,6 @@ check_black_code_formatting(){
   mapfile -t LFBFL_arr_files_paths <<< "${LFBFL_s_files_paths}"
   readonly LFBFL_arr_files_paths
   declare -i LFBFL_i_error=0
-  # Not very useful since LFBFL_file should be local to the loop by
-  # default.
   local LFBFL_file_path
   for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do
     printf "Black will check formatting on file %s\n" "${LFBFL_file_path}"

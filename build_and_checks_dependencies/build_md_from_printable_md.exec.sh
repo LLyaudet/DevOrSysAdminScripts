@@ -57,7 +57,7 @@ build_md_from_printable_md(){
   LFBFL_sed_expression+=';s/(\n[ ]*- <http[^\n\\]*)\\\n/\1/Mg'
   readonly LFBFL_sed_expression
   # Since Markdown can contain code, it is limited to Markdown URLs.
-  # Hence it is way more complicated than 's/\\\n//Mg' expression
+  # Hence, it is way more complicated than 's/\\\n//Mg' expression
   # in other files.
   # Another downside is that more than one pass is needed.
 
@@ -67,7 +67,7 @@ build_md_from_printable_md(){
       --expression="${LFBFL_sed_expression}"\
       --expression="${LFBFL_sed_expression}"\
       --expression="${LFBFL_sed_expression}"\
-      "${LFBFL_base_name}.md.tpl"\
+      -- "${LFBFL_base_name}.md.tpl"\
       > "${LFBFL_base_name}.md.temp"
     overwrite_if_not_equal "${LFBFL_base_name}.md"\
       "${LFBFL_base_name}.md.temp"
@@ -84,8 +84,8 @@ build_md_from_printable_md(){
   fi
 
   pandoc --from=markdown --to=html --standalone\
-    --shift-heading-level-by=-1 "${LFBFL_base_name}.md"\
-    --output="${LFBFL_base_name}.html.temp"
+    --shift-heading-level-by=-1 --output="${LFBFL_base_name}.html.temp"\
+    -- "${LFBFL_base_name}.md"
   # Correcting pandoc HTML "by hand".
   # https://github.com/jgm/pandoc/issues/10957
   # With the most open-minded answer found on Internet ;) XD.
@@ -100,11 +100,11 @@ build_md_from_printable_md(){
     --expression='s~(  <meta .*) />~\1>~g'\
     --expression='s~<html .*>~<html lang="en">~'\
     --expression='/    code\{white-space: pre-wrap;\}/d'\
-    "${LFBFL_base_name}.html.temp"
+    -- "${LFBFL_base_name}.html.temp"
   sed --in-place --regexp-extended --null-data\
     --expression='s~(<img(\n|[^a-z0-9])(\n|[^>])*) />~\1>~Mg'\
     --expression="${LFBFL_prewrap}"\
-    "${LFBFL_base_name}.html.temp"
+    -- "${LFBFL_base_name}.html.temp"
   overwrite_if_not_equal "${LFBFL_base_name}.html"\
     "${LFBFL_base_name}.html.temp"
 

@@ -82,7 +82,7 @@ check_no_abusive_trailing_comma(){
   declare -i LFBFL_i_error=0
   git diff --cached\
     > /tmp/DOSAS_django_git_check2.temp
-  if grep ' = .*,\s*$' /tmp/DOSAS_django_git_check2.temp;
+  if grep --perl-regexp ' = .*,\s*$' /tmp/DOSAS_django_git_check2.temp;
   then
     notify-send "${LFBFL_send_summary_1}" "${LFBFL_send_body_1}"
     LFBFL_i_error=1

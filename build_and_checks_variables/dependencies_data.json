@@ -105,6 +105,10 @@
       "https://github.com/astral-sh/ruff",
       "https://pypi.org/project/ruff/"
   ] },
+  { "dependency_name": "xmllint (libxml2)", "URLs": [
+      "https://gitlab.gnome.org/GNOME/libxml2/-/wikis/home",
+      "https://gitlab.gnome.org/GNOME/libxml2"
+  ] },
   { "dependency_name": "bandit", "URLs": [
       "https://bandit.readthedocs.io/en/latest/",
       "https://github.com/PyCQA/bandit",

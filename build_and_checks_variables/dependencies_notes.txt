@@ -98,6 +98,10 @@ https://docs.astral.sh/ruff/
 https://github.com/astral-sh/ruff
 https://pypi.org/project/ruff/
 
+xmllint (libxml2) can be found at the following URLs:
+https://gitlab.gnome.org/GNOME/libxml2/-/wikis/home
+https://gitlab.gnome.org/GNOME/libxml2
+
 bandit can be found at the following URLs:
 https://bandit.readthedocs.io/en/latest/
 https://github.com/PyCQA/bandit

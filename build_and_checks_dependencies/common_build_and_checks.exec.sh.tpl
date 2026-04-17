@@ -699,6 +699,23 @@ common_build_and_checks(){
     "./${LFBFL_subdir3}/post_build.sh" "${LFBFL_verbose}"
   fi
 
+  printf "Running xmllint\n"
+  declare -r LFBFL_s_files_for_xmllint=$(
+    find . -type f -iregex ".*\.\(xml\|xhtml\)"\
+    | relevant_find
+  )
+  if [[ -n "${LFBFL_s_files_for_xmllint}" ]]; then
+    declare -a LFBFL_arr_files_for_xmllint
+    mapfile -t LFBFL_arr_files_for_xmllint\
+      <<< "${LFBFL_s_files_for_xmllint}"
+    readonly LFBFL_arr_files_for_xmllint
+    # see https://gitlab.gnome.org/GNOME/libxml2/-/issues/1100
+    # xmllint --pedantic --noout --valid --\
+    xmllint --pedantic --noout --valid\
+      "${LFBFL_arr_files_for_xmllint[@]}"
+  fi
+  # ------------------------------------------------------------------
+
   # ------------------------------------------------------------------
   # It is at the end that all the HTML files are generated and that
   # we can check there are no mistakes.
@@ -740,16 +757,16 @@ common_build_and_checks(){
     else
       LFBFL_find_regexp=".*\.\(css\|html\|svg\)"
     fi
-    declare -r LFBFL_files_for_Nu=$(
+    declare -r LFBFL_s_files_for_Nu=$(
       find . -type f -iregex "${LFBFL_find_regexp}"\
       | relevant_find
     )
-    if [[ -n "${LFBFL_files_for_Nu}" ]]; then
-      declare -a LFBFL_files_for_Nu2
-      mapfile -t LFBFL_files_for_Nu2 <<< "${LFBFL_files_for_Nu}"
-      readonly LFBFL_files_for_Nu2
+    if [[ -n "${LFBFL_s_files_for_Nu}" ]]; then
+      declare -a LFBFL_arr_files_for_Nu
+      mapfile -t LFBFL_arr_files_for_Nu <<< "${LFBFL_s_files_for_Nu}"
+      readonly LFBFL_arr_files_for_Nu
       java -Xss128M -jar "${LFBFL_vnu_jar_path}" --exit-zero-always\
-        --verbose -- "${LFBFL_files_for_Nu2[@]}"
+        --verbose -- "${LFBFL_arr_files_for_Nu[@]}"
     fi
   fi
   # ------------------------------------------------------------------

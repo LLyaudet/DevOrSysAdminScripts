@@ -101,7 +101,7 @@ create_PDF(){
   grep_variable "${LFBFL_data_file_path}" max_line_length\
     --result-variable-prefix="LFBFL_i_"
 
-  declare -r LFBFL_current_date=$(date -I"date")
+  declare -r LFBFL_current_date=$(date --iso-8601="date")
 
   declare -r LFBFL_current_git_SHA1=$(git rev-parse HEAD)
 
@@ -338,6 +338,7 @@ create_PDF(){
     "current_tree_light.txt"
     "current_tree.txt.temp"
   )
+  local LFBFL_tree
   local LFBFL_tree_path
   local LFBFL_line
   local LFBFL_prefix

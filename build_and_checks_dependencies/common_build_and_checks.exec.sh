@@ -727,7 +727,7 @@ common_build_and_checks(){
   printf -- "---PHP end---\n"
 
   printf -- "---JS---\n"
-  LFBFL_npm_lint_directories=""
+  local LFBFL_npm_lint_directories=""
   grep_variable "${LFBFL_data_file_path}" npm_lint_directories\
     --result-variable-prefix=LFBFL_
   if [[ -n "${LFBFL_npm_lint_directories}" ]]; then
@@ -760,17 +760,45 @@ common_build_and_checks(){
   printf "Running xmllint\n"
   declare -r LFBFL_s_files_for_xmllint=$(
     find . -type f -iregex ".*\.\(xml\|xhtml\)"\
-    | relevant_find
+    | relevant_find\
+    | sort
   )
   if [[ -n "${LFBFL_s_files_for_xmllint}" ]]; then
     declare -a LFBFL_arr_files_for_xmllint
     mapfile -t LFBFL_arr_files_for_xmllint\
       <<< "${LFBFL_s_files_for_xmllint}"
     readonly LFBFL_arr_files_for_xmllint
-    # see https://gitlab.gnome.org/GNOME/libxml2/-/issues/1100
-    # xmllint --pedantic --noout --valid --\
-    xmllint --pedantic --noout --valid\
-      "${LFBFL_arr_files_for_xmllint[@]}"
+    local LFBFL_xmllint_files_without_DTD=""
+    grep_variable "${LFBFL_data_file_path}" xmllint_files_without_DTD\
+      --result-variable-prefix=LFBFL_
+    declare -a LFBFL_arr_xmllint_files_without_DTD
+    if [[ -n "${LFBFL_xmllint_files_without_DTD}" ]]; then
+      mapfile -t LFBFL_arr_xmllint_files_without_DTD\
+        <<< "${LFBFL_xmllint_files_without_DTD}"
+    fi
+    for LFBFL_file_path in "${LFBFL_arr_xmllint_files_without_DTD[@]}"; do
+      [[ LFBFL_i_verbose -eq 1 ]]\
+        && printf "xmllint on %s\n" "${LFBFL_file_path}"
+      # see https://gitlab.gnome.org/GNOME/libxml2/-/issues/1100
+      # xmllint --pedantic --noout -- "${LFBFL_file_path}"
+      xmllint --pedantic --noout "${LFBFL_file_path}"
+    done
+
+    local LFBFL_file_path2
+    for LFBFL_file_path in "${LFBFL_arr_files_for_xmllint[@]}"; do
+      for LFBFL_file_path2 in "${LFBFL_arr_xmllint_files_without_DTD[@]}";
+      do
+        if [[ "${LFBFL_file_path}" == "${LFBFL_file_path2}" ]]; then
+          LFBFL_file_path=""
+        fi
+      done
+      if [[ "${LFBFL_file_path}" == "" ]]; then
+        continue
+      fi
+      [[ LFBFL_i_verbose -eq 1 ]]\
+        && printf "xmllint on %s\n" "${LFBFL_file_path}"
+      xmllint --pedantic --noout --valid "${LFBFL_file_path}"
+    done
   fi
   # ------------------------------------------------------------------
 

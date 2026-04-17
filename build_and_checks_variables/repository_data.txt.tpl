@@ -48,3 +48,6 @@ use_vnu_for_xhtml=
 
 npm_lint_directories=
 npm_lint_directories=
+
+xmllint_files_without_DTD=
+xmllint_files_without_DTD=

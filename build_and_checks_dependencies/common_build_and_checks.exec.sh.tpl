@@ -416,7 +416,6 @@ common_build_and_checks(){
   fi
 
   printf "Analyzing too long lines\n"
-  # shellcheck disable=SC2248
   too_long_code_lines "${LFBFL_some_common_options2[@]}"
 
   printf "Analyzing URLs\n"
@@ -731,7 +730,7 @@ common_build_and_checks(){
       printf "Go get the latest version here:\n"
       printf "https://github.com/validator/validator/releases\n"
     fi
-    # vnu has false positives for xhtml
+    # vnu has false positives for xhtml.
     local LFBFL_use_vnu_for_xhtml=""
     grep_variable "${LFBFL_data_file_path}" use_vnu_for_xhtml\
       --result-variable-prefix=LFBFL_
@@ -742,7 +741,7 @@ common_build_and_checks(){
       LFBFL_find_regexp=".*\.\(css\|html\|svg\)"
     fi
     declare -r LFBFL_files_for_Nu=$(
-      find . -iregex "${LFBFL_find_regexp}"\
+      find . -type f -iregex "${LFBFL_find_regexp}"\
       | relevant_find
     )
     if [[ -n "${LFBFL_files_for_Nu}" ]]; then

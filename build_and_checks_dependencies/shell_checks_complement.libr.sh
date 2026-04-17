@@ -77,12 +77,11 @@ check_no_misplaced_then(){
 
   local LFBFL_regexp
   LFBFL_regexp="^[^\n]{1,${LFBFL_i_max_previous_line_length}}"
-  LFBFL_regexp+="(?<=\]\];\s{0,${LFBFL_i_max_previous_line_length}}"
-  LFBFL_regexp+="(#[^\n]{0,${LFBFL_i_max_previous_line_length}})?)"
+  LFBFL_regexp+="(?<=\]\];[^\n]{0,${LFBFL_i_max_previous_line_length}})"
   LFBFL_regexp+="(?<!^\s{0,${LFBFL_i_max_previous_line_length}}\]\];)"
   LFBFL_regexp+="\n\s*then"
-  # pcre2grep -M --
-  # '^[^\n]{1,70}(?<=\]\];\s{0,70}(#[^\n]{0,70})?)'
+  # pcre2grep --multiline --
+  # '^[^\n]{1,70}(?<=\]\];[^\n]{0,70})'
   # '(?<!^\s{0,70}\]\];)\n\s*then'
   pcre2grep --multiline -- "${LFBFL_regexp}" **/*.sh
 }

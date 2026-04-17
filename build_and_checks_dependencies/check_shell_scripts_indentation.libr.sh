@@ -30,14 +30,10 @@ source "./${LFBFL_subdir}/lines_filters.libr.sh"
 
 check_one_shell_script_indentation(){
   # $1=file_path
+  declare -r LFBFL_NULL_PREVIOUS_LINE="--"
   declare -i LFBFL_i_file_with_error=0
   local LFBFL_some_line
-  local LFBFL_previous_line="workeduntilsomeasshole"
-  # created a command named "workeduntilsomeasshole"
-  # and called it without neither indentation, nor parameters
-  # in a .sh script XD.
-  # Manual justification of the lines L-4 and L-3 was a serendipity.
-  # I just tried a joke and was lucky ;) :).
+  local LFBFL_previous_line="${LFBFL_NULL_PREVIOUS_LINE}"
   local LFBFL_line_end
   local LFBFL_previous_line_end
   declare -i LFBFL_i_line_length
@@ -63,19 +59,21 @@ check_one_shell_script_indentation(){
   readonly LFBFL_arr_lines
 
   for LFBFL_some_line in "${LFBFL_arr_lines[@]}"; do
-    if [[ "${LFBFL_some_line}" == "--" ]]; then
+    if [[ "${LFBFL_some_line}" == "${LFBFL_NULL_PREVIOUS_LINE}" ]]; then
       # When switching between code fragments, we reinit.
-      LFBFL_previous_line="workeduntilsomeasshole"
+      # It cannot happen for other grep output lines with line-number.
+      LFBFL_previous_line="${LFBFL_NULL_PREVIOUS_LINE}"
       continue
     fi
     # Note how it's funny that this loop always work because we check
-    # shell scripts beginning in another script and thus we always
+    # shell scripts beginnings in another script and thus we always
     # have a line before.
-    if [[ "${LFBFL_previous_line}" == "workeduntilsomeasshole" ]]; then
+    if [[ "${LFBFL_previous_line}" == "${LFBFL_NULL_PREVIOUS_LINE}" ]];
+    then
       LFBFL_previous_line="${LFBFL_some_line}"
       continue
     fi
-    # Remove the name of the file and then the line number
+    # Remove the name of the file and then the line number.
     LFBFL_line_end=${LFBFL_some_line#*:}
     LFBFL_line_end=${LFBFL_line_end#*:}
     # But for the previous line '-' or ':' is used instead of ':'

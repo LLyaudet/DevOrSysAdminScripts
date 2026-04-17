@@ -232,8 +232,8 @@ build_licenses_templates(){
   readonly LFBFL_license_prefix
   LFBFL_license_prefix2="${LFBFL_license_prefix}${LFBFL_license}"
   readonly LFBFL_license_prefix2
-  declare -r\
-    LFBFL_license_prefix3="${LFBFL_license_prefix}${LFBFL_license2}"
+  local LFBFL_license_prefix3="${LFBFL_license_prefix}${LFBFL_license2}"
+  readonly LFBFL_license_prefix3
 
   # First year according to current state of git repository.
   declare -ir LFBFL_i_first_year=$(

@@ -236,13 +236,13 @@ get_some_flag(){
   # But it is not bug free in a calling function,
   # and even incompatible with the current function where
   # the flag_long_name is a mandatory argument.
-  printf -v "$1" "%s" "0"
+  printf -v "$1" "%d" 0
   declare -i LFBFL_i
   local LFBFL_argument
   for ((LFBFL_i = 4; LFBFL_i <= $#; ++LFBFL_i)); do
     LFBFL_argument="${!LFBFL_i}"
     if [[ "${LFBFL_argument}" == "$2" ]]; then
-      printf -v "$1" "%s" "1"
+      printf -v "$1" "%d" 1
       break
     fi
   done
@@ -419,7 +419,7 @@ enhanced_set_shell_option(){
   declare -r LFBFL_result_name="i_enhanced_set_shell_option_$1_result"
   declare -gi "${LFBFL_result_name}"=0
   if [[ -o "$1" ]]; then
-    printf -v "${LFBFL_result_name}" "%d" "1"
+    printf -v "${LFBFL_result_name}" "%d" 1
     # shellcheck disable=SC2086
     return ${!LFBFL_result_name}
   fi
@@ -455,7 +455,7 @@ enhanced_unset_shell_option(){
   declare -r LFBFL_result_name="i_enhanced_unset_shell_option_$1_result"
   declare -gi "${LFBFL_result_name}"=0
   if [[ ! -o "$1" ]]; then
-    printf -v "${LFBFL_result_name}" "%d" "1"
+    printf -v "${LFBFL_result_name}" "%d" 1
     # shellcheck disable=SC2086
     return ${!LFBFL_result_name}
   fi
@@ -493,7 +493,7 @@ enhanced_set_bash_option(){
   # declare -r LFBFL_regexp="^(.*:)?$1(:.*)?$" funny but brainfucked
   # if [[ "${BASHOPTS}" =~ ${LFBFL_regexp} ]]; then
   if shopt -q "$1"; then
-    printf -v "${LFBFL_result_name}" "%d" "1"
+    printf -v "${LFBFL_result_name}" "%d" 1
     # shellcheck disable=SC2086
     return ${!LFBFL_result_name}
   fi
@@ -529,7 +529,7 @@ enhanced_unset_bash_option(){
   declare -r LFBFL_result_name="i_enhanced_unset_bash_option_$1_result"
   declare -gi "${LFBFL_result_name}"=0
   if ! shopt -q "$1"; then
-    printf -v "${LFBFL_result_name}" "%d" "1"
+    printf -v "${LFBFL_result_name}" "%d" 1
     # shellcheck disable=SC2086
     return ${!LFBFL_result_name}
   fi

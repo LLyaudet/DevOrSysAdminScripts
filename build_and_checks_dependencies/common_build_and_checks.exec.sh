@@ -275,9 +275,9 @@ common_build_and_checks(){
   LFBFL_file_name="shell_checks_complement.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='7cff6e598694af44ba60c403bb68100ea187d6cd6fdcd'
-  LFBFL_correct_sha512+='cec92633c02f9c5ca8c27754abba97a90eaa3f4e97ba'
-  LFBFL_correct_sha512+='3ff92166d016e2de1ce459722e05d2fc84ab713'
+  LFBFL_correct_sha512='745109db3fbd3d20b60427a2e116b577eca1c0049e532'
+  LFBFL_correct_sha512+='7f53a925b0814dd9f98b5b43986a8b4367f80e1189ae'
+  LFBFL_correct_sha512+='ffca99ff15afdf37b062fb48cd73315a4881cf4'
   wrapped_wget_sha512
 
   LFBFL_file_name="split_score.exec.php"

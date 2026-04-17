@@ -104,7 +104,7 @@ check_no_negation_before_bash_test(){
   [[ LFBFL_i_verbose -eq 1 ]]\
     && printf "Checking that shell scripts do not contain ! before [[.\n"
 
-  pcre2grep --multiline -- $'!\s*\[\[' **/*.sh
+  pcre2grep --multiline -- $'!\\s*\\[\\[' **/*.sh
 }
 
 shell_checks_complement(){

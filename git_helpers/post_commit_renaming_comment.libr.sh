@@ -126,8 +126,7 @@ commit_a_file_renamed_comment(){
   declare -i LFBFL_i_renaming_happened=0
   declare -i LFBFL_i
   declare -i LFBFL_j
-  # declare -r LFBFL_special_file_name="files_names_listing.txt"
-  declare -r LFBFL_sfn="files_names_listing.txt"
+  declare -r LFBFL_special_file_name="files_names_listing.txt"
   local LFBFL_diff_line
   local LFBFL_similarity_line
   local LFBFL_old_file_path
@@ -231,7 +230,8 @@ commit_a_file_renamed_comment(){
     if [[ "${LFBFL_extension}" == "tex" ]]; then
       LFBFL_comment_prefix="% "
     fi
-    if [[ "${LFBFL_useful_file_name}" == "${LFBFL_sfn}" ]]; then
+    if [[ "${LFBFL_useful_file_name}" == "${LFBFL_special_file_name}" ]];
+    then
       LFBFL_comment_prefix="// "
     fi
     if [[ LFBFL_i_verbose -eq 1 ]]; then

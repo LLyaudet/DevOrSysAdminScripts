@@ -189,7 +189,7 @@ split_line_at(){
 #   RP5 : p1 >= p2,
 #   plus the choice that p1 and p2 are not necessarily related
 #   (empty RP or RPe).
-#   We can add RP6 : p1 = p2 + 1 and RP7 : p2 = p1 + 1, since it implies
+#   We can add RP6 : p1 = p2 - 1 and RP7 : p1 = p2 + 1, since it implies
 #   some equalities between matched delimiters.
 #   Note that  p1 = p2 + i or p2 = p1 + i with i >= 2 brings no additional
 #   logical relations compared to p1 < p2 or p2 < p1;

@@ -74,19 +74,19 @@ Some “small” useful scripts
 for enhancing development or system-administrators tasks
 \end{abstract}
 
-Current version: 2026-04-02
+Current version: 2026-04-17
 
-Current number of commits: 862
+Current number of commits: 905
 
-Current git SHA1: 02bdefe1a70225151c24b7d3620cad21bbb2b724
+Current git SHA1: 29e7c1c3c5c55c3b35f5c39b9461a36e10cf822f
 
-Code lines: 12008 total lines, 11048 not empty lines, 960 empty lines.
+Code lines: 12207 total lines, 11231 not empty lines, 976 empty lines.
 
 \tableofcontents
 \newpage
 
-\section{Files tree}
-\label{section:tree}
+\section{Files trees}
+\label{section:trees}
 
 \begin{verbatim}
 .
@@ -199,74 +199,74 @@ Code lines: 12008 total lines, 11048 not empty lines, 960 empty lines.
 \end{verbatim}
 
 \begin{verbatim}
-[ 12K Apr  2 09:49]  ./
-├── [4.0K Apr  2 09:47]  build_and_checks_dependencies/
+[ 12K Apr 17 18:27]  ./
+├── [4.0K Apr 17 18:26]  build_and_checks_dependencies/
 │   ├── [4.4K Apr  1 19:39]  build_and_checks.exec.sh.tpl*
 │   ├── [1.2K Mar 26 12:30]  build_dependencies_notes.exec.php*
-│   ├── [6.9K Mar 26 12:37]  build_dependencies_notes.libr.php
-│   ├── [4.2K Apr  1 20:41]  build_md_from_printable_md.exec.sh*
-│   ├── [3.3K Apr  1 20:43]  check_shell_scripts_beginnings.libr.sh
-│   ├── [5.4K Apr  1 20:47]  check_shell_scripts_indentation.libr.sh
-│   ├── [3.8K Apr  1 21:56]  check_URLs.libr.sh
-│   ├── [ 32K Apr  2 09:30]  common_build_and_checks.exec.sh*
-│   ├── [ 27K Apr  2 09:29]  common_build_and_checks.exec.sh.tpl
-│   ├── [ 18K Apr  2 04:13]  common_options.libr.sh
-│   ├── [6.2K Apr  2 04:19]  comparisons.libr.sh
-│   ├── [ 22K Apr  2 04:33]  create_PDF.exec.sh*
-│   ├── [3.7K Apr  2 04:36]  generate_from_template.libr.sh
+│   ├── [8.3K Apr 17 09:32]  build_dependencies_notes.libr.php
+│   ├── [4.2K Apr 17 10:34]  build_md_from_printable_md.exec.sh*
+│   ├── [3.2K Apr 16 20:21]  check_shell_scripts_beginnings.libr.sh
+│   ├── [5.3K Apr 17 10:11]  check_shell_scripts_indentation.libr.sh
+│   ├── [3.7K Apr 17 10:15]  check_URLs.libr.sh
+│   ├── [ 34K Apr 17 18:08]  common_build_and_checks.exec.sh*
+│   ├── [ 29K Apr 17 18:08]  common_build_and_checks.exec.sh.tpl
+│   ├── [ 18K Apr 17 11:22]  common_options.libr.sh
+│   ├── [6.2K Apr 16 19:40]  comparisons.libr.sh
+│   ├── [ 22K Apr 17 12:46]  create_PDF.exec.sh*
+│   ├── [3.7K Apr 17 12:41]  generate_from_template.libr.sh
 │   ├── [2.0K Mar 24 20:52]  get_common_text_glob_patterns.libr.sh
-│   ├── [3.3K Apr  2 04:39]  grammar_and_spelling_check.libr.sh
-│   ├── [4.0K Apr  1 20:35]  licenses_templates/
-│   │   ├── [ 14K Apr  1 20:35]  build_licenses_templates.exec.sh*
+│   ├── [3.3K Apr 16 20:21]  grammar_and_spelling_check.libr.sh
+│   ├── [4.0K Apr 17 12:17]  licenses_templates/
+│   │   ├── [ 14K Apr 17 12:17]  build_licenses_templates.exec.sh*
 │   │   ├── [ 728 Feb 28 20:38]  license_file_header_AGPLv3+.tpl
 │   │   ├── [ 707 Feb 28 20:38]  license_file_header_GPLv3+.tpl
 │   │   └── [ 728 Feb 28 20:38]  license_file_header_LGPLv3+.tpl
-│   ├── [6.2K Apr  2 04:41]  lines_counts.libr.sh
-│   ├── [ 15K Apr  2 04:51]  lines_filters.libr.sh
+│   ├── [6.0K Apr 16 20:21]  lines_counts.libr.sh
+│   ├── [ 15K Apr 17 12:28]  lines_filters.libr.sh
 │   ├── [3.0K Apr  1 14:56]  lines_maps.libr.sh
-│   ├── [2.8K Apr  2 05:50]  overwrite_if_not_equal.libr.sh
-│   ├── [2.5K Apr  1 15:50]  python_black_complement.libr.sh
-│   ├── [3.2K Apr  2 04:58]  python_isort_complement.libr.sh
-│   ├── [2.1K Apr  2 05:19]  repository_data.libr.sh
-│   ├── [4.2K Apr  2 09:18]  shell_checks_complement.libr.sh
+│   ├── [3.3K Apr 17 12:56]  overwrite_if_not_equal.libr.sh
+│   ├── [2.4K Apr 16 20:21]  python_black_complement.libr.sh
+│   ├── [3.1K Apr 17 13:13]  python_isort_complement.libr.sh
+│   ├── [2.1K Apr 16 20:21]  repository_data.libr.sh
+│   ├── [4.0K Apr 17 13:35]  shell_checks_complement.libr.sh
 │   ├── [2.0K Mar 26 12:37]  split_score.exec.php
 │   ├── [3.2K Mar 26 23:11]  split_score.libr.php
-│   ├── [ 48K Apr  2 05:30]  strings_functions.libr.sh
-│   ├── [4.4K Apr  2 05:35]  too_long_code_lines.libr.sh
-│   ├── [4.3K Apr  2 05:45]  update_common_build_and_checks.exec.sh*
-│   └── [6.0K Apr  2 05:49]  update_or_check_files_names_listing.exec.sh*
-├── [4.6K Apr  2 09:30]  build_and_checks.exec.sh*
-├── [4.0K Apr  2 09:49]  build_and_checks_variables/
+│   ├── [ 47K Apr 17 14:09]  strings_functions.libr.sh
+│   ├── [4.6K Apr 17 11:42]  too_long_code_lines.libr.sh
+│   ├── [4.5K Apr 17 14:13]  update_common_build_and_checks.exec.sh*
+│   └── [6.0K Apr 17 14:18]  update_or_check_files_names_listing.exec.sh*
+├── [4.6K Apr 17 18:08]  build_and_checks.exec.sh*
+├── [4.0K Apr 17 18:27]  build_and_checks_variables/
 │   ├── [  15 Jan  5 20:00]  bandit_baseline.json
 │   ├── [  25 Jan  5 18:49]  bandit.ini
 │   ├── [  30 Feb 28 20:30]  black.toml
-│   ├── [4.9K Mar 26 23:19]  dependencies_data.json
-│   ├── [4.1K Mar 26 23:20]  dependencies_notes.txt
-│   ├── [5.7K Mar 26 23:16]  DevOrSysAdminScripts.html.tpl
-│   ├── [ 35K Apr  2 09:48]  DevOrSysAdminScripts.tex
-│   ├── [4.2K Mar 26 23:16]  DevOrSysAdminScripts.tex.tpl
+│   ├── [5.1K Apr 17 16:50]  dependencies_data.json
+│   ├── [4.3K Apr 17 16:57]  dependencies_notes.txt
+│   ├── [5.7K Apr 17 16:51]  DevOrSysAdminScripts.html.tpl
+│   ├── [ 35K Apr 17 18:09]  DevOrSysAdminScripts.tex
+│   ├── [4.2K Apr 17 16:52]  DevOrSysAdminScripts.tex.tpl
 │   ├── [5.5K Mar 26 22:08]  files_names_listing.txt
 │   ├── [  23 Mar 24 19:33]  .gitignore
-│   ├── [1.4K Mar 26 23:16]  licenses_notes.txt
-│   ├── [ 13K Mar 26 22:59]  phpcs_ruleset.xml
-│   ├── [2.2K Mar 26 12:12]  phpmd_baseline.xml
+│   ├── [1.4K Apr 17 16:49]  licenses_notes.txt
+│   ├── [ 13K Apr 17 09:38]  phpcs_ruleset.xml
+│   ├── [2.2K Apr 17 14:32]  phpmd_baseline.xml
 │   ├── [ 678 Feb 24 22:38]  pylintrc.toml
-│   ├── [4.5K Mar 22 15:51]  repository_data.txt
-│   ├── [ 786 Mar 22 15:39]  repository_data.txt.tpl
+│   ├── [4.6K Apr 17 17:09]  repository_data.txt
+│   ├── [ 841 Apr 17 17:08]  repository_data.txt.tpl
 │   ├── [1.4K Feb 24 23:25]  ruff.toml
 │   ├── [ 166 Mar 24 19:33]  shellcheck.ini
 │   └── [3.6K Apr  2 09:16]  shellcheck_notes.txt
 ├── [ 34K May  6  2024]  COPYING
 ├── [7.5K Dec 27 21:48]  COPYING.LESSER
-├── [479K Apr  2 09:48]  DevOrSysAdminScripts.html
-├── [412K Apr  2 09:48]  DevOrSysAdminScripts.pdf
-├── [4.0K Apr  1 19:35]  git_helpers/
-│   ├── [3.8K Apr  1 19:16]  git_checks.libr.sh
+├── [484K Apr 17 18:09]  DevOrSysAdminScripts.html
+├── [416K Apr 17 18:09]  DevOrSysAdminScripts.pdf
+├── [4.0K Apr 17 16:31]  git_helpers/
+│   ├── [3.8K Apr 17 16:20]  git_checks.libr.sh
 │   ├── [2.1K Apr  1 19:21]  post-commit*
-│   ├── [ 15K Apr  1 19:35]  post_commit_renaming_comment.libr.sh
+│   ├── [ 15K Apr 17 16:31]  post_commit_renaming_comment.libr.sh
 │   └── [1.8K Apr  1 19:23]  pre-commit*
 ├── [   8 Mar 26 10:37]  .gitignore
-├── [8.3K Feb 28 20:31]  IMAP_transfert.py
+├── [8.3K Apr 17 16:33]  IMAP_transfert.py
 ├── [1.1K Mar 31 19:59]  LiensUtiles.txt
 ├── [4.0K Mar 18 17:27]  miscellaneous/
 │   ├── [   0 Mar  4 10:37]
@@ -300,10 +300,10 @@ Code lines: 12008 total lines, 11048 not empty lines, 960 empty lines.
 ├── [8.1K Mar 22 21:29]  README.html
 ├── [4.3K Mar 22 21:29]  README.md
 ├── [4.3K Mar 22 21:29]  README.md.tpl
-├── [7.0K Mar 26 22:16]  string_escaping.libr.php
-├── [ 16K Mar 26 20:11]  unicode.libr.php
-├── [5.4K Apr  2 09:39]  upgrade_build_and_checks.exec.sh*
-└── [2.5K Apr  1 19:06]  wget_sha512.libr.sh
+├── [7.0K Apr 17 18:12]  string_escaping.libr.php
+├── [ 17K Apr 17 18:22]  unicode.libr.php
+├── [5.5K Apr 17 13:19]  upgrade_build_and_checks.exec.sh*
+└── [2.5K Apr 16 19:36]  wget_sha512.libr.sh
 
 6 directories, 83 files
 \end{verbatim}
@@ -336,7 +336,7 @@ git, pylint;
 \item The following dependencies are LGPLv2.1+ licensed:\newline
 notify-send;
 \item The following dependencies are MIT licensed:\newline
-black, isort, mypy, phpdoc, pip, ruff;
+black, isort, mypy, phpdoc, pip, ruff, xmllint;
 \item The following dependencies are Apache-2.0 licensed:\newline
 bandit;
 \item The following dependencies are BSD-3-Clause licensed:\newline
@@ -455,6 +455,10 @@ ruff can be found at the following URLs:\newline
 \url{https://docs.astral.sh/ruff/},\newline
 \url{https://github.com/astral-sh/ruff},\newline
 \url{https://pypi.org/project/ruff/}.
+
+xmllint (libxml2) can be found at the following URLs:\newline
+\url{https://gitlab.gnome.org/GNOME/libxml2/-/wikis/home},\newline
+\url{https://gitlab.gnome.org/GNOME/libxml2}.
 
 bandit can be found at the following URLs:\newline
 \url{https://bandit.readthedocs.io/en/latest/},\newline

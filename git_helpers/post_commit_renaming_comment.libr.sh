@@ -46,9 +46,9 @@ pushd -- "${LFBFL_some_directory}" || {
   exit ${LFBFL_i_pushd_result2}
 }
 # shellcheck source=common_options.libr.sh
-source "build_and_checks_dependencies/common_options.libr.sh"
+source "./build_and_checks_dependencies/common_options.libr.sh"
 # shellcheck source=strings_functions.libr.sh
-source "build_and_checks_dependencies/strings_functions.libr.sh"
+source "./build_and_checks_dependencies/strings_functions.libr.sh"
 declare -i LFBFL_i_popd_result2
 popd || {
   LFBFL_i_popd_result2=$?

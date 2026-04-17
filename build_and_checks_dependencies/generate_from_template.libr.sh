@@ -115,6 +115,6 @@ insert_file_at_token(){
     > "${LFBFL_result_file_name}"
   rm -- "${LFBFL_start_file_name}" "${LFBFL_end_file_name}"
   if [[ -z "$4" ]]; then
-    overwrite_if_not_equal "$1" "${LFBFL_result_file_name}" "" "" "$5"
+    overwrite_if_not_equal "$1" "${LFBFL_result_file_name}" "$5"
   fi
 }

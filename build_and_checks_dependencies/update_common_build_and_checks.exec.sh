@@ -24,7 +24,10 @@
 # This file was renamed from "update_common_build_and_checks.sh"
 # to "update_common_build_and_checks.exec.sh".
 
-source "overwrite_if_not_equal.libr.sh"
+cd .. || exit
+# shellcheck source=overwrite_if_not_equal.libr.sh
+source "./build_and_checks_dependencies/overwrite_if_not_equal.libr.sh"
+cd build_and_checks_dependencies || exit
 
 update_common_build_and_checks(){
   declare -i LFBFL_i_verbose=0

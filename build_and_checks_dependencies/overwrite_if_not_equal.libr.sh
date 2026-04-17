@@ -24,19 +24,31 @@
 # This file was renamed from "overwrite_if_not_equal.sh"
 # to "overwrite_if_not_equal.libr.sh".
 
+LFBFL_subdir="build_and_checks_dependencies"
+# shellcheck source=common_options.libr.sh
+source "./${LFBFL_subdir}/common_options.libr.sh"
+
 overwrite_if_not_equal(){
   # $1=target_file_path
   # $2=temp_file_path
-  # $3=keep_temp
-  # $4=tree_mode : when the two files are the output of tree command,
-  # we ignore if all the differences are only on directories timestamps.
-  # $5=--quiet : we even don't want the message of diff saying that
-  #              files are distinct
+  # Options:
+  #   --keep-temp : keep the temporary file
+  #   --quiet : we even don't want the message of diff saying that
+  #             files are distinct
+  #   --tree-mode : when the two files are the output of tree command,
+  #   we ignore if all the differences are only on directories timestamps.
   # Return 0 target was the same
   #        1 target was different
   #        2 target did not already exist
+  declare -i LFBFL_i_keep_temp
+  get_some_flag LFBFL_i_keep_temp --keep-temp 1 "$@"
+  declare -i LFBFL_i_quiet
+  get_some_flag LFBFL_i_quiet --quiet 1 "$@"
+  declare -i LFBFL_i_tree_mode
+  get_some_flag LFBFL_i_tree_mode --tree-mode 1 "$@"
+
   if [[ ! -f "$1" ]]; then
-    if [[ -n "$3" ]]; then
+    if [[ LFBFL_i_keep_temp -eq 1 ]]; then
       cp --preserve=mode,ownership,timestamps -- "$2" "$1"
     else
       mv -- "$2" "$1"
@@ -44,7 +56,7 @@ overwrite_if_not_equal(){
     return 2
   fi
   declare -i LFBFL_i_is_equal
-  if [[ -n "$4" ]]; then
+  if [[ LFBFL_i_tree_mode -eq 1 ]]; then
     # Not setting pipefail since the result would still be incorrect.
     # shellcheck disable=SC2312
     diff -- "$1" "$2"\
@@ -56,7 +68,7 @@ overwrite_if_not_equal(){
         > "overwrite_if_not_equal.file1.temp"
       grep --only-matching --regexp="[^ ]*/$" -- "$2"\
         > "overwrite_if_not_equal.file2.temp"
-      if [[ -n "$5" ]]; then
+      if [[ LFBFL_i_quiet -eq 1 ]]; then
         diff overwrite_if_not_equal.file1.temp\
           overwrite_if_not_equal.file2.temp\
           > /dev/null
@@ -69,7 +81,7 @@ overwrite_if_not_equal(){
         overwrite_if_not_equal.file2.temp
     fi
   else
-    if [[ -n "$5" ]]; then
+    if [[ LFBFL_i_quiet -eq 1 ]]; then
       diff --brief -- "$1" "$2" > /dev/null
     else
       diff --brief -- "$1" "$2"
@@ -77,12 +89,12 @@ overwrite_if_not_equal(){
     LFBFL_i_is_equal=1-$?
   fi
   if [[ LFBFL_i_is_equal -eq 1 ]]; then
-    if [[ -z "$3" ]]; then
+    if [[ LFBFL_i_keep_temp -eq 0 ]]; then
       rm -- "$2"
     fi
     return 0
   fi
-  if [[ -n "$3" ]]; then
+  if [[ LFBFL_i_keep_temp -eq 1 ]]; then
     cp --preserve=mode,ownership,timestamps -- "$2" "$1"
   else
     mv -- "$2" "$1"

@@ -148,18 +148,18 @@ common_build_and_checks(){
   LFBFL_file_name="create_PDF.exec.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='2353804f89d6ac7f6d64e5b725ac05d9f5aefae961fbb'
-  LFBFL_correct_sha512+='aec9ee66e01651225fa5afd5c73da8fce6e807324dbb'
-  LFBFL_correct_sha512+='3ff5dc1bedf1cc18605ce1e46734da337991111'
+  LFBFL_correct_sha512='560add021e3717e42fa27c8ad408e53974382259ecdca'
+  LFBFL_correct_sha512+='73e3f128fbe65cdb9fd3aa8b0dd1dbd329c39b9232ee'
+  LFBFL_correct_sha512+='9eafa1bacf1b9b4cb00cc305c79ae857a62fdd3'
   wrapped_wget_sha512
   chmod +x "./${LFBFL_file_path}"
 
   LFBFL_file_name="generate_from_template.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='3fd0e4b25217207a156e15a269ca31e29265476038f88'
-  LFBFL_correct_sha512+='1ffba59ec4e2258334b47fded3ff7de7782175e157bc'
-  LFBFL_correct_sha512+='d70bfc09f334d1957c4ebc7a7cdcb2ae101ec69'
+  LFBFL_correct_sha512='f983105225e806681b004aeb73d5bdd4d2bd8bd0d71ab'
+  LFBFL_correct_sha512+='9b6294c76252302b59f119b944185ffec94fa87b2429'
+  LFBFL_correct_sha512+='6916a5be393ba987d7464c2871bb448039f85d0'
   wrapped_wget_sha512
 
   LFBFL_file_name="get_common_text_glob_patterns.libr.sh"
@@ -243,9 +243,9 @@ common_build_and_checks(){
   LFBFL_file_name="overwrite_if_not_equal.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='f75d5232cba494dd9c1a53111dc10b78414ec180bf293'
-  LFBFL_correct_sha512+='6114bdc8c415b41d0c3dd05b31ad9cf66affa1080922'
-  LFBFL_correct_sha512+='cc2d9fce18a4cdcef8feee8816ee100196fc190'
+  LFBFL_correct_sha512='8c004f2256257e4c47e96660fd4a619d5fd1996d709ff'
+  LFBFL_correct_sha512+='dcecf810f0f607544fc8f080d2f528de28f992293958'
+  LFBFL_correct_sha512+='bc189d1db0fcab98f9199c2a2df39722a8e2473'
   wrapped_wget_sha512
 
   LFBFL_file_name="python_black_complement.libr.sh"

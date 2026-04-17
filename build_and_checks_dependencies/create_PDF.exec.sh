@@ -418,7 +418,7 @@ create_PDF(){
   done
 
   overwrite_if_not_equal "${LFBFL_temp_path}/current_tree.txt"\
-    "${LFBFL_temp_path}/current_tree.txt.temp" 1 1
+    "${LFBFL_temp_path}/current_tree.txt.temp" --keep-temp --tree-mode
 
   local LFBFL_tex_path_start
   LFBFL_tex_path_start="${LFBFL_temp_path}/${LFBFL_repository_name}.tex"
@@ -510,7 +510,7 @@ create_PDF(){
 
     overwrite_if_not_equal\
       "${LFBFL_subdir2}/${LFBFL_repository_name}.tex"\
-      "${LFBFL_tex_path_start}.7" 1
+      "${LFBFL_tex_path_start}.7" --keep-temp
   fi
 
   # HTML filling:
@@ -565,7 +565,7 @@ create_PDF(){
       "${LFBFL_html_path_start}.8"
 
     overwrite_if_not_equal "${LFBFL_repository_name}.html"\
-      "${LFBFL_html_path_start}.8" 1
+      "${LFBFL_html_path_start}.8" --keep-temp
     LFBFL_i_HTML_updated=$?
   fi
 

@@ -99,9 +99,9 @@ common_build_and_checks(){
   LFBFL_file_name="build_md_from_printable_md.exec.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='a3cd8161b5c38441dd278df7ac155adef55a1842f9b46'
-  LFBFL_correct_sha512+='42fb43e248279e628b9ba6bcc6235a32f7032c520fe1'
-  LFBFL_correct_sha512+='ff06c9b34cd24f76ad484bf61f17f5a109e07f0'
+  LFBFL_correct_sha512='4ed727f21bfdb99d3c3a37d631d27816da10be357a200'
+  LFBFL_correct_sha512+='b03516cc642cc720735bd1363e47e1b38d5a4667a4ef'
+  LFBFL_correct_sha512+='75c573e92f09261df6c2c55ee9c0852ab2d1ee8'
   wrapped_wget_sha512
   chmod +x "./${LFBFL_file_path}"
 
@@ -132,9 +132,9 @@ common_build_and_checks(){
   LFBFL_file_name="common_options.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='3bb965e23f32f4dcfe4baa9537707d5efe009e6640312'
-  LFBFL_correct_sha512+='beb3e7b2666eb284c046f812c7094dd75ea8d7287a0b'
-  LFBFL_correct_sha512+='b707f78510fe5a1229d8538e7af40281df1e794'
+  LFBFL_correct_sha512='937a76a0ff1b67be3f33c0397c1d6df267b239bf6b62e'
+  LFBFL_correct_sha512+='326196e9b80d53d2bf73dfac94139c81280977c8d45f'
+  LFBFL_correct_sha512+='1bcac0b0cb1dd3bd4ce6b53e8d9dfa53703d328'
   wrapped_wget_sha512
 
   LFBFL_file_name="comparisons.libr.sh"
@@ -227,9 +227,9 @@ common_build_and_checks(){
   LFBFL_file_name="lines_filters.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='9911600692627c19aeee1a162d0da29a83cc2bd2f6c71'
-  LFBFL_correct_sha512+='5f1518a01aa5f73f143e413dd66c0ef9941a2a394d86'
-  LFBFL_correct_sha512+='1011e4fb1399b122b3be761deaebd65faa8eead'
+  LFBFL_correct_sha512='822a6aac727f833ec30d1958d7e0e1cf1e0527cb21085'
+  LFBFL_correct_sha512+='28717daee70af33186ad381677d848ea9b4ae8882355'
+  LFBFL_correct_sha512+='a739b8be459c1974b3b659186acf769a63b7b62'
   wrapped_wget_sha512
 
   LFBFL_file_name="lines_maps.libr.sh"

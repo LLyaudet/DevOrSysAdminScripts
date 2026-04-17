@@ -76,7 +76,7 @@ commit_a_file_renamed_comment(){
   get_some_flag LFBFL_i_log_directory_change --log-directory-change 1 "$@"
   declare -i LFBFL_i_max_comment_line_length
   get_some_option LFBFL_i_max_comment_line_length\
-    --max-comment-line-length 70 1 "$@"
+    --max-comment-line-length 70 70 1 "$@"
   if [[ LFBFL_i_verbose -eq 1 ]]; then
     LFBFL_s_format="LFBFL_i_log_directory_change: %s\n"
     LFBFL_s_format+="LFBFL_i_max_comment_line_length: %s\n"

@@ -268,19 +268,31 @@ get_verbose_option(){
 get_some_option(){
   # $1=variable_name
   # $2=some_option_long_name
-  # $3=option_default_value
-  # $4=read_only 0 or 1 to make the variable readonly
+  # $3=option_default_value_if_flag_without_option_value_or_empty_value
+  # $4=option_default_value_if_nothing
+  # $5=read_only 0 or 1 to make the variable readonly
   # This command is to be called in another one with same arguments on top
   # of the four previous.
+  # If you truly have a need to distinguish:
+  # option_default_value_if_flag_without_option_value --thing
+  # option_default_value_if_flag_with_empty_option_value --thing= or =''
+  # then think twice before modifying this function.
+  printf -v "$1" "%s" "$4"
+  declare -i LFBFL_i
   local LFBFL_argument
-  for LFBFL_argument in "$@"; do
+  for ((LFBFL_i = 6; LFBFL_i <= $#; ++LFBFL_i)); do
+    LFBFL_argument="${!LFBFL_i}"
+    if [[ "${LFBFL_argument}" == "$2" ]]; then
+      printf -v "$1" "%s" "$3"
+      break
+    fi
     if [[ "${LFBFL_argument}" == "$2"=* ]]; then
       printf -v "$1" "%s" "${LFBFL_argument#"$2"=}"
+      printf -v "$1" "%s" "${!1:-$3}"
       break
     fi
   done
-  printf -v "$1" "%s" "${!1:-$3}"
-  if [[ $4 -eq 1 ]]; then
+  if [[ $5 -eq 1 ]]; then
     readonly "$1"
   fi
 }
@@ -323,7 +335,7 @@ get_work_directory_option(){
   # This command is to be called in another one with same arguments.
   # Options:
   #   --work-directory=""
-  get_some_option LFBFL_work_directory --work-directory "." 0 "$@"
+  get_some_option LFBFL_work_directory --work-directory "." "." 0 "$@"
   LFBFL_work_directory=$(realpath "${LFBFL_work_directory}")
   readonly LFBFL_work_directory
 }
@@ -364,7 +376,7 @@ get_offset_option(){
   # $1=option_default_value
   # Options:
   #   --offset=2
-  get_some_option LFBFL_i_offset --offset "$1" 1 "$@"
+  get_some_option LFBFL_i_offset --offset "$1" "$1" 1 "$@"
 }
 
 get_max_line_length_option(){
@@ -373,7 +385,7 @@ get_max_line_length_option(){
   # length of 70 characters.
   # Options:
   #   --max-line-length
-  get_some_option LFBFL_i_max_line_length --max-line-length 70 1 "$@"
+  get_some_option LFBFL_i_max_line_length --max-line-length 70 70 1 "$@"
 }
 
 

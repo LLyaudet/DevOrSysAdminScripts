@@ -249,7 +249,7 @@ grep_variable(){
   # printf "%s\n" "${LFBFL_regexp}"
   local LFBFL_variable_value
   local LFBFL_s_replace
-  get_some_option LFBFL_s_replace --replace-line-returns-by $'\n' 1 "$@"
+  get_some_option LFBFL_s_replace --replace-line-returns-by '' $'\n' 1 "$@"
   if [[ "${LFBFL_s_replace}" != $'\n' ]]; then
     # sed -Ez -e...
     LFBFL_variable_value=$(
@@ -268,9 +268,9 @@ grep_variable(){
     )
   fi
   local LFBFL_prefix=""
-  get_some_option LFBFL_prefix --result-variable-prefix '' 1 "$@"
+  get_some_option LFBFL_prefix --result-variable-prefix '' '' 1 "$@"
   declare -r LFBFL_variable_name="${LFBFL_prefix}$2"
-  # printf "%s : %s\n " "${LFBFL_variable_name}" "${LFBFL_variable_value}"
+  # printf "%s : %s\n" "${LFBFL_variable_name}" "${LFBFL_variable_value}"
   # The declare line may be dropped by a local or declare
   # in outer scope.
   # declare -g "${LFBFL_variable_name}"

@@ -45,7 +45,7 @@ build_md_from_printable_md(){
   can_continue_after_enhanced_pushd || return 1
 
   local LFBFL_base_name
-  get_some_option LFBFL_base_name --base-name README 1 "$@"
+  get_some_option LFBFL_base_name --base-name README README 1 "$@"
   if [[ LFBFL_i_verbose -eq 1 && "${LFBFL_base_name}" != "README" ]]; then
     printf "Searching md file: %s.\n" "${LFBFL_base_name}"
   fi

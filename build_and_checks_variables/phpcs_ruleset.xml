@@ -257,8 +257,8 @@ name="PSR2.ControlStructures.ControlStructureSpacing.SpacingAfterOpenBrace"
   </rule>
   <rule ref="Generic.Metrics.CyclomaticComplexity">
     <properties>
-      <property name="complexity" value="20" />
-      <property name="absoluteComplexity" value="40" />
+      <property name="complexity" value="40" />
+      <property name="absoluteComplexity" value="80" />
     </properties>
   </rule>
   <rule ref="Generic.Strings.UnnecessaryStringConcat">

@@ -48,7 +48,8 @@ check_collections_abc_place(){
   can_continue_after_enhanced_pushd || return 1
 
   [[ LFBFL_i_verbose -eq 1 ]]\
-    && printf "Checking import of _collections_abc is at the right place\n"
+    && printf\
+      "Checking that import of _collections_abc is at the right place\n"
 
   enhanced_set_shell_option pipefail --trap-unset
 

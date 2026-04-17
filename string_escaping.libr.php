@@ -311,12 +311,12 @@ namespace string_escaping\TeX {
 $ php
 <?php
 require_once('string_escaping.libr.php');
-var_dump(string_escaping\HTML\escape_text('<&"\'truc\\'));
-var_dump(string_escaping\HTML\escape_attribute("<&\"\n'truc\\"));
-var_dump(string_escaping\HTML\escape_pre("<&\"\n'truc\\"));
-var_dump(string_escaping\XHTML\escape_text('<&"\'truc\\'));
-var_dump(string_escaping\XHTML\escape_attribute("<&\"\n'truc\\"));
-var_dump(string_escaping\XHTML\escape_pre("<&\"\n'truc\\"));
+var_dump(string_escaping\HTML\escape_text("<&\"\n'truc\\>"));
+var_dump(string_escaping\HTML\escape_attribute("<&\"\n'truc\\>"));
+var_dump(string_escaping\HTML\escape_pre("<&\"\n'truc\\>"));
+var_dump(string_escaping\XHTML\escape_text("<&\"\n'truc\\>"));
+var_dump(string_escaping\XHTML\escape_attribute("<&\"\n'truc\\>"));
+var_dump(string_escaping\XHTML\escape_pre("<&\"\n'truc\\>"));
 var_dump(string_escaping\JS\escape("abcd & < > \\ \n  \"'"));
 var_dump(string_escaping\JS\escape_for_string_definition_inside_XHTML(
   "abcd & < > \\ \n  \"'"

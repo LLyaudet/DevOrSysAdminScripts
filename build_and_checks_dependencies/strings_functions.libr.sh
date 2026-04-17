@@ -996,6 +996,10 @@ split_line_at_most(){
     split_line_at_most_result_end=""
     return
   fi
+  if [[ $2 -lt 1 ]]; then
+    printf "split_line_at_most: max_length should be at least 1...\n"
+    return
+  fi
   # We know that ${#1} > $2, hence ${#1} - 1 >= $2
   # Edge cases:
   # There is always at least one character that is overlength,

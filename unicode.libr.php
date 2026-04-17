@@ -63,6 +63,7 @@ function decimal_code_point_to_UTF8(
   // 110xxxxx 10xxxxxx
   if($i_code_point_in_decimal_notation < 2048){  // 2**11
     $i_first_byte_base_value = 192;
+    /*
     $i_last_byte_significant_bits = (
       $i_code_point_in_decimal_notation % 64  // 2**6
     );
@@ -82,10 +83,22 @@ function decimal_code_point_to_UTF8(
       + $i_last_byte_significant_bits
     );
     return $s_result;
+    */
+    return (
+      chr(
+        $i_first_byte_base_value
+        + ($i_code_point_in_decimal_notation >> 6)
+      )
+      .chr(
+        $i_continuation_base_value
+        + ($i_code_point_in_decimal_notation & 63)
+      )
+    );
   }//end if($i_code_point_in_decimal_notation < 2048)
   // 1110xxxx 10xxxxxx 10xxxxxx
   if($i_code_point_in_decimal_notation < 65536){  // 2**16
     $i_first_byte_base_value = 224;
+    /*
     $arr_arr_data_per_byte_reverse = [
       ['i_bits' => 6, 'i_base_value' => $i_continuation_base_value],
       ['i_bits' => 6, 'i_base_value' => $i_continuation_base_value],
@@ -116,10 +129,26 @@ function decimal_code_point_to_UTF8(
       );
     }//end foreach($arr_arr_data_per_byte_reverse as $arr_data)
     return $s_result;
+    */
+    return (
+      chr(
+        $i_first_byte_base_value
+        + ($i_code_point_in_decimal_notation >> 12)
+      )
+      .chr(
+        $i_continuation_base_value
+        + (($i_code_point_in_decimal_notation >> 6) & 63)
+      )
+      .chr(
+        $i_continuation_base_value
+        + ($i_code_point_in_decimal_notation & 63)
+      )
+    );
   }//end if($i_code_point_in_decimal_notation < 65536)
   // 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
   if($i_code_point_in_decimal_notation < 2097152){  // 2**21
     $i_first_byte_base_value = 240;
+    /*
     $arr_arr_data_per_byte_reverse = [
       ['i_bits' => 6, 'i_base_value' => $i_continuation_base_value],
       ['i_bits' => 6, 'i_base_value' => $i_continuation_base_value],
@@ -143,6 +172,25 @@ function decimal_code_point_to_UTF8(
       );
     }
     return $s_result;
+    */
+    return (
+      chr(
+        $i_first_byte_base_value
+        + ($i_code_point_in_decimal_notation >> 18)
+      )
+      .chr(
+        $i_continuation_base_value
+        + (($i_code_point_in_decimal_notation >> 12) & 63)
+      )
+      .chr(
+        $i_continuation_base_value
+        + (($i_code_point_in_decimal_notation >> 6) & 63)
+      )
+      .chr(
+        $i_continuation_base_value
+        + ($i_code_point_in_decimal_notation & 63)
+      )
+    );
   }//end if($i_code_point_in_decimal_notation < 2097152)
   // phpcs:disable Squiz.Strings.DoubleQuoteUsage.NotRequired
   throw new Exception(
@@ -459,6 +507,7 @@ $arr = [
 $arr_s = [];
 $arr_s2 = [];
 $arr_s3 = [];
+echo("sed\\\n");
 foreach($arr as $s_hexa){
   $s = hexa_code_point_to_UTF8($s_hexa);
   $arr_s []= $s;
@@ -470,7 +519,7 @@ foreach($arr as $s_hexa){
       .'\x'.bin2hex($s[2]);
   }
   $arr_s2 []= $s2;
-  $s3 = "  | sed -e 's/".$s2."/ /g'\\";
+  $s3 = "  --expression='s/".$s2."/ /g'\\";
   $arr_s3 []= $s3;
   echo($s3."\n");
 }

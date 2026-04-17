@@ -227,9 +227,9 @@ common_build_and_checks(){
   LFBFL_file_name="lines_filters.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='822a6aac727f833ec30d1958d7e0e1cf1e0527cb21085'
-  LFBFL_correct_sha512+='28717daee70af33186ad381677d848ea9b4ae8882355'
-  LFBFL_correct_sha512+='a739b8be459c1974b3b659186acf769a63b7b62'
+  LFBFL_correct_sha512='76050708d970c346dadfb46599ec32c26fc831990b163'
+  LFBFL_correct_sha512+='3437360260ca11ae6b2c4784f5ff1331cfbc70e19ef0'
+  LFBFL_correct_sha512+='0e38184448aa57f053270254582cc1319ea0baa'
   wrapped_wget_sha512
 
   LFBFL_file_name="lines_maps.libr.sh"

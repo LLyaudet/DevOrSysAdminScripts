@@ -234,7 +234,6 @@ grep_fixed_string_with_anchor(){
       fi
     fi
   done
-  LFBFL_i_result=$((LFBFL_i_result | $?))
   # shellcheck disable=SC2248
   return ${LFBFL_i_result}
 }

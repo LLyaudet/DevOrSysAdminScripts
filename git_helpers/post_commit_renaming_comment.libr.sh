@@ -85,6 +85,14 @@ commit_a_file_renamed_comment(){
       "${LFBFL_i_log_directory_change}"\
       ${LFBFL_i_max_comment_line_length}
   fi
+  if [[ LFBFL_i_max_comment_line_length -lt 10 ]]; then
+    declare -r LFBFL_send_summary="Max comment line length below 10."
+    notify-send "${LFBFL_send_summary}" "${LFBFL_send_summary}"
+    if [[ LFBFL_i_verbose -eq 1 ]]; then
+      printf "Max comment line length below 10, aborting.\n"
+    fi
+    return
+  fi
   local LFBFL_s_format
   #-------------------------------------------------------------------
 

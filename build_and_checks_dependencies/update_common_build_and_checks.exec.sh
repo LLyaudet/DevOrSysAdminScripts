@@ -30,6 +30,8 @@ source "./build_and_checks_dependencies/overwrite_if_not_equal.libr.sh"
 cd build_and_checks_dependencies || exit
 
 update_common_build_and_checks(){
+  # Option:
+  #   --verbose
   declare -i LFBFL_i_verbose=0
   if [[ "$*" == *--verbose* ]]; then
     printf "%s %s\n" "$0" "$*"

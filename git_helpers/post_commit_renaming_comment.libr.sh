@@ -306,7 +306,8 @@ commit_a_file_renamed_comment(){
       LFBFL_new_comment+=$'\n'
       LFBFL_new_comment+="${LFBFL_new_file_name2}"'".'
     fi
-    if [[ LFBFL_i_log_directory_change -eq 1
+    if [[
+      LFBFL_i_log_directory_change -eq 1
       && "${LFBFL_new_file_directory}" != "${LFBFL_old_file_directory}"
     ]];
     then

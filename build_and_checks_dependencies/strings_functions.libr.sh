@@ -1055,19 +1055,38 @@ split_line_at_most(){
     return 1
   }
 
+  local LFBFL_split_score_command=$3
+  declare -i LFBFL_split_score_command_properties=$4
+
+  normal_or_position_uniform_call(){
+    # $1=cut_position
+    # $2=is_cut_after
+    if ((LFBFL_split_score_command_properties & SSP_POSITION_UNIFORM));
+    then
+      eval --\
+        "${LFBFL_split_score_command} '${LFBFL_current_char}' $2"
+    else
+      eval --\
+        "${LFBFL_split_score_command} '${LFBFL_current_char}' $1 $2"
+    fi
+  }
+
   if (($4 & SSP_DELIMITER_UNIFORM))\
   && (($4 & SSP_LARGER_AFTER))\
   && (($4 & SSP_POSITION_NOT_DECREASING_AFTER)); then
     for ((LFBFL_i = LFBFL_i_max; LFBFL_i >= 0; --LFBFL_i)) do
       LFBFL_current_char="${1:${LFBFL_i}:1}"
-      eval -- "$3 '${LFBFL_current_char}' 1"
       LFBFL_j=$((LFBFL_i + 1))
+      # shellcheck disable=SC2248
+      normal_or_position_uniform_call ${LFBFL_j} 1
       # shellcheck disable=SC2248
       if update_position_score ${LFBFL_j}
       then
         break
       fi
-      eval -- "$3 '${LFBFL_current_char}' 0"
+
+      # shellcheck disable=SC2248
+      normal_or_position_uniform_call ${LFBFL_i} 0
       # shellcheck disable=SC2248
       update_position_score ${LFBFL_i}
     done
@@ -1082,10 +1101,14 @@ split_line_at_most(){
       # And since the algorithm is to take the largest position with
       # maximum score, there is a possibility that we'll break on a found
       # score before but for splitting on a score after.
-      eval -- "$3 '${LFBFL_current_char}' 1"
+      LFBFL_j=$((LFBFL_i + 1))
+      # shellcheck disable=SC2248
+      normal_or_position_uniform_call ${LFBFL_j} 1
       # shellcheck disable=SC2248
       update_position_score ${LFBFL_j}
-      eval -- "$3 '${LFBFL_current_char}' 0"
+
+      # shellcheck disable=SC2248
+      normal_or_position_uniform_call ${LFBFL_i} 0
       # shellcheck disable=SC2248
       if update_position_score ${LFBFL_i}
       then

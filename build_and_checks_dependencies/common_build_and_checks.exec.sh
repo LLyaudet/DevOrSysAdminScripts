@@ -719,7 +719,9 @@ common_build_and_checks(){
   sed --in-place --regexp-extended\
     --expression='s~(file=".*)/>~\1\n  />~g'\
     "${LFBFL_temp_phpmd_baseline}"
-  diff "${LFBFL_phpmd_baseline}" "${LFBFL_temp_phpmd_baseline}"
+  diff --suppress-common-lines\
+    "${LFBFL_phpmd_baseline}" "${LFBFL_temp_phpmd_baseline}"\
+    | grep --invert-match --regexp='<!-- ' --regexp='^[0-9]\+d[0-9]\+$'
 
   printf "Running phpDocumentor\n"
   # shellcheck disable=SC2312

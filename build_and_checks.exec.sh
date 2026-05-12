@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
-# This file is part of DevOrSysAdminScripts library.
+# This file is part of DevOrSysAdminScripts.
 #
 # DevOrSysAdminScripts is free software:
-# you can redistribute it and/or modify it under the terms
-# of the GNU General Public License
+# you can redistribute it and/or modify it
+# under the terms of the GNU General Public License
 # as published by the Free Software Foundation,
 # either version 3 of the License,
 # or (at your option) any later version.
 #
-# DevOrSysAdminScripts is distributed in the hope
-# that it will be useful,
+# DevOrSysAdminScripts is distributed
+# in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY;
 # without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -80,9 +80,9 @@ build_and_checks(){
   readonly LFBFL_script_download_URL
   declare -r LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_common_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='8e7dde3bce5abcda1f27881969865ff00938e315b784a'
-  LFBFL_correct_sha512+='5aeb1c2ee531e12acd5bbcb758cfe73938ad9580eb10'
-  LFBFL_correct_sha512+='767c0d1fd0c65d4249e7607a75d4162a9a7e7ef'
+  LFBFL_correct_sha512='f03ab16e274619d5b4514ee6fa7016411bcaa916db31b'
+  LFBFL_correct_sha512+='1d8b408862a4ac15a3b57b3d777e1a509bdc4dbdc694'
+  LFBFL_correct_sha512+='4a48c7646c3264763f0578606d9ff5e26b3e716'
   wget_sha512 "${LFBFL_file_path}"\
     "${LFBFL_script_download_URL}"\
     "${LFBFL_correct_sha512}"\

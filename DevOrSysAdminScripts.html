@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <!--
-This file is part of DevOrSysAdminScripts library.
+This file is part of DevOrSysAdminScripts.
 
 DevOrSysAdminScripts is free software:
-you can redistribute it and/or modify it under the terms
-of the GNU Lesser General Public License
+you can redistribute it and/or modify it
+under the terms of the GNU Lesser General Public License
 as published by the Free Software Foundation,
 either version 3 of the License,
 or (at your option) any later version.
 
-DevOrSysAdminScripts is distributed in the hope
-that it will be useful,
+DevOrSysAdminScripts is distributed
+in the hope that it will be useful,
 but WITHOUT ANY WARRANTY;
 without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -118,11 +118,11 @@ ol.level2 li:before{
 Some “small” useful scripts
 for enhancing development or system-administrators tasks
 </blockquote>
-<p>Current version: 2026-04-17</p>
-<p>Current number of commits: 905</p>
-<p>Current git SHA1: 29e7c1c3c5c55c3b35f5c39b9461a36e10cf822f</p>
+<p>Current version: 2026-05-12</p>
+<p>Current number of commits: 924</p>
+<p>Current git SHA1: 5ab5d6033ee3652dcf486d73c2f965c9075b1125</p>
 <p>
-Code lines: 12207 total lines, 11231 not empty lines, 976 empty lines.
+Code lines: 12450 total lines, 11460 not empty lines, 990 empty lines.
 </p>
 
 
@@ -312,7 +312,7 @@ git_helpers/post_commit_renaming_comment.libr.sh
 git_helpers/pre-commit
       </a></li>
       <li><a href="#subsection3.59">
-IMAP_transfert.py
+IMAP_transfert.exec.py
       </a></li>
       <li><a href="#subsection3.60">
 LiensUtiles.txt
@@ -418,7 +418,7 @@ wget_sha512.libr.sh
 │   ├── post_commit_renaming_comment.libr.sh
 │   └── pre-commit
 ├── .gitignore
-├── IMAP_transfert.py
+├── IMAP_transfert.exec.py
 ├── LiensUtiles.txt
 ├── miscellaneous
 │   ├──
@@ -460,53 +460,53 @@ wget_sha512.libr.sh
 6 directories, 83 files
 </pre>
 <pre class="verbatim">
-[ 12K Apr 17 18:27]  ./
-├── [4.0K Apr 17 18:26]  build_and_checks_dependencies/
-│   ├── [4.4K Apr  1 19:39]  build_and_checks.exec.sh.tpl*
-│   ├── [1.2K Mar 26 12:30]  build_dependencies_notes.exec.php*
-│   ├── [8.3K Apr 17 09:32]  build_dependencies_notes.libr.php
-│   ├── [4.2K Apr 17 10:34]  build_md_from_printable_md.exec.sh*
-│   ├── [3.2K Apr 16 20:21]  check_shell_scripts_beginnings.libr.sh
-│   ├── [5.3K Apr 17 10:11]  check_shell_scripts_indentation.libr.sh
-│   ├── [3.7K Apr 17 10:15]  check_URLs.libr.sh
-│   ├── [ 34K Apr 17 18:08]  common_build_and_checks.exec.sh*
-│   ├── [ 29K Apr 17 18:08]  common_build_and_checks.exec.sh.tpl
-│   ├── [ 18K Apr 17 11:22]  common_options.libr.sh
-│   ├── [6.2K Apr 16 19:40]  comparisons.libr.sh
-│   ├── [ 22K Apr 17 12:46]  create_PDF.exec.sh*
-│   ├── [3.7K Apr 17 12:41]  generate_from_template.libr.sh
-│   ├── [2.0K Mar 24 20:52]  get_common_text_glob_patterns.libr.sh
-│   ├── [3.3K Apr 16 20:21]  grammar_and_spelling_check.libr.sh
-│   ├── [4.0K Apr 17 12:17]  licenses_templates/
-│   │   ├── [ 14K Apr 17 12:17]  build_licenses_templates.exec.sh*
-│   │   ├── [ 728 Feb 28 20:38]  license_file_header_AGPLv3+.tpl
-│   │   ├── [ 707 Feb 28 20:38]  license_file_header_GPLv3+.tpl
-│   │   └── [ 728 Feb 28 20:38]  license_file_header_LGPLv3+.tpl
-│   ├── [6.0K Apr 16 20:21]  lines_counts.libr.sh
-│   ├── [ 15K Apr 17 12:28]  lines_filters.libr.sh
-│   ├── [3.0K Apr  1 14:56]  lines_maps.libr.sh
-│   ├── [3.3K Apr 17 12:56]  overwrite_if_not_equal.libr.sh
-│   ├── [2.4K Apr 16 20:21]  python_black_complement.libr.sh
-│   ├── [3.1K Apr 17 13:13]  python_isort_complement.libr.sh
-│   ├── [2.1K Apr 16 20:21]  repository_data.libr.sh
-│   ├── [4.0K Apr 17 13:35]  shell_checks_complement.libr.sh
-│   ├── [2.0K Mar 26 12:37]  split_score.exec.php
-│   ├── [3.2K Mar 26 23:11]  split_score.libr.php
-│   ├── [ 47K Apr 17 14:09]  strings_functions.libr.sh
-│   ├── [4.6K Apr 17 11:42]  too_long_code_lines.libr.sh
-│   ├── [4.5K Apr 17 14:13]  update_common_build_and_checks.exec.sh*
-│   └── [6.0K Apr 17 14:18]  update_or_check_files_names_listing.exec.sh*
-├── [4.6K Apr 17 18:08]  build_and_checks.exec.sh*
-├── [4.0K Apr 17 18:27]  build_and_checks_variables/
+[ 12K May 12 19:40]  ./
+├── [4.0K May 12 19:39]  build_and_checks_dependencies/
+│   ├── [4.4K May 12 19:33]  build_and_checks.exec.sh.tpl*
+│   ├── [1.2K May 12 19:31]  build_dependencies_notes.exec.php*
+│   ├── [8.3K May 12 19:31]  build_dependencies_notes.libr.php
+│   ├── [4.2K May 12 19:34]  build_md_from_printable_md.exec.sh*
+│   ├── [3.1K May 12 19:34]  check_shell_scripts_beginnings.libr.sh
+│   ├── [5.3K May 12 19:37]  check_shell_scripts_indentation.libr.sh
+│   ├── [3.9K May 12 19:34]  check_URLs.libr.sh
+│   ├── [ 38K May 12 19:38]  common_build_and_checks.exec.sh*
+│   ├── [ 33K May 12 19:37]  common_build_and_checks.exec.sh.tpl
+│   ├── [ 19K May 12 19:37]  common_options.libr.sh
+│   ├── [6.2K May 12 19:37]  comparisons.libr.sh
+│   ├── [ 22K May 12 19:37]  create_PDF.exec.sh*
+│   ├── [3.7K May 12 19:32]  generate_from_template.libr.sh
+│   ├── [2.0K May 12 19:37]  get_common_text_glob_patterns.libr.sh
+│   ├── [3.3K May 12 19:37]  grammar_and_spelling_check.libr.sh
+│   ├── [4.0K May 12 19:37]  licenses_templates/
+│   │   ├── [ 15K May 12 19:37]  build_licenses_templates.exec.sh*
+│   │   ├── [ 720 May 12 19:16]  license_file_header_AGPLv3+.tpl
+│   │   ├── [ 699 May 12 19:17]  license_file_header_GPLv3+.tpl
+│   │   └── [ 720 May 12 19:18]  license_file_header_LGPLv3+.tpl
+│   ├── [6.0K May 12 19:37]  lines_counts.libr.sh
+│   ├── [ 15K May 12 19:37]  lines_filters.libr.sh
+│   ├── [3.0K May 12 19:37]  lines_maps.libr.sh
+│   ├── [3.3K May 12 19:37]  overwrite_if_not_equal.libr.sh
+│   ├── [2.4K May 12 19:37]  python_black_complement.libr.sh
+│   ├── [3.1K May 12 19:37]  python_isort_complement.libr.sh
+│   ├── [2.0K May 12 19:37]  repository_data.libr.sh
+│   ├── [3.9K May 12 19:37]  shell_checks_complement.libr.sh
+│   ├── [2.0K May 12 19:31]  split_score.exec.php*
+│   ├── [3.2K May 12 19:31]  split_score.libr.php
+│   ├── [ 47K May 12 19:37]  strings_functions.libr.sh
+│   ├── [4.6K May 12 19:37]  too_long_code_lines.libr.sh
+│   ├── [4.4K May 12 19:37]  update_common_build_and_checks.exec.sh*
+│   └── [6.0K May 12 19:37]  update_or_check_files_names_listing.exec.sh*
+├── [4.6K May 12 19:38]  build_and_checks.exec.sh*
+├── [4.0K May 12 19:40]  build_and_checks_variables/
 │   ├── [  15 Jan  5 20:00]  bandit_baseline.json
 │   ├── [  25 Jan  5 18:49]  bandit.ini
 │   ├── [  30 Feb 28 20:30]  black.toml
 │   ├── [5.1K Apr 17 16:50]  dependencies_data.json
 │   ├── [4.3K Apr 17 16:57]  dependencies_notes.txt
-│   ├── [5.7K Apr 17 16:51]  DevOrSysAdminScripts.html.tpl
-│   ├── [ 35K Apr 17 18:09]  DevOrSysAdminScripts.tex
-│   ├── [4.2K Apr 17 16:52]  DevOrSysAdminScripts.tex.tpl
-│   ├── [5.5K Mar 26 22:08]  files_names_listing.txt
+│   ├── [5.7K May 12 19:31]  DevOrSysAdminScripts.html.tpl
+│   ├── [ 35K May 12 19:31]  DevOrSysAdminScripts.tex
+│   ├── [4.2K May 12 19:38]  DevOrSysAdminScripts.tex.tpl
+│   ├── [5.5K May 12 19:31]  files_names_listing.txt
 │   ├── [  23 Mar 24 19:33]  .gitignore
 │   ├── [1.4K Apr 17 16:49]  licenses_notes.txt
 │   ├── [ 13K Apr 17 09:38]  phpcs_ruleset.xml
@@ -514,22 +514,22 @@ wget_sha512.libr.sh
 │   ├── [ 678 Feb 24 22:38]  pylintrc.toml
 │   ├── [4.6K Apr 17 17:09]  repository_data.txt
 │   ├── [ 841 Apr 17 17:08]  repository_data.txt.tpl
-│   ├── [1.4K Feb 24 23:25]  ruff.toml
+│   ├── [1.4K May 12 12:26]  ruff.toml
 │   ├── [ 166 Mar 24 19:33]  shellcheck.ini
 │   └── [3.6K Apr  2 09:16]  shellcheck_notes.txt
 ├── [ 34K May  6  2024]  COPYING
 ├── [7.5K Dec 27 21:48]  COPYING.LESSER
-├── [484K Apr 17 18:09]  DevOrSysAdminScripts.html
-├── [416K Apr 17 18:09]  DevOrSysAdminScripts.pdf
-├── [4.0K Apr 17 16:31]  git_helpers/
-│   ├── [3.8K Apr 17 16:20]  git_checks.libr.sh
-│   ├── [2.1K Apr  1 19:21]  post-commit*
-│   ├── [ 15K Apr 17 16:31]  post_commit_renaming_comment.libr.sh
-│   └── [1.8K Apr  1 19:23]  pre-commit*
+├── [485K May 12 19:31]  DevOrSysAdminScripts.html
+├── [417K May 12 19:28]  DevOrSysAdminScripts.pdf
+├── [4.0K May 12 19:37]  git_helpers/
+│   ├── [3.8K May 12 19:37]  git_checks.libr.sh
+│   ├── [2.1K May 12 19:31]  post-commit*
+│   ├── [ 15K May 12 19:37]  post_commit_renaming_comment.libr.sh
+│   └── [1.8K May 12 19:31]  pre-commit*
 ├── [   8 Mar 26 10:37]  .gitignore
-├── [8.3K Apr 17 16:33]  IMAP_transfert.py
+├── [8.4K May 12 19:31]  IMAP_transfert.exec.py
 ├── [1.1K Mar 31 19:59]  LiensUtiles.txt
-├── [4.0K Mar 18 17:27]  miscellaneous/
+├── [4.0K May 12 19:37]  miscellaneous/
 │   ├── [   0 Mar  4 10:37]
 │   │ 123456789012345678901234567890123456789012345678901234567890123456789
 │   │ 0123\
@@ -551,20 +551,20 @@ wget_sha512.libr.sh
 │   ├── [   0 Mar  4 09:13]
 │   │ a_long_long_long_long_long_long_long_long_long_filename_so_that_you_c
 │   │ an_see_that_it_works.txt
-│   ├── [1.3K Mar  9 15:15]  funny.sh
+│   ├── [1.3K May 12 19:37]  funny.sh
 │   ├── [  94 Mar  3 19:56]  spampty_data.txt
 │   ├── [ 442 Mar 18 16:50]  string_escaping.html
-│   ├── [ 654 Mar 18 17:27]  string_escaping.xhtml
+│   ├── [ 653 May 12 14:38]  string_escaping.xhtml
 │   └── [   0 Mar  4 09:13]
 │     yet_another_long_long_long_long_long_long_long_long_long_filename_so_
 │     that_you_can_see_that_it_works.txt
-├── [8.1K Mar 22 21:29]  README.html
+├── [8.1K May 12 12:17]  README.html
 ├── [4.3K Mar 22 21:29]  README.md
 ├── [4.3K Mar 22 21:29]  README.md.tpl
-├── [7.0K Apr 17 18:12]  string_escaping.libr.php
-├── [ 17K Apr 17 18:22]  unicode.libr.php
-├── [5.5K Apr 17 13:19]  upgrade_build_and_checks.exec.sh*
-└── [2.5K Apr 16 19:36]  wget_sha512.libr.sh
+├── [7.0K May 12 19:31]  string_escaping.libr.php
+├── [ 17K May 12 19:31]  unicode.libr.php
+├── [5.5K May 12 19:37]  upgrade_build_and_checks.exec.sh*
+└── [2.5K May 12 19:37]  wget_sha512.libr.sh
 
 6 directories, 83 files
 </pre>
@@ -1143,17 +1143,17 @@ build_and_checks_dependencies/build_and_checks.exec.sh.tpl
 </h3>
 <pre class="numbered_lines">
 #!/usr/bin/env bash
-# This file is part of DevOrSysAdminScripts library.
+# This file is part of DevOrSysAdminScripts.
 #
 # DevOrSysAdminScripts is free software:
-# you can redistribute it and/or modify it under the terms
-# of the GNU General Public License
+# you can redistribute it and/or modify it
+# under the terms of the GNU General Public License
 # as published by the Free Software Foundation,
 # either version 3 of the License,
 # or (at your option) any later version.
 #
-# DevOrSysAdminScripts is distributed in the hope
-# that it will be useful,
+# DevOrSysAdminScripts is distributed
+# in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY;
 # without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -1278,17 +1278,17 @@ build_and_checks_dependencies/build_dependencies_notes.exec.php
 &lt;?php
 
 /**
-This file is part of DevOrSysAdminScripts library.
+This file is part of DevOrSysAdminScripts.
 
 DevOrSysAdminScripts is free software:
-you can redistribute it and/or modify it under the terms
-of the GNU Lesser General Public License
+you can redistribute it and/or modify it
+under the terms of the GNU Lesser General Public License
 as published by the Free Software Foundation,
 either version 3 of the License,
 or (at your option) any later version.
 
-DevOrSysAdminScripts is distributed in the hope
-that it will be useful,
+DevOrSysAdminScripts is distributed
+in the hope that it will be useful,
 but WITHOUT ANY WARRANTY;
 without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -1326,17 +1326,17 @@ build_and_checks_dependencies/build_dependencies_notes.libr.php
 &lt;?php
 
 /**
-This file is part of DevOrSysAdminScripts library.
+This file is part of DevOrSysAdminScripts.
 
 DevOrSysAdminScripts is free software:
-you can redistribute it and/or modify it under the terms
-of the GNU Lesser General Public License
+you can redistribute it and/or modify it
+under the terms of the GNU Lesser General Public License
 as published by the Free Software Foundation,
 either version 3 of the License,
 or (at your option) any later version.
 
-DevOrSysAdminScripts is distributed in the hope
-that it will be useful,
+DevOrSysAdminScripts is distributed
+in the hope that it will be useful,
 but WITHOUT ANY WARRANTY;
 without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -1467,9 +1467,11 @@ function build_dependencies_notes(string $s_work_directory) : void {
       else{
         $i_previous_line_length += 9;
       }
-      if($i_comment_length > 0){
+      $s_comment2 = string_escaping\TeX\escape_text($s_comment);
+      $i_comment_length2 = strlen($s_comment2);
+      if($i_comment_length2 > 0){
         if(
-          $i_previous_line_length + $i_comment_length + 1
+          $i_previous_line_length + $i_comment_length2 + 1
           > $i_max_line_length
         ){
           $s_result_content2 .= "\n";
@@ -1477,7 +1479,7 @@ function build_dependencies_notes(string $s_work_directory) : void {
         else{
           $s_result_content2 .= ' ';
         }
-        $s_result_content2 .= string_escaping\TeX\escape_text($s_comment);
+        $s_result_content2 .= $s_comment2;
       }
       if($i === $i_max){
         $s_result_content2 .= ".\n";
@@ -1596,17 +1598,17 @@ build_and_checks_dependencies/build_md_from_printable_md.exec.sh
 </h3>
 <pre class="numbered_lines">
 #!/usr/bin/env bash
-# This file is part of DevOrSysAdminScripts library.
+# This file is part of DevOrSysAdminScripts.
 #
 # DevOrSysAdminScripts is free software:
-# you can redistribute it and/or modify it under the terms
-# of the GNU General Public License
+# you can redistribute it and/or modify it
+# under the terms of the GNU General Public License
 # as published by the Free Software Foundation,
 # either version 3 of the License,
 # or (at your option) any later version.
 #
-# DevOrSysAdminScripts is distributed in the hope
-# that it will be useful,
+# DevOrSysAdminScripts is distributed
+# in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY;
 # without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -1718,17 +1720,17 @@ build_and_checks_dependencies/check_shell_scripts_beginnings.libr.sh
 </h3>
 <pre class="numbered_lines">
 #!/usr/bin/env bash
-# This file is part of DevOrSysAdminScripts library.
+# This file is part of DevOrSysAdminScripts.
 #
 # DevOrSysAdminScripts is free software:
-# you can redistribute it and/or modify it under the terms
-# of the GNU General Public License
+# you can redistribute it and/or modify it
+# under the terms of the GNU General Public License
 # as published by the Free Software Foundation,
 # either version 3 of the License,
 # or (at your option) any later version.
 #
-# DevOrSysAdminScripts is distributed in the hope
-# that it will be useful,
+# DevOrSysAdminScripts is distributed
+# in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY;
 # without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -1803,10 +1805,7 @@ check_shell_scripts_beginnings(){
     [[ LFBFL_i_verbose -eq 1 ]]\
       &amp;&amp; printf "%s:Checking shell script beginning.\n"\
           "${LFBFL_file_path}"
-    LFBFL_head=$(head --lines=1 -- "${LFBFL_file_path}")
-    [[ "${LFBFL_head}" == "${LFBFL_SHELL_SCRIPT_BEGINNING}" ]]\
-      || printf "%s:File has wrong shell script beginning.\n"\
-          "${LFBFL_file_path}"
+    check_one_shell_script_beginning "${LFBFL_file_path}"
   done
 }
 </pre>
@@ -1817,17 +1816,17 @@ build_and_checks_dependencies/check_shell_scripts_indentation.libr.sh
 </h3>
 <pre class="numbered_lines">
 #!/usr/bin/env bash
-# This file is part of DevOrSysAdminScripts library.
+# This file is part of DevOrSysAdminScripts.
 #
 # DevOrSysAdminScripts is free software:
-# you can redistribute it and/or modify it under the terms
-# of the GNU General Public License
+# you can redistribute it and/or modify it
+# under the terms of the GNU General Public License
 # as published by the Free Software Foundation,
 # either version 3 of the License,
 # or (at your option) any later version.
 #
-# DevOrSysAdminScripts is distributed in the hope
-# that it will be useful,
+# DevOrSysAdminScripts is distributed
+# in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY;
 # without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -1979,17 +1978,17 @@ build_and_checks_dependencies/check_URLs.libr.sh
 </h3>
 <pre class="numbered_lines">
 #!/usr/bin/env bash
-# This file is part of DevOrSysAdminScripts library.
+# This file is part of DevOrSysAdminScripts.
 #
 # DevOrSysAdminScripts is free software:
-# you can redistribute it and/or modify it under the terms
-# of the GNU General Public License
+# you can redistribute it and/or modify it
+# under the terms of the GNU General Public License
 # as published by the Free Software Foundation,
 # either version 3 of the License,
 # or (at your option) any later version.
 #
-# DevOrSysAdminScripts is distributed in the hope
-# that it will be useful,
+# DevOrSysAdminScripts is distributed
+# in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY;
 # without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -2050,7 +2049,10 @@ check_URLs(){
         "(['\"])http(:[^'\"]*)\\1.*(['\"])https\\2\\3"\
       | grep --invert-match 'http://www.w3.org/1999/xhtml'\
       | grep --invert-match\
-        'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'
+        --regexp='http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd'\
+        --regexp='http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd'\
+        --regexp='http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd'\
+        --regexp='http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd'
     # Second grep after xargs grep just above will remove false positives
     # from substitutions that fit on one line.
 
@@ -2091,17 +2093,17 @@ build_and_checks_dependencies/common_build_and_checks.exec.sh
 </h3>
 <pre class="numbered_lines">
 #!/usr/bin/env bash
-# This file is part of DevOrSysAdminScripts library.
+# This file is part of DevOrSysAdminScripts.
 #
 # DevOrSysAdminScripts is free software:
-# you can redistribute it and/or modify it under the terms
-# of the GNU General Public License
+# you can redistribute it and/or modify it
+# under the terms of the GNU General Public License
 # as published by the Free Software Foundation,
 # either version 3 of the License,
 # or (at your option) any later version.
 #
-# DevOrSysAdminScripts is distributed in the hope
-# that it will be useful,
+# DevOrSysAdminScripts is distributed
+# in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY;
 # without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -2174,100 +2176,100 @@ common_build_and_checks(){
   LFBFL_file_name="build_dependencies_notes.exec.php"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='624368d161351d7a261fbe3165d51907f46394c1b0e79'
-  LFBFL_correct_sha512+='b980ec11173c324b2c5531cf2a2b60b2dc62edcaa9c8'
-  LFBFL_correct_sha512+='71dca55065f8802df4275420836252786f9606b'
+  LFBFL_correct_sha512='7fa2566b939e765b70bc48b8b15e0dab50823b50bae40'
+  LFBFL_correct_sha512+='97eeaac9f573139f60427f1d2c02fcf6a1bb4f89e21f'
+  LFBFL_correct_sha512+='ca39fd98859a5f4714b6359588e10ef96ec623d'
   wrapped_wget_sha512
   chmod +x "./${LFBFL_file_path}"
 
   LFBFL_file_name="build_dependencies_notes.libr.php"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='49e9469e44e3a18db98810ab734b89ff1268e7a9c7788'
-  LFBFL_correct_sha512+='12e8fb853aff5a26aaf00845975c73fd7cf6ef5011aa'
-  LFBFL_correct_sha512+='462629ca4c6d8db119668f429c956c040b07894'
+  LFBFL_correct_sha512='3136857d20aafaabbdcd2468012a55991518430a39a07'
+  LFBFL_correct_sha512+='e2f80572c39e51bda8599ac830cdb9ce83cbb606d034'
+  LFBFL_correct_sha512+='f971f8734b103feae78d48867a29d4d566f2201'
   wrapped_wget_sha512
 
   LFBFL_file_name="build_md_from_printable_md.exec.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='4ed727f21bfdb99d3c3a37d631d27816da10be357a200'
-  LFBFL_correct_sha512+='b03516cc642cc720735bd1363e47e1b38d5a4667a4ef'
-  LFBFL_correct_sha512+='75c573e92f09261df6c2c55ee9c0852ab2d1ee8'
+  LFBFL_correct_sha512='500e10ac1b95a41b4d8c045bc7347a7473e7392168d3d'
+  LFBFL_correct_sha512+='7f40f3d8a08e8fcb1f5229e548729684e33687afa759'
+  LFBFL_correct_sha512+='34330727bf8b1884d45fda03a5407c9a6d798ef'
   wrapped_wget_sha512
   chmod +x "./${LFBFL_file_path}"
 
   LFBFL_file_name="check_shell_scripts_beginnings.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='beb8e11e2ac7fa636a0ac586f2378d8c8f72b16320a72'
-  LFBFL_correct_sha512+='99533bd4fbcdbd8794281d78a8882dee54eb53d639a9'
-  LFBFL_correct_sha512+='0accdf8f557ac6f64bd9b9d6fe3eae9d4789f54'
+  LFBFL_correct_sha512='0b3e861820e09148a141142c8bb5549e7fa29d906dda9'
+  LFBFL_correct_sha512+='5e0fe44132610910687e6f767f1050646abe1ea262b8'
+  LFBFL_correct_sha512+='37b3a5d5e79497d0cdc42e43d3c74967f266abb'
   wrapped_wget_sha512
 
   LFBFL_file_name="check_shell_scripts_indentation.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='9ebc5cfab69e6beab5e77495b2585ce9bc3ad84af4e9c'
-  LFBFL_correct_sha512+='20f5a8ed390730fbeb0bf13ff4cfef635dbdbfff8872'
-  LFBFL_correct_sha512+='8b1fe95595ef4d47a7f535cd4644c0ccbfa384c'
+  LFBFL_correct_sha512='3596fddc4b20ce353facac3e355e38fadb5593caee3c8'
+  LFBFL_correct_sha512+='05464aedd513d34860a79b296efa648dae18717ae4c0'
+  LFBFL_correct_sha512+='24a6df11eb0549c4797643427c49c4f80947840'
   wrapped_wget_sha512
 
   LFBFL_file_name="check_URLs.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='9e42d111550432b63d63f9faa35c92c45a9e4ef308a65'
-  LFBFL_correct_sha512+='1ecf094a0838ac36fbe36109b3dc9b4d48a24887d155'
-  LFBFL_correct_sha512+='dae7b546ea64551493d0dc4e772e1b09248fa4e'
+  LFBFL_correct_sha512='08561321cb3dee406f492dc29bf3a622036fb7094708d'
+  LFBFL_correct_sha512+='cc25ead2327eb183b4cf6fe2979494e21eb1d05b0e58'
+  LFBFL_correct_sha512+='9f8ce6ba08e190e81f935dc820bd2f2d3041a36'
   wrapped_wget_sha512
 
   LFBFL_file_name="common_options.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='10505b7876c808bc24478ba2a4c1ba530375abc0121f6'
-  LFBFL_correct_sha512+='ed742a1de5e220369810360ffb1b5ab03892e2277438'
-  LFBFL_correct_sha512+='78caff0e57696805b0099aad8022720413b46c6'
+  LFBFL_correct_sha512='3cfaf6cea99f67ade931cf21e9f49658c421e182dc4ac'
+  LFBFL_correct_sha512+='211be526f9d99b2e57a09844991cf0d2e6d5e49c19e2'
+  LFBFL_correct_sha512+='a63bf9e8f1e3fe999542e9a4e45e5196b375fa9'
   wrapped_wget_sha512
 
   LFBFL_file_name="comparisons.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='27a77b03184fa1497ad0448206a85cfc85071d96364b9'
-  LFBFL_correct_sha512+='c7ea6bedcd956eecf14115f5f001d6d859e22caa690b'
-  LFBFL_correct_sha512+='3eebe5805afaa94e530ef8de01d54da408956c3'
+  LFBFL_correct_sha512='f146beca0d7b4046c140f3b2292cec4c31515cf8c7dbe'
+  LFBFL_correct_sha512+='7e9b07fc6dae32513aff6692c6286fa31055caff1a20'
+  LFBFL_correct_sha512+='9a6a7384568fea0b50b3cbb2608a3ed9e6e5125'
   wrapped_wget_sha512
 
   LFBFL_file_name="create_PDF.exec.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='560add021e3717e42fa27c8ad408e53974382259ecdca'
-  LFBFL_correct_sha512+='73e3f128fbe65cdb9fd3aa8b0dd1dbd329c39b9232ee'
-  LFBFL_correct_sha512+='9eafa1bacf1b9b4cb00cc305c79ae857a62fdd3'
+  LFBFL_correct_sha512='af85eaa0bedae5519bf02e44cf31d825d18f4c6248b9f'
+  LFBFL_correct_sha512+='b256832edacbee60deff90b74ea5935104b246e526de'
+  LFBFL_correct_sha512+='8fd5628649e464dd730b5923d35b53008d16487'
   wrapped_wget_sha512
   chmod +x "./${LFBFL_file_path}"
 
   LFBFL_file_name="generate_from_template.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='f983105225e806681b004aeb73d5bdd4d2bd8bd0d71ab'
-  LFBFL_correct_sha512+='9b6294c76252302b59f119b944185ffec94fa87b2429'
-  LFBFL_correct_sha512+='6916a5be393ba987d7464c2871bb448039f85d0'
+  LFBFL_correct_sha512='5f322f27bd20d7042c729f4cb5d8f14f587b5b415c77e'
+  LFBFL_correct_sha512+='4a224902d8d4cdeb1483639ae85d81873c9f20c175bb'
+  LFBFL_correct_sha512+='4de76a6eaa3dbcbf8a300368e65bbd5303afd3d'
   wrapped_wget_sha512
 
   LFBFL_file_name="get_common_text_glob_patterns.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='d38b894f63ac0db1eab4447a765b723642e12e3443aee'
-  LFBFL_correct_sha512+='01bd08e44bd2971bf11d3f0b98d2932bcaaeab4f30b7'
-  LFBFL_correct_sha512+='9f7da666e02a0fb1dada8a348ad866a104e4d53'
+  LFBFL_correct_sha512='6c2f4b4ddc270c3d2ce9c88327efcb17510f10cac9b0f'
+  LFBFL_correct_sha512+='88ca3b585dcba2d7997bed299a97102bff194fccae8c'
+  LFBFL_correct_sha512+='771db6e735412ec6d0f9b3ccbe8416f95e79dfa'
   wrapped_wget_sha512
 
   LFBFL_file_name="grammar_and_spelling_check.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='5722273402a4e8afbae4bc10e7a50f3d74d942404df18'
-  LFBFL_correct_sha512+='bc59f1bb12cea917f6292ee3dd13a7533d16fd03af99'
-  LFBFL_correct_sha512+='c4941df14027cce33afae1c0db169f15e503f2c'
+  LFBFL_correct_sha512='88cc4f031c05d576a74ea7b14e79077f06c53b3b8a294'
+  LFBFL_correct_sha512+='e9b8ddcfe884db5e2cb5cebde09a8d9aea7980fb595c'
+  LFBFL_correct_sha512+='85c562462fb67e10503a471ee46da89c8f73b47'
   wrapped_wget_sha512
 
   # /licenses_templates/ ---------------------------------------------
@@ -2277,139 +2279,140 @@ common_build_and_checks(){
   LFBFL_file_name="build_licenses_templates.exec.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL2}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir2}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='72975aaa23962f7c110a418e6d3df28854ea9037919ea'
-  LFBFL_correct_sha512+='1f0db8a538ef8836c8324368a03351a1ba357bd6b9a7'
-  LFBFL_correct_sha512+='4e7ea75adfbac0df616a36663e57ef98d325e72'
+  LFBFL_correct_sha512='12c9f0f5ceb7bf1baa36b9e8ca7ff09d0c469c5d50fef'
+  LFBFL_correct_sha512+='4da112efcd2848346eda6c547a053574ec5762e56f8b'
+  LFBFL_correct_sha512+='4e644932de02948bc3178bce92199ed52aeb7a0'
   wrapped_wget_sha512
   chmod +x "./${LFBFL_file_path}"
 
   LFBFL_file_name="license_file_header_AGPLv3+.tpl"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL2}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir2}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='9f9aa56d9b90d5003a12c5ec3370ac31aab74fc4a2524'
-  LFBFL_correct_sha512+='2c5fbcb0197b0abbb8242f62dafc76eaf60faa5da173'
-  LFBFL_correct_sha512+='05924b31b64b037083532fced9f98445000e2d0'
+  LFBFL_correct_sha512='5dc0dc20914c57feee2e26c2d329f020f221357b11b0d'
+  LFBFL_correct_sha512+='0ff6add69941ad953f8356b68be32cd60df8c56e91a2'
+  LFBFL_correct_sha512+='716c9cbf70ab8698e74e6aacc9c5439a93cc2bc'
   wrapped_wget_sha512
 
   LFBFL_file_name="license_file_header_GPLv3+.tpl"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL2}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir2}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='2bdef9a729a5a9ca5ed87ef8a518877c5ee6b31b45336'
-  LFBFL_correct_sha512+='08660316a4e595fb31465a4847f4d53a2f7264118bd4'
-  LFBFL_correct_sha512+='eab7c1d1892e00bc1861455ed02898f194db067'
+  LFBFL_correct_sha512='2d4b31697e78ba36ee0e3bd2b5393a57e15b5f5e62b2e'
+  LFBFL_correct_sha512+='802b812dcb087588f63cb92a851b21180be24bf5dee4'
+  LFBFL_correct_sha512+='eff7927244cde817e964512eaa1fb51d9064c01'
   wrapped_wget_sha512
 
   LFBFL_file_name="license_file_header_LGPLv3+.tpl"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL2}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir2}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='265fd0d086b48ab798f35a072335a4976e4eda8c256fe'
-  LFBFL_correct_sha512+='bba6c77c98ca86cdd844c6ac150c3445c80debbb3fc2'
-  LFBFL_correct_sha512+='574b5fceeeaf79ec734a759bdef5fe798067c62'
+  LFBFL_correct_sha512='43976b6dc9a54fcea0440cfaf87530dade73efe22b5ae'
+  LFBFL_correct_sha512+='a968453c9c5ac1fdc4d3798fdd445fb38a53f997da82'
+  LFBFL_correct_sha512+='7c30be6b7ad42d5e56ae90aac5095b9526b203d'
   wrapped_wget_sha512
   # ------------------------------------------------------------------
 
   LFBFL_file_name="lines_counts.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='97e50d1fd31841c8e5b747503a55999d5bd3d394808c3'
-  LFBFL_correct_sha512+='037b321ab54057518a861e4bb97fa7659aee061a31cf'
-  LFBFL_correct_sha512+='e30ac8af22f268f19aa51accf334cbc38aa9091'
+  LFBFL_correct_sha512='46366ca30eb8333cbab85576746579f34d1b53bc4583c'
+  LFBFL_correct_sha512+='0536373f3aa20f3483b274fa580a792af325337580f7'
+  LFBFL_correct_sha512+='0cf76c48fa6c1ff4f463f8fd918e39ec3d818a3'
   wrapped_wget_sha512
 
   LFBFL_file_name="lines_filters.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='76050708d970c346dadfb46599ec32c26fc831990b163'
-  LFBFL_correct_sha512+='3437360260ca11ae6b2c4784f5ff1331cfbc70e19ef0'
-  LFBFL_correct_sha512+='0e38184448aa57f053270254582cc1319ea0baa'
+  LFBFL_correct_sha512='854f138dc0d5a66d85169a1a079aae8592659e92a0f76'
+  LFBFL_correct_sha512+='f7ca52faec634cf0454957c81b4a9d4206bec5f4c441'
+  LFBFL_correct_sha512+='73f1934647a9c5ba55344cb82a617092f88ea8e'
   wrapped_wget_sha512
 
   LFBFL_file_name="lines_maps.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='45df460ebb31fd5f2f2a62a70f03d6ab9fd3bfd8d6e6f'
-  LFBFL_correct_sha512+='e45650e339f5b6bad5557a8c8d3a830d8539ba5442df'
-  LFBFL_correct_sha512+='68945da69270219159ceea45b14b395793fc025'
+  LFBFL_correct_sha512='ccb9115be582a5b39790725dc96a628beb21b0c9951e7'
+  LFBFL_correct_sha512+='03a7a7bc8ab2736e3940ed3df6a2fcb04e75350c10d7'
+  LFBFL_correct_sha512+='3e92bcfada424b4049cc6141d41bf7901c0525b'
   wrapped_wget_sha512
 
   LFBFL_file_name="overwrite_if_not_equal.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='8c004f2256257e4c47e96660fd4a619d5fd1996d709ff'
-  LFBFL_correct_sha512+='dcecf810f0f607544fc8f080d2f528de28f992293958'
-  LFBFL_correct_sha512+='bc189d1db0fcab98f9199c2a2df39722a8e2473'
+  LFBFL_correct_sha512='378f03b8ba77430e05db4ef5d5926803b466a87e1a2ec'
+  LFBFL_correct_sha512+='eef0b51036f25460a93a018bd86d3f90146b4dfec9ab'
+  LFBFL_correct_sha512+='15c5d1d57a526296bbdc4a0c03650088f3e9653'
   wrapped_wget_sha512
 
   LFBFL_file_name="python_black_complement.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='1511766231f7463236f9eb31da045b7cf261f356de956'
-  LFBFL_correct_sha512+='01431a015d8fbac9fd823a1ac5c2ffd16baedc2228c8'
-  LFBFL_correct_sha512+='6c78bbec73d934ef2a119ae5e1416963cbdb1f9'
+  LFBFL_correct_sha512='4f08461329f1b78b58e54f675fb433aec363de2c96a91'
+  LFBFL_correct_sha512+='34ba5e96f3c77b93c9d7d6e28771a0b886501c286457'
+  LFBFL_correct_sha512+='a4a410389556f180f2dc8f66d7956bf5dd5acf2'
   wrapped_wget_sha512
 
   LFBFL_file_name="python_isort_complement.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='f98c63d14f74ebe1cf702e0c9107dd1a4add29d4c4f62'
-  LFBFL_correct_sha512+='37e8d6e11c9d0454fc2e4ad13a0cb66ececf00a02d2a'
-  LFBFL_correct_sha512+='39004860e648fe7f49a82f2a7b59d844e37bc25'
+  LFBFL_correct_sha512='570fd623c3d1db0ca1eb66f612aef77774b19652a8c6f'
+  LFBFL_correct_sha512+='8a579c3d3d7cb7412d6c60cc702d32bd25eafde4aa01'
+  LFBFL_correct_sha512+='b446a186ef4900c6bcc7773ffd59e539991c952'
   wrapped_wget_sha512
 
   LFBFL_file_name="repository_data.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='b69cffe97c11ae5d98532f65e61c94139d781dab2c859'
-  LFBFL_correct_sha512+='985b4bf641a1f846337ecd7b02fbf823551934e80b46'
-  LFBFL_correct_sha512+='0c9dc4ca6fa9b4ca07facfe3b1a8b239ea29501'
+  LFBFL_correct_sha512='447d561896b60b6685389661f635ac726af8a2af83f42'
+  LFBFL_correct_sha512+='1d5dea89893dec90f0bba0d93903408056ef56a4ac12'
+  LFBFL_correct_sha512+='c985d5fa931bce90764dfc20253176f3b00dc54'
   wrapped_wget_sha512
 
   LFBFL_file_name="shell_checks_complement.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='745109db3fbd3d20b60427a2e116b577eca1c0049e532'
-  LFBFL_correct_sha512+='7f53a925b0814dd9f98b5b43986a8b4367f80e1189ae'
-  LFBFL_correct_sha512+='ffca99ff15afdf37b062fb48cd73315a4881cf4'
+  LFBFL_correct_sha512='143575d86b5fc0fd78e575b6e46054b0c8facaf2c6df6'
+  LFBFL_correct_sha512+='07dc596b6db0494c2b88211d5e0e011dee9abe70a2fc'
+  LFBFL_correct_sha512+='b8f2bc04eb5cd50b248b0afe423103ee1cd568b'
   wrapped_wget_sha512
 
   LFBFL_file_name="split_score.exec.php"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='0eaca0166e71a1992f897c7f87e77da3babd297cd85c6'
-  LFBFL_correct_sha512+='e4251ae920f15b4cbd9c3d4a7e2ae21eaf74b366a0e7'
-  LFBFL_correct_sha512+='681977dff58901c6d40b3e46f38e0cbec86be54'
+  LFBFL_correct_sha512='53830be68f0ef9f1a0b9b16a1d98d0a744a38b8fd0ee6'
+  LFBFL_correct_sha512+='68f592aba2df7ec6c856eb1ced9ced7f3d21251699f8'
+  LFBFL_correct_sha512+='7a352c8624d03ce5d5503692488c9e14a9ffb62'
   wrapped_wget_sha512
+  chmod +x "./${LFBFL_file_path}"
 
   LFBFL_file_name="split_score.libr.php"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='47b667d83125fa17babd46201ae8a8b7f7abeef123276'
-  LFBFL_correct_sha512+='40e7ed87faeacac997455207c4ab4df2734649676960'
-  LFBFL_correct_sha512+='1efcadaf35338ba2bec2410e01065ff7ed871f7'
+  LFBFL_correct_sha512='e8333a215a02dd7250b01a5a8e8ec862b735735a52a95'
+  LFBFL_correct_sha512+='2c9339cba94ffc9c1605fa4d84487be100fdff644c2e'
+  LFBFL_correct_sha512+='e68cae3569fbc2b0a5525817b33e21425cd2e2f'
   wrapped_wget_sha512
 
   LFBFL_file_name="strings_functions.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='a00516fb9ed9b12127d6c2d8626b47027ef7704123475'
-  LFBFL_correct_sha512+='2f37ef54babc086078250c2b330111754913d6671913'
-  LFBFL_correct_sha512+='9a3f065be1363538da331c756072a98036e600d'
+  LFBFL_correct_sha512='73ac813d69d07a53fdfc16938125b7a83c2fd20518809'
+  LFBFL_correct_sha512+='0d8b067ddc89a4a07783f6c0acbf0aec802a42838b2d'
+  LFBFL_correct_sha512+='8b172f40390d53283103771f8d3b732f1c442a8'
   wrapped_wget_sha512
 
   LFBFL_file_name="too_long_code_lines.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='ca49414202ff1bbd7a607d4404e7f92494fe45e150d95'
-  LFBFL_correct_sha512+='d9ad0aded752c8ca8e3f8c4509823cd462fb481a09f5'
-  LFBFL_correct_sha512+='fe6c90be9d8af7e4411afa84429bb87b7ea6c41'
+  LFBFL_correct_sha512='ded23acf2574ed706d0c1e7e34e866e93e001f3bdfd71'
+  LFBFL_correct_sha512+='048a32cd99a197034283cbb55de3d2b1e76e5e32529c'
+  LFBFL_correct_sha512+='a9d4c9ea2bfd1924611d01f8b31b647b5078c4a'
   wrapped_wget_sha512
 
   LFBFL_file_name="update_or_check_files_names_listing.exec.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='609d8f15c69f9d766c1435e0dfb3571b4329ab09a29ae'
-  LFBFL_correct_sha512+='087c4753f7692809873e94220d0c71506b1592134431'
-  LFBFL_correct_sha512+='124ab42ecf703ed60486d1273d35a5cc2172c71'
+  LFBFL_correct_sha512='188fa5dbcab63be8e0f5b3c8997e099c7259f7c804433'
+  LFBFL_correct_sha512+='581c2c05a7d9c7bd3d82bc424e2021afa90cb9e9d6a5'
+  LFBFL_correct_sha512+='f84f549ed692c18b6351983c31b875846d7e1af'
   wrapped_wget_sha512
   chmod +x "./${LFBFL_file_path}"
 
@@ -2852,6 +2855,72 @@ common_build_and_checks(){
   fi
 
   printf "Running xmllint\n"
+  # Unfortunately, wee need to handle a cache of common DTDs by hand.
+  # XHTML DTDs validation yields errors currently:
+  # see https://gitlab.gnome.org/GNOME/libxml2/-/work_items/1119
+  LFBFL_file_name="xhtml1-strict.dtd"
+  LFBFL_a="https://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"
+  LFBFL_script_download_URL="${LFBFL_a}"
+  LFBFL_file_path="./${LFBFL_subdir3}/temp/${LFBFL_file_name}"
+  LFBFL_correct_sha512='fe11db06c0e1741a9c460fe4f9cf167bca57f4dbe9746'
+  LFBFL_correct_sha512+='d8352bf19947168c9bcf1ae212eca035824293abb1f9'
+  LFBFL_correct_sha512+='7a0ac02d67a82d098c34905c8cf1b213c891cc0'
+  wrapped_wget_sha512
+
+  LFBFL_file_name="xhtml1-transitional.dtd"
+  LFBFL_a="https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+  LFBFL_script_download_URL="${LFBFL_a}"
+  LFBFL_file_path="./${LFBFL_subdir3}/temp/${LFBFL_file_name}"
+  LFBFL_correct_sha512='4bece71fbf75d4a68a900ed29b8ba4efae1a9dfa447a5'
+  LFBFL_correct_sha512+='6fc8583da2531f9eadb0fb57bc4cf4990a82ac1da3b3'
+  LFBFL_correct_sha512+='c2892e38c88d70a80f8464b21f0bdef79a04843'
+  wrapped_wget_sha512
+
+  LFBFL_file_name="xhtml1-frameset.dtd"
+  LFBFL_a="https://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd"
+  LFBFL_script_download_URL="${LFBFL_a}"
+  LFBFL_file_path="./${LFBFL_subdir3}/temp/${LFBFL_file_name}"
+  LFBFL_correct_sha512='f969c36d5ba7f6de42261c223f1a8958c8205cb938127'
+  LFBFL_correct_sha512+='ea5b7fce6bb2e03a529259e41aa3a429c64177893614'
+  LFBFL_correct_sha512+='f05e3f22bd9c46c61b37a83eb702a6d72ce2872'
+  wrapped_wget_sha512
+
+  LFBFL_file_name="xhtml11.dtd"
+  LFBFL_a="https://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"
+  LFBFL_script_download_URL="${LFBFL_a}"
+  LFBFL_file_path="./${LFBFL_subdir3}/temp/${LFBFL_file_name}"
+  LFBFL_correct_sha512='aa08bb274fd8c4d33bbcaf8993b2357c4e6c03fbdc34b'
+  LFBFL_correct_sha512+='1c46bb98332e21db824a11de43da9c6388032149a148'
+  LFBFL_correct_sha512+='42992c6d92e728e275817b656d1c333ca7f5d04'
+  wrapped_wget_sha512
+
+  LFBFL_file_name="xhtml-lat1.ent"
+  LFBFL_a="https://www.w3.org/MarkUp/DTD/xhtml-lat1.ent"
+  LFBFL_script_download_URL="${LFBFL_a}"
+  LFBFL_file_path="./${LFBFL_subdir3}/temp/${LFBFL_file_name}"
+  LFBFL_correct_sha512='3243f33c056e71ae995d51cd2418979a505875d53ec9b'
+  LFBFL_correct_sha512+='17310268232dfbda19f5a52794973db47e51058cbcb4'
+  LFBFL_correct_sha512+='4a86838fed4937e6adc29636e12741bdc93af04'
+  wrapped_wget_sha512
+
+  LFBFL_file_name="xhtml-special.ent"
+  LFBFL_a="https://www.w3.org/MarkUp/DTD/xhtml-special.ent"
+  LFBFL_script_download_URL="${LFBFL_a}"
+  LFBFL_file_path="./${LFBFL_subdir3}/temp/${LFBFL_file_name}"
+  LFBFL_correct_sha512='ec8e78745673044993b2d57242f834c94f1615a0df653'
+  LFBFL_correct_sha512+='5882b84c1df223f652ce536cc6b17eece23ab6dae518'
+  LFBFL_correct_sha512+='60a6e562b20f7ef5440004d56f9dbe4ea58913f'
+  wrapped_wget_sha512
+
+  LFBFL_file_name="xhtml-symbol.ent"
+  LFBFL_a="https://www.w3.org/MarkUp/DTD/xhtml-symbol.ent"
+  LFBFL_script_download_URL="${LFBFL_a}"
+  LFBFL_file_path="./${LFBFL_subdir3}/temp/${LFBFL_file_name}"
+  LFBFL_correct_sha512='47ca9edba10776c5ea8bba5c0e3ea8dc1a94b2830eada'
+  LFBFL_correct_sha512+='2ebf2bec1101ca05066ce09c0e06ecef1af7785c1179'
+  LFBFL_correct_sha512+='0a61c2efdc959d89610b7b4b084bb60af89cf72'
+  wrapped_wget_sha512
+
   declare -r LFBFL_s_files_for_xmllint=$(
     find . -type f -iregex ".*\.\(xml\|xhtml\)"\
     | relevant_find\
@@ -2874,6 +2943,7 @@ common_build_and_checks(){
       [[ LFBFL_i_verbose -eq 1 ]]\
         &amp;&amp; printf "xmllint on %s\n" "${LFBFL_file_path}"
       # see https://gitlab.gnome.org/GNOME/libxml2/-/issues/1100
+      # https://gitlab.gnome.org/GNOME/libxml2/-/work_items/1100
       # xmllint --pedantic --noout -- "${LFBFL_file_path}"
       xmllint --pedantic --noout "${LFBFL_file_path}"
     done
@@ -2891,7 +2961,41 @@ common_build_and_checks(){
       fi
       [[ LFBFL_i_verbose -eq 1 ]]\
         &amp;&amp; printf "xmllint on %s\n" "${LFBFL_file_path}"
-      xmllint --pedantic --noout --valid "${LFBFL_file_path}"
+      if [[ "${LFBFL_file_path}" == *.xhtml ]]; then
+        if grep --fixed-strings\
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"\
+          "${LFBFL_file_path}"
+        then
+          xmllint --pedantic --noout\
+            --dtdvalid "./${LFBFL_subdir3}/temp/xhtml1-strict.dtd"\
+            "${LFBFL_file_path}"
+        elif grep --fixed-strings\
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"\
+          "${LFBFL_file_path}"
+        then
+          xmllint --pedantic --noout\
+            --dtdvalid "./${LFBFL_subdir3}/temp/xhtml1-transitional.dtd"\
+            "${LFBFL_file_path}"
+        elif grep --fixed-strings\
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd"\
+          "${LFBFL_file_path}"
+        then
+          xmllint --pedantic --noout\
+            --dtdvalid "./${LFBFL_subdir3}/temp/xhtml1-frameset.dtd"\
+            "${LFBFL_file_path}"
+        elif grep --fixed-strings\
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd"\
+          "${LFBFL_file_path}"
+        then
+          xmllint --pedantic --noout\
+            --dtdvalid "./${LFBFL_subdir3}/temp/xhtml11.dtd"\
+            "${LFBFL_file_path}"
+        else
+          printf "Unknown XHTML DTD.\n"
+        fi
+      else
+        xmllint --pedantic --noout --valid "${LFBFL_file_path}"
+      fi
     done
   fi
   # ------------------------------------------------------------------
@@ -2965,17 +3069,17 @@ build_and_checks_dependencies/common_build_and_checks.exec.sh.tpl
 </h3>
 <pre class="numbered_lines">
 #!/usr/bin/env bash
-# This file is part of DevOrSysAdminScripts library.
+# This file is part of DevOrSysAdminScripts.
 #
 # DevOrSysAdminScripts is free software:
-# you can redistribute it and/or modify it under the terms
-# of the GNU General Public License
+# you can redistribute it and/or modify it
+# under the terms of the GNU General Public License
 # as published by the Free Software Foundation,
 # either version 3 of the License,
 # or (at your option) any later version.
 #
-# DevOrSysAdminScripts is distributed in the hope
-# that it will be useful,
+# DevOrSysAdminScripts is distributed
+# in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY;
 # without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -3203,6 +3307,7 @@ common_build_and_checks(){
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   @sha512_split_score.exec.php@
   wrapped_wget_sha512
+  chmod +x "./${LFBFL_file_path}"
 
   LFBFL_file_name="split_score.libr.php"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
@@ -3668,6 +3773,72 @@ common_build_and_checks(){
   fi
 
   printf "Running xmllint\n"
+  # Unfortunately, wee need to handle a cache of common DTDs by hand.
+  # XHTML DTDs validation yields errors currently:
+  # see https://gitlab.gnome.org/GNOME/libxml2/-/work_items/1119
+  LFBFL_file_name="xhtml1-strict.dtd"
+  LFBFL_a="https://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"
+  LFBFL_script_download_URL="${LFBFL_a}"
+  LFBFL_file_path="./${LFBFL_subdir3}/temp/${LFBFL_file_name}"
+  LFBFL_correct_sha512='fe11db06c0e1741a9c460fe4f9cf167bca57f4dbe9746'
+  LFBFL_correct_sha512+='d8352bf19947168c9bcf1ae212eca035824293abb1f9'
+  LFBFL_correct_sha512+='7a0ac02d67a82d098c34905c8cf1b213c891cc0'
+  wrapped_wget_sha512
+
+  LFBFL_file_name="xhtml1-transitional.dtd"
+  LFBFL_a="https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+  LFBFL_script_download_URL="${LFBFL_a}"
+  LFBFL_file_path="./${LFBFL_subdir3}/temp/${LFBFL_file_name}"
+  LFBFL_correct_sha512='4bece71fbf75d4a68a900ed29b8ba4efae1a9dfa447a5'
+  LFBFL_correct_sha512+='6fc8583da2531f9eadb0fb57bc4cf4990a82ac1da3b3'
+  LFBFL_correct_sha512+='c2892e38c88d70a80f8464b21f0bdef79a04843'
+  wrapped_wget_sha512
+
+  LFBFL_file_name="xhtml1-frameset.dtd"
+  LFBFL_a="https://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd"
+  LFBFL_script_download_URL="${LFBFL_a}"
+  LFBFL_file_path="./${LFBFL_subdir3}/temp/${LFBFL_file_name}"
+  LFBFL_correct_sha512='f969c36d5ba7f6de42261c223f1a8958c8205cb938127'
+  LFBFL_correct_sha512+='ea5b7fce6bb2e03a529259e41aa3a429c64177893614'
+  LFBFL_correct_sha512+='f05e3f22bd9c46c61b37a83eb702a6d72ce2872'
+  wrapped_wget_sha512
+
+  LFBFL_file_name="xhtml11.dtd"
+  LFBFL_a="https://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"
+  LFBFL_script_download_URL="${LFBFL_a}"
+  LFBFL_file_path="./${LFBFL_subdir3}/temp/${LFBFL_file_name}"
+  LFBFL_correct_sha512='aa08bb274fd8c4d33bbcaf8993b2357c4e6c03fbdc34b'
+  LFBFL_correct_sha512+='1c46bb98332e21db824a11de43da9c6388032149a148'
+  LFBFL_correct_sha512+='42992c6d92e728e275817b656d1c333ca7f5d04'
+  wrapped_wget_sha512
+
+  LFBFL_file_name="xhtml-lat1.ent"
+  LFBFL_a="https://www.w3.org/MarkUp/DTD/xhtml-lat1.ent"
+  LFBFL_script_download_URL="${LFBFL_a}"
+  LFBFL_file_path="./${LFBFL_subdir3}/temp/${LFBFL_file_name}"
+  LFBFL_correct_sha512='3243f33c056e71ae995d51cd2418979a505875d53ec9b'
+  LFBFL_correct_sha512+='17310268232dfbda19f5a52794973db47e51058cbcb4'
+  LFBFL_correct_sha512+='4a86838fed4937e6adc29636e12741bdc93af04'
+  wrapped_wget_sha512
+
+  LFBFL_file_name="xhtml-special.ent"
+  LFBFL_a="https://www.w3.org/MarkUp/DTD/xhtml-special.ent"
+  LFBFL_script_download_URL="${LFBFL_a}"
+  LFBFL_file_path="./${LFBFL_subdir3}/temp/${LFBFL_file_name}"
+  LFBFL_correct_sha512='ec8e78745673044993b2d57242f834c94f1615a0df653'
+  LFBFL_correct_sha512+='5882b84c1df223f652ce536cc6b17eece23ab6dae518'
+  LFBFL_correct_sha512+='60a6e562b20f7ef5440004d56f9dbe4ea58913f'
+  wrapped_wget_sha512
+
+  LFBFL_file_name="xhtml-symbol.ent"
+  LFBFL_a="https://www.w3.org/MarkUp/DTD/xhtml-symbol.ent"
+  LFBFL_script_download_URL="${LFBFL_a}"
+  LFBFL_file_path="./${LFBFL_subdir3}/temp/${LFBFL_file_name}"
+  LFBFL_correct_sha512='47ca9edba10776c5ea8bba5c0e3ea8dc1a94b2830eada'
+  LFBFL_correct_sha512+='2ebf2bec1101ca05066ce09c0e06ecef1af7785c1179'
+  LFBFL_correct_sha512+='0a61c2efdc959d89610b7b4b084bb60af89cf72'
+  wrapped_wget_sha512
+
   declare -r LFBFL_s_files_for_xmllint=$(
     find . -type f -iregex ".*\.\(xml\|xhtml\)"\
     | relevant_find\
@@ -3690,6 +3861,7 @@ common_build_and_checks(){
       [[ LFBFL_i_verbose -eq 1 ]]\
         &amp;&amp; printf "xmllint on %s\n" "${LFBFL_file_path}"
       # see https://gitlab.gnome.org/GNOME/libxml2/-/issues/1100
+      # https://gitlab.gnome.org/GNOME/libxml2/-/work_items/1100
       # xmllint --pedantic --noout -- "${LFBFL_file_path}"
       xmllint --pedantic --noout "${LFBFL_file_path}"
     done
@@ -3707,7 +3879,41 @@ common_build_and_checks(){
       fi
       [[ LFBFL_i_verbose -eq 1 ]]\
         &amp;&amp; printf "xmllint on %s\n" "${LFBFL_file_path}"
-      xmllint --pedantic --noout --valid "${LFBFL_file_path}"
+      if [[ "${LFBFL_file_path}" == *.xhtml ]]; then
+        if grep --fixed-strings\
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"\
+          "${LFBFL_file_path}"
+        then
+          xmllint --pedantic --noout\
+            --dtdvalid "./${LFBFL_subdir3}/temp/xhtml1-strict.dtd"\
+            "${LFBFL_file_path}"
+        elif grep --fixed-strings\
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"\
+          "${LFBFL_file_path}"
+        then
+          xmllint --pedantic --noout\
+            --dtdvalid "./${LFBFL_subdir3}/temp/xhtml1-transitional.dtd"\
+            "${LFBFL_file_path}"
+        elif grep --fixed-strings\
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd"\
+          "${LFBFL_file_path}"
+        then
+          xmllint --pedantic --noout\
+            --dtdvalid "./${LFBFL_subdir3}/temp/xhtml1-frameset.dtd"\
+            "${LFBFL_file_path}"
+        elif grep --fixed-strings\
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd"\
+          "${LFBFL_file_path}"
+        then
+          xmllint --pedantic --noout\
+            --dtdvalid "./${LFBFL_subdir3}/temp/xhtml11.dtd"\
+            "${LFBFL_file_path}"
+        else
+          printf "Unknown XHTML DTD.\n"
+        fi
+      else
+        xmllint --pedantic --noout --valid "${LFBFL_file_path}"
+      fi
     done
   fi
   # ------------------------------------------------------------------
@@ -3781,17 +3987,17 @@ build_and_checks_dependencies/common_options.libr.sh
 </h3>
 <pre class="numbered_lines">
 #!/usr/bin/env bash
-# This file is part of DevOrSysAdminScripts library.
+# This file is part of DevOrSysAdminScripts.
 #
 # DevOrSysAdminScripts is free software:
-# you can redistribute it and/or modify it under the terms
-# of the GNU General Public License
+# you can redistribute it and/or modify it
+# under the terms of the GNU General Public License
 # as published by the Free Software Foundation,
 # either version 3 of the License,
 # or (at your option) any later version.
 #
-# DevOrSysAdminScripts is distributed in the hope
-# that it will be useful,
+# DevOrSysAdminScripts is distributed
+# in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY;
 # without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -3897,52 +4103,67 @@ is_top_dirstack_directory(){
   # Altough "${DIRSTACK[0]}" may seem to be already a realpath,
   # possible use of symbolic links makes this function necessary.
   # https://lists.gnu.org/archive/html/help-bash/2026-03/msg00005.html
-  # $1=to_directory needs to be "realpathed" already
+  # $1=to_directory needed to be "realpathed" already
+  # but I removed this micro-optimization.
+  # A compiled language could have a "realpathed property" on
+  # "path object/string" to optimize when possible.
   if [[ -z "$1" ]]; then
     return 0
   fi
   local LFBFL_real_path
   LFBFL_real_path=$(realpath -- "${DIRSTACK[0]}")
   readonly LFBFL_real_path
-  [[ "${LFBFL_real_path}" == "$1" ]]
+  local LFBFL_real_path2
+  LFBFL_real_path2=$(realpath -- "$1")
+  readonly LFBFL_real_path2
+  [[ "${LFBFL_real_path}" == "${LFBFL_real_path2}" ]]
 }
 
 enhanced_pushd(){
   # Auxiliary function needed below.
   # See usages below if you want to reuse it.
-  # $1=to_directory must be sanitized with realpath before call
+  # $1=to_directory (needed to be sanitized with realpath before call)
   # $2=offset_for_where_was_i
   # $3=error_message_intermediate_complement
   # returns an error code whenever no pushd happened
+  # $1 can be any path now, see my comment on the micro-optimization in
+  # is_top_dirstack_directory() just above.
   # shellcheck disable=SC2154,SC2309
   [[ LFBFL_i_verbose -eq 1 ]]\
-    &amp;&amp; printf "enhanced_pushd requested: %s\n" "$1"
+    &amp;&amp; printf "enhanced_pushd requested: %s.\n" "$1"
+  # Value 0 will always be overwritten, it is superfluous.
   declare -gi i_enhanced_pushd_result=0
   if [[ -z "$1" ]]; then
     i_enhanced_pushd_result=110
     # shellcheck disable=SC2248
     return ${i_enhanced_pushd_result}
   fi
+  local LFBFL_real_path
+  LFBFL_real_path=$(realpath -- "$1")
+  readonly LFBFL_real_path
   # shellcheck disable=SC2154,SC2309
-  [[ LFBFL_i_verbose -eq 1 ]] &amp;&amp; printf "enhanced_pushd validated1\n"
-  is_top_dirstack_directory "$1" &amp;&amp; {
+  [[ LFBFL_i_verbose -eq 1 ]]\
+    &amp;&amp; printf "enhanced_pushd passed validation 1.\n"
+  is_top_dirstack_directory "${LFBFL_real_path}" &amp;&amp; {
     i_enhanced_pushd_result=111
     # shellcheck disable=SC2248
     return ${i_enhanced_pushd_result}
   }
   # shellcheck disable=SC2154,SC2309
-  [[ LFBFL_i_verbose -eq 1 ]] &amp;&amp; printf "enhanced_pushd validated2\n"
+  [[ LFBFL_i_verbose -eq 1 ]]\
+    &amp;&amp; printf "enhanced_pushd passed validation 2.\n"
 
-  pushd -- "$1" || {
+  pushd -- "${LFBFL_real_path}" || {
     i_enhanced_pushd_result=$?
     local LFBFL_where_was_i
     get_where_was_i "$2"
-    printf "%s %s%s no such directory.\n" "${LFBFL_where_was_i}" "$3" "$1"
+    printf "%s %s%s no such directory.\n" "${LFBFL_where_was_i}" "$3"\
+      "${LFBFL_real_path}"
     # shellcheck disable=SC2248
     return ${i_enhanced_pushd_result}
   }
   # shellcheck disable=SC2154,SC2309
-  [[ LFBFL_i_verbose -eq 1 ]] &amp;&amp; printf "enhanced_pushd executed\n"
+  [[ LFBFL_i_verbose -eq 1 ]] &amp;&amp; printf "enhanced_pushd executed.\n"
   # shellcheck disable=SC2248
   return ${i_enhanced_pushd_result}
 }
@@ -3954,7 +4175,7 @@ enhanced_popd(){
   # $2=offset_for_where_was_i
   # shellcheck disable=SC2154,SC2309
   [[ LFBFL_i_verbose -eq 1 ]]\
-    &amp;&amp; printf "enhanced_popd requested: %s\n" "$1"
+    &amp;&amp; printf "enhanced_popd requested: %s.\n" "$1"
   if [[ -z "$1" ]]; then
     return 0
   fi
@@ -3970,14 +4191,15 @@ enhanced_popd(){
     return ${LFBFL_i_popd_result}
   }
   # shellcheck disable=SC2154,SC2309
-  [[ LFBFL_i_verbose -eq 1 ]] &amp;&amp; printf "enhanced_popd executed\n"
+  [[ LFBFL_i_verbose -eq 1 ]] &amp;&amp; printf "enhanced_popd executed.\n"
   return 0
 }
 
 can_continue_after_enhanced_pushd(){
-  [[ i_enhanced_pushd_result -eq 0
-  || i_enhanced_pushd_result -eq 110
-  || i_enhanced_pushd_result -eq 111
+  [[
+    i_enhanced_pushd_result -eq 0
+    || i_enhanced_pushd_result -eq 110
+    || i_enhanced_pushd_result -eq 111
   ]]
 }
 
@@ -4118,7 +4340,7 @@ get_work_directory_option(){
   # Options:
   #   --work-directory=""
   get_some_option LFBFL_work_directory --work-directory "." "." 0 "$@"
-  LFBFL_work_directory=$(realpath "${LFBFL_work_directory}")
+  LFBFL_work_directory=$(realpath -- "${LFBFL_work_directory}")
   readonly LFBFL_work_directory
 }
 
@@ -4346,17 +4568,17 @@ build_and_checks_dependencies/comparisons.libr.sh
 </h3>
 <pre class="numbered_lines">
 #!/usr/bin/env bash
-# This file is part of DevOrSysAdminScripts library.
+# This file is part of DevOrSysAdminScripts.
 #
 # DevOrSysAdminScripts is free software:
-# you can redistribute it and/or modify it under the terms
-# of the GNU General Public License
+# you can redistribute it and/or modify it
+# under the terms of the GNU General Public License
 # as published by the Free Software Foundation,
 # either version 3 of the License,
 # or (at your option) any later version.
 #
-# DevOrSysAdminScripts is distributed in the hope
-# that it will be useful,
+# DevOrSysAdminScripts is distributed
+# in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY;
 # without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -4557,17 +4779,17 @@ build_and_checks_dependencies/create_PDF.exec.sh
 </h3>
 <pre class="numbered_lines">
 #!/usr/bin/env bash
-# This file is part of DevOrSysAdminScripts library.
+# This file is part of DevOrSysAdminScripts.
 #
 # DevOrSysAdminScripts is free software:
-# you can redistribute it and/or modify it under the terms
-# of the GNU General Public License
+# you can redistribute it and/or modify it
+# under the terms of the GNU General Public License
 # as published by the Free Software Foundation,
 # either version 3 of the License,
 # or (at your option) any later version.
 #
-# DevOrSysAdminScripts is distributed in the hope
-# that it will be useful,
+# DevOrSysAdminScripts is distributed
+# in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY;
 # without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -4994,7 +5216,7 @@ create_PDF(){
     cp -- "${LFBFL_subdir2}/${LFBFL_repository_name}.tex"\
       "${LFBFL_tex_path_start}.1"
   else
-    printf "Neither .tex.tpl, nor .tex in ./%s/\n" "${LFBFL_subdir2}"
+    printf "Neither .tex.tpl, nor .tex in ./%s/.\n" "${LFBFL_subdir2}"
   fi
 
   # Same logic with repository HTML file.
@@ -5004,7 +5226,7 @@ create_PDF(){
   elif [[ -f "${LFBFL_repository_name}.html" ]]; then
     cp -- "${LFBFL_repository_name}.html" "${LFBFL_html_path_start}.1"
   else
-    printf "Neither .html.tpl in ./%s/, nor .html in ./\n"\
+    printf "Neither .html.tpl in ./%s/, nor .html in ./.\n"\
       "${LFBFL_subdir2}"
   fi
 
@@ -5153,7 +5375,7 @@ create_PDF(){
   fi
   readonly LFBFL_command
 
-  for ((i=0; i&lt;3; i++)); do
+  for ((LFBFL_i = 0; LFBFL_i &lt; 3; ++LFBFL_i)); do
     eval -- "${LFBFL_command}"
   done
 
@@ -5177,17 +5399,17 @@ build_and_checks_dependencies/generate_from_template.libr.sh
 </h3>
 <pre class="numbered_lines">
 #!/usr/bin/env bash
-# This file is part of DevOrSysAdminScripts library.
+# This file is part of DevOrSysAdminScripts.
 #
 # DevOrSysAdminScripts is free software:
-# you can redistribute it and/or modify it under the terms
-# of the GNU General Public License
+# you can redistribute it and/or modify it
+# under the terms of the GNU General Public License
 # as published by the Free Software Foundation,
 # either version 3 of the License,
 # or (at your option) any later version.
 #
-# DevOrSysAdminScripts is distributed in the hope
-# that it will be useful,
+# DevOrSysAdminScripts is distributed
+# in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY;
 # without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -5237,7 +5459,7 @@ generate_from_template_with_line_comments(){
     printf "%s\n" "$5"\
       > "${LFBFL_temp}"
   fi
-  sed --expression="s/^/$3/g" -- "$1"\
+  sed --expression="s~^~$3~g" -- "$1"\
     >> "${LFBFL_temp}"
   if [[ -n "$4" ]]; then
     eval -- "$4"
@@ -5278,22 +5500,22 @@ insert_file_at_token(){
   # $4=path_of_result_file
   # Options:
   #   $5=--quiet to suppress diff output in overwrite_if_not_equal
-  declare -r LFBFL_start_file_name="$1.insert_file_at_token1.temp"
-  declare -r LFBFL_end_file_name="$1.insert_file_at_token2.temp"
-  local LFBFL_result_file_name
+  declare -r LFBFL_start_file_path="$1.insert_file_at_token1.temp"
+  declare -r LFBFL_end_file_path="$1.insert_file_at_token2.temp"
+  local LFBFL_result_file_path
   if [[ -n "$4" ]]; then
-    LFBFL_result_file_name="$4"
+    LFBFL_result_file_path="$4"
   else
-    LFBFL_result_file_name="$1.insert_file_at_token3.temp"
+    LFBFL_result_file_path="$1.insert_file_at_token3.temp"
   fi
-  readonly LFBFL_result_file_name
-  split_file_in_two "$1" "$2" "${LFBFL_start_file_name}"\
-    "${LFBFL_end_file_name}"
-  cat -- "${LFBFL_start_file_name}" "$3" "${LFBFL_end_file_name}"\
-    > "${LFBFL_result_file_name}"
-  rm -- "${LFBFL_start_file_name}" "${LFBFL_end_file_name}"
+  readonly LFBFL_result_file_path
+  split_file_in_two "$1" "$2" "${LFBFL_start_file_path}"\
+    "${LFBFL_end_file_path}"
+  cat -- "${LFBFL_start_file_path}" "$3" "${LFBFL_end_file_path}"\
+    > "${LFBFL_result_file_path}"
+  rm -- "${LFBFL_start_file_path}" "${LFBFL_end_file_path}"
   if [[ -z "$4" ]]; then
-    overwrite_if_not_equal "$1" "${LFBFL_result_file_name}" "$5"
+    overwrite_if_not_equal "$1" "${LFBFL_result_file_path}" "$5"
   fi
 }
 </pre>
@@ -5304,17 +5526,17 @@ build_and_checks_dependencies/get_common_text_glob_patterns.libr.sh
 </h3>
 <pre class="numbered_lines">
 #!/usr/bin/env bash
-# This file is part of DevOrSysAdminScripts library.
+# This file is part of DevOrSysAdminScripts.
 #
 # DevOrSysAdminScripts is free software:
-# you can redistribute it and/or modify it under the terms
-# of the GNU General Public License
+# you can redistribute it and/or modify it
+# under the terms of the GNU General Public License
 # as published by the Free Software Foundation,
 # either version 3 of the License,
 # or (at your option) any later version.
 #
-# DevOrSysAdminScripts is distributed in the hope
-# that it will be useful,
+# DevOrSysAdminScripts is distributed
+# in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY;
 # without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -5346,6 +5568,8 @@ get_COMMON_TEXT_PATHS_GLOB_PATTERNS(){
     '**/*.md'
     '**/*.php'
     '**/*.py'
+    '**/*.rs'
+    '**/*.rlib'
     '**/*.sh'
     '**/*.sql'
     '**/*.sub'
@@ -5383,6 +5607,8 @@ get_COMMON_TEXT_FILES_GLOB_PATTERNS(){
     '*.md'
     '*.php'
     '*.py'
+    '*.rs'
+    '*.rlib'
     '*.sh'
     '*.sql'
     '*.sub'
@@ -5409,17 +5635,17 @@ build_and_checks_dependencies/grammar_and_spelling_check.libr.sh
 </h3>
 <pre class="numbered_lines">
 #!/usr/bin/env bash
-# This file is part of DevOrSysAdminScripts library.
+# This file is part of DevOrSysAdminScripts.
 #
 # DevOrSysAdminScripts is free software:
-# you can redistribute it and/or modify it under the terms
-# of the GNU General Public License
+# you can redistribute it and/or modify it
+# under the terms of the GNU General Public License
 # as published by the Free Software Foundation,
 # either version 3 of the License,
 # or (at your option) any later version.
 #
-# DevOrSysAdminScripts is distributed in the hope
-# that it will be useful,
+# DevOrSysAdminScripts is distributed
+# in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY;
 # without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -5513,17 +5739,17 @@ build_and_checks_dependencies/licenses_templates/<!--
 </h3>
 <pre class="numbered_lines">
 #!/usr/bin/env bash
-# This file is part of DevOrSysAdminScripts library.
+# This file is part of DevOrSysAdminScripts.
 #
 # DevOrSysAdminScripts is free software:
-# you can redistribute it and/or modify it under the terms
-# of the GNU General Public License
+# you can redistribute it and/or modify it
+# under the terms of the GNU General Public License
 # as published by the Free Software Foundation,
 # either version 3 of the License,
 # or (at your option) any later version.
 #
-# DevOrSysAdminScripts is distributed in the hope
-# that it will be useful,
+# DevOrSysAdminScripts is distributed
+# in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY;
 # without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -5594,14 +5820,17 @@ build_licenses_templates(){
   declare -ar LFBFL_block_comment_languages=(
     "c"
     "py"
+    "xml"
   )
   declare -ar LFBFL_block_comment_enters=(
     '/*'
     '"""'
+    '&lt;!--'
   )
   declare -ar LFBFL_block_comment_exits=(
     '*/'
     '"""'
+    '-->'
   )
   equal "${#LFBFL_block_comment_languages[@]}"\
         "${#LFBFL_block_comment_enters[@]}"\
@@ -5613,11 +5842,13 @@ build_licenses_templates(){
   fi
 
   declare -ar LFBFL_line_comment_languages=(
+    "rs"
     "sh"
     "sql"
     "tex"
   )
   declare -ar LFBFL_line_comment_prefixes=(
+    '// '
     '# '
     '-- '
     '% '
@@ -5798,9 +6029,13 @@ build_licenses_templates(){
 
   declare -Ar LFBFL_all_block_comment_languages=(
     ["c"]="c"
+    ["css"]="c"
+    ["html"]="xml"
     ["php"]="c"
     ["py"]="py"
     ["js"]="c"
+    ["ts"]="c"
+    ["xml"]="xml"
   )
 
   local LFBFL_key
@@ -5876,9 +6111,13 @@ build_licenses_templates(){
   }
 
   declare -Ar LFBFL_all_line_comment_languages=(
+    ["rlib"]="rs"
+    ["rs"]="rs"
     ["sh"]="sh"
     ["sql"]="sql"
     ["tex"]="tex"
+    ["toml"]="sh"
+    ["yaml"]="sh"
   )
 
   for LFBFL_key in "${!LFBFL_all_line_comment_languages[@]}"; do
@@ -5932,17 +6171,17 @@ build_and_checks_dependencies/licenses_templates/<!--
 -->license_file_header_AGPLv3+.tpl
 </h3>
 <pre class="numbered_lines">
-This file is part of @repository_name@ library.
+This file is part of @repository_name@.
 
 @repository_name@ is free software:
-you can redistribute it and/or modify it under the terms
-of the GNU Affero General Public License
+you can redistribute it and/or modify it
+under the terms of the GNU Affero General Public License
 as published by the Free Software Foundation,
 either version 3 of the License,
 or (at your option) any later version.
 
-@repository_name@ is distributed in the hope
-that it will be useful,
+@repository_name@ is distributed
+in the hope that it will be useful,
 but WITHOUT ANY WARRANTY;
 without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -5962,17 +6201,17 @@ build_and_checks_dependencies/licenses_templates/<!--
 -->license_file_header_GPLv3+.tpl
 </h3>
 <pre class="numbered_lines">
-This file is part of @repository_name@ library.
+This file is part of @repository_name@.
 
 @repository_name@ is free software:
-you can redistribute it and/or modify it under the terms
-of the GNU General Public License
+you can redistribute it and/or modify it
+under the terms of the GNU General Public License
 as published by the Free Software Foundation,
 either version 3 of the License,
 or (at your option) any later version.
 
-@repository_name@ is distributed in the hope
-that it will be useful,
+@repository_name@ is distributed
+in the hope that it will be useful,
 but WITHOUT ANY WARRANTY;
 without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -5992,17 +6231,17 @@ build_and_checks_dependencies/licenses_templates/<!--
 -->license_file_header_LGPLv3+.tpl
 </h3>
 <pre class="numbered_lines">
-This file is part of @repository_name@ library.
+This file is part of @repository_name@.
 
 @repository_name@ is free software:
-you can redistribute it and/or modify it under the terms
-of the GNU Lesser General Public License
+you can redistribute it and/or modify it
+under the terms of the GNU Lesser General Public License
 as published by the Free Software Foundation,
 either version 3 of the License,
 or (at your option) any later version.
 
-@repository_name@ is distributed in the hope
-that it will be useful,
+@repository_name@ is distributed
+in the hope that it will be useful,
 but WITHOUT ANY WARRANTY;
 without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -6022,17 +6261,17 @@ build_and_checks_dependencies/lines_counts.libr.sh
 </h3>
 <pre class="numbered_lines">
 #!/usr/bin/env bash
-# This file is part of DevOrSysAdminScripts library.
+# This file is part of DevOrSysAdminScripts.
 #
 # DevOrSysAdminScripts is free software:
-# you can redistribute it and/or modify it under the terms
-# of the GNU General Public License
+# you can redistribute it and/or modify it
+# under the terms of the GNU General Public License
 # as published by the Free Software Foundation,
 # either version 3 of the License,
 # or (at your option) any later version.
 #
-# DevOrSysAdminScripts is distributed in the hope
-# that it will be useful,
+# DevOrSysAdminScripts is distributed
+# in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY;
 # without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -6242,17 +6481,17 @@ build_and_checks_dependencies/lines_filters.libr.sh
 </h3>
 <pre class="numbered_lines">
 #!/usr/bin/env bash
-# This file is part of DevOrSysAdminScripts library.
+# This file is part of DevOrSysAdminScripts.
 #
 # DevOrSysAdminScripts is free software:
-# you can redistribute it and/or modify it under the terms
-# of the GNU General Public License
+# you can redistribute it and/or modify it
+# under the terms of the GNU General Public License
 # as published by the Free Software Foundation,
 # either version 3 of the License,
 # or (at your option) any later version.
 #
-# DevOrSysAdminScripts is distributed in the hope
-# that it will be useful,
+# DevOrSysAdminScripts is distributed
+# in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY;
 # without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -6789,17 +7028,17 @@ build_and_checks_dependencies/lines_maps.libr.sh
 </h3>
 <pre class="numbered_lines">
 #!/usr/bin/env bash
-# This file is part of DevOrSysAdminScripts library.
+# This file is part of DevOrSysAdminScripts.
 #
 # DevOrSysAdminScripts is free software:
-# you can redistribute it and/or modify it under the terms
-# of the GNU General Public License
+# you can redistribute it and/or modify it
+# under the terms of the GNU General Public License
 # as published by the Free Software Foundation,
 # either version 3 of the License,
 # or (at your option) any later version.
 #
-# DevOrSysAdminScripts is distributed in the hope
-# that it will be useful,
+# DevOrSysAdminScripts is distributed
+# in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY;
 # without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -6877,17 +7116,17 @@ build_and_checks_dependencies/overwrite_if_not_equal.libr.sh
 </h3>
 <pre class="numbered_lines">
 #!/usr/bin/env bash
-# This file is part of DevOrSysAdminScripts library.
+# This file is part of DevOrSysAdminScripts.
 #
 # DevOrSysAdminScripts is free software:
-# you can redistribute it and/or modify it under the terms
-# of the GNU General Public License
+# you can redistribute it and/or modify it
+# under the terms of the GNU General Public License
 # as published by the Free Software Foundation,
 # either version 3 of the License,
 # or (at your option) any later version.
 #
-# DevOrSysAdminScripts is distributed in the hope
-# that it will be useful,
+# DevOrSysAdminScripts is distributed
+# in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY;
 # without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -6987,17 +7226,17 @@ build_and_checks_dependencies/python_black_complement.libr.sh
 </h3>
 <pre class="numbered_lines">
 #!/usr/bin/env bash
-# This file is part of DevOrSysAdminScripts library.
+# This file is part of DevOrSysAdminScripts.
 #
 # DevOrSysAdminScripts is free software:
-# you can redistribute it and/or modify it under the terms
-# of the GNU General Public License
+# you can redistribute it and/or modify it
+# under the terms of the GNU General Public License
 # as published by the Free Software Foundation,
 # either version 3 of the License,
 # or (at your option) any later version.
 #
-# DevOrSysAdminScripts is distributed in the hope
-# that it will be useful,
+# DevOrSysAdminScripts is distributed
+# in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY;
 # without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -7070,17 +7309,17 @@ build_and_checks_dependencies/python_isort_complement.libr.sh
 </h3>
 <pre class="numbered_lines">
 #!/usr/bin/env bash
-# This file is part of DevOrSysAdminScripts library.
+# This file is part of DevOrSysAdminScripts.
 #
 # DevOrSysAdminScripts is free software:
-# you can redistribute it and/or modify it under the terms
-# of the GNU General Public License
+# you can redistribute it and/or modify it
+# under the terms of the GNU General Public License
 # as published by the Free Software Foundation,
 # either version 3 of the License,
 # or (at your option) any later version.
 #
-# DevOrSysAdminScripts is distributed in the hope
-# that it will be useful,
+# DevOrSysAdminScripts is distributed
+# in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY;
 # without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -7174,17 +7413,17 @@ build_and_checks_dependencies/repository_data.libr.sh
 </h3>
 <pre class="numbered_lines">
 #!/usr/bin/env bash
-# This file is part of DevOrSysAdminScripts library.
+# This file is part of DevOrSysAdminScripts.
 #
 # DevOrSysAdminScripts is free software:
-# you can redistribute it and/or modify it under the terms
-# of the GNU General Public License
+# you can redistribute it and/or modify it
+# under the terms of the GNU General Public License
 # as published by the Free Software Foundation,
 # either version 3 of the License,
 # or (at your option) any later version.
 #
-# DevOrSysAdminScripts is distributed in the hope
-# that it will be useful,
+# DevOrSysAdminScripts is distributed
+# in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY;
 # without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -7244,17 +7483,17 @@ build_and_checks_dependencies/shell_checks_complement.libr.sh
 </h3>
 <pre class="numbered_lines">
 #!/usr/bin/env bash
-# This file is part of DevOrSysAdminScripts library.
+# This file is part of DevOrSysAdminScripts.
 #
 # DevOrSysAdminScripts is free software:
-# you can redistribute it and/or modify it under the terms
-# of the GNU General Public License
+# you can redistribute it and/or modify it
+# under the terms of the GNU General Public License
 # as published by the Free Software Foundation,
 # either version 3 of the License,
 # or (at your option) any later version.
 #
-# DevOrSysAdminScripts is distributed in the hope
-# that it will be useful,
+# DevOrSysAdminScripts is distributed
+# in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY;
 # without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -7383,17 +7622,17 @@ build_and_checks_dependencies/split_score.exec.php
 &lt;?php
 
 /**
-This file is part of DevOrSysAdminScripts library.
+This file is part of DevOrSysAdminScripts.
 
 DevOrSysAdminScripts is free software:
-you can redistribute it and/or modify it under the terms
-of the GNU Lesser General Public License
+you can redistribute it and/or modify it
+under the terms of the GNU Lesser General Public License
 as published by the Free Software Foundation,
 either version 3 of the License,
 or (at your option) any later version.
 
-DevOrSysAdminScripts is distributed in the hope
-that it will be useful,
+DevOrSysAdminScripts is distributed
+in the hope that it will be useful,
 but WITHOUT ANY WARRANTY;
 without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -7458,17 +7697,17 @@ build_and_checks_dependencies/split_score.libr.php
 &lt;?php
 
 /**
-This file is part of DevOrSysAdminScripts library.
+This file is part of DevOrSysAdminScripts.
 
 DevOrSysAdminScripts is free software:
-you can redistribute it and/or modify it under the terms
-of the GNU Lesser General Public License
+you can redistribute it and/or modify it
+under the terms of the GNU Lesser General Public License
 as published by the Free Software Foundation,
 either version 3 of the License,
 or (at your option) any later version.
 
-DevOrSysAdminScripts is distributed in the hope
-that it will be useful,
+DevOrSysAdminScripts is distributed
+in the hope that it will be useful,
 but WITHOUT ANY WARRANTY;
 without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -7569,17 +7808,17 @@ build_and_checks_dependencies/strings_functions.libr.sh
 </h3>
 <pre class="numbered_lines">
 #!/usr/bin/env bash
-# This file is part of DevOrSysAdminScripts library.
+# This file is part of DevOrSysAdminScripts.
 #
 # DevOrSysAdminScripts is free software:
-# you can redistribute it and/or modify it under the terms
-# of the GNU General Public License
+# you can redistribute it and/or modify it
+# under the terms of the GNU General Public License
 # as published by the Free Software Foundation,
 # either version 3 of the License,
 # or (at your option) any later version.
 #
-# DevOrSysAdminScripts is distributed in the hope
-# that it will be useful,
+# DevOrSysAdminScripts is distributed
+# in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY;
 # without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -8839,17 +9078,17 @@ build_and_checks_dependencies/too_long_code_lines.libr.sh
 </h3>
 <pre class="numbered_lines">
 #!/usr/bin/env bash
-# This file is part of DevOrSysAdminScripts library.
+# This file is part of DevOrSysAdminScripts.
 #
 # DevOrSysAdminScripts is free software:
-# you can redistribute it and/or modify it under the terms
-# of the GNU General Public License
+# you can redistribute it and/or modify it
+# under the terms of the GNU General Public License
 # as published by the Free Software Foundation,
 # either version 3 of the License,
 # or (at your option) any later version.
 #
-# DevOrSysAdminScripts is distributed in the hope
-# that it will be useful,
+# DevOrSysAdminScripts is distributed
+# in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY;
 # without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -8978,17 +9217,17 @@ build_and_checks_dependencies/update_common_build_and_checks.exec.sh
 </h3>
 <pre class="numbered_lines">
 #!/usr/bin/env bash
-# This file is part of DevOrSysAdminScripts library.
+# This file is part of DevOrSysAdminScripts.
 #
 # DevOrSysAdminScripts is free software:
-# you can redistribute it and/or modify it under the terms
-# of the GNU General Public License
+# you can redistribute it and/or modify it
+# under the terms of the GNU General Public License
 # as published by the Free Software Foundation,
 # either version 3 of the License,
 # or (at your option) any later version.
 #
-# DevOrSysAdminScripts is distributed in the hope
-# that it will be useful,
+# DevOrSysAdminScripts is distributed
+# in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY;
 # without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -9115,17 +9354,17 @@ build_and_checks_dependencies/update_or_check_files_names_listing.exec.sh
 </h3>
 <pre class="numbered_lines">
 #!/usr/bin/env bash
-# This file is part of DevOrSysAdminScripts library.
+# This file is part of DevOrSysAdminScripts.
 #
 # DevOrSysAdminScripts is free software:
-# you can redistribute it and/or modify it under the terms
-# of the GNU General Public License
+# you can redistribute it and/or modify it
+# under the terms of the GNU General Public License
 # as published by the Free Software Foundation,
 # either version 3 of the License,
 # or (at your option) any later version.
 #
-# DevOrSysAdminScripts is distributed in the hope
-# that it will be useful,
+# DevOrSysAdminScripts is distributed
+# in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY;
 # without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -9633,17 +9872,17 @@ build_and_checks_variables/DevOrSysAdminScripts.html.tpl
 &lt;!DOCTYPE html>
 &lt;html lang="en">
 &lt;!--
-This file is part of DevOrSysAdminScripts library.
+This file is part of DevOrSysAdminScripts.
 
 DevOrSysAdminScripts is free software:
-you can redistribute it and/or modify it under the terms
-of the GNU Lesser General Public License
+you can redistribute it and/or modify it
+under the terms of the GNU Lesser General Public License
 as published by the Free Software Foundation,
 either version 3 of the License,
 or (at your option) any later version.
 
-DevOrSysAdminScripts is distributed in the hope
-that it will be useful,
+DevOrSysAdminScripts is distributed
+in the hope that it will be useful,
 but WITHOUT ANY WARRANTY;
 without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -9875,17 +10114,17 @@ pres.forEach(
 build_and_checks_variables/DevOrSysAdminScripts.tex.tpl
 </h3>
 <pre class="numbered_lines">
-% This file is part of DevOrSysAdminScripts library.
+% This file is part of DevOrSysAdminScripts.
 %
 % DevOrSysAdminScripts is free software:
-% you can redistribute it and/or modify it under the terms
-% of the GNU Lesser General Public License
+% you can redistribute it and/or modify it
+% under the terms of the GNU Lesser General Public License
 % as published by the Free Software Foundation,
 % either version 3 of the License,
 % or (at your option) any later version.
 %
-% DevOrSysAdminScripts is distributed in the hope
-% that it will be useful,
+% DevOrSysAdminScripts is distributed
+% in the hope that it will be useful,
 % but WITHOUT ANY WARRANTY;
 % without even the implied warranty of
 % MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -10035,7 +10274,7 @@ whilst GNU coreutils is GPLv3+ licensed.
 build_and_checks_variables/files_names_listing.txt
 </h3>
 <pre class="numbered_lines">
-// This file is part of DevOrSysAdminScripts library.
+// This file is part of DevOrSysAdminScripts.
 //
 // DevOrSysAdminScripts is free software:
 // you can redistribute it and/or modify it under the terms
@@ -10134,7 +10373,7 @@ git_helpers/git_checks.libr.sh
 git_helpers/post-commit
 git_helpers/post_commit_renaming_comment.libr.sh
 git_helpers/pre-commit
-IMAP_transfert.py
+IMAP_transfert.exec.py
 LiensUtiles.txt
 // Uncomment some files in miscellaneous to do some testing.
 // miscellaneous/\
@@ -10905,7 +11144,7 @@ ignore = [
 "build_and_checks_dependencies/licenses_templates/*.py" = [
   "INP001"  # implicit-namespace-package
 ]
-"IMAP_transfert.py" = [
+"IMAP_transfert.exec.py" = [
   "T201",  # print Use log instead in full applications.
   "TRY003",  # raise-vanilla-args
 ]
@@ -11007,17 +11246,17 @@ build_and_checks.exec.sh
 </h3>
 <pre class="numbered_lines">
 #!/usr/bin/env bash
-# This file is part of DevOrSysAdminScripts library.
+# This file is part of DevOrSysAdminScripts.
 #
 # DevOrSysAdminScripts is free software:
-# you can redistribute it and/or modify it under the terms
-# of the GNU General Public License
+# you can redistribute it and/or modify it
+# under the terms of the GNU General Public License
 # as published by the Free Software Foundation,
 # either version 3 of the License,
 # or (at your option) any later version.
 #
-# DevOrSysAdminScripts is distributed in the hope
-# that it will be useful,
+# DevOrSysAdminScripts is distributed
+# in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY;
 # without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -11088,9 +11327,9 @@ build_and_checks(){
   readonly LFBFL_script_download_URL
   declare -r LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_common_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='9e92750cda51faf49210124fec7fe8a2554013ebb1295'
-  LFBFL_correct_sha512+='0d2e9c63897613ba3f233e953cd54c3bcd02dcabae19'
-  LFBFL_correct_sha512+='8ce1f933713dc900308cdfa23b7b3e8a44b00c2'
+  LFBFL_correct_sha512='f03ab16e274619d5b4514ee6fa7016411bcaa916db31b'
+  LFBFL_correct_sha512+='1d8b408862a4ac15a3b57b3d777e1a509bdc4dbdc694'
+  LFBFL_correct_sha512+='4a48c7646c3264763f0578606d9ff5e26b3e716'
   wget_sha512 "${LFBFL_file_path}"\
     "${LFBFL_script_download_URL}"\
     "${LFBFL_correct_sha512}"\
@@ -11995,17 +12234,17 @@ git_helpers/git_checks.libr.sh
 </h3>
 <pre class="numbered_lines">
 #!/usr/bin/env bash
-# This file is part of DevOrSysAdminScripts library.
+# This file is part of DevOrSysAdminScripts.
 #
 # DevOrSysAdminScripts is free software:
-# you can redistribute it and/or modify it under the terms
-# of the GNU General Public License
+# you can redistribute it and/or modify it
+# under the terms of the GNU General Public License
 # as published by the Free Software Foundation,
 # either version 3 of the License,
 # or (at your option) any later version.
 #
-# DevOrSysAdminScripts is distributed in the hope
-# that it will be useful,
+# DevOrSysAdminScripts is distributed
+# in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY;
 # without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -12119,7 +12358,7 @@ git_helpers/post-commit
 </h3>
 <pre class="numbered_lines">
 #!/usr/bin/env bash
-# This file is part of DevOrSysAdminScripts library.
+# This file is part of DevOrSysAdminScripts.
 #
 # DevOrSysAdminScripts is free software:
 # you can redistribute it and/or modify it under the terms
@@ -12192,17 +12431,17 @@ git_helpers/post_commit_renaming_comment.libr.sh
 </h3>
 <pre class="numbered_lines">
 #!/usr/bin/env bash
-# This file is part of DevOrSysAdminScripts library.
+# This file is part of DevOrSysAdminScripts.
 #
 # DevOrSysAdminScripts is free software:
-# you can redistribute it and/or modify it under the terms
-# of the GNU General Public License
+# you can redistribute it and/or modify it
+# under the terms of the GNU General Public License
 # as published by the Free Software Foundation,
 # either version 3 of the License,
 # or (at your option) any later version.
 #
-# DevOrSysAdminScripts is distributed in the hope
-# that it will be useful,
+# DevOrSysAdminScripts is distributed
+# in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY;
 # without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -12584,7 +12823,7 @@ git_helpers/pre-commit
 </h3>
 <pre class="numbered_lines">
 #!/usr/bin/env bash
-# This file is part of DevOrSysAdminScripts library.
+# This file is part of DevOrSysAdminScripts.
 #
 # DevOrSysAdminScripts is free software:
 # you can redistribute it and/or modify it under the terms
@@ -12651,21 +12890,21 @@ exit ${LFBFL_i_git_hook_error}
 
 
 <h3 id="subsection3.59">3.59
-IMAP_transfert.py
+IMAP_transfert.exec.py
 </h3>
 <pre class="numbered_lines">
 """
-This file is part of DevOrSysAdminScripts library.
+This file is part of DevOrSysAdminScripts.
 
 DevOrSysAdminScripts is free software:
-you can redistribute it and/or modify it under the terms
-of the GNU Lesser General Public License
+you can redistribute it and/or modify it
+under the terms of the GNU Lesser General Public License
 as published by the Free Software Foundation,
 either version 3 of the License,
 or (at your option) any later version.
 
-DevOrSysAdminScripts is distributed in the hope
-that it will be useful,
+DevOrSysAdminScripts is distributed
+in the hope that it will be useful,
 but WITHOUT ANY WARRANTY;
 without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -12677,6 +12916,10 @@ along with DevOrSysAdminScripts.
 If not, see &lt;https://www.gnu.org/licenses/>.
 
 ©Copyright 2023-2026 Laurent Frédéric Bernard François Lyaudet
+2026-05-12T12:06+02:00: This file was renamed from
+"IMAP_transfert.py"
+to
+"IMAP_transfert.exec.py".
 
 Pour transférer d'un compte IMAP à un autre
 Penser à autoriser les apps moins sûres sur Gmail si nécessaire
@@ -12966,17 +13209,17 @@ miscellaneous/funny.sh
 </h3>
 <pre class="numbered_lines">
 #!/usr/bin/env bash
-# This file is part of DevOrSysAdminScripts library.
+# This file is part of DevOrSysAdminScripts.
 #
 # DevOrSysAdminScripts is free software:
-# you can redistribute it and/or modify it under the terms
-# of the GNU General Public License
+# you can redistribute it and/or modify it
+# under the terms of the GNU General Public License
 # as published by the Free Software Foundation,
 # either version 3 of the License,
 # or (at your option) any later version.
 #
-# DevOrSysAdminScripts is distributed in the hope
-# that it will be useful,
+# DevOrSysAdminScripts is distributed
+# in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY;
 # without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -13071,7 +13314,7 @@ miscellaneous/string_escaping.xhtml
 </h3>
 <pre class="numbered_lines">
 &lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-	  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 &lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
 &lt;head>
 &lt;meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
@@ -13228,17 +13471,17 @@ string_escaping.libr.php
 &lt;?php
 
 /**
-This file is part of DevOrSysAdminScripts library.
+This file is part of DevOrSysAdminScripts.
 
 DevOrSysAdminScripts is free software:
-you can redistribute it and/or modify it under the terms
-of the GNU Lesser General Public License
+you can redistribute it and/or modify it
+under the terms of the GNU Lesser General Public License
 as published by the Free Software Foundation,
 either version 3 of the License,
 or (at your option) any later version.
 
-DevOrSysAdminScripts is distributed in the hope
-that it will be useful,
+DevOrSysAdminScripts is distributed
+in the hope that it will be useful,
 but WITHOUT ANY WARRANTY;
 without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -13560,17 +13803,17 @@ unicode.libr.php
 &lt;?php
 
 /**
-This file is part of DevOrSysAdminScripts library.
+This file is part of DevOrSysAdminScripts.
 
 DevOrSysAdminScripts is free software:
-you can redistribute it and/or modify it under the terms
-of the GNU Lesser General Public License
+you can redistribute it and/or modify it
+under the terms of the GNU Lesser General Public License
 as published by the Free Software Foundation,
 either version 3 of the License,
 or (at your option) any later version.
 
-DevOrSysAdminScripts is distributed in the hope
-that it will be useful,
+DevOrSysAdminScripts is distributed
+in the hope that it will be useful,
 but WITHOUT ANY WARRANTY;
 without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -14092,17 +14335,17 @@ upgrade_build_and_checks.exec.sh
 </h3>
 <pre class="numbered_lines">
 #!/usr/bin/env bash
-# This file is part of DevOrSysAdminScripts library.
+# This file is part of DevOrSysAdminScripts.
 #
 # DevOrSysAdminScripts is free software:
-# you can redistribute it and/or modify it under the terms
-# of the GNU General Public License
+# you can redistribute it and/or modify it
+# under the terms of the GNU General Public License
 # as published by the Free Software Foundation,
 # either version 3 of the License,
 # or (at your option) any later version.
 #
-# DevOrSysAdminScripts is distributed in the hope
-# that it will be useful,
+# DevOrSysAdminScripts is distributed
+# in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY;
 # without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
@@ -14259,17 +14502,17 @@ wget_sha512.libr.sh
 </h3>
 <pre class="numbered_lines">
 #!/usr/bin/env bash
-# This file is part of DevOrSysAdminScripts library.
+# This file is part of DevOrSysAdminScripts.
 #
 # DevOrSysAdminScripts is free software:
-# you can redistribute it and/or modify it under the terms
-# of the GNU General Public License
+# you can redistribute it and/or modify it
+# under the terms of the GNU General Public License
 # as published by the Free Software Foundation,
 # either version 3 of the License,
 # or (at your option) any later version.
 #
-# DevOrSysAdminScripts is distributed in the hope
-# that it will be useful,
+# DevOrSysAdminScripts is distributed
+# in the hope that it will be useful,
 # but WITHOUT ANY WARRANTY;
 # without even the implied warranty of
 # MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.

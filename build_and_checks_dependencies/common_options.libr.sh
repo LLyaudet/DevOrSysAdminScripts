@@ -115,52 +115,67 @@ is_top_dirstack_directory(){
   # Altough "${DIRSTACK[0]}" may seem to be already a realpath,
   # possible use of symbolic links makes this function necessary.
   # https://lists.gnu.org/archive/html/help-bash/2026-03/msg00005.html
-  # $1=to_directory needs to be "realpathed" already
+  # $1=to_directory needed to be "realpathed" already
+  # but I removed this micro-optimization.
+  # A compiled language could have a "realpathed property" on
+  # "path object/string" to optimize when possible.
   if [[ -z "$1" ]]; then
     return 0
   fi
   local LFBFL_real_path
   LFBFL_real_path=$(realpath -- "${DIRSTACK[0]}")
   readonly LFBFL_real_path
-  [[ "${LFBFL_real_path}" == "$1" ]]
+  local LFBFL_real_path2
+  LFBFL_real_path2=$(realpath -- "$1")
+  readonly LFBFL_real_path2
+  [[ "${LFBFL_real_path}" == "${LFBFL_real_path2}" ]]
 }
 
 enhanced_pushd(){
   # Auxiliary function needed below.
   # See usages below if you want to reuse it.
-  # $1=to_directory must be sanitized with realpath before call
+  # $1=to_directory (needed to be sanitized with realpath before call)
   # $2=offset_for_where_was_i
   # $3=error_message_intermediate_complement
   # returns an error code whenever no pushd happened
+  # $1 can be any path now, see my comment on the micro-optimization in
+  # is_top_dirstack_directory() just above.
   # shellcheck disable=SC2154,SC2309
   [[ LFBFL_i_verbose -eq 1 ]]\
-    && printf "enhanced_pushd requested: %s\n" "$1"
+    && printf "enhanced_pushd requested: %s.\n" "$1"
+  # Value 0 will always be overwritten, it is superfluous.
   declare -gi i_enhanced_pushd_result=0
   if [[ -z "$1" ]]; then
     i_enhanced_pushd_result=110
     # shellcheck disable=SC2248
     return ${i_enhanced_pushd_result}
   fi
+  local LFBFL_real_path
+  LFBFL_real_path=$(realpath -- "$1")
+  readonly LFBFL_real_path
   # shellcheck disable=SC2154,SC2309
-  [[ LFBFL_i_verbose -eq 1 ]] && printf "enhanced_pushd validated1\n"
-  is_top_dirstack_directory "$1" && {
+  [[ LFBFL_i_verbose -eq 1 ]]\
+    && printf "enhanced_pushd passed validation 1.\n"
+  is_top_dirstack_directory "${LFBFL_real_path}" && {
     i_enhanced_pushd_result=111
     # shellcheck disable=SC2248
     return ${i_enhanced_pushd_result}
   }
   # shellcheck disable=SC2154,SC2309
-  [[ LFBFL_i_verbose -eq 1 ]] && printf "enhanced_pushd validated2\n"
+  [[ LFBFL_i_verbose -eq 1 ]]\
+    && printf "enhanced_pushd passed validation 2.\n"
 
-  pushd -- "$1" || {
+  pushd -- "${LFBFL_real_path}" || {
     i_enhanced_pushd_result=$?
     local LFBFL_where_was_i
     get_where_was_i "$2"
-    printf "%s %s%s no such directory.\n" "${LFBFL_where_was_i}" "$3" "$1"
+    printf "%s %s%s no such directory.\n" "${LFBFL_where_was_i}" "$3"\
+      "${LFBFL_real_path}"
     # shellcheck disable=SC2248
     return ${i_enhanced_pushd_result}
   }
   # shellcheck disable=SC2154,SC2309
-  [[ LFBFL_i_verbose -eq 1 ]] && printf "enhanced_pushd executed\n"
+  [[ LFBFL_i_verbose -eq 1 ]] && printf "enhanced_pushd executed.\n"
   # shellcheck disable=SC2248
   return ${i_enhanced_pushd_result}
 }
@@ -172,7 +187,7 @@ enhanced_popd(){
   # $2=offset_for_where_was_i
   # shellcheck disable=SC2154,SC2309
   [[ LFBFL_i_verbose -eq 1 ]]\
-    && printf "enhanced_popd requested: %s\n" "$1"
+    && printf "enhanced_popd requested: %s.\n" "$1"
   if [[ -z "$1" ]]; then
     return 0
   fi
@@ -188,14 +203,15 @@ enhanced_popd(){
     return ${LFBFL_i_popd_result}
   }
   # shellcheck disable=SC2154,SC2309
-  [[ LFBFL_i_verbose -eq 1 ]] && printf "enhanced_popd executed\n"
+  [[ LFBFL_i_verbose -eq 1 ]] && printf "enhanced_popd executed.\n"
   return 0
 }
 
 can_continue_after_enhanced_pushd(){
-  [[ i_enhanced_pushd_result -eq 0
-  || i_enhanced_pushd_result -eq 110
-  || i_enhanced_pushd_result -eq 111
+  [[
+    i_enhanced_pushd_result -eq 0
+    || i_enhanced_pushd_result -eq 110
+    || i_enhanced_pushd_result -eq 111
   ]]
 }
 

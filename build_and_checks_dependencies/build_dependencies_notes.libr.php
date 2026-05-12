@@ -142,9 +142,11 @@ function build_dependencies_notes(string $s_work_directory) : void {
       else{
         $i_previous_line_length += 9;
       }
-      if($i_comment_length > 0){
+      $s_comment2 = string_escaping\TeX\escape_text($s_comment);
+      $i_comment_length2 = strlen($s_comment2);
+      if($i_comment_length2 > 0){
         if(
-          $i_previous_line_length + $i_comment_length + 1
+          $i_previous_line_length + $i_comment_length2 + 1
           > $i_max_line_length
         ){
           $s_result_content2 .= "\n";
@@ -152,7 +154,7 @@ function build_dependencies_notes(string $s_work_directory) : void {
         else{
           $s_result_content2 .= ' ';
         }
-        $s_result_content2 .= string_escaping\TeX\escape_text($s_comment);
+        $s_result_content2 .= $s_comment2;
       }
       if($i === $i_max){
         $s_result_content2 .= ".\n";

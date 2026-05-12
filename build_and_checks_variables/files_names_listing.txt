@@ -97,7 +97,7 @@ git_helpers/git_checks.libr.sh
 git_helpers/post-commit
 git_helpers/post_commit_renaming_comment.libr.sh
 git_helpers/pre-commit
-IMAP_transfert.py
+IMAP_transfert.exec.py
 LiensUtiles.txt
 // Uncomment some files in miscellaneous to do some testing.
 // miscellaneous/\

@@ -35,7 +35,7 @@ ignore = [
 "build_and_checks_dependencies/licenses_templates/*.py" = [
   "INP001"  # implicit-namespace-package
 ]
-"IMAP_transfert.py" = [
+"IMAP_transfert.exec.py" = [
   "T201",  # print Use log instead in full applications.
   "TRY003",  # raise-vanilla-args
 ]

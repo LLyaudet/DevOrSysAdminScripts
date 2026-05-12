@@ -703,6 +703,72 @@ common_build_and_checks(){
   fi
 
   printf "Running xmllint\n"
+  # Unfortunately, wee need to handle a cache of common DTDs by hand.
+  # XHTML DTDs validation yields errors currently:
+  # see https://gitlab.gnome.org/GNOME/libxml2/-/work_items/1119
+  LFBFL_file_name="xhtml1-strict.dtd"
+  LFBFL_a="https://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"
+  LFBFL_script_download_URL="${LFBFL_a}"
+  LFBFL_file_path="./${LFBFL_subdir3}/temp/${LFBFL_file_name}"
+  LFBFL_correct_sha512='fe11db06c0e1741a9c460fe4f9cf167bca57f4dbe9746'
+  LFBFL_correct_sha512+='d8352bf19947168c9bcf1ae212eca035824293abb1f9'
+  LFBFL_correct_sha512+='7a0ac02d67a82d098c34905c8cf1b213c891cc0'
+  wrapped_wget_sha512
+
+  LFBFL_file_name="xhtml1-transitional.dtd"
+  LFBFL_a="https://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"
+  LFBFL_script_download_URL="${LFBFL_a}"
+  LFBFL_file_path="./${LFBFL_subdir3}/temp/${LFBFL_file_name}"
+  LFBFL_correct_sha512='4bece71fbf75d4a68a900ed29b8ba4efae1a9dfa447a5'
+  LFBFL_correct_sha512+='6fc8583da2531f9eadb0fb57bc4cf4990a82ac1da3b3'
+  LFBFL_correct_sha512+='c2892e38c88d70a80f8464b21f0bdef79a04843'
+  wrapped_wget_sha512
+
+  LFBFL_file_name="xhtml1-frameset.dtd"
+  LFBFL_a="https://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd"
+  LFBFL_script_download_URL="${LFBFL_a}"
+  LFBFL_file_path="./${LFBFL_subdir3}/temp/${LFBFL_file_name}"
+  LFBFL_correct_sha512='f969c36d5ba7f6de42261c223f1a8958c8205cb938127'
+  LFBFL_correct_sha512+='ea5b7fce6bb2e03a529259e41aa3a429c64177893614'
+  LFBFL_correct_sha512+='f05e3f22bd9c46c61b37a83eb702a6d72ce2872'
+  wrapped_wget_sha512
+
+  LFBFL_file_name="xhtml11.dtd"
+  LFBFL_a="https://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"
+  LFBFL_script_download_URL="${LFBFL_a}"
+  LFBFL_file_path="./${LFBFL_subdir3}/temp/${LFBFL_file_name}"
+  LFBFL_correct_sha512='aa08bb274fd8c4d33bbcaf8993b2357c4e6c03fbdc34b'
+  LFBFL_correct_sha512+='1c46bb98332e21db824a11de43da9c6388032149a148'
+  LFBFL_correct_sha512+='42992c6d92e728e275817b656d1c333ca7f5d04'
+  wrapped_wget_sha512
+
+  LFBFL_file_name="xhtml-lat1.ent"
+  LFBFL_a="https://www.w3.org/MarkUp/DTD/xhtml-lat1.ent"
+  LFBFL_script_download_URL="${LFBFL_a}"
+  LFBFL_file_path="./${LFBFL_subdir3}/temp/${LFBFL_file_name}"
+  LFBFL_correct_sha512='3243f33c056e71ae995d51cd2418979a505875d53ec9b'
+  LFBFL_correct_sha512+='17310268232dfbda19f5a52794973db47e51058cbcb4'
+  LFBFL_correct_sha512+='4a86838fed4937e6adc29636e12741bdc93af04'
+  wrapped_wget_sha512
+
+  LFBFL_file_name="xhtml-special.ent"
+  LFBFL_a="https://www.w3.org/MarkUp/DTD/xhtml-special.ent"
+  LFBFL_script_download_URL="${LFBFL_a}"
+  LFBFL_file_path="./${LFBFL_subdir3}/temp/${LFBFL_file_name}"
+  LFBFL_correct_sha512='ec8e78745673044993b2d57242f834c94f1615a0df653'
+  LFBFL_correct_sha512+='5882b84c1df223f652ce536cc6b17eece23ab6dae518'
+  LFBFL_correct_sha512+='60a6e562b20f7ef5440004d56f9dbe4ea58913f'
+  wrapped_wget_sha512
+
+  LFBFL_file_name="xhtml-symbol.ent"
+  LFBFL_a="https://www.w3.org/MarkUp/DTD/xhtml-symbol.ent"
+  LFBFL_script_download_URL="${LFBFL_a}"
+  LFBFL_file_path="./${LFBFL_subdir3}/temp/${LFBFL_file_name}"
+  LFBFL_correct_sha512='47ca9edba10776c5ea8bba5c0e3ea8dc1a94b2830eada'
+  LFBFL_correct_sha512+='2ebf2bec1101ca05066ce09c0e06ecef1af7785c1179'
+  LFBFL_correct_sha512+='0a61c2efdc959d89610b7b4b084bb60af89cf72'
+  wrapped_wget_sha512
+
   declare -r LFBFL_s_files_for_xmllint=$(
     find . -type f -iregex ".*\.\(xml\|xhtml\)"\
     | relevant_find\
@@ -725,6 +791,7 @@ common_build_and_checks(){
       [[ LFBFL_i_verbose -eq 1 ]]\
         && printf "xmllint on %s\n" "${LFBFL_file_path}"
       # see https://gitlab.gnome.org/GNOME/libxml2/-/issues/1100
+      # https://gitlab.gnome.org/GNOME/libxml2/-/work_items/1100
       # xmllint --pedantic --noout -- "${LFBFL_file_path}"
       xmllint --pedantic --noout "${LFBFL_file_path}"
     done
@@ -742,7 +809,42 @@ common_build_and_checks(){
       fi
       [[ LFBFL_i_verbose -eq 1 ]]\
         && printf "xmllint on %s\n" "${LFBFL_file_path}"
-      xmllint --pedantic --noout --valid "${LFBFL_file_path}"
+      if [[ "${LFBFL_file_path}" == *.xhtml ]]; then
+        if grep --fixed-strings\
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"\
+          "${LFBFL_file_path}"
+        then
+          xmllint --pedantic --noout\
+            --dtdvalid "./${LFBFL_subdir3}/temp/xhtml1-strict.dtd"\
+            "${LFBFL_file_path}"
+        elif grep --fixed-strings\
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"\
+          "${LFBFL_file_path}"
+        then
+          xmllint --pedantic --noout\
+            --dtdvalid "./${LFBFL_subdir3}/temp/xhtml1-transitional.dtd"\
+            "${LFBFL_file_path}"
+          echo "AAAAAAAAAAAA"
+        elif grep --fixed-strings\
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd"\
+          "${LFBFL_file_path}"
+        then
+          xmllint --pedantic --noout\
+            --dtdvalid "./${LFBFL_subdir3}/temp/xhtml1-frameset.dtd"\
+            "${LFBFL_file_path}"
+        elif grep --fixed-strings\
+          "http://www.w3.org/TR/xhtml1/DTD/xhtml11.dtd"\
+          "${LFBFL_file_path}"
+        then
+          xmllint --pedantic --noout\
+            --dtdvalid "./${LFBFL_subdir3}/temp/xhtml11.dtd"\
+            "${LFBFL_file_path}"
+        else
+          printf "Unknown XHTML DTD.\n"
+        fi
+      else
+        xmllint --pedantic --noout --valid "${LFBFL_file_path}"
+      fi
     done
   fi
   # ------------------------------------------------------------------

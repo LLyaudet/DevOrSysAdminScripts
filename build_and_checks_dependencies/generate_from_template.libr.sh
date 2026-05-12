@@ -100,21 +100,21 @@ insert_file_at_token(){
   # $4=path_of_result_file
   # Options:
   #   $5=--quiet to suppress diff output in overwrite_if_not_equal
-  declare -r LFBFL_start_file_name="$1.insert_file_at_token1.temp"
-  declare -r LFBFL_end_file_name="$1.insert_file_at_token2.temp"
-  local LFBFL_result_file_name
+  declare -r LFBFL_start_file_path="$1.insert_file_at_token1.temp"
+  declare -r LFBFL_end_file_path="$1.insert_file_at_token2.temp"
+  local LFBFL_result_file_path
   if [[ -n "$4" ]]; then
-    LFBFL_result_file_name="$4"
+    LFBFL_result_file_path="$4"
   else
-    LFBFL_result_file_name="$1.insert_file_at_token3.temp"
+    LFBFL_result_file_path="$1.insert_file_at_token3.temp"
   fi
-  readonly LFBFL_result_file_name
-  split_file_in_two "$1" "$2" "${LFBFL_start_file_name}"\
-    "${LFBFL_end_file_name}"
-  cat -- "${LFBFL_start_file_name}" "$3" "${LFBFL_end_file_name}"\
-    > "${LFBFL_result_file_name}"
-  rm -- "${LFBFL_start_file_name}" "${LFBFL_end_file_name}"
+  readonly LFBFL_result_file_path
+  split_file_in_two "$1" "$2" "${LFBFL_start_file_path}"\
+    "${LFBFL_end_file_path}"
+  cat -- "${LFBFL_start_file_path}" "$3" "${LFBFL_end_file_path}"\
+    > "${LFBFL_result_file_path}"
+  rm -- "${LFBFL_start_file_path}" "${LFBFL_end_file_path}"
   if [[ -z "$4" ]]; then
-    overwrite_if_not_equal "$1" "${LFBFL_result_file_name}" "$5"
+    overwrite_if_not_equal "$1" "${LFBFL_result_file_path}" "$5"
   fi
 }

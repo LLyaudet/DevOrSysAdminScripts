@@ -38,6 +38,13 @@ source "./${LFBFL_subdir}/lines_filters.libr.sh"
 # shellcheck source=overwrite_if_not_equal.libr.sh
 source "./${LFBFL_subdir}/overwrite_if_not_equal.libr.sh"
 
+enhanced_set_bash_option extglob
+# shellcheck source=repository_data.libr.sh
+source "./${LFBFL_subdir}/repository_data.libr.sh"
+# shellcheck disable=SC2154,SC2309
+[[ i_enhanced_set_bash_option_extglob_result -eq 0 ]]\
+  && enhanced_unset_bash_option extglob
+
 build_licenses_templates(){
   # Options:
   #   --verbose
@@ -259,6 +266,16 @@ build_licenses_templates(){
   LFBFL_copyright_string+=" ${LFBFL_author_full_name}"
   readonly LFBFL_copyright_string
 
+  LFBFL_files_without_license_header=""
+  grep_variable_with_multiple_files "${LFBFL_data_file_path}"\
+    files_without_license_header\
+    --result-variable-prefix="LFBFL_"
+  declare -a LFBFL_arr_files_without_license_header
+  if [[ -n "${LFBFL_files_without_license_header}" ]]; then
+    mapfile -t LFBFL_arr_files_without_license_header\
+      <<< "${LFBFL_files_without_license_header}"
+  fi
+
   prepare_filled_license_file_block(){
     # $1=license_file_path
     sed --expression="s/@repository_name@/${LFBFL_repository_name}/g"\
@@ -304,8 +321,10 @@ build_licenses_templates(){
   declare -i LFBFL_i_not_subfile
   declare -i LFBFL_i_not_subfile2
   local LFBFL_file_path
+  local LFBFL_file_path2
   local LFBFL_s_files_paths
   declare -a LFBFL_arr_files_paths
+  declare -i LFBFL_i_is_whitelisted
   for LFBFL_key in "${!LFBFL_all_block_comment_languages[@]}"; do
     LFBFL_dest=${LFBFL_all_block_comment_languages[${LFBFL_key}]}
     LFBFL_license_file_path="${LFBFL_license_prefix2}.${LFBFL_dest}"
@@ -332,6 +351,17 @@ build_licenses_templates(){
     fi
     mapfile -t LFBFL_arr_files_paths <<< "${LFBFL_s_files_paths}"
     for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do
+      LFBFL_i_is_whitelisted=0
+      for LFBFL_file_path2 in\
+        "${LFBFL_arr_files_without_license_header[@]}";
+      do
+        if [[ "${LFBFL_file_path}" == "${LFBFL_file_path2}" ]]; then
+          LFBFL_i_is_whitelisted=1
+        fi
+      done
+      if [[ LFBFL_i_is_whitelisted -eq 1 ]]; then
+        continue
+      fi
       is_subfile "${LFBFL_file_path}"\
         "${LFBFL_license_file_path}.temp"
       LFBFL_i_not_subfile=$?
@@ -406,6 +436,17 @@ build_licenses_templates(){
     fi
     mapfile -t LFBFL_arr_files_paths <<< "${LFBFL_s_files_paths}"
     for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do
+      LFBFL_i_is_whitelisted=0
+      for LFBFL_file_path2 in\
+        "${LFBFL_arr_files_without_license_header[@]}";
+      do
+        if [[ "${LFBFL_file_path}" == "${LFBFL_file_path2}" ]]; then
+          LFBFL_i_is_whitelisted=1
+        fi
+      done
+      if [[ LFBFL_i_is_whitelisted -eq 1 ]]; then
+        continue
+      fi
       is_subfile "${LFBFL_file_path}" "${LFBFL_license_file_path}"
       LFBFL_i_not_subfile=$?
       LFBFL_i_not_subfile2=1

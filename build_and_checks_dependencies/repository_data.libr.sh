@@ -71,7 +71,6 @@ grep_variable_with_multiple_files(){
   get_some_option LFBFL_prefix --result-variable-prefix '' '' 1 "$@"
   grep_variable "$1" "$2" --result-variable-prefix="${LFBFL_prefix}"
   declare -r LFBFL_variable_name="${LFBFL_prefix}$2"
-  local LFBFL_variable_with_multiple_files
   declare -a LFBFL_arr
   if [[ -z "${!LFBFL_variable_name}" ]]; then
     return

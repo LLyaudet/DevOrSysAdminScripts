@@ -59,7 +59,7 @@ generate_from_template_with_line_comments(){
     printf "%s\n" "$5"\
       > "${LFBFL_temp}"
   fi
-  sed --expression="s/^/$3/g" -- "$1"\
+  sed --expression="s~^~$3~g" -- "$1"\
     >> "${LFBFL_temp}"
   if [[ -n "$4" ]]; then
     eval -- "$4"

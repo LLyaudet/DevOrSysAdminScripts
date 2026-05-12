@@ -21,6 +21,10 @@ along with DevOrSysAdminScripts.
 If not, see <https://www.gnu.org/licenses/>.
 
 ©Copyright 2023-2026 Laurent Frédéric Bernard François Lyaudet
+2026-05-12T12:06+02:00: This file was renamed from
+"IMAP_transfert.py"
+to
+"IMAP_transfert.exec.py".
 
 Pour transférer d'un compte IMAP à un autre
 Penser à autoriser les apps moins sûres sur Gmail si nécessaire

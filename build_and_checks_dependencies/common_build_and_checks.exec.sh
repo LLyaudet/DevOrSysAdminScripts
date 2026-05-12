@@ -157,17 +157,17 @@ common_build_and_checks(){
   LFBFL_file_name="generate_from_template.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='cea3b5b3829f6dfbb6c51b1b7128f31925af7b8cc7839'
-  LFBFL_correct_sha512+='232bdb2b4a59f507a9aaebba1f0b6fe2e32369e28889'
-  LFBFL_correct_sha512+='31d4438a7af1a1e6649f6cdd4ea8272d68e3d5d'
+  LFBFL_correct_sha512='e11f398839dad7f3dd88af4094ec813978990fd6eca9f'
+  LFBFL_correct_sha512+='b3927fdf467007e01e184091c7801aa9d43eb4bc8995'
+  LFBFL_correct_sha512+='b05ae2e5e690c6dfe88c71eebd279f3ff953b9e'
   wrapped_wget_sha512
 
   LFBFL_file_name="get_common_text_glob_patterns.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='d38b894f63ac0db1eab4447a765b723642e12e3443aee'
-  LFBFL_correct_sha512+='01bd08e44bd2971bf11d3f0b98d2932bcaaeab4f30b7'
-  LFBFL_correct_sha512+='9f7da666e02a0fb1dada8a348ad866a104e4d53'
+  LFBFL_correct_sha512='5ba9416d57ab9f312afaa366601291832a19708df3af9'
+  LFBFL_correct_sha512+='c8ce6df2ffd457242d1268a4f4c28126061ee163059e'
+  LFBFL_correct_sha512+='efae3e24958415c942f5eea69f8e83e178354dd'
   wrapped_wget_sha512
 
   LFBFL_file_name="grammar_and_spelling_check.libr.sh"
@@ -185,9 +185,9 @@ common_build_and_checks(){
   LFBFL_file_name="build_licenses_templates.exec.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL2}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir2}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='72975aaa23962f7c110a418e6d3df28854ea9037919ea'
-  LFBFL_correct_sha512+='1f0db8a538ef8836c8324368a03351a1ba357bd6b9a7'
-  LFBFL_correct_sha512+='4e7ea75adfbac0df616a36663e57ef98d325e72'
+  LFBFL_correct_sha512='c3fce225d9e1011a407595ae70cfa6f13f5c3a40705bb'
+  LFBFL_correct_sha512+='b9b8da50333376cb2aa67887b852cae578dc66fef21e'
+  LFBFL_correct_sha512+='f3d28903d9ae84ff797d299f3aa0487f5feb7ee'
   wrapped_wget_sha512
   chmod +x "./${LFBFL_file_path}"
 

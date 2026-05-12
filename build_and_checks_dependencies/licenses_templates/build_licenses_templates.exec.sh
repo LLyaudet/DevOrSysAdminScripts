@@ -80,14 +80,17 @@ build_licenses_templates(){
   declare -ar LFBFL_block_comment_languages=(
     "c"
     "py"
+    "xml"
   )
   declare -ar LFBFL_block_comment_enters=(
     '/*'
     '"""'
+    '<!--'
   )
   declare -ar LFBFL_block_comment_exits=(
     '*/'
     '"""'
+    '-->'
   )
   equal "${#LFBFL_block_comment_languages[@]}"\
         "${#LFBFL_block_comment_enters[@]}"\
@@ -99,11 +102,13 @@ build_licenses_templates(){
   fi
 
   declare -ar LFBFL_line_comment_languages=(
+    "rs"
     "sh"
     "sql"
     "tex"
   )
   declare -ar LFBFL_line_comment_prefixes=(
+    '// '
     '# '
     '-- '
     '% '
@@ -284,9 +289,13 @@ build_licenses_templates(){
 
   declare -Ar LFBFL_all_block_comment_languages=(
     ["c"]="c"
+    ["css"]="c"
+    ["html"]="xml"
     ["php"]="c"
     ["py"]="py"
     ["js"]="c"
+    ["ts"]="c"
+    ["xml"]="xml"
   )
 
   local LFBFL_key
@@ -362,9 +371,13 @@ build_licenses_templates(){
   }
 
   declare -Ar LFBFL_all_line_comment_languages=(
+    ["rlib"]="rs"
+    ["rs"]="rs"
     ["sh"]="sh"
     ["sql"]="sql"
     ["tex"]="tex"
+    ["toml"]="sh"
+    ["yaml"]="sh"
   )
 
   for LFBFL_key in "${!LFBFL_all_line_comment_languages[@]}"; do

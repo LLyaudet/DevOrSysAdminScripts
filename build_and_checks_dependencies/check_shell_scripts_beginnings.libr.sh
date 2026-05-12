@@ -84,9 +84,6 @@ check_shell_scripts_beginnings(){
     [[ LFBFL_i_verbose -eq 1 ]]\
       && printf "%s:Checking shell script beginning.\n"\
           "${LFBFL_file_path}"
-    LFBFL_head=$(head --lines=1 -- "${LFBFL_file_path}")
-    [[ "${LFBFL_head}" == "${LFBFL_SHELL_SCRIPT_BEGINNING}" ]]\
-      || printf "%s:File has wrong shell script beginning.\n"\
-          "${LFBFL_file_path}"
+    check_one_shell_script_beginning "${LFBFL_file_path}"
   done
 }

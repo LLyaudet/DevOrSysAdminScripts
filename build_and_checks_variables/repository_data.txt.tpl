@@ -51,3 +51,6 @@ npm_lint_directories=
 
 xmllint_files_without_DTD=
 xmllint_files_without_DTD=
+
+files_without_license_header=
+files_without_license_header=

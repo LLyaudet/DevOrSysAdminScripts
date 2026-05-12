@@ -139,5 +139,18 @@ upgrade_vnu_jar_time_interval_in_seconds=604800
 
 use_vnu_for_xhtml=false
 
+For xmllint_files_without_DTD and files_without_license_header,
+each line is a file path, except if the line ends with a /,
+then it is concatenated with the following line(s) to obtain a path.
+
 xmllint_files_without_DTD=./build_and_checks_variables/phpcs_ruleset.xml
 xmllint_files_without_DTD=./build_and_checks_variables/phpmd_baseline.xml
+
+files_without_license_header=build_and_checks_variables/phpcs_ruleset.xml
+files_without_license_header=build_and_checks_variables/
+files_without_license_header=phpmd_baseline.xml
+files_without_license_header=README.html
+files_without_license_header=miscellaneous/string_escaping.html
+files_without_license_header=build_and_checks_variables/ruff.toml
+files_without_license_header=build_and_checks_variables/black.toml
+files_without_license_header=build_and_checks_variables/pylintrc.toml

@@ -61,3 +61,28 @@ get_upgrade_venvs_time_interval_in_seconds(){
     && printf "I say \"%s\".\n"\
         "${LFBFL_upgrade_venvs_time_interval_in_seconds}"
 }
+
+grep_variable_with_multiple_files(){
+  # $1=data_file_path
+  # $2=variable_name
+  # Options :
+  #   --result-variable-prefix="LFBFL_" for example
+  local LFBFL_prefix=""
+  get_some_option LFBFL_prefix --result-variable-prefix '' '' 1 "$@"
+  grep_variable "$1" "$2" --result-variable-prefix="${LFBFL_prefix}"
+  declare -r LFBFL_variable_name="${LFBFL_prefix}$2"
+  local LFBFL_variable_with_multiple_files
+  declare -a LFBFL_arr
+  if [[ -z "${!LFBFL_variable_name}" ]]; then
+    return
+  fi
+  mapfile -t LFBFL_arr <<< "${!LFBFL_variable_name}"
+  LFBFL_s=""
+  for LFBFL_file_path in "${LFBFL_arr[@]}"; do
+    LFBFL_s+="${LFBFL_file_path}"
+    if [[ "${LFBFL_file_path}" != */ ]]; then
+      LFBFL_s+=$'\n'
+    fi
+  done
+  printf -v "${LFBFL_variable_name}" "%s" "${LFBFL_s}"
+}

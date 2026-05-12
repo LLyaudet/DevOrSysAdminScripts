@@ -237,6 +237,7 @@ common_build_and_checks(){
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
   @sha512_split_score.exec.php@
   wrapped_wget_sha512
+  chmod +x "./${LFBFL_file_path}"
 
   LFBFL_file_name="split_score.libr.php"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"

@@ -436,7 +436,7 @@ create_PDF(){
     cp -- "${LFBFL_subdir2}/${LFBFL_repository_name}.tex"\
       "${LFBFL_tex_path_start}.1"
   else
-    printf "Neither .tex.tpl, nor .tex in ./%s/\n" "${LFBFL_subdir2}"
+    printf "Neither .tex.tpl, nor .tex in ./%s/.\n" "${LFBFL_subdir2}"
   fi
 
   # Same logic with repository HTML file.
@@ -446,7 +446,7 @@ create_PDF(){
   elif [[ -f "${LFBFL_repository_name}.html" ]]; then
     cp -- "${LFBFL_repository_name}.html" "${LFBFL_html_path_start}.1"
   else
-    printf "Neither .html.tpl in ./%s/, nor .html in ./\n"\
+    printf "Neither .html.tpl in ./%s/, nor .html in ./.\n"\
       "${LFBFL_subdir2}"
   fi
 
@@ -595,7 +595,7 @@ create_PDF(){
   fi
   readonly LFBFL_command
 
-  for ((i=0; i<3; i++)); do
+  for ((LFBFL_i = 0; LFBFL_i < 3; ++LFBFL_i)); do
     eval -- "${LFBFL_command}"
   done
 

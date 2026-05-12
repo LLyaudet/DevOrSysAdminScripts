@@ -824,7 +824,6 @@ common_build_and_checks(){
           xmllint --pedantic --noout\
             --dtdvalid "./${LFBFL_subdir3}/temp/xhtml1-transitional.dtd"\
             "${LFBFL_file_path}"
-          echo "AAAAAAAAAAAA"
         elif grep --fixed-strings\
           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd"\
           "${LFBFL_file_path}"

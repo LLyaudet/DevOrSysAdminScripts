@@ -124,9 +124,9 @@ common_build_and_checks(){
   LFBFL_file_name="check_URLs.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='9e42d111550432b63d63f9faa35c92c45a9e4ef308a65'
-  LFBFL_correct_sha512+='1ecf094a0838ac36fbe36109b3dc9b4d48a24887d155'
-  LFBFL_correct_sha512+='dae7b546ea64551493d0dc4e772e1b09248fa4e'
+  LFBFL_correct_sha512='33d74e193403fe77dcea760cf95995a39452fd731b9d0'
+  LFBFL_correct_sha512+='bea5f2e9bff7a77d6bb864c67ab275942a4917913254'
+  LFBFL_correct_sha512+='8b7e889e08059bac4ea01ae089621db9eee087a'
   wrapped_wget_sha512
 
   LFBFL_file_name="common_options.libr.sh"
@@ -882,7 +882,6 @@ common_build_and_checks(){
           xmllint --pedantic --noout\
             --dtdvalid "./${LFBFL_subdir3}/temp/xhtml1-transitional.dtd"\
             "${LFBFL_file_path}"
-          echo "AAAAAAAAAAAA"
         elif grep --fixed-strings\
           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd"\
           "${LFBFL_file_path}"

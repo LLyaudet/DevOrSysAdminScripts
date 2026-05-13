@@ -146,6 +146,11 @@ then it is concatenated with the following line(s) to obtain a path.
 xmllint_files_without_DTD=./build_and_checks_variables/phpcs_ruleset.xml
 xmllint_files_without_DTD=./build_and_checks_variables/phpmd_baseline.xml
 
+If you use Ubuntu/Debian, install w3c-sgml-lib instead of =true.
+See https://gitlab.gnome.org/GNOME/libxml2/-/work_items/1119
+
+xmllint_use_downloaded_DTDs=false
+
 files_without_license_header=build_and_checks_variables/phpcs_ruleset.xml
 files_without_license_header=build_and_checks_variables/
 files_without_license_header=phpmd_baseline.xml

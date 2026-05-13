@@ -703,9 +703,10 @@ common_build_and_checks(){
   fi
 
   printf "Running xmllint\n"
-  # Unfortunately, wee need to handle a cache of common DTDs by hand.
-  # XHTML DTDs validation yields errors currently:
+  # In some cases, we need to handle a cache of common DTDs by hand.
+  # XHTML DTDs validation can yield errors:
   # see https://gitlab.gnome.org/GNOME/libxml2/-/work_items/1119
+  # If you use Ubuntu/Debian, install w3c-sgml-lib instead.
   LFBFL_file_name="xhtml1-strict.dtd"
   LFBFL_a="https://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"
   LFBFL_script_download_URL="${LFBFL_a}"
@@ -775,6 +776,10 @@ common_build_and_checks(){
     | sort
   )
   if [[ -n "${LFBFL_s_files_for_xmllint}" ]]; then
+    LFBFL_xmllint_use_downloaded_DTDs=""
+    grep_variable "${LFBFL_data_file_path}" xmllint_use_downloaded_DTDs\
+      --result-variable-prefix=LFBFL_
+
     declare -a LFBFL_arr_files_for_xmllint
     mapfile -t LFBFL_arr_files_for_xmllint\
       <<< "${LFBFL_s_files_for_xmllint}"
@@ -810,7 +815,10 @@ common_build_and_checks(){
       fi
       [[ LFBFL_i_verbose -eq 1 ]]\
         && printf "xmllint on %s\n" "${LFBFL_file_path}"
-      if [[ "${LFBFL_file_path}" == *.xhtml ]]; then
+      if [[
+        "${LFBFL_file_path}" == *.xhtml
+        && "${LFBFL_xmllint_use_downloaded_DTDs}" == "true"
+      ]]; then
         if grep --fixed-strings\
           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"\
           "${LFBFL_file_path}"

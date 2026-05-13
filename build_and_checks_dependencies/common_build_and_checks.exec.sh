@@ -838,7 +838,8 @@ common_build_and_checks(){
       <<< "${LFBFL_s_files_for_xmllint}"
     readonly LFBFL_arr_files_for_xmllint
     local LFBFL_xmllint_files_without_DTD=""
-    grep_variable "${LFBFL_data_file_path}" xmllint_files_without_DTD\
+    grep_variable_with_multiple_files "${LFBFL_data_file_path}"\
+      xmllint_files_without_DTD\
       --result-variable-prefix=LFBFL_
     declare -a LFBFL_arr_xmllint_files_without_DTD
     if [[ -n "${LFBFL_xmllint_files_without_DTD}" ]]; then

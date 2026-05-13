@@ -61,8 +61,8 @@ popd || {
 # (Kevin Mitnick). So, do not expect to have an accurate trackability
 # of code history just because you use this post-commit hook or
 # something else more evolved. This is useful but not a guarantee.
-# For this reason, this function will only handle when all files
-# impacted in the preceding commit are only renamed.
+# This function will only handle the files that were only renamed in the
+# preceding commit.
 # It assumes that `diff` is the current default difference utility
 # parametered with `git`. This point could be enhanced.
 commit_a_file_renamed_comment(){
@@ -157,7 +157,7 @@ commit_a_file_renamed_comment(){
   declare -i LFBFL_i_line_count
   declare -i LFBFL_i_lines_after
   local LFBFL_temp_file_path
-  for ((LFBFL_i=0; LFBFL_i<${#LFBFL_renaming_lines_array[@]};)); do
+  for ((LFBFL_i = 0; LFBFL_i < ${#LFBFL_renaming_lines_array[@]};)); do
     LFBFL_diff_line="${LFBFL_renaming_lines_array[${LFBFL_i}]}"
     LFBFL_i=$((LFBFL_i + 1))
     LFBFL_similarity_line="${LFBFL_renaming_lines_array[${LFBFL_i}]}"
@@ -216,7 +216,7 @@ commit_a_file_renamed_comment(){
         "${LFBFL_useful_file_name}"\
         "${LFBFL_extension}"
     fi
-    for ((LFBFL_j=0; LFBFL_j<3; ++LFBFL_j)); do
+    for ((LFBFL_j = 0; LFBFL_j < 3; ++LFBFL_j)); do
       if [[ "${LFBFL_extension}" != "tpl" ]]; then
         break
       fi
@@ -229,7 +229,11 @@ commit_a_file_renamed_comment(){
       fi
     done
     LFBFL_comment_prefix=""
-    if [[ "${LFBFL_extension}" == "sh" ]]; then
+    if [[
+      "${LFBFL_extension}" == "sh"
+      || "${LFBFL_extension}" == "toml"
+      || "${LFBFL_extension}" == "yaml"
+    ]]; then
       LFBFL_comment_prefix="# "
     fi
     if [[ "${LFBFL_extension}" == "sql" ]]; then
@@ -238,7 +242,11 @@ commit_a_file_renamed_comment(){
     if [[ "${LFBFL_extension}" == "tex" ]]; then
       LFBFL_comment_prefix="% "
     fi
-    if [[ "${LFBFL_useful_file_name}" == "${LFBFL_special_file_name}" ]];
+    if [[
+      "${LFBFL_useful_file_name}" == "${LFBFL_special_file_name}"
+      || "${LFBFL_extension}" == "rs"
+      || "${LFBFL_extension}" == "rlib"
+    ]];
     then
       LFBFL_comment_prefix="// "
     fi

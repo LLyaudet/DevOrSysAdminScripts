@@ -76,12 +76,18 @@ grep_variable_with_multiple_files(){
     return
   fi
   mapfile -t LFBFL_arr <<< "${!LFBFL_variable_name}"
-  LFBFL_s=""
+  local LFBFL_s=""
+  local LFBFL_file_path
+  local LFBFL_previous_file_path
   for LFBFL_file_path in "${LFBFL_arr[@]}"; do
-    LFBFL_s+="${LFBFL_file_path}"
-    if [[ "${LFBFL_file_path}" != */ ]]; then
+    if [[
+      -n "${LFBFL_previous_file_path}"
+      && "${LFBFL_previous_file_path}" != */
+    ]]; then
       LFBFL_s+=$'\n'
     fi
+    LFBFL_s+="${LFBFL_file_path}"
+    LFBFL_previous_file_path="${LFBFL_file_path}"
   done
   printf -v "${LFBFL_variable_name}" "%s" "${LFBFL_s}"
 }

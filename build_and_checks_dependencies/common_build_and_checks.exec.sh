@@ -267,9 +267,9 @@ common_build_and_checks(){
   LFBFL_file_name="repository_data.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='953dec36c229523d14e3ccc5bfa501988c8edccd7a329'
-  LFBFL_correct_sha512+='af9a46ab5122f15e80a1760f0fb6014d1949a931c01f'
-  LFBFL_correct_sha512+='77c8b52a3f1f0e35b1b428dd608d827db61746f'
+  LFBFL_correct_sha512='8148fae16b5853b5ed6ca141b73b32f6d8695d8d34a54'
+  LFBFL_correct_sha512+='73ad8e8cc0dab61d92e87fd925b6f25c0632f70b2fee'
+  LFBFL_correct_sha512+='78ee53b0e3af6aa25b3cc58d8769292c3e4defd'
   wrapped_wget_sha512
 
   LFBFL_file_name="shell_checks_complement.libr.sh"

@@ -72,7 +72,10 @@ split_line_at(){
 # f) When some scores are equal,
 #   we split at the rightmost position with maximum score in the substring.
 # g) Remark f) implies that below we do not need to consider strict
-#    inequalities for the score.
+#    inequalities for the score for the result.
+#    But if you look at split_line_at_most code,
+#    you will see a micro-optimization where distinguishing < and <= could
+#    have been interesting.
 # h) The score function SF(position) which will dictate our choice for
 #   split/cut position is in reality
 #   SF1a(

@@ -48,10 +48,11 @@ So in case of such a conflict, one specialized venv can get you out
 of any problem.
 The best solution would have been to allow install of different
 versions of the same package, and have a mechanism:
-- first intent, use the latest available version of a package among
+- default behavior, use the latest available version of a package among
 those that satisfy the declared dependency constraints of the package
 that has this dependency;
-- second intent, check a dependency overload configuration file
+it requires that all dependency constraints are declared;
+- custom behavior, check a dependency overload configuration file
 with tree structure: if calling python package is A version 1.1.1
 with dependency B itself with dependency C, use B 2.2.2 and C 3.3.3;
 you could have along that another rule saying that when called

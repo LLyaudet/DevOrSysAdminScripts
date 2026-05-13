@@ -55,7 +55,8 @@ all_code_lines(){
         "${LFBFL_pattern}"
     fi
     find . -type f -name "${LFBFL_pattern}" -printf '%P\n'\
-      | xargs grep --invert-match --perl-regexp --with-filename\
+      | tr '\n' '\0'\
+      | xargs -0 grep --invert-match --perl-regexp --with-filename\
         -- 'a(?!a)a'
   done
 }

@@ -219,11 +219,13 @@ split_line_at(){
 #   RMA1A2=
 #   3) mdb1 is NULL AND mdb2 is NULL AND mda1 is not NULL
 #     AND mda2 is not NULL
-#     AND mda1 != mda2 -> This case has no meaning:
+#     AND mda1 != mda2 -> This case is not interesting (alone,
+#     full analysis could combine it with some other case,
+#     but it seems gratis combinatorial explosion without insight):
 #     If we only know they are different, we cannot say anything on
 #     properties related to delimiters that are different unless the score
 #     doesn't depend on the delimiter, and that case is already handled by
-#     1). The same remark applies to some other choices.
+#     1) that contains it. The same remark applies to some other choices.
 #     The only thing that could be said would be if we had an order on
 #     delimiters scores that are uniform for the position, or the score
 #     before some delimiter would always be =, >=, <=, etc. the score
@@ -309,7 +311,7 @@ split_line_at(){
 #   RMM-"allow-md1-0", not useful to explicit this for the moment.
 #   If both md1 = 0 and md2 = 0, then both scores are 0 and we also learn
 #   nothing more.
-#   Thus we can focus on md1 and md2 are not NULL,
+#   Thus we can focus on: md1 and md2 are not NULL,
 #   and are equal RMM= or not RMM!=. It seems that a property with RMM!=
 #   could be extended to a property RMM=or!=/RMMNotNULL.
 #   and finally RIA0 to RIA8 where TRUE = 1, FALSE = 0 and the digit is
@@ -999,10 +1001,6 @@ split_line_at_most(){
     split_line_at_most_result_end=""
     return
   fi
-  if [[ $2 -lt 1 ]]; then
-    printf "split_line_at_most: max_length should be at least 1...\n"
-    return
-  fi
   # We know that ${#1} > $2, hence ${#1} - 1 >= $2
   # Edge cases:
   # There is always at least one character that is overlength,
@@ -1018,6 +1016,20 @@ split_line_at_most(){
   declare -i LFBFL_i
   declare -i LFBFL_j
   local LFBFL_current_char
+
+  if [[ $2 -lt 2 ]]; then
+    printf "split_line_at_most: max_length should be at least 2...\n"
+    return
+  fi
+  if [[ -n "$5" && "$1" =~ ^"$5"*$ ]]; then
+    for ((LFBFL_i = 2; LFBFL_i <= $2; LFBFL_i <<= 1)); do
+      :
+    done
+    ((LFBFL_i >>= 1))
+    split_line_at_most_result_start="${1:0:LFBFL_i}"
+    split_line_at_most_result_end="${1:LFBFL_i}"
+    return
+  fi
 
   # At the beginning, each position has score 0.
   LFBFL_positions["0"]="-1"

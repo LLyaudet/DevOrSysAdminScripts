@@ -43,13 +43,13 @@ check_files(){
   # Checks used on Django projects.
   # Use `git commit --no-verify` after check.
   declare -r LFBFL_send_summary_1="ATTENTION : models modifiés"
-  declare -r LFBFL_send_body_1="Vérifiez si besoin de migrations"
+  declare -r LFBFL_send_body_1="Vérifiez si besoin de migrations."
   local LFBFL_send_body_2="Pensez aussi aux contraintes d'unicités"
-  LFBFL_send_body_2+=" dès la création du modèle"
+  LFBFL_send_body_2+=" dès la création du modèle."
   readonly LFBFL_send_body_2
   declare -r LFBFL_send_summary_2="ATTENTION : serializers modifiés"
   declare -r LFBFL_send_body_3=\
-"Les nouveaux preloadings sont interdits -> #Prefetch()"
+"Les nouveaux preloadings sont interdits : -> #Prefetch()."
   declare -i LFBFL_i_error=0
   git diff --cached --name-only\
     > /tmp/DOSAS_django_git_check1.temp
@@ -97,7 +97,7 @@ check_black_code_formatting(){
   # attention ça ne marche que sur les fichiers "stagés" avec git add
   declare -r LFBFL_s_files_paths=$(
     git diff --cached --name-only\
-    | grep '\.py'
+    | grep '\.py$'
   )
   printf "%s\n" "${LFBFL_s_files_paths}"
   declare -a LFBFL_arr_files_paths
@@ -106,7 +106,7 @@ check_black_code_formatting(){
   declare -i LFBFL_i_error=0
   local LFBFL_file_path
   for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do
-    printf "Black will check formatting on file %s\n" "${LFBFL_file_path}"
+    printf "Black will check formatting on file %s.\n" "${LFBFL_file_path}"
     if ! black --check --diff -- "${LFBFL_file_path}";
     then
       LFBFL_i_error=1

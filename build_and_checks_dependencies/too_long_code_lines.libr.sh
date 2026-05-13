@@ -93,7 +93,8 @@ too_long_code_lines(){
       find . -type f -name "${LFBFL_pattern}" -printf '%P\n'\
       | relevant_find\
       | not_license_find\
-      | xargs grep --line-number --with-filename\
+      | tr '\n' '\0'\
+      | xargs -0 grep --line-number --with-filename\
         --regexp="${get_overlength_regexp_result}" --
     )
     if [[ -z "${LFBFL_s_long_lines}" ]]; then

@@ -118,11 +118,11 @@ ol.level2 li:before{
 Some “small” useful scripts
 for enhancing development or system-administrators tasks
 </blockquote>
-<p>Current version: 2026-05-12</p>
-<p>Current number of commits: 924</p>
-<p>Current git SHA1: 5ab5d6033ee3652dcf486d73c2f965c9075b1125</p>
+<p>Current version: 2026-05-13</p>
+<p>Current number of commits: 946</p>
+<p>Current git SHA1: c1d29e22bbbd926a5841b58f3da7f428b82e9134</p>
 <p>
-Code lines: 12450 total lines, 11460 not empty lines, 990 empty lines.
+Code lines: 12620 total lines, 11610 not empty lines, 1010 empty lines.
 </p>
 
 
@@ -422,24 +422,6 @@ wget_sha512.libr.sh
 ├── LiensUtiles.txt
 ├── miscellaneous
 │   ├──
-│   │ 123456789012345678901234567890123456789012345678901234567890123456789
-│   │ 0123\
-│   ├──
-│   │ 123456789012345678901234567890123456789012345678901234567890123456789
-│   │ 01234\
-│   ├──
-│   │ 123456789012345678901234567890123456789012345678901234567890123456789
-│   │ 012345
-│   ├──
-│   │ 123456789012345678901234567890123456789012345678901234567890123456789
-│   │ 012345\
-│   ├──
-│   │ 123456789012345678901234567890123456789012345678901234567890123456789
-│   │ 0123456
-│   ├──
-│   │ 123456789012345678901234567890123456789012345678901234567890123456789
-│   │ 0123456\
-│   ├──
 │   │ a_long_long_long_long_long_long_long_long_long_filename_so_that_you_c
 │   │ an_see_that_it_works.txt
 │   ├── funny.sh
@@ -457,103 +439,85 @@ wget_sha512.libr.sh
 ├── upgrade_build_and_checks.exec.sh
 └── wget_sha512.libr.sh
 
-6 directories, 83 files
+6 directories, 77 files
 </pre>
 <pre class="verbatim">
-[ 12K May 12 19:40]  ./
-├── [4.0K May 12 19:39]  build_and_checks_dependencies/
+[ 12K May 13 18:53]  ./
+├── [4.0K May 13 18:52]  build_and_checks_dependencies/
 │   ├── [4.4K May 12 19:33]  build_and_checks.exec.sh.tpl*
 │   ├── [1.2K May 12 19:31]  build_dependencies_notes.exec.php*
 │   ├── [8.3K May 12 19:31]  build_dependencies_notes.libr.php
 │   ├── [4.2K May 12 19:34]  build_md_from_printable_md.exec.sh*
 │   ├── [3.1K May 12 19:34]  check_shell_scripts_beginnings.libr.sh
 │   ├── [5.3K May 12 19:37]  check_shell_scripts_indentation.libr.sh
-│   ├── [3.9K May 12 19:34]  check_URLs.libr.sh
-│   ├── [ 38K May 12 19:38]  common_build_and_checks.exec.sh*
-│   ├── [ 33K May 12 19:37]  common_build_and_checks.exec.sh.tpl
+│   ├── [3.9K May 13 17:50]  check_URLs.libr.sh
+│   ├── [ 38K May 13 17:51]  common_build_and_checks.exec.sh*
+│   ├── [ 34K May 13 13:51]  common_build_and_checks.exec.sh.tpl
 │   ├── [ 19K May 12 19:37]  common_options.libr.sh
 │   ├── [6.2K May 12 19:37]  comparisons.libr.sh
 │   ├── [ 22K May 12 19:37]  create_PDF.exec.sh*
 │   ├── [3.7K May 12 19:32]  generate_from_template.libr.sh
 │   ├── [2.0K May 12 19:37]  get_common_text_glob_patterns.libr.sh
 │   ├── [3.3K May 12 19:37]  grammar_and_spelling_check.libr.sh
-│   ├── [4.0K May 12 19:37]  licenses_templates/
-│   │   ├── [ 15K May 12 19:37]  build_licenses_templates.exec.sh*
+│   ├── [4.0K May 12 21:21]  licenses_templates/
+│   │   ├── [ 16K May 12 21:21]  build_licenses_templates.exec.sh*
 │   │   ├── [ 720 May 12 19:16]  license_file_header_AGPLv3+.tpl
 │   │   ├── [ 699 May 12 19:17]  license_file_header_GPLv3+.tpl
 │   │   └── [ 720 May 12 19:18]  license_file_header_LGPLv3+.tpl
-│   ├── [6.0K May 12 19:37]  lines_counts.libr.sh
-│   ├── [ 15K May 12 19:37]  lines_filters.libr.sh
+│   ├── [6.0K May 13 17:48]  lines_counts.libr.sh
+│   ├── [ 15K May 13 15:25]  lines_filters.libr.sh
 │   ├── [3.0K May 12 19:37]  lines_maps.libr.sh
 │   ├── [3.3K May 12 19:37]  overwrite_if_not_equal.libr.sh
 │   ├── [2.4K May 12 19:37]  python_black_complement.libr.sh
-│   ├── [3.1K May 12 19:37]  python_isort_complement.libr.sh
-│   ├── [2.0K May 12 19:37]  repository_data.libr.sh
+│   ├── [3.1K May 13 15:29]  python_isort_complement.libr.sh
+│   ├── [2.9K May 13 15:08]  repository_data.libr.sh
 │   ├── [3.9K May 12 19:37]  shell_checks_complement.libr.sh
 │   ├── [2.0K May 12 19:31]  split_score.exec.php*
 │   ├── [3.2K May 12 19:31]  split_score.libr.php
-│   ├── [ 47K May 12 19:37]  strings_functions.libr.sh
-│   ├── [4.6K May 12 19:37]  too_long_code_lines.libr.sh
+│   ├── [ 47K May 13 16:32]  strings_functions.libr.sh
+│   ├── [4.7K May 13 17:45]  too_long_code_lines.libr.sh
 │   ├── [4.4K May 12 19:37]  update_common_build_and_checks.exec.sh*
 │   └── [6.0K May 12 19:37]  update_or_check_files_names_listing.exec.sh*
-├── [4.6K May 12 19:38]  build_and_checks.exec.sh*
-├── [4.0K May 12 19:40]  build_and_checks_variables/
+├── [4.6K May 13 17:51]  build_and_checks.exec.sh*
+├── [4.0K May 13 18:53]  build_and_checks_variables/
 │   ├── [  15 Jan  5 20:00]  bandit_baseline.json
 │   ├── [  25 Jan  5 18:49]  bandit.ini
 │   ├── [  30 Feb 28 20:30]  black.toml
 │   ├── [5.1K Apr 17 16:50]  dependencies_data.json
 │   ├── [4.3K Apr 17 16:57]  dependencies_notes.txt
 │   ├── [5.7K May 12 19:31]  DevOrSysAdminScripts.html.tpl
-│   ├── [ 35K May 12 19:31]  DevOrSysAdminScripts.tex
+│   ├── [ 33K May 13 18:49]  DevOrSysAdminScripts.tex
 │   ├── [4.2K May 12 19:38]  DevOrSysAdminScripts.tex.tpl
-│   ├── [5.5K May 12 19:31]  files_names_listing.txt
+│   ├── [4.9K May 13 18:47]  files_names_listing.txt
 │   ├── [  23 Mar 24 19:33]  .gitignore
 │   ├── [1.4K Apr 17 16:49]  licenses_notes.txt
 │   ├── [ 13K Apr 17 09:38]  phpcs_ruleset.xml
 │   ├── [2.2K Apr 17 14:32]  phpmd_baseline.xml
 │   ├── [ 678 Feb 24 22:38]  pylintrc.toml
-│   ├── [4.6K Apr 17 17:09]  repository_data.txt
-│   ├── [ 841 Apr 17 17:08]  repository_data.txt.tpl
+│   ├── [5.5K May 13 17:14]  repository_data.txt
+│   ├── [ 932 May 13 13:46]  repository_data.txt.tpl
 │   ├── [1.4K May 12 12:26]  ruff.toml
 │   ├── [ 166 Mar 24 19:33]  shellcheck.ini
-│   └── [3.6K Apr  2 09:16]  shellcheck_notes.txt
+│   └── [3.6K May 13 17:18]  shellcheck_notes.txt
 ├── [ 34K May  6  2024]  COPYING
 ├── [7.5K Dec 27 21:48]  COPYING.LESSER
-├── [485K May 12 19:31]  DevOrSysAdminScripts.html
-├── [417K May 12 19:28]  DevOrSysAdminScripts.pdf
-├── [4.0K May 12 19:37]  git_helpers/
-│   ├── [3.8K May 12 19:37]  git_checks.libr.sh
+├── [499K May 13 18:49]  DevOrSysAdminScripts.html
+├── [415K May 13 18:49]  DevOrSysAdminScripts.pdf
+├── [4.0K May 13 17:28]  git_helpers/
+│   ├── [3.8K May 13 17:22]  git_checks.libr.sh
 │   ├── [2.1K May 12 19:31]  post-commit*
-│   ├── [ 15K May 12 19:37]  post_commit_renaming_comment.libr.sh
+│   ├── [ 15K May 13 17:28]  post_commit_renaming_comment.libr.sh
 │   └── [1.8K May 12 19:31]  pre-commit*
 ├── [   8 Mar 26 10:37]  .gitignore
 ├── [8.4K May 12 19:31]  IMAP_transfert.exec.py
 ├── [1.1K Mar 31 19:59]  LiensUtiles.txt
-├── [4.0K May 12 19:37]  miscellaneous/
-│   ├── [   0 Mar  4 10:37]
-│   │ 123456789012345678901234567890123456789012345678901234567890123456789
-│   │ 0123\
-│   ├── [   0 Mar  4 10:03]
-│   │ 123456789012345678901234567890123456789012345678901234567890123456789
-│   │ 01234\
-│   ├── [   0 Mar  4 10:01]
-│   │ 123456789012345678901234567890123456789012345678901234567890123456789
-│   │ 012345
-│   ├── [   0 Mar  4 10:37]
-│   │ 123456789012345678901234567890123456789012345678901234567890123456789
-│   │ 012345\
-│   ├── [   0 Mar  4 10:37]
-│   │ 123456789012345678901234567890123456789012345678901234567890123456789
-│   │ 0123456
-│   ├── [   0 Mar  4 10:37]
-│   │ 123456789012345678901234567890123456789012345678901234567890123456789
-│   │ 0123456\
+├── [ 24K May 13 18:45]  miscellaneous/
 │   ├── [   0 Mar  4 09:13]
 │   │ a_long_long_long_long_long_long_long_long_long_filename_so_that_you_c
 │   │ an_see_that_it_works.txt
 │   ├── [1.3K May 12 19:37]  funny.sh
 │   ├── [  94 Mar  3 19:56]  spampty_data.txt
-│   ├── [ 442 Mar 18 16:50]  string_escaping.html
+│   ├── [ 461 May 13 18:15]  string_escaping.html
 │   ├── [ 653 May 12 14:38]  string_escaping.xhtml
 │   └── [   0 Mar  4 09:13]
 │     yet_another_long_long_long_long_long_long_long_long_long_filename_so_
@@ -561,12 +525,12 @@ wget_sha512.libr.sh
 ├── [8.1K May 12 12:17]  README.html
 ├── [4.3K Mar 22 21:29]  README.md
 ├── [4.3K Mar 22 21:29]  README.md.tpl
-├── [7.0K May 12 19:31]  string_escaping.libr.php
-├── [ 17K May 12 19:31]  unicode.libr.php
-├── [5.5K May 12 19:37]  upgrade_build_and_checks.exec.sh*
+├── [7.5K May 13 18:16]  string_escaping.libr.php
+├── [ 17K May 13 18:18]  unicode.libr.php
+├── [6.4K May 13 18:46]  upgrade_build_and_checks.exec.sh*
 └── [2.5K May 12 19:37]  wget_sha512.libr.sh
 
-6 directories, 83 files
+6 directories, 77 files
 </pre>
 
 
@@ -2042,9 +2006,9 @@ check_URLs(){
     if [[ LFBFL_i_verbose -eq 1 ]]; then
       printf "check_URLs: Iterating on pattern: %s.\n" "${LFBFL_pattern}"
     fi
-    find . -type f -name "${LFBFL_pattern}" -printf '%P\n'\
-      | xargs grep --with-filename -- 'http:'\
-      | grep --invert-match "| xargs grep --with-filename -- 'htt"\
+    find . -type f -name "${LFBFL_pattern}" -printf '%P\0'\
+      | xargs -0 grep --with-filename -- 'http:'\
+      | grep --invert-match "| xargs -0 grep --with-filename -- 'htt"\
       | grep --invert-match --perl-regexp\
         "(['\"])http(:[^'\"]*)\\1.*(['\"])https\\2\\3"\
       | grep --invert-match 'http://www.w3.org/1999/xhtml'\
@@ -2218,9 +2182,9 @@ common_build_and_checks(){
   LFBFL_file_name="check_URLs.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='08561321cb3dee406f492dc29bf3a622036fb7094708d'
-  LFBFL_correct_sha512+='cc25ead2327eb183b4cf6fe2979494e21eb1d05b0e58'
-  LFBFL_correct_sha512+='9f8ce6ba08e190e81f935dc820bd2f2d3041a36'
+  LFBFL_correct_sha512='57113f2f2f0de5bb1e1c080232b8529ac347920b545fa'
+  LFBFL_correct_sha512+='d919c69fb4ab19898239e70384d586beb0f1d5f7f274'
+  LFBFL_correct_sha512+='f900bf0f8fc0ac7368aac6ec5b28ec4cef8fddf'
   wrapped_wget_sha512
 
   LFBFL_file_name="common_options.libr.sh"
@@ -2279,9 +2243,9 @@ common_build_and_checks(){
   LFBFL_file_name="build_licenses_templates.exec.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL2}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir2}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='12c9f0f5ceb7bf1baa36b9e8ca7ff09d0c469c5d50fef'
-  LFBFL_correct_sha512+='4da112efcd2848346eda6c547a053574ec5762e56f8b'
-  LFBFL_correct_sha512+='4e644932de02948bc3178bce92199ed52aeb7a0'
+  LFBFL_correct_sha512='81b6dadd88516f4e560e00efc40e7dfa50a15e4ecade7'
+  LFBFL_correct_sha512+='adfff2504771cd49fa5cc68c1f91e6d63a125465c997'
+  LFBFL_correct_sha512+='5749f50cbd1017dc822bc546aed2d0d52413f52'
   wrapped_wget_sha512
   chmod +x "./${LFBFL_file_path}"
 
@@ -2313,17 +2277,17 @@ common_build_and_checks(){
   LFBFL_file_name="lines_counts.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='46366ca30eb8333cbab85576746579f34d1b53bc4583c'
-  LFBFL_correct_sha512+='0536373f3aa20f3483b274fa580a792af325337580f7'
-  LFBFL_correct_sha512+='0cf76c48fa6c1ff4f463f8fd918e39ec3d818a3'
+  LFBFL_correct_sha512='d131e24ad596988a6953b9362b13e5d17330f3bd8013b'
+  LFBFL_correct_sha512+='03fc2acf74a6b931660a619149cce59d1fa3b075c11c'
+  LFBFL_correct_sha512+='0a5e9c85e847b437d7bc3b58f034c00df3c5702'
   wrapped_wget_sha512
 
   LFBFL_file_name="lines_filters.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='854f138dc0d5a66d85169a1a079aae8592659e92a0f76'
-  LFBFL_correct_sha512+='f7ca52faec634cf0454957c81b4a9d4206bec5f4c441'
-  LFBFL_correct_sha512+='73f1934647a9c5ba55344cb82a617092f88ea8e'
+  LFBFL_correct_sha512='d7b9d7456d18965b7910516cf80f96b5a89b76c59f315'
+  LFBFL_correct_sha512+='f7558487f5f37afc8d0af13d4f11928f7c2bec8a03a1'
+  LFBFL_correct_sha512+='7b49a9a5f71945d2a6fff955ce98518f5305234'
   wrapped_wget_sha512
 
   LFBFL_file_name="lines_maps.libr.sh"
@@ -2353,17 +2317,17 @@ common_build_and_checks(){
   LFBFL_file_name="python_isort_complement.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='570fd623c3d1db0ca1eb66f612aef77774b19652a8c6f'
-  LFBFL_correct_sha512+='8a579c3d3d7cb7412d6c60cc702d32bd25eafde4aa01'
-  LFBFL_correct_sha512+='b446a186ef4900c6bcc7773ffd59e539991c952'
+  LFBFL_correct_sha512='f91f3236ff9720412b31ec9fec2a5a5b3ef2424931815'
+  LFBFL_correct_sha512+='c0e6d1bd9821e86ef80a13a27a3f6d831327dc4b9698'
+  LFBFL_correct_sha512+='5935a75793c87bdf735c4ae2a94327289d1c2ed'
   wrapped_wget_sha512
 
   LFBFL_file_name="repository_data.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='447d561896b60b6685389661f635ac726af8a2af83f42'
-  LFBFL_correct_sha512+='1d5dea89893dec90f0bba0d93903408056ef56a4ac12'
-  LFBFL_correct_sha512+='c985d5fa931bce90764dfc20253176f3b00dc54'
+  LFBFL_correct_sha512='8148fae16b5853b5ed6ca141b73b32f6d8695d8d34a54'
+  LFBFL_correct_sha512+='73ad8e8cc0dab61d92e87fd925b6f25c0632f70b2fee'
+  LFBFL_correct_sha512+='78ee53b0e3af6aa25b3cc58d8769292c3e4defd'
   wrapped_wget_sha512
 
   LFBFL_file_name="shell_checks_complement.libr.sh"
@@ -2394,17 +2358,17 @@ common_build_and_checks(){
   LFBFL_file_name="strings_functions.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='73ac813d69d07a53fdfc16938125b7a83c2fd20518809'
-  LFBFL_correct_sha512+='0d8b067ddc89a4a07783f6c0acbf0aec802a42838b2d'
-  LFBFL_correct_sha512+='8b172f40390d53283103771f8d3b732f1c442a8'
+  LFBFL_correct_sha512='526bdaeca9ce0732ad429c16410909f9f8014eef9e031'
+  LFBFL_correct_sha512+='837c428786b19bc31fea3eff6c8d93eea260b9076b67'
+  LFBFL_correct_sha512+='71d21220528e70aa08a1a2fb7579926db662ff2'
   wrapped_wget_sha512
 
   LFBFL_file_name="too_long_code_lines.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='ded23acf2574ed706d0c1e7e34e866e93e001f3bdfd71'
-  LFBFL_correct_sha512+='048a32cd99a197034283cbb55de3d2b1e76e5e32529c'
-  LFBFL_correct_sha512+='a9d4c9ea2bfd1924611d01f8b31b647b5078c4a'
+  LFBFL_correct_sha512='4d7ca9bd78576a15d16a922d05a27cbea465773625e04'
+  LFBFL_correct_sha512+='7eb7aad23374e104a5c2dfcc25bee4bfa4452b55672e'
+  LFBFL_correct_sha512+='2f99319cec2ca95cf06503b78add0b1408febef'
   wrapped_wget_sha512
 
   LFBFL_file_name="update_or_check_files_names_listing.exec.sh"
@@ -2855,9 +2819,10 @@ common_build_and_checks(){
   fi
 
   printf "Running xmllint\n"
-  # Unfortunately, wee need to handle a cache of common DTDs by hand.
-  # XHTML DTDs validation yields errors currently:
+  # In some cases, we need to handle a cache of common DTDs by hand.
+  # XHTML DTDs validation can yield errors:
   # see https://gitlab.gnome.org/GNOME/libxml2/-/work_items/1119
+  # If you use Ubuntu/Debian, install w3c-sgml-lib instead.
   LFBFL_file_name="xhtml1-strict.dtd"
   LFBFL_a="https://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"
   LFBFL_script_download_URL="${LFBFL_a}"
@@ -2927,12 +2892,17 @@ common_build_and_checks(){
     | sort
   )
   if [[ -n "${LFBFL_s_files_for_xmllint}" ]]; then
+    LFBFL_xmllint_use_downloaded_DTDs=""
+    grep_variable "${LFBFL_data_file_path}" xmllint_use_downloaded_DTDs\
+      --result-variable-prefix=LFBFL_
+
     declare -a LFBFL_arr_files_for_xmllint
     mapfile -t LFBFL_arr_files_for_xmllint\
       &lt;&lt;&lt; "${LFBFL_s_files_for_xmllint}"
     readonly LFBFL_arr_files_for_xmllint
     local LFBFL_xmllint_files_without_DTD=""
-    grep_variable "${LFBFL_data_file_path}" xmllint_files_without_DTD\
+    grep_variable_with_multiple_files "${LFBFL_data_file_path}"\
+      xmllint_files_without_DTD\
       --result-variable-prefix=LFBFL_
     declare -a LFBFL_arr_xmllint_files_without_DTD
     if [[ -n "${LFBFL_xmllint_files_without_DTD}" ]]; then
@@ -2961,7 +2931,10 @@ common_build_and_checks(){
       fi
       [[ LFBFL_i_verbose -eq 1 ]]\
         &amp;&amp; printf "xmllint on %s\n" "${LFBFL_file_path}"
-      if [[ "${LFBFL_file_path}" == *.xhtml ]]; then
+      if [[
+        "${LFBFL_file_path}" == *.xhtml
+        &amp;&amp; "${LFBFL_xmllint_use_downloaded_DTDs}" == "true"
+      ]]; then
         if grep --fixed-strings\
           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"\
           "${LFBFL_file_path}"
@@ -3773,9 +3746,10 @@ common_build_and_checks(){
   fi
 
   printf "Running xmllint\n"
-  # Unfortunately, wee need to handle a cache of common DTDs by hand.
-  # XHTML DTDs validation yields errors currently:
+  # In some cases, we need to handle a cache of common DTDs by hand.
+  # XHTML DTDs validation can yield errors:
   # see https://gitlab.gnome.org/GNOME/libxml2/-/work_items/1119
+  # If you use Ubuntu/Debian, install w3c-sgml-lib instead.
   LFBFL_file_name="xhtml1-strict.dtd"
   LFBFL_a="https://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"
   LFBFL_script_download_URL="${LFBFL_a}"
@@ -3845,12 +3819,17 @@ common_build_and_checks(){
     | sort
   )
   if [[ -n "${LFBFL_s_files_for_xmllint}" ]]; then
+    LFBFL_xmllint_use_downloaded_DTDs=""
+    grep_variable "${LFBFL_data_file_path}" xmllint_use_downloaded_DTDs\
+      --result-variable-prefix=LFBFL_
+
     declare -a LFBFL_arr_files_for_xmllint
     mapfile -t LFBFL_arr_files_for_xmllint\
       &lt;&lt;&lt; "${LFBFL_s_files_for_xmllint}"
     readonly LFBFL_arr_files_for_xmllint
     local LFBFL_xmllint_files_without_DTD=""
-    grep_variable "${LFBFL_data_file_path}" xmllint_files_without_DTD\
+    grep_variable_with_multiple_files "${LFBFL_data_file_path}"\
+      xmllint_files_without_DTD\
       --result-variable-prefix=LFBFL_
     declare -a LFBFL_arr_xmllint_files_without_DTD
     if [[ -n "${LFBFL_xmllint_files_without_DTD}" ]]; then
@@ -3879,7 +3858,10 @@ common_build_and_checks(){
       fi
       [[ LFBFL_i_verbose -eq 1 ]]\
         &amp;&amp; printf "xmllint on %s\n" "${LFBFL_file_path}"
-      if [[ "${LFBFL_file_path}" == *.xhtml ]]; then
+      if [[
+        "${LFBFL_file_path}" == *.xhtml
+        &amp;&amp; "${LFBFL_xmllint_use_downloaded_DTDs}" == "true"
+      ]]; then
         if grep --fixed-strings\
           "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"\
           "${LFBFL_file_path}"
@@ -5778,6 +5760,13 @@ source "./${LFBFL_subdir}/lines_filters.libr.sh"
 # shellcheck source=overwrite_if_not_equal.libr.sh
 source "./${LFBFL_subdir}/overwrite_if_not_equal.libr.sh"
 
+enhanced_set_bash_option extglob
+# shellcheck source=repository_data.libr.sh
+source "./${LFBFL_subdir}/repository_data.libr.sh"
+# shellcheck disable=SC2154,SC2309
+[[ i_enhanced_set_bash_option_extglob_result -eq 0 ]]\
+  &amp;&amp; enhanced_unset_bash_option extglob
+
 build_licenses_templates(){
   # Options:
   #   --verbose
@@ -5999,6 +5988,16 @@ build_licenses_templates(){
   LFBFL_copyright_string+=" ${LFBFL_author_full_name}"
   readonly LFBFL_copyright_string
 
+  LFBFL_files_without_license_header=""
+  grep_variable_with_multiple_files "${LFBFL_data_file_path}"\
+    files_without_license_header\
+    --result-variable-prefix="LFBFL_"
+  declare -a LFBFL_arr_files_without_license_header
+  if [[ -n "${LFBFL_files_without_license_header}" ]]; then
+    mapfile -t LFBFL_arr_files_without_license_header\
+      &lt;&lt;&lt; "${LFBFL_files_without_license_header}"
+  fi
+
   prepare_filled_license_file_block(){
     # $1=license_file_path
     sed --expression="s/@repository_name@/${LFBFL_repository_name}/g"\
@@ -6044,8 +6043,10 @@ build_licenses_templates(){
   declare -i LFBFL_i_not_subfile
   declare -i LFBFL_i_not_subfile2
   local LFBFL_file_path
+  local LFBFL_file_path2
   local LFBFL_s_files_paths
   declare -a LFBFL_arr_files_paths
+  declare -i LFBFL_i_is_whitelisted
   for LFBFL_key in "${!LFBFL_all_block_comment_languages[@]}"; do
     LFBFL_dest=${LFBFL_all_block_comment_languages[${LFBFL_key}]}
     LFBFL_license_file_path="${LFBFL_license_prefix2}.${LFBFL_dest}"
@@ -6072,6 +6073,17 @@ build_licenses_templates(){
     fi
     mapfile -t LFBFL_arr_files_paths &lt;&lt;&lt; "${LFBFL_s_files_paths}"
     for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do
+      LFBFL_i_is_whitelisted=0
+      for LFBFL_file_path2 in\
+        "${LFBFL_arr_files_without_license_header[@]}";
+      do
+        if [[ "${LFBFL_file_path}" == "${LFBFL_file_path2}" ]]; then
+          LFBFL_i_is_whitelisted=1
+        fi
+      done
+      if [[ LFBFL_i_is_whitelisted -eq 1 ]]; then
+        continue
+      fi
       is_subfile "${LFBFL_file_path}"\
         "${LFBFL_license_file_path}.temp"
       LFBFL_i_not_subfile=$?
@@ -6146,6 +6158,17 @@ build_licenses_templates(){
     fi
     mapfile -t LFBFL_arr_files_paths &lt;&lt;&lt; "${LFBFL_s_files_paths}"
     for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do
+      LFBFL_i_is_whitelisted=0
+      for LFBFL_file_path2 in\
+        "${LFBFL_arr_files_without_license_header[@]}";
+      do
+        if [[ "${LFBFL_file_path}" == "${LFBFL_file_path2}" ]]; then
+          LFBFL_i_is_whitelisted=1
+        fi
+      done
+      if [[ LFBFL_i_is_whitelisted -eq 1 ]]; then
+        continue
+      fi
       is_subfile "${LFBFL_file_path}" "${LFBFL_license_file_path}"
       LFBFL_i_not_subfile=$?
       LFBFL_i_not_subfile2=1
@@ -6317,7 +6340,8 @@ all_code_lines(){
         "${LFBFL_pattern}"
     fi
     find . -type f -name "${LFBFL_pattern}" -printf '%P\n'\
-      | xargs grep --invert-match --perl-regexp --with-filename\
+      | tr '\n' '\0'\
+      | xargs -0 grep --invert-match --perl-regexp --with-filename\
         -- 'a(?!a)a'
   done
 }
@@ -6651,12 +6675,12 @@ grep_fixed_string_with_anchor(){
       LFBFL_i_enforce_line_ends=1
       continue
     fi
+    LFBFL_grep_options+=("${LFBFL_argument}")
     if [[
       "${LFBFL_argument}" == "-q"
       || "${LFBFL_argument}" == "--quiet"
     ]]; then
       LFBFL_i_quiet=1
-      LFBFL_grep_options+=("${LFBFL_argument}")
       continue
     fi
     LFBFL_grep_options2+=("${LFBFL_argument}")
@@ -6690,9 +6714,8 @@ grep_fixed_string_with_anchor(){
       LFBFL_i_result=0
       if [[ LFBFL_i_quiet -eq 1 ]]; then
         break
-      else
-        printf "%s\n" "${LFBFL_some_line}"
       fi
+      printf "%s\n" "${LFBFL_some_line}"
       continue
     fi
     if [[
@@ -6711,9 +6734,8 @@ grep_fixed_string_with_anchor(){
       LFBFL_i_result=0
       if [[ LFBFL_i_quiet -eq 1 ]]; then
         break
-      else
-        printf "%s\n" "${LFBFL_some_line}"
       fi
+      printf "%s\n" "${LFBFL_some_line}"
     fi
   done
   # shellcheck disable=SC2248
@@ -7359,7 +7381,7 @@ check_collections_abc_place(){
 
   [[ LFBFL_i_verbose -eq 1 ]]\
     &amp;&amp; printf\
-      "Checking that import of _collections_abc is at the right place\n"
+      "Checking that import of _collections_abc is at the right place.\n"
 
   enhanced_set_shell_option pipefail --trap-unset
 
@@ -7474,6 +7496,36 @@ get_upgrade_venvs_time_interval_in_seconds(){
   [[ LFBFL_i_verbose -eq 1 ]]\
     &amp;&amp; printf "I say \"%s\".\n"\
         "${LFBFL_upgrade_venvs_time_interval_in_seconds}"
+}
+
+grep_variable_with_multiple_files(){
+  # $1=data_file_path
+  # $2=variable_name
+  # Options :
+  #   --result-variable-prefix="LFBFL_" for example
+  local LFBFL_prefix=""
+  get_some_option LFBFL_prefix --result-variable-prefix '' '' 1 "$@"
+  grep_variable "$1" "$2" --result-variable-prefix="${LFBFL_prefix}"
+  declare -r LFBFL_variable_name="${LFBFL_prefix}$2"
+  declare -a LFBFL_arr
+  if [[ -z "${!LFBFL_variable_name}" ]]; then
+    return
+  fi
+  mapfile -t LFBFL_arr &lt;&lt;&lt; "${!LFBFL_variable_name}"
+  local LFBFL_s=""
+  local LFBFL_file_path
+  local LFBFL_previous_file_path
+  for LFBFL_file_path in "${LFBFL_arr[@]}"; do
+    if [[
+      -n "${LFBFL_previous_file_path}"
+      &amp;&amp; "${LFBFL_previous_file_path}" != */
+    ]]; then
+      LFBFL_s+=$'\n'
+    fi
+    LFBFL_s+="${LFBFL_file_path}"
+    LFBFL_previous_file_path="${LFBFL_file_path}"
+  done
+  printf -v "${LFBFL_variable_name}" "%s" "${LFBFL_s}"
 }
 </pre>
 
@@ -7881,7 +7933,10 @@ split_line_at(){
 # f) When some scores are equal,
 #   we split at the rightmost position with maximum score in the substring.
 # g) Remark f) implies that below we do not need to consider strict
-#    inequalities for the score.
+#    inequalities for the score for the result.
+#    But if you look at split_line_at_most code,
+#    you will see a micro-optimization where distinguishing &lt; and &lt;= could
+#    have been interesting.
 # h) The score function SF(position) which will dictate our choice for
 #   split/cut position is in reality
 #   SF1a(
@@ -8025,11 +8080,13 @@ split_line_at(){
 #   RMA1A2=
 #   3) mdb1 is NULL AND mdb2 is NULL AND mda1 is not NULL
 #     AND mda2 is not NULL
-#     AND mda1 != mda2 -> This case has no meaning:
+#     AND mda1 != mda2 -> This case is not interesting (alone,
+#     full analysis could combine it with some other case,
+#     but it seems gratis combinatorial explosion without insight):
 #     If we only know they are different, we cannot say anything on
 #     properties related to delimiters that are different unless the score
 #     doesn't depend on the delimiter, and that case is already handled by
-#     1). The same remark applies to some other choices.
+#     1) that contains it. The same remark applies to some other choices.
 #     The only thing that could be said would be if we had an order on
 #     delimiters scores that are uniform for the position, or the score
 #     before some delimiter would always be =, >=, &lt;=, etc. the score
@@ -8115,7 +8172,7 @@ split_line_at(){
 #   RMM-"allow-md1-0", not useful to explicit this for the moment.
 #   If both md1 = 0 and md2 = 0, then both scores are 0 and we also learn
 #   nothing more.
-#   Thus we can focus on md1 and md2 are not NULL,
+#   Thus we can focus on: md1 and md2 are not NULL,
 #   and are equal RMM= or not RMM!=. It seems that a property with RMM!=
 #   could be extended to a property RMM=or!=/RMMNotNULL.
 #   and finally RIA0 to RIA8 where TRUE = 1, FALSE = 0 and the digit is
@@ -8805,10 +8862,6 @@ split_line_at_most(){
     split_line_at_most_result_end=""
     return
   fi
-  if [[ $2 -lt 1 ]]; then
-    printf "split_line_at_most: max_length should be at least 1...\n"
-    return
-  fi
   # We know that ${#1} > $2, hence ${#1} - 1 >= $2
   # Edge cases:
   # There is always at least one character that is overlength,
@@ -8824,6 +8877,20 @@ split_line_at_most(){
   declare -i LFBFL_i
   declare -i LFBFL_j
   local LFBFL_current_char
+
+  if [[ $2 -lt 2 ]]; then
+    printf "split_line_at_most: max_length should be at least 2...\n"
+    return
+  fi
+  if [[ -n "$5" &amp;&amp; "$1" =~ ^"$5"*$ ]]; then
+    for ((LFBFL_i = 2; LFBFL_i &lt;= $2; LFBFL_i &lt;&lt;= 1)); do
+      :
+    done
+    ((LFBFL_i >>= 1))
+    split_line_at_most_result_start="${1:0:LFBFL_i}"
+    split_line_at_most_result_end="${1:LFBFL_i}"
+    return
+  fi
 
   # At the beginning, each position has score 0.
   LFBFL_positions["0"]="-1"
@@ -9172,7 +9239,8 @@ too_long_code_lines(){
       find . -type f -name "${LFBFL_pattern}" -printf '%P\n'\
       | relevant_find\
       | not_license_find\
-      | xargs grep --line-number --with-filename\
+      | tr '\n' '\0'\
+      | xargs -0 grep --line-number --with-filename\
         --regexp="${get_overlength_regexp_result}" --
     )
     if [[ -z "${LFBFL_s_long_lines}" ]]; then
@@ -10377,25 +10445,6 @@ IMAP_transfert.exec.py
 LiensUtiles.txt
 // Uncomment some files in miscellaneous to do some testing.
 // miscellaneous/\
-123456789012345678901234567890123456789012345678901234567890123456789012345
-// miscellaneous/\
-12345678901234567890123456789012345678901234567890123456789012345678901234\
-56
-// miscellaneous/\
-12345678901234567890123456789012345678901234567890123456789012345678901234\
-56\
-\
-// miscellaneous/\
-12345678901234567890123456789012345678901234567890123456789012345678901234\
-5\
-\
-// miscellaneous/\
-12345678901234567890123456789012345678901234567890123456789012345678901234\
-\
-// miscellaneous/\
-1234567890123456789012345678901234567890123456789012345678901234567890123\
-\
-// miscellaneous/\
 a_long_long_long_long_long_long_long_long_long_filename_so_that_you_can_se\
 e_that_it_works.txt
 miscellaneous/funny.sh
@@ -10947,10 +10996,11 @@ So in case of such a conflict, one specialized venv can get you out
 of any problem.
 The best solution would have been to allow install of different
 versions of the same package, and have a mechanism:
-- first intent, use the latest available version of a package among
+- default behavior, use the latest available version of a package among
 those that satisfy the declared dependency constraints of the package
 that has this dependency;
-- second intent, check a dependency overload configuration file
+it requires that all dependency constraints are declared;
+- custom behavior, check a dependency overload configuration file
 with tree structure: if calling python package is A version 1.1.1
 with dependency B itself with dependency C, use B 2.2.2 and C 3.3.3;
 you could have along that another rule saying that when called
@@ -11038,8 +11088,26 @@ upgrade_vnu_jar_time_interval_in_seconds=604800
 
 use_vnu_for_xhtml=false
 
+For xmllint_files_without_DTD and files_without_license_header,
+each line is a file path, except if the line ends with a /,
+then it is concatenated with the following line(s) to obtain a path.
+
 xmllint_files_without_DTD=./build_and_checks_variables/phpcs_ruleset.xml
 xmllint_files_without_DTD=./build_and_checks_variables/phpmd_baseline.xml
+
+If you use Ubuntu/Debian, install w3c-sgml-lib instead of =true.
+See https://gitlab.gnome.org/GNOME/libxml2/-/work_items/1119
+
+xmllint_use_downloaded_DTDs=false
+
+files_without_license_header=build_and_checks_variables/phpcs_ruleset.xml
+files_without_license_header=build_and_checks_variables/
+files_without_license_header=phpmd_baseline.xml
+files_without_license_header=README.html
+files_without_license_header=miscellaneous/string_escaping.html
+files_without_license_header=build_and_checks_variables/ruff.toml
+files_without_license_header=build_and_checks_variables/black.toml
+files_without_license_header=build_and_checks_variables/pylintrc.toml
 </pre>
 
 
@@ -11100,6 +11168,11 @@ npm_lint_directories=
 
 xmllint_files_without_DTD=
 xmllint_files_without_DTD=
+
+xmllint_use_downloaded_DTDs=
+
+files_without_license_header=
+files_without_license_header=
 </pre>
 
 
@@ -11195,6 +11268,7 @@ state of the git repository (in that case, we use X suffix, see SC2162X):
 - SC2059 : Don't use variables in the printf format string.
            Use printf '..%s..' "$foo".
            False positive when using a variable to build the format string.
+           Usually because the format string is very long.
 - SC2086 : Double quote to prevent globbing and word splitting.
            False positive when returning integer variable
            via an indirection like return ${!foo}.
@@ -11327,9 +11401,9 @@ build_and_checks(){
   readonly LFBFL_script_download_URL
   declare -r LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_common_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='f03ab16e274619d5b4514ee6fa7016411bcaa916db31b'
-  LFBFL_correct_sha512+='1d8b408862a4ac15a3b57b3d777e1a509bdc4dbdc694'
-  LFBFL_correct_sha512+='4a48c7646c3264763f0578606d9ff5e26b3e716'
+  LFBFL_correct_sha512='699cba6730b8441798da645fe7d3d65f201979e4e7603'
+  LFBFL_correct_sha512+='ce0fc6721b3d96c708e45ec63f5a0c5ac54338835a31'
+  LFBFL_correct_sha512+='e812e3e4c094bcb3d67d2dac9ab760b45810708'
   wget_sha512 "${LFBFL_file_path}"\
     "${LFBFL_script_download_URL}"\
     "${LFBFL_correct_sha512}"\
@@ -12278,13 +12352,13 @@ check_files(){
   # Checks used on Django projects.
   # Use `git commit --no-verify` after check.
   declare -r LFBFL_send_summary_1="ATTENTION : models modifiés"
-  declare -r LFBFL_send_body_1="Vérifiez si besoin de migrations"
+  declare -r LFBFL_send_body_1="Vérifiez si besoin de migrations."
   local LFBFL_send_body_2="Pensez aussi aux contraintes d'unicités"
-  LFBFL_send_body_2+=" dès la création du modèle"
+  LFBFL_send_body_2+=" dès la création du modèle."
   readonly LFBFL_send_body_2
   declare -r LFBFL_send_summary_2="ATTENTION : serializers modifiés"
   declare -r LFBFL_send_body_3=\
-"Les nouveaux preloadings sont interdits -> #Prefetch()"
+"Les nouveaux preloadings sont interdits : -> #Prefetch()."
   declare -i LFBFL_i_error=0
   git diff --cached --name-only\
     > /tmp/DOSAS_django_git_check1.temp
@@ -12332,7 +12406,7 @@ check_black_code_formatting(){
   # attention ça ne marche que sur les fichiers "stagés" avec git add
   declare -r LFBFL_s_files_paths=$(
     git diff --cached --name-only\
-    | grep '\.py'
+    | grep '\.py$'
   )
   printf "%s\n" "${LFBFL_s_files_paths}"
   declare -a LFBFL_arr_files_paths
@@ -12341,7 +12415,7 @@ check_black_code_formatting(){
   declare -i LFBFL_i_error=0
   local LFBFL_file_path
   for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do
-    printf "Black will check formatting on file %s\n" "${LFBFL_file_path}"
+    printf "Black will check formatting on file %s.\n" "${LFBFL_file_path}"
     if ! black --check --diff -- "${LFBFL_file_path}";
     then
       LFBFL_i_error=1
@@ -12493,8 +12567,8 @@ popd || {
 # (Kevin Mitnick). So, do not expect to have an accurate trackability
 # of code history just because you use this post-commit hook or
 # something else more evolved. This is useful but not a guarantee.
-# For this reason, this function will only handle when all files
-# impacted in the preceding commit are only renamed.
+# This function will only handle the files that were only renamed in the
+# preceding commit.
 # It assumes that `diff` is the current default difference utility
 # parametered with `git`. This point could be enhanced.
 commit_a_file_renamed_comment(){
@@ -12589,7 +12663,7 @@ commit_a_file_renamed_comment(){
   declare -i LFBFL_i_line_count
   declare -i LFBFL_i_lines_after
   local LFBFL_temp_file_path
-  for ((LFBFL_i=0; LFBFL_i&lt;${#LFBFL_renaming_lines_array[@]};)); do
+  for ((LFBFL_i = 0; LFBFL_i &lt; ${#LFBFL_renaming_lines_array[@]};)); do
     LFBFL_diff_line="${LFBFL_renaming_lines_array[${LFBFL_i}]}"
     LFBFL_i=$((LFBFL_i + 1))
     LFBFL_similarity_line="${LFBFL_renaming_lines_array[${LFBFL_i}]}"
@@ -12648,7 +12722,7 @@ commit_a_file_renamed_comment(){
         "${LFBFL_useful_file_name}"\
         "${LFBFL_extension}"
     fi
-    for ((LFBFL_j=0; LFBFL_j&lt;3; ++LFBFL_j)); do
+    for ((LFBFL_j = 0; LFBFL_j &lt; 3; ++LFBFL_j)); do
       if [[ "${LFBFL_extension}" != "tpl" ]]; then
         break
       fi
@@ -12661,7 +12735,11 @@ commit_a_file_renamed_comment(){
       fi
     done
     LFBFL_comment_prefix=""
-    if [[ "${LFBFL_extension}" == "sh" ]]; then
+    if [[
+      "${LFBFL_extension}" == "sh"
+      || "${LFBFL_extension}" == "toml"
+      || "${LFBFL_extension}" == "yaml"
+    ]]; then
       LFBFL_comment_prefix="# "
     fi
     if [[ "${LFBFL_extension}" == "sql" ]]; then
@@ -12670,7 +12748,11 @@ commit_a_file_renamed_comment(){
     if [[ "${LFBFL_extension}" == "tex" ]]; then
       LFBFL_comment_prefix="% "
     fi
-    if [[ "${LFBFL_useful_file_name}" == "${LFBFL_special_file_name}" ]];
+    if [[
+      "${LFBFL_useful_file_name}" == "${LFBFL_special_file_name}"
+      || "${LFBFL_extension}" == "rs"
+      || "${LFBFL_extension}" == "rlib"
+    ]];
     then
       LFBFL_comment_prefix="// "
     fi
@@ -13298,7 +13380,7 @@ This is some text
 &lt;/pre>
 
 &lt;script>
-let a = 'abcd &amp; &lt; > \\ \n  \"\'';
+let a = 'abcd &amp; &lt; > \\ \n  \"\' \u{00003c}/script>';
 alert(a);
 let b = "abcd &amp; &lt; > \\ \n  \"\'";
 alert(b);
@@ -13713,6 +13795,25 @@ namespace string_escaping\JS {
 
   /**
   When you want that the string can be put in a JS string definition
+  to be included inside an HTML file &lt;script> tag.
+
+  @param string $s_string The string you want to escape.
+
+  @return string The escaped string.
+  */
+  function escape_for_string_definition_inside_HTML(string $s_string)
+  : string {
+    return str_replace(
+      ['&lt;/script>',],
+      ['\u{00003c}/script>',],
+      escape($s_string),
+    );
+  }//end escape_for_string_definition_inside_XHTML()
+
+
+
+  /**
+  When you want that the string can be put in a JS string definition
   to be included inside an XHTML file &lt;script> tag.
 
   @param string $s_string The string you want to escape.
@@ -13788,6 +13889,9 @@ var_dump(string_escaping\XHTML\escape_text("&lt;&amp;\"\n'truc\\>"));
 var_dump(string_escaping\XHTML\escape_attribute("&lt;&amp;\"\n'truc\\>"));
 var_dump(string_escaping\XHTML\escape_pre("&lt;&amp;\"\n'truc\\>"));
 var_dump(string_escaping\JS\escape("abcd &amp; &lt; > \\ \n  \"'"));
+var_dump(string_escaping\JS\escape_for_string_definition_inside_HTML(
+  "abcd &amp; &lt; > \\ \n  \"' &lt;/script>"
+));
 var_dump(string_escaping\JS\escape_for_string_definition_inside_XHTML(
   "abcd &amp; &lt; > \\ \n  \"'"
 ));
@@ -14268,7 +14372,7 @@ function check_string_is_valid_UTF8(string $s_string) : bool {
 
 /**
 This function throws an exception with extended debug informations
-if the content of the file with given file_path is not valid ASCII.
+if the content of the file with given file_path is not valid UTF-8.
 Otherwise, it returns true.
 
 @param string $s_file_path The input file_path.
@@ -14389,10 +14493,19 @@ upgrade_build_and_checks(){
     LFBFL_add_test_files=1
   fi
   readonly LFBFL_add_test_files
+  declare -i LFBFL_remove_test_files=0
+  if [[ "$*" == *--remove-test-files* ]]; then
+    LFBFL_remove_test_files=1
+  fi
+  readonly LFBFL_remove_test_files
   (\
     cd build_and_checks_dependencies/\
     &amp;&amp; ./update_common_build_and_checks.exec.sh "${LFBFL_verbose}"\
   )
+
+  declare -i LFBFL_i
+  local LFBFL_file_path="miscellaneous/123456789012345678901234567890"
+  declare -i LFBFL_digit
   if [[ LFBFL_add_test_files -eq 1 ]]; then
     mkdir --parents -- --a/
     {
@@ -14480,6 +14593,18 @@ upgrade_build_and_checks(){
       printf '}\n'
     } > --a.sh
     cp -- --a.sh --a/
+
+    # We add a file with space in it for tests.
+    touch "a b.sh"
+
+    # The following files cannot be commited,
+    # because the backslash in them breaks CodeFactor.io.
+    for ((LFBFL_i = 1; LFBFL_i &lt; 90; ++LFBFL_i)); do
+      LFBFL_digit=$((LFBFL_i % 10))
+      LFBFL_file_path+="${LFBFL_digit}"
+      touch "${LFBFL_file_path}"
+      touch "${LFBFL_file_path}\\"
+    done
   fi
   ./build_and_checks.exec.sh "."\
     "${LFBFL_verbose}"\
@@ -14488,8 +14613,17 @@ upgrade_build_and_checks(){
   if [[ LFBFL_add_test_files -eq 1 ]]; then
     cat -- --a.py
     cat -- --a2.py
+  fi
+  if [[ LFBFL_remove_test_files -eq 1 ]]; then
     rm --force --recursive -- --a/
     rm --force -- --a.php --a.py --a2.py --a.sh
+    rm "a b.sh"
+    for ((LFBFL_i = 1; LFBFL_i &lt; 90; ++LFBFL_i)); do
+      LFBFL_digit=$((LFBFL_i % 10))
+      LFBFL_file_path+="${LFBFL_digit}"
+      rm --force "${LFBFL_file_path}"
+      rm --force "${LFBFL_file_path}\\"
+    done
   fi
 }
 

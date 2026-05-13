@@ -169,12 +169,12 @@ grep_fixed_string_with_anchor(){
       LFBFL_i_enforce_line_ends=1
       continue
     fi
+    LFBFL_grep_options+=("${LFBFL_argument}")
     if [[
       "${LFBFL_argument}" == "-q"
       || "${LFBFL_argument}" == "--quiet"
     ]]; then
       LFBFL_i_quiet=1
-      LFBFL_grep_options+=("${LFBFL_argument}")
       continue
     fi
     LFBFL_grep_options2+=("${LFBFL_argument}")

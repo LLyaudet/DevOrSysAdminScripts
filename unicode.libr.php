@@ -466,7 +466,7 @@ function check_string_is_valid_UTF8(string $s_string) : bool {
 
 /**
 This function throws an exception with extended debug informations
-if the content of the file with given file_path is not valid ASCII.
+if the content of the file with given file_path is not valid UTF-8.
 Otherwise, it returns true.
 
 @param string $s_file_path The input file_path.

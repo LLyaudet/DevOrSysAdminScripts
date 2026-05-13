@@ -208,9 +208,8 @@ grep_fixed_string_with_anchor(){
       LFBFL_i_result=0
       if [[ LFBFL_i_quiet -eq 1 ]]; then
         break
-      else
-        printf "%s\n" "${LFBFL_some_line}"
       fi
+      printf "%s\n" "${LFBFL_some_line}"
       continue
     fi
     if [[
@@ -229,9 +228,8 @@ grep_fixed_string_with_anchor(){
       LFBFL_i_result=0
       if [[ LFBFL_i_quiet -eq 1 ]]; then
         break
-      else
-        printf "%s\n" "${LFBFL_some_line}"
       fi
+      printf "%s\n" "${LFBFL_some_line}"
     fi
   done
   # shellcheck disable=SC2248

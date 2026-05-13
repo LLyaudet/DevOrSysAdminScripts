@@ -53,10 +53,19 @@ upgrade_build_and_checks(){
     LFBFL_add_test_files=1
   fi
   readonly LFBFL_add_test_files
+  declare -i LFBFL_remove_test_files=0
+  if [[ "$*" == *--remove-test-files* ]]; then
+    LFBFL_remove_test_files=1
+  fi
+  readonly LFBFL_remove_test_files
   (\
     cd build_and_checks_dependencies/\
     && ./update_common_build_and_checks.exec.sh "${LFBFL_verbose}"\
   )
+
+  declare -i LFBFL_i
+  local LFBFL_file_path="miscellaneous/123456789012345678901234567890"
+  declare -i LFBFL_digit
   if [[ LFBFL_add_test_files -eq 1 ]]; then
     mkdir --parents -- --a/
     {
@@ -144,6 +153,18 @@ upgrade_build_and_checks(){
       printf '}\n'
     } > --a.sh
     cp -- --a.sh --a/
+
+    # We add a file with space in it for tests.
+    touch "a b.sh"
+
+    # The following files cannot be commited,
+    # because the backslash in them breaks CodeFactor.io.
+    for ((LFBFL_i = 1; LFBFL_i < 90; ++LFBFL_i)); do
+      LFBFL_digit=$((LFBFL_i % 10))
+      LFBFL_file_path+="${LFBFL_digit}"
+      touch "${LFBFL_file_path}"
+      touch "${LFBFL_file_path}\\"
+    done
   fi
   ./build_and_checks.exec.sh "."\
     "${LFBFL_verbose}"\
@@ -152,8 +173,17 @@ upgrade_build_and_checks(){
   if [[ LFBFL_add_test_files -eq 1 ]]; then
     cat -- --a.py
     cat -- --a2.py
+  fi
+  if [[ LFBFL_remove_test_files -eq 1 ]]; then
     rm --force --recursive -- --a/
     rm --force -- --a.php --a.py --a2.py --a.sh
+    rm "a b.sh"
+    for ((LFBFL_i = 1; LFBFL_i < 90; ++LFBFL_i)); do
+      LFBFL_digit=$((LFBFL_i % 10))
+      LFBFL_file_path+="${LFBFL_digit}"
+      rm --force "${LFBFL_file_path}"
+      rm --force "${LFBFL_file_path}\\"
+    done
   fi
 }
 

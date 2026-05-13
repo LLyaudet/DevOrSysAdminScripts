@@ -63,9 +63,9 @@ check_URLs(){
     if [[ LFBFL_i_verbose -eq 1 ]]; then
       printf "check_URLs: Iterating on pattern: %s.\n" "${LFBFL_pattern}"
     fi
-    find . -type f -name "${LFBFL_pattern}" -printf '%P\n'\
-      | xargs grep --with-filename -- 'http:'\
-      | grep --invert-match "| xargs grep --with-filename -- 'htt"\
+    find . -type f -name "${LFBFL_pattern}" -printf '%P\0'\
+      | xargs -0 grep --with-filename -- 'http:'\
+      | grep --invert-match "| xargs -0 grep --with-filename -- 'htt"\
       | grep --invert-match --perl-regexp\
         "(['\"])http(:[^'\"]*)\\1.*(['\"])https\\2\\3"\
       | grep --invert-match 'http://www.w3.org/1999/xhtml'\

@@ -24,6 +24,7 @@ state of the git repository (in that case, we use X suffix, see SC2162X):
 - SC2059 : Don't use variables in the printf format string.
            Use printf '..%s..' "$foo".
            False positive when using a variable to build the format string.
+           Usually because the format string is very long.
 - SC2086 : Double quote to prevent globbing and word splitting.
            False positive when returning integer variable
            via an indirection like return ${!foo}.

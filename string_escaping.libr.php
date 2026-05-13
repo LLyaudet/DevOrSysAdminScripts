@@ -243,6 +243,25 @@ namespace string_escaping\JS {
 
   /**
   When you want that the string can be put in a JS string definition
+  to be included inside an HTML file <script> tag.
+
+  @param string $s_string The string you want to escape.
+
+  @return string The escaped string.
+  */
+  function escape_for_string_definition_inside_HTML(string $s_string)
+  : string {
+    return str_replace(
+      ['</script>',],
+      ['\u{00003c}/script>',],
+      escape($s_string),
+    );
+  }//end escape_for_string_definition_inside_XHTML()
+
+
+
+  /**
+  When you want that the string can be put in a JS string definition
   to be included inside an XHTML file <script> tag.
 
   @param string $s_string The string you want to escape.
@@ -318,6 +337,9 @@ var_dump(string_escaping\XHTML\escape_text("<&\"\n'truc\\>"));
 var_dump(string_escaping\XHTML\escape_attribute("<&\"\n'truc\\>"));
 var_dump(string_escaping\XHTML\escape_pre("<&\"\n'truc\\>"));
 var_dump(string_escaping\JS\escape("abcd & < > \\ \n  \"'"));
+var_dump(string_escaping\JS\escape_for_string_definition_inside_HTML(
+  "abcd & < > \\ \n  \"' </script>"
+));
 var_dump(string_escaping\JS\escape_for_string_definition_inside_XHTML(
   "abcd & < > \\ \n  \"'"
 ));

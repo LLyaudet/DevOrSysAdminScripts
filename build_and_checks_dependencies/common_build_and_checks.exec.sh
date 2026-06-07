@@ -724,6 +724,24 @@ common_build_and_checks(){
     "${LFBFL_phpmd_baseline}" "${LFBFL_temp_phpmd_baseline}"\
     | grep --invert-match --regexp='<!-- ' --regexp='^[0-9]\+d[0-9]\+$'
 
+  printf "Running PHPSTAN\n"
+  if [[ LFBFL_i_upgrade_venvs -eq 1 ]]; then
+    composer global require phpstan/phpstan
+    composer global require phpstan/phpstan-strict-rules
+  fi
+
+  local LFBFL_phpstan_baseline="${LFBFL_subdir3}/phpstan_baseline.neon"
+  readonly LFBFL_phpstan_baseline
+  local LFBFL_temp_phpstan_baseline="${LFBFL_subdir3}/temp/"
+  LFBFL_temp_phpstan_baseline+="phpstan_baseline.neon"
+  readonly LFBFL_temp_phpstan_baseline
+  phpstan --configuration=build_and_checks_variables/phpstan_config.neon
+  # Saving new baseline in temp if necessary.
+  rm "${LFBFL_temp_phpstan_baseline}"
+  phpstan --configuration=build_and_checks_variables/phpstan_config.neon\
+    --generate-baseline="${LFBFL_temp_phpstan_baseline}"
+  diff "${LFBFL_phpstan_baseline}" "${LFBFL_temp_phpstan_baseline}"
+
   printf "Running phpDocumentor\n"
   # shellcheck disable=SC2312
   docker run --rm --volume="$(pwd):/data" phpdoc/phpdoc

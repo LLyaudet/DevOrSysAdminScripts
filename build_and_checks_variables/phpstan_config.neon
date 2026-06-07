@@ -1,0 +1,11 @@
+includes:
+    - phpstan_baseline.neon
+    - /home/laurent/.config/composer/vendor/phpstan/phpstan/conf/bleedingEdge.neon
+
+parameters:
+    level: max
+
+    paths:
+        - ..
+
+    checkTooWideReturnTypesInProtectedAndPublicMethods: true

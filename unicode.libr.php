@@ -283,40 +283,6 @@ function hexa_code_point_to_UTF8(
 
 
 
-
-class DOSAS_WithDataArrayException extends \Exception{
-  /**
-  @var array
-  */
-  protected $arr_data;
-
-  /**
-  @param string $message
-  @param array $data
-  @return void
-  */
-  public function __construct(string $message, array $arr_data = []){
-    $this->arr_data = $arr_data;
-    parent::__construct($message);
-  }
-
-  /**
-  @return array
-  */
-  public function get_data(){
-    return $this->arr_data;
-  }
-}
-
-
-
-
-class DOSAS_InvalidEncodingException extends DOSAS_WithDataArrayException{
-}
-
-
-
-
 /**
 This function throws an exception with extended debug informations
 if the input string is not valid ASCII.
@@ -787,6 +753,7 @@ function check_file_is_valid_UTF8(string $s_file_path) : bool {
 /*
 ?>
 <?php
+require_once("./unicode_exceptions.libr.php");
 require_once("./unicode.libr.php");
 var_dump(hexa_code_point_to_UTF8("002B"));
 var_dump(hexa_code_point_to_UTF8("00E6"));

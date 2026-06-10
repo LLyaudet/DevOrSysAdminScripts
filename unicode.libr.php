@@ -72,7 +72,7 @@ function decimal_code_point_to_UTF8(
 ) : string {
   // var_dump($i_code_point_in_decimal_notation);
   if($i_code_point_in_decimal_notation < 0){
-    throw new Exception("A unicode code point must not be negative.")
+    throw new Exception("A unicode code point must not be negative.");
   }
   // 0xxxxxxx ASCII
   if($i_code_point_in_decimal_notation < 128){

@@ -45,7 +45,7 @@ code point in decimal notation in PHP code and you get the UTF-8.
 If you provide the integer of the code point without using decimal
 notation, it will also work.
 
-@param int $i_code_point_in_decimal_notation The code point.
+@param int<0, 2097151> $i_code_point_in_decimal_notation The code point.
 
 @throws Exception When the code point is outside of Unicode range.
 
@@ -146,7 +146,7 @@ function decimal_code_point_to_UTF8(
     );
   }//end if($i_code_point_in_decimal_notation < 65536)
   // 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
-  if($i_code_point_in_decimal_notation < 2097152){  // 2**21
+  // if($i_code_point_in_decimal_notation < 2097152){  // 2**21
     $i_first_byte_base_value = 240;
     /*
     $arr_arr_data_per_byte_reverse = [
@@ -191,7 +191,8 @@ function decimal_code_point_to_UTF8(
         + ($i_code_point_in_decimal_notation & 63)
       )
     );
-  }//end if($i_code_point_in_decimal_notation < 2097152)
+  // }//end if($i_code_point_in_decimal_notation < 2097152)
+  /*
   // phpcs:disable Squiz.Strings.DoubleQuoteUsage.NotRequired
   throw new Exception(
     "UTF-8 avec jusqu'à 6 octets a été abandonné il y a longtemps."
@@ -204,6 +205,7 @@ function decimal_code_point_to_UTF8(
     ." :)"
   );
   // phpcs:enable Squiz.Strings.DoubleQuoteUsage.NotRequired
+  */
 }//end decimal_code_point_to_UTF8()
 
 
@@ -251,10 +253,49 @@ function hexa_code_point_to_UTF8(
     }
     throw new Exception('Not an hexadecimal digit.');
   }
+  if($i_code_point_in_decimal_notation > 2097151){
+    throw new Exception(
+      'Hexadecimal integer is greater than UTF-8 maximum code point.'
+    );
+  }
   return decimal_code_point_to_UTF8(
     $i_code_point_in_decimal_notation
   );
 }//end hexa_code_point_to_UTF8()
+
+
+
+
+class DOSAS_WithDataArrayException extends \Exception{
+  /**
+  @var array
+  */
+  protected $arr_data;
+
+  /**
+  @param string $message
+  @param array $data
+  @return void
+  */
+  public function __construct(string $message, array $arr_data = []){
+    $this->arr_data = $arr_data;
+    parent::__construct($message);
+  }
+
+  /**
+  @return array
+  */
+  public function get_data(){
+    return $this->arr_data;
+  }
+}
+
+
+
+
+class DOSAS_InvalidEncodingException extends DOSAS_WithDataArrayException{
+}
+
 
 
 
@@ -265,11 +306,17 @@ Otherwise, it returns true.
 
 @param string $s_string The input string.
 
-@throws Exception When the input string is not valid ASCII.
+@throws DOSAS_InvalidEncodingException
+  When the input string is not valid ASCII.
 
 @return bool
 */
 function check_string_is_valid_ASCII(string $s_string) : bool {
+  //Fast-path
+  if(mb_check_encoding($s_string, 'ASCII')){
+    return true;
+  }
+
   $i_offset_in_octets_from_string_start = 0;
   $i_current_line_number = 1;
   $i_offset_in_octets_from_line_start = -1;
@@ -278,7 +325,7 @@ function check_string_is_valid_ASCII(string $s_string) : bool {
     $i_offset_in_octets_from_string_start = $i;
     ++$i_offset_in_octets_from_line_start;
     if($i_current_octet > 127){
-      throw new Exception(
+      throw new DOSAS_InvalidEncodingException(
         'Non-ASCII character found on line '
         .$i_current_line_number
         .'; the octet/character '
@@ -290,6 +337,14 @@ function check_string_is_valid_ASCII(string $s_string) : bool {
         .' This is at octet/character '
         .($i_offset_in_octets_from_string_start + 1)
         .'.)',
+        [
+          'current_octet' => $i_current_octet,
+          'offset_from_string_start'
+            => $i_offset_in_octets_from_string_start,
+          'line' => $i_current_line_number,
+          'offset_from_line_start'
+            => $i_offset_in_octets_from_line_start,
+        ],
       );
     }
     // if($s_string[$i] === "\n"){
@@ -325,117 +380,53 @@ function check_file_is_valid_ASCII(string $s_file_path) : bool {
 
 
 /**
-This function throws an exception with extended debug informations
-if the input string is not valid UTF-8.
-Otherwise, it returns true.
+This function returns the message string and data array for
+DOSAS_InvalidEncodingException inside check_string_is_valid_UTF8().
 
-@param string $s_string The input string.
+@param string $s_custom_message The custom part of the message.
+@param int $i_current_octet The current octet in the string.
+@param int $i_continuation_octet_needed The current number of continuation
+                                        octets needed.
+@param int $i_offset_in_octets_from_string_start
+           The offset in octets from string start.
+@param int $i_offset_in_characters_from_string_start
+           The offset in characters from string start.
+@param int $i_character_start_position_from_string_start
+           The offset in octets from string start at which the current
+           character starts.
+@param int $i_current_line_number The current line number.
+@param int $i_offset_in_octets_from_line_start
+           The offset in octets from line start.
+@param int $i_offset_in_characters_from_line_start
+           The offset in characters from line start.
+@param int $i_character_start_position_from_line_start
+           The offset in octets from line start at which the current
+           character starts.
+@param int $i_current_continuation_octet_minimum
+           The minimum value of the second continuation octet as specified
+           by the grammar.
+@param int $i_current_continuation_octet_maximum
+           The maximum value of the second continuation octet as specified
+           by the grammar.
 
-@throws Exception When the input string is not valid UTF-8.
-
-@return bool
+@return array
 */
-function check_string_is_valid_UTF8(string $s_string) : bool {
-  $i_continuation_octet_needed = 0;
-  $i_offset_in_octets_from_string_start = 0;
-  $i_offset_in_characters_from_string_start = -1;
-  $i_character_start_position_from_string_start = 0;
-  $i_current_line_number = 1;
-  $i_offset_in_octets_from_line_start = -1;
-  $i_offset_in_characters_from_line_start = -1;
-  $i_character_start_position_from_line_start = -1;
-  for($i = 0, $i_max = strlen($s_string); $i < $i_max; ++$i){
-    $i_current_octet = ord($s_string[$i]);
-    $i_offset_in_octets_from_string_start = $i;
-    ++$i_offset_in_octets_from_line_start;
-    if($i_continuation_octet_needed > 0){
-      if($i_current_octet < 128 || $i_current_octet >= 192){
-        throw new Exception(
-          'Non-UTF8 character found on line '
-          .$i_current_line_number
-          .'; the octet '
-          .($i_offset_in_octets_from_line_start + 1)
-          .', part of the character '
-          .($i_offset_in_characters_from_line_start + 1)
-          .', has value '
-          .$i_current_octet
-          .' which is not a continuation octet.'
-          .' This character starts at octet '
-          .($i_character_start_position_from_line_start + 1)
-          .' of the current line.'
-          .' (Sequential positions without line splitting:'
-          .' This is at character '
-          .($i_offset_in_characters_from_string_start + 1)
-          .' and octet '
-          .($i_offset_in_octets_from_string_start + 1)
-          .'.'
-          .' This character starts at octet '
-          .($i_character_start_position_from_string_start + 1)
-          .'.)',
-        );
-      }//end if($i_current_octet < 128 || $i_current_octet >= 192)
-      --$i_continuation_octet_needed;
-      continue;
-    }//end if($i_continuation_octet_needed > 0)
-
-    ++$i_offset_in_characters_from_string_start;
-    ++$i_offset_in_characters_from_line_start;
-    $i_character_start_position_from_string_start = (
-      $i_offset_in_octets_from_string_start
-    );
-    $i_character_start_position_from_line_start = (
-      $i_offset_in_octets_from_line_start
-    );
-    if($i_current_octet < 128){ // 0xxxxxxx ASCII
-      // if($s_string[$i] === "\n"){
-      if($i_current_octet === 10){
-        ++$i_current_line_number;
-        $i_offset_in_octets_from_line_start = -1;
-        $i_offset_in_characters_from_line_start = -1;
-      }
-      continue;
-    }
-    if($i_current_octet >= 128 && $i_current_octet < 192){
-      throw new Exception(
-        'Non-UTF8 character found on line '
-        .$i_current_line_number
-        .'; the octet '
-        .($i_offset_in_octets_from_line_start + 1)
-        .', part of the character '
-        .($i_offset_in_characters_from_line_start + 1)
-        .', has value '
-        .$i_current_octet
-        .' which is a continuation octet.'
-        .' This character starts at octet '
-        .($i_character_start_position_from_line_start + 1)
-        .' of the current line.'
-        .' (Sequential positions without line splitting:'
-        .' This is at character '
-        .($i_offset_in_characters_from_string_start + 1)
-        .' and octet '
-        .($i_offset_in_octets_from_string_start + 1)
-        .'.'
-        .' This character starts at octet '
-        .($i_character_start_position_from_string_start + 1)
-        .'.)',
-      );
-    }//end if($i_current_octet >= 128 && $i_current_octet < 192)
-    if($i_current_octet >= 192 && $i_current_octet < 224){
-      // 110xxxxx 10xxxxxx
-      $i_continuation_octet_needed = 1;
-      continue;
-    }
-    if($i_current_octet >= 224 && $i_current_octet < 240){
-      // 1110xxxx 10xxxxxx 10xxxxxx
-      $i_continuation_octet_needed = 2;
-      continue;
-    }
-    if($i_current_octet >= 240 && $i_current_octet < 248){
-      // 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
-      $i_continuation_octet_needed = 3;
-      continue;
-    }
-    throw new Exception(
+function DOSAS_get_message_and_data_array(
+  string $s_custom_message,
+  int $i_current_octet,
+  int $i_continuation_octet_needed,
+  int $i_offset_in_octets_from_string_start,
+  int $i_offset_in_characters_from_string_start,
+  int $i_character_start_position_from_string_start,
+  int $i_current_line_number,
+  int $i_offset_in_octets_from_line_start,
+  int $i_offset_in_characters_from_line_start,
+  int $i_character_start_position_from_line_start,
+  int $i_current_continuation_octet_minimum,
+  int $i_current_continuation_octet_maximum,
+){
+  return [
+    'message' => (
       'Non-UTF8 character found on line '
       .$i_current_line_number
       .'; the octet '
@@ -444,7 +435,7 @@ function check_string_is_valid_UTF8(string $s_string) : bool {
       .($i_offset_in_characters_from_line_start + 1)
       .', has value '
       .$i_current_octet
-      .' which is invalid.'
+      .$s_custom_message
       .' This character starts at octet '
       .($i_character_start_position_from_line_start + 1)
       .' of the current line.'
@@ -456,9 +447,299 @@ function check_string_is_valid_UTF8(string $s_string) : bool {
       .'.'
       .' This character starts at octet '
       .($i_character_start_position_from_string_start + 1)
-      .'.)',
+      .'.)'
+    ),
+    'data' => [
+      'current_octet' => $i_current_octet,
+      'continuation_octet_needed' => $i_continuation_octet_needed,
+      'offset_in_octets_from_string_start'
+        => $i_offset_in_octets_from_string_start,
+      'offset_in_characters_from_string_start'
+        => $i_offset_in_characters_from_string_start,
+      'character_start_position_from_string_start'
+        => $i_character_start_position_from_string_start,
+      'line' => $i_current_line_number,
+      'offset_in_octets_from_line_start'
+        => $i_offset_in_octets_from_line_start,
+      'offset_in_characters_from_line_start'
+        => $i_offset_in_characters_from_line_start,
+      'character_start_position_from_line_start'
+        => $i_character_start_position_from_line_start,
+      'current_continuation_octet_minimum'
+        => $i_current_continuation_octet_minimum,
+      'current_continuation_octet_maximum'
+        => $i_current_continuation_octet_maximum,
+    ],
+  ];
+}//end DOSAS_get_message()
+
+
+
+/**
+This function throws an exception with extended debug informations
+if the input string is not valid UTF-8.
+Otherwise, it returns true.
+
+See https://datatracker.ietf.org/doc/html/rfc3629
+
+@param string $s_string The input string.
+
+@throws Exception When the input string is not valid UTF-8.
+
+@return bool
+*/
+function check_string_is_valid_UTF8(string $s_string) : bool {
+
+  //Fast-path
+  if(function_exists('mb_check_encoding')){
+    if(mb_check_encoding($s_string, 'UTF-8')){
+      return true;
+    }
+  }
+  else{
+    if(preg_match('//u', $s_string) === 1){
+      return true;
+    }
+  }
+
+  $i_current_octet = null;
+  $i_continuation_octet_needed = 0;
+  $i_offset_in_octets_from_string_start = 0;
+  $i_offset_in_characters_from_string_start = -1;
+  $i_character_start_position_from_string_start = 0;
+  $i_current_line_number = 1;
+  $i_offset_in_octets_from_line_start = -1;
+  $i_offset_in_characters_from_line_start = -1;
+  $i_character_start_position_from_line_start = -1;
+
+  // For the second octet of a character, hence first continuation octet,
+  // further restriction may apply.
+  $I_CONTINUATION_OCTET_MINIMUM = 128;
+  $I_CONTINUATION_OCTET_MAXIMUM = 191;
+  $i_current_continuation_octet_minimum = $I_CONTINUATION_OCTET_MINIMUM;
+  $i_current_continuation_octet_maximum = $I_CONTINUATION_OCTET_MAXIMUM;
+
+  for($i = 0, $i_max = strlen($s_string); $i < $i_max; ++$i){
+    $i_current_octet = ord($s_string[$i]);
+    $i_offset_in_octets_from_string_start = $i;
+    ++$i_offset_in_octets_from_line_start;
+
+    /*
+    The octet values C0, C1, F5 to FF never appear.
+    C0 = 12*16      = 192 = 11000000
+    C1 = 12*16 + 1  = 193 = 11000001
+    F5 = 15*16 + 5  = 245 = 11110101
+    FF = 15*16 + 15 = 255 = 11111111
+    */
+    if(
+      $i_current_octet === 192
+      || $i_current_octet === 193
+      || $i_current_octet === 245
+      || $i_current_octet === 255
+    ){
+      [
+        'message' => $s_message, 'data' => $arr_data
+      ] = DOSAS_get_message_and_data_array(
+        ' which is one of the four forbidden values (C0, C1, F5, FF).',
+        $i_current_octet,
+        $i_continuation_octet_needed,
+        $i_offset_in_octets_from_string_start,
+        $i_offset_in_characters_from_string_start,
+        $i_character_start_position_from_string_start,
+        $i_current_line_number,
+        $i_offset_in_octets_from_line_start,
+        $i_offset_in_characters_from_line_start,
+        $i_character_start_position_from_line_start,
+      );
+      throw new DOSAS_InvalidEncodingException($s_message, $arr_data);
+    }
+
+    /*
+    UTF8-octets = *( UTF8-char )
+    UTF8-char   = UTF8-1 / UTF8-2 / UTF8-3 / UTF8-4
+    UTF8-1      = %x00-7F
+    UTF8-2      = %xC2-DF UTF8-tail
+      Notice that values C0 and C1 are forbidden, hence %xC2
+    UTF8-3      = %xE0 %xA0-BF UTF8-tail / %xE1-EC 2( UTF8-tail ) /
+                  %xED %x80-9F UTF8-tail / %xEE-EF 2( UTF8-tail )
+      Notice that E0 = 224 adds a restriction on second octet.
+      Notice that ED = 237 adds a restriction on second octet.
+    UTF8-4      = %xF0 %x90-BF 2( UTF8-tail ) / %xF1-F3 3( UTF8-tail ) /
+                  %xF4 %x80-8F 2( UTF8-tail )
+      Notice that F0 = 240 adds a restriction on second octet.
+      Notice that F4 = 244 adds a restriction on second octet.
+    UTF8-tail   = %x80-BF
+    */
+    if($i_continuation_octet_needed > 0){
+      if(
+        $i_current_octet < $i_current_continuation_octet_minimum
+        || $i_current_octet > $i_current_continuation_octet_maximum
+      ){
+        [
+          'message' => $s_message, 'data' => $arr_data
+        ] = DOSAS_get_message_and_data_array(
+          ' which is not a continuation octet.',
+          $i_current_octet,
+          $i_continuation_octet_needed,
+          $i_offset_in_octets_from_string_start,
+          $i_offset_in_characters_from_string_start,
+          $i_character_start_position_from_string_start,
+          $i_current_line_number,
+          $i_offset_in_octets_from_line_start,
+          $i_offset_in_characters_from_line_start,
+          $i_character_start_position_from_line_start,
+        );
+        throw new DOSAS_InvalidEncodingException($s_message, $arr_data);
+      }//end if($i_current_octet < 128 || $i_current_octet >= 192)
+      --$i_continuation_octet_needed;
+      $i_current_continuation_octet_minimum = (
+        $I_CONTINUATION_OCTET_MINIMUM
+      );
+      $i_current_continuation_octet_maximum = (
+        $I_CONTINUATION_OCTET_MAXIMUM
+      );
+      continue;
+    }//end if($i_continuation_octet_needed > 0)
+
+    ++$i_offset_in_characters_from_string_start;
+    ++$i_offset_in_characters_from_line_start;
+    $i_character_start_position_from_string_start = (
+      $i_offset_in_octets_from_string_start
     );
+    $i_character_start_position_from_line_start = (
+      $i_offset_in_octets_from_line_start
+    );
+
+    if($i_current_octet < 128){ // 0xxxxxxx ASCII
+      // if($s_string[$i] === "\n"){
+      if($i_current_octet === 10){
+        ++$i_current_line_number;
+        $i_offset_in_octets_from_line_start = -1;
+        $i_offset_in_characters_from_line_start = -1;
+      }
+      continue;
+    }
+
+    if(/*$i_current_octet >= 128 &&*/ $i_current_octet < 192){
+      [
+        'message' => $s_message, 'data' => $arr_data
+      ] = DOSAS_get_message_and_data_array(
+        ' which is a continuation octet.',
+        $i_current_octet,
+        $i_continuation_octet_needed,
+        $i_offset_in_octets_from_string_start,
+        $i_offset_in_characters_from_string_start,
+        $i_character_start_position_from_string_start,
+        $i_current_line_number,
+        $i_offset_in_octets_from_line_start,
+        $i_offset_in_characters_from_line_start,
+        $i_character_start_position_from_line_start,
+      );
+      throw new DOSAS_InvalidEncodingException($s_message, $arr_data);
+    }//end if($i_current_octet >= 128 && $i_current_octet < 192)
+
+    /*
+    The definition of UTF-8 prohibits encoding character numbers between
+    U+D800 and U+DFFF.
+    D8 = 13*16 + 8  = 216 = 11010100
+    DF = 13*16 + 15 = 223 = 11010101
+    */
+    if($i_current_octet >= 216 && $i_current_octet <= 223){
+      [
+        'message' => $s_message, 'data' => $arr_data
+      ] = DOSAS_get_message_and_data_array(
+        ' which is into forbidden range of values D8 to DF'
+        .' for first octet of character.',
+        $i_current_octet,
+        $i_continuation_octet_needed,
+        $i_offset_in_octets_from_string_start,
+        $i_offset_in_characters_from_string_start,
+        $i_character_start_position_from_string_start,
+        $i_current_line_number,
+        $i_offset_in_octets_from_line_start,
+        $i_offset_in_characters_from_line_start,
+        $i_character_start_position_from_line_start,
+      );
+      throw new DOSAS_InvalidEncodingException($s_message, $arr_data);
+    }
+
+    if(/*$i_current_octet >= 192 &&*/ $i_current_octet < 224){
+      // 110xxxxx 10xxxxxx
+      $i_continuation_octet_needed = 1;
+      continue;
+    }
+    if(/*$i_current_octet >= 224 &&*/ $i_current_octet < 240){
+      // 1110xxxx 10xxxxxx 10xxxxxx
+      $i_continuation_octet_needed = 2;
+      /*
+      UTF8-3 = %xE0 %xA0-BF UTF8-tail / %xE1-EC 2( UTF8-tail ) /
+               %xED %x80-9F UTF8-tail / %xEE-EF 2( UTF8-tail )
+      Notice that E0 = 224 adds a restriction on second octet.
+      Notice that ED = 237 adds a restriction on second octet.
+      */
+      if($i_current_octet === 224){
+        $i_current_continuation_octet_minimum = 160;
+        $i_current_continuation_octet_maximum = 191;  // Normal value
+      }
+      if($i_current_octet === 237){
+        $i_current_continuation_octet_minimum = 128;  // Normal value
+        $i_current_continuation_octet_maximum = 159;
+      }
+      continue;
+    }
+    if(/*$i_current_octet >= 240 &&*/ $i_current_octet < /*248*/ 245){
+      // 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
+      $i_continuation_octet_needed = 3;
+      /*
+      UTF8-4 = %xF0 %x90-BF 2( UTF8-tail ) / %xF1-F3 3( UTF8-tail ) /
+               %xF4 %x80-8F 2( UTF8-tail )
+      Notice that F0 = 240 adds a restriction on second octet.
+      Notice that F4 = 244 adds a restriction on second octet.
+      */
+      if($i_current_octet === 240){
+        $i_current_continuation_octet_minimum = 144;
+        $i_current_continuation_octet_maximum = 191;  // Normal value
+      }
+      if($i_current_octet === 244){
+        $i_current_continuation_octet_minimum = 128;  // Normal value
+        $i_current_continuation_octet_maximum = 143;
+      }
+      continue;
+    }
+    [
+      'message' => $s_message, 'data' => $arr_data
+    ] = DOSAS_get_message_and_data_array(
+      ' which is invalid.',
+      $i_current_octet,
+      $i_continuation_octet_needed,
+      $i_offset_in_octets_from_string_start,
+      $i_offset_in_characters_from_string_start,
+      $i_character_start_position_from_string_start,
+      $i_current_line_number,
+      $i_offset_in_octets_from_line_start,
+      $i_offset_in_characters_from_line_start,
+      $i_character_start_position_from_line_start,
+    );
+    throw new DOSAS_InvalidEncodingException($s_message, $arr_data);
   }//end for($i = 0, $i_max = strlen($s_string); $i < $i_max; ++$i)
+
+  if ($i_continuation_octet_needed > 0) {
+    [
+      'message' => $s_message, 'data' => $arr_data
+    ] = DOSAS_get_message_and_data_array(
+      '; end of string was found instead of a continuation octet.',
+      $i_current_octet,
+      $i_continuation_octet_needed,
+      $i_offset_in_octets_from_string_start,
+      $i_offset_in_characters_from_string_start,
+      $i_character_start_position_from_string_start,
+      $i_current_line_number,
+      $i_offset_in_octets_from_line_start,
+      $i_offset_in_characters_from_line_start,
+      $i_character_start_position_from_line_start,
+    );
+  }
+
   return true;
 }//end check_string_is_valid_UTF8()
 

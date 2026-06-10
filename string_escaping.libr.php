@@ -252,11 +252,11 @@ namespace string_escaping\JS {
   function escape_for_string_definition_inside_HTML(string $s_string)
   : string {
     return str_replace(
-      ['</script>',],
-      ['\u{00003c}/script>',],
+      ['</script>'],
+      ['\u{00003c}/script>'],
       escape($s_string),
     );
-  }//end escape_for_string_definition_inside_XHTML()
+  }//end escape_for_string_definition_inside_HTML()
 
 
 

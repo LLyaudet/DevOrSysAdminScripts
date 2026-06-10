@@ -35,36 +35,64 @@ This file was renamed from "unicode.php" to "unicode.libr.php".
 declare(strict_types=1);
 declare(encoding='UTF-8');
 
+namespace DOSAS_unicode;
 
+/**
+A class to enhance standard PHP Exception with an array of data.
 
-
-class DOSAS_WithDataArrayException extends \Exception{
+@category Library
+@package DevOrSysAdminScripts
+@author Laurent Lyaudet <laurent.lyaudet@gmail.com>
+@license https://www.gnu.org/licenses/lgpl-3.0.html LGPLv3+
+*/
+class WithDataArrayException extends \Exception {
   /**
-  @var array
+  A data array to store details related to an exception.
+
+  @var array $arr_data
   */
   protected $arr_data;
 
+
+
   /**
+  Constructor for WithDataArrayException.
+
   @param string $message
-  @param array $data
+  @param array $arr_data
+
   @return void
   */
-  public function __construct(string $message, array $arr_data = []){
+  public function __construct(string $message, array $arr_data = []) {
     $this->arr_data = $arr_data;
     parent::__construct($message);
-  }
+  }//end __construct() WithDataArrayException
+
+
 
   /**
+  Getter to obtain the data array with details of the exception.
+
   @return array
   */
-  public function get_data(){
+  public function get_data() : array {
     return $this->arr_data;
-  }
-}
+  }//end get_data()
+}//end class WithDataArrayException
 
 
 
 
-class DOSAS_InvalidEncodingException extends DOSAS_WithDataArrayException{
-}
+/**
+A class to specialize WithDataArrayException for use with invalid
+encoding detection (ASCII and UTF-8 validation) in unicode.libr.php.
+
+@category Library
+@package DevOrSysAdminScripts
+@author Laurent Lyaudet <laurent.lyaudet@gmail.com>
+@license https://www.gnu.org/licenses/lgpl-3.0.html LGPLv3+
+*/
+class InvalidEncodingException extends WithDataArrayException {
+}//end class InvalidEncodingException
+
 ?>

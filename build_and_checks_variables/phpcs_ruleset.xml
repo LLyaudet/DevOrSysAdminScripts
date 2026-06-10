@@ -34,12 +34,17 @@
     -->
     <exclude name="Generic.Files.EndFileNoNewline.Found"/>
     <exclude name="Generic.Files.ExecutableFile.Executable"/>
+    <exclude name="Generic.Files.OneClassPerFile.MultipleFound"/>
+    <exclude name="Generic.Files.OneObjectStructurePerFile.MultipleFound"/>
     <exclude name="Generic.Formatting.MultipleStatementAlignment"/>
     <exclude
      name="Generic.Functions.OpeningFunctionBraceBsdAllman.BraceOnSameLine"
     />
     <exclude
       name="Generic.NamingConventions.CamelCapsFunctionName.NotCamelCaps"
+    />
+    <exclude
+   name="Generic.NamingConventions.CamelCapsFunctionName.ScopeNotCamelCaps"
     />
     <!-- Applies only to true, false and null. -->
     <exclude name="Generic.PHP.LowerCaseConstant.Found"/>
@@ -48,6 +53,8 @@
     <exclude name="Generic.WhiteSpace.DisallowSpaceIndent.SpacesUsed"/>
   </rule>
   <rule ref="PEAR">
+    <exclude name="PEAR.Classes.ClassDeclaration.OpenBraceNewLine"/>
+    <exclude name="PEAR.Commenting.ClassComment.MissingLinkTag"/>
     <exclude name="PEAR.Commenting.FileComment.MissingVersion"/>
     <exclude name="PEAR.Commenting.FileComment.MissingLinkTag"/>
     <!--
@@ -95,15 +102,26 @@
       name="PEAR.Functions.FunctionDeclaration.BraceOnSameLine"
     />
     <exclude
+      name="PEAR.Functions.FunctionDeclaration.SpaceBeforeOpenBrace"
+    />
+    <exclude
       name="PEAR.NamingConventions.ValidFunctionName.FunctionNoCapital"
     />
     <exclude
       name="PEAR.NamingConventions.ValidFunctionName.FunctionNameInvalid"
     />
+    <exclude
+      name="PEAR.NamingConventions.ValidFunctionName.ScopeNotCamelCaps"
+    />
   </rule>
   <rule ref="PSR1">
+    <exclude name="PSR1.Classes.ClassDeclaration.MultipleClasses"/>
+    <exclude
+      name="PSR1.Methods.CamelCapsMethodName.NotCamelCaps"
+    />
   </rule>
   <rule ref="PSR2">
+    <exclude name="PSR2.Classes.ClassDeclaration.OpenBraceNewLine"/>
     <!-- Back to my habits at Teliae with always a closing tag. -->
     <exclude name="PSR2.Files.ClosingTag.NotAllowed"/>
     <exclude
@@ -146,7 +164,15 @@ name="PSR2.ControlStructures.ControlStructureSpacing.SpacingAfterOpenBrace"
     <exclude name="PSR12.Operators.OperatorSpacing.NoSpaceAfter"/>
   </rule>
   <rule ref="Squiz">
+    <exclude name="Squiz.Arrays.ArrayDeclaration.DoubleArrowNotAligned"/>
     <exclude name="Squiz.Arrays.ArrayDeclaration.SingleLineNotAllowed"/>
+    <exclude name="Squiz.Classes.ClassDeclaration.MultipleClasses"/>
+    <exclude
+      name="Squiz.Classes.ClassDeclaration.NewlinesAfterCloseBrace"
+    />
+    <exclude name="Squiz.Classes.ClassDeclaration.OpenBraceNewLine"/>
+    <exclude name="Squiz.Classes.ClassFileName.NoMatch"/>
+    <exclude name="Squiz.Classes.ValidClassName.NotPascalCase"/>
     <!--
     It doesn't know the //*/ trick...
     https://github.com/PHPCSStandards/PHP_CodeSniffer/issues/1403
@@ -157,8 +183,11 @@ name="PSR2.ControlStructures.ControlStructureSpacing.SpacingAfterOpenBrace"
     <exclude name="Squiz.Commenting.BlockComment.NoCapital"/>
     <exclude name="Squiz.Commenting.BlockComment.NoEmptyLineAfter"/>
     <exclude name="Squiz.Commenting.BlockComment.NoEmptyLineBefore"/>
+    <exclude name="Squiz.Commenting.BlockComment.SingleLine"/>
     <!-- Problem for doc block comment before namespace -->
     <exclude name="Squiz.Commenting.BlockComment.WrongStart"/>
+    <exclude name="Squiz.Commenting.ClassComment.TagNotAllowed"/>
+    <exclude name="Squiz.Commenting.ClosingDeclarationComment.Incorrect"/>
     <exclude name="Squiz.Commenting.DocCommentAlignment.SpaceBeforeStar"/>
     <exclude name="Squiz.Commenting.FileComment.CopyrightTagOrder"/>
     <exclude name="Squiz.Commenting.FileComment.IncorrectAuthor"/>
@@ -173,6 +202,7 @@ name="PSR2.ControlStructures.ControlStructureSpacing.SpacingAfterOpenBrace"
     <exclude
       name="Squiz.Commenting.FunctionComment.IncorrectParamVarName"
     />
+    <exclude name="Squiz.Commenting.FunctionComment.IncorrectTypeHint"/>
     <!-- asks for boolean instead of bool which is incorrect -->
     <exclude name="Squiz.Commenting.FunctionComment.InvalidReturn"/>
     <exclude name="Squiz.Commenting.FunctionComment.MissingParamComment"/>
@@ -200,6 +230,7 @@ name="PSR2.ControlStructures.ControlStructureSpacing.SpacingAfterOpenBrace"
     <exclude
       name="Squiz.ControlStructures.ControlSignature.SpaceAfterKeyword"
     />
+    <exclude name="Squiz.Files.FileExtension.ClassFound"/>
     <exclude name="Squiz.Formatting.OperatorBracket.MissingBrackets"/>
     <exclude name="Squiz.Functions.GlobalFunction.Found"/>
     <exclude
@@ -209,7 +240,16 @@ name="PSR2.ControlStructures.ControlStructureSpacing.SpacingAfterOpenBrace"
  name="Squiz.Functions.MultiLineFunctionDeclaration.NewlineBeforeOpenBrace"
     />
     <exclude
+   name="Squiz.Functions.MultiLineFunctionDeclaration.SpaceBeforeOpenBrace"
+    />
+    <exclude
       name="Squiz.NamingConventions.ValidFunctionName.NotCamelCaps"
+    />
+    <exclude
+      name="Squiz.NamingConventions.ValidFunctionName.ScopeNotCamelCaps"
+    />
+    <exclude
+      name="Squiz.NamingConventions.ValidVariableName.MemberNotCamelCaps"
     />
     <exclude
       name="Squiz.NamingConventions.ValidVariableName.NotCamelCaps"
@@ -218,18 +258,26 @@ name="PSR2.ControlStructures.ControlStructureSpacing.SpacingAfterOpenBrace"
     <exclude name="Squiz.Operators.ComparisonOperatorUsage.ImplicitTrue"/>
     <exclude name="Squiz.PHP.CommentedOutCode"/>
     <exclude name="Squiz.Strings.EchoedStrings.HasBracket"/>
-    <exclude name="Squiz.WhiteSpace.OperatorSpacing.NoSpaceBefore"/>
-    <exclude name="Squiz.WhiteSpace.OperatorSpacing.NoSpaceAfter"/>
-    <exclude name="Squiz.WhiteSpace.OperatorSpacing.SpacingBefore"/>
     <exclude
       name="Squiz.WhiteSpace.FunctionClosingBraceSpace.SpacingBeforeClose"
     />
+    <exclude name="Squiz.WhiteSpace.MemberVarSpacing.FirstIncorrect"/>
+    <exclude name="Squiz.WhiteSpace.OperatorSpacing.NoSpaceBefore"/>
+    <exclude name="Squiz.WhiteSpace.OperatorSpacing.NoSpaceAfter"/>
+    <exclude name="Squiz.WhiteSpace.OperatorSpacing.SpacingBefore"/>
+
   </rule>
   <rule ref="Zend">
     <!-- Back to my habits at Teliae with always a closing tag. -->
     <exclude name="Zend.Files.ClosingTag.NotAllowed"/>
     <exclude
+      name="Zend.NamingConventions.ValidVariableName.MemberVarNotCamelCaps"
+    />
+    <exclude
       name="Zend.NamingConventions.ValidVariableName.NotCamelCaps"
+    />
+    <exclude
+      name="Zend.NamingConventions.ValidVariableName.PrivateNoUnderscore"
     />
   </rule>
 

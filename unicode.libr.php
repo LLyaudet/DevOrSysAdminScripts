@@ -35,6 +35,7 @@ This file was renamed from "unicode.php" to "unicode.libr.php".
 declare(strict_types=1);
 declare(encoding='UTF-8');
 
+namespace DOSAS_unicode;
 
 /*
 Max value for Unicode is 10FFFF != 16*255*255 = 16*65025 = 1040400... XD
@@ -49,6 +50,7 @@ so there is 1114112 possible values in the "uncarved" range.
   = 17407*64+63 = 1044420 + 69628 + 63 = 1114111
 */
 const MAX_UNICODE_CODE_POINT = 1114111;
+
 
 
 /**
@@ -72,7 +74,7 @@ function decimal_code_point_to_UTF8(
 ) : string {
   // var_dump($i_code_point_in_decimal_notation);
   if($i_code_point_in_decimal_notation < 0){
-    throw new Exception("A unicode code point must not be negative.");
+    throw new Exception('A unicode code point must not be negative.');
   }
   // 0xxxxxxx ASCII
   if($i_code_point_in_decimal_notation < 128){
@@ -290,8 +292,8 @@ Otherwise, it returns true.
 
 @param string $s_string The input string.
 
-@throws DOSAS_InvalidEncodingException
-  When the input string is not valid ASCII.
+@throws DOSAS_unicode\InvalidEncodingException When the input string is not
+                                               valid ASCII.
 
 @return bool
 */
@@ -308,8 +310,9 @@ function check_string_is_valid_ASCII(string $s_string) : bool {
     $i_current_octet = ord($s_string[$i]);
     $i_offset_in_octets_from_string_start = $i;
     ++$i_offset_in_octets_from_line_start;
+
     if($i_current_octet > 127){
-      throw new DOSAS_InvalidEncodingException(
+      throw new InvalidEncodingException(
         'Non-ASCII character found on line '
         .$i_current_line_number
         .'; the octet/character '
@@ -330,7 +333,8 @@ function check_string_is_valid_ASCII(string $s_string) : bool {
             => $i_offset_in_octets_from_line_start,
         ],
       );
-    }
+    }//end if($i_current_octet > 127)
+
     // if($s_string[$i] === "\n"){
     if($i_current_octet === 10){
       ++$i_current_line_number;
@@ -349,7 +353,8 @@ Otherwise, it returns true.
 
 @param string $s_file_path The input file_path.
 
-@throws Exception When the input string is not valid ASCII.
+@throws DOSAS_unicode\InvalidEncodingException When the input string is not
+                                               valid ASCII.
 
 @return bool
 */
@@ -365,7 +370,7 @@ function check_file_is_valid_ASCII(string $s_file_path) : bool {
 
 /**
 This function returns the message string and data array for
-DOSAS_InvalidEncodingException inside check_string_is_valid_UTF8().
+DOSAS_unicode\InvalidEncodingException inside check_string_is_valid_UTF8().
 
 @param string $s_custom_message The custom part of the message.
 @param int $i_current_octet The current octet in the string.
@@ -395,7 +400,7 @@ DOSAS_InvalidEncodingException inside check_string_is_valid_UTF8().
 
 @return array
 */
-function DOSAS_get_message_and_data_array(
+function get_message_and_data_array(
   string $s_custom_message,
   int $i_current_octet,
   int $i_continuation_octet_needed,
@@ -408,7 +413,7 @@ function DOSAS_get_message_and_data_array(
   int $i_character_start_position_from_line_start,
   int $i_current_continuation_octet_minimum,
   int $i_current_continuation_octet_maximum,
-){
+) : array {
   return [
     'message' => (
       'Non-UTF8 character found on line '
@@ -455,7 +460,7 @@ function DOSAS_get_message_and_data_array(
         => $i_current_continuation_octet_maximum,
     ],
   ];
-}//end DOSAS_get_message()
+}//end get_message_and_data_array()
 
 
 
@@ -468,13 +473,13 @@ See https://datatracker.ietf.org/doc/html/rfc3629
 
 @param string $s_string The input string.
 
-@throws Exception When the input string is not valid UTF-8.
+@throws DOSAS_unicode\InvalidEncodingException When the input string is not
+                                               valid UTF-8.
 
 @return bool
 */
 function check_string_is_valid_UTF8(string $s_string) : bool {
-
-  //Fast-path
+  // Fast-path
   if(function_exists('mb_check_encoding')){
     if(mb_check_encoding($s_string, 'UTF-8')){
       return true;
@@ -522,8 +527,9 @@ function check_string_is_valid_UTF8(string $s_string) : bool {
       || $i_current_octet === 255
     ){
       [
-        'message' => $s_message, 'data' => $arr_data
-      ] = DOSAS_get_message_and_data_array(
+        'message' => $s_message,
+        'data' => $arr_data,
+      ] = get_message_and_data_array(
         ' which is one of the four forbidden values (C0, C1, F5, FF).',
         $i_current_octet,
         $i_continuation_octet_needed,
@@ -534,8 +540,10 @@ function check_string_is_valid_UTF8(string $s_string) : bool {
         $i_offset_in_octets_from_line_start,
         $i_offset_in_characters_from_line_start,
         $i_character_start_position_from_line_start,
+        $i_current_continuation_octet_minimum,
+        $i_current_continuation_octet_maximum,
       );
-      throw new DOSAS_InvalidEncodingException($s_message, $arr_data);
+      throw new InvalidEncodingException($s_message, $arr_data);
     }
 
     /*
@@ -560,8 +568,9 @@ function check_string_is_valid_UTF8(string $s_string) : bool {
         || $i_current_octet > $i_current_continuation_octet_maximum
       ){
         [
-          'message' => $s_message, 'data' => $arr_data
-        ] = DOSAS_get_message_and_data_array(
+          'message' => $s_message,
+          'data' => $arr_data,
+        ] = get_message_and_data_array(
           ' which is not a continuation octet.',
           $i_current_octet,
           $i_continuation_octet_needed,
@@ -572,8 +581,10 @@ function check_string_is_valid_UTF8(string $s_string) : bool {
           $i_offset_in_octets_from_line_start,
           $i_offset_in_characters_from_line_start,
           $i_character_start_position_from_line_start,
+          $i_current_continuation_octet_minimum,
+          $i_current_continuation_octet_maximum,
         );
-        throw new DOSAS_InvalidEncodingException($s_message, $arr_data);
+        throw new InvalidEncodingException($s_message, $arr_data);
       }//end if($i_current_octet < 128 || $i_current_octet >= 192)
       --$i_continuation_octet_needed;
       $i_current_continuation_octet_minimum = (
@@ -606,8 +617,9 @@ function check_string_is_valid_UTF8(string $s_string) : bool {
 
     if(/*$i_current_octet >= 128 &&*/ $i_current_octet < 192){
       [
-        'message' => $s_message, 'data' => $arr_data
-      ] = DOSAS_get_message_and_data_array(
+        'message' => $s_message,
+        'data' => $arr_data,
+      ] = get_message_and_data_array(
         ' which is a continuation octet.',
         $i_current_octet,
         $i_continuation_octet_needed,
@@ -618,8 +630,10 @@ function check_string_is_valid_UTF8(string $s_string) : bool {
         $i_offset_in_octets_from_line_start,
         $i_offset_in_characters_from_line_start,
         $i_character_start_position_from_line_start,
+        $i_current_continuation_octet_minimum,
+        $i_current_continuation_octet_maximum,
       );
-      throw new DOSAS_InvalidEncodingException($s_message, $arr_data);
+      throw new InvalidEncodingException($s_message, $arr_data);
     }//end if($i_current_octet >= 128 && $i_current_octet < 192)
 
     /*
@@ -630,8 +644,9 @@ function check_string_is_valid_UTF8(string $s_string) : bool {
     */
     if($i_current_octet >= 216 && $i_current_octet <= 223){
       [
-        'message' => $s_message, 'data' => $arr_data
-      ] = DOSAS_get_message_and_data_array(
+        'message' => $s_message,
+        'data' => $arr_data,
+      ] = get_message_and_data_array(
         ' which is into forbidden range of values D8 to DF'
         .' for first octet of character.',
         $i_current_octet,
@@ -643,8 +658,10 @@ function check_string_is_valid_UTF8(string $s_string) : bool {
         $i_offset_in_octets_from_line_start,
         $i_offset_in_characters_from_line_start,
         $i_character_start_position_from_line_start,
+        $i_current_continuation_octet_minimum,
+        $i_current_continuation_octet_maximum,
       );
-      throw new DOSAS_InvalidEncodingException($s_message, $arr_data);
+      throw new InvalidEncodingException($s_message, $arr_data);
     }
 
     if(/*$i_current_octet >= 192 &&*/ $i_current_octet < 224){
@@ -691,8 +708,9 @@ function check_string_is_valid_UTF8(string $s_string) : bool {
       continue;
     }
     [
-      'message' => $s_message, 'data' => $arr_data
-    ] = DOSAS_get_message_and_data_array(
+      'message' => $s_message,
+      'data' => $arr_data,
+    ] = get_message_and_data_array(
       ' which is invalid.',
       $i_current_octet,
       $i_continuation_octet_needed,
@@ -703,14 +721,17 @@ function check_string_is_valid_UTF8(string $s_string) : bool {
       $i_offset_in_octets_from_line_start,
       $i_offset_in_characters_from_line_start,
       $i_character_start_position_from_line_start,
+      $i_current_continuation_octet_minimum,
+      $i_current_continuation_octet_maximum,
     );
-    throw new DOSAS_InvalidEncodingException($s_message, $arr_data);
+    throw new InvalidEncodingException($s_message, $arr_data);
   }//end for($i = 0, $i_max = strlen($s_string); $i < $i_max; ++$i)
 
   if ($i_continuation_octet_needed > 0) {
     [
-      'message' => $s_message, 'data' => $arr_data
-    ] = DOSAS_get_message_and_data_array(
+      'message' => $s_message,
+      'data' => $arr_data,
+    ] = get_message_and_data_array(
       '; end of string was found instead of a continuation octet.',
       $i_current_octet,
       $i_continuation_octet_needed,
@@ -721,6 +742,8 @@ function check_string_is_valid_UTF8(string $s_string) : bool {
       $i_offset_in_octets_from_line_start,
       $i_offset_in_characters_from_line_start,
       $i_character_start_position_from_line_start,
+      $i_current_continuation_octet_minimum,
+      $i_current_continuation_octet_maximum,
     );
   }
 
@@ -736,7 +759,8 @@ Otherwise, it returns true.
 
 @param string $s_file_path The input file_path.
 
-@throws Exception When the input string is not valid UTF-8.
+@throws DOSAS_unicode\InvalidEncodingException When the input string is not
+                                               valid UTF-8.
 
 @return bool
 */
@@ -755,10 +779,10 @@ function check_file_is_valid_UTF8(string $s_file_path) : bool {
 <?php
 require_once("./unicode_exceptions.libr.php");
 require_once("./unicode.libr.php");
-var_dump(hexa_code_point_to_UTF8("002B"));
-var_dump(hexa_code_point_to_UTF8("00E6"));
-var_dump(hexa_code_point_to_UTF8("1400"));
-var_dump(hexa_code_point_to_UTF8("10111"));
+var_dump(DOSAS_unicode\hexa_code_point_to_UTF8("002B"));
+var_dump(DOSAS_unicode\hexa_code_point_to_UTF8("00E6"));
+var_dump(DOSAS_unicode\hexa_code_point_to_UTF8("1400"));
+var_dump(DOSAS_unicode\hexa_code_point_to_UTF8("10111"));
 // https://en.wikibooks.org/wiki/Unicode/Character_reference/2000-2FFF
 // Some invisible unicode characters that are a problem:
 // 2000-200F 2028-202F 205F 2060-206F
@@ -775,7 +799,7 @@ $arr_s2 = [];
 $arr_s3 = [];
 echo("sed\\\n");
 foreach($arr as $s_hexa){
-  $s = hexa_code_point_to_UTF8($s_hexa);
+  $s = DOSAS_unicode\hexa_code_point_to_UTF8($s_hexa);
   $arr_s []= $s;
   if(strlen($s) === 2){
     $s2 = '\x'.bin2hex($s[0]).'\x'.bin2hex($s[1]);
@@ -789,5 +813,8 @@ foreach($arr as $s_hexa){
   $arr_s3 []= $s3;
   echo($s3."\n");
 }
+
+var_dump(DOSAS_unicode\check_file_is_valid_UTF8("validutf8.json"));
+var_dump(DOSAS_unicode\check_file_is_valid_UTF8("nonvalidutf8.json"));
 //*/
 ?>

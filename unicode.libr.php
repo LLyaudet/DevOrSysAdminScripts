@@ -36,6 +36,20 @@ declare(strict_types=1);
 declare(encoding='UTF-8');
 
 
+/*
+Max value for Unicode is 10FFFF != 16*255*255 = 16*65025 = 1040400... XD
+Max value for Unicode is 10FFFF = (16*256+255)*256+255
+  = (2560+1536+255)*256+255 = (4096+255)*256+255 = 4351*256+255
+  = 4351*1000/4 + 4351*6 + 255
+  4351000 2175500 1087750
+  = 1087750 + 26106 + 255 = 1114111
+so there is 1114112 possible values in the "uncarved" range.
+244,143,191,191 for UTF-8 yields max code point is ((4*64+15)*64+63)*64+63
+  = ((256+15)*64+63)*64+63 = (271*64+63)*64+63 = (16260+1084+63)*64+63
+  = 17407*64+63 = 1044420 + 69628 + 63 = 1114111
+*/
+const MAX_UNICODE_CODE_POINT = 1114111;
+
 
 /**
 Converts an int to the byte-string corresponding to the UTF-8 encoding
@@ -44,8 +58,10 @@ decimal_code_point is a slight abuse of language to say that you write the
 code point in decimal notation in PHP code and you get the UTF-8.
 If you provide the integer of the code point without using decimal
 notation, it will also work.
+Note that not all integers between 0 and 1114111 are valid code points
+for UTF-8.
 
-@param int<0, 2097151> $i_code_point_in_decimal_notation The code point.
+@param int<0, 1114111> $i_code_point_in_decimal_notation The code point.
 
 @throws Exception When the code point is outside of Unicode range.
 
@@ -55,6 +71,9 @@ function decimal_code_point_to_UTF8(
   int $i_code_point_in_decimal_notation
 ) : string {
   // var_dump($i_code_point_in_decimal_notation);
+  if($i_code_point_in_decimal_notation < 0){
+    throw new Exception("A unicode code point must not be negative.")
+  }
   // 0xxxxxxx ASCII
   if($i_code_point_in_decimal_notation < 128){
     return chr($i_code_point_in_decimal_notation);
@@ -147,6 +166,7 @@ function decimal_code_point_to_UTF8(
   }//end if($i_code_point_in_decimal_notation < 65536)
   // 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
   // if($i_code_point_in_decimal_notation < 2097152){  // 2**21
+  if($i_code_point_in_decimal_notation < MAX_UNICODE_CODE_POINT){
     $i_first_byte_base_value = 240;
     /*
     $arr_arr_data_per_byte_reverse = [
@@ -191,8 +211,7 @@ function decimal_code_point_to_UTF8(
         + ($i_code_point_in_decimal_notation & 63)
       )
     );
-  // }//end if($i_code_point_in_decimal_notation < 2097152)
-  /*
+  }//end if($i_code_point_in_decimal_notation < MAX_UNICODE_CODE_POINT)
   // phpcs:disable Squiz.Strings.DoubleQuoteUsage.NotRequired
   throw new Exception(
     "UTF-8 avec jusqu'à 6 octets a été abandonné il y a longtemps."
@@ -205,7 +224,6 @@ function decimal_code_point_to_UTF8(
     ." :)"
   );
   // phpcs:enable Squiz.Strings.DoubleQuoteUsage.NotRequired
-  */
 }//end decimal_code_point_to_UTF8()
 
 
@@ -253,7 +271,7 @@ function hexa_code_point_to_UTF8(
     }
     throw new Exception('Not an hexadecimal digit.');
   }
-  if($i_code_point_in_decimal_notation > 2097151){
+  if($i_code_point_in_decimal_notation > MAX_UNICODE_CODE_POINT){
     throw new Exception(
       'Hexadecimal integer is greater than UTF-8 maximum code point.'
     );

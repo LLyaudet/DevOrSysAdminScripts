@@ -679,8 +679,6 @@ common_build_and_checks(){
     composer global require phpstan/phpstan-strict-rules
   fi
 
-  local LFBFL_phpstan_baseline="${LFBFL_subdir3}/phpstan_baseline.neon"
-  readonly LFBFL_phpstan_baseline
   local LFBFL_temp_phpstan_baseline="${LFBFL_subdir3}/temp/"
   LFBFL_temp_phpstan_baseline+="phpstan_baseline.neon"
   readonly LFBFL_temp_phpstan_baseline
@@ -688,8 +686,11 @@ common_build_and_checks(){
   # Saving new baseline in temp if necessary.
   rm "${LFBFL_temp_phpstan_baseline}"
   phpstan --configuration=build_and_checks_variables/phpstan_config.neon\
-    --generate-baseline="${LFBFL_temp_phpstan_baseline}"
-  diff "${LFBFL_phpstan_baseline}" "${LFBFL_temp_phpstan_baseline}"
+    --generate-baseline="${LFBFL_subdir3}/temp.neon"\
+    --allow-empty-baseline
+  mv "${LFBFL_subdir3}/temp.neon" "${LFBFL_temp_phpstan_baseline}"
+  sed --in-place --expression='s/\t/ /g' "${LFBFL_temp_phpstan_baseline}"
+  cat "${LFBFL_temp_phpstan_baseline}"
 
   printf "Running phpDocumentor\n"
   # shellcheck disable=SC2312

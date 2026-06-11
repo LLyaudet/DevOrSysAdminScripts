@@ -1,0 +1,8 @@
+parameters:
+ ignoreErrors:
+  # https://github.com/phpstan/phpstan/issues/14585
+  -
+   rawMessage: Variable $argv might not be defined.
+   identifier: variable.undefined
+   count: 1
+   path: ../build_and_checks_dependencies/build_dependencies_notes.exec.php

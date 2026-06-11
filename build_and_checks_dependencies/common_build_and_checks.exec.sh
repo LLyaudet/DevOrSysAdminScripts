@@ -82,9 +82,9 @@ common_build_and_checks(){
   LFBFL_file_name="build_dependencies_notes.exec.php"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='7fa2566b939e765b70bc48b8b15e0dab50823b50bae40'
-  LFBFL_correct_sha512+='97eeaac9f573139f60427f1d2c02fcf6a1bb4f89e21f'
-  LFBFL_correct_sha512+='ca39fd98859a5f4714b6359588e10ef96ec623d'
+  LFBFL_correct_sha512='a10a438b84e62c452d6658189e1df106c1f1ccef57116'
+  LFBFL_correct_sha512+='b0c82f1be0fc89e41583cab4af4047c3dc0b08fd5d01'
+  LFBFL_correct_sha512+='8c80df7234f051d2f0cb4a88c12263946250f61'
   wrapped_wget_sha512
   chmod +x "./${LFBFL_file_path}"
 
@@ -737,8 +737,6 @@ common_build_and_checks(){
     composer global require phpstan/phpstan-strict-rules
   fi
 
-  local LFBFL_phpstan_baseline="${LFBFL_subdir3}/phpstan_baseline.neon"
-  readonly LFBFL_phpstan_baseline
   local LFBFL_temp_phpstan_baseline="${LFBFL_subdir3}/temp/"
   LFBFL_temp_phpstan_baseline+="phpstan_baseline.neon"
   readonly LFBFL_temp_phpstan_baseline
@@ -746,8 +744,11 @@ common_build_and_checks(){
   # Saving new baseline in temp if necessary.
   rm "${LFBFL_temp_phpstan_baseline}"
   phpstan --configuration=build_and_checks_variables/phpstan_config.neon\
-    --generate-baseline="${LFBFL_temp_phpstan_baseline}"
-  diff "${LFBFL_phpstan_baseline}" "${LFBFL_temp_phpstan_baseline}"
+    --generate-baseline="${LFBFL_subdir3}/temp.neon"\
+    --allow-empty-baseline
+  mv "${LFBFL_subdir3}/temp.neon" "${LFBFL_temp_phpstan_baseline}"
+  sed --in-place --expression='s/\t/ /g' "${LFBFL_temp_phpstan_baseline}"
+  cat "${LFBFL_temp_phpstan_baseline}"
 
   printf "Running phpDocumentor\n"
   # shellcheck disable=SC2312

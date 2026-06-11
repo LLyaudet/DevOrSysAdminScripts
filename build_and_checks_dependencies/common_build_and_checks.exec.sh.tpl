@@ -657,6 +657,13 @@ common_build_and_checks(){
   phpmd --color --generate-baseline\
     --baseline-file="${LFBFL_temp_phpmd_baseline}"\
     . text "${LFBFL_phpmd_rulesets}"
+  # Remove all superfluous whitespace
+  sed --in-place --regexp-extended --null-data\
+     --expression='s/\n +//Mg'\
+    "${LFBFL_temp_phpmd_baseline}"
+  xsltproc --output "${LFBFL_temp_phpmd_baseline}"\
+    build_and_checks_dependencies/phpmd_baseline.xslt\
+    "${LFBFL_temp_phpmd_baseline}"
   sed --in-place --expression='s/" file="/"\n    file="/g'\
     "${LFBFL_temp_phpmd_baseline}"
   sed --in-place --regexp-extended\

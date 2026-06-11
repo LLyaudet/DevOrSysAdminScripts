@@ -56,43 +56,32 @@ const MAX_UNICODE_CODE_POINT = 1114111;
 /**
 Converts an int to the byte-string corresponding to the UTF-8 encoding
 of the Unicode code point of same integer value.
-decimal_code_point is a slight abuse of language to say that you write the
-code point in decimal notation in PHP code and you get the UTF-8.
-If you provide the integer of the code point without using decimal
-notation, it will also work.
 Note that not all integers between 0 and 1114111 are valid code points
 for UTF-8.
 
-@param int<0, 1114111> $i_code_point_in_decimal_notation The code point.
+@param int<0, 1114111> $i_unicode_code_point The code point.
 
 @throws \Exception When the code point is outside of Unicode range.
 
 @return string The corresponding UTF-8 character.
 */
-function decimal_code_point_to_UTF8(
-  int $i_code_point_in_decimal_notation
-) : string {
-  // var_dump($i_code_point_in_decimal_notation);
-  if($i_code_point_in_decimal_notation < 0){
+function unicode_code_point_to_UTF8(int $i_unicode_code_point) : string {
+  // var_dump($i_unicode_code_point);
+  if($i_unicode_code_point < 0){
     throw new \Exception('A unicode code point must not be negative.');
   }
   // 0xxxxxxx ASCII
-  if($i_code_point_in_decimal_notation < 128){
-    return chr($i_code_point_in_decimal_notation);
+  if($i_unicode_code_point < 128){
+    return chr($i_unicode_code_point);
   }
   $i_continuation_base_value = 128;
   // 110xxxxx 10xxxxxx
-  if($i_code_point_in_decimal_notation < 2048){  // 2**11
+  if($i_unicode_code_point < 2048){  // 2**11
     $i_first_byte_base_value = 192;
     /*
-    $i_last_byte_significant_bits = (
-      $i_code_point_in_decimal_notation % 64  // 2**6
-    );
+    $i_last_byte_significant_bits = $i_unicode_code_point % 64  // 2**6;
     $i_first_byte_significant_bits = intdiv(
-      (
-        $i_code_point_in_decimal_notation
-        - $i_last_byte_significant_bits
-      ),
+      $i_unicode_code_point - $i_last_byte_significant_bits,
       64,  // 2**6
     );
     $s_result = chr(
@@ -106,18 +95,12 @@ function decimal_code_point_to_UTF8(
     return $s_result;
     */
     return (
-      chr(
-        $i_first_byte_base_value
-        + ($i_code_point_in_decimal_notation >> 6)
-      )
-      .chr(
-        $i_continuation_base_value
-        + ($i_code_point_in_decimal_notation & 63)
-      )
+      chr($i_first_byte_base_value + ($i_unicode_code_point >> 6))
+      .chr($i_continuation_base_value + ($i_unicode_code_point & 63))
     );
-  }//end if($i_code_point_in_decimal_notation < 2048)
+  }//end if($i_unicode_code_point < 2048)
   // 1110xxxx 10xxxxxx 10xxxxxx
-  if($i_code_point_in_decimal_notation < 65536){  // 2**16
+  if($i_unicode_code_point < 65536){  // 2**16
     $i_first_byte_base_value = 224;
     /*
     $arr_arr_data_per_byte_reverse = [
@@ -125,7 +108,7 @@ function decimal_code_point_to_UTF8(
       ['i_bits' => 6, 'i_base_value' => $i_continuation_base_value],
       ['i_bits' => 4, 'i_base_value' => $i_first_byte_base_value],
     ];
-    $i_rest = $i_code_point_in_decimal_notation;
+    $i_rest = $i_unicode_code_point;
     $s_result = '';
     foreach($arr_arr_data_per_byte_reverse as $arr_data){
       // _Pragma unroll
@@ -152,23 +135,17 @@ function decimal_code_point_to_UTF8(
     return $s_result;
     */
     return (
-      chr(
-        $i_first_byte_base_value
-        + ($i_code_point_in_decimal_notation >> 12)
-      )
+      chr($i_first_byte_base_value + ($i_unicode_code_point >> 12))
       .chr(
         $i_continuation_base_value
-        + (($i_code_point_in_decimal_notation >> 6) & 63)
+        + (($i_unicode_code_point >> 6) & 63)
       )
-      .chr(
-        $i_continuation_base_value
-        + ($i_code_point_in_decimal_notation & 63)
-      )
+      .chr($i_continuation_base_value + ($i_unicode_code_point & 63))
     );
-  }//end if($i_code_point_in_decimal_notation < 65536)
+  }//end if($i_unicode_code_point < 65536)
   // 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
-  // if($i_code_point_in_decimal_notation < 2097152){  // 2**21
-  if($i_code_point_in_decimal_notation < MAX_UNICODE_CODE_POINT){
+  // if($i_unicode_code_point < 2097152){  // 2**21
+  if($i_unicode_code_point < MAX_UNICODE_CODE_POINT){
     $i_first_byte_base_value = 240;
     /*
     $arr_arr_data_per_byte_reverse = [
@@ -177,7 +154,7 @@ function decimal_code_point_to_UTF8(
       ['i_bits' => 6, 'i_base_value' => $i_continuation_base_value],
       ['i_bits' => 3, 'i_base_value' => $i_first_byte_base_value],
     ];
-    $i_rest = $i_code_point_in_decimal_notation;
+    $i_rest = $i_unicode_code_point;
     $s_result = '';
     foreach($arr_arr_data_per_byte_reverse as $arr_data){
       // _Pragma unroll
@@ -196,24 +173,18 @@ function decimal_code_point_to_UTF8(
     return $s_result;
     */
     return (
-      chr(
-        $i_first_byte_base_value
-        + ($i_code_point_in_decimal_notation >> 18)
+      chr($i_first_byte_base_value + ($i_unicode_code_point >> 18))
+      .chr(
+        $i_continuation_base_value
+        + (($i_unicode_code_point >> 12) & 63)
       )
       .chr(
         $i_continuation_base_value
-        + (($i_code_point_in_decimal_notation >> 12) & 63)
+        + (($i_unicode_code_point >> 6) & 63)
       )
-      .chr(
-        $i_continuation_base_value
-        + (($i_code_point_in_decimal_notation >> 6) & 63)
-      )
-      .chr(
-        $i_continuation_base_value
-        + ($i_code_point_in_decimal_notation & 63)
-      )
+      .chr($i_continuation_base_value + ($i_unicode_code_point & 63))
     );
-  }//end if($i_code_point_in_decimal_notation < MAX_UNICODE_CODE_POINT)
+  }//end if($i_unicode_code_point < MAX_UNICODE_CODE_POINT)
   // phpcs:disable Squiz.Strings.DoubleQuoteUsage.NotRequired
   throw new \Exception(
     "UTF-8 avec jusqu'à 6 octets a été abandonné il y a longtemps."
@@ -226,7 +197,7 @@ function decimal_code_point_to_UTF8(
     ." :)"
   );
   // phpcs:enable Squiz.Strings.DoubleQuoteUsage.NotRequired
-}//end decimal_code_point_to_UTF8()
+}//end unicode_code_point_to_UTF8()
 
 
 
@@ -247,7 +218,7 @@ function hexa_code_point_to_UTF8(
   $s_code_point_in_hexadecimal_notation = strtoupper(
     $s_code_point_in_hexadecimal_notation
   );
-  $i_code_point_in_decimal_notation = 0;
+  $i_unicode_code_point = 0;
   $i_ord_0 = ord('0');
   $i_ord_A = ord('A');
   $i_digit_offset = -$i_ord_0;
@@ -258,30 +229,68 @@ function hexa_code_point_to_UTF8(
     ++$i
   ){
     $s_hexa_digit = $s_code_point_in_hexadecimal_notation[$i];
-    $i_code_point_in_decimal_notation *= 16;
+    $i_unicode_code_point *= 16;
     if(ctype_digit($s_hexa_digit)){
-      $i_code_point_in_decimal_notation += (
+      $i_unicode_code_point += (
         ord($s_hexa_digit) + $i_digit_offset
       );
       continue;
     }
     if(ctype_xdigit($s_hexa_digit)){
-      $i_code_point_in_decimal_notation += (
+      $i_unicode_code_point += (
         ord($s_hexa_digit) + $i_letter_offset
       );
       continue;
     }
     throw new \Exception('Not an hexadecimal digit.');
   }
-  if($i_code_point_in_decimal_notation > MAX_UNICODE_CODE_POINT){
+  if($i_unicode_code_point > MAX_UNICODE_CODE_POINT){
     throw new \Exception(
       'Hexadecimal integer is greater than UTF-8 maximum code point.'
     );
   }
-  return decimal_code_point_to_UTF8(
-    $i_code_point_in_decimal_notation
-  );
+  return unicode_code_point_to_UTF8($i_unicode_code_point);
 }//end hexa_code_point_to_UTF8()
+
+
+
+/**
+Converts a string of decimal digits to the byte-string corresponding
+to the UTF-8 encoding of the Unicode code point of same integer value
+that is denoted by the decimal digits.
+
+@param string $s_code_point_in_decimal_notation The code point.
+
+@throws \Exception When the code point is outside of Unicode range.
+
+@return string The corresponding UTF-8 character.
+*/
+function decimal_code_point_to_UTF8(
+  string $s_code_point_in_decimal_notation
+) : string {
+  $i_unicode_code_point = 0;
+  $i_ord_0 = ord('0');
+  $i_digit_offset = -$i_ord_0;
+  for(
+    $i = 0, $i_max = strlen($s_code_point_in_decimal_notation);
+    $i < $i_max;
+    ++$i
+  ){
+    $s_digit = $s_code_point_in_decimal_notation[$i];
+    $i_unicode_code_point *= 10;
+    if(ctype_digit($s_digit)){
+      $i_unicode_code_point += (ord($s_digit) + $i_digit_offset);
+      continue;
+    }
+    throw new \Exception('Not a decimal digit.');
+  }
+  if($i_unicode_code_point > MAX_UNICODE_CODE_POINT){
+    throw new \Exception(
+      'Decimal integer is greater than UTF-8 maximum code point.'
+    );
+  }
+  return unicode_code_point_to_UTF8($i_unicode_code_point);
+}//end decimal_code_point_to_UTF8()
 
 
 

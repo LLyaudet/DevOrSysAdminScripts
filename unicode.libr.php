@@ -474,6 +474,21 @@ function get_message_and_data_array(
 
 
 /**
+Checks that the version of PHP allows using the fast-path inside
+check_string_is_valid_UTF8.
+
+@return bool
+*/
+function get_use_fast_path(){
+  // Before PHP 5.4, Unicode support has bugs,
+  // both in mb_check_encoding and preg_match.
+  // See https://github.com/php/php-src/issues/22279
+  return PHP_VERSION_ID >= 50400;
+}
+
+
+
+/**
 This function throws an exception with extended debug informations
 if the input string is not valid UTF-8.
 Otherwise, it returns true.
@@ -496,9 +511,9 @@ function check_string_is_valid_UTF8(
   // Fast-path
   // But before PHP 5.4 Unicode support has bugs.
   // See https://github.com/php/php-src/issues/22279
-  if($b_fast_path && PHP_VERSION_ID < 50400){
+  if($b_fast_path && !get_use_fast_path()){
     throw new \Exception(
-      'Fast-path is not available with version '.PHP_VERSION_ID.'of PHP.'
+      'Fast-path is not available with version '.PHP_VERSION_ID.' of PHP.'
     );
   }
   if($b_fast_path){
@@ -789,18 +804,23 @@ if the content of the file with given file_path is not valid UTF-8.
 Otherwise, it returns true.
 
 @param string $s_file_path The input file_path.
+@param bool $b_fast_path Use the fast-path or not to check quickly that
+                         there is no error.
 
 @throws DOSAS_unicode\InvalidEncodingException When the input string is not
                                                valid UTF-8.
 
 @return bool
 */
-function check_file_is_valid_UTF8(string $s_file_path) : bool {
+function check_file_is_valid_UTF8(
+  string $s_file_path,
+  bool $b_fast_path = true,
+) : bool {
   $s_string = file_get_contents($s_file_path);
   if($s_string === false){
     throw new \Exception('File '.$s_file_path.' not found.');
   }
-  return check_string_is_valid_UTF8($s_string);
+  return check_string_is_valid_UTF8($s_string, $b_fast_path);
 }//end check_file_is_valid_UTF8()
 
 

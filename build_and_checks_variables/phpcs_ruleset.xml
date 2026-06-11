@@ -213,6 +213,7 @@ name="PSR2.ControlStructures.ControlStructureSpacing.SpacingAfterOpenBrace"
     <exclude
       name="Squiz.Commenting.FunctionComment.SpacingAfterParamType"
     />
+    <exclude name="Squiz.Commenting.FunctionCommentThrowTag.WrongNumber"/>
     <!-- Problem for doc block comment before namespace -->
     <exclude name="Squiz.Commenting.InlineComment.DocBlock"/>
     <exclude name="Squiz.Commenting.InlineComment.NotCapital"/>
@@ -229,6 +230,9 @@ name="PSR2.ControlStructures.ControlStructureSpacing.SpacingAfterOpenBrace"
     />
     <exclude
       name="Squiz.ControlStructures.ControlSignature.SpaceAfterKeyword"
+    />
+    <exclude
+      name="Squiz.ControlStructures.InlineIfDeclaration.NotSingleLine"
     />
     <exclude name="Squiz.Files.FileExtension.ClassFound"/>
     <exclude name="Squiz.Formatting.OperatorBracket.MissingBrackets"/>
@@ -257,6 +261,8 @@ name="PSR2.ControlStructures.ControlStructureSpacing.SpacingAfterOpenBrace"
     <exclude name="Squiz.Operators.ComparisonOperatorUsage.NotAllowed"/>
     <exclude name="Squiz.Operators.ComparisonOperatorUsage.ImplicitTrue"/>
     <exclude name="Squiz.PHP.CommentedOutCode"/>
+    <exclude name="Squiz.PHP.DisallowBooleanStatement.Found"/>
+    <exclude name="Squiz.PHP.DisallowInlineIf.Found"/>
     <exclude name="Squiz.Strings.EchoedStrings.HasBracket"/>
     <exclude
       name="Squiz.WhiteSpace.FunctionClosingBraceSpace.SpacingBeforeClose"

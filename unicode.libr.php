@@ -362,6 +362,7 @@ Otherwise, it returns true.
 
 @param string $s_file_path The input file_path.
 
+@throws \Exception When the file is not found.
 @throws DOSAS_unicode\InvalidEncodingException When the input string is not
                                                valid ASCII.
 
@@ -479,12 +480,12 @@ check_string_is_valid_UTF8.
 
 @return bool
 */
-function get_use_fast_path(){
+function get_use_fast_path() : bool {
   // Before PHP 5.4, Unicode support has bugs,
   // both in mb_check_encoding and preg_match.
   // See https://github.com/php/php-src/issues/22279
   return PHP_VERSION_ID >= 50400;
-}
+}//end get_use_fast_path()
 
 
 
@@ -499,6 +500,8 @@ See https://datatracker.ietf.org/doc/html/rfc3629
 @param bool $b_fast_path Use the fast-path or not to check quickly that
                          there is no error.
 
+@throws \Exception When called with $b_fast_path set to true but PHP
+                   version is incompatible.
 @throws DOSAS_unicode\InvalidEncodingException When the input string is not
                                                valid UTF-8.
 
@@ -613,7 +616,7 @@ function check_string_is_valid_UTF8(
           $s_message_for_continuation_octet_above_maximum !== null
           && $i_current_octet > $i_current_continuation_octet_maximum
           ? $s_message_for_continuation_octet_above_maximum
-          :' which is not a continuation octet.',
+          : ' which is not a continuation octet.',
           $i_current_octet,
           $i_continuation_octet_needed,
           $i_offset_in_octets_from_string_start,
@@ -717,11 +720,11 @@ function check_string_is_valid_UTF8(
         $i_current_continuation_octet_minimum = 128;  // Normal value
         $i_current_continuation_octet_maximum = 159;
         $s_message_for_continuation_octet_above_maximum = (
-          " which is into the forbidden range of surrogate pairs."
+          ' which is into the forbidden range of surrogate pairs.'
         );
       }
       continue;
-    }
+    }//end if(/*$i_current_octet >= 224 &&*/ $i_current_octet < 240)
 
     if(/*$i_current_octet >= 240 &&*/ $i_current_octet < /*248*/ 245){
       // 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
@@ -807,6 +810,9 @@ Otherwise, it returns true.
 @param bool $b_fast_path Use the fast-path or not to check quickly that
                          there is no error.
 
+@throws \Exception When the file is not found OR when called with
+                   $b_fast_path set to true but PHP version is
+                   incompatible.
 @throws DOSAS_unicode\InvalidEncodingException When the input string is not
                                                valid UTF-8.
 

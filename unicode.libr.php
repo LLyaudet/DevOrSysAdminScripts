@@ -481,17 +481,27 @@ Otherwise, it returns true.
 See https://datatracker.ietf.org/doc/html/rfc3629
 
 @param string $s_string The input string.
+@param bool $b_fast_path Use the fast-path or not to check quickly that
+                         there is no error.
 
 @throws DOSAS_unicode\InvalidEncodingException When the input string is not
                                                valid UTF-8.
 
 @return bool
 */
-function check_string_is_valid_UTF8(string $s_string) : bool {
+function check_string_is_valid_UTF8(
+  string $s_string,
+  bool $b_fast_path = true,
+) : bool {
   // Fast-path
   // But before PHP 5.4 Unicode support has bugs.
   // See https://github.com/php/php-src/issues/22279
-  if(PHP_VERSION_ID >= 50400){
+  if($b_fast_path && PHP_VERSION_ID < 50400){
+    throw new \Exception(
+      'Fast-path is not available with version '.PHP_VERSION_ID.'of PHP.'
+    );
+  }
+  if($b_fast_path){
     if(function_exists('mb_check_encoding')){
       if(mb_check_encoding($s_string, 'UTF-8')){
         return true;
@@ -755,6 +765,16 @@ function check_string_is_valid_UTF8(string $s_string) : bool {
       $i_character_start_position_from_line_start,
       $i_current_continuation_octet_minimum,
       $i_current_continuation_octet_maximum,
+    );
+    throw new InvalidEncodingException($s_message, $arr_data);
+  }
+
+  if($b_fast_path){
+    throw new InvalidEncodingException(
+      "Fast-path detected an error that this function couldn't found."
+      .'Please create an issue at '
+      .'"https://github.com/LLyaudet/DevOrSysAdminScripts/issues".',
+      [],
     );
   }
 

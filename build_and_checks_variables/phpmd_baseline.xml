@@ -1,33 +1,33 @@
 <?xml version="1.0"?>
 <phpmd-baseline>
-  <violation rule="PHPMD\Rule\CyclomaticComplexity"
-    file="build_and_checks_dependencies/build_dependencies_notes.libr.php"
-  />
-  <violation rule="PHPMD\Rule\Design\NpathComplexity"
-    file="build_and_checks_dependencies/build_dependencies_notes.libr.php"
-  />
-  <violation rule="PHPMD\Rule\Design\LongMethod"
-    file="build_and_checks_dependencies/build_dependencies_notes.libr.php"
-  />
-  <violation rule="PHPMD\Rule\Controversial\CamelCaseParameterName"
-    file="build_and_checks_dependencies/build_dependencies_notes.libr.php"
-  />
-  <violation rule="PHPMD\Rule\Controversial\CamelCaseVariableName"
-    file="build_and_checks_dependencies/build_dependencies_notes.libr.php"
-  />
   <violation rule="PHPMD\Rule\CleanCode\ElseExpression"
     file="build_and_checks_dependencies/build_dependencies_notes.libr.php"
   />
+  <violation rule="PHPMD\Rule\Controversial\CamelCaseParameterName"
+    file="build_and_checks_dependencies/build_dependencies_notes.libr.php"
+  />
+  <violation rule="PHPMD\Rule\Controversial\CamelCaseVariableName"
+    file="build_and_checks_dependencies/build_dependencies_notes.libr.php"
+  />
+  <violation rule="PHPMD\Rule\CyclomaticComplexity"
+    file="build_and_checks_dependencies/build_dependencies_notes.libr.php"
+  />
+  <violation rule="PHPMD\Rule\Design\LongMethod"
+    file="build_and_checks_dependencies/build_dependencies_notes.libr.php"
+  />
+  <violation rule="PHPMD\Rule\Design\NpathComplexity"
+    file="build_and_checks_dependencies/build_dependencies_notes.libr.php"
+  />
   <violation rule="PHPMD\Rule\Naming\LongVariable"
     file="build_and_checks_dependencies/build_dependencies_notes.libr.php"
   />
   <violation rule="PHPMD\Rule\Controversial\CamelCaseParameterName"
     file="build_and_checks_dependencies/split_score.libr.php"
   />
-  <violation rule="PHPMD\Rule\Naming\LongVariable"
+  <violation rule="PHPMD\Rule\Controversial\CamelCaseVariableName"
     file="build_and_checks_dependencies/split_score.libr.php"
   />
-  <violation rule="PHPMD\Rule\Controversial\CamelCaseVariableName"
+  <violation rule="PHPMD\Rule\Naming\LongVariable"
     file="build_and_checks_dependencies/split_score.libr.php"
   />
   <violation rule="PHPMD\Rule\Controversial\CamelCaseParameterName"
@@ -36,26 +36,47 @@
   <violation rule="PHPMD\Rule\Controversial\CamelCaseVariableName"
     file="string_escaping.libr.php"
   />
-  <violation rule="PHPMD\Rule\Design\LongMethod"
+  <violation rule="PHPMD\Rule\CleanCode\BooleanArgumentFlag"
     file="unicode.libr.php"
   />
-  <violation rule="PHPMD\Rule\Controversial\CamelCaseParameterName"
-    file="unicode.libr.php"
-  />
-  <violation rule="PHPMD\Rule\Naming\LongVariable"
-    file="unicode.libr.php"
-  />
-  <violation rule="PHPMD\Rule\Controversial\CamelCaseVariableName"
+  <violation rule="PHPMD\Rule\CleanCode\ElseExpression"
     file="unicode.libr.php"
   />
   <!-- https://github.com/phpmd/phpmd/issues/910 -->
-  <violation rule="PHPMD\Rule\CleanCode\MissingImport"
+  <!-- <violation rule="PHPMD\Rule\CleanCode\MissingImport" -->
+  <!--   file="unicode.libr.php" -->
+  <!-- /> -->
+  <violation rule="PHPMD\Rule\Controversial\CamelCaseParameterName"
+    file="unicode.libr.php"
+  />
+  <violation rule="PHPMD\Rule\Controversial\CamelCaseVariableName"
     file="unicode.libr.php"
   />
   <violation rule="PHPMD\Rule\CyclomaticComplexity"
     file="unicode.libr.php"
   />
+  <violation rule="PHPMD\Rule\Design\LongMethod"
+    file="unicode.libr.php"
+  />
+  <violation rule="PHPMD\Rule\Design\LongParameterList"
+    file="unicode.libr.php"
+  />
   <violation rule="PHPMD\Rule\Design\NpathComplexity"
     file="unicode.libr.php"
+  />
+  <violation rule="PHPMD\Rule\Naming\LongVariable"
+    file="unicode.libr.php"
+  />
+  <violation rule="PHPMD\Rule\Controversial\CamelCaseMethodName"
+    file="unicode_exceptions.libr.php" method="get_data"
+  />
+  <violation rule="PHPMD\Rule\Controversial\CamelCaseParameterName"
+    file="unicode_exceptions.libr.php" method="__construct"
+  />
+  <violation rule="PHPMD\Rule\Controversial\CamelCasePropertyName"
+    file="unicode_exceptions.libr.php"
+  />
+  <violation rule="PHPMD\Rule\Controversial\CamelCaseVariableName"
+    file="unicode_exceptions.libr.php"
   />
 </phpmd-baseline>

@@ -480,14 +480,18 @@ See https://datatracker.ietf.org/doc/html/rfc3629
 */
 function check_string_is_valid_UTF8(string $s_string) : bool {
   // Fast-path
-  if(function_exists('mb_check_encoding')){
-    if(mb_check_encoding($s_string, 'UTF-8')){
-      return true;
+  // But before PHP 5.4 Unicode support has bugs.
+  // See https://github.com/php/php-src/issues/22279
+  if(PHP_VERSION_ID >= 50400){
+    if(function_exists('mb_check_encoding')){
+      if(mb_check_encoding($s_string, 'UTF-8')){
+        return true;
+      }
     }
-  }
-  else{
-    if(preg_match('//u', $s_string) === 1){
-      return true;
+    else{
+      if(preg_match('//u', $s_string) === 1){
+        return true;
+      }
     }
   }
 

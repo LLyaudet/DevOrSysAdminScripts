@@ -65,7 +65,7 @@ for UTF-8.
 
 @param int<0, 1114111> $i_code_point_in_decimal_notation The code point.
 
-@throws Exception When the code point is outside of Unicode range.
+@throws \Exception When the code point is outside of Unicode range.
 
 @return string The corresponding UTF-8 character.
 */
@@ -74,7 +74,7 @@ function decimal_code_point_to_UTF8(
 ) : string {
   // var_dump($i_code_point_in_decimal_notation);
   if($i_code_point_in_decimal_notation < 0){
-    throw new Exception('A unicode code point must not be negative.');
+    throw new \Exception('A unicode code point must not be negative.');
   }
   // 0xxxxxxx ASCII
   if($i_code_point_in_decimal_notation < 128){
@@ -215,7 +215,7 @@ function decimal_code_point_to_UTF8(
     );
   }//end if($i_code_point_in_decimal_notation < MAX_UNICODE_CODE_POINT)
   // phpcs:disable Squiz.Strings.DoubleQuoteUsage.NotRequired
-  throw new Exception(
+  throw new \Exception(
     "UTF-8 avec jusqu'à 6 octets a été abandonné il y a longtemps."
     ." Autre anecdote \"débile\" : MySQL a de base UTF-8 avec jusqu'à"
     ." 3 octets au lieu de 4 :face-palm:."
@@ -237,7 +237,7 @@ that is denoted by the hexadecimal digits.
 
 @param string $s_code_point_in_hexadecimal_notation The code point.
 
-@throws Exception When the code point is outside of Unicode range.
+@throws \Exception When the code point is outside of Unicode range.
 
 @return string The corresponding UTF-8 character.
 */
@@ -271,10 +271,10 @@ function hexa_code_point_to_UTF8(
       );
       continue;
     }
-    throw new Exception('Not an hexadecimal digit.');
+    throw new \Exception('Not an hexadecimal digit.');
   }
   if($i_code_point_in_decimal_notation > MAX_UNICODE_CODE_POINT){
-    throw new Exception(
+    throw new \Exception(
       'Hexadecimal integer is greater than UTF-8 maximum code point.'
     );
   }
@@ -361,7 +361,7 @@ Otherwise, it returns true.
 function check_file_is_valid_ASCII(string $s_file_path) : bool {
   $s_string = file_get_contents($s_file_path);
   if($s_string === false){
-    throw new Exception('File '.$s_file_path.' not found.');
+    throw new \Exception('File '.$s_file_path.' not found.');
   }
   return check_string_is_valid_ASCII($s_string);
 }//end check_file_is_valid_ASCII()
@@ -511,6 +511,7 @@ function check_string_is_valid_UTF8(string $s_string) : bool {
   $I_CONTINUATION_OCTET_MAXIMUM = 191;
   $i_current_continuation_octet_minimum = $I_CONTINUATION_OCTET_MINIMUM;
   $i_current_continuation_octet_maximum = $I_CONTINUATION_OCTET_MAXIMUM;
+  $s_message_for_continuation_octet_above_maximum = null;
 
   for($i = 0, $i_max = strlen($s_string); $i < $i_max; ++$i){
     $i_current_octet = ord($s_string[$i]);
@@ -575,7 +576,10 @@ function check_string_is_valid_UTF8(string $s_string) : bool {
           'message' => $s_message,
           'data' => $arr_data,
         ] = get_message_and_data_array(
-          ' which is not a continuation octet.',
+          $s_message_for_continuation_octet_above_maximum !== null
+          && $i_current_octet > $i_current_continuation_octet_maximum
+          ? $s_message_for_continuation_octet_above_maximum
+          :' which is not a continuation octet.',
           $i_current_octet,
           $i_continuation_octet_needed,
           $i_offset_in_octets_from_string_start,
@@ -640,39 +644,12 @@ function check_string_is_valid_UTF8(string $s_string) : bool {
       throw new InvalidEncodingException($s_message, $arr_data);
     }//end if($i_current_octet >= 128 && $i_current_octet < 192)
 
-    /*
-    The definition of UTF-8 prohibits encoding character numbers between
-    U+D800 and U+DFFF.
-    D8 = 13*16 + 8  = 216 = 11010100
-    DF = 13*16 + 15 = 223 = 11010101
-    */
-    if($i_current_octet >= 216 && $i_current_octet <= 223){
-      [
-        'message' => $s_message,
-        'data' => $arr_data,
-      ] = get_message_and_data_array(
-        ' which is into forbidden range of values D8 to DF'
-        .' for first octet of character.',
-        $i_current_octet,
-        $i_continuation_octet_needed,
-        $i_offset_in_octets_from_string_start,
-        $i_offset_in_characters_from_string_start,
-        $i_character_start_position_from_string_start,
-        $i_current_line_number,
-        $i_offset_in_octets_from_line_start,
-        $i_offset_in_characters_from_line_start,
-        $i_character_start_position_from_line_start,
-        $i_current_continuation_octet_minimum,
-        $i_current_continuation_octet_maximum,
-      );
-      throw new InvalidEncodingException($s_message, $arr_data);
-    }
-
     if(/*$i_current_octet >= 192 &&*/ $i_current_octet < 224){
       // 110xxxxx 10xxxxxx
       $i_continuation_octet_needed = 1;
       continue;
     }
+
     if(/*$i_current_octet >= 224 &&*/ $i_current_octet < 240){
       // 1110xxxx 10xxxxxx 10xxxxxx
       $i_continuation_octet_needed = 2;
@@ -681,6 +658,22 @@ function check_string_is_valid_UTF8(string $s_string) : bool {
                %xED %x80-9F UTF8-tail / %xEE-EF 2( UTF8-tail )
       Notice that E0 = 224 adds a restriction on second octet.
       Notice that ED = 237 adds a restriction on second octet.
+
+      The definition of UTF-8 prohibits encoding character numbers between
+      U+D800 and U+DFFF.
+      D8 = 13*16 + 8  = 216 = 11010100
+      DF = 13*16 + 15 = 223 = 11010101
+      216*256 = 55296       = 1101 1000 0000 0000 = D800
+      to
+      223*256 + 255 = 57343 = 1101 1111 1111 1111 = DFFF
+
+      1110xxxx
+      11101101 = 237 = ED
+
+      237,160,128
+      237,191,191
+      Thus, the whole "continuation range" is forbidden if start
+      is 237 and second octet, first continuation octet, is >= 160.
       */
       if($i_current_octet === 224){
         $i_current_continuation_octet_minimum = 160;
@@ -689,9 +682,13 @@ function check_string_is_valid_UTF8(string $s_string) : bool {
       if($i_current_octet === 237){
         $i_current_continuation_octet_minimum = 128;  // Normal value
         $i_current_continuation_octet_maximum = 159;
+        $s_message_for_continuation_octet_above_maximum = (
+          " which is into the forbidden range of surrogate pairs."
+        );
       }
       continue;
     }
+
     if(/*$i_current_octet >= 240 &&*/ $i_current_octet < /*248*/ 245){
       // 11110xxx 10xxxxxx 10xxxxxx 10xxxxxx
       $i_continuation_octet_needed = 3;
@@ -711,6 +708,7 @@ function check_string_is_valid_UTF8(string $s_string) : bool {
       }
       continue;
     }
+
     [
       'message' => $s_message,
       'data' => $arr_data,
@@ -771,7 +769,7 @@ Otherwise, it returns true.
 function check_file_is_valid_UTF8(string $s_file_path) : bool {
   $s_string = file_get_contents($s_file_path);
   if($s_string === false){
-    throw new Exception('File '.$s_file_path.' not found.');
+    throw new \Exception('File '.$s_file_path.' not found.');
   }
   return check_string_is_valid_UTF8($s_string);
 }//end check_file_is_valid_UTF8()

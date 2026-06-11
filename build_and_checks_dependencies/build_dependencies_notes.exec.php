@@ -38,5 +38,13 @@ declare(encoding='UTF-8');
 require_once 'string_escaping.libr.php';
 require_once 'build_dependencies_notes.libr.php';
 
+if(PHP_SAPI !== 'cli'){
+  fwrite(
+    STDERR,
+    "build_dependencies_notes.exec.php must be run in a shell.\n",
+  );
+  die(1);
+}
+
 build_dependencies_notes($argv[1]);
 ?>

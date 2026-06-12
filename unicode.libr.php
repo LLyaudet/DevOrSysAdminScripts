@@ -37,6 +37,8 @@ declare(encoding='UTF-8');
 
 namespace DOSAS_unicode;
 
+use Exception;
+
 /*
 Max value for Unicode is 10FFFF != 16*255*255 = 16*65025 = 1040400... XD
 Max value for Unicode is 10FFFF = (16*256+255)*256+255
@@ -495,10 +497,21 @@ if the input string is not valid UTF-8.
 Otherwise, it returns true.
 
 See https://datatracker.ietf.org/doc/html/rfc3629
+See https://github.com/Seldaek/jsonlint/pull/98
+for why it may be a good idea to have the last two parameters.
+Note that a very clever compiler would merge both booleans into
+a single integer parameter using binary flags.
+If you want to use this function with fast-path and fallback on slow-path
+in case of error, then set both booleans to true.
+If, for testing/benchmarking purpose, you want to compare the results
+of fast-path and slow-path, call this function twice with a single boolean
+set, and store/compare the results.
 
 @param string $s_string The input string.
 @param bool $b_fast_path Use the fast-path or not to check quickly that
                          there is no error.
+@param bool $b_slow_path Use the slow-path or not to check that
+                         there is no error or give detailed error message.
 
 @throws \Exception When called with $b_fast_path set to true but PHP
                    version is incompatible.
@@ -510,6 +523,7 @@ See https://datatracker.ietf.org/doc/html/rfc3629
 function check_string_is_valid_UTF8(
   string $s_string,
   bool $b_fast_path = true,
+  bool $b_slow_path = true,
 ) : bool {
   // Fast-path
   // But before PHP 5.4 Unicode support has bugs.
@@ -530,6 +544,18 @@ function check_string_is_valid_UTF8(
         return true;
       }
     }
+  }
+  else{
+    if(!$b_slow_path){
+      throw new \Exception(
+        "Don't call check_string_is_valid_UTF8 without at least one of"
+        .' fast-path or slow-path required.'
+      );
+    }
+  }
+
+  if(!$b_slow_path){
+    return false;
   }
 
   $i_current_octet = null;
@@ -871,7 +897,25 @@ foreach($arr as $s_hexa){
   echo($s3."\n");
 }
 
-var_dump(DOSAS_unicode\check_file_is_valid_UTF8("validutf8.json"));
-var_dump(DOSAS_unicode\check_file_is_valid_UTF8("nonvalidutf8.json"));
+?>
+<?php
+require_once("./unicode_exceptions.libr.php");
+require_once("./unicode.libr.php");
+// var_dump(DOSAS_unicode\check_file_is_valid_UTF8("validutf8.json"));
+// var_dump(DOSAS_unicode\check_file_is_valid_UTF8("nonvalidutf8.json"));
+var_dump(DOSAS_unicode\check_string_is_valid_UTF8("abcdé"));
+var_dump(DOSAS_unicode\check_string_is_valid_UTF8("abcdé", true, false));
+var_dump(DOSAS_unicode\check_string_is_valid_UTF8("abcdé", false, true));
+var_dump(
+  DOSAS_unicode\check_string_is_valid_UTF8("abcd".chr(233), true, false)
+);
+if(true){
+  var_dump(DOSAS_unicode\check_string_is_valid_UTF8("abcd".chr(233)));
+}
+else{
+  var_dump(
+    DOSAS_unicode\check_string_is_valid_UTF8("abcd".chr(233), false, true)
+  );
+}
 //*/
 ?>

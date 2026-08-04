@@ -94,7 +94,7 @@ namespace DOSASfiles {
       }
       return $this->s_content;
     }
-  }
+  }//end new FileData()
 
 
 
@@ -280,6 +280,53 @@ namespace DOSASfiles {
     ];
   }//end compare_files_under_directories()
 
+
+
+  /**
+  Archive some directory files into another directory.
+
+  @param string $s_source_dirpath The source directory to search in.
+  @param string $s_dest_dirpath The archive directory to move files in.
+  @param bool $b_archive_if_missing_relative_filepath
+  @param bool $b_archive_if_missing_content
+
+  @return void
+  */
+  function archive_directory_into_another(
+    string $s_source_dirpath,
+    string $s_dest_dirpath,
+    bool $b_archive_if_missing_relative_filepath,
+    bool $b_archive_if_missing_content,
+  ){
+    $arr_files_data = compare_files_under_directories(
+      $s_source_dirpath,
+      $s_dest_dirpath,
+    );
+    foreach(
+      $arr_files_data["source_files_data"][
+        "files_by_path_from_reference_directory"
+      ]
+      as $o_file_data
+    ){
+      if(
+        (
+          $b_archive_if_missing_relative_filepath
+          && !$o_file_data->b_exists_with_same_relative_path
+        )
+        ||
+        (
+          $b_archive_if_missing_content
+          && !$o_file_data->b_exists_with_same_content
+        )
+      ){
+        shell_exec(
+          "cp --backup=numbered"
+          ." '".preg_replace("/'/", "'\"'\"'", $o_file_data->s_filepath)."'"
+          ." '".preg_replace("/'/", "'\"'\"'", $s_dest_dirpath)."'"
+        );
+      }
+    }//end foreach($arr_files_data["source_files_data"][...] as $o_file_data)
+  }//end archive_directory_into_another()
 }//end namespace DOSASfiles
 
 
@@ -294,6 +341,12 @@ var_dump(
     "/home/laurent/.config/libreoffice/4/user/backup/",
     "/home/laurent/Documents/LibreOfficeArchives/",
   )
+);
+DOSASfiles\archive_directory_into_another(
+  "/home/laurent/.config/libreoffice/4/user/backup/",
+  "/home/laurent/Documents/LibreOfficeArchives/",
+  false,
+  true,
 );
 */
 ?>

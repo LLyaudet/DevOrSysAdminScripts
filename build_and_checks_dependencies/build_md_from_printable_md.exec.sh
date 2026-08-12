@@ -80,7 +80,7 @@ build_md_from_printable_md(){
 
   if [[ ! -f "${LFBFL_base_name}.md" ]]; then
     printf "No file %s.md\n" "${LFBFL_base_name}"
-    return 1
+    return 2
   fi
 
   pandoc --from=markdown --to=html --standalone\

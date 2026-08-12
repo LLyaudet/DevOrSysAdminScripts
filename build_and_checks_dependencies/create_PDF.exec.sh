@@ -143,7 +143,7 @@ create_PDF(){
     | replace_non_ascii_spaces\
     > "${LFBFL_temp_path}/current_tree_light.txt"
 
-  tree -a -DFh --gitignore\
+  tree -a -Fh --timefmt='%F %R' --gitignore\
     -I "node_modules/"\
     -I "__pycache__/"\
     -I ".mypy_cache/"\

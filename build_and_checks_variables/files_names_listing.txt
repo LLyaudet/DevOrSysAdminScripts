@@ -56,6 +56,7 @@ build_and_checks_dependencies/lines_filters.libr.sh
 build_and_checks_dependencies/lines_maps.libr.sh
 // build_and_checks_dependencies/listings/files_listing.tex.tpl
 build_and_checks_dependencies/overwrite_if_not_equal.libr.sh
+build_and_checks_dependencies/phpmd_baseline.xslt
 build_and_checks_dependencies/python_black_complement.libr.sh
 build_and_checks_dependencies/python_isort_complement.libr.sh
 build_and_checks_dependencies/repository_data.libr.sh
@@ -80,6 +81,8 @@ build_and_checks_variables/files_names_listing.txt
 build_and_checks_variables/licenses_notes.txt
 build_and_checks_variables/phpcs_ruleset.xml
 build_and_checks_variables/phpmd_baseline.xml
+build_and_checks_variables/phpstan_baseline.neon
+build_and_checks_variables/phpstan_config.neon
 build_and_checks_variables/pylintrc.toml
 build_and_checks_variables/repository_data.txt
 build_and_checks_variables/repository_data.txt.tpl
@@ -93,6 +96,7 @@ COPYING.LESSER
 // DevOrSysAdminScripts.html
 // DevOrSysAdminScripts.pdf
 // EncoreBlasé20240517-20240518.txt
+files.libr.php
 git_helpers/git_checks.libr.sh
 git_helpers/post-commit
 git_helpers/post_commit_renaming_comment.libr.sh
@@ -115,5 +119,6 @@ you_can_see_that_it_works.txt
 README.md.tpl
 string_escaping.libr.php
 unicode.libr.php
+unicode_exceptions.libr.php
 upgrade_build_and_checks.exec.sh
 wget_sha512.libr.sh

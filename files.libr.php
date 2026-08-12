@@ -59,7 +59,7 @@ namespace DOSASfiles {
     public $s_content;
     // Status relative to another directory
     // At The Same Time (ATST)
-    public bool $b_exists_with_same_relative_path_and_same_content; // ATST
+    public bool $b_exists_with_same__relative_path_and_content; // ATST
     public bool $b_exists_with_same_relative_path;
     public bool $b_exists_with_same_content;
 
@@ -80,7 +80,7 @@ namespace DOSASfiles {
       $this->s_content = file_get_contents($this->s_filepath);
       $this->i_size = strlen($this->s_content);
       $this->s_hash = md5($this->s_content);
-      $this->b_exists_with_same_relative_path_and_same_content = false;
+      $this->b_exists_with_same__relative_path_and_content = false;
       $this->b_exists_with_same_relative_path = false;
       $this->b_exists_with_same_content = false;
     }
@@ -195,10 +195,10 @@ namespace DOSASfiles {
           && $o_file_data2->get_s_content()
           === $o_file_data->get_s_content()
         ){
-          $o_file_data->b_exists_with_same_relative_path_and_same_content =
+          $o_file_data->b_exists_with_same__relative_path_and_content =
             true;
           $o_file_data->b_exists_with_same_content = true;
-          $o_file_data2->b_exists_with_same_relative_path_and_same_content =
+          $o_file_data2->b_exists_with_same__relative_path_and_content =
             true;
           $o_file_data2->b_exists_with_same_content = true;
           $o_file_data->s_content = null;
@@ -240,7 +240,7 @@ namespace DOSASfiles {
         as $o_file_data
       ){
         if(
-          $o_file_data->b_exists_with_same_relative_path_and_same_content
+          $o_file_data->b_exists_with_same__relative_path_and_content
         ){
           continue;
         }
@@ -321,11 +321,12 @@ namespace DOSASfiles {
       ){
         shell_exec(
           "cp --backup=numbered"
-          ." '".preg_replace("/'/", "'\"'\"'", $o_file_data->s_filepath)."'"
+          ." '".preg_replace("/'/", "'\"'\"'", $o_file_data->s_filepath)
+          ."'"
           ." '".preg_replace("/'/", "'\"'\"'", $s_dest_dirpath)."'"
         );
       }
-    }//end foreach($arr_files_data["source_files_data"][...] as $o_file_data)
+    }//end foreach($arr_files_data["source_files_data"][] as $o_file_data)
   }//end archive_directory_into_another()
 }//end namespace DOSASfiles
 

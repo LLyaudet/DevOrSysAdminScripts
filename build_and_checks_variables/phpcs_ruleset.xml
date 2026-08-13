@@ -271,6 +271,9 @@ name="PSR2.ControlStructures.ControlStructureSpacing.SpacingAfterOpenBrace"
     <exclude name="Squiz.Operators.ComparisonOperatorUsage.ImplicitTrue"/>
     <exclude name="Squiz.PHP.CommentedOutCode"/>
     <exclude name="Squiz.PHP.DisallowBooleanStatement.Found"/>
+    <exclude
+      name="Squiz.PHP.DisallowComparisonAssignment.AssignedComparison"
+    />
     <exclude name="Squiz.PHP.DisallowInlineIf.Found"/>
     <exclude name="Squiz.Strings.EchoedStrings.HasBracket"/>
     <exclude

@@ -92,6 +92,13 @@ common_build_and_checks(){
   @sha512_build_dependencies_notes.libr.php@
   wrapped_wget_sha512
 
+  LFBFL_file_name="build_file_from_printable_file__standard.exec.sh"
+  LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
+  LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
+  @sha512_build_file_from_printable_file__standard.exec.sh@
+  wrapped_wget_sha512
+  chmod +x "./${LFBFL_file_path}"
+
   LFBFL_file_name="build_md_from_printable_md.exec.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
@@ -345,6 +352,26 @@ common_build_and_checks(){
         --work-directory="${LFBFL_some_directory}"\
         --base-name="${LFBFL_file_name}"\
         "${LFBFL_verbose}"
+    done
+  fi
+
+  printf "Building other standard files\n"
+  LFBFL_s_files_paths=$(
+    find "${LFBFL_work_directory}" -type f -name "*.neon.tpl"\
+    | relevant_find
+  )
+  if [[ -n "${LFBFL_s_files_paths}" ]]; then
+    mapfile -t LFBFL_arr_files_paths <<< "${LFBFL_s_files_paths}"
+    for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do
+      printf "Found template %s.\n" "${LFBFL_file_path}"
+      LFBFL_some_directory=$(dirname -- "${LFBFL_file_path}")
+      LFBFL_file_name=$(basename -- "${LFBFL_file_path}")
+      LFBFL_file_name=${LFBFL_file_name%.tpl}
+      "./${LFBFL_subdir}/build_file_from_printable_file__standard.exec.sh"\
+        --work-directory="${LFBFL_some_directory}"\
+        --base-name="${LFBFL_file_name}"\
+        "${LFBFL_verbose}"\
+        --remove-leading-whitespaces-after-escaped-line-return
     done
   fi
 

@@ -96,12 +96,21 @@ common_build_and_checks(){
   LFBFL_correct_sha512+='f971f8734b103feae78d48867a29d4d566f2201'
   wrapped_wget_sha512
 
+  LFBFL_file_name="build_file_from_printable_file__standard.exec.sh"
+  LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
+  LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
+  LFBFL_correct_sha512='9c5b11280019b4bbc679bddb8eb5c66d9ef715d04c8c1'
+  LFBFL_correct_sha512+='9e2cbd55e08ad38169b82aa2de5fe59f46053552a358'
+  LFBFL_correct_sha512+='d92f3554cfc8ce7d930055b400ec1e6ee5e3069'
+  wrapped_wget_sha512
+  chmod +x "./${LFBFL_file_path}"
+
   LFBFL_file_name="build_md_from_printable_md.exec.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='500e10ac1b95a41b4d8c045bc7347a7473e7392168d3d'
-  LFBFL_correct_sha512+='7f40f3d8a08e8fcb1f5229e548729684e33687afa759'
-  LFBFL_correct_sha512+='34330727bf8b1884d45fda03a5407c9a6d798ef'
+  LFBFL_correct_sha512='a39101cb7c0a7a743386b0c8745071cc15f8fd93be3ac'
+  LFBFL_correct_sha512+='94bd5d69860836e4ae94b08a3219c2542f9d6501f0b4'
+  LFBFL_correct_sha512+='d4b1bc40700afcb1b555bbbe25de6485f95c361'
   wrapped_wget_sha512
   chmod +x "./${LFBFL_file_path}"
 
@@ -124,9 +133,9 @@ common_build_and_checks(){
   LFBFL_file_name="check_URLs.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='57113f2f2f0de5bb1e1c080232b8529ac347920b545fa'
-  LFBFL_correct_sha512+='d919c69fb4ab19898239e70384d586beb0f1d5f7f274'
-  LFBFL_correct_sha512+='f900bf0f8fc0ac7368aac6ec5b28ec4cef8fddf'
+  LFBFL_correct_sha512='d3ddcd56520d1786cd5afb8fd0f7ee278ed7307a6f5d2'
+  LFBFL_correct_sha512+='1f948d0f2f6f2ed5210072d923f2036643c7181012fc'
+  LFBFL_correct_sha512+='15d7921f5617105012a14b8adc9acc76d2b50cb'
   wrapped_wget_sha512
 
   LFBFL_file_name="common_options.libr.sh"
@@ -165,9 +174,9 @@ common_build_and_checks(){
   LFBFL_file_name="get_common_text_glob_patterns.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='6c2f4b4ddc270c3d2ce9c88327efcb17510f10cac9b0f'
-  LFBFL_correct_sha512+='88ca3b585dcba2d7997bed299a97102bff194fccae8c'
-  LFBFL_correct_sha512+='771db6e735412ec6d0f9b3ccbe8416f95e79dfa'
+  LFBFL_correct_sha512='0945c9896ce9d26637a8ba5c08a1fdad102b725de26ce'
+  LFBFL_correct_sha512+='088e519a3696925465007ad0b460ae7433174d8af848'
+  LFBFL_correct_sha512+='b77dfdff0da78534453e90303d3bd458bf378e9'
   wrapped_wget_sha512
 
   LFBFL_file_name="grammar_and_spelling_check.libr.sh"
@@ -308,9 +317,9 @@ common_build_and_checks(){
   LFBFL_file_name="too_long_code_lines.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='4d7ca9bd78576a15d16a922d05a27cbea465773625e04'
-  LFBFL_correct_sha512+='7eb7aad23374e104a5c2dfcc25bee4bfa4452b55672e'
-  LFBFL_correct_sha512+='2f99319cec2ca95cf06503b78add0b1408febef'
+  LFBFL_correct_sha512='0571332f70cd5700f35ba5eb804bbe20a58d01ca33635'
+  LFBFL_correct_sha512+='c36f40a8aa24ddc7926ee66d6372191b91e6b2ffcac3'
+  LFBFL_correct_sha512+='9d4e89ef8a1e0c32cbae6c2e1e69437a65d3efc'
   wrapped_wget_sha512
 
   LFBFL_file_name="update_or_check_files_names_listing.exec.sh"
@@ -403,6 +412,26 @@ common_build_and_checks(){
         --work-directory="${LFBFL_some_directory}"\
         --base-name="${LFBFL_file_name}"\
         "${LFBFL_verbose}"
+    done
+  fi
+
+  printf "Building other standard files\n"
+  LFBFL_s_files_paths=$(
+    find "${LFBFL_work_directory}" -type f -name "*.neon.tpl"\
+    | relevant_find
+  )
+  if [[ -n "${LFBFL_s_files_paths}" ]]; then
+    mapfile -t LFBFL_arr_files_paths <<< "${LFBFL_s_files_paths}"
+    for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do
+      printf "Found template %s.\n" "${LFBFL_file_path}"
+      LFBFL_some_directory=$(dirname -- "${LFBFL_file_path}")
+      LFBFL_file_name=$(basename -- "${LFBFL_file_path}")
+      LFBFL_file_name=${LFBFL_file_name%.tpl}
+      "./${LFBFL_subdir}/build_file_from_printable_file__standard.exec.sh"\
+        --work-directory="${LFBFL_some_directory}"\
+        --base-name="${LFBFL_file_name}"\
+        "${LFBFL_verbose}"\
+        --remove-leading-whitespaces-after-escaped-line-return
     done
   fi
 

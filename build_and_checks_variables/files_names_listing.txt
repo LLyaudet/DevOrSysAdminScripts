@@ -83,7 +83,8 @@ build_and_checks_variables/files_names_listing.txt
 build_and_checks_variables/licenses_notes.txt
 build_and_checks_variables/phpcs_ruleset.xml
 build_and_checks_variables/phpmd_baseline.xml
-build_and_checks_variables/phpstan_baseline.neon
+// build_and_checks_variables/phpstan_baseline.neon
+build_and_checks_variables/phpstan_baseline.neon.tpl
 // build_and_checks_variables/phpstan_config.neon
 build_and_checks_variables/phpstan_config.neon.tpl
 build_and_checks_variables/pylintrc.toml
@@ -111,6 +112,7 @@ LiensUtiles.txt
 a_long_long_long_long_long_long_long_long_long_filename_so_that_you_can_se\
 e_that_it_works.txt
 miscellaneous/funny.sh
+miscellaneous/grep_benchmark.sh
 miscellaneous/spampty_data.txt
 miscellaneous/string_escaping.html
 miscellaneous/string_escaping.xhtml

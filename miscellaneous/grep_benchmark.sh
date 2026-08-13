@@ -24,6 +24,7 @@
 
 some_diff(){
   for ((i=0; i < 1000; ++i)); do
+    # shellcheck disable=SC2312
     diff --suppress-common-lines\
       build_and_checks_variables/phpmd_baseline.xml\
       build_and_checks_variables/temp/phpmd_baseline.xml\
@@ -36,51 +37,51 @@ some_diff(){
 
 some_diff2(){
   for ((i=0; i < 1000; ++i)); do
+    # shellcheck disable=SC2312
     diff --suppress-common-lines\
       build_and_checks_variables/phpmd_baseline.xml\
       build_and_checks_variables/temp/phpmd_baseline.xml\
       | grep --invert-match\
         --regexp='<!-- '\
-        --regexp='^[0-9]\+(,[0-9]\+)?d[0-9]\+$'
+        --regexp='^[0-9]\+\(,[0-9]\+\)\?d[0-9]\+$'
   done
 }
 
 some_diff3(){
   for ((i=0; i < 1000; ++i)); do
+    # shellcheck disable=SC2312
     diff --suppress-common-lines\
       build_and_checks_variables/phpmd_baseline.xml\
       build_and_checks_variables/temp/phpmd_baseline.xml\
       | grep --invert-match\
-        --regexp='(<!-- |^[0-9]\+d[0-9]\+$|^[0-9]\+,[0-9]\+d[0-9]\+$)'
+        --regexp='\(<!-- \|^[0-9]\+d[0-9]\+$\|^[0-9]\+,[0-9]\+d[0-9]\+$\)'
   done
 }
 
 some_diff4(){
   for ((i=0; i < 1000; ++i)); do
+    # shellcheck disable=SC2312
     diff --suppress-common-lines\
       build_and_checks_variables/phpmd_baseline.xml\
       build_and_checks_variables/temp/phpmd_baseline.xml\
       | grep --invert-match\
-        --regexp='(<!-- |^[0-9]\+(,[0-9]\+)?d[0-9]\+$)'
+        --regexp='\(<!-- \|^[0-9]\+\(,[0-9]\+\)\?d[0-9]\+$\)'
   done
 }
 
 #$ time some_diff
-# real	0m1,651s
-# user	0m0,771s
-# sys	0m1,992s
+# real	0m1,663s
+# user	0m0,795s
+# sys	0m1,975s
 #$ time some_diff2
-# real	0m1,758s
-# user	0m0,820s
-# sys	0m2,155s
+# real	0m1,597s
+# user	0m0,705s
+# sys	0m2,009s
 #$ time some_diff3
-# real	0m1,719s
-# user	0m0,817s
-# sys	0m2,107s
+# real	0m1,619s
+# user	0m0,758s
+# sys	0m1,969s
 #$ time some_diff4
-# real	0m1,692s
-# user	0m0,743s
-# sys	0m2,149s
-
-# /!\ Stupid and most readable code is the fastest. /!\
-# /!\ "I'll use features of REGEXP." "Now you have performance problems ;)"
+# real	0m1,574s
+# user	0m0,750s
+# sys	0m1,932s

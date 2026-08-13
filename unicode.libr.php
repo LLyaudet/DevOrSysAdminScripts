@@ -70,7 +70,7 @@ for UTF-8.
 function unicode_code_point_to_UTF8(int $i_unicode_code_point) : string {
   // var_dump($i_unicode_code_point);
   if($i_unicode_code_point < 0){
-    throw new \Exception('A unicode code point must not be negative.');
+    throw new Exception('A unicode code point must not be negative.');
   }
   // 0xxxxxxx ASCII
   if($i_unicode_code_point < 128){
@@ -188,7 +188,7 @@ function unicode_code_point_to_UTF8(int $i_unicode_code_point) : string {
     );
   }//end if($i_unicode_code_point < MAX_UNICODE_CODE_POINT)
   // phpcs:disable Squiz.Strings.DoubleQuoteUsage.NotRequired
-  throw new \Exception(
+  throw new Exception(
     "UTF-8 avec jusqu'à 6 octets a été abandonné il y a longtemps."
     ." Autre anecdote \"débile\" : MySQL a de base UTF-8 avec jusqu'à"
     ." 3 octets au lieu de 4 :face-palm:."
@@ -244,10 +244,10 @@ function hexa_code_point_to_UTF8(
       );
       continue;
     }
-    throw new \Exception('Not an hexadecimal digit.');
+    throw new Exception('Not an hexadecimal digit.');
   }
   if($i_unicode_code_point > MAX_UNICODE_CODE_POINT){
-    throw new \Exception(
+    throw new Exception(
       'Hexadecimal integer is greater than UTF-8 maximum code point.'
     );
   }
@@ -284,10 +284,10 @@ function decimal_code_point_to_UTF8(
       $i_unicode_code_point += (ord($s_digit) + $i_digit_offset);
       continue;
     }
-    throw new \Exception('Not a decimal digit.');
+    throw new Exception('Not a decimal digit.');
   }
   if($i_unicode_code_point > MAX_UNICODE_CODE_POINT){
-    throw new \Exception(
+    throw new Exception(
       'Decimal integer is greater than UTF-8 maximum code point.'
     );
   }
@@ -373,7 +373,7 @@ Otherwise, it returns true.
 function check_file_is_valid_ASCII(string $s_file_path) : bool {
   $s_string = file_get_contents($s_file_path);
   if($s_string === false){
-    throw new \Exception('File '.$s_file_path.' not found.');
+    throw new Exception('File '.$s_file_path.' not found.');
   }
   return check_string_is_valid_ASCII($s_string);
 }//end check_file_is_valid_ASCII()
@@ -529,7 +529,7 @@ function check_string_is_valid_UTF8(
   // But before PHP 5.4 Unicode support has bugs.
   // See https://github.com/php/php-src/issues/22279
   if($b_fast_path && !get_use_fast_path()){
-    throw new \Exception(
+    throw new Exception(
       'Fast-path is not available with version '.PHP_VERSION_ID.' of PHP.'
     );
   }
@@ -547,7 +547,7 @@ function check_string_is_valid_UTF8(
   }
   else{
     if(!$b_slow_path){
-      throw new \Exception(
+      throw new Exception(
         "Don't call check_string_is_valid_UTF8 without at least one of"
         .' fast-path or slow-path required.'
       );
@@ -850,7 +850,7 @@ function check_file_is_valid_UTF8(
 ) : bool {
   $s_string = file_get_contents($s_file_path);
   if($s_string === false){
-    throw new \Exception('File '.$s_file_path.' not found.');
+    throw new Exception('File '.$s_file_path.' not found.');
   }
   return check_string_is_valid_UTF8($s_string, $b_fast_path);
 }//end check_file_is_valid_UTF8()

@@ -698,7 +698,10 @@ common_build_and_checks(){
     "${LFBFL_temp_phpmd_baseline}"
   diff --suppress-common-lines\
     "${LFBFL_phpmd_baseline}" "${LFBFL_temp_phpmd_baseline}"\
-    | grep --invert-match --regexp='<!-- ' --regexp='^[0-9]\+d[0-9]\+$'
+    | grep --invert-match\
+      --regexp='<!-- '\
+      --regexp='^[0-9]\+d[0-9]\+$'\
+      --regexp='^[0-9]\+,[0-9]\+d[0-9]\+$'
 
   printf "Running PHPSTAN\n"
   if [[ LFBFL_i_upgrade_venvs -eq 1 ]]; then

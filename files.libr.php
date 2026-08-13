@@ -115,7 +115,7 @@ namespace DOSASfiles {
     /**
     The size of the content of the file.
 
-    @var integer $i_size
+    @var int $i_size
     */
     public int $i_size;
 
@@ -139,7 +139,7 @@ namespace DOSASfiles {
     Does the file exists with same relative path and same content
     At The Same Time (ATST)?
 
-    @var boolean $b_exists_with_same__relative_path_and_content
+    @var bool $b_exists_with_same__relative_path_and_content
     */
     public bool $b_exists_with_same__relative_path_and_content; // ATST
 
@@ -148,7 +148,7 @@ namespace DOSASfiles {
 
     Does the file exists with same relative path?
 
-    @var boolean $b_exists_with_same_relative_path
+    @var bool $b_exists_with_same_relative_path
     */
     public bool $b_exists_with_same_relative_path;
 
@@ -157,7 +157,7 @@ namespace DOSASfiles {
 
     Does the file exists with same content?
 
-    @var boolean $b_exists_with_same_content
+    @var bool $b_exists_with_same_content
     */
     public bool $b_exists_with_same_content;
 

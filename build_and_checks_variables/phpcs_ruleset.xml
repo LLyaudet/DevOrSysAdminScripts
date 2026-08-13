@@ -200,6 +200,7 @@ name="PSR2.ControlStructures.ControlStructureSpacing.SpacingAfterOpenBrace"
     <exclude name="Squiz.Commenting.FileComment.SpacingAfterOpen"/>
     <exclude name="Squiz.Commenting.FileComment.SubpackageTagOrder"/>
     <exclude name="Squiz.Commenting.FunctionComment.DuplicateReturn"/>
+    <exclude name="Squiz.Commenting.FunctionComment.EmptyThrows"/>
     <exclude name="Squiz.Commenting.FunctionComment.ExtraParamComment"/>
     <!-- asks for boolean instead of bool which is incorrect -->
     <exclude
@@ -225,6 +226,8 @@ name="PSR2.ControlStructures.ControlStructureSpacing.SpacingAfterOpenBrace"
     <exclude name="Squiz.Commenting.InlineComment.InvalidEndChar"/>
     <exclude name="Squiz.Commenting.LongConditionClosingComment.Invalid"/>
     <exclude name="Squiz.Commenting.PostStatementComment.Found"/>
+    <!-- asks for boolean instead of bool which is incorrect -->
+    <exclude name="Squiz.Commenting.VariableComment.IncorrectVarType"/>
     <exclude
       name="Squiz.ControlStructures.ControlSignature.SpaceAfterCloseBrace"
     />

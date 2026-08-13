@@ -347,36 +347,35 @@ build_licenses_templates(){
         # shellcheck disable=SC2059
         printf "${LFBFL_s_format}" "${LFBFL_key}" "${LFBFL_key}"
       fi
-      continue
-    fi
-    mapfile -t LFBFL_arr_files_paths <<< "${LFBFL_s_files_paths}"
-    for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do
-      LFBFL_i_is_whitelisted=0
-      for LFBFL_file_path2 in\
-        "${LFBFL_arr_files_without_license_header[@]}";
-      do
-        if [[ "${LFBFL_file_path}" == "${LFBFL_file_path2}" ]]; then
-          LFBFL_i_is_whitelisted=1
+    else
+      mapfile -t LFBFL_arr_files_paths <<< "${LFBFL_s_files_paths}"
+      for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do
+        LFBFL_i_is_whitelisted=0
+        for LFBFL_file_path2 in\
+          "${LFBFL_arr_files_without_license_header[@]}";
+        do
+          if [[ "${LFBFL_file_path}" == "${LFBFL_file_path2}" ]]; then
+            LFBFL_i_is_whitelisted=1
+          fi
+        done
+        if [[ LFBFL_i_is_whitelisted -eq 1 ]]; then
+          continue
+        fi
+        is_subfile "${LFBFL_file_path}" "${LFBFL_license_file_path}.temp"
+        LFBFL_i_not_subfile=$?
+        LFBFL_i_not_subfile2=1
+        if [[ -n "${LFBFL_license2}" ]]; then
+          is_subfile "${LFBFL_file_path}"\
+            "${LFBFL_license_file_path2}.temp"
+          LFBFL_i_not_subfile2=$?
+        fi
+        if [[ LFBFL_i_not_subfile -ge 1 && LFBFL_i_not_subfile2 -ge 1 ]];
+        then
+          printf "File %s has no/wrong license header?\n"\
+            "${LFBFL_file_path}"
         fi
       done
-      if [[ LFBFL_i_is_whitelisted -eq 1 ]]; then
-        continue
-      fi
-      is_subfile "${LFBFL_file_path}"\
-        "${LFBFL_license_file_path}.temp"
-      LFBFL_i_not_subfile=$?
-      LFBFL_i_not_subfile2=1
-      if [[ -n "${LFBFL_license2}" ]]; then
-        is_subfile "${LFBFL_file_path}"\
-          "${LFBFL_license_file_path2}.temp"
-        LFBFL_i_not_subfile2=$?
-      fi
-      if [[ LFBFL_i_not_subfile -ge 1 && LFBFL_i_not_subfile2 -ge 1 ]];
-      then
-        printf "File %s has no/wrong license header?\n"\
-          "${LFBFL_file_path}"
-      fi
-    done
+    fi
     rm -- "${LFBFL_license_file_path}.temp"
     if [[ -n "${LFBFL_license2}" ]]; then
       rm -- "${LFBFL_license_file_path2}.temp"

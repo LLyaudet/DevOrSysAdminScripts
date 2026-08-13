@@ -713,9 +713,8 @@ common_build_and_checks(){
   # Saving new baseline in temp if necessary.
   rm "${LFBFL_temp_phpstan_baseline}"
   phpstan --configuration=build_and_checks_variables/phpstan_config.neon\
-    --generate-baseline="${LFBFL_subdir3}/temp.neon"\
+    --generate-baseline="${LFBFL_temp_phpstan_baseline}"\
     --allow-empty-baseline
-  mv "${LFBFL_subdir3}/temp.neon" "${LFBFL_temp_phpstan_baseline}"
   sed --in-place --expression='s/\t/ /g' "${LFBFL_temp_phpstan_baseline}"
   cat "${LFBFL_temp_phpstan_baseline}"
 

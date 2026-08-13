@@ -194,9 +194,9 @@ common_build_and_checks(){
   LFBFL_file_name="build_licenses_templates.exec.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL2}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir2}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='81b6dadd88516f4e560e00efc40e7dfa50a15e4ecade7'
-  LFBFL_correct_sha512+='adfff2504771cd49fa5cc68c1f91e6d63a125465c997'
-  LFBFL_correct_sha512+='5749f50cbd1017dc822bc546aed2d0d52413f52'
+  LFBFL_correct_sha512='f93300c40d8ec4fc00192bdff3d8ed2af09df330f37f9'
+  LFBFL_correct_sha512+='878dab788acf85dd37128441efe434d68c2c4d24d29e'
+  LFBFL_correct_sha512+='09e62749ee518369b36c5dc8afbb91538035b50'
   wrapped_wget_sha512
   chmod +x "./${LFBFL_file_path}"
 
@@ -773,9 +773,8 @@ common_build_and_checks(){
   # Saving new baseline in temp if necessary.
   rm "${LFBFL_temp_phpstan_baseline}"
   phpstan --configuration=build_and_checks_variables/phpstan_config.neon\
-    --generate-baseline="${LFBFL_subdir3}/temp.neon"\
+    --generate-baseline="${LFBFL_temp_phpstan_baseline}"\
     --allow-empty-baseline
-  mv "${LFBFL_subdir3}/temp.neon" "${LFBFL_temp_phpstan_baseline}"
   sed --in-place --expression='s/\t/ /g' "${LFBFL_temp_phpstan_baseline}"
   cat "${LFBFL_temp_phpstan_baseline}"
 

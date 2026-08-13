@@ -45,28 +45,137 @@ to deal with files.
 */
 namespace DOSASfiles {
 
-  final class FileData {
-    static string $s_hash_function = "md5";
 
+  /**
+  Kind of a "dataclass" to keep the informations related with a file,
+  slightly enhanced with:
+  - a constructor that extract the distinct parts of the filepath;
+  - a method/getter handling the file content loading.
+
+  @category Library
+  @package DevOrSysAdminScripts
+  @subpackage DOSASfiles
+  @class FileData
+  @author Laurent Lyaudet <laurent.lyaudet@gmail.com>
+  @license https://www.gnu.org/licenses/lgpl-3.0.html LGPLv3+
+  */
+  final class FileData {
+    /**
+    The hash function to use for file contents.
+
+    @var string $s_hash_function
+    */
+    public static string $s_hash_function = 'md5';
+
+    /**
+    The filepath of the file.
+    https://www.youtube.com/watch?v=2NRlZ1ZME5U
+    Why?
+    https://github.com/squizlabs/PHP_CodeSniffer/issues/258
+
+    @var string $s_filepath
+    */
     public string $s_filepath;
+
+    /**
+    The dirname of the filepath.
+
+    @var string $s_dirname
+    */
     public string $s_dirname;
+
+    /**
+    The basename of the filepath.
+
+    @var string $s_basename
+    */
     public string $s_basename;
+
+    /**
+    The filename of the basename.
+
+    @var string $s_filename
+    */
     public string $s_filename;
+
+    /**
+    The extension of the basename.
+
+    @var string $s_extension
+    */
     public string $s_extension;
+
+    /**
+    The filesubpath starting from a reference directory.
+
+    @var string $s_path_from_reference_directory
+    */
     public string $s_path_from_reference_directory;
+
+    /**
+    The size of the content of the file.
+
+    @var integer $i_size
+    */
     public int $i_size;
+
+    /**
+    The hash of the content of the file.
+
+    @var string $s_hash
+    */
     public string $s_hash;
+
+    /**
+    The content of the file as a string.
+
+    @var string $s_content
+    */
     public $s_content;
-    // Status relative to another directory
-    // At The Same Time (ATST)
+
+    /**
+    Statuses relative to another directory : 1.
+
+    Does the file exists with same relative path and same content
+    At The Same Time (ATST)?
+
+    @var boolean $b_exists_with_same__relative_path_and_content
+    */
     public bool $b_exists_with_same__relative_path_and_content; // ATST
+
+    /**
+    Statuses relative to another directory : 2.
+
+    Does the file exists with same relative path?
+
+    @var boolean $b_exists_with_same_relative_path
+    */
     public bool $b_exists_with_same_relative_path;
+
+    /**
+    Statuses relative to another directory : 3.
+
+    Does the file exists with same content?
+
+    @var boolean $b_exists_with_same_content
+    */
     public bool $b_exists_with_same_content;
 
+
+
+    /**
+    Constructor for FileData.
+
+    @param string $s_filepath The filepath of the file.
+    @param string $s_reference_directory_path
+                  The directorypath of the reference directory.
+
+    @return void
+    */
     public function __construct(
       string $s_filepath,
       string $s_reference_directory_path,
-    ){
+    ) {
       $this->s_filepath = $s_filepath;
       $path_parts = pathinfo($this->s_filepath);
       $this->s_dirname = $path_parts['dirname'];
@@ -83,9 +192,17 @@ namespace DOSASfiles {
       $this->b_exists_with_same__relative_path_and_content = false;
       $this->b_exists_with_same_relative_path = false;
       $this->b_exists_with_same_content = false;
-    }
+    }//end __construct() FileData
 
-    public function get_s_content(){
+
+
+    /**
+    Returns the content of the file as a string after fetching it from
+    the filesystem.
+
+    @return string
+    */
+    public function get_s_content() : string {
       if($this->i_size <= 0){
         return null;
       }
@@ -93,8 +210,8 @@ namespace DOSASfiles {
         $this->s_content = file_get_contents($this->s_filepath);
       }
       return $this->s_content;
-    }
-  }//end new FileData()
+    }//end get_s_content()
+  }//end class FileData
 
 
 
@@ -110,37 +227,37 @@ namespace DOSASfiles {
   */
   function load_files_data_under_directory(string $s_dirpath) : array {
     $arr_result = [
-      "files_by_path_from_reference_directory" => [],
-      "files_by_size" => [],
+      'files_by_path_from_reference_directory' => [],
+      'files_by_size' => [],
     ];
-    $arr_s_paths = glob($s_dirpath."*");
+    $arr_s_paths = glob($s_dirpath.'*');
     if($arr_s_paths === false){
       return $arr_result;
     }
     foreach($arr_s_paths as $s_filepath){
       $o_file_data = new FileData($s_filepath, $s_dirpath);
       $o_file_data->s_content = null;
-      $arr_result["files_by_path_from_reference_directory"][
+      $arr_result['files_by_path_from_reference_directory'][
         $o_file_data->s_path_from_reference_directory
       ] = $o_file_data;
-      if(!isset($arr_result["files_by_size"][$o_file_data->i_size])){
-        $arr_result["files_by_size"][$o_file_data->i_size] = [];
+      if(!isset($arr_result['files_by_size'][$o_file_data->i_size])){
+        $arr_result['files_by_size'][$o_file_data->i_size] = [];
       }
       if(
         !isset(
-          $arr_result["files_by_size"][$o_file_data->i_size][
+          $arr_result['files_by_size'][$o_file_data->i_size][
             $o_file_data->s_hash
           ]
         )
       ){
-        $arr_result["files_by_size"][$o_file_data->i_size][
+        $arr_result['files_by_size'][$o_file_data->i_size][
           $o_file_data->s_hash
         ] = [];
       }
-      $arr_result["files_by_size"][$o_file_data->i_size][
+      $arr_result['files_by_size'][$o_file_data->i_size][
         $o_file_data->s_hash
       ] []= $o_file_data;
-    }
+    }//end foreach($arr_s_paths as $s_filepath)
     return $arr_result;
   }//end load_files_data_under_directory()
 
@@ -172,19 +289,19 @@ namespace DOSASfiles {
       $s_dest_dirpath
     );
     foreach(
-      $arr_files_data_source["files_by_path_from_reference_directory"]
+      $arr_files_data_source['files_by_path_from_reference_directory']
       as $o_file_data
     ){
       if(
         isset(
-          $arr_files_data_dest["files_by_path_from_reference_directory"][
+          $arr_files_data_dest['files_by_path_from_reference_directory'][
             $o_file_data->s_path_from_reference_directory
           ]
         )
       ){
         $o_file_data->b_exists_with_same_relative_path = true;
         $o_file_data2 = (
-          $arr_files_data_dest["files_by_path_from_reference_directory"][
+          $arr_files_data_dest['files_by_path_from_reference_directory'][
             $o_file_data->s_path_from_reference_directory
           ]
         );
@@ -195,27 +312,29 @@ namespace DOSASfiles {
           && $o_file_data2->get_s_content()
           === $o_file_data->get_s_content()
         ){
-          $o_file_data->b_exists_with_same__relative_path_and_content =
-            true;
+          $o_file_data->b_exists_with_same__relative_path_and_content = (
+            true
+          );
           $o_file_data->b_exists_with_same_content = true;
-          $o_file_data2->b_exists_with_same__relative_path_and_content =
-            true;
+          $o_file_data2->b_exists_with_same__relative_path_and_content = (
+            true
+          );
           $o_file_data2->b_exists_with_same_content = true;
           $o_file_data->s_content = null;
           $o_file_data2->s_content = null;
           continue;
         }
-      }
+      }//end if(isset($arr_files_data_dest['files_by_path_from_...'][...])
       if(
-        isset($arr_files_data_dest["files_by_size"][$o_file_data->i_size])
+        isset($arr_files_data_dest['files_by_size'][$o_file_data->i_size])
         && isset(
-          $arr_files_data_dest["files_by_size"][$o_file_data->i_size][
+          $arr_files_data_dest['files_by_size'][$o_file_data->i_size][
             $o_file_data->s_hash
           ]
         )
       ){
         foreach(
-          $arr_files_data_dest["files_by_size"][$o_file_data->i_size][
+          $arr_files_data_dest['files_by_size'][$o_file_data->i_size][
             $o_file_data->s_hash
           ]
           as $o_file_data2
@@ -236,7 +355,7 @@ namespace DOSASfiles {
 
     if($b_compute_also_reverse_status){
       foreach(
-        $arr_files_data_dest["files_by_path_from_reference_directory"]
+        $arr_files_data_dest['files_by_path_from_reference_directory']
         as $o_file_data
       ){
         if(
@@ -246,16 +365,16 @@ namespace DOSASfiles {
         }
         if(
           isset(
-            $arr_files_data_source["files_by_size"][$o_file_data->i_size]
+            $arr_files_data_source['files_by_size'][$o_file_data->i_size]
           )
           && isset(
-            $arr_files_data_source["files_by_size"][$o_file_data->i_size][
+            $arr_files_data_source['files_by_size'][$o_file_data->i_size][
               $o_file_data->s_hash
             ]
           )
         ){
           foreach(
-            $arr_files_data_source["files_by_size"][$o_file_data->i_size][
+            $arr_files_data_source['files_by_size'][$o_file_data->i_size][
               $o_file_data->s_hash
             ]
             as $o_file_data2
@@ -275,8 +394,8 @@ namespace DOSASfiles {
     }//end if($b_compute_also_reverse_status)
 
     return [
-      "source_files_data" => $arr_files_data_source,
-      "dest_files_data" => $arr_files_data_dest,
+      'source_files_data' => $arr_files_data_source,
+      'dest_files_data' => $arr_files_data_dest,
     ];
   }//end compare_files_under_directories()
 
@@ -297,14 +416,14 @@ namespace DOSASfiles {
     string $s_dest_dirpath,
     bool $b_archive_if_missing_relative_filepath,
     bool $b_archive_if_missing_content,
-  ){
+  ) : void {
     $arr_files_data = compare_files_under_directories(
       $s_source_dirpath,
       $s_dest_dirpath,
     );
     foreach(
-      $arr_files_data["source_files_data"][
-        "files_by_path_from_reference_directory"
+      $arr_files_data['source_files_data'][
+        'files_by_path_from_reference_directory'
       ]
       as $o_file_data
     ){
@@ -320,13 +439,13 @@ namespace DOSASfiles {
         )
       ){
         shell_exec(
-          "cp --backup=numbered"
+          'cp --backup=numbered'
           ." '".preg_replace("/'/", "'\"'\"'", $o_file_data->s_filepath)
           ."'"
           ." '".preg_replace("/'/", "'\"'\"'", $s_dest_dirpath)."'"
         );
       }
-    }//end foreach($arr_files_data["source_files_data"][] as $o_file_data)
+    }//end foreach($arr_files_data['source_files_data'][] as $o_file_data)
   }//end archive_directory_into_another()
 }//end namespace DOSASfiles
 
@@ -339,13 +458,13 @@ $ php
 require_once('files.libr.php');
 var_dump(
   DOSASfiles\compare_files_under_directories(
-    "/home/laurent/.config/libreoffice/4/user/backup/",
-    "/home/laurent/Documents/LibreOfficeArchives/",
+    '/home/laurent/.config/libreoffice/4/user/backup/',
+    '/home/laurent/Documents/LibreOfficeArchives/',
   )
 );
 DOSASfiles\archive_directory_into_another(
-  "/home/laurent/.config/libreoffice/4/user/backup/",
-  "/home/laurent/Documents/LibreOfficeArchives/",
+  '/home/laurent/.config/libreoffice/4/user/backup/',
+  '/home/laurent/Documents/LibreOfficeArchives/',
   false,
   true,
 );

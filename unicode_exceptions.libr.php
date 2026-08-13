@@ -49,7 +49,7 @@ class WithDataArrayException extends \Exception {
   /**
   A data array to store details related to an exception.
 
-  @var array $arr_data
+  @var array<mixed> $arr_data
   */
   protected $arr_data;
 
@@ -59,7 +59,7 @@ class WithDataArrayException extends \Exception {
   Constructor for WithDataArrayException.
 
   @param string $message
-  @param array $arr_data
+  @param array<mixed> $arr_data
 
   @return void
   */
@@ -73,7 +73,7 @@ class WithDataArrayException extends \Exception {
   /**
   Getter to obtain the data array with details of the exception.
 
-  @return array
+  @return array<mixed>
   */
   public function get_data() : array {
     return $this->arr_data;

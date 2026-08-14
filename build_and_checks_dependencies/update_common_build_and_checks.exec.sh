@@ -71,6 +71,7 @@ update_common_build_and_checks(){
     "lines_filters.libr.sh"
     "lines_maps.libr.sh"
     "overwrite_if_not_equal.libr.sh"
+    "phpmd_baseline.xslt"
     "python_black_complement.libr.sh"
     "python_isort_complement.libr.sh"
     "repository_data.libr.sh"

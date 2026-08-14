@@ -257,6 +257,14 @@ common_build_and_checks(){
   LFBFL_correct_sha512+='15c5d1d57a526296bbdc4a0c03650088f3e9653'
   wrapped_wget_sha512
 
+  LFBFL_file_name="phpmd_baseline.xslt"
+  LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
+  LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
+  LFBFL_correct_sha512='88f39ea6952acebdad60c267e0f49a0489b486f7ead53'
+  LFBFL_correct_sha512+='4c6ccf32e9f2bfa86f92d772c2fa59fecef00d6c9e6c'
+  LFBFL_correct_sha512+='4d31cf074dda4943070db069c64581a18bfe724'
+  wrapped_wget_sha512
+
   LFBFL_file_name="python_black_complement.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"

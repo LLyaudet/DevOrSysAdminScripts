@@ -215,6 +215,12 @@ common_build_and_checks(){
   @sha512_overwrite_if_not_equal.libr.sh@
   wrapped_wget_sha512
 
+  LFBFL_file_name="phpmd_baseline.xslt"
+  LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
+  LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
+  @sha512_phpmd_baseline.xslt@
+  wrapped_wget_sha512
+
   LFBFL_file_name="python_black_complement.libr.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"

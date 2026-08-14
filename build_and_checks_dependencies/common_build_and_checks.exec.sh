@@ -720,7 +720,9 @@ common_build_and_checks(){
   if [[ -n "${LFBFL_s_files_paths}" ]]; then
     mapfile -t LFBFL_arr_files_paths <<< "${LFBFL_s_files_paths}"
     for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do
-      php --syntax-check -f="${LFBFL_file_path}"
+      php --syntax-check -f="${LFBFL_file_path}"\
+        2>&1\
+        | grep --invert-match "${LFBFL_annoying_warning}"
     done
   fi
 

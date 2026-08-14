@@ -6,6 +6,37 @@ parameters:
    identifier: variable.undefined
    count: 1
    path: ../build_and_checks_dependencies/build_dependencies_notes.exec.php
+
+  -
+   rawMessage: 'Comparison operation "<" between int<0, 1114111> \
+               and 0 is always false.'
+   identifier: smaller.alwaysFalse
+   count: 1
+   path: ../unicode.libr.php
+
+  -
+   rawMessage: 'Comparison operation ">" between int<-283305, 283305> \
+               and 1114111 is always false.'
+   identifier: greater.alwaysFalse
+   count: 1
+   path: ../unicode.libr.php
+
+  -
+   rawMessage: 'Parameter #1 $i_unicode_code_point of function \
+               DOSAS_unicode\unicode_code_point_to_UTF8 expects \
+               int<0, 1114111>, int<-1114095, 1114111> given.'
+   identifier: argument.type
+   count: 1
+   path: ../unicode.libr.php
+
+  -
+   rawMessage: 'Parameter #1 $i_unicode_code_point of function \
+               DOSAS_unicode\unicode_code_point_to_UTF8 expects \
+               int<0, 1114111>, int<-283305, 283305> given.'
+   identifier: argument.type
+   count: 1
+   path: ../unicode.libr.php
+
   -
    rawMessage: 'Parameter #2 $i_current_octet of function \
                DOSAS_unicode\get_message_and_data_array expects int, \

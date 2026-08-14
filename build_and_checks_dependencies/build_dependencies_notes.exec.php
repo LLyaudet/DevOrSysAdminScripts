@@ -46,5 +46,5 @@ if(PHP_SAPI !== 'cli'){
   die(1);
 }
 
-build_dependencies_notes($argv[1]);
+\DOSAS_dependencies_notes\build_dependencies_notes($argv[1]);
 ?>

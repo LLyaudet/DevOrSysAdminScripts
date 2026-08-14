@@ -39,8 +39,10 @@ declare(strict_types=1);
 declare(encoding='UTF-8');
 
 // require_once 'string_escaping.libr.php';
+namespace DOSAS_dependencies_notes;
 
-
+use Exception;
+use string_escaping;
 
 /**
 This function looks at the dependencies data found in a work directory,
@@ -49,6 +51,11 @@ and an HTML file (.sub) with the data in a nicer format.
 
 @param string $s_work_directory The directory where the work must be done.
 
+@throws \Exception When the content of one of the files needed as input
+                   cannot be loaded into a string.
+                   Or that some part of the structure from the JSON
+                   isn't valid.
+
 @return void
 */
 function build_dependencies_notes(string $s_work_directory) : void {
@@ -56,9 +63,24 @@ function build_dependencies_notes(string $s_work_directory) : void {
   $s_subdir2 = $s_subdir1.'/temp';
   $s_data_file_path = $s_subdir1.'/dependencies_data.json';
   $s_data = file_get_contents($s_data_file_path);
+  if($s_data === false){
+    throw new Exception(
+      'Unexpected failure when fetching content of dependencies_data.json'
+    );
+  }
   $arr_data = json_decode($s_data, true);
+  if(!is_array($arr_data)){
+    throw new Exception(
+      "dependencies_data.json doesn't contain an array."
+    );
+  }
   $s_data_file_path2 = $s_subdir1.'/repository_data.txt';
   $s_data2 = file_get_contents($s_data_file_path2);
+  if($s_data2 === false){
+    throw new Exception(
+      'Unexpected failure when fetching content of repository_data.txt'
+    );
+  }
   $i_max_line_length = 70;
   foreach(explode("\n", $s_data2) as $s_line){
     if(str_starts_with($s_line, 'max_line_length=')){
@@ -74,6 +96,22 @@ function build_dependencies_notes(string $s_work_directory) : void {
   $s_result_content3 = '';
 
   foreach($arr_data as $arr_dependency){
+    if(!is_array($arr_dependency)){
+      throw new Exception("Dependency isn't an array.");
+    }
+    if(!isset($arr_dependency['URLs'])){
+      throw new Exception("Dependency doesn't have an URLs array.");
+    }
+    if(!is_array($arr_dependency['URLs'])){
+      throw new Exception("URLs isn't an array.");
+    }
+    if(!isset($arr_dependency['dependency_name'])){
+      throw new Exception("Dependency doesn't have a name.");
+    }
+    if(!is_string($arr_dependency['dependency_name'])){
+      throw new Exception("Dependency name isn't a string.");
+    }
+
     $s_URL_word = 'URL';
     if(count($arr_dependency['URLs']) > 1){
       $s_URL_word .= 's';
@@ -99,12 +137,25 @@ function build_dependencies_notes(string $s_work_directory) : void {
       $s_comment = '';
       $s_URL = '';
       if(is_array($mixed_URL)){
+        if(!isset($mixed_URL['URL'])){
+          throw new Exception("Dependency URL doesn't have an URL.");
+        }
+        if(!isset($mixed_URL['comment'])){
+          throw new Exception("Dependency URL doesn't have a comment.");
+        }
         $s_URL = $mixed_URL['URL'];
         $s_comment = $mixed_URL['comment'];
       }
       else{
         $s_URL = $mixed_URL;
       }
+      if(!is_string($s_URL)){
+        throw new Exception("URL isn't a string.");
+      }
+      if(!is_string($s_comment)){
+        throw new Exception("Comment isn't a string.");
+      }
+
       $i_URL_length = strlen($s_URL);
       $i_comment_length = strlen($s_comment);
 

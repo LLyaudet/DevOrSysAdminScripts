@@ -82,18 +82,18 @@ common_build_and_checks(){
   LFBFL_file_name="build_dependencies_notes.exec.php"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='a10a438b84e62c452d6658189e1df106c1f1ccef57116'
-  LFBFL_correct_sha512+='b0c82f1be0fc89e41583cab4af4047c3dc0b08fd5d01'
-  LFBFL_correct_sha512+='8c80df7234f051d2f0cb4a88c12263946250f61'
+  LFBFL_correct_sha512='2e937fde2d0e81488e1d0fdd84aa291c1e5ac23f395ea'
+  LFBFL_correct_sha512+='0ef5b3faff589840cd44b296d9082ba58b92e71f0681'
+  LFBFL_correct_sha512+='c169c26e3abd51b20ce81106d7b906b686450d5'
   wrapped_wget_sha512
   chmod +x "./${LFBFL_file_path}"
 
   LFBFL_file_name="build_dependencies_notes.libr.php"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='86e21e96b2dacb5cd8c952b400e30a26487e435167b46'
-  LFBFL_correct_sha512+='b49aafb19bce1834d20eac9f58e044b3db76cb4a820c'
-  LFBFL_correct_sha512+='1829eb4607ea4254d5f1146df8cb50699b148bc'
+  LFBFL_correct_sha512='6203cb1c31b656004ec8467d4f84288f342fcc7f5c236'
+  LFBFL_correct_sha512+='270e819b986fe967aa6abe101188a7fc1a55e2f4c9b5'
+  LFBFL_correct_sha512+='9a6dde6c9aa125b385d0ce85e02b1de69ce1084'
   wrapped_wget_sha512
 
   LFBFL_file_name="build_file_from_printable_file__standard.exec.sh"
@@ -300,18 +300,18 @@ common_build_and_checks(){
   LFBFL_file_name="split_score.exec.php"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='e99bb3fe4f08eb741f177df9dd4d5dffc060589386258'
-  LFBFL_correct_sha512+='bd8b2d15ace1f5d84985ecd5c38ddab33c3daa515635'
-  LFBFL_correct_sha512+='48779f2bd772ccaee970d40a92f78d01c28d2f9'
+  LFBFL_correct_sha512='55d7595d1f51f00dca396247836613701740b745a7722'
+  LFBFL_correct_sha512+='f24068b3a6654bc2b61c063287bd8fa02c378fdbc2ae'
+  LFBFL_correct_sha512+='d64ab25693a1d8f477b4172e55e4fa0c2155c9a'
   wrapped_wget_sha512
   chmod +x "./${LFBFL_file_path}"
 
   LFBFL_file_name="split_score.libr.php"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='a75ba85e4c752a4d552fd60c983bcef2f359e8aca8206'
-  LFBFL_correct_sha512+='27707766ff56dabf964376966b79b1a01d3ab1495ac8'
-  LFBFL_correct_sha512+='e64f82670cf2de1b6f6d0093f18bb309bea5cfb'
+  LFBFL_correct_sha512='a66cf904ba51bf9180c887d67f81b8d64eb0ac9b95a3c'
+  LFBFL_correct_sha512+='696e51e050743956029d2d247e2252e2763ceffbd201'
+  LFBFL_correct_sha512+='459ac09ed5ed53e2af2436ed3610fe56a88d384'
   wrapped_wget_sha512
 
   LFBFL_file_name="strings_functions.libr.sh"

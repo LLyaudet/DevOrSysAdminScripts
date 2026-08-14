@@ -303,10 +303,10 @@ Otherwise, it returns true.
 
 @param string $s_string The input string.
 
-@throws DOSAS_unicode\InvalidEncodingException When the input string is not
-                                               valid ASCII.
+@throws \DOSAS_unicode\InvalidEncodingException
+        When the input string is not valid ASCII.
 
-@return bool
+@return true
 */
 function check_string_is_valid_ASCII(string $s_string) : bool {
   //Fast-path
@@ -365,10 +365,10 @@ Otherwise, it returns true.
 @param string $s_file_path The input file_path.
 
 @throws \Exception When the file is not found.
-@throws DOSAS_unicode\InvalidEncodingException When the input string is not
-                                               valid ASCII.
+@throws \DOSAS_unicode\InvalidEncodingException
+        When the input string is not valid ASCII.
 
-@return bool
+@return true
 */
 function check_file_is_valid_ASCII(string $s_file_path) : bool {
   $s_string = file_get_contents($s_file_path);
@@ -410,7 +410,7 @@ DOSAS_unicode\InvalidEncodingException inside check_string_is_valid_UTF8().
            The maximum value of the second continuation octet as specified
            by the grammar.
 
-@return array
+@return array{'message': string, 'data': array<mixed>}
 */
 function get_message_and_data_array(
   string $s_custom_message,
@@ -515,8 +515,8 @@ set, and store/compare the results.
 
 @throws \Exception When called with $b_fast_path set to true but PHP
                    version is incompatible.
-@throws DOSAS_unicode\InvalidEncodingException When the input string is not
-                                               valid UTF-8.
+@throws \DOSAS_unicode\InvalidEncodingException
+        When the input string is not valid UTF-8.
 
 @return bool
 */
@@ -792,7 +792,7 @@ function check_string_is_valid_UTF8(
     throw new InvalidEncodingException($s_message, $arr_data);
   }//end for($i = 0, $i_max = strlen($s_string); $i < $i_max; ++$i)
 
-  if ($i_continuation_octet_needed > 0) {
+  if($i_continuation_octet_needed > 0){
     [
       'message' => $s_message,
       'data' => $arr_data,
@@ -839,8 +839,8 @@ Otherwise, it returns true.
 @throws \Exception When the file is not found OR when called with
                    $b_fast_path set to true but PHP version is
                    incompatible.
-@throws DOSAS_unicode\InvalidEncodingException When the input string is not
-                                               valid UTF-8.
+@throws \DOSAS_unicode\InvalidEncodingException
+        When the input string is not valid UTF-8.
 
 @return bool
 */

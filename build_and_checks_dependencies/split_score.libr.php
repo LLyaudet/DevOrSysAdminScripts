@@ -42,6 +42,10 @@ declare(encoding='UTF-8');
 
 
 
+namespace SplitScore;
+
+
+
 /**
 Given the 3 following arguments, this function returns a closure that can
 be used to compute the split score given the current string
@@ -53,24 +57,24 @@ and if that split position is after or before the current string.
                      previous name of this parameter was $b_after_before.
 @param int           $i_max_length
                      The maximum length allowed (goal length).
-@param array<string> $a_delimiter_strings_domain
+@param array<string> $arr_delimiter_strings_domain
                      An array of "delimiters".
 
 @return \Closure {
   The "split_score" closure to use repeatedly afterward.
 
-  @param string $s_delimiter_string The string tested to be a delimiter.
-  @param int    $i_cut_position     The offset of the cut in the string.
-  @param bool   $b_is_cut_after     Is the offset taken after the string?
+  @CLparam string $s_delimiter_string The string tested to be a delimiter.
+  @CLparam int    $i_cut_position     The offset of the cut in the string.
+  @CLparam bool   $b_is_cut_after     Is the offset taken after the string?
 
-  @return int The split score.
+  @CLreturn int The split score.
 }
 */
 function generate_split_score(
   bool $b_larger_after,
   int $i_max_length,
-  array $a_delimiter_strings_domain,
-) : Closure {
+  array $arr_delimiter_strings_domain,
+) : \Closure {
   return function (
     string $s_delimiter_string,
     int $i_cut_position,
@@ -78,12 +82,12 @@ function generate_split_score(
   ) use (
     $b_larger_after,
     $i_max_length,
-    $a_delimiter_strings_domain,
+    $arr_delimiter_strings_domain,
   ) : int {
     if(
       !in_array(
         $s_delimiter_string,
-        $a_delimiter_strings_domain,
+        $arr_delimiter_strings_domain,
         true,
       )
     ){
@@ -103,4 +107,105 @@ function generate_split_score(
     return 1 + $i_cut_position;
   };
 }//end generate_split_score()
+
+
+
+
+/**
+Given the type system of PHP, a better way to have a closure computing
+the split score .
+
+@category Library
+@package DevOrSysAdminScripts
+@class SplitScoreClosure
+@author Laurent Lyaudet <laurent.lyaudet@gmail.com>
+@license https://www.gnu.org/licenses/lgpl-3.0.html LGPLv3+
+*/
+final class SplitScoreClosure {
+  /**
+  Score is larger when splitting after.
+
+  @var bool $b_larger_after
+  */
+  private bool $b_larger_after;
+
+  /**
+  The maximum length allowed (goal length).
+
+  @var int $i_max_length
+  */
+  private int $i_max_length;
+
+  /**
+  An array of "delimiters".
+
+  @var array<string> $arr_delimiter_strings_domain
+  */
+  private array $arr_delimiter_strings_domain;
+
+
+
+  /**
+  Given the 3 following arguments,
+  this constructor creates an object that will behave like a Closure
+  that can be used to compute the split score given the current string
+  (hopefully matching a delimiter), the current cut/split position,
+  and if that split position is after or before the current string.
+
+  @param bool          $b_larger_after
+                       Score is larger when splitting after,
+                       previous name of this parameter was $b_after_before.
+  @param int           $i_max_length
+                       The maximum length allowed (goal length).
+  @param array<string> $arr_delimiter_strings_domain
+                       An array of "delimiters".
+
+  @return void
+  */
+  public function __construct(
+    bool $b_larger_after,
+    int $i_max_length,
+    array $arr_delimiter_strings_domain,
+  ) {
+    $this->b_larger_after = $b_larger_after;
+    $this->i_max_length = $i_max_length;
+    $this->arr_delimiter_strings_domain = $arr_delimiter_strings_domain;
+  }//end __construct() SplitScoreClosure
+
+
+
+  /**
+  The "split_score" closure to use repeatedly afterward.
+
+  @param string $s_delimiter_string The string tested to be a delimiter.
+  @param int    $i_cut_position     The offset of the cut in the string.
+  @param bool   $b_is_cut_after     Is the offset taken after the string?
+
+  @return int The split score.
+  */
+  public function __invoke(
+    string $s_delimiter_string,
+    int $i_cut_position,
+    bool $b_is_cut_after,
+  ) : int {
+    if(
+      !in_array(
+        $s_delimiter_string,
+        $this->arr_delimiter_strings_domain,
+        true,
+      )
+    ){
+      return 0;
+    }
+    if($b_is_cut_after === $this->b_larger_after){
+      // When $b_larger_after,
+      // always way better to cut after '/' than before it.
+      // When !$b_larger_after (aka larger_before),
+      // always way better to cut before '/' than after it.
+      return 1 + $this->i_max_length + $i_cut_position;
+    }
+    return 1 + $i_cut_position;
+  }//end __invoke() SplitScoreClosure
+}//end class SplitScoreClosure
+
 ?>

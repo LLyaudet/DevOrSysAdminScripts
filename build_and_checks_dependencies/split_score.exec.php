@@ -47,12 +47,34 @@ declare(encoding='UTF-8');
 
 require_once './build_and_checks_dependencies/split_score.libr.php';
 
+use SplitScore;
+
+if(PHP_SAPI !== 'cli'){
+  fwrite(
+    STDERR,
+    "split_score.exec.php must be run in a shell.\n",
+  );
+  die(1);
+}
+
+
 /*
 php -r\
  $'require_once(\'./build_and_checks_dependencies/'\
 $'split_score.libr.php\');'\
 $' echo(generate_split_score'\
 $'(true, 70, [\'/\'])(\'/\', 60, true));'
+
+php -r \
+$'require_once(\'./build_and_checks_dependencies/split_score.libr.php\');'\
+$'echo(\SplitScore\generate_split_score(true, 70, [\'/\'])'\
+$'(\'/\', 60, true));'
+
+php -r \
+$'require_once(\'./build_and_checks_dependencies/split_score.libr.php\');'\
+$'$o_split_score_closure ='\
+$'  new \SplitScore\SplitScoreClosure(true, 70, [\'/\']);'\
+$'echo($o_split_score_closure(\'/\', 60, true));'
 */
 
 // phpcs:disable Generic.WhiteSpace.ArbitraryParenthesesSpacing

@@ -28,6 +28,8 @@ If not, see <https://www.gnu.org/licenses/>.
   <xsl:output method="xml"/>
   <xsl:template match="phpmd-baseline">
     <xsl:copy>
+      <xsl:text>
+</xsl:text>
       <xsl:apply-templates select="node()">
         <xsl:sort select="@file"/>
         <xsl:sort select="@rule"/>

@@ -47,9 +47,16 @@ if(PHP_SAPI !== 'cli'){
 
 DOSASfiles\archive_directory_into_another(
   '/home/'.$argv[1].'/.config/libreoffice/4/user/backup/',
-  '/home/'.$argv[1].'/Documents/LibreOfficeArchives/',
-  false,
+  '/home/'.$argv[2].'/Documents/LibreOfficeArchives/',
   true,
   true,
+  // Following argument is if you want same relative path and same content
+  // at the same time.
+  // This is in case you want to track when the file goes back to some
+  // old state.
+  isset($argv[3]) ? (bool) (int) $argv[3] : false,
+  true,
+  true,
+  '\\.~\\d+~',
 );
 ?>

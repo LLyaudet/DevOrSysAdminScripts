@@ -431,9 +431,10 @@ namespace DOSASfiles {
 
   @param string $s_source_dirpath The first directory to search in.
   @param string $s_dest_dirpath The second directory to search in.
-  @param bool $b_compute_also_reverse_status
-              If you want that the status of files under dest_dirpath
-              must also be computed.
+  @param bool   $b_compute_also_reverse_status
+                If you want that the status of files under dest_dirpath
+                must also be computed.
+  @param string $s_valid_suffixes_regexp A regexp for valid suffixes.
 
   @return array{
     'source_files_data': \DOSASfiles\DataOfFilesUnderDirectory,
@@ -609,8 +610,24 @@ namespace DOSASfiles {
 
   @param string $s_source_dirpath The source directory to search in.
   @param string $s_dest_dirpath The archive directory to move files in.
-  @param bool $b_archive_if_missing_relative_filepath
-  @param bool $b_archive_if_missing_content
+  @param bool   $b_archive_if_missing_relative_filepath
+                Archive if no destination file is found with a relative
+                path that is identical.
+  @param bool   $b_archive_if_missing_content
+                Archive if no destination file is found with same content.
+  @param bool   $b_archive_if_missing_same_relative_path_content
+                Archive if no destination file is found with a relative
+                path that is identical and with same content.
+  @param bool   $b_archive_if_missing_suffixed_relative_path
+                Archive if no destination file is found with a relative
+                path that has a valid suffix
+                after the source relative path.
+  @param bool   $b_archive_if_missing_suffixed_relative_path_content
+                Archive if no destination file is found with a relative
+                path that has a valid suffix
+                after the source relative path
+                and with same content.
+  @param string $s_valid_suffixes_regexp A regexp for valid suffixes.
 
   @return void
   */
@@ -618,12 +635,17 @@ namespace DOSASfiles {
     string $s_source_dirpath,
     string $s_dest_dirpath,
     bool $b_archive_if_missing_relative_filepath,
-    bool $b_archive_if_missing_suffixed_relative_filepath,
     bool $b_archive_if_missing_content,
+    bool $b_archive_if_missing_same_relative_path_content,
+    bool $b_archive_if_missing_suffixed_relative_path,
+    bool $b_archive_if_missing_suffixed_relative_path_content,
+    string $s_valid_suffixes_regexp = '',
   ) : void {
     $arr_files_data = compare_files_under_directories(
       $s_source_dirpath,
       $s_dest_dirpath,
+      false,
+      $s_valid_suffixes_regexp,
     );
     foreach(
       $arr_files_data['source_files_data']->arr_files_by_path_from
@@ -636,13 +658,23 @@ namespace DOSASfiles {
         )
         ||
         (
-          $b_archive_if_missing_suffixed_relative_filepath
+          $b_archive_if_missing_content
+          && !$o_file_data->b_exists_with_same_content
+        )
+        ||
+        (
+          $b_archive_if_missing_same_relative_path_content
+          && !$o_file_data->b_exists_with_same__relative_path_and_content
+        )
+        ||
+        (
+          $b_archive_if_missing_suffixed_relative_path
           && !$o_file_data->b_exists_with_suffixed_relative_path
         )
         ||
         (
-          $b_archive_if_missing_content
-          && !$o_file_data->b_exists_with_same_content
+          $b_archive_if_missing_suffixed_relative_path_content
+          && !$o_file_data->b_exists_with_suffixed_relative_path_and
         )
       ){
         shell_exec(
@@ -674,7 +706,10 @@ DOSASfiles\archive_directory_into_another(
   '/home/laurent/Documents/LibreOfficeArchives/',
   false,
   true,
-  true,
+  false,
+  false,
+  false,
+  '',
 );
 */
 ?>

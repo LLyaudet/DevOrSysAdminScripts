@@ -8,6 +8,12 @@ parameters:
    path: ../build_and_checks_dependencies/build_dependencies_notes.exec.php
 
   -
+   rawMessage: Variable $argv might not be defined.
+   identifier: variable.undefined
+   count: 6
+   path: ../build_and_checks_dependencies/split_score.exec.php
+
+  -
    rawMessage: 'Comparison operation "<" between int<0, 1114111> \
                and 0 is always false.'
    identifier: smaller.alwaysFalse

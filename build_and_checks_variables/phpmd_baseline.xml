@@ -65,17 +65,21 @@
   <violation
     rule="PHPMD\Rule\Controversial\CamelCaseMethodName"
     file="files.libr.php"
-    method="get_s_content"
-  />
-  <violation
-    rule="PHPMD\Rule\Controversial\CamelCaseMethodName"
-    file="files.libr.php"
     method="add_file_data"
   />
   <violation
     rule="PHPMD\Rule\Controversial\CamelCaseMethodName"
     file="files.libr.php"
     method="add_file_data_for_file_path"
+  />
+  <violation
+    rule="PHPMD\Rule\Controversial\CamelCaseMethodName"
+    file="files.libr.php"
+    method="get_s_content"
+  />
+  <violation
+    rule="PHPMD\Rule\Controversial\CamelCaseParameterName"
+    file="files.libr.php"
   />
   <violation
     rule="PHPMD\Rule\Controversial\CamelCaseParameterName"
@@ -91,10 +95,6 @@
     rule="PHPMD\Rule\Controversial\CamelCaseParameterName"
     file="files.libr.php"
     method="add_file_data_for_file_path"
-  />
-  <violation
-    rule="PHPMD\Rule\Controversial\CamelCaseParameterName"
-    file="files.libr.php"
   />
   <violation
     rule="PHPMD\Rule\Controversial\CamelCasePropertyName"

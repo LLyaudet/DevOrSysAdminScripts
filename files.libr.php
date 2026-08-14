@@ -521,7 +521,8 @@ namespace DOSASfiles {
                 preg_match(
                   '/'
                   .preg_quote(
-                    $o_file_data->s_path_from_reference_directory
+                    $o_file_data->s_path_from_reference_directory,
+                    '/',
                   )
                   .$s_valid_suffixes_regexp
                   .'/',
@@ -538,7 +539,8 @@ namespace DOSASfiles {
                 && preg_match(
                   '/'
                   .preg_quote(
-                    $o_file_data2->s_path_from_reference_directory
+                    $o_file_data2->s_path_from_reference_directory,
+                    '/',
                   )
                   .$s_valid_suffixes_regexp
                   .'/',
@@ -580,7 +582,8 @@ namespace DOSASfiles {
             preg_match(
               '/'
               .preg_quote(
-                $o_file_data->s_path_from_reference_directory
+                $o_file_data->s_path_from_reference_directory,
+                '/',
               )
               .$s_valid_suffixes_regexp
               .'/',

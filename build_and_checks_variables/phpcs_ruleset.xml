@@ -113,6 +113,13 @@
     <exclude
       name="PEAR.NamingConventions.ValidFunctionName.ScopeNotCamelCaps"
     />
+    <!--
+    You have to choose between the following exclude or another one
+    for PSR2.
+    -->
+    <exclude
+      name="PEAR.NamingConventions.ValidVariableName.PrivateNoUnderscore"
+    />
   </rule>
   <rule ref="PSR1">
     <exclude name="PSR1.Classes.ClassDeclaration.MultipleClasses"/>

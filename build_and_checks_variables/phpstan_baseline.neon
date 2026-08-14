@@ -5,12 +5,18 @@ parameters:
    rawMessage: Variable $argv might not be defined.
    identifier: variable.undefined
    count: 1
+   path: ../archive_libre_office_documents.exec.php
+
+  -
+   rawMessage: Variable $argv might not be defined.
+   identifier: variable.undefined
+   count: 1
    path: ../build_and_checks_dependencies/build_dependencies_notes.exec.php
 
   -
    rawMessage: Variable $argv might not be defined.
    identifier: variable.undefined
-   count: 6
+   count: 1
    path: ../build_and_checks_dependencies/split_score.exec.php
 
   -

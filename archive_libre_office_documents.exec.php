@@ -45,6 +45,14 @@ if(PHP_SAPI !== 'cli'){
   die(1);
 }
 
+if(count($argv) < 3 || count($argv) > 4){
+  fwrite(
+    STDERR,
+    "split_score.exec.php must be given 2 or 3 arguments.\n",
+  );
+  die(1);
+}
+
 DOSASfiles\archive_directory_into_another(
   '/home/'.$argv[1].'/.config/libreoffice/4/user/backup/',
   '/home/'.$argv[2].'/Documents/LibreOfficeArchives/',

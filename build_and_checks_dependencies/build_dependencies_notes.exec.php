@@ -46,5 +46,13 @@ if(PHP_SAPI !== 'cli'){
   die(1);
 }
 
+if(count($argv) !== 2){
+  fwrite(
+    STDERR,
+    "split_score.exec.php must be given exactly 1 argument.\n",
+  );
+  die(1);
+}
+
 \DOSAS_dependencies_notes\build_dependencies_notes($argv[1]);
 ?>

@@ -55,6 +55,14 @@ if(PHP_SAPI !== 'cli'){
   die(1);
 }
 
+if(count($argv) !== 7){
+  fwrite(
+    STDERR,
+    "split_score.exec.php must be given exactly 6 arguments.\n",
+  );
+  die(1);
+}
+
 /*
 php -r\
 $'require_once \'./build_and_checks_dependencies/split_score.libr.php\';'\

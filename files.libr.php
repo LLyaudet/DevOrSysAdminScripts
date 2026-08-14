@@ -165,6 +165,33 @@ namespace DOSASfiles {
     */
     public bool $b_exists_with_same_content;
 
+    /**
+    Statuses relative to another directory : 4.
+
+    Does the file exists with suffixed relative path?
+    Only computed if some regular expression for valid suffixes
+    is supplied.
+    An empty suffix is always considered valid,
+    but it is handled if your regexp doesn't match the empty string.
+
+    @var bool $b_exists_with_suffixed_relative_path
+    */
+    public bool $b_exists_with_suffixed_relative_path;
+
+    /**
+    Statuses relative to another directory : 5.
+
+    Does the file exists with suffixed relative path and same content
+    At The Same Time (ATST)?
+    Only computed if some regular expression for valid suffixes
+    is supplied.
+    An empty suffix is always considered valid,
+    but it is handled if your regexp doesn't match the empty string.
+
+    @var bool $b_exists_with_suffixed_relative_path_and
+    */
+    public bool $b_exists_with_suffixed_relative_path_and; // ATST
+
 
 
     /**
@@ -210,6 +237,8 @@ namespace DOSASfiles {
       $this->b_exists_with_same__relative_path_and_content = false;
       $this->b_exists_with_same_relative_path = false;
       $this->b_exists_with_same_content = false;
+      $this->b_exists_with_suffixed_relative_path = false;
+      $this->b_exists_with_suffixed_relative_path_and = false;
     }//end __construct() FileData
 
 
@@ -266,6 +295,14 @@ namespace DOSASfiles {
 
     /**
     The data of the files under the reference directory
+    put in order by absolute path.
+
+    @var array<string, FileData> $arr_files_by_path
+    */
+    public array $arr_files_by_path;
+
+    /**
+    The data of the files under the reference directory
     put in order by path from reference directory.
 
     @var array<string, FileData> $arr_files_by_path_from
@@ -292,6 +329,7 @@ namespace DOSASfiles {
     */
     public function __construct(string $s_reference_directory_path) {
       $this->s_reference_directory_path = $s_reference_directory_path;
+      $this->arr_files_by_path = [];
       $this->arr_files_by_path_from = [];
       $this->arr_files_by_size = [];
     }//end __construct() DataOfFilesUnderDirectory
@@ -307,6 +345,7 @@ namespace DOSASfiles {
     @return void
     */
     public function add_file_data(FileData $o_file_data) : void {
+      $this->arr_files_by_path[$o_file_data->s_filepath] = $o_file_data;
       $this->arr_files_by_path_from[
         $o_file_data->s_path_from_reference_directory
       ] = $o_file_data;
@@ -405,6 +444,7 @@ namespace DOSASfiles {
     string $s_source_dirpath,
     string $s_dest_dirpath,
     bool $b_compute_also_reverse_status = false,
+    string $s_valid_suffixes_regexp = '',
   ) : array {
     $o_files_data_source = load_files_data_under_directory(
       $s_source_dirpath
@@ -427,6 +467,8 @@ namespace DOSASfiles {
           ]
         );
         $o_file_data2->b_exists_with_same_relative_path = true;
+        $o_file_data->b_exists_with_suffixed_relative_path = true;
+        $o_file_data2->b_exists_with_suffixed_relative_path = true;
         if(
           $o_file_data2->i_size === $o_file_data->i_size
           && $o_file_data2->s_hash === $o_file_data->s_hash
@@ -437,10 +479,16 @@ namespace DOSASfiles {
             true
           );
           $o_file_data->b_exists_with_same_content = true;
+          $o_file_data->b_exists_with_suffixed_relative_path_and = (
+            true
+          );
           $o_file_data2->b_exists_with_same__relative_path_and_content = (
             true
           );
           $o_file_data2->b_exists_with_same_content = true;
+          $o_file_data2->b_exists_with_suffixed_relative_path_and = (
+            true
+          );
           $o_file_data->s_content = '';
           $o_file_data2->s_content = '';
           continue;
@@ -468,7 +516,41 @@ namespace DOSASfiles {
             $o_file_data2->b_exists_with_same_content = true;
             $o_file_data->s_content = '';
             $o_file_data2->s_content = '';
-            continue 2;
+            if($s_valid_suffixes_regexp !== ''){
+              if(
+                preg_match(
+                  '/'
+                  .preg_quote(
+                    $o_file_data->s_path_from_reference_directory
+                  )
+                  .$s_valid_suffixes_regexp
+                  .'/',
+                  $o_file_data2->s_path_from_reference_directory,
+                )
+              ){
+                $o_file_data->b_exists_with_suffixed_relative_path = true;
+                $o_file_data->b_exists_with_suffixed_relative_path_and = (
+                  true
+                );
+              }
+              if(
+                $b_compute_also_reverse_status
+                && preg_match(
+                  '/'
+                  .preg_quote(
+                    $o_file_data2->s_path_from_reference_directory
+                  )
+                  .$s_valid_suffixes_regexp
+                  .'/',
+                  $o_file_data->s_path_from_reference_directory,
+                )
+              ){
+                $o_file_data2->b_exists_with_suffixed_relative_path = true;
+                $o_file_data2->b_exists_with_suffixed_relative_path_and = (
+                  true
+                );
+              }
+            }
           }
         }
       }
@@ -476,38 +558,38 @@ namespace DOSASfiles {
 
     if($b_compute_also_reverse_status){
       foreach($o_files_data_dest->arr_files_by_path_from as $o_file_data){
-        if(
-          $o_file_data->b_exists_with_same__relative_path_and_content
-        ){
+        if($o_file_data->b_exists_with_suffixed_relative_path){
           continue;
         }
-        if(
-          isset(
-            $o_files_data_source->arr_files_by_size[$o_file_data->i_size]
-          )
-          && isset(
-            $o_files_data_source->arr_files_by_size[$o_file_data->i_size][
-              $o_file_data->s_hash
-            ]
-          )
-        ){
-          foreach(
-            $o_files_data_source->arr_files_by_size[$o_file_data->i_size][
-              $o_file_data->s_hash
-            ]
-            as $o_file_data2
-          ){
-            if(
-              $o_file_data2->get_s_content()
-              === $o_file_data->get_s_content()
-            ){
-              $o_file_data->b_exists_with_same_content = true;
-              $o_file_data->s_content = '';
-              $o_file_data2->s_content = '';
-              continue 2;
-            }
-          }
+        $arr_s_paths = glob(
+          $s_source_dirpath.$o_file_data->s_basename.'*'
+        );
+        if($arr_s_paths === false){
+          continue;
         }
+        foreach($arr_s_paths as $s_filepath){
+          if(!isset($o_files_data_source->arr_files_by_path[$s_filepath])){
+            // A newly created file that wasn't previously loaded
+            // is ignored.
+            continue;
+          }
+          $o_file_data2 = (
+            $o_files_data_source->arr_files_by_path[$s_filepath]
+          );
+          if(
+            preg_match(
+              '/'
+              .preg_quote(
+                $o_file_data->s_path_from_reference_directory
+              )
+              .$s_valid_suffixes_regexp
+              .'/',
+              $o_file_data2->s_path_from_reference_directory,
+            )
+          ){
+            $o_file_data->b_exists_with_suffixed_relative_path = true;
+          }
+        }//end foreach($arr_s_paths as $s_filepath)
       }//end foreach($arr_files_data_dest[...] as $o_file_data)
     }//end if($b_compute_also_reverse_status)
 
@@ -533,6 +615,7 @@ namespace DOSASfiles {
     string $s_source_dirpath,
     string $s_dest_dirpath,
     bool $b_archive_if_missing_relative_filepath,
+    bool $b_archive_if_missing_suffixed_relative_filepath,
     bool $b_archive_if_missing_content,
   ) : void {
     $arr_files_data = compare_files_under_directories(
@@ -547,6 +630,11 @@ namespace DOSASfiles {
         (
           $b_archive_if_missing_relative_filepath
           && !$o_file_data->b_exists_with_same_relative_path
+        )
+        ||
+        (
+          $b_archive_if_missing_suffixed_relative_filepath
+          && !$o_file_data->b_exists_with_suffixed_relative_path
         )
         ||
         (
@@ -582,6 +670,7 @@ DOSASfiles\archive_directory_into_another(
   '/home/laurent/.config/libreoffice/4/user/backup/',
   '/home/laurent/Documents/LibreOfficeArchives/',
   false,
+  true,
   true,
 );
 */

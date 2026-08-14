@@ -553,10 +553,10 @@ namespace DOSASfiles {
                   true
                 );
               }
-            }
-          }
-        }
-      }
+            }//end if($s_valid_suffixes_regexp !== '')
+          }//end if(file_data2->content == file_data->content)
+        }//end foreach(file with same size and same hash)
+      }//end if(there is some file with same size and same hash)
     }//end foreach($arr_files_data_source[...] as $o_file_data)
 
     if($b_compute_also_reverse_status){
@@ -629,6 +629,9 @@ namespace DOSASfiles {
                 and with same content.
   @param string $s_valid_suffixes_regexp A regexp for valid suffixes.
 
+  @throws \Exception When $s_valid_suffixes_regexp is required
+                     and not supplied.
+
   @return void
   */
   function archive_directory_into_another(
@@ -641,6 +644,18 @@ namespace DOSASfiles {
     bool $b_archive_if_missing_suffixed_relative_path_content,
     string $s_valid_suffixes_regexp = '',
   ) : void {
+    if(
+      (
+        $b_archive_if_missing_suffixed_relative_path
+        || $b_archive_if_missing_suffixed_relative_path_content
+      )
+      && $s_valid_suffixes_regexp === ''
+    ){
+      throw new Exception(
+        'archive_directory_into_another is missing an'
+        .' $s_valid_suffixes_regexp argument.'
+      );
+    }
     $arr_files_data = compare_files_under_directories(
       $s_source_dirpath,
       $s_dest_dirpath,

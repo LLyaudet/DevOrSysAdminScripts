@@ -44,8 +44,6 @@ declare(encoding='UTF-8');
 
 namespace SplitScore;
 
-
-
 /**
 Given the 3 following arguments, this function returns a closure that can
 be used to compute the split score given the current string

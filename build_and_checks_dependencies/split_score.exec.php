@@ -47,8 +47,6 @@ declare(encoding='UTF-8');
 
 require_once './build_and_checks_dependencies/split_score.libr.php';
 
-use SplitScore;
-
 if(PHP_SAPI !== 'cli'){
   fwrite(
     STDERR,
@@ -56,7 +54,6 @@ if(PHP_SAPI !== 'cli'){
   );
   die(1);
 }
-
 
 /*
 php -r\
@@ -77,7 +74,7 @@ $'  new \SplitScore\SplitScoreClosure(true, 70, [\'/\']);'\
 $'echo($o_split_score_closure(\'/\', 60, true));'
 */
 
-// phpcs:disable Generic.WhiteSpace.ArbitraryParenthesesSpacing
+/*
 // The first cast "(int) $func..." is to avoid false
 // positive errors on possible XSS if output is unescaped.
 echo(
@@ -87,5 +84,15 @@ echo(
     explode(',', $argv[3]),
   )($argv[4], (int) $argv[5], (bool) $argv[6])
 );
-// phpcs:enable Generic.WhiteSpace.ArbitraryParenthesesSpacing
+//*/
+// AHAHAH PHPCS...
+/* AHAHAH PHPCS XD */
+
+$o_split_score_closure = new \SplitScore\SplitScoreClosure(
+  (bool) $argv[1],
+  (int) $argv[2],
+  explode(',', $argv[3]),
+);
+echo($o_split_score_closure($argv[4], (int) $argv[5], (bool) $argv[6]));
+
 ?>

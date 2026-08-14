@@ -91,9 +91,9 @@ common_build_and_checks(){
   LFBFL_file_name="build_dependencies_notes.libr.php"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='3136857d20aafaabbdcd2468012a55991518430a39a07'
-  LFBFL_correct_sha512+='e2f80572c39e51bda8599ac830cdb9ce83cbb606d034'
-  LFBFL_correct_sha512+='f971f8734b103feae78d48867a29d4d566f2201'
+  LFBFL_correct_sha512='86e21e96b2dacb5cd8c952b400e30a26487e435167b46'
+  LFBFL_correct_sha512+='b49aafb19bce1834d20eac9f58e044b3db76cb4a820c'
+  LFBFL_correct_sha512+='1829eb4607ea4254d5f1146df8cb50699b148bc'
   wrapped_wget_sha512
 
   LFBFL_file_name="build_file_from_printable_file__standard.exec.sh"
@@ -292,18 +292,18 @@ common_build_and_checks(){
   LFBFL_file_name="split_score.exec.php"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='53830be68f0ef9f1a0b9b16a1d98d0a744a38b8fd0ee6'
-  LFBFL_correct_sha512+='68f592aba2df7ec6c856eb1ced9ced7f3d21251699f8'
-  LFBFL_correct_sha512+='7a352c8624d03ce5d5503692488c9e14a9ffb62'
+  LFBFL_correct_sha512='e99bb3fe4f08eb741f177df9dd4d5dffc060589386258'
+  LFBFL_correct_sha512+='bd8b2d15ace1f5d84985ecd5c38ddab33c3daa515635'
+  LFBFL_correct_sha512+='48779f2bd772ccaee970d40a92f78d01c28d2f9'
   wrapped_wget_sha512
   chmod +x "./${LFBFL_file_path}"
 
   LFBFL_file_name="split_score.libr.php"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='e8333a215a02dd7250b01a5a8e8ec862b735735a52a95'
-  LFBFL_correct_sha512+='2c9339cba94ffc9c1605fa4d84487be100fdff644c2e'
-  LFBFL_correct_sha512+='e68cae3569fbc2b0a5525817b33e21425cd2e2f'
+  LFBFL_correct_sha512='a75ba85e4c752a4d552fd60c983bcef2f359e8aca8206'
+  LFBFL_correct_sha512+='27707766ff56dabf964376966b79b1a01d3ab1495ac8'
+  LFBFL_correct_sha512+='e64f82670cf2de1b6f6d0093f18bb309bea5cfb'
   wrapped_wget_sha512
 
   LFBFL_file_name="strings_functions.libr.sh"
@@ -751,10 +751,16 @@ common_build_and_checks(){
   xsltproc --output "${LFBFL_temp_phpmd_baseline}"\
     build_and_checks_dependencies/phpmd_baseline.xslt\
     "${LFBFL_temp_phpmd_baseline}"
-  sed --in-place --expression='s/" file="/"\n    file="/g'\
-    "${LFBFL_temp_phpmd_baseline}"
-  sed --in-place --regexp-extended\
-    --expression='s~(file=".*)/>~\1\n  />~g'\
+  # sed --in-place --expression='s/" file="/"\n    file="/g'\
+  #   "${LFBFL_temp_phpmd_baseline}"
+  # sed --in-place --regexp-extended\
+  #   --expression='s~(file=".*)/>~\1\n  />~g'\
+  #   "${LFBFL_temp_phpmd_baseline}"
+  sed --in-place\
+    --expression='s/\([^"]*\("[^"]*"\)*\) rule="/\1\n    rule="/'\
+    --expression='s/\([^"]*\("[^"]*"\)*\) file="/\1\n    file="/'\
+    --expression='s/\([^"]*\("[^"]*"\)*\) method="/\1\n    method="/'\
+    --expression='s~/>~\n  />~'\
     "${LFBFL_temp_phpmd_baseline}"
   diff --suppress-common-lines\
     "${LFBFL_phpmd_baseline}" "${LFBFL_temp_phpmd_baseline}"\

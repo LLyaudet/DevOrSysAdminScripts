@@ -691,10 +691,16 @@ common_build_and_checks(){
   xsltproc --output "${LFBFL_temp_phpmd_baseline}"\
     build_and_checks_dependencies/phpmd_baseline.xslt\
     "${LFBFL_temp_phpmd_baseline}"
-  sed --in-place --expression='s/" file="/"\n    file="/g'\
-    "${LFBFL_temp_phpmd_baseline}"
-  sed --in-place --regexp-extended\
-    --expression='s~(file=".*)/>~\1\n  />~g'\
+  # sed --in-place --expression='s/" file="/"\n    file="/g'\
+  #   "${LFBFL_temp_phpmd_baseline}"
+  # sed --in-place --regexp-extended\
+  #   --expression='s~(file=".*)/>~\1\n  />~g'\
+  #   "${LFBFL_temp_phpmd_baseline}"
+  sed --in-place\
+    --expression='s/\([^"]*\("[^"]*"\)*\) rule="/\1\n    rule="/'\
+    --expression='s/\([^"]*\("[^"]*"\)*\) file="/\1\n    file="/'\
+    --expression='s/\([^"]*\("[^"]*"\)*\) method="/\1\n    method="/'\
+    --expression='s~/>~\n  />~'\
     "${LFBFL_temp_phpmd_baseline}"
   diff --suppress-common-lines\
     "${LFBFL_phpmd_baseline}" "${LFBFL_temp_phpmd_baseline}"\

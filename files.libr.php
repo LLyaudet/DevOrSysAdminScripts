@@ -659,7 +659,7 @@ namespace DOSASfiles {
 /*
 $ php
 <?php
-require_once('files.libr.php');
+require_once 'files.libr.php';
 var_dump(
   DOSASfiles\compare_files_under_directories(
     '/home/laurent/.config/libreoffice/4/user/backup/',

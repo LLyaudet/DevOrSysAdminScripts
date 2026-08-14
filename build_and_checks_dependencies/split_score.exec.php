@@ -57,18 +57,17 @@ if(PHP_SAPI !== 'cli'){
 
 /*
 php -r\
- $'require_once(\'./build_and_checks_dependencies/'\
-$'split_score.libr.php\');'\
+$'require_once \'./build_and_checks_dependencies/split_score.libr.php\';'\
 $' echo(generate_split_score'\
 $'(true, 70, [\'/\'])(\'/\', 60, true));'
 
 php -r \
-$'require_once(\'./build_and_checks_dependencies/split_score.libr.php\');'\
+$'require_once \'./build_and_checks_dependencies/split_score.libr.php\';'\
 $'echo(\SplitScore\generate_split_score(true, 70, [\'/\'])'\
 $'(\'/\', 60, true));'
 
 php -r \
-$'require_once(\'./build_and_checks_dependencies/split_score.libr.php\');'\
+$'require_once \'./build_and_checks_dependencies/split_score.libr.php\';'\
 $'$o_split_score_closure ='\
 $'  new \SplitScore\SplitScoreClosure(true, 70, [\'/\']);'\
 $'echo($o_split_score_closure(\'/\', 60, true));'

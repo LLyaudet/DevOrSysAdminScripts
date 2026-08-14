@@ -329,7 +329,7 @@ namespace string_escaping\TeX {
 /*
 $ php
 <?php
-require_once('string_escaping.libr.php');
+require_once 'string_escaping.libr.php';
 var_dump(string_escaping\HTML\escape_text("<&\"\n'truc\\>"));
 var_dump(string_escaping\HTML\escape_attribute("<&\"\n'truc\\>"));
 var_dump(string_escaping\HTML\escape_pre("<&\"\n'truc\\>"));

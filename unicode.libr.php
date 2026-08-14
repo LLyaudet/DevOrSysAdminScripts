@@ -860,8 +860,8 @@ function check_file_is_valid_UTF8(
 /*
 ?>
 <?php
-require_once("./unicode_exceptions.libr.php");
-require_once("./unicode.libr.php");
+require_once "./unicode_exceptions.libr.php";
+require_once "./unicode.libr.php";
 var_dump(DOSAS_unicode\hexa_code_point_to_UTF8("002B"));
 var_dump(DOSAS_unicode\hexa_code_point_to_UTF8("00E6"));
 var_dump(DOSAS_unicode\hexa_code_point_to_UTF8("1400"));
@@ -899,8 +899,8 @@ foreach($arr as $s_hexa){
 
 ?>
 <?php
-require_once("./unicode_exceptions.libr.php");
-require_once("./unicode.libr.php");
+require_once "./unicode_exceptions.libr.php";
+require_once "./unicode.libr.php";
 // var_dump(DOSAS_unicode\check_file_is_valid_UTF8("validutf8.json"));
 // var_dump(DOSAS_unicode\check_file_is_valid_UTF8("nonvalidutf8.json"));
 var_dump(DOSAS_unicode\check_string_is_valid_UTF8("abcdé"));

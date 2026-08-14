@@ -35,7 +35,7 @@ If not, see <https://www.gnu.org/licenses/>.
 declare(strict_types=1);
 declare(encoding='UTF-8');
 
-require_once('files.libr.php');
+require_once 'files.libr.php';
 
 if(PHP_SAPI !== 'cli'){
   fwrite(

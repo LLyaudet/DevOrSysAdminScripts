@@ -31,6 +31,7 @@ If not, see <https://www.gnu.org/licenses/>.
       <xsl:apply-templates select="node()">
         <xsl:sort select="@file"/>
         <xsl:sort select="@rule"/>
+        <xsl:sort select="@method"/>
       </xsl:apply-templates>
     </xsl:copy>
   </xsl:template>
@@ -42,4 +43,9 @@ If not, see <https://www.gnu.org/licenses/>.
     <xsl:text>
 </xsl:text>
   </xsl:template>
+  <!--
+  Remove all indentation and line returns in text nodes,
+  because otherwise it will be output first after sorting above.
+  -->
+  <xsl:template match="text()"></xsl:template>
 </xsl:stylesheet>

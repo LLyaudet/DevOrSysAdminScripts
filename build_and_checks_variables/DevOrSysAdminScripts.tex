@@ -74,13 +74,13 @@ Some “small” useful scripts
 for enhancing development or system-administrators tasks
 \end{abstract}
 
-Current version: 2026-05-13
+Current version: 2026-08-14
 
-Current number of commits: 946
+Current number of commits: 1018
 
-Current git SHA1: c1d29e22bbbd926a5841b58f3da7f428b82e9134
+Current git SHA1: 0779fb534ab471a91b897fd06211f381e0aea8cd
 
-Code lines: 12620 total lines, 11610 not empty lines, 1010 empty lines.
+Code lines: 14853 total lines, 13575 not empty lines, 1278 empty lines.
 
 \tableofcontents
 \newpage
@@ -90,10 +90,12 @@ Code lines: 12620 total lines, 11610 not empty lines, 1010 empty lines.
 
 \begin{verbatim}
 .
+├── archive_libre_office_documents.exec.php
 ├── build_and_checks_dependencies
 │   ├── build_and_checks.exec.sh.tpl
 │   ├── build_dependencies_notes.exec.php
 │   ├── build_dependencies_notes.libr.php
+│   ├── build_file_from_printable_file__standard.exec.sh
 │   ├── build_md_from_printable_md.exec.sh
 │   ├── check_shell_scripts_beginnings.libr.sh
 │   ├── check_shell_scripts_indentation.libr.sh
@@ -115,6 +117,7 @@ Code lines: 12620 total lines, 11610 not empty lines, 1010 empty lines.
 │   ├── lines_filters.libr.sh
 │   ├── lines_maps.libr.sh
 │   ├── overwrite_if_not_equal.libr.sh
+│   ├── phpmd_baseline.xslt
 │   ├── python_black_complement.libr.sh
 │   ├── python_isort_complement.libr.sh
 │   ├── repository_data.libr.sh
@@ -140,6 +143,10 @@ Code lines: 12620 total lines, 11610 not empty lines, 1010 empty lines.
 │   ├── licenses_notes.txt
 │   ├── phpcs_ruleset.xml
 │   ├── phpmd_baseline.xml
+│   ├── phpstan_baseline.neon
+│   ├── phpstan_baseline.neon.tpl
+│   ├── phpstan_config.neon
+│   ├── phpstan_config.neon.tpl
 │   ├── pylintrc.toml
 │   ├── repository_data.txt
 │   ├── repository_data.txt.tpl
@@ -150,6 +157,7 @@ Code lines: 12620 total lines, 11610 not empty lines, 1010 empty lines.
 ├── COPYING.LESSER
 ├── DevOrSysAdminScripts.html
 ├── DevOrSysAdminScripts.pdf
+├── files.libr.php
 ├── git_helpers
 │   ├── git_checks.libr.sh
 │   ├── post-commit
@@ -163,6 +171,7 @@ Code lines: 12620 total lines, 11610 not empty lines, 1010 empty lines.
 │   │ a_long_long_long_long_long_long_long_long_long_filename_so_that_you_c
 │   │ an_see_that_it_works.txt
 │   ├── funny.sh
+│   ├── grep_benchmark.sh
 │   ├── spampty_data.txt
 │   ├── string_escaping.html
 │   ├── string_escaping.xhtml
@@ -173,103 +182,116 @@ Code lines: 12620 total lines, 11610 not empty lines, 1010 empty lines.
 ├── README.md
 ├── README.md.tpl
 ├── string_escaping.libr.php
+├── unicode_exceptions.libr.php
 ├── unicode.libr.php
 ├── upgrade_build_and_checks.exec.sh
 └── wget_sha512.libr.sh
 
-6 directories, 77 files
+6 directories, 87 files
 \end{verbatim}
 
 \begin{verbatim}
-[ 12K May 13 18:53]  ./
-├── [4.0K May 13 18:52]  build_and_checks_dependencies/
-│   ├── [4.4K May 12 19:33]  build_and_checks.exec.sh.tpl*
-│   ├── [1.2K May 12 19:31]  build_dependencies_notes.exec.php*
-│   ├── [8.3K May 12 19:31]  build_dependencies_notes.libr.php
-│   ├── [4.2K May 12 19:34]  build_md_from_printable_md.exec.sh*
-│   ├── [3.1K May 12 19:34]  check_shell_scripts_beginnings.libr.sh
-│   ├── [5.3K May 12 19:37]  check_shell_scripts_indentation.libr.sh
-│   ├── [3.9K May 13 17:50]  check_URLs.libr.sh
-│   ├── [ 38K May 13 17:51]  common_build_and_checks.exec.sh*
-│   ├── [ 34K May 13 13:51]  common_build_and_checks.exec.sh.tpl
-│   ├── [ 19K May 12 19:37]  common_options.libr.sh
-│   ├── [6.2K May 12 19:37]  comparisons.libr.sh
-│   ├── [ 22K May 12 19:37]  create_PDF.exec.sh*
-│   ├── [3.7K May 12 19:32]  generate_from_template.libr.sh
-│   ├── [2.0K May 12 19:37]  get_common_text_glob_patterns.libr.sh
-│   ├── [3.3K May 12 19:37]  grammar_and_spelling_check.libr.sh
-│   ├── [4.0K May 12 21:21]  licenses_templates/
-│   │   ├── [ 16K May 12 21:21]  build_licenses_templates.exec.sh*
-│   │   ├── [ 720 May 12 19:16]  license_file_header_AGPLv3+.tpl
-│   │   ├── [ 699 May 12 19:17]  license_file_header_GPLv3+.tpl
-│   │   └── [ 720 May 12 19:18]  license_file_header_LGPLv3+.tpl
-│   ├── [6.0K May 13 17:48]  lines_counts.libr.sh
-│   ├── [ 15K May 13 15:25]  lines_filters.libr.sh
-│   ├── [3.0K May 12 19:37]  lines_maps.libr.sh
-│   ├── [3.3K May 12 19:37]  overwrite_if_not_equal.libr.sh
-│   ├── [2.4K May 12 19:37]  python_black_complement.libr.sh
-│   ├── [3.1K May 13 15:29]  python_isort_complement.libr.sh
-│   ├── [2.9K May 13 15:08]  repository_data.libr.sh
-│   ├── [3.9K May 12 19:37]  shell_checks_complement.libr.sh
-│   ├── [2.0K May 12 19:31]  split_score.exec.php*
-│   ├── [3.2K May 12 19:31]  split_score.libr.php
-│   ├── [ 47K May 13 16:32]  strings_functions.libr.sh
-│   ├── [4.7K May 13 17:45]  too_long_code_lines.libr.sh
-│   ├── [4.4K May 12 19:37]  update_common_build_and_checks.exec.sh*
-│   └── [6.0K May 12 19:37]  update_or_check_files_names_listing.exec.sh*
-├── [4.6K May 13 17:51]  build_and_checks.exec.sh*
-├── [4.0K May 13 18:53]  build_and_checks_variables/
-│   ├── [  15 Jan  5 20:00]  bandit_baseline.json
-│   ├── [  25 Jan  5 18:49]  bandit.ini
-│   ├── [  30 Feb 28 20:30]  black.toml
-│   ├── [5.1K Apr 17 16:50]  dependencies_data.json
-│   ├── [4.3K Apr 17 16:57]  dependencies_notes.txt
-│   ├── [5.7K May 12 19:31]  DevOrSysAdminScripts.html.tpl
-│   ├── [ 33K May 13 18:49]  DevOrSysAdminScripts.tex
-│   ├── [4.2K May 12 19:38]  DevOrSysAdminScripts.tex.tpl
-│   ├── [4.9K May 13 18:47]  files_names_listing.txt
-│   ├── [  23 Mar 24 19:33]  .gitignore
-│   ├── [1.4K Apr 17 16:49]  licenses_notes.txt
-│   ├── [ 13K Apr 17 09:38]  phpcs_ruleset.xml
-│   ├── [2.2K Apr 17 14:32]  phpmd_baseline.xml
-│   ├── [ 678 Feb 24 22:38]  pylintrc.toml
-│   ├── [5.5K May 13 17:14]  repository_data.txt
-│   ├── [ 932 May 13 13:46]  repository_data.txt.tpl
-│   ├── [1.4K May 12 12:26]  ruff.toml
-│   ├── [ 166 Mar 24 19:33]  shellcheck.ini
-│   └── [3.6K May 13 17:18]  shellcheck_notes.txt
-├── [ 34K May  6  2024]  COPYING
-├── [7.5K Dec 27 21:48]  COPYING.LESSER
-├── [499K May 13 18:49]  DevOrSysAdminScripts.html
-├── [415K May 13 18:49]  DevOrSysAdminScripts.pdf
-├── [4.0K May 13 17:28]  git_helpers/
-│   ├── [3.8K May 13 17:22]  git_checks.libr.sh
-│   ├── [2.1K May 12 19:31]  post-commit*
-│   ├── [ 15K May 13 17:28]  post_commit_renaming_comment.libr.sh
-│   └── [1.8K May 12 19:31]  pre-commit*
-├── [   8 Mar 26 10:37]  .gitignore
-├── [8.4K May 12 19:31]  IMAP_transfert.exec.py
-├── [1.1K Mar 31 19:59]  LiensUtiles.txt
-├── [ 24K May 13 18:45]  miscellaneous/
-│   ├── [   0 Mar  4 09:13]
+[ 12K 2026-08-14 18:11]  ./
+├── [1.8K 2026-08-14 17:47]  archive_libre_office_documents.exec.php*
+├── [4.0K 2026-08-14 18:10]  build_and_checks_dependencies/
+│   ├── [4.4K 2026-05-12 19:33]  build_and_checks.exec.sh.tpl*
+│   ├── [1.5K 2026-08-14 17:46]  build_dependencies_notes.exec.php*
+│   ├── [ 10K 2026-08-14 15:46]  build_dependencies_notes.libr.php
+│   ├── [2.6K 2026-08-13 12:28]
+│   │ build_file_from_printable_file__standard.exec.sh*
+│   ├── [4.2K 2026-08-12 19:31]  build_md_from_printable_md.exec.sh*
+│   ├── [3.1K 2026-05-12 19:34]  check_shell_scripts_beginnings.libr.sh
+│   ├── [5.3K 2026-05-12 19:37]  check_shell_scripts_indentation.libr.sh
+│   ├── [4.0K 2026-08-12 19:14]  check_URLs.libr.sh
+│   ├── [ 41K 2026-08-14 17:49]  common_build_and_checks.exec.sh*
+│   ├── [ 36K 2026-08-14 15:51]  common_build_and_checks.exec.sh.tpl
+│   ├── [ 19K 2026-05-12 19:37]  common_options.libr.sh
+│   ├── [6.2K 2026-05-12 19:37]  comparisons.libr.sh
+│   ├── [ 22K 2026-08-12 18:12]  create_PDF.exec.sh*
+│   ├── [3.7K 2026-05-12 19:32]  generate_from_template.libr.sh
+│   ├── [2.1K 2026-08-12 19:16]  get_common_text_glob_patterns.libr.sh
+│   ├── [3.3K 2026-05-12 19:37]  grammar_and_spelling_check.libr.sh
+│   ├── [4.0K 2026-08-13 13:00]  licenses_templates/
+│   │   ├── [ 16K 2026-08-13 13:00]  build_licenses_templates.exec.sh*
+│   │   ├── [ 720 2026-05-12 19:16]  license_file_header_AGPLv3+.tpl
+│   │   ├── [ 699 2026-05-12 19:17]  license_file_header_GPLv3+.tpl
+│   │   └── [ 720 2026-05-12 19:18]  license_file_header_LGPLv3+.tpl
+│   ├── [6.0K 2026-05-13 17:48]  lines_counts.libr.sh
+│   ├── [ 15K 2026-05-13 15:25]  lines_filters.libr.sh
+│   ├── [3.0K 2026-05-12 19:37]  lines_maps.libr.sh
+│   ├── [3.3K 2026-05-12 19:37]  overwrite_if_not_equal.libr.sh
+│   ├── [1.6K 2026-08-14 14:40]  phpmd_baseline.xslt
+│   ├── [2.4K 2026-05-12 19:37]  python_black_complement.libr.sh
+│   ├── [3.1K 2026-05-13 15:29]  python_isort_complement.libr.sh
+│   ├── [2.9K 2026-05-13 15:08]  repository_data.libr.sh
+│   ├── [3.9K 2026-05-12 19:37]  shell_checks_complement.libr.sh
+│   ├── [2.8K 2026-08-14 17:45]  split_score.exec.php*
+│   ├── [5.9K 2026-08-14 14:56]  split_score.libr.php
+│   ├── [ 47K 2026-05-13 16:32]  strings_functions.libr.sh
+│   ├── [4.8K 2026-08-12 19:25]  too_long_code_lines.libr.sh
+│   ├── [4.5K 2026-08-14 14:33]  update_common_build_and_checks.exec.sh*
+│   └── [6.0K 2026-05-12 19:37]
+│     update_or_check_files_names_listing.exec.sh*
+├── [4.6K 2026-08-14 17:49]  build_and_checks.exec.sh*
+├── [4.0K 2026-08-14 18:11]  build_and_checks_variables/
+│   ├── [  15 2026-01-05 20:00]  bandit_baseline.json
+│   ├── [  25 2026-01-05 18:49]  bandit.ini
+│   ├── [  30 2026-02-28 20:30]  black.toml
+│   ├── [5.1K 2026-04-17 16:50]  dependencies_data.json
+│   ├── [4.3K 2026-04-17 16:57]  dependencies_notes.txt
+│   ├── [5.7K 2026-05-12 19:31]  DevOrSysAdminScripts.html.tpl
+│   ├── [ 37K 2026-08-14 18:09]  DevOrSysAdminScripts.tex
+│   ├── [4.2K 2026-05-12 19:38]  DevOrSysAdminScripts.tex.tpl
+│   ├── [5.3K 2026-08-14 17:42]  files_names_listing.txt
+│   ├── [  23 2026-03-24 19:33]  .gitignore
+│   ├── [1.4K 2026-04-17 16:49]  licenses_notes.txt
+│   ├── [ 16K 2026-08-14 17:54]  phpcs_ruleset.xml
+│   ├── [5.2K 2026-08-14 14:53]  phpmd_baseline.xml
+│   ├── [1.6K 2026-08-14 18:06]  phpstan_baseline.neon
+│   ├── [1.7K 2026-08-14 18:06]  phpstan_baseline.neon.tpl
+│   ├── [ 236 2026-08-13 12:29]  phpstan_config.neon
+│   ├── [ 244 2026-08-12 19:23]  phpstan_config.neon.tpl
+│   ├── [ 678 2026-02-24 22:38]  pylintrc.toml
+│   ├── [5.5K 2026-05-13 17:14]  repository_data.txt
+│   ├── [ 932 2026-05-13 13:46]  repository_data.txt.tpl
+│   ├── [1.5K 2026-08-13 16:02]  ruff.toml
+│   ├── [ 166 2026-03-24 19:33]  shellcheck.ini
+│   └── [3.6K 2026-05-13 17:18]  shellcheck_notes.txt
+├── [ 34K 2024-05-06 00:49]  COPYING
+├── [7.5K 2025-12-27 21:48]  COPYING.LESSER
+├── [569K 2026-08-14 18:09]  DevOrSysAdminScripts.html
+├── [465K 2026-08-14 18:09]  DevOrSysAdminScripts.pdf
+├── [ 21K 2026-08-14 18:01]  files.libr.php
+├── [4.0K 2026-05-13 17:28]  git_helpers/
+│   ├── [3.8K 2026-05-13 17:22]  git_checks.libr.sh
+│   ├── [2.1K 2026-05-12 19:31]  post-commit*
+│   ├── [ 15K 2026-05-13 17:28]  post_commit_renaming_comment.libr.sh
+│   └── [1.8K 2026-05-12 19:31]  pre-commit*
+├── [   8 2026-03-26 10:37]  .gitignore
+├── [8.4K 2026-05-12 19:31]  IMAP_transfert.exec.py
+├── [1.1K 2026-03-31 19:59]  LiensUtiles.txt
+├── [ 24K 2026-08-13 18:22]  miscellaneous/
+│   ├── [   0 2026-03-04 09:13]
 │   │ a_long_long_long_long_long_long_long_long_long_filename_so_that_you_c
 │   │ an_see_that_it_works.txt
-│   ├── [1.3K May 12 19:37]  funny.sh
-│   ├── [  94 Mar  3 19:56]  spampty_data.txt
-│   ├── [ 461 May 13 18:15]  string_escaping.html
-│   ├── [ 653 May 12 14:38]  string_escaping.xhtml
-│   └── [   0 Mar  4 09:13]
+│   ├── [1.3K 2026-05-12 19:37]  funny.sh
+│   ├── [2.4K 2026-08-13 18:22]  grep_benchmark.sh
+│   ├── [  94 2026-03-03 19:56]  spampty_data.txt
+│   ├── [ 461 2026-05-13 18:15]  string_escaping.html
+│   ├── [ 653 2026-05-12 14:38]  string_escaping.xhtml
+│   └── [   0 2026-03-04 09:13]
 │     yet_another_long_long_long_long_long_long_long_long_long_filename_so_
 │     that_you_can_see_that_it_works.txt
-├── [8.1K May 12 12:17]  README.html
-├── [4.3K Mar 22 21:29]  README.md
-├── [4.3K Mar 22 21:29]  README.md.tpl
-├── [7.5K May 13 18:16]  string_escaping.libr.php
-├── [ 17K May 13 18:18]  unicode.libr.php
-├── [6.4K May 13 18:46]  upgrade_build_and_checks.exec.sh*
-└── [2.5K May 12 19:37]  wget_sha512.libr.sh
+├── [8.1K 2026-05-12 12:17]  README.html
+├── [4.3K 2026-03-22 21:29]  README.md
+├── [4.3K 2026-03-22 21:29]  README.md.tpl
+├── [7.5K 2026-08-14 17:03]  string_escaping.libr.php
+├── [2.5K 2026-08-13 18:54]  unicode_exceptions.libr.php
+├── [ 31K 2026-08-14 17:04]  unicode.libr.php
+├── [6.4K 2026-05-13 18:46]  upgrade_build_and_checks.exec.sh*
+└── [2.5K 2026-05-12 19:37]  wget_sha512.libr.sh
 
-6 directories, 77 files
+6 directories, 87 files
 \end{verbatim}
 
 \section{Notes on licenses and dependencies}
@@ -465,6 +487,18 @@ please tell me/email me :).
 \label{section:listing}
 
 \subsection{
+  archive\_libre\_office\_documents.exec.php
+}
+\label{
+  archive_libre_office_documentsexecphp
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+archive_libre_office_documents.exec.php
+}
+
+
+\subsection{
   build\_and\_checks\_dependencies/build\_and\_checks.exec.sh.tpl
 }
 \label{
@@ -497,6 +531,21 @@ build_and_checks_dependencies/build_dependencies_notes.exec.php
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
 build_and_checks_dependencies/build_dependencies_notes.libr.php
+}
+
+
+\subsection{
+  build\_and\_checks\_dependencies/%
+build\_file\_from\_printable\_file\_\_standard.exec.sh
+}
+\label{
+  build_and_checks_dependencies:%
+build_file_from_printable_file__standardexecsh
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+build_and_checks_dependencies/%
+build_file_from_printable_file__standard.exec.sh
 }
 
 
@@ -752,6 +801,18 @@ build_and_checks_dependencies/lines_maps.libr.sh
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
 build_and_checks_dependencies/overwrite_if_not_equal.libr.sh
+}
+
+
+\subsection{
+  build\_and\_checks\_dependencies/phpmd\_baseline.xslt
+}
+\label{
+  build_and_checks_dependencies:phpmd_baselinexslt
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+build_and_checks_dependencies/phpmd_baseline.xslt
 }
 
 
@@ -1022,6 +1083,30 @@ build_and_checks_variables/phpmd_baseline.xml
 
 
 \subsection{
+  build\_and\_checks\_variables/phpstan\_baseline.neon.tpl
+}
+\label{
+  build_and_checks_variables:phpstan_baselineneontpl
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+build_and_checks_variables/phpstan_baseline.neon.tpl
+}
+
+
+\subsection{
+  build\_and\_checks\_variables/phpstan\_config.neon.tpl
+}
+\label{
+  build_and_checks_variables:phpstan_configneontpl
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+build_and_checks_variables/phpstan_config.neon.tpl
+}
+
+
+\subsection{
   build\_and\_checks\_variables/pylintrc.toml
 }
 \label{
@@ -1130,6 +1215,18 @@ COPYING.LESSER
 
 
 \subsection{
+  files.libr.php
+}
+\label{
+  fileslibrphp
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+files.libr.php
+}
+
+
+\subsection{
   git\_helpers/git\_checks.libr.sh
 }
 \label{
@@ -1214,6 +1311,18 @@ miscellaneous/funny.sh
 
 
 \subsection{
+  miscellaneous/grep\_benchmark.sh
+}
+\label{
+  miscellaneous:grep_benchmarksh
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+miscellaneous/grep_benchmark.sh
+}
+
+
+\subsection{
   miscellaneous/spampty\_data.txt
 }
 \label{
@@ -1282,6 +1391,18 @@ string_escaping.libr.php
 
 \VerbatimInput[numbers=left,xleftmargin=-5mm]{
 unicode.libr.php
+}
+
+
+\subsection{
+  unicode\_exceptions.libr.php
+}
+\label{
+  unicode_exceptionslibrphp
+}
+
+\VerbatimInput[numbers=left,xleftmargin=-5mm]{
+unicode_exceptions.libr.php
 }
 
 

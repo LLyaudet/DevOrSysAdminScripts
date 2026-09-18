@@ -450,10 +450,14 @@ common_build_and_checks(){
   LFBFL_annoying_warning=" because Zend multibyte feature is turned off"
   LFBFL_annoying_warning=" by settings in"
   readonly LFBFL_annoying_warning
-  php -f="./${LFBFL_subdir}/build_dependencies_notes.exec.php"\
-    -- "${LFBFL_work_directory}"\
-    2>&1\
-    | grep --invert-match "${LFBFL_annoying_warning}"
+  if [[ -e "${LFBFL_subdir3}/dependencies_data.json" ]]; then
+    php -f="./${LFBFL_subdir}/build_dependencies_notes.exec.php"\
+      -- "${LFBFL_work_directory}"\
+      2>&1\
+      | grep --invert-match "${LFBFL_annoying_warning}"
+  elif [[ LFBFL_i_verbose -eq 1 ]]; then
+    printf "No file dependencies_data.json.\n"
+  fi
 
   declare -i LFBFL_i_directory_changed
   pushd_to_work_directory
@@ -531,16 +535,20 @@ common_build_and_checks(){
     "${LFBFL_some_common_options2[@]}"
 
   printf "Running shellcheck\n"
-  LFBFL_s_files_paths=$(
-    find . -type f -name "*.sh"\
-    | relevant_find
-  )
-  if [[ -n "${LFBFL_s_files_paths}" ]]; then
-    mapfile -t LFBFL_arr_files_paths <<< "${LFBFL_s_files_paths}"
-    for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do
-      shellcheck --rcfile="${LFBFL_subdir3}/shellcheck.ini"\
-        -- "${LFBFL_file_path}"
-    done
+  if [[ -e "${LFBFL_subdir3}/shellcheck.ini" ]]; then
+    LFBFL_s_files_paths=$(
+      find . -type f -name "*.sh"\
+      | relevant_find
+    )
+    if [[ -n "${LFBFL_s_files_paths}" ]]; then
+      mapfile -t LFBFL_arr_files_paths <<< "${LFBFL_s_files_paths}"
+      for LFBFL_file_path in "${LFBFL_arr_files_paths[@]}"; do
+        shellcheck --rcfile="${LFBFL_subdir3}/shellcheck.ini"\
+          -- "${LFBFL_file_path}"
+      done
+    fi
+  elif [[ LFBFL_i_verbose -eq 1 ]]; then
+    printf "No file shellcheck.ini.\n"
   fi
   printf "Running shell_checks_complement\n"
   shell_checks_complement "${LFBFL_some_common_options2[@]}"
@@ -589,13 +597,17 @@ common_build_and_checks(){
 
   printf "Running black\n"
   # First, we update the configuration file with max_line_length.
-  local LFBFL_update_max_length="s/^line-length = [0-9]*$"
-  LFBFL_update_max_length+="/line-length = ${LFBFL_i_max_line_length}/"
-  sed --regexp-extended --expression="${LFBFL_update_max_length}"\
-    "${LFBFL_subdir3}/black.toml"\
-    > "${LFBFL_subdir3}/black.toml.temp"
-  overwrite_if_not_equal "${LFBFL_subdir3}/black.toml"\
-    "${LFBFL_subdir3}/black.toml.temp"
+  if [[ -e "${LFBFL_subdir3}/black.toml" ]]; then
+    local LFBFL_update_max_length="s/^line-length = [0-9]*$"
+    LFBFL_update_max_length+="/line-length = ${LFBFL_i_max_line_length}/"
+    sed --regexp-extended --expression="${LFBFL_update_max_length}"\
+      "${LFBFL_subdir3}/black.toml"\
+      > "${LFBFL_subdir3}/black.toml.temp"
+    overwrite_if_not_equal "${LFBFL_subdir3}/black.toml"\
+      "${LFBFL_subdir3}/black.toml.temp"
+  elif [[ LFBFL_i_verbose -eq 1 ]]; then
+    printf "No file black.toml.\n"
+  fi
 
   local LFBFL_black_venv=""
   grep_variable "${LFBFL_data_file_path}" black_venv\
@@ -608,7 +620,9 @@ common_build_and_checks(){
   if [[ LFBFL_i_upgrade_venvs -eq 1 ]]; then
     pip install --upgrade black
   fi
-  black --config="${LFBFL_subdir3}/black.toml" .
+  if [[ -e "${LFBFL_subdir3}/black.toml" ]]; then
+    black --config="${LFBFL_subdir3}/black.toml" .
+  fi
   if [[ -n "${LFBFL_black_venv}" ]]; then
     deactivate
   fi
@@ -664,14 +678,18 @@ common_build_and_checks(){
   if [[ LFBFL_i_upgrade_venvs -eq 1 ]]; then
     pip install --upgrade bandit
   fi
-  bandit --ini="${LFBFL_subdir3}/bandit.ini"\
-    --baseline="${LFBFL_subdir3}/bandit_baseline.json"\
-    --recursive .
-  # Saving new baseline in temp if necessary.
-  bandit --ini="${LFBFL_subdir3}/bandit.ini"\
-    --format=json\
-    --output="${LFBFL_subdir3}/temp/bandit_baseline.json"\
-    --recursive .
+  if [[ -e "${LFBFL_subdir3}/bandit.ini" ]]; then
+    bandit --ini="${LFBFL_subdir3}/bandit.ini"\
+      --baseline="${LFBFL_subdir3}/bandit_baseline.json"\
+      --recursive .
+    # Saving new baseline in temp if necessary.
+    bandit --ini="${LFBFL_subdir3}/bandit.ini"\
+      --format=json\
+      --output="${LFBFL_subdir3}/temp/bandit_baseline.json"\
+      --recursive .
+  elif [[ LFBFL_i_verbose -eq 1 ]]; then
+    printf "No file bandit.ini.\n"
+  fi
   if [[ -n "${LFBFL_bandit_venv}" ]]; then
     deactivate
   fi
@@ -688,7 +706,11 @@ common_build_and_checks(){
   if [[ LFBFL_i_upgrade_venvs -eq 1 ]]; then
     pip install --upgrade pylint
   fi
-  pylint --rcfile="${LFBFL_subdir3}/pylintrc.toml" --recursive=y .
+  if [[ -e "${LFBFL_subdir3}/pylintrc.toml" ]]; then
+    pylint --rcfile="${LFBFL_subdir3}/pylintrc.toml" --recursive=y .
+  elif [[ LFBFL_i_verbose -eq 1 ]]; then
+    printf "No file pylintrc.toml.\n"
+  fi
   if [[ -n "${LFBFL_pylint_venv}" ]]; then
     deactivate
   fi
@@ -705,7 +727,11 @@ common_build_and_checks(){
   if [[ LFBFL_i_upgrade_venvs -eq 1 ]]; then
     pip install --upgrade ruff
   fi
-  ruff check --config="${LFBFL_subdir3}/ruff.toml"
+  if [[ -e "${LFBFL_subdir3}/ruff.toml" ]]; then
+    ruff check --config="${LFBFL_subdir3}/ruff.toml"
+  elif [[ LFBFL_i_verbose -eq 1 ]]; then
+    printf "No file ruff.toml.\n"
+  fi
   if [[ -n "${LFBFL_ruff_venv}" ]]; then
     deactivate
   fi
@@ -730,8 +756,12 @@ common_build_and_checks(){
   if [[ LFBFL_i_upgrade_venvs -eq 1 ]]; then
     composer global require squizlabs/php_codesniffer
   fi
-  phpcs --report=code\
-    --standard=build_and_checks_variables/phpcs_ruleset.xml
+  if [[ -e "${LFBFL_subdir3}/phpcs_ruleset.xml" ]]; then
+    phpcs --report=code\
+      --standard="${LFBFL_subdir3}/phpcs_ruleset.xml"
+  elif [[ LFBFL_i_verbose -eq 1 ]]; then
+    printf "No file phpcs_ruleset.xml.\n"
+  fi
 
   printf "Running PHPMD\n"
   if [[ LFBFL_i_upgrade_venvs -eq 1 ]]; then
@@ -787,14 +817,18 @@ common_build_and_checks(){
   local LFBFL_temp_phpstan_baseline="${LFBFL_subdir3}/temp/"
   LFBFL_temp_phpstan_baseline+="phpstan_baseline.neon"
   readonly LFBFL_temp_phpstan_baseline
-  phpstan --configuration=build_and_checks_variables/phpstan_config.neon
-  # Saving new baseline in temp if necessary.
-  rm "${LFBFL_temp_phpstan_baseline}"
-  phpstan --configuration=build_and_checks_variables/phpstan_config.neon\
-    --generate-baseline="${LFBFL_temp_phpstan_baseline}"\
-    --allow-empty-baseline
-  sed --in-place --expression='s/\t/ /g' "${LFBFL_temp_phpstan_baseline}"
-  cat "${LFBFL_temp_phpstan_baseline}"
+  if [[ -e "${LFBFL_subdir3}/phpstan_config.neon" ]]; then
+    phpstan --configuration="${LFBFL_subdir3}/phpstan_config.neon"
+    # Saving new baseline in temp if necessary.
+    rm "${LFBFL_temp_phpstan_baseline}"
+    phpstan --configuration="${LFBFL_subdir3}/phpstan_config.neon"\
+      --generate-baseline="${LFBFL_temp_phpstan_baseline}"\
+      --allow-empty-baseline
+    sed --in-place --expression='s/\t/ /g' "${LFBFL_temp_phpstan_baseline}"
+    cat "${LFBFL_temp_phpstan_baseline}"
+  elif [[ LFBFL_i_verbose -eq 1 ]]; then
+    printf "No file phpstan_config.neon.\n"
+  fi
 
   printf "Running phpDocumentor\n"
   # shellcheck disable=SC2312

@@ -100,6 +100,9 @@ COPYING
 COPYING.LESSER
 // DevOrSysAdminScripts.html
 // DevOrSysAdminScripts.pdf
+// DevOrSysAdminScripts-A4.pdf
+// DevOrSysAdminScripts-Book.pdf
+// DevOrSysAdminScripts-USLetter.pdf
 // EncoreBlasé20240517-20240518.txt
 files.libr.php
 git_helpers/git_checks.libr.sh

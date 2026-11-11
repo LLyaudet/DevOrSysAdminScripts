@@ -26,7 +26,19 @@
 % to
 % "./build_and_checks_variables".
 
+\if\buildtarget0% A4 paper
 \documentclass{article}
+\usepackage[a4paper,vmargin=20mm,left=27mm,right=27mm,nohead]{geometry}
+\else\if\buildtarget1% US Letter paper
+\documentclass{article}
+\usepackage[letterpaper,vmargin=20mm,left=27mm,right=27mm,nohead]{geometry}
+\else\if\buildtarget2% Book with US Letter paper
+\documentclass[twoside]{article}
+\usepackage[letterpaper,vmargin=20mm,outer=24mm,inner=24mm,nohead,
+bindingoffset=8mm]{geometry}
+\fi
+\fi
+\fi
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -74,13 +86,24 @@ Some “small” useful scripts
 for enhancing development or system-administrators tasks
 \end{abstract}
 
-Current version: 2026-09-18
+Current version: 2026-11-11
 
-Current number of commits: 1020
+Current number of commits: 1022
 
-Current git SHA1: ed243f905e9caf11bfe3bb6855ed17306034c8b0
+Current git SHA1: 3c1fbe3e69f5d123919339c7341622e64e77e144
 
-Code lines: 14921 total lines, 13643 not empty lines, 1278 empty lines.
+Code lines: 14995 total lines, 13712 not empty lines, 1283 empty lines.
+
+Buildtarget: \buildtarget
+\if\buildtarget0
+A4
+\else\if\buildtarget1% US Letter paper
+USLetter
+\else\if\buildtarget2% Book with US Letter paper
+Book
+\fi
+\fi
+\fi
 
 \tableofcontents
 \newpage
@@ -155,8 +178,11 @@ Code lines: 14921 total lines, 13643 not empty lines, 1278 empty lines.
 │   └── shellcheck_notes.txt
 ├── COPYING
 ├── COPYING.LESSER
+├── DevOrSysAdminScripts-A4.pdf
+├── DevOrSysAdminScripts-Book.pdf
 ├── DevOrSysAdminScripts.html
 ├── DevOrSysAdminScripts.pdf
+├── DevOrSysAdminScripts-USLetter.pdf
 ├── files.libr.php
 ├── git_helpers
 │   ├── git_checks.libr.sh
@@ -187,13 +213,13 @@ Code lines: 14921 total lines, 13643 not empty lines, 1278 empty lines.
 ├── upgrade_build_and_checks.exec.sh
 └── wget_sha512.libr.sh
 
-6 directories, 87 files
+6 directories, 90 files
 \end{verbatim}
 
 \begin{verbatim}
-[ 12K 2026-09-18 22:17]  ./
+[ 12K 2026-11-11 15:51]  ./
 ├── [1.8K 2026-08-14 17:47]  archive_libre_office_documents.exec.php*
-├── [4.0K 2026-09-18 22:17]  build_and_checks_dependencies/
+├── [4.0K 2026-11-11 15:51]  build_and_checks_dependencies/
 │   ├── [4.4K 2026-05-12 19:33]  build_and_checks.exec.sh.tpl*
 │   ├── [1.5K 2026-08-14 17:46]  build_dependencies_notes.exec.php*
 │   ├── [ 10K 2026-08-14 15:46]  build_dependencies_notes.libr.php
@@ -203,11 +229,11 @@ Code lines: 14921 total lines, 13643 not empty lines, 1278 empty lines.
 │   ├── [3.1K 2026-05-12 19:34]  check_shell_scripts_beginnings.libr.sh
 │   ├── [5.3K 2026-05-12 19:37]  check_shell_scripts_indentation.libr.sh
 │   ├── [4.0K 2026-08-12 19:14]  check_URLs.libr.sh
-│   ├── [ 43K 2026-09-18 22:17]  common_build_and_checks.exec.sh*
+│   ├── [ 43K 2026-11-11 15:41]  common_build_and_checks.exec.sh*
 │   ├── [ 38K 2026-09-18 22:14]  common_build_and_checks.exec.sh.tpl
 │   ├── [ 19K 2026-05-12 19:37]  common_options.libr.sh
 │   ├── [6.2K 2026-05-12 19:37]  comparisons.libr.sh
-│   ├── [ 22K 2026-08-12 18:12]  create_PDF.exec.sh*
+│   ├── [ 23K 2026-11-11 15:40]  create_PDF.exec.sh*
 │   ├── [3.7K 2026-05-12 19:32]  generate_from_template.libr.sh
 │   ├── [2.1K 2026-08-12 19:16]  get_common_text_glob_patterns.libr.sh
 │   ├── [3.3K 2026-05-12 19:37]  grammar_and_spelling_check.libr.sh
@@ -232,16 +258,16 @@ Code lines: 14921 total lines, 13643 not empty lines, 1278 empty lines.
 │   ├── [4.5K 2026-08-14 14:33]  update_common_build_and_checks.exec.sh*
 │   └── [6.0K 2026-05-12 19:37]
 │     update_or_check_files_names_listing.exec.sh*
-├── [4.6K 2026-09-18 22:17]  build_and_checks.exec.sh*
-├── [4.0K 2026-09-18 22:18]  build_and_checks_variables/
+├── [4.6K 2026-11-11 15:41]  build_and_checks.exec.sh*
+├── [4.0K 2026-11-11 15:51]  build_and_checks_variables/
 │   ├── [  15 2026-01-05 20:00]  bandit_baseline.json
 │   ├── [  25 2026-01-05 18:49]  bandit.ini
 │   ├── [  30 2026-02-28 20:30]  black.toml
 │   ├── [5.1K 2026-04-17 16:50]  dependencies_data.json
 │   ├── [4.3K 2026-04-17 16:57]  dependencies_notes.txt
 │   ├── [5.7K 2026-05-12 19:31]  DevOrSysAdminScripts.html.tpl
-│   ├── [ 37K 2026-08-14 18:11]  DevOrSysAdminScripts.tex
-│   ├── [4.2K 2026-05-12 19:38]  DevOrSysAdminScripts.tex.tpl
+│   ├── [ 38K 2026-11-11 15:41]  DevOrSysAdminScripts.tex
+│   ├── [4.8K 2026-11-11 15:50]  DevOrSysAdminScripts.tex.tpl
 │   ├── [5.3K 2026-08-14 17:42]  files_names_listing.txt
 │   ├── [  23 2026-03-24 19:33]  .gitignore
 │   ├── [1.4K 2026-04-17 16:49]  licenses_notes.txt
@@ -252,15 +278,18 @@ Code lines: 14921 total lines, 13643 not empty lines, 1278 empty lines.
 │   ├── [ 236 2026-08-13 12:29]  phpstan_config.neon
 │   ├── [ 244 2026-08-12 19:23]  phpstan_config.neon.tpl
 │   ├── [ 678 2026-02-24 22:38]  pylintrc.toml
-│   ├── [5.5K 2026-05-13 17:14]  repository_data.txt
-│   ├── [ 932 2026-05-13 13:46]  repository_data.txt.tpl
+│   ├── [5.8K 2026-11-11 14:52]  repository_data.txt
+│   ├── [ 963 2026-11-11 15:43]  repository_data.txt.tpl
 │   ├── [1.5K 2026-08-13 16:02]  ruff.toml
 │   ├── [ 166 2026-03-24 19:33]  shellcheck.ini
 │   └── [3.6K 2026-05-13 17:18]  shellcheck_notes.txt
 ├── [ 34K 2024-05-06 00:49]  COPYING
 ├── [7.5K 2025-12-27 21:48]  COPYING.LESSER
-├── [569K 2026-08-14 18:11]  DevOrSysAdminScripts.html
-├── [465K 2026-08-14 18:11]  DevOrSysAdminScripts.pdf
+├── [468K 2026-11-11 15:42]  DevOrSysAdminScripts-A4.pdf
+├── [468K 2026-11-11 15:42]  DevOrSysAdminScripts-Book.pdf
+├── [575K 2026-11-11 15:41]  DevOrSysAdminScripts.html
+├── [466K 2026-09-18 22:18]  DevOrSysAdminScripts.pdf
+├── [468K 2026-11-11 15:42]  DevOrSysAdminScripts-USLetter.pdf
 ├── [ 21K 2026-08-14 18:01]  files.libr.php
 ├── [4.0K 2026-05-13 17:28]  git_helpers/
 │   ├── [3.8K 2026-05-13 17:22]  git_checks.libr.sh
@@ -291,7 +320,7 @@ Code lines: 14921 total lines, 13643 not empty lines, 1278 empty lines.
 ├── [6.4K 2026-05-13 18:46]  upgrade_build_and_checks.exec.sh*
 └── [2.5K 2026-05-12 19:37]  wget_sha512.libr.sh
 
-6 directories, 87 files
+6 directories, 90 files
 \end{verbatim}
 
 \section{Notes on licenses and dependencies}

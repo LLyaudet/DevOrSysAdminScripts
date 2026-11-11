@@ -26,7 +26,19 @@
 % to
 % "./build_and_checks_variables".
 
+\if\buildtarget0% A4 paper
 \documentclass{article}
+\usepackage[a4paper,vmargin=20mm,left=27mm,right=27mm,nohead]{geometry}
+\else\if\buildtarget1% US Letter paper
+\documentclass{article}
+\usepackage[letterpaper,vmargin=20mm,left=27mm,right=27mm,nohead]{geometry}
+\else\if\buildtarget2% Book with US Letter paper
+\documentclass[twoside]{article}
+\usepackage[letterpaper,vmargin=20mm,outer=24mm,inner=24mm,nohead,
+bindingoffset=8mm]{geometry}
+\fi
+\fi
+\fi
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -80,6 +92,17 @@ Current number of commits: @number_of_commits@
 Current git SHA1: @current_git_SHA1@
 
 Code lines: @number_of_lines@
+
+Buildtarget: \buildtarget
+\if\buildtarget0
+A4
+\else\if\buildtarget1% US Letter paper
+USLetter
+\else\if\buildtarget2% Book with US Letter paper
+Book
+\fi
+\fi
+\fi
 
 \tableofcontents
 \newpage

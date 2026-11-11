@@ -118,11 +118,11 @@ ol.level2 li:before{
 Some “small” useful scripts
 for enhancing development or system-administrators tasks
 </blockquote>
-<p>Current version: 2026-09-18</p>
-<p>Current number of commits: 1020</p>
-<p>Current git SHA1: ed243f905e9caf11bfe3bb6855ed17306034c8b0</p>
+<p>Current version: 2026-11-11</p>
+<p>Current number of commits: 1022</p>
+<p>Current git SHA1: 3c1fbe3e69f5d123919339c7341622e64e77e144</p>
 <p>
-Code lines: 14921 total lines, 13643 not empty lines, 1278 empty lines.
+Code lines: 14995 total lines, 13712 not empty lines, 1283 empty lines.
 </p>
 
 
@@ -442,8 +442,11 @@ wget_sha512.libr.sh
 │   └── shellcheck_notes.txt
 ├── COPYING
 ├── COPYING.LESSER
+├── DevOrSysAdminScripts-A4.pdf
+├── DevOrSysAdminScripts-Book.pdf
 ├── DevOrSysAdminScripts.html
 ├── DevOrSysAdminScripts.pdf
+├── DevOrSysAdminScripts-USLetter.pdf
 ├── files.libr.php
 ├── git_helpers
 │   ├── git_checks.libr.sh
@@ -474,12 +477,12 @@ wget_sha512.libr.sh
 ├── upgrade_build_and_checks.exec.sh
 └── wget_sha512.libr.sh
 
-6 directories, 87 files
+6 directories, 90 files
 </pre>
 <pre class="verbatim">
-[ 12K 2026-09-18 22:17]  ./
+[ 12K 2026-11-11 15:51]  ./
 ├── [1.8K 2026-08-14 17:47]  archive_libre_office_documents.exec.php*
-├── [4.0K 2026-09-18 22:17]  build_and_checks_dependencies/
+├── [4.0K 2026-11-11 15:51]  build_and_checks_dependencies/
 │   ├── [4.4K 2026-05-12 19:33]  build_and_checks.exec.sh.tpl*
 │   ├── [1.5K 2026-08-14 17:46]  build_dependencies_notes.exec.php*
 │   ├── [ 10K 2026-08-14 15:46]  build_dependencies_notes.libr.php
@@ -489,11 +492,11 @@ wget_sha512.libr.sh
 │   ├── [3.1K 2026-05-12 19:34]  check_shell_scripts_beginnings.libr.sh
 │   ├── [5.3K 2026-05-12 19:37]  check_shell_scripts_indentation.libr.sh
 │   ├── [4.0K 2026-08-12 19:14]  check_URLs.libr.sh
-│   ├── [ 43K 2026-09-18 22:17]  common_build_and_checks.exec.sh*
+│   ├── [ 43K 2026-11-11 15:41]  common_build_and_checks.exec.sh*
 │   ├── [ 38K 2026-09-18 22:14]  common_build_and_checks.exec.sh.tpl
 │   ├── [ 19K 2026-05-12 19:37]  common_options.libr.sh
 │   ├── [6.2K 2026-05-12 19:37]  comparisons.libr.sh
-│   ├── [ 22K 2026-08-12 18:12]  create_PDF.exec.sh*
+│   ├── [ 23K 2026-11-11 15:40]  create_PDF.exec.sh*
 │   ├── [3.7K 2026-05-12 19:32]  generate_from_template.libr.sh
 │   ├── [2.1K 2026-08-12 19:16]  get_common_text_glob_patterns.libr.sh
 │   ├── [3.3K 2026-05-12 19:37]  grammar_and_spelling_check.libr.sh
@@ -518,16 +521,16 @@ wget_sha512.libr.sh
 │   ├── [4.5K 2026-08-14 14:33]  update_common_build_and_checks.exec.sh*
 │   └── [6.0K 2026-05-12 19:37]
 │     update_or_check_files_names_listing.exec.sh*
-├── [4.6K 2026-09-18 22:17]  build_and_checks.exec.sh*
-├── [4.0K 2026-09-18 22:18]  build_and_checks_variables/
+├── [4.6K 2026-11-11 15:41]  build_and_checks.exec.sh*
+├── [4.0K 2026-11-11 15:51]  build_and_checks_variables/
 │   ├── [  15 2026-01-05 20:00]  bandit_baseline.json
 │   ├── [  25 2026-01-05 18:49]  bandit.ini
 │   ├── [  30 2026-02-28 20:30]  black.toml
 │   ├── [5.1K 2026-04-17 16:50]  dependencies_data.json
 │   ├── [4.3K 2026-04-17 16:57]  dependencies_notes.txt
 │   ├── [5.7K 2026-05-12 19:31]  DevOrSysAdminScripts.html.tpl
-│   ├── [ 37K 2026-08-14 18:11]  DevOrSysAdminScripts.tex
-│   ├── [4.2K 2026-05-12 19:38]  DevOrSysAdminScripts.tex.tpl
+│   ├── [ 38K 2026-11-11 15:41]  DevOrSysAdminScripts.tex
+│   ├── [4.8K 2026-11-11 15:50]  DevOrSysAdminScripts.tex.tpl
 │   ├── [5.3K 2026-08-14 17:42]  files_names_listing.txt
 │   ├── [  23 2026-03-24 19:33]  .gitignore
 │   ├── [1.4K 2026-04-17 16:49]  licenses_notes.txt
@@ -538,15 +541,18 @@ wget_sha512.libr.sh
 │   ├── [ 236 2026-08-13 12:29]  phpstan_config.neon
 │   ├── [ 244 2026-08-12 19:23]  phpstan_config.neon.tpl
 │   ├── [ 678 2026-02-24 22:38]  pylintrc.toml
-│   ├── [5.5K 2026-05-13 17:14]  repository_data.txt
-│   ├── [ 932 2026-05-13 13:46]  repository_data.txt.tpl
+│   ├── [5.8K 2026-11-11 14:52]  repository_data.txt
+│   ├── [ 963 2026-11-11 15:43]  repository_data.txt.tpl
 │   ├── [1.5K 2026-08-13 16:02]  ruff.toml
 │   ├── [ 166 2026-03-24 19:33]  shellcheck.ini
 │   └── [3.6K 2026-05-13 17:18]  shellcheck_notes.txt
 ├── [ 34K 2024-05-06 00:49]  COPYING
 ├── [7.5K 2025-12-27 21:48]  COPYING.LESSER
-├── [569K 2026-08-14 18:11]  DevOrSysAdminScripts.html
-├── [465K 2026-08-14 18:11]  DevOrSysAdminScripts.pdf
+├── [468K 2026-11-11 15:42]  DevOrSysAdminScripts-A4.pdf
+├── [468K 2026-11-11 15:42]  DevOrSysAdminScripts-Book.pdf
+├── [575K 2026-11-11 15:41]  DevOrSysAdminScripts.html
+├── [466K 2026-09-18 22:18]  DevOrSysAdminScripts.pdf
+├── [468K 2026-11-11 15:42]  DevOrSysAdminScripts-USLetter.pdf
 ├── [ 21K 2026-08-14 18:01]  files.libr.php
 ├── [4.0K 2026-05-13 17:28]  git_helpers/
 │   ├── [3.8K 2026-05-13 17:22]  git_checks.libr.sh
@@ -577,7 +583,7 @@ wget_sha512.libr.sh
 ├── [6.4K 2026-05-13 18:46]  upgrade_build_and_checks.exec.sh*
 └── [2.5K 2026-05-12 19:37]  wget_sha512.libr.sh
 
-6 directories, 87 files
+6 directories, 90 files
 </pre>
 
 
@@ -2496,9 +2502,9 @@ common_build_and_checks(){
   LFBFL_file_name="create_PDF.exec.sh"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='664cb7d2f3f312796f3651bc2c552bbc3ffa2b6d0ff80'
-  LFBFL_correct_sha512+='d5d9acbad4a874b6f3db6e9d1e446a2e69477c5cda69'
-  LFBFL_correct_sha512+='b84fccbdd3f112361850b93c84bbf4cab6b2892'
+  LFBFL_correct_sha512='588f29f1de07d9980a14259a710cea5f5093102e0ff8c'
+  LFBFL_correct_sha512+='366e71c45bc383f5040954a858ec0c84ba712c51ee01'
+  LFBFL_correct_sha512+='cb2c5ced6354103dfc9ea7e735c70b205cafbe6'
   wrapped_wget_sha512
   chmod +x "./${LFBFL_file_path}"
 
@@ -5838,26 +5844,66 @@ create_PDF(){
     *) printf "Unsupported latex command" ; return 1 ;;
   esac
 
+  declare -a LFBFL_arr_commands
   local LFBFL_command
-  LFBFL_command="${LFBFL_latex_command}"
-  LFBFL_command+=" '${LFBFL_subdir2}/${LFBFL_repository_name}.tex'"
-  if [[ LFBFL_i_verbose -eq 0 ]]; then
-    LFBFL_command+=" > /dev/null"
-  fi
-  readonly LFBFL_command
 
-  for ((LFBFL_i = 0; LFBFL_i &lt; 3; ++LFBFL_i)); do
-    eval -- "${LFBFL_command}"
+  local LFBFL_latex_targets=""
+  grep_variable "${LFBFL_data_file_path}" latex_targets\
+    --result-variable-prefix="LFBFL_"
+  declare -a LFBFL_arr_latex_targets
+  if [[ -z "${LFBFL_latex_targets}" ]]; then
+    LFBFL_command="${LFBFL_latex_command}"
+    LFBFL_command+=" '${LFBFL_subdir2}/${LFBFL_repository_name}.tex'"
+    if [[ LFBFL_i_verbose -eq 0 ]]; then
+      LFBFL_command+=" > /dev/null"
+    fi
+    LFBFL_arr_commands+=("${LFBFL_command}")
+  else
+    mapfile -t LFBFL_arr_latex_targets &lt;&lt;&lt; "${LFBFL_latex_targets}"
+    local LFBFL_latex_target
+    local LFBFL_jobname_suffix
+    local LFBFL_buildtarget
+    for LFBFL_latex_target in "${LFBFL_arr_latex_targets[@]}"; do
+      LFBFL_jobname_suffix=${LFBFL_latex_target%:*}
+      LFBFL_buildtarget=${LFBFL_latex_target##*:}
+      LFBFL_command="${LFBFL_latex_command}"
+      LFBFL_command+=" --jobname="
+      LFBFL_command+="'${LFBFL_repository_name}-${LFBFL_jobname_suffix}'"
+      LFBFL_command+=" '\def\buildtarget{${LFBFL_buildtarget}}"
+      LFBFL_command+=" \input{"
+      LFBFL_command+="${LFBFL_subdir2}/${LFBFL_repository_name}.tex}'"
+      if [[ LFBFL_i_verbose -eq 0 ]]; then
+        LFBFL_command+=" > /dev/null"
+      fi
+      LFBFL_arr_commands+=("${LFBFL_command}")
+    done
+  fi
+
+  for LFBFL_command in "${LFBFL_arr_commands[@]}"; do
+    for ((LFBFL_i = 0; LFBFL_i &lt; 3; ++LFBFL_i)); do
+      eval -- "${LFBFL_command}"
+    done
   done
 
-  LFBFL_files_to_temp=(\
-    "${LFBFL_repository_name}.aux"\
-    "${LFBFL_repository_name}.log"\
-    "${LFBFL_repository_name}.out"\
-    "${LFBFL_repository_name}.toc"
+  # LFBFL_files_to_temp=(\
+  #   "${LFBFL_repository_name}.aux"\
+  #   "${LFBFL_repository_name}.log"\
+  #   "${LFBFL_repository_name}.out"\
+  #   "${LFBFL_repository_name}.toc"
+  # )
+  # for LFBFL_file_name in "${LFBFL_files_to_temp[@]}"; do
+  #   mv -- "${LFBFL_file_name}" "${LFBFL_temp_path}/"
+  # done
+
+  LFBFL_files_suffix_to_temp=(\
+    ".aux"\
+    ".log"\
+    ".out"\
+    ".toc"
   )
-  for LFBFL_file_name in "${LFBFL_files_to_temp[@]}"; do
-    mv -- "${LFBFL_file_name}" "${LFBFL_temp_path}/"
+  for LFBFL_file_suffix in "${LFBFL_files_suffix_to_temp[@]}"; do
+    mv -- "${LFBFL_repository_name}"*"${LFBFL_file_suffix}"\
+      "${LFBFL_temp_path}/"
   done
 }
 
@@ -10914,7 +10960,19 @@ build_and_checks_variables/DevOrSysAdminScripts.tex.tpl
 % to
 % "./build_and_checks_variables".
 
+\if\buildtarget0% A4 paper
 \documentclass{article}
+\usepackage[a4paper,vmargin=20mm,left=27mm,right=27mm,nohead]{geometry}
+\else\if\buildtarget1% US Letter paper
+\documentclass{article}
+\usepackage[letterpaper,vmargin=20mm,left=27mm,right=27mm,nohead]{geometry}
+\else\if\buildtarget2% Book with US Letter paper
+\documentclass[twoside]{article}
+\usepackage[letterpaper,vmargin=20mm,outer=24mm,inner=24mm,nohead,
+bindingoffset=8mm]{geometry}
+\fi
+\fi
+\fi
 
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
@@ -10968,6 +11026,17 @@ Current number of commits: @number_of_commits@
 Current git SHA1: @current_git_SHA1@
 
 Code lines: @number_of_lines@
+
+Buildtarget: \buildtarget
+\if\buildtarget0
+A4
+\else\if\buildtarget1% US Letter paper
+USLetter
+\else\if\buildtarget2% Book with US Letter paper
+Book
+\fi
+\fi
+\fi
 
 \tableofcontents
 \newpage
@@ -11999,6 +12068,14 @@ max_line_length=75
 
 latex_command=pdflatex
 
+You can build multiple targets of the source listing according to various
+formats and sizes.
+Specify a jobname suffix (that will become a filename suffix)
+and an integer that will set a buildtarget macro, separated with ':'.
+latex_targets=A4:0
+latex_targets=USLetter:1
+latex_targets=Book:2
+
 grammar_and_spelling_checker_command=
 
 
@@ -12156,6 +12233,9 @@ acknowledgments=
 max_line_length=
 
 latex_command=
+
+latex_targets=
+latex_targets=
 
 grammar_and_spelling_checker_command=
 
@@ -12415,9 +12495,9 @@ build_and_checks(){
   readonly LFBFL_script_download_URL
   declare -r LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_common_file_name}"
   local LFBFL_correct_sha512
-  LFBFL_correct_sha512='b1e12643d3320e7b9be2c7172c8a334b14a19d7ef28ab'
-  LFBFL_correct_sha512+='fa30a15e20daa01b9662bff6658c4dc6d59b19ad841a'
-  LFBFL_correct_sha512+='6311c2f7d367983ff9f67a6f27dc63bec5a0aae'
+  LFBFL_correct_sha512='c090463990b393a10177e9d0db26c59d45711bfdb4e08'
+  LFBFL_correct_sha512+='1c7b9da75a9d14275fe5edffe1a1cddd460b6d0c92a8'
+  LFBFL_correct_sha512+='d6eb76450550797861badac33847d8b24d26c67'
   wget_sha512 "${LFBFL_file_path}"\
     "${LFBFL_script_download_URL}"\
     "${LFBFL_correct_sha512}"\

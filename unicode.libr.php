@@ -314,7 +314,7 @@ function check_string_is_valid_ASCII(string $s_string) : bool {
     return true;
   }
 
-  $i_offset_in_octets_from_string_start = 0;
+  // $i_offset_in_octets_from_string_start = 0;
   $i_current_line_number = 1;
   $i_offset_in_octets_from_line_start = -1;
   for($i = 0, $i_max = strlen($s_string); $i < $i_max; ++$i){

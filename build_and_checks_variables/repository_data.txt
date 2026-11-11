@@ -38,6 +38,14 @@ max_line_length=75
 
 latex_command=pdflatex
 
+You can build multiple targets of the source listing according to various
+formats and sizes.
+Specify a jobname suffix (that will become a filename suffix)
+and an integer that will set a buildtarget macro, separated with ':'.
+latex_targets=A4:0
+latex_targets=USLetter:1
+latex_targets=Book:2
+
 grammar_and_spelling_checker_command=
 
 

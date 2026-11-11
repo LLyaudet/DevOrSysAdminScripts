@@ -587,26 +587,66 @@ create_PDF(){
     *) printf "Unsupported latex command" ; return 1 ;;
   esac
 
+  declare -a LFBFL_arr_commands
   local LFBFL_command
-  LFBFL_command="${LFBFL_latex_command}"
-  LFBFL_command+=" '${LFBFL_subdir2}/${LFBFL_repository_name}.tex'"
-  if [[ LFBFL_i_verbose -eq 0 ]]; then
-    LFBFL_command+=" > /dev/null"
-  fi
-  readonly LFBFL_command
 
-  for ((LFBFL_i = 0; LFBFL_i < 3; ++LFBFL_i)); do
-    eval -- "${LFBFL_command}"
+  local LFBFL_latex_targets=""
+  grep_variable "${LFBFL_data_file_path}" latex_targets\
+    --result-variable-prefix="LFBFL_"
+  declare -a LFBFL_arr_latex_targets
+  if [[ -z "${LFBFL_latex_targets}" ]]; then
+    LFBFL_command="${LFBFL_latex_command}"
+    LFBFL_command+=" '${LFBFL_subdir2}/${LFBFL_repository_name}.tex'"
+    if [[ LFBFL_i_verbose -eq 0 ]]; then
+      LFBFL_command+=" > /dev/null"
+    fi
+    LFBFL_arr_commands+=("${LFBFL_command}")
+  else
+    mapfile -t LFBFL_arr_latex_targets <<< "${LFBFL_latex_targets}"
+    local LFBFL_latex_target
+    local LFBFL_jobname_suffix
+    local LFBFL_buildtarget
+    for LFBFL_latex_target in "${LFBFL_arr_latex_targets[@]}"; do
+      LFBFL_jobname_suffix=${LFBFL_latex_target%:*}
+      LFBFL_buildtarget=${LFBFL_latex_target##*:}
+      LFBFL_command="${LFBFL_latex_command}"
+      LFBFL_command+=" --jobname="
+      LFBFL_command+="'${LFBFL_repository_name}-${LFBFL_jobname_suffix}'"
+      LFBFL_command+=" '\def\buildtarget{${LFBFL_buildtarget}}"
+      LFBFL_command+=" \input{"
+      LFBFL_command+="${LFBFL_subdir2}/${LFBFL_repository_name}.tex}'"
+      if [[ LFBFL_i_verbose -eq 0 ]]; then
+        LFBFL_command+=" > /dev/null"
+      fi
+      LFBFL_arr_commands+=("${LFBFL_command}")
+    done
+  fi
+
+  for LFBFL_command in "${LFBFL_arr_commands[@]}"; do
+    for ((LFBFL_i = 0; LFBFL_i < 3; ++LFBFL_i)); do
+      eval -- "${LFBFL_command}"
+    done
   done
 
-  LFBFL_files_to_temp=(\
-    "${LFBFL_repository_name}.aux"\
-    "${LFBFL_repository_name}.log"\
-    "${LFBFL_repository_name}.out"\
-    "${LFBFL_repository_name}.toc"
+  # LFBFL_files_to_temp=(\
+  #   "${LFBFL_repository_name}.aux"\
+  #   "${LFBFL_repository_name}.log"\
+  #   "${LFBFL_repository_name}.out"\
+  #   "${LFBFL_repository_name}.toc"
+  # )
+  # for LFBFL_file_name in "${LFBFL_files_to_temp[@]}"; do
+  #   mv -- "${LFBFL_file_name}" "${LFBFL_temp_path}/"
+  # done
+
+  LFBFL_files_suffix_to_temp=(\
+    ".aux"\
+    ".log"\
+    ".out"\
+    ".toc"
   )
-  for LFBFL_file_name in "${LFBFL_files_to_temp[@]}"; do
-    mv -- "${LFBFL_file_name}" "${LFBFL_temp_path}/"
+  for LFBFL_file_suffix in "${LFBFL_files_suffix_to_temp[@]}"; do
+    mv -- "${LFBFL_repository_name}"*"${LFBFL_file_suffix}"\
+      "${LFBFL_temp_path}/"
   done
 }
 

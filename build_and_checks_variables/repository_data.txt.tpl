@@ -27,6 +27,9 @@ max_line_length=
 
 latex_command=
 
+latex_targets=
+latex_targets=
+
 grammar_and_spelling_checker_command=
 
 bandit_venv=

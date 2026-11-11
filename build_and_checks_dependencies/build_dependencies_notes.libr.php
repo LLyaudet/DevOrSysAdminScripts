@@ -135,7 +135,7 @@ function build_dependencies_notes(string $s_work_directory) : void {
     ){
       $mixed_URL = $arr_dependency['URLs'][$i];
       $s_comment = '';
-      $s_URL = '';
+      // $s_URL = '';
       if(is_array($mixed_URL)){
         if(!isset($mixed_URL['URL'])){
           throw new Exception("Dependency URL doesn't have an URL.");

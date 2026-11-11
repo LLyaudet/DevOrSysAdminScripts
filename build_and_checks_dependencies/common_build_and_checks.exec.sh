@@ -91,9 +91,9 @@ common_build_and_checks(){
   LFBFL_file_name="build_dependencies_notes.libr.php"
   LFBFL_script_download_URL="${LFBFL_dependencies_URL}/${LFBFL_file_name}"
   LFBFL_file_path="./${LFBFL_subdir}/${LFBFL_file_name}"
-  LFBFL_correct_sha512='6203cb1c31b656004ec8467d4f84288f342fcc7f5c236'
-  LFBFL_correct_sha512+='270e819b986fe967aa6abe101188a7fc1a55e2f4c9b5'
-  LFBFL_correct_sha512+='9a6dde6c9aa125b385d0ce85e02b1de69ce1084'
+  LFBFL_correct_sha512='41851c02499cc4cf3fec3de3ddd79af28fbb96bb292dd'
+  LFBFL_correct_sha512+='0518abe6a87c2a0f799ed0c82af711174925b0e6fd59'
+  LFBFL_correct_sha512+='002e6dba806fffe55b68f4d827cb0f2012f67f6'
   wrapped_wget_sha512
 
   LFBFL_file_name="build_file_from_printable_file__standard.exec.sh"
